@@ -54,6 +54,11 @@ server.listen(0, async () => {
     q1 = r.json.question;
     assert.ok(q1.id > 0); assert.equal(q1.skillId, 'exp-int'); assert.ok(q1.prompt); assert.ok(q1.fingerprint); assert.ok(Array.isArray(q1.steps));
   });
+  await t('a question can be fetched by id', async () => {
+    const r = await a('GET', `/api/questions/${q1.id}`);
+    assert.equal(r.status, 200); assert.equal(r.json.question.id, q1.id); assert.equal(r.json.question.prompt, q1.prompt);
+  });
+  await t('question by id requires sign-in', async () => assert.equal((await anon('GET', `/api/questions/${q1.id}`)).status, 401));
   await t('unknown topic is 404', async () => assert.equal((await a('GET', '/api/questions/next?skill=nope')).status, 404));
   await t('excluded fingerprint returns a different question', async () => {
     const r = await a('GET', '/api/questions/next?skill=exp-int&exclude=' + encodeURIComponent(q1.fingerprint));

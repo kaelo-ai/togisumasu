@@ -413,6 +413,11 @@ function count(db) {
   return db.prepare('SELECT COUNT(*) AS n FROM questions').get().n;
 }
 
+function getActive(db, id) {
+  const row = db.prepare("SELECT * FROM questions WHERE id = ? AND status = 'active'").get(id);
+  return row ? rowToQuestion(row) : null;
+}
+
 function adminGet(db, id) {
   const row = db.prepare('SELECT * FROM questions WHERE id = ?').get(id);
   if (!row) return null;
@@ -539,7 +544,7 @@ function units() {
 
 module.exports = {
   init, seed, next, similar, search, count, fingerprint, searchText, serialize, hasSkill: id => !!core.SKM[id],
-  adminGet, adminList, addManual, updateQuestion, setStatus, testAnswer, skills, units, normalizeQuestion,
+  getActive, adminGet, adminList, addManual, updateQuestion, setStatus, testAnswer, skills, units, normalizeQuestion,
 };
 
 if (require.main === module) {

@@ -518,6 +518,13 @@ async function api(req, res, url) {
     return send(res, 200, { items });
   }
 
+  const questionRoute = url.pathname.match(/^\/api\/questions\/(\d+)$/);
+  if (req.method === 'GET' && questionRoute) {
+    const question = bank.getActive(db, Number(questionRoute[1]));
+    if (!question) return send(res, 404, { error: 'Question not found.' });
+    return send(res, 200, { question });
+  }
+
   const similarRoute = url.pathname.match(/^\/api\/questions\/(\d+)\/similar$/);
   if (req.method === 'GET' && similarRoute) {
     const items = bank.similar(db, Number(similarRoute[1]), Number(url.searchParams.get('limit') || 5));

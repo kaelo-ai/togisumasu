@@ -22,7 +22,7 @@ Without Docker (Node 22.5 or newer):
 
 ```bash
 npm start          # http://localhost:3000, data in ./data
-npm test           # 73 tests: auth, isolation, question bank, admin, rate limits, AI tutor
+npm test           # 75 tests: auth, isolation, question bank, admin, rate limits, AI tutor
 npm run ai:check   # test your LLM settings
 npm run questions:seed -- 20   # optional: pre-generate 20 questions per topic
 npm run admin -- promote you@example.com   # make an existing account an admin
@@ -113,6 +113,7 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 | PUT | `/api/progress` | cookie | `{data}`, where `data.skills` must be an object |
 | GET | `/api/questions/next?skill=ID&exclude=FPS` | cookie | `{question}`, or generates and stores one if every match is excluded |
 | GET | `/api/questions/search?q=TEXT&limit=10` | cookie | `{items}` from the FTS5 index |
+| GET | `/api/questions/:id` | cookie | `{question}` for an active question |
 | GET | `/api/questions/:id/similar?limit=5` | cookie | `{items}` of lexically similar questions, same topic first |
 | POST | `/api/ai/explain` | cookie | `{topic, prompt, answer, given, steps}` returns `{text, remaining}` |
 | GET | `/api/admin/users?q=&status=&limit=&offset=` | admin | `{items, total, limit, offset}` |
