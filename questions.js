@@ -429,7 +429,7 @@ function adminGet(db, id) {
   };
 }
 
-function adminList(db, filters = {}) {
+function filterClause(filters = {}) {
   const where = [];
   const params = [];
   if (filters.skillId) { where.push('skill_id = ?'); params.push(String(filters.skillId)); }
@@ -446,7 +446,11 @@ function adminList(db, filters = {}) {
     where.push('(prompt_text LIKE ? OR skill_id LIKE ?)');
     params.push(`%${text}%`, `%${text}%`);
   }
-  const clause = where.length ? 'WHERE ' + where.join(' AND ') : '';
+  return { clause: where.length ? 'WHERE ' + where.join(' AND ') : '', params };
+}
+
+function adminList(db, filters = {}) {
+  const { clause, params } = filterClause(filters);
   const total = db.prepare(`SELECT COUNT(*) AS n FROM questions ${clause}`).get(...params).n;
   const limit = Math.max(1, Math.min(100, Number(filters.limit) || 50));
   const offset = Math.max(0, Number(filters.offset) || 0);
@@ -462,6 +466,163 @@ function adminList(db, filters = {}) {
       createdAt: r.created_at, updatedAt: r.updated_at,
     })),
   };
+}
+
+function adminExport(db, filters = {}) {
+  const { clause, params } = filterClause(filters);
+  const rows = db.prepare(`SELECT * FROM questions ${clause} ORDER BY id`).all(...params);
+  return rows.map(r => ({
+    id: r.id, skillId: r.skill_id, status: r.status, source: r.source,
+    question: JSON.parse(r.data),
+  }));
+}
+
+function duplicateQuestion(db, skillId, prompt, excludeId) {
+  if (!core.SKM[skillId]) throw qerr('Unknown topic.');
+  const text = safeHtml(prompt, 4000);
+  if (!text) throw qerr('Prompt is required.');
+  const fp = fingerprint(text);
+  return db.prepare(`
+    SELECT id, prompt, status FROM questions
+    WHERE skill_id = ? AND fingerprint = ? AND id <> ?
+  `).get(skillId, fp, Number(excludeId) || 0) || null;
+}
+
+const CSV_COLUMNS = [
+  'id', 'skillId', 'status', 'source', 'type', 'prompt', 'hint', 'steps', 'ans', 'ansTex',
+  'val', 'vals', 'undef', 'exact', 'var', 'sample', 'tol', 'options', 'fields', 'reject',
+];
+
+function csvCell(value) {
+  if (value == null) return '';
+  const text = typeof value === 'string' ? value : JSON.stringify(value);
+  return /[",\r\n]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text;
+}
+
+function exportCsv(items) {
+  const lines = [CSV_COLUMNS.join(',')];
+  for (const item of items) {
+    const q = item.question || {};
+    const row = {
+      id: item.id, skillId: item.skillId, status: item.status, source: item.source,
+      type: q.type, prompt: q.prompt, hint: q.hint, steps: q.steps, ans: q.ans, ansTex: q.ansTex,
+      val: q.val, vals: q.vals, undef: q.undef, exact: q.exact, var: q.var, sample: q.sample,
+      tol: q.tol, options: q.options, fields: q.fields, reject: q.reject,
+    };
+    lines.push(CSV_COLUMNS.map(name => csvCell(row[name])).join(','));
+  }
+  return lines.join('\n') + '\n';
+}
+
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = '', quoted = false;
+  const s = String(text || '');
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (quoted) {
+      if (c === '"') {
+        if (s[i + 1] === '"') { field += '"'; i++; }
+        else quoted = false;
+      } else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+    else if (c !== '\r') field += c;
+  }
+  if (quoted) throw qerr('CSV has an unterminated quoted field.');
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(r => r.some(cell => String(cell).trim() !== ''));
+}
+
+function parseCsvQuestions(text) {
+  const rows = parseCsv(text);
+  if (rows.length < 2) throw qerr('CSV needs a header and at least one question.');
+  const headers = rows[0].map(h => h.trim());
+  for (const name of ['skillId', 'type', 'prompt'])
+    if (!headers.includes(name)) throw qerr(`CSV is missing the ${name} column.`);
+  const value = (row, name) => {
+    const i = headers.indexOf(name);
+    return i < 0 || row[i] == null ? '' : String(row[i]);
+  };
+  const items = [];
+  for (let r = 1; r < rows.length; r++) {
+    const row = rows[r];
+    const skillId = value(row, 'skillId').trim();
+    if (!skillId) throw qerr(`CSV row ${r + 1}: skillId is required.`);
+    const q = { type: value(row, 'type').trim(), prompt: value(row, 'prompt') };
+    const hint = value(row, 'hint'); if (hint) q.hint = hint;
+    const json = name => {
+      const raw = value(row, name).trim();
+      if (!raw) return undefined;
+      try { return JSON.parse(raw); }
+      catch (err) { throw qerr(`CSV row ${r + 1}: ${name} is not valid JSON.`); }
+    };
+    const number = name => {
+      const raw = value(row, name).trim();
+      if (!raw) return undefined;
+      const n = Number(raw);
+      if (!Number.isFinite(n)) throw qerr(`CSV row ${r + 1}: ${name} must be a number.`);
+      return n;
+    };
+    const boolean = name => {
+      const raw = value(row, name).trim().toLowerCase();
+      if (!raw) return undefined;
+      return raw === 'true' || raw === '1' || raw === 'yes';
+    };
+    q.steps = json('steps') || [];
+    const ans = value(row, 'ans'); if (ans !== '') q.ans = ans;
+    const ansTex = value(row, 'ansTex'); if (ansTex !== '') q.ansTex = ansTex;
+    const val = number('val'); if (val !== undefined) q.val = val;
+    const vals = json('vals'); if (vals !== undefined) q.vals = vals;
+    const undef = boolean('undef'); if (undef !== undefined) q.undef = undef;
+    const exact = boolean('exact'); if (exact !== undefined) q.exact = exact;
+    const variable = value(row, 'var'); if (variable) q.var = variable;
+    const sample = json('sample'); if (sample !== undefined) q.sample = sample;
+    const tol = number('tol'); if (tol !== undefined) q.tol = tol;
+    const options = json('options'); if (options !== undefined) q.options = options;
+    const fields = json('fields'); if (fields !== undefined) q.fields = fields;
+    const reject = value(row, 'reject'); if (reject) q.reject = reject;
+    items.push({ skillId, question: q });
+  }
+  return items;
+}
+
+function parseJsonImport(text) {
+  let data;
+  try { data = JSON.parse(String(text || '')); }
+  catch (err) { throw qerr('Import JSON is not valid JSON.'); }
+  if (data && Array.isArray(data.items)) data = data.items;
+  if (!Array.isArray(data)) throw qerr('Import JSON must be an array or {items:[...]}.');
+  return data;
+}
+
+function importQuestions(db, items) {
+  if (!Array.isArray(items) || !items.length) throw qerr('No questions to import.');
+  const result = { added: 0, skipped: 0, errors: [], errorCount: 0 };
+  db.exec('BEGIN');
+  try {
+    items.forEach((item, i) => {
+      try {
+        const skillId = String(item && item.skillId || '');
+        const question = item && item.question ? item.question : item;
+        if (!skillId) throw qerr('Missing skillId.');
+        addManual(db, skillId, question);
+        result.added++;
+      } catch (err) {
+        if (/already exists/i.test(err.message)) result.skipped++;
+        else {
+          result.errorCount++;
+          if (result.errors.length < 20) result.errors.push({ row: i + 1, error: err.message });
+        }
+      }
+    });
+    db.exec('COMMIT');
+  } catch (err) {
+    db.exec('ROLLBACK');
+    throw err;
+  }
+  return result;
 }
 
 function addManual(db, skillId, input) {
@@ -544,7 +705,8 @@ function units() {
 
 module.exports = {
   init, seed, next, similar, search, count, fingerprint, searchText, serialize, hasSkill: id => !!core.SKM[id],
-  getActive, adminGet, adminList, addManual, updateQuestion, setStatus, testAnswer, skills, units, normalizeQuestion,
+  getActive, adminGet, adminList, adminExport, duplicateQuestion, exportCsv, parseCsvQuestions, parseJsonImport, importQuestions,
+  addManual, updateQuestion, setStatus, testAnswer, skills, units, normalizeQuestion,
 };
 
 if (require.main === module) {

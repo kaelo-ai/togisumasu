@@ -94,6 +94,24 @@ server.listen(0, async () => {
     assert.equal((await a('POST', '/api/auth/login', { email: 'alice@example.com', password: 'alice-pass-123' })).status, 200);
     assert.deepEqual((await a('GET', '/api/progress')).json.data, progA);
   });
+  await t('account name can be changed', async () => {
+    const r = await a('PATCH', '/api/account', { name: 'Alice Updated' });
+    assert.equal(r.status, 200); assert.equal(r.json.user.name, 'Alice Updated');
+    assert.equal((await a('GET', '/api/auth/me')).json.user.name, 'Alice Updated');
+  });
+  await t('password change needs the current password', async () => {
+    assert.equal((await a('PATCH', '/api/account', { newPassword: 'alice-new-pass-123' })).status, 400);
+    assert.equal((await a('PATCH', '/api/account', { currentPassword: 'wrong-pass', newPassword: 'alice-new-pass-123' })).status, 400);
+  });
+  await t('password change keeps the current session and updates the cookie', async () => {
+    const r = await a('PATCH', '/api/account', { currentPassword: 'alice-pass-123', newPassword: 'alice-new-pass-123' });
+    assert.equal(r.status, 200); assert.match(r.setCookie, /sid=/);
+    assert.equal((await a('GET', '/api/auth/me')).json.user.name, 'Alice Updated');
+  });
+  await t('new password works and the old one does not', async () => {
+    assert.equal((await anon('POST', '/api/auth/login', { email: 'alice@example.com', password: 'alice-pass-123' })).status, 401);
+    assert.equal((await anon('POST', '/api/auth/login', { email: 'alice@example.com', password: 'alice-new-pass-123' })).status, 200);
+  });
   await t('path traversal blocked', async () => assert.notEqual((await fetch(base + '/..%2fserver.js')).status, 200));
   await t('SPA fallback serves index', async () => assert.equal((await fetch(base + '/some/route')).status, 200));
   await t('login rate limited after many tries', async () => {

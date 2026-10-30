@@ -22,7 +22,7 @@ Without Docker (Node 22.5 or newer):
 
 ```bash
 npm start          # http://localhost:3000, data in ./data
-npm test           # 75 tests: auth, isolation, question bank, admin, rate limits, AI tutor
+npm test           # 85 tests: auth, isolation, question bank, admin, rate limits, AI tutor
 npm run ai:check   # test your LLM settings
 npm run questions:seed -- 20   # optional: pre-generate 20 questions per topic
 npm run admin -- promote you@example.com   # make an existing account an admin
@@ -60,6 +60,7 @@ npm run admin -- promote you@example.com   # make an existing account an admin
 - Sessions use a random 256-bit token in an `HttpOnly; SameSite=Lax` cookie. Only its SHA-256 hash is stored.
 - Every progress and AI query is keyed by the signed-in user's id, so one account can't touch another's data.
 - Question reads require a session but are shared; only health, config, registration and login are public.
+- Users can change their own name and password from **Settings** in the header. Changing a password keeps the current session and signs out other devices.
 - Admins have a role and a `/admin` page. They can list/disable/restore/delete users, reset passwords, reset progress, curate questions and review an audit log. Disabled or deleted accounts cannot sign in and their sessions are revoked.
 - Unknown emails and wrong passwords get the same error and take the same time.
 - Login, registration and the AI tutor are rate-limited.
@@ -94,7 +95,7 @@ docker exec togisumasu node admin.js promote you@example.com
 Then open **`/admin`**. The page has three areas:
 
 - **Users** — search, disable/enable, soft-delete/restore, promote/demote admins, issue a one-time temporary password, and reset progress for everything, one whole unit, or one topic. A reset signs that user out so their next sign-in starts clean. You cannot disable, demote or delete your own account, and the last active admin is protected.
-- **Questions** — filter by topic/status/source, edit or hide/delete generated questions, and add manual questions. Manual questions are stored with `source='manual'` and are never overwritten by seeding. The editor accepts the same structured JSON as the bank, validates the canonical answer with the real answer checker, and can test a learner answer before saving.
+- **Questions** — filter by topic/status/source, edit or hide/delete generated questions, and add manual questions. Manual questions are stored with `source='manual'` and are never overwritten by seeding. The editor has a live MathJax preview, duplicate-prompt detection, the real answer checker, and bulk JSON/CSV import-export.
 - **Audit log** — every admin change is recorded with the acting admin, action, target and details. Passwords are never written to the log.
 
 Question edits are versionless: changing a prompt gives it a new fingerprint, so learners may see the edited version as a new question. Hiding a question removes it from practice and search without deleting its history.
@@ -111,6 +112,7 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 | GET | `/api/auth/me` | cookie | `{user}` |
 | GET | `/api/progress` | cookie | `{data, updatedAt}` |
 | PUT | `/api/progress` | cookie | `{data}`, where `data.skills` must be an object |
+| PATCH | `/api/account` | cookie | `{name?, currentPassword?, newPassword?}` updates the signed-in account |
 | GET | `/api/questions/next?skill=ID&exclude=FPS` | cookie | `{question}`, or generates and stores one if every match is excluded |
 | GET | `/api/questions/search?q=TEXT&limit=10` | cookie | `{items}` from the FTS5 index |
 | GET | `/api/questions/:id` | cookie | `{question}` for an active question |
@@ -127,6 +129,9 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 | PATCH | `/api/admin/questions/:id` | admin | `{question?, skillId?, status?}` edits or hides a question |
 | DELETE | `/api/admin/questions/:id` | admin | Soft-deletes a question |
 | POST | `/api/admin/questions/test` | admin | `{question, answer}` runs the real answer checker |
+| POST | `/api/admin/questions/duplicate` | admin | `{skillId, prompt, excludeId?}` checks for a duplicate prompt |
+| GET | `/api/admin/questions/export?format=json\|csv` | admin | Downloads the filtered question set |
+| POST | `/api/admin/questions/import` | admin | `{format:'json'\|'csv', text}` bulk-imports questions |
 | GET | `/api/admin/audit?limit=100` | admin | Recent admin changes |
 
 ## Files

@@ -87,6 +87,7 @@ const q = {
   deleteExpired: db.prepare('DELETE FROM sessions WHERE expires_at < ?'),
   setRole: db.prepare('UPDATE users SET role = ? WHERE id = ?'),
   setStatus: db.prepare('UPDATE users SET status = ? WHERE id = ?'),
+  setName: db.prepare('UPDATE users SET name = ? WHERE id = ?'),
   setPassword: db.prepare('UPDATE users SET pass_hash = ? WHERE id = ?'),
   promoteByEmail: db.prepare("UPDATE users SET role = 'admin' WHERE email = ?"),
   getProgress: db.prepare('SELECT data, updated_at FROM progress WHERE user_id = ?'),
@@ -392,6 +393,46 @@ async function adminApi(req, res, url, admin) {
     return send(res, 200, bank.testAnswer(body.question, body.answer));
   }
 
+  if (route === 'POST /api/admin/questions/duplicate') {
+    const body = await readJson(req);
+    const skillId = String(body && body.skillId || '');
+    const prompt = String(body && body.prompt || '');
+    if (!skillId || !prompt) return send(res, 400, { error: 'Choose a topic and provide a prompt.' });
+    const row = bank.duplicateQuestion(db, skillId, prompt, body.excludeId);
+    return send(res, 200, {
+      duplicate: !!row,
+      question: row ? { id: row.id, prompt: row.prompt, status: row.status } : null,
+    });
+  }
+
+  if (route === 'GET /api/admin/questions/export') {
+    const format = String(url.searchParams.get('format') || 'json');
+    if (!['json', 'csv'].includes(format)) return send(res, 400, { error: 'Format must be json or csv.' });
+    const items = bank.adminExport(db, {
+      skillId: url.searchParams.get('skill') || '',
+      status: url.searchParams.get('status') || 'all',
+      source: url.searchParams.get('source') || 'all',
+      q: url.searchParams.get('q') || '',
+    });
+    if (format === 'csv') return send(res, 200, bank.exportCsv(items), {
+      'Content-Type': 'text/csv; charset=utf-8',
+      'Content-Disposition': 'attachment; filename="togisumasu-questions.csv"',
+    });
+    return send(res, 200, { items });
+  }
+
+  if (route === 'POST /api/admin/questions/import') {
+    const body = await readJson(req);
+    const format = String(body && body.format || 'json');
+    let items;
+    if (format === 'csv') items = bank.parseCsvQuestions(String(body && body.text || ''));
+    else if (format === 'json') items = Array.isArray(body && body.items) ? body.items : bank.parseJsonImport(String(body && body.text || ''));
+    else return send(res, 400, { error: 'Format must be json or csv.' });
+    const result = bank.importQuestions(db, items);
+    audit(admin, 'question.import', 'question', null, { format, added: result.added, skipped: result.skipped, errorCount: result.errorCount });
+    return send(res, 200, result);
+  }
+
   const questionMatch = url.pathname.match(/^\/api\/admin\/questions\/(\d+)$/);
   if (questionMatch) {
     const id = Number(questionMatch[1]);
@@ -496,6 +537,29 @@ async function api(req, res, url) {
   if (!user) return send(res, 401, { error: 'Sign in first.' });
 
   if (route === 'GET /api/auth/me') return send(res, 200, { user: publicUser(user) });
+
+  if (route === 'PATCH /api/account') {
+    const body = await readJson(req);
+    const name = body.name === undefined ? null : String(body.name || '').trim();
+    const currentPassword = String(body.currentPassword || '');
+    const newPassword = String(body.newPassword || '');
+    if (name === null && !newPassword) return send(res, 400, { error: 'Change a name or password.' });
+    if (name !== null && (!name || name.length > 60)) return send(res, 400, { error: 'Enter your name (up to 60 characters).' });
+    if (newPassword) {
+      if (newPassword.length < 8 || newPassword.length > 200) return send(res, 400, { error: 'Use a password of at least 8 characters.' });
+      if (rateLimited('account:' + user.id, 8)) return send(res, 429, { error: 'Too many attempts. Try again in a few minutes.' });
+      const full = q.userByEmail.get(user.email);
+      if (!full || !verifyPassword(currentPassword, full.pass_hash)) return send(res, 400, { error: 'Current password is incorrect.' });
+    }
+    if (name !== null) q.setName.run(name, user.id);
+    if (newPassword) {
+      q.setPassword.run(hashPassword(newPassword), user.id);
+      q.deleteSessions.run(user.id);
+      const token = createSession(user.id);
+      return send(res, 200, { user: publicUser(q.userById.get(user.id)) }, { 'Set-Cookie': sessionCookie(req, token, SESSION_DAYS * 86400) });
+    }
+    return send(res, 200, { user: publicUser(q.userById.get(user.id)) });
+  }
 
   if (url.pathname.startsWith('/api/admin/')) {
     if (user.role !== 'admin') return send(res, 403, { error: 'Admin access required.' });

@@ -15,8 +15,9 @@ function client() {
     });
     const sc = r.headers.get('set-cookie');
     if (sc) cookie = /Max-Age=0/.test(sc) ? '' : sc.split(';')[0];
-    let json = null; try { json = await r.json(); } catch {}
-    return { status: r.status, json, setCookie: sc };
+    const text = await r.text();
+    let json = null; try { json = text ? JSON.parse(text) : null; } catch {}
+    return { status: r.status, json, text, setCookie: sc };
   };
 }
 const results = [];
@@ -75,6 +76,48 @@ server.listen(0, async () => {
     };
     const r = await root('PATCH', `/api/admin/questions/${questionId}`, { skillId: 'exp-int', question });
     assert.equal(r.status, 200); assert.equal(r.json.question.val, 5);
+  });
+  await t('duplicate detection finds the same prompt in a topic', async () => {
+    const r = await root('POST', '/api/admin/questions/duplicate', { skillId: 'exp-int', prompt: 'ManualUnique: evaluate $$2+3$$.' });
+    assert.equal(r.status, 200); assert.equal(r.json.duplicate, true); assert.equal(r.json.question.id, questionId);
+    const same = await root('POST', '/api/admin/questions/duplicate', { skillId: 'exp-int', prompt: 'ManualUnique: evaluate $$2+3$$.', excludeId: questionId });
+    assert.equal(same.json.duplicate, false);
+  });
+  await t('admin exports questions as JSON', async () => {
+    const r = await root('GET', '/api/admin/questions/export?source=manual');
+    assert.equal(r.status, 200);
+    const item = r.json.items.find(x => x.id === questionId);
+    assert.ok(item); assert.equal(item.skillId, 'exp-int'); assert.equal(item.question.type, 'num');
+  });
+  await t('admin exports questions as CSV', async () => {
+    const r = await root('GET', '/api/admin/questions/export?source=manual&format=csv');
+    assert.equal(r.status, 200);
+    assert.match(r.text, /^id,skillId,status,source,type,prompt/);
+    assert.match(r.text, /ManualUnique/);
+  });
+  await t('admin imports JSON and skips duplicates', async () => {
+    const item = {
+      skillId: 'exp-int',
+      question: { type: 'num', prompt: 'ImportedUnique: evaluate $$9-2$$.', steps: ['$9-2=7$'], val: 7, ans: '7', ansTex: '7', exact: true },
+    };
+    const first = await root('POST', '/api/admin/questions/import', { format: 'json', text: JSON.stringify([item]) });
+    assert.equal(first.status, 200); assert.equal(first.json.added, 1); assert.equal(first.json.skipped, 0);
+    const second = await root('POST', '/api/admin/questions/import', { format: 'json', text: JSON.stringify([item]) });
+    assert.equal(second.status, 200); assert.equal(second.json.added, 0); assert.equal(second.json.skipped, 1);
+  });
+  await t('admin imports CSV', async () => {
+    const escape = v => { const s = String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+    const header = 'skillId,type,prompt,hint,steps,ans,ansTex,val,vals,undef,exact,var,sample,tol,options,fields,reject';
+    const row = ['exp-int', 'num', 'CSVUnique: evaluate $$3+4$$.', '', JSON.stringify(['$3+4=7$']), '7', '7', '7', '', '', 'true', '', '', '', '', '', ''];
+    const r = await root('POST', '/api/admin/questions/import', { format: 'csv', text: [header, row.map(escape).join(',')].join('\n') });
+    assert.equal(r.status, 200); assert.equal(r.json.added, 1); assert.equal(r.json.errorCount, 0);
+  });
+  await t('invalid imports are reported without aborting the batch', async () => {
+    const items = [
+      { skillId: 'exp-int', question: { type: 'num', prompt: 'BadImport', steps: [] } },
+    ];
+    const r = await root('POST', '/api/admin/questions/import', { format: 'json', text: JSON.stringify(items) });
+    assert.equal(r.status, 200); assert.equal(r.json.added, 0); assert.equal(r.json.errorCount, 1);
   });
   await t('answer tester uses the real checker', async () => {
     const question = { type: 'num', prompt: 'Test', steps: ['$2+3=5$'], val: 5, ans: '5', ansTex: '5', exact: true };
@@ -199,7 +242,7 @@ server.listen(0, async () => {
     const r = await root('GET', '/api/admin/audit?limit=200');
     assert.equal(r.status, 200);
     const actions = r.json.items.map(x => x.action);
-    for (const a of ['question.add', 'question.update', 'question.restore', 'question.delete', 'user.status', 'user.delete', 'user.reset_progress']) assert.ok(actions.includes(a), a);
+    for (const a of ['question.add', 'question.update', 'question.restore', 'question.delete', 'question.import', 'user.status', 'user.delete', 'user.reset_progress']) assert.ok(actions.includes(a), a);
   });
 
   for (const r of results) console.log(r[0].padEnd(4), r[1], r[2] ? '— ' + r[2] : '');

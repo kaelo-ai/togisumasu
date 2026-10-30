@@ -333,6 +333,11 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .autherr{min-height:1.2em;color:var(--bad);font-size:.88rem;margin:0}
 .authnote{margin:16px 0 0;font-size:.8rem;color:var(--muted)}
 .boot{padding:80px 0;text-align:center;color:var(--muted)}
+.accountdlg{padding:24px;width:min(430px,92vw);border:1px solid var(--paper-line);border-radius:var(--r);background:var(--paper);color:var(--paper-ink);box-shadow:var(--paper-shadow)}
+.accountdlg::backdrop{background:rgba(0,0,0,.42)}
+.accountdlg h2{font-size:1.4rem;margin:4px 0}
+.accountdlg .authform{margin-top:12px}
+.accountdlg .row{margin-top:14px}
 
 /* ---------- washi paper ---------- */
 .washi-paper{position:relative;isolation:isolate;background:var(--paper);border:1px solid var(--paper-line);color:var(--paper-ink);box-shadow:var(--paper-shadow);
@@ -412,6 +417,19 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
   <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme"></button>
 </div></header>
 <main class="wrap" id="app" tabindex="-1"><div class="boot">Loading…</div></main>
+<dialog id="accountDlg" class="accountdlg" aria-labelledby="accountTitle">
+  <form id="accountForm" class="authform" novalidate>
+    <div class="eyebrow">Account</div>
+    <h2 id="accountTitle">Your settings</h2>
+    <p class="authnote" id="accountEmail" style="margin:0 0 12px"></p>
+    <label>Name<input name="name" autocomplete="name" maxlength="60" required></label>
+    <label>Current password<input name="current" type="password" autocomplete="current-password"></label>
+    <label>New password<input name="newpass" type="password" autocomplete="new-password"><span style="font-weight:400">Leave blank to keep it</span></label>
+    <label>Confirm new password<input name="newpass2" type="password" autocomplete="new-password"></label>
+    <p class="autherr" id="accountErr" role="alert"></p>
+    <div class="row"><button class="btn primary" type="submit">Save changes</button><button class="btn ghost" type="button" data-account-close>Cancel</button></div>
+  </form>
+</dialog>
 
 <script src="/core.js"></script>
 <script>
@@ -519,7 +537,7 @@ function renderStats(){renderAcct();if(!USER){$('#stats').innerHTML='';return}co
 
 function renderAcct(){const a=$('#acct');if(!a)return;
   if(!USER){a.innerHTML=view.name==='landing'?`<button class="btn ghost sm" type="button" data-auth="login">Sign in</button>${REG_OPEN?'<button class="btn primary sm" type="button" data-auth="register">Create account</button>':''}`:'';return}
-  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span>${USER.role==='admin'?'<a class="btn ghost sm" href="/admin">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
+  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="/admin">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
 
 /* ---------- views ---------- */
 let view={name:'home'},sess=null,quiz=null;
@@ -879,6 +897,26 @@ document.addEventListener('submit',async e=>{if(e.target.id!=='authForm')return;
 async function logout(){if(Store.dirty)await Store.push();try{await API.req('POST','/api/auth/logout')}catch(e){}
   try{localStorage.removeItem(Store.key())}catch(e){}USER=null;Store.data=EMPTY();sess=null;quiz=null;go({name:'landing'})}
 document.addEventListener('click',e=>{if(e.target.id==='logoutBtn')logout()});
+
+/* ---------- account settings ---------- */
+function openAccount(){if(!USER)return;const d=$('#accountDlg'),f=$('#accountForm');
+  $('#accountEmail').textContent=USER.email;f.reset();f.elements.name.value=USER.name;$('#accountErr').textContent='';
+  if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');f.elements.name.focus()}
+document.addEventListener('click',e=>{if(e.target.id==='settingsBtn'){openAccount();return}
+  if(e.target.closest('[data-account-close]')){$('#accountDlg').close();return}});
+document.addEventListener('submit',async e=>{if(e.target.id!=='accountForm')return;e.preventDefault();
+  const f=e.target,err=$('#accountErr'),btn=f.querySelector('button[type=submit]');
+  const name=f.name.value.trim(),current=f.current.value,newpass=f.newpass.value,confirm=f.newpass2.value;
+  if(!name){err.textContent='Enter your name.';return}
+  if(newpass||confirm){
+    if(newpass.length<8){err.textContent='Use a password of at least 8 characters.';return}
+    if(newpass!==confirm){err.textContent='The new passwords do not match.';return}
+    if(!current){err.textContent='Enter your current password to change it.';return}
+  }
+  err.textContent='';btn.disabled=true;btn.textContent='Saving…';
+  try{const body={name};if(newpass){body.currentPassword=current;body.newPassword=newpass}
+    const r=await API.req('PATCH','/api/account',body);USER=r.user;renderAcct();$('#accountDlg').close()}
+  catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Save changes'}});
 
 // AI tutor: the server holds the provider key; the browser only sends the question and the learner's answer.
 function aiHTML(t){return esc(t).split(/\n{2,}/).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('')}

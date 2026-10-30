@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Admin · Togisumasu</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E%E2%88%91%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E%E7%A0%94%3C/text%3E%3C/svg%3E">
 <script>try{var t=localStorage.getItem('togisumasu-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'},options:{enableMenu:false}};</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
 <style>
 :root{
   --bg:#FFFFFF;--surface:#FFFFFF;--ink:#111111;--muted:#5E5E5E;--line:#D6D6D6;--grid:#F1F1F1;
@@ -74,6 +76,16 @@ td.prompt{max-width:430px;word-break:break-word}
 @media (max-width:760px){.editor .grid{grid-template-columns:1fr}}
 .editor label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
 .editor textarea{min-height:330px;width:100%;resize:vertical;line-height:1.45;tab-size:2}
+.editgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:14px;margin-top:10px}
+@media (max-width:800px){.editgrid{grid-template-columns:1fr}}
+.qpreview{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:16px;min-height:260px;max-height:520px;overflow:auto}
+.qpreview .preview-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
+.qpreview .preview-prompt{font-size:1rem;line-height:1.6}
+.qpreview .preview-answer{margin:14px 0 0;font-weight:600}
+.qpreview .steps{margin:8px 0 0;padding-left:20px;display:grid;gap:5px;color:var(--muted);font-size:.9rem}
+dialog.importdlg{max-width:580px}
+dialog textarea{width:100%;min-height:160px;resize:vertical;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);padding:10px;font-size:.86rem;line-height:1.45;margin:8px 0}
+.importfile{font-size:.8rem;color:var(--muted)}
 .msg{font-size:.86rem;margin-top:8px;min-height:20px}
 .msg.ok{color:var(--good)}
 .msg.bad{color:var(--bad)}
@@ -114,6 +126,15 @@ dialog input,dialog select{width:100%;padding:9px;border:1px solid var(--line);b
   <p class="muted" id="secretWho"></p>
   <input id="secretValue" readonly>
   <div class="row"><button class="btn primary" type="button" data-act="copy-secret">Copy</button><button class="btn ghost" type="button" data-act="close-secret">Close</button></div>
+</dialog>
+<dialog id="importDlg" class="importdlg">
+  <h3>Import questions</h3>
+  <p class="muted">Add new questions in bulk. Duplicate prompts in the same topic are skipped; existing questions are not overwritten.</p>
+  <label class="importfile">Format <select id="importFormat"><option value="json">JSON</option><option value="csv">CSV</option></select></label>
+  <label class="importfile">File <input id="importFile" type="file" accept=".json,.csv,application/json,text/csv"></label>
+  <label>Or paste<textarea id="importText" placeholder="Paste a JSON array or CSV here…"></textarea></label>
+  <p class="msg" id="importMsg" role="status"></p>
+  <div class="row"><button class="btn primary" type="button" data-act="import-confirm">Import</button><button class="btn ghost" type="button" data-act="import-close">Cancel</button></div>
 </dialog>
 <script>
 'use strict';
@@ -334,6 +355,9 @@ function renderQuestions() {
       <label>Search<input name="q" value="${esc(q.q)}" placeholder="prompt text"></label>
       <button class="btn" type="submit">Filter</button>
       <button class="btn primary" type="button" data-act="q-new">New question</button>
+      <button class="btn" type="button" data-act="q-export-json">Export JSON</button>
+      <button class="btn" type="button" data-act="q-export-csv">Export CSV</button>
+      <button class="btn" type="button" data-act="q-import">Import</button>
     </form>
     <div class="tablewrap"><table><thead><tr><th>ID</th><th>Topic</th><th>Type</th><th>Prompt</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
       <tbody>${rows || '<tr><td colspan="7" class="muted">No questions match.</td></tr>'}</tbody></table></div>
@@ -357,7 +381,11 @@ function editorHTML() {
         <label>Template type<select name="type">${['num', 'set', 'expr', 'mc', 'fields'].map(t => `<option${ed.type === t ? ' selected' : ''}>${t}</option>`).join('')}</select></label>
         <label>Test an answer (optional)<input name="test" placeholder="e.g. 5, or A, B, C for multiple choice"></label>
       </div>
-      <label style="margin-top:10px">Question JSON<textarea name="json" spellcheck="false">${esc(ed.json)}</textarea></label>
+      <div class="editgrid">
+        <label>Question JSON<textarea name="json" spellcheck="false">${esc(ed.json)}</textarea></label>
+        <section class="qpreview" id="qPreview" aria-live="polite"><div class="preview-label">Preview</div></section>
+      </div>
+      <p class="msg" id="qDupMsg" role="status"></p>
       <p class="msg" id="qMsg"></p>
       <div class="row" style="margin-top:8px">
         <button class="btn primary" type="submit">${ed.id ? 'Save changes' : 'Create question'}</button>
@@ -391,6 +419,10 @@ function wireEditor() {
       await loadQuestions();
     } catch (ex) { editorMsg(ex.message, false); }
   };
+  form.json.addEventListener('input', () => { schedulePreview(); scheduleDup(); });
+  form.skillId.addEventListener('change', () => scheduleDup());
+  renderPreview();
+  scheduleDup();
 }
 
 async function loadQuestions() {
@@ -427,6 +459,118 @@ function readEditorQuestion() {
   if (!form) throw new Error('Open a question first.');
   try { return JSON.parse(form.json.value); }
   catch (ex) { throw new Error('Invalid JSON: ' + ex.message); }
+}
+
+let previewTimer = null, dupTimer = null, previewMathTries = 0;
+
+function safeHtml(value) {
+  return String(value == null ? '' : value)
+    .replace(/<\s*(script|style|iframe|object|embed|link|meta|base)[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, '')
+    .replace(/<\s*(script|style|iframe|object|embed|link|meta|base)[^>]*\/?>/gi, '')
+    .replace(/\son[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/javascript\s*:/gi, '');
+}
+
+function previewAnswer(q) {
+  if (q.type === 'mc') {
+    const right = (q.options || []).find(o => o && o.ok);
+    return right ? right.tex : '';
+  }
+  if (q.type === 'fields') {
+    return (q.fields || []).map(f => `$${f.label}=${f.ansTex != null ? f.ansTex : f.ans}$`).join(', ');
+  }
+  if (q.ansTex != null) return `$${q.ansTex}$`;
+  if (q.ans != null) return `$${q.ans}$`;
+  if (q.val != null) return `$${q.val}$`;
+  return '';
+}
+
+function typesetPreview(el) {
+  if (window.MathJax && MathJax.typesetPromise) {
+    try { MathJax.typesetClear([el]); } catch (e) {}
+    MathJax.typesetPromise([el]).catch(() => {});
+    return;
+  }
+  if (previewMathTries++ < 25) setTimeout(() => typesetPreview(el), 300);
+}
+
+function renderPreview() {
+  const host = $('#qPreview'), form = $('#qForm');
+  if (!host || !form) return;
+  let q;
+  try { q = JSON.parse(form.json.value); }
+  catch (e) {
+    host.innerHTML = '<div class="preview-label">Preview</div><p class="muted">Fix the JSON to see a preview.</p>';
+    return;
+  }
+  const prompt = safeHtml(q.prompt || '');
+  const answer = previewAnswer(q);
+  const steps = Array.isArray(q.steps) ? q.steps.map(x => `<li>${safeHtml(x)}</li>`).join('') : '';
+  const meta = [q.type, q.type === 'mc' ? `${(q.options || []).length} choices` : ''].filter(Boolean).join(' · ');
+  host.innerHTML = `<div class="preview-label">Preview${meta ? ' · ' + esc(meta) : ''}</div>${prompt ? `<div class="preview-prompt">${prompt}</div>` : '<p class="muted">Add a prompt to see it here.</p>'}${answer ? `<p class="preview-answer">Answer: ${answer}</p>` : ''}${steps ? `<ol class="steps">${steps}</ol>` : ''}`;
+  previewMathTries = 0;
+  typesetPreview(host);
+}
+
+function schedulePreview() {
+  clearTimeout(previewTimer);
+  previewTimer = setTimeout(renderPreview, 180);
+}
+
+async function checkDup() {
+  const form = $('#qForm'), msg = $('#qDupMsg');
+  if (!form || !msg) return;
+  let q;
+  try { q = JSON.parse(form.json.value); } catch (e) { msg.textContent = ''; msg.className = 'msg'; return; }
+  const prompt = String(q.prompt || '').trim();
+  const skillId = form.skillId.value;
+  if (!prompt || !skillId) { msg.textContent = ''; msg.className = 'msg'; return; }
+  msg.textContent = 'Checking for duplicates…'; msg.className = 'msg';
+  try {
+    const r = await api('POST', '/api/admin/questions/duplicate', {
+      skillId, prompt, excludeId: state.editor && state.editor.id ? state.editor.id : null,
+    });
+    if (r.duplicate) {
+      msg.textContent = `Duplicate of question #${r.question.id} in this topic (${r.question.status}).`;
+      msg.className = 'msg bad';
+    } else {
+      msg.textContent = 'No duplicate prompt in this topic.';
+      msg.className = 'msg ok';
+    }
+  } catch (e) { msg.textContent = e.message; msg.className = 'msg bad'; }
+}
+
+function scheduleDup() {
+  clearTimeout(dupTimer);
+  dupTimer = setTimeout(checkDup, 450);
+}
+
+async function exportQuestions(format) {
+  const q = state.questions;
+  const p = new URLSearchParams({ skill: q.skill, status: q.status, source: q.source, q: q.q, format });
+  const r = await fetch('/api/admin/questions/export?' + p.toString(), { credentials: 'same-origin' });
+  if (!r.ok) {
+    let json = {};
+    try { json = await r.json(); } catch (e) {}
+    throw new Error(json.error || 'Export failed.');
+  }
+  const blob = await r.blob();
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `togisumasu-questions.${format}`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+function openImport() {
+  const d = $('#importDlg');
+  $('#importText').value = '';
+  $('#importFile').value = '';
+  $('#importMsg').textContent = '';
+  $('#importMsg').className = 'msg';
+  if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
 }
 
 function renderAudit() {
@@ -543,10 +687,42 @@ document.addEventListener('click', async e => {
       } catch (ex) { editorMsg(ex.message, false); }
       return;
     }
+    if (act === 'q-export-json') { await exportQuestions('json'); flash('JSON exported.'); return; }
+    if (act === 'q-export-csv') { await exportQuestions('csv'); flash('CSV exported.'); return; }
+    if (act === 'q-import') { openImport(); return; }
+    if (act === 'import-close') { $('#importDlg').close(); return; }
+    if (act === 'import-confirm') {
+      const text = $('#importText').value;
+      const format = $('#importFormat').value;
+      const msg = $('#importMsg');
+      if (!text.trim()) { msg.textContent = 'Choose a file or paste questions first.'; msg.className = 'msg bad'; return; }
+      const btn = document.querySelector('[data-act="import-confirm"]');
+      btn.disabled = true; btn.textContent = 'Importing…';
+      try {
+        const r = await api('POST', '/api/admin/questions/import', { format, text });
+        let summary = `Added ${r.added}, skipped ${r.skipped}` + (r.errorCount ? `, ${r.errorCount} error${r.errorCount === 1 ? '' : 's'}.` : '.');
+        if (r.errors && r.errors.length) summary += ' ' + r.errors.map(x => `Row ${x.row}: ${x.error}`).join(' · ');
+        msg.textContent = summary;
+        msg.className = 'msg ' + (r.errorCount ? 'bad' : 'ok');
+        flash(`Imported ${r.added} question${r.added === 1 ? '' : 's'}.`, r.errorCount ? 'bad' : 'ok');
+        await loadQuestions();
+      } catch (ex) { msg.textContent = ex.message; msg.className = 'msg bad'; }
+      finally { btn.disabled = false; btn.textContent = 'Import'; }
+      return;
+    }
     if (act === 'q-prev') { state.questions.offset = Math.max(0, state.questions.offset - state.questions.limit); return loadQuestions(); }
     if (act === 'q-next') { state.questions.offset += state.questions.limit; return loadQuestions(); }
     if (act === 'audit-refresh') return loadAudit();
   } catch (ex) { flash(ex.message, 'bad'); }
+});
+
+$('#importFile').addEventListener('change', async e => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const text = await file.text();
+  $('#importText').value = text;
+  const ext = file.name.split('.').pop().toLowerCase();
+  $('#importFormat').value = ext === 'csv' ? 'csv' : 'json';
 });
 
 (async function boot() {
