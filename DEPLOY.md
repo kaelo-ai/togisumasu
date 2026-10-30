@@ -161,7 +161,7 @@ docker exec togisumasu node admin.js disable someone@example.com
 docker exec togisumasu node admin.js restore someone@example.com
 ```
 
-The web UI can do the same things. It cannot disable, demote or delete the signed-in admin, and it will not remove the last active admin. Disabling or deleting an account revokes its sessions immediately. A password reset returns a temporary password once; the log never includes it. You can also reset a learner's progress for everything, one whole unit, or one topic; that signs them out so their next sign-in starts clean.
+The web UI can do the same things. It cannot disable, demote or delete the signed-in admin, and it will not remove the last active admin. Disabling or deleting an account revokes its sessions immediately. A password reset returns a temporary password once; the log never includes it. You can also reset a learner's progress for everything, one whole unit, or one topic; that signs them out so their next sign-in starts clean. The **Topics** tab manages units, topics, prerequisites, notes and visibility; custom topics can hold manual questions without a generator.
 
 Question edits are versionless. Hiding or deleting a question removes it from practice, search and similar-question results but keeps its row for the audit trail and restore. Manual questions are marked `source='manual'` and survive regeneration and seeding. The editor includes a live preview, duplicate-prompt detection, and bulk JSON/CSV import-export.
 

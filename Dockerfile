@@ -6,7 +6,7 @@ ENV NODE_ENV=production \
     DATA_DIR=/data
 
 WORKDIR /app
-COPY package.json server.js ai.js questions.js admin.js ./
+COPY package.json server.js ai.js questions.js catalog.js admin.js ./
 COPY public ./public
 
 # Run as the unprivileged "node" user that ships with the image

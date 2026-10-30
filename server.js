@@ -9,6 +9,7 @@ const crypto = require('node:crypto');
 const { DatabaseSync } = require('node:sqlite');
 const ai = require('./ai.js');
 const bank = require('./questions.js');
+const catalog = require('./catalog.js');
 
 const PORT = Number(process.env.PORT || 3000);
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
@@ -279,6 +280,56 @@ async function adminApi(req, res, url, admin) {
 
   if (route === 'GET /api/admin/skills') return send(res, 200, { items: bank.skills(), units: bank.units() });
 
+  if (route === 'GET /api/admin/catalog') return send(res, 200, catalog.admin(db));
+
+  if (route === 'POST /api/admin/units') {
+    const body = await readJson(req);
+    const unit = catalog.createUnit(db, body || {});
+    audit(admin, 'unit.create', 'unit', unit.id, { name: unit.name });
+    return send(res, 201, { unit });
+  }
+
+  const unitMatch = url.pathname.match(/^\/api\/admin\/units\/([A-Za-z0-9_-]+)$/);
+  if (unitMatch) {
+    const id = unitMatch[1];
+    if (req.method === 'PATCH') {
+      const body = await readJson(req);
+      const unit = catalog.updateUnit(db, id, body || {});
+      if (!unit) return send(res, 404, { error: 'Unit not found.' });
+      audit(admin, 'unit.update', 'unit', id, { name: unit.name });
+      return send(res, 200, { unit });
+    }
+    if (req.method === 'DELETE') {
+      if (!catalog.deleteUnit(db, id)) return send(res, 404, { error: 'Unit not found.' });
+      audit(admin, 'unit.delete', 'unit', id);
+      return send(res, 200, { ok: true });
+    }
+  }
+
+  if (route === 'POST /api/admin/topics') {
+    const body = await readJson(req);
+    const topic = catalog.createTopic(db, body || {});
+    audit(admin, 'topic.create', 'topic', topic.id, { unitId: topic.unit_id, name: topic.name });
+    return send(res, 201, { ok: true });
+  }
+
+  const topicMatch = url.pathname.match(/^\/api\/admin\/topics\/([a-z0-9-]+)$/);
+  if (topicMatch) {
+    const id = topicMatch[1];
+    if (req.method === 'PATCH') {
+      const body = await readJson(req);
+      const topic = catalog.updateTopic(db, id, body || {});
+      if (!topic) return send(res, 404, { error: 'Topic not found.' });
+      audit(admin, 'topic.update', 'topic', id, { unitId: topic.unit_id, name: topic.name, status: topic.status });
+      return send(res, 200, { ok: true });
+    }
+    if (req.method === 'DELETE') {
+      if (!catalog.deleteTopic(db, id)) return send(res, 404, { error: 'Topic not found.' });
+      audit(admin, 'topic.delete', 'topic', id);
+      return send(res, 200, { ok: true });
+    }
+  }
+
   if (route === 'GET /api/admin/users') {
     const status = String(url.searchParams.get('status') || 'all');
     if (!['all', 'active', 'disabled', 'deleted'].includes(status)) return send(res, 400, { error: 'Unknown user status.' });
@@ -537,6 +588,8 @@ async function api(req, res, url) {
   if (!user) return send(res, 401, { error: 'Sign in first.' });
 
   if (route === 'GET /api/auth/me') return send(res, 200, { user: publicUser(user) });
+
+  if (route === 'GET /api/catalog') return send(res, 200, catalog.learner(db));
 
   if (route === 'PATCH /api/account') {
     const body = await readJson(req);

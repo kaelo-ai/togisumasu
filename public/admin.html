@@ -86,6 +86,13 @@ td.prompt{max-width:430px;word-break:break-word}
 dialog.importdlg{max-width:580px}
 dialog textarea{width:100%;min-height:160px;resize:vertical;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);padding:10px;font-size:.86rem;line-height:1.45;margin:8px 0}
 .importfile{font-size:.8rem;color:var(--muted)}
+.topicgrid{display:grid;grid-template-columns:140px 1fr 150px;gap:10px}
+@media (max-width:760px){.topicgrid{grid-template-columns:1fr}}
+.topicgrid label,.topicfull label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
+.topicfull{display:grid;gap:10px;margin-top:10px}
+.topicfull input,.topicfull select,.topicfull textarea,.topicgrid input,.topicgrid select{border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);padding:8px 10px;font-size:.9rem}
+.topicfull textarea{min-height:140px;resize:vertical;font-family:ui-monospace,Menlo,monospace}
+select[multiple]{min-height:128px}
 .msg{font-size:.86rem;margin-top:8px;min-height:20px}
 .msg.ok{color:var(--good)}
 .msg.bad{color:var(--bad)}
@@ -141,7 +148,7 @@ dialog input,dialog select{width:100%;padding:9px;border:1px solid var(--line);b
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const state = {
-  me: null, skills: [], units: [], resetTarget: null, tab: 'users',
+  me: null, skills: [], units: [], catalog: { units: [], topics: [] }, topicEditor: null, resetTarget: null, tab: 'users',
   users: { items: [], total: 0, limit: 50, offset: 0, q: '', status: 'all' },
   questions: { items: [], total: 0, limit: 50, offset: 0, skill: '', status: 'all', source: 'all', q: '' },
   audit: [], editor: null,
@@ -196,6 +203,7 @@ function shellHTML() {
   return `<div class="row"><div><div class="eyebrow">Administration</div><h1>Manage Togisumasu</h1></div></div>
     <div class="tabs" role="tablist">
       <button class="tab" role="tab" data-tab="users" aria-selected="${state.tab === 'users'}">Users</button>
+      <button class="tab" role="tab" data-tab="topics" aria-selected="${state.tab === 'topics'}">Topics</button>
       <button class="tab" role="tab" data-tab="questions" aria-selected="${state.tab === 'questions'}">Questions</button>
       <button class="tab" role="tab" data-tab="audit" aria-selected="${state.tab === 'audit'}">Audit log</button>
     </div><div id="panel"><p class="muted">Loading…</p></div>`;
@@ -312,6 +320,141 @@ async function loadUsers() {
     Object.assign(u, r);
     renderUsers();
   } catch (e) { $('#panel').innerHTML = `<p class="msg bad">${esc(e.message)}</p>`; }
+}
+
+async function loadCatalogAdmin() {
+  try {
+    const r = await api('GET', '/api/admin/catalog');
+    state.catalog = r;
+    state.units = r.units.map(u => ({ id: u.id, name: u.name }));
+    state.skills = r.topics.map(t => ({ id: t.id, name: t.name, unit: t.unitId, status: t.status, source: t.source }));
+    renderTopics();
+  } catch (e) { $('#panel').innerHTML = `<p class="msg bad">${esc(e.message)}</p>`; }
+}
+
+function renderTopics() {
+  const cat = state.catalog;
+  const unitRows = cat.units.map(u => `<tr>
+    <td><code>${esc(u.id)}</code></td><td>${esc(u.name)}</td><td class="muted">${u.topicCount} topic${u.topicCount === 1 ? '' : 's'}</td>
+    <td><div class="actions"><button class="btn sm" type="button" data-act="unit-rename" data-id="${esc(u.id)}">Rename</button>${u.builtin ? '' : `<button class="btn sm danger" type="button" data-act="unit-delete" data-id="${esc(u.id)}">Delete</button>`}</div></td>
+  </tr>`).join('');
+  const nameOf = id => (cat.topics.find(t => t.id === id) || {}).name || id;
+  const topicRows = cat.topics.map(t => {
+    const actions = [`<button class="btn sm" type="button" data-act="topic-edit" data-id="${esc(t.id)}">Edit</button>`];
+    actions.push(t.status === 'active'
+      ? `<button class="btn sm" type="button" data-act="topic-hide" data-id="${esc(t.id)}">Hide</button>`
+      : `<button class="btn sm" type="button" data-act="topic-show" data-id="${esc(t.id)}">Show</button>`);
+    if (!t.builtin) actions.push(`<button class="btn sm danger" type="button" data-act="topic-delete" data-id="${esc(t.id)}">Delete</button>`);
+    return `<tr>
+      <td><code>${esc(t.id)}</code></td>
+      <td>${esc(t.unitName)}</td>
+      <td><b>${esc(t.name)}</b><div class="muted">${t.questionCount} question${t.questionCount === 1 ? '' : 's'}</div></td>
+      <td>${t.pre.length ? t.pre.map(p => esc(nameOf(p))).join(', ') : '<span class="muted">None</span>'}</td>
+      <td><span class="badge ${t.status}">${esc(t.status)}</span></td>
+      <td><span class="badge ${t.source === 'custom' ? 'manual' : ''}">${esc(t.source)}</span></td>
+      <td><div class="actions">${actions.join('')}</div></td>
+    </tr>`;
+  }).join('');
+  $('#panel').innerHTML = `
+    ${state.topicEditor ? topicEditorHTML() : ''}
+    <section class="panel" style="margin-bottom:16px">
+      <h2>Units</h2>
+      <form class="bar" id="unitForm">
+        <label>Code<input name="id" maxlength="20" placeholder="e.g. S" required></label>
+        <label>Name<input name="name" maxlength="80" placeholder="Statistics" required></label>
+        <button class="btn" type="submit">Add unit</button>
+      </form>
+      <div class="tablewrap"><table><thead><tr><th>Code</th><th>Name</th><th>Topics</th><th>Actions</th></tr></thead>
+        <tbody>${unitRows || '<tr><td colspan="4" class="muted">No units.</td></tr>'}</tbody></table></div>
+    </section>
+    <div class="row" style="margin-bottom:12px"><h2 style="font-size:1.2rem">Topics</h2><button class="btn primary" type="button" data-act="topic-new" style="margin-left:auto">New topic</button></div>
+    <div class="tablewrap"><table><thead><tr><th>ID</th><th>Unit</th><th>Topic</th><th>Prerequisites</th><th>Status</th><th>Source</th><th>Actions</th></tr></thead>
+      <tbody>${topicRows || '<tr><td colspan="7" class="muted">No topics.</td></tr>'}</tbody></table></div>`;
+  $('#unitForm').onsubmit = async e => {
+    e.preventDefault();
+    const f = e.target;
+    const field = name => (f.elements.namedItem(name) || {}).value || '';
+    try {
+      await api('POST', '/api/admin/units', { id: field('id').trim(), name: field('name').trim() });
+      flash('Unit created.');
+      await loadCatalogAdmin();
+    } catch (ex) { flash(ex.message, 'bad'); }
+  };
+  if (state.topicEditor) wireTopicEditor();
+}
+
+function topicEditorHTML() {
+  const ed = state.topicEditor;
+  const units = state.catalog.units.map(u => `<option value="${esc(u.id)}"${u.id === ed.unitId ? ' selected' : ''}>${esc(u.name)}</option>`).join('');
+  const pre = state.catalog.topics.filter(t => t.id !== ed.id).map(t =>
+    `<option value="${esc(t.id)}"${ed.pre.includes(t.id) ? ' selected' : ''}>${esc(t.name)}</option>`).join('');
+  const osLabel = ed.os ? ed.os[0] : '', osUrl = ed.os ? ed.os[1] : '';
+  return `<section class="editor"><h2>${ed.id ? 'Edit topic ' + esc(ed.id) : 'New topic'}</h2>
+    <form id="topicForm">
+      <div class="topicgrid">
+        <label>Topic ID<input name="id" value="${esc(ed.id)}" ${ed.id ? 'readonly' : ''} placeholder="e.g. stats-intro"></label>
+        <label>Unit<select name="unitId">${units}</select></label>
+        <label>Status<select name="status"><option value="active"${ed.status === 'active' ? ' selected' : ''}>active</option><option value="hidden"${ed.status === 'hidden' ? ' selected' : ''}>hidden</option></select></label>
+      </div>
+      <div class="topicfull">
+        <label>Name<input name="name" value="${esc(ed.name)}" maxlength="120" required></label>
+        <label>Prerequisites<select name="pre" multiple>${pre}</select><span style="font-weight:400">Ctrl/Cmd-click to select more than one.</span></label>
+        <label>Notes (HTML and LaTeX)<textarea name="notes">${esc(ed.notes)}</textarea></label>
+        <div class="topicgrid">
+          <label>Paul's notes URL<input name="paul" value="${esc(ed.paul)}"></label>
+          <label>OpenStax label<input name="osLabel" value="${esc(osLabel)}"></label>
+          <label>OpenStax URL<input name="osUrl" value="${esc(osUrl)}"></label>
+        </div>
+      </div>
+      <p class="msg" id="topicMsg"></p>
+      <div class="row"><button class="btn primary" type="submit">Save topic</button><button class="btn ghost" type="button" data-act="topic-cancel">Cancel</button></div>
+    </form></section>`;
+}
+
+function wireTopicEditor() {
+  const form = $('#topicForm');
+  form.onsubmit = async e => {
+    e.preventDefault();
+    const msg = $('#topicMsg');
+    const field = name => (form.elements.namedItem(name) || {}).value || '';
+    const osLabel = field('osLabel').trim(), osUrl = field('osUrl').trim();
+    if (!!osLabel !== !!osUrl) { msg.textContent = 'OpenStax label and URL must both be filled or both blank.'; msg.className = 'msg bad'; return; }
+    const preSelect = form.elements.namedItem('pre');
+    const body = {
+      unitId: field('unitId'),
+      name: field('name').trim(),
+      pre: preSelect ? [...preSelect.selectedOptions].map(o => o.value) : [],
+      notes: field('notes'),
+      paul: field('paul').trim(),
+      os: osLabel ? [osLabel, osUrl] : null,
+      status: field('status'),
+    };
+    const ed = state.topicEditor;
+    try {
+      if (ed.id) await api('PATCH', '/api/admin/topics/' + ed.id, body);
+      else await api('POST', '/api/admin/topics', { ...body, id: field('id').trim() });
+      state.topicEditor = null;
+      flash(ed.id ? 'Topic updated.' : 'Topic created.');
+      await loadCatalogAdmin();
+    } catch (ex) { msg.textContent = ex.message; msg.className = 'msg bad'; }
+  };
+}
+
+function openTopicEditor(id) {
+  const topic = id ? state.catalog.topics.find(t => t.id === id) : null;
+  if (topic) {
+    state.topicEditor = {
+      id: topic.id, unitId: topic.unitId, name: topic.name, pre: [...topic.pre],
+      notes: topic.notes, paul: topic.paul, os: topic.os, status: topic.status,
+    };
+  } else {
+    state.topicEditor = {
+      id: '', unitId: (state.catalog.units[0] || {}).id || '', name: '', pre: [],
+      notes: '', paul: '', os: null, status: 'active',
+    };
+  }
+  renderTopics();
+  const first = $('#topicForm input[name=name]'); if (first) first.focus();
 }
 
 function template(type) {
@@ -595,6 +738,7 @@ async function loadAudit() {
 
 async function loadTab() {
   if (state.tab === 'users') await loadUsers();
+  else if (state.tab === 'topics') await loadCatalogAdmin();
   else if (state.tab === 'questions') await loadQuestions();
   else await loadAudit();
 }
@@ -659,6 +803,35 @@ document.addEventListener('click', async e => {
       return;
     }
     if (act === 'close-secret') { $('#secretDlg').close(); return; }
+    if (act === 'topic-new') { return openTopicEditor(null); }
+    if (act === 'topic-edit') { return openTopicEditor(b.dataset.id); }
+    if (act === 'topic-cancel') { state.topicEditor = null; return renderTopics(); }
+    if (act === 'topic-hide' || act === 'topic-show') {
+      await api('PATCH', '/api/admin/topics/' + b.dataset.id, { status: act === 'topic-hide' ? 'hidden' : 'active' });
+      flash(act === 'topic-hide' ? 'Topic hidden.' : 'Topic shown.');
+      return loadCatalogAdmin();
+    }
+    if (act === 'topic-delete') {
+      if (!confirm('Delete this topic? It must have no questions.')) return;
+      await api('DELETE', '/api/admin/topics/' + b.dataset.id);
+      flash('Topic deleted.');
+      return loadCatalogAdmin();
+    }
+    if (act === 'unit-rename') {
+      const unit = state.catalog.units.find(u => u.id === b.dataset.id);
+      if (!unit) return;
+      const name = prompt('Unit name', unit.name);
+      if (name == null || !name.trim()) return;
+      await api('PATCH', '/api/admin/units/' + b.dataset.id, { name: name.trim() });
+      flash('Unit renamed.');
+      return loadCatalogAdmin();
+    }
+    if (act === 'unit-delete') {
+      if (!confirm('Delete this unit? It must contain no topics.')) return;
+      await api('DELETE', '/api/admin/units/' + b.dataset.id);
+      flash('Unit deleted.');
+      return loadCatalogAdmin();
+    }
     if (act === 'q-new') { state.editor = null; return openEditor(null); }
     if (act === 'q-edit') return openEditor(id);
     if (act === 'q-hide') { await api('PATCH', '/api/admin/questions/' + id, { status: 'hidden' }); flash('Question hidden.'); return loadQuestions(); }

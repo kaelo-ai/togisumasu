@@ -5,6 +5,7 @@
 - **Zero npm dependencies.** Uses Node 22's built-in `http`, `crypto` and `sqlite`.
 - **One data file.** Everything, including the question bank, lives in `/data/togisumasu.sqlite` inside the container.
 - **Questions come from SQLite.** The server generates, stores and serves them; an FTS5 index makes similar questions easy to find.
+- **Topics live in SQLite.** Units, topics and prerequisites are seeded from the built-in curriculum, then managed from the admin Topics tab. Custom topics can be manual-question-only.
 - **Light (black and white) and dark themes.** Use the moon/sun button in the header.
 - **Optional AI tutor.** An "Explain my mistake" button uses an LLM you configure on the server (DeepSeek, OpenAI, Anthropic, Gemini, OpenRouter, Ollama or any OpenAI-compatible API).
 
@@ -22,7 +23,7 @@ Without Docker (Node 22.5 or newer):
 
 ```bash
 npm start          # http://localhost:3000, data in ./data
-npm test           # 85 tests: auth, isolation, question bank, admin, rate limits, AI tutor
+npm test           # 92 tests: auth, isolation, question bank, catalog, admin, rate limits, AI tutor
 npm run ai:check   # test your LLM settings
 npm run questions:seed -- 20   # optional: pre-generate 20 questions per topic
 npm run admin -- promote you@example.com   # make an existing account an admin
@@ -95,6 +96,7 @@ docker exec togisumasu node admin.js promote you@example.com
 Then open **`/admin`**. The page has three areas:
 
 - **Users** — search, disable/enable, soft-delete/restore, promote/demote admins, issue a one-time temporary password, and reset progress for everything, one whole unit, or one topic. A reset signs that user out so their next sign-in starts clean. You cannot disable, demote or delete your own account, and the last active admin is protected.
+- **Topics** — create units and topics, edit names/notes/prerequisites/links, hide topics from learners, and delete custom topics/units once they are empty. Built-in topics can be edited and hidden but not deleted.
 - **Questions** — filter by topic/status/source, edit or hide/delete generated questions, and add manual questions. Manual questions are stored with `source='manual'` and are never overwritten by seeding. The editor has a live MathJax preview, duplicate-prompt detection, the real answer checker, and bulk JSON/CSV import-export.
 - **Audit log** — every admin change is recorded with the acting admin, action, target and details. Passwords are never written to the log.
 
@@ -110,6 +112,7 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 | POST | `/api/auth/login` | – | `{email, password}` |
 | POST | `/api/auth/logout` | cookie | Clears the session |
 | GET | `/api/auth/me` | cookie | `{user}` |
+| GET | `/api/catalog` | cookie | Active units and topics |
 | GET | `/api/progress` | cookie | `{data, updatedAt}` |
 | PUT | `/api/progress` | cookie | `{data}`, where `data.skills` must be an object |
 | PATCH | `/api/account` | cookie | `{name?, currentPassword?, newPassword?}` updates the signed-in account |
@@ -118,6 +121,13 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 | GET | `/api/questions/:id` | cookie | `{question}` for an active question |
 | GET | `/api/questions/:id/similar?limit=5` | cookie | `{items}` of lexically similar questions, same topic first |
 | POST | `/api/ai/explain` | cookie | `{topic, prompt, answer, given, steps}` returns `{text, remaining}` |
+| GET | `/api/admin/catalog` | admin | Units and topics with counts |
+| POST | `/api/admin/units` | admin | `{id, name}` creates a custom unit |
+| PATCH | `/api/admin/units/:id` | admin | `{name}` renames a unit |
+| DELETE | `/api/admin/units/:id` | admin | Deletes an empty custom unit |
+| POST | `/api/admin/topics` | admin | `{id, unitId, name, pre, notes, paul, os, status}` creates a topic |
+| PATCH | `/api/admin/topics/:id` | admin | Updates a topic |
+| DELETE | `/api/admin/topics/:id` | admin | Deletes an empty custom topic |
 | GET | `/api/admin/users?q=&status=&limit=&offset=` | admin | `{items, total, limit, offset}` |
 | PATCH | `/api/admin/users/:id` | admin | `{role?, status?}` for role or active/disabled changes |
 | POST | `/api/admin/users/:id/reset-password` | admin | Returns `{password}` once and revokes that user's sessions |
@@ -139,6 +149,7 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 ```
 server.js                  API, auth, admin routes, static files
 questions.js               SQLite question bank, FTS5 similarity, validation and seeding
+catalog.js                 units, topics and prerequisite graph in SQLite
 admin.js                   operator CLI: promote/demote/disable/delete accounts
 ai.js                      LLM providers and the tutor prompt (`node ai.js check` tests it)
 public/core.js             maths parser, answer checking, skill definitions and generators

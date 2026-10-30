@@ -55,6 +55,69 @@ server.listen(0, async () => {
     const r = await root('GET', '/api/admin/skills');
     assert.equal(r.status, 200); assert.ok(r.json.items.length >= 40);
   });
+  await t('catalog is available to signed-in learners', async () => {
+    const r = await bob('GET', '/api/catalog');
+    assert.equal(r.status, 200);
+    assert.ok(r.json.units.some(u => u.id === 'A'));
+    assert.ok(r.json.topics.some(t => t.id === 'exp-int'));
+    assert.equal((await anon('GET', '/api/catalog')).status, 401);
+  });
+  await t('admin creates a unit and a custom topic', async () => {
+    assert.equal((await root('POST', '/api/admin/units', { id: 'Z', name: 'Statistics' })).status, 201);
+    assert.equal((await root('PATCH', '/api/admin/units/Z', { name: 'Statistics & data' })).status, 200);
+    const r = await root('POST', '/api/admin/topics', {
+      id: 'stats-intro', unitId: 'Z', name: 'Introduction to statistics', pre: [],
+      notes: 'Descriptive statistics and probability.', status: 'active',
+    });
+    assert.equal(r.status, 201);
+    assert.equal((await root('POST', '/api/admin/topics', {
+      id: 'stats-advanced', unitId: 'Z', name: 'Advanced statistics', pre: ['stats-intro'],
+      notes: 'Builds on the introduction.', status: 'active',
+    })).status, 201);
+    const cat = await bob('GET', '/api/catalog');
+    assert.ok(cat.json.units.some(u => u.id === 'Z'));
+    assert.ok(cat.json.topics.some(t => t.id === 'stats-intro' && t.unit === 'Z'));
+    assert.ok(cat.json.topics.some(t => t.id === 'stats-advanced' && t.pre.includes('stats-intro')));
+    const skills = await root('GET', '/api/admin/skills');
+    assert.ok(skills.json.items.some(t => t.id === 'stats-intro'));
+  });
+  await t('custom topic can hold manual questions and serve them', async () => {
+    const question = { type: 'num', prompt: 'StatsUnique: evaluate $$1+1$$.', steps: ['$1+1=2$'], val: 2, ans: '2', ansTex: '2', exact: true };
+    assert.equal((await root('POST', '/api/admin/questions', { skillId: 'stats-intro', question })).status, 201);
+    const r = await bob('GET', '/api/questions/next?skill=stats-intro');
+    assert.equal(r.status, 200); assert.equal(r.json.question.skillId, 'stats-intro');
+  });
+  await t('hiding a topic removes it from learners and practice', async () => {
+    assert.equal((await root('PATCH', '/api/admin/topics/stats-intro', { status: 'hidden' })).status, 200);
+    const cat = await bob('GET', '/api/catalog');
+    assert.ok(!cat.json.topics.some(t => t.id === 'stats-intro'));
+    assert.ok(!cat.json.topics.some(t => t.id === 'stats-advanced'), 'dependent topic should hide with its prerequisite');
+    assert.equal((await bob('GET', '/api/questions/next?skill=stats-intro')).status, 404);
+    assert.equal((await root('PATCH', '/api/admin/topics/stats-intro', { status: 'active' })).status, 200);
+    const shown = await bob('GET', '/api/catalog');
+    assert.ok(shown.json.topics.some(t => t.id === 'stats-advanced'));
+    assert.equal((await bob('GET', '/api/questions/next?skill=stats-intro')).status, 200);
+  });
+  await t('topic prerequisites are validated against cycles', async () => {
+    assert.equal((await root('PATCH', '/api/admin/topics/stats-intro', { pre: ['stats-intro'] })).status, 400);
+    assert.equal((await root('PATCH', '/api/admin/topics/stats-intro', { pre: ['exp-int'] })).status, 200);
+    assert.equal((await root('PATCH', '/api/admin/topics/exp-int', { pre: ['stats-intro'] })).status, 400);
+  });
+  await t('built-in units and topics cannot be deleted', async () => {
+    assert.equal((await root('DELETE', '/api/admin/topics/exp-int')).status, 403);
+    assert.equal((await root('DELETE', '/api/admin/units/A')).status, 403);
+  });
+  await t('custom topics with questions cannot be deleted, but empty ones can', async () => {
+    assert.equal((await root('DELETE', '/api/admin/topics/stats-intro')).status, 409);
+    assert.equal((await root('DELETE', '/api/admin/units/Z')).status, 409);
+    assert.equal((await root('POST', '/api/admin/units', { id: 'Y', name: 'Temporary' })).status, 201);
+    assert.equal((await root('POST', '/api/admin/topics', { id: 'stats-temp', unitId: 'Y', name: 'Temporary topic', pre: [], notes: '', status: 'active' })).status, 201);
+    assert.equal((await root('POST', '/api/admin/topics', { id: 'stats-child', unitId: 'Y', name: 'Dependent topic', pre: ['stats-temp'], notes: '', status: 'active' })).status, 201);
+    assert.equal((await root('DELETE', '/api/admin/topics/stats-temp')).status, 409);
+    assert.equal((await root('DELETE', '/api/admin/topics/stats-child')).status, 200);
+    assert.equal((await root('DELETE', '/api/admin/topics/stats-temp')).status, 200);
+    assert.equal((await root('DELETE', '/api/admin/units/Y')).status, 200);
+  });
   await t('admin adds a manual question', async () => {
     const question = {
       type: 'num', prompt: 'ManualUnique: evaluate $$2+2$$.', hint: 'Add.', steps: ['$2+2=4$'],
@@ -217,7 +280,7 @@ server.listen(0, async () => {
   });
   await t('invalid progress reset targets are rejected', async () => {
     assert.equal((await root('POST', `/api/admin/users/${bobId}/reset-progress`, { scope: 'planet' })).status, 400);
-    assert.equal((await root('POST', `/api/admin/users/${bobId}/reset-progress`, { scope: 'unit', value: 'Z' })).status, 400);
+    assert.equal((await root('POST', `/api/admin/users/${bobId}/reset-progress`, { scope: 'unit', value: 'QQ' })).status, 400);
     assert.equal((await root('POST', `/api/admin/users/${bobId}/reset-progress`, { scope: 'skill', value: 'nope' })).status, 400);
   });
   await t('bob can sign in again after a progress reset', async () => {
@@ -242,7 +305,7 @@ server.listen(0, async () => {
     const r = await root('GET', '/api/admin/audit?limit=200');
     assert.equal(r.status, 200);
     const actions = r.json.items.map(x => x.action);
-    for (const a of ['question.add', 'question.update', 'question.restore', 'question.delete', 'question.import', 'user.status', 'user.delete', 'user.reset_progress']) assert.ok(actions.includes(a), a);
+    for (const a of ['unit.create', 'unit.update', 'unit.delete', 'topic.create', 'topic.update', 'topic.delete', 'question.add', 'question.update', 'question.restore', 'question.delete', 'question.import', 'user.status', 'user.delete', 'user.reset_progress']) assert.ok(actions.includes(a), a);
   });
 
   for (const r of results) console.log(r[0].padEnd(4), r[1], r[2] ? '— ' + r[2] : '');

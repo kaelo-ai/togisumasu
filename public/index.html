@@ -447,6 +447,16 @@ const API={async req(method,url,body){
   let j={};try{j=await r.json()}catch(e){}
   if(!r.ok)throw Object.assign(new Error(j.error||'Something went wrong. Try again.'),{status:r.status});return j}};
 let USER=null;
+const BUILTIN_GENS={};SK.forEach(s=>{if(typeof s.gen==='function')BUILTIN_GENS[s.id]=s.gen});
+let CATALOG_LOADED=false;
+function applyCatalog(c){const units=Array.isArray(c.units)?c.units:[],topics=Array.isArray(c.topics)?c.topics:[];
+  UNITS.length=0;UNITS.push(...units.map(u=>[u.id,u.name]));
+  SK.length=0;
+  for(const t of topics)SK.push({...t,gen:BUILTIN_GENS[t.id]});
+  for(const k of Object.keys(SKM))delete SKM[k];
+  for(const s of SK)SKM[s.id]=s;
+  rebuildGraph()}
+async function loadCatalog(){if(CATALOG_LOADED)return;try{const r=await API.req('GET','/api/catalog');applyCatalog(r);CATALOG_LOADED=true}catch(e){console.warn('Could not load the topic catalog; using built-ins.',e.message)}}
 const EMPTY=()=>({skills:{},log:{},t:0,qz:{recent:[],last:0,hist:[]},seen:{},resetAt:0});
 const Store={data:EMPTY(),mode:'account',timer:null,dirty:false,
   key(){return KEY+':'+(USER?USER.id:'none')},
@@ -491,7 +501,7 @@ const QUIZ_MIN=3;
 function quizDue(){const q=Q();return masteredIds().length>=QUIZ_MIN&&(q.recent.length>=2||(q.recent.length>=1&&Date.now()-q.last>4*DAY))}
 /* can this topic be practised right now? */
 /* everything a topic builds on, directly or indirectly */
-const ANC={};function ancestors(id){if(ANC[id])return ANC[id];const out=new Set();const u=x=>SKM[x].pre.forEach(p=>{if(!out.has(p)){out.add(p);u(p)}});u(id);return ANC[id]=out}
+const ANC={};function ancestors(id){if(ANC[id])return ANC[id];const out=new Set();const u=x=>{const s=SKM[x];if(!s)return;s.pre.forEach(p=>{if(!out.has(p)){out.add(p);u(p)}})};u(id);return ANC[id]=out}
 /* only its own route can hold a topic back: missing prerequisites, a repair or an untested topic somewhere underneath it */
 function access(id){const s=st(id);if(s.lv>0||s.fix)return {ok:true};
   const miss=SKM[id].pre.filter(p=>st(p).lv===0);if(miss.length)return {ok:false,why:'pre',miss};
@@ -511,13 +521,13 @@ async function fetchQuestion(id,exclude){const p=new URLSearchParams({skill:id})
 const networkFailure=e=>!e||!e.status||e.status>=500;
 async function loadFresh(id){const S=Store.data.seen=Store.data.seen||{};const a=S[id]=S[id]||[];let q=null,h=null;
   try{q=await fetchQuestion(id,a);if(q)h=q.fingerprint||hash(q.prompt)}catch(e){if(!networkFailure(e))throw e}
-  if(!q){const cached=cachedQuestions(id).filter(x=>!a.includes(x.fingerprint));q=cached.length?cached[Math.floor(Math.random()*cached.length)]:SKM[id].gen();h=q.fingerprint||hash(q.prompt)}
+  if(!q){const cached=cachedQuestions(id).filter(x=>!a.includes(x.fingerprint));if(cached.length)q=cached[Math.floor(Math.random()*cached.length)];else if(SKM[id]&&typeof SKM[id].gen==='function')q=SKM[id].gen();else throw new Error('No questions are available for this topic yet.');h=q.fingerprint||hash(q.prompt)}
   if(h&&!a.includes(h)){a.push(h);if(a.length>150)a.splice(0,a.length-150)}
   if(q&&!q.fingerprint&&h)q.fingerprint=h;
   cacheQuestion(id,q);return q}
 const freshChains={};
 function fresh(id){const prev=freshChains[id]||Promise.resolve();const p=prev.catch(()=>{}).then(()=>loadFresh(id));freshChains[id]=p;return p}
-async function exampleQuestion(id){try{const q=await fetchQuestion(id,[]);cacheQuestion(id,q);return q}catch(e){if(!networkFailure(e))throw e;const c=cachedQuestions(id);return c.length?c[Math.floor(Math.random()*c.length)]:SKM[id].gen()}}
+async function exampleQuestion(id){try{const q=await fetchQuestion(id,[]);cacheQuestion(id,q);return q}catch(e){if(!networkFailure(e))throw e;const c=cachedQuestions(id);if(c.length)return c[Math.floor(Math.random()*c.length)];if(SKM[id]&&typeof SKM[id].gen==='function')return SKM[id].gen();throw new Error('No example is available for this topic yet.')}}
 function record(id,ok,mode){const s={...st(id)},now=Date.now();let ev=null;s.a++;
   if(ok){s.c++;Store.data.log[dkey()]=(Store.data.log[dkey()]||0)+1}
   if(mode==='quiz')s.lq=now;
@@ -565,12 +575,12 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   if(rec)tasks.push(`<li class="t-new"><span class="tk">New</span>${esc(rec.name)}</li>`);
   if(!tasks.length)tasks.push('<li class="t-new"><span class="tk">Mixed</span>Everything is mastered. Sessions keep all topics sharp.</li>');
   const title=rep.length?'Repair first, then move on':qd?'Quiz time':due.length?'Reviews and something new':m?'Keep building':'Start with the basics';
-  const acc=Object.values(Store.data.skills).reduce((a,s)=>[a[0]+s.c,a[1]+s.a],[0,0]);const lastQ=Q().hist.slice(-1)[0];
+  const acc=Object.values(Store.data.skills).reduce((a,s)=>[a[0]+s.c,a[1]+s.a],[0,0]);const lastQ=Q().hist.slice(-1)[0];const totalTopics=Math.max(1,SK.length);
   const filterSelect=homeMode==='list'?`<label class="mapfilter"><span class="sr-only">Filter course map</span><select id="mapFilter" class="mapselect">${MAP_FILTERS.map(([v,l])=>`<option value="${v}"${mapFilter===v?' selected':''}>${l}</option>`).join('')}</select></label>`:'';
   let h=`<section class="today"><div class="panel"><div class="eyebrow">Today</div><h1>${title}</h1><ul class="tasks">${tasks.join('')}</ul>
    <div class="row"><button class="btn primary" type="button" data-act="session">Start today's session</button>${!rep.length&&masteredIds().length>=QUIZ_MIN?`<button class="btn" type="button" data-act="quiz">${qd?'Take the quiz':'Quiz me now'}</button>`:''}</div></div>
    <div class="panel"><div class="eyebrow">Course progress</div><div class="row" style="margin-top:10px;align-items:baseline"><span class="big tnum">${m}</span><span style="color:var(--muted)">of ${SK.length} topics mastered</span></div>
-   <div class="meter"><i style="width:${m/SK.length*100}%"></i></div>
+   <div class="meter"><i style="width:${m/totalTopics*100}%"></i></div>
    <div class="kv tnum"><span>Questions answered</span><span>${acc[1]}</span><span>Accuracy</span><span>${acc[1]?Math.round(acc[0]/acc[1]*100)+'%':'–'}</span><span>Last quiz</span><span>${lastQ?`${lastQ.score}/${lastQ.n}`:'–'}</span><span>Day streak</span><span>${dayStreak()}</span></div></div></section>
    <div class="maphead"><h2>Course map</h2><div class="map-tools">${filterSelect}<div class="seg" role="tablist" aria-label="Course map view"><button type="button" role="tab" data-mode="list" aria-selected="${homeMode!=='graph'}">List</button><button type="button" role="tab" data-mode="graph" aria-selected="${homeMode==='graph'}">Graph</button></div></div></div>`;
   if(homeMode==='graph')return h+graphShellHTML();
@@ -588,7 +598,7 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   if(!any)h+=`<div class="map-empty">No topics match this filter yet.</div>`;
   return h+'</section>'}
 
-function srcLinks(s){return `<div class="srcs"><a class="src" href="${s.paul}" target="_blank" rel="noopener"><small>Read</small>Paul's Online Notes</a><a class="src" href="${s.os[1]}" target="_blank" rel="noopener"><small>More problems</small>OpenStax ${esc(s.os[0])}</a></div>`}
+function srcLinks(s){const links=[];if(s.paul)links.push(`<a class="src" href="${s.paul}" target="_blank" rel="noopener"><small>Read</small>Paul's Online Notes</a>`);if(Array.isArray(s.os)&&s.os[1])links.push(`<a class="src" href="${s.os[1]}" target="_blank" rel="noopener"><small>More problems</small>${esc(s.os[0]||'OpenStax')}</a>`);return links.length?`<div class="srcs">${links.join('')}</div>`:''}
 function pillOf(id){let k=stateOf(id);const x=st(id);if((k==='new'||k==='learning')&&!access(id).ok)k='locked';
   return {new:'<span class="pill">Not started</span>',locked:'<span class="pill">Locked</span>',learning:`<span class="pill learning">Learning · ${x.s}/3 in a row</span>`,mastered:`<span class="pill mastered">Mastered · review level ${x.lv}</span>`,due:'<span class="pill due">Review due</span>',repair:`<span class="pill repair">Needs repair · ${x.s||0}/2 in a row</span>`}[k]}
 function skillHTML(id,tab){const s=SKM[id];const un=UNITS.find(u=>u[0]===s.unit)[1];
@@ -596,7 +606,7 @@ function skillHTML(id,tab){const s=SKM[id];const un=UNITS.find(u=>u[0]===s.unit)
   return `<div class="crumb"><button class="btn ghost sm" type="button" data-act="home">← Course map</button></div>
   <div class="shead"><div class="eyebrow">Unit ${s.unit} · ${esc(un)}</div><h1>${esc(s.name)}</h1><span id="pill">${pillOf(id)}</span>${pre}${srcLinks(s)}</div>
   <div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="${tab==='learn'}" data-tab="learn" type="button">Learn</button><button class="tab" role="tab" aria-selected="${tab==='practice'}" data-tab="practice" type="button">Practice</button></div>
-  ${tab==='learn'?`<div class="notes washi-paper">${s.notes}</div><div class="example"><h3>Worked example</h3><div id="exHost"></div><div class="row" style="margin-top:12px"><button class="btn" type="button" data-act="another">Another example</button><button class="btn primary" type="button" data-tab="practice">Practice this topic</button></div></div>`:'<div id="pHost"></div>'}`}
+  ${tab==='learn'?`<div class="notes washi-paper">${s.notes||'<p class="muted">No notes have been written for this topic yet.</p>'}</div><div class="example"><h3>Worked example</h3><div id="exHost"></div><div class="row" style="margin-top:12px"><button class="btn" type="button" data-act="another">Another example</button><button class="btn primary" type="button" data-tab="practice">Practice this topic</button></div></div>`:'<div id="pHost"></div>'}`}
 
 async function mountExample(){const s=SKM[view.id],host=$('#exHost');if(!host)return;
   host.innerHTML='<div class="boot">Loading example…</div>';
@@ -746,15 +756,18 @@ const collapsedUnits=new Set();try{const a=JSON.parse(localStorage.getItem('togi
 function mapSkillState(id){let k=stateOf(id);if((k==='new'||k==='learning')&&!access(id).ok)k='locked';return k}
 function saveMapPrefs(){try{localStorage.setItem('togisumasu-map-filter',mapFilter);localStorage.setItem('togisumasu-units-collapsed',JSON.stringify([...collapsedUnits]))}catch(e){}}
 const G={sel:null,unit:null,zoom:null};
-const KIDS={};SK.forEach(s=>s.pre.forEach(p=>(KIDS[p]=KIDS[p]||[]).push(s.id)));
-const LAYOUT=(()=>{const d={};const dep=id=>d[id]!=null?d[id]:(d[id]=SKM[id].pre.length?1+Math.max(...SKM[id].pre.map(dep)):0);SK.forEach(s=>dep(s.id));
-  const cols=[];SK.forEach((s,i)=>{(cols[d[s.id]]=cols[d[s.id]]||[]).push(s.id)});const pos={};const setPos=()=>cols.forEach(c=>c.forEach((id,i)=>pos[id]=i-(c.length-1)/2));setPos();
+let KIDS={},LAYOUT={cols:[],xy:{},NW:196,NH:48,W:0,H:0,CW:276,PAD:24};
+function rebuildGraph(){for(const k of Object.keys(KIDS))delete KIDS[k];SK.forEach(s=>(s.pre||[]).forEach(p=>(KIDS[p]=KIDS[p]||[]).push(s.id)));
+  if(!SK.length){LAYOUT={cols:[],xy:{},NW:196,NH:48,W:0,H:0,CW:276,PAD:24};G.sel=null;G.unit=null;G.zoom=null;return}
+  const d={};const dep=id=>d[id]!=null?d[id]:(d[id]=SKM[id]&&SKM[id].pre.length?1+Math.max(...SKM[id].pre.map(dep)):0);SK.forEach(s=>dep(s.id));
+  const cols=[];SK.forEach(s=>{(cols[d[s.id]]=cols[d[s.id]]||[]).push(s.id)});const pos={};const setPos=()=>cols.forEach(c=>c.forEach((id,i)=>pos[id]=i-(c.length-1)/2));setPos();
   const bary=(id,nb)=>{const n=nb.filter(x=>pos[x]!=null);return n.length?n.reduce((a,x)=>a+pos[x],0)/n.length:pos[id]};
   for(let it=0;it<6;it++){for(let c=1;c<cols.length;c++){cols[c].sort((a,b)=>bary(a,SKM[a].pre)-bary(b,SKM[b].pre));setPos()}
     for(let c=cols.length-2;c>=0;c--){cols[c].sort((a,b)=>bary(a,KIDS[a]||[])-bary(b,KIDS[b]||[]));setPos()}}
   const NW=196,NH=48,CW=276,RH=62,PAD=24,maxR=Math.max(...cols.map(c=>c.length));const W=PAD*2+(cols.length-1)*CW+NW,H=PAD*2+(maxR-1)*RH+NH+22;
   const xy={};cols.forEach((c,ci)=>c.forEach((id,i)=>{xy[id]={x:PAD+ci*CW,y:PAD+22+(i+(maxR-c.length)/2)*RH}}));
-  return {cols,xy,NW,NH,W,H,CW,PAD}})();
+  LAYOUT={cols,xy,NW,NH,W,H,CW,PAD};G.sel=null;G.unit=null;G.zoom=null}
+rebuildGraph();
 function nodeState(id,rec){const k=stateOf(id);if(k!=='new'&&k!=='learning')return k;if(!access(id).ok)return 'locked';if(k==='learning')return k;if(rec&&rec.id===id)return 'next';return 'open'}
 function lines(t){if(t.length<=22)return [t];const w=t.split(' ');let best=null;for(let i=1;i<w.length;i++){const a=w.slice(0,i).join(' '),b=w.slice(i).join(' ');const sc=Math.max(a.length,b.length);if(!best||sc<best[0])best=[sc,a,b]}return best.slice(1)}
 function graphShellHTML(){const rows=UNITS.map(([u,n])=>{const l=SK.filter(s=>s.unit===u),m=l.filter(s=>st(s.id).lv>0).length;return `<button type="button" class="uchip" data-unit="${u}" aria-pressed="${G.unit===u}"><b>${u}</b>${esc(n)}<span class="tnum">${m}/${l.length}</span></button>`}).join('');
@@ -892,7 +905,7 @@ document.addEventListener('submit',async e=>{if(e.target.id!=='authForm')return;
   if(!body.email||!body.password){err.textContent='Enter your email and password.';return}
   if(mode==='register'&&body.password.length<8){err.textContent='Use a password of at least 8 characters.';return}
   err.textContent='';btn.disabled=true;btn.textContent=mode==='register'?'Creating account…':'Signing in…';
-  try{const r=await API.req('POST','/api/auth/'+mode,body);USER=r.user;await Store.load();sess=null;quiz=null;go({name:'home'})}
+  try{const r=await API.req('POST','/api/auth/'+mode,body);USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;go({name:'home'})}
   catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent=mode==='register'?'Create account':'Sign in'}});
 async function logout(){if(Store.dirty)await Store.push();try{await API.req('POST','/api/auth/logout')}catch(e){}
   try{localStorage.removeItem(Store.key())}catch(e){}USER=null;Store.data=EMPTY();sess=null;quiz=null;go({name:'landing'})}
@@ -927,7 +940,7 @@ async function askTutor(btn,out,payload){btn.disabled=true;btn.textContent='Thin
   catch(e){out.innerHTML=`<p class="warn">${esc(e.message)}</p>`;btn.disabled=false;btn.textContent='Try again'}}
 async function boot(){
   try{const c=await API.req('GET','/api/auth/config');REG_OPEN=!!c.registration;AI_ON=!!c.ai}catch(e){}
-  try{const r=await API.req('GET','/api/auth/me');USER=r.user;await Store.load();go({name:'home'})}
+  try{const r=await API.req('GET','/api/auth/me');USER=r.user;await loadCatalog();await Store.load();go({name:'home'})}
   catch(e){USER=null;go({name:'landing'})}}
 boot();
 </script>

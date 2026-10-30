@@ -1,5 +1,6 @@
 'use strict';
 const core = require('./public/core.js');
+const catalog = require('./catalog.js');
 
 const REJECT_TAGS = new Map([
   [core.noParenReject, 'expand'],
@@ -212,6 +213,7 @@ function init(db) {
     CREATE INDEX IF NOT EXISTS questions_status ON questions(skill_id, status);
     UPDATE questions SET updated_at = created_at WHERE updated_at IS NULL;
   `);
+  catalog.init(db);
 
   try {
     db.exec(`
@@ -273,7 +275,7 @@ function insert(db, skillId, question, options = {}) {
 
 function generate(db, skillId, exclude = new Set()) {
   const skill = core.SKM[skillId];
-  if (!skill) return null;
+  if (!skill || typeof skill.gen !== 'function') return null;
   for (let attempt = 0; attempt < 80; attempt++) {
     let question;
     try { question = skill.gen(); } catch (err) { continue; }
@@ -299,7 +301,8 @@ function rowToQuestion(row) {
 }
 
 function next(db, skillId, exclude = []) {
-  if (!core.SKM[skillId]) return null;
+  const skill = core.SKM[skillId];
+  if (!skill || skill.status !== 'active') return null;
   const seen = [...new Set(exclude.map(String).filter(Boolean))].slice(-250);
   let row;
   if (seen.length) {
@@ -332,9 +335,14 @@ function ftsQuery(text) {
   return queryTerms(text).map(term => `"${term}"`).join(' OR ');
 }
 
+const activeTopic = id => {
+  const skill = core.SKM[id];
+  return !!skill && skill.status === 'active';
+};
+
 function similar(db, id, limit = 5) {
   const row = db.prepare("SELECT * FROM questions WHERE id = ? AND status = 'active'").get(id);
-  if (!row) return null;
+  if (!row || !activeTopic(row.skill_id)) return null;
   const n = Math.max(1, Math.min(20, Number(limit) || 5));
   let rows = [];
   if (ftsEnabled) {
@@ -353,6 +361,7 @@ function similar(db, id, limit = 5) {
       }
     }
   }
+  rows = rows.filter(r => activeTopic(r.skill_id));
   if (!rows.length) {
     rows = db.prepare(`
       SELECT id, skill_id, prompt, 0 AS rank FROM questions
@@ -374,7 +383,10 @@ function search(db, text, limit = 10) {
         WHERE questions_fts MATCH ? AND q.status = 'active'
         ORDER BY rank ASC LIMIT ?
       `).all(match, n);
-      if (rows.length) return rows.map(r => ({ id: r.id, skillId: r.skill_id, prompt: r.prompt, score: r.rank }));
+      if (rows.length) {
+        const active = rows.filter(r => activeTopic(r.skill_id));
+        if (active.length) return active.map(r => ({ id: r.id, skillId: r.skill_id, prompt: r.prompt, score: r.rank }));
+      }
     } catch (err) {}
   }
   const terms = queryTerms(text);
@@ -383,7 +395,7 @@ function search(db, text, limit = 10) {
   return db.prepare(`
     SELECT id, skill_id, prompt, 0 AS rank FROM questions
     WHERE prompt_text LIKE ? AND status = 'active' ORDER BY RANDOM() LIMIT ?
-  `).all(like, n).map(r => ({ id: r.id, skillId: r.skill_id, prompt: r.prompt, score: r.rank }));
+  `).all(like, n).filter(r => activeTopic(r.skill_id)).map(r => ({ id: r.id, skillId: r.skill_id, prompt: r.prompt, score: r.rank }));
 }
 
 function seed(db, perSkill = 8) {
@@ -393,6 +405,7 @@ function seed(db, perSkill = 8) {
   db.exec('BEGIN');
   try {
     for (const skill of core.SK) {
+      if (skill.status !== 'active' || typeof skill.gen !== 'function') continue;
       const have = countFor.get(skill.id).n;
       if (have >= perSkill) continue;
       const seen = new Set(fingerprintsFor.all(skill.id).map(r => r.fingerprint));
@@ -415,7 +428,7 @@ function count(db) {
 
 function getActive(db, id) {
   const row = db.prepare("SELECT * FROM questions WHERE id = ? AND status = 'active'").get(id);
-  return row ? rowToQuestion(row) : null;
+  return row && activeTopic(row.skill_id) ? rowToQuestion(row) : null;
 }
 
 function adminGet(db, id) {
@@ -696,7 +709,7 @@ function testAnswer(input, answer) {
 }
 
 function skills() {
-  return core.SK.map(s => ({ id: s.id, name: s.name, unit: s.unit }));
+  return core.SK.map(s => ({ id: s.id, name: s.name, unit: s.unit, source: s.source || 'builtin', status: s.status || 'active' }));
 }
 
 function units() {
