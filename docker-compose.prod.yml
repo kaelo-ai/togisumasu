@@ -1,0 +1,39 @@
+# Production on a server with a domain: Caddy in front gets HTTPS certificates automatically.
+#   docker compose -f docker-compose.prod.yml up -d --build
+name: togisumasu
+services:
+  app:
+    build: .
+    image: togisumasu:latest
+    container_name: togisumasu
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TRUST_PROXY: "true"      # Caddy sets X-Forwarded-Proto / X-Forwarded-For
+      COOKIE_SECURE: "true"    # session cookie only travels over HTTPS
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # lets the app reach Ollama running on the host
+    volumes:
+      - data:/data
+    # no "ports": the app is only reachable through Caddy
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: togisumasu-caddy
+    restart: unless-stopped
+    depends_on: [app]
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data        # certificates live here; keep this volume
+      - caddy-config:/config
+
+volumes:
+  data:
+  caddy-data:
+  caddy-config:

@@ -1,0 +1,17 @@
+{
+  "name": "togisumasu",
+  "version": "1.0.0",
+  "description": "Togisumasu: mastery-based practice for college-level and postgraduate mathematics and statistics. Zero npm dependencies.",
+  "main": "server.js",
+  "private": true,
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node --no-warnings=ExperimentalWarning server.js",
+    "test": "node --no-warnings=ExperimentalWarning test/api.test.js && node --no-warnings=ExperimentalWarning test/admin.test.js && node --no-warnings=ExperimentalWarning test/ai.test.js",
+    "ai:check": "node ai.js check",
+    "questions:seed": "node --no-warnings=ExperimentalWarning questions.js seed",
+    "admin": "node --no-warnings=ExperimentalWarning admin.js"
+  }
+}

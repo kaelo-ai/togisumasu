@@ -1,0 +1,29 @@
+# Home hosting without opening router ports: a Cloudflare Tunnel carries traffic to the app.
+#   docker compose -f docker-compose.tunnel.yml up -d --build
+name: togisumasu
+services:
+  app:
+    build: .
+    image: togisumasu:latest
+    container_name: togisumasu
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TRUST_PROXY: "true"
+      COOKIE_SECURE: "true"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # lets the app reach Ollama running on the host
+    volumes:
+      - data:/data
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: togisumasu-tunnel
+    restart: unless-stopped
+    depends_on: [app]
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?Set TUNNEL_TOKEN in .env (from the Cloudflare dashboard)}
+
+volumes:
+  data:

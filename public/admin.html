@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Admin · Togisumasu</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fff' font-family='sans-serif'%3E%E2%88%91%3C/text%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('togisumasu-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<style>
+:root{
+  --bg:#FFFFFF;--surface:#FFFFFF;--ink:#111111;--muted:#5E5E5E;--line:#D6D6D6;--grid:#F1F1F1;
+  --accent:#111111;--accent-ink:#FFFFFF;--accent-soft:#EDEDED;--mark:#E0A800;--mark-soft:#FBF1D0;
+  --good:#1C7F52;--good-soft:#E1F3EA;--bad:#B8362D;--bad-soft:#F9E5E3;--r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E131A;--surface:#161D27;--ink:#E5EAF1;--muted:#97A3B5;--line:#2A3441;--grid:#1D2531;
+  --accent:#8AA2FF;--accent-ink:#0E131A;--accent-soft:#1F2A4A;--mark:#E5B73A;--mark-soft:#3A3219;
+  --good:#52C790;--good-soft:#15332A;--bad:#F2786D;--bad-soft:#3B1D1C;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E131A;--surface:#161D27;--ink:#E5EAF1;--muted:#97A3B5;--line:#2A3441;--grid:#1D2531;
+  --accent:#8AA2FF;--accent-ink:#0E131A;--accent-soft:#1F2A4A;--mark:#E5B73A;--mark-soft:#3A3219;
+  --good:#52C790;--good-soft:#15332A;--bad:#F2786D;--bad-soft:#3B1D1C;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+h1,h2,h3{margin:0;line-height:1.2}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code,pre,textarea,input{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;text-decoration:none;color:var(--ink)}
+.brand .glyph{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:var(--accent);color:var(--accent-ink)}
+.spacer{margin-left:auto}
+.tagline{font-size:.72rem;color:var(--muted);font-weight:500;letter-spacing:.02em}
+@media (max-width:600px){.tagline{display:none}}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 80px}
+.muted{color:var(--muted)}
+.eyebrow{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:8px;border:1px solid var(--line);background:var(--surface);padding:8px 13px;font-weight:600;cursor:pointer;text-decoration:none;color:var(--ink);min-height:38px}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.ghost:hover{color:var(--ink);border-color:var(--line)}
+.btn.sm{padding:4px 9px;min-height:30px;font-size:.82rem}
+.btn.danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:18px 0}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:9px 14px;font-weight:600;color:var(--muted);cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.bar{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-bottom:14px}
+.bar label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
+.bar input,.bar select,.editor input,.editor select,.editor textarea{border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);padding:8px 10px;font-size:.9rem}
+.bar input{min-width:220px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--grid);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.prompt{max-width:430px;word-break:break-word}
+.badge{display:inline-block;font-size:.74rem;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--grid);color:var(--muted);white-space:nowrap}
+.badge.admin{background:var(--accent-soft);color:var(--accent)}
+.badge.active{background:var(--good-soft);color:var(--good)}
+.badge.disabled{background:var(--mark-soft);color:var(--ink)}
+.badge.deleted{background:var(--bad-soft);color:var(--bad)}
+.badge.manual{background:var(--accent-soft);color:var(--accent)}
+.actions{display:flex;gap:5px;flex-wrap:wrap}
+.pager{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-top:10px}
+.editor{margin-bottom:16px;border:1px solid var(--accent);border-radius:var(--r);background:var(--surface);padding:16px}
+.editor h2{font-size:1.05rem;margin-bottom:10px}
+.editor .grid{display:grid;grid-template-columns:220px 180px 1fr;gap:10px}
+@media (max-width:760px){.editor .grid{grid-template-columns:1fr}}
+.editor label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);font-weight:600}
+.editor textarea{min-height:330px;width:100%;resize:vertical;line-height:1.45;tab-size:2}
+.msg{font-size:.86rem;margin-top:8px;min-height:20px}
+.msg.ok{color:var(--good)}
+.msg.bad{color:var(--bad)}
+.login{max-width:420px;margin:9vh auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.login h1{font-size:1.35rem;margin-bottom:6px}
+.login form{display:grid;gap:10px;margin-top:14px}
+.login label{display:grid;gap:4px;font-size:.8rem;color:var(--muted);font-weight:600}
+.login input{border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);padding:10px}
+.flash{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:30;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-weight:600;max-width:90vw;display:none}
+.flash.show{display:block}
+.flash.bad{background:var(--bad);color:#fff}
+dialog{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);padding:20px;max-width:420px;width:92vw}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog input,dialog select{width:100%;padding:9px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);margin:8px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="/"><span class="glyph">研</span> Togisumasu <span class="tagline">to sharpen the mind</span></a>
+  <span class="badge admin">Admin</span>
+  <span class="spacer"></span>
+  <span id="who" class="muted"></span>
+  <a class="btn ghost sm" href="/">Learner app</a>
+  <button class="btn ghost sm" type="button" data-act="logout" id="logoutBtn" hidden>Sign out</button>
+</div></header>
+<main class="wrap" id="app"><p class="muted">Loading…</p></main>
+<div class="flash" id="flash"></div>
+<dialog id="progressDlg">
+  <h3>Reset progress</h3>
+  <p class="muted" id="progressWho"></p>
+  <label style="display:grid;gap:4px;font-size:.8rem;color:var(--muted);font-weight:600">What to reset<select id="progressScope"></select></label>
+  <p class="muted" style="font-size:.82rem">This signs the user out immediately. Their account and password stay the same.</p>
+  <p class="msg bad" id="progressMsg"></p>
+  <div class="row"><button class="btn primary danger" type="button" data-act="progress-confirm">Reset progress</button><button class="btn ghost" type="button" data-act="progress-close">Cancel</button></div>
+</dialog>
+<dialog id="secretDlg">
+  <h3>Temporary password</h3>
+  <p class="muted" id="secretWho"></p>
+  <input id="secretValue" readonly>
+  <div class="row"><button class="btn primary" type="button" data-act="copy-secret">Copy</button><button class="btn ghost" type="button" data-act="close-secret">Close</button></div>
+</dialog>
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const state = {
+  me: null, skills: [], units: [], resetTarget: null, tab: 'users',
+  users: { items: [], total: 0, limit: 50, offset: 0, q: '', status: 'all' },
+  questions: { items: [], total: 0, limit: 50, offset: 0, skill: '', status: 'all', source: 'all', q: '' },
+  audit: [], editor: null,
+};
+
+async function api(method, url, body) {
+  const r = await fetch(url, {
+    method, credentials: 'same-origin',
+    headers: body !== undefined ? { 'Content-Type': 'application/json' } : {},
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+  });
+  let json = null;
+  try { json = await r.json(); } catch (e) {}
+  if (!r.ok) throw Object.assign(new Error(json && json.error || `Request failed (${r.status})`), { status: r.status });
+  return json;
+}
+
+function flash(text, kind) {
+  const el = $('#flash');
+  el.textContent = text;
+  el.className = 'flash show' + (kind === 'bad' ? ' bad' : '');
+  clearTimeout(flash.timer);
+  flash.timer = setTimeout(() => { el.className = 'flash'; }, 5000);
+}
+
+function showSecret(email, password) {
+  $('#secretWho').textContent = email;
+  $('#secretValue').value = password;
+  const dlg = $('#secretDlg');
+  if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+  $('#secretValue').select();
+}
+
+function loginHTML(message) {
+  return `<section class="login"><div class="eyebrow">Staff access</div><h1>Admin sign in</h1>
+    <p class="muted">Use an account whose role is <b>admin</b>.</p>
+    <form id="loginForm">
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+      <p class="msg bad" id="loginErr">${esc(message || '')}</p>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form></section>`;
+}
+
+function deniedHTML() {
+  return `<section class="panel" style="margin-top:20px"><h1>Admin access required</h1>
+    <p class="muted">You are signed in as <b>${esc(state.me.email)}</b>, but this account is not an administrator.</p>
+    <div class="row" style="margin-top:12px"><a class="btn" href="/">Back to the app</a><button class="btn ghost" type="button" data-act="logout">Sign out</button></div></section>`;
+}
+
+function shellHTML() {
+  return `<div class="row"><div><div class="eyebrow">Administration</div><h1>Manage Togisumasu</h1></div></div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="users" aria-selected="${state.tab === 'users'}">Users</button>
+      <button class="tab" role="tab" data-tab="questions" aria-selected="${state.tab === 'questions'}">Questions</button>
+      <button class="tab" role="tab" data-tab="audit" aria-selected="${state.tab === 'audit'}">Audit log</button>
+    </div><div id="panel"><p class="muted">Loading…</p></div>`;
+}
+
+function render() {
+  $('#logoutBtn').hidden = !state.me;
+  $('#who').textContent = state.me ? state.me.email : '';
+  if (!state.me) {
+    $('#app').innerHTML = loginHTML();
+    $('#loginForm').onsubmit = async e => {
+      e.preventDefault();
+      const f = e.target, err = $('#loginErr'), btn = f.querySelector('button[type=submit]');
+      err.textContent = ''; btn.disabled = true;
+      try {
+        const r = await api('POST', '/api/auth/login', { email: f.email.value.trim(), password: f.password.value });
+        state.me = r.user;
+        if (state.me.role === 'admin') await bootData(); else render();
+      } catch (ex) { err.textContent = ex.message; btn.disabled = false; }
+    };
+    return;
+  }
+  if (state.me.role !== 'admin') { $('#app').innerHTML = deniedHTML(); return; }
+  $('#app').innerHTML = shellHTML();
+  loadTab();
+}
+
+async function bootData() {
+  await loadSkills();
+  render();
+}
+
+async function loadSkills() {
+  try {
+    const r = await api('GET', '/api/admin/skills');
+    state.skills = r.items; state.units = r.units || [];
+  } catch (e) { state.skills = []; state.units = []; }
+}
+
+function progressOptions() {
+  const units = state.units.map(u => `<option value="unit:${esc(u.id)}">${esc(u.name)} (all topics)</option>`).join('');
+  const skills = state.skills.map(s => `<option value="skill:${esc(s.id)}">${esc(s.name)}</option>`).join('');
+  return `<option value="all">All progress</option>` +
+    `<optgroup label="Whole unit">${units}</optgroup>` +
+    (skills ? `<optgroup label="One topic">${skills}</optgroup>` : '');
+}
+
+function openResetProgress(user) {
+  state.resetTarget = user;
+  $('#progressWho').textContent = `${user.name} <${user.email}>`;
+  $('#progressScope').innerHTML = progressOptions();
+  $('#progressMsg').textContent = '';
+  const dlg = $('#progressDlg');
+  if (typeof dlg.showModal === 'function') { if (dlg.open) dlg.close(); dlg.showModal(); }
+  else dlg.setAttribute('open', '');
+}
+
+function skillOptions(selected) {
+  return `<option value="">All topics</option>` + state.skills.map(s =>
+    `<option value="${esc(s.id)}"${s.id === selected ? ' selected' : ''}>${esc(s.name)}</option>`).join('');
+}
+
+function renderUsers() {
+  const u = state.users;
+  const rows = u.items.map(x => {
+    const self = x.id === state.me.id;
+    const actions = [];
+    if (x.status === 'deleted') actions.push(`<button class="btn sm" type="button" data-act="user-restore" data-id="${x.id}">Restore</button>`);
+    else {
+      if (x.status === 'active') actions.push(`<button class="btn sm" type="button" data-act="user-disable" data-id="${x.id}"${self ? ' disabled' : ''}>Disable</button>`);
+      else actions.push(`<button class="btn sm" type="button" data-act="user-enable" data-id="${x.id}">Enable</button>`);
+      if (x.role === 'admin') actions.push(`<button class="btn sm" type="button" data-act="user-demote" data-id="${x.id}"${self ? ' disabled' : ''}>Make student</button>`);
+      else actions.push(`<button class="btn sm" type="button" data-act="user-promote" data-id="${x.id}">Make admin</button>`);
+      actions.push(`<button class="btn sm" type="button" data-act="user-reset-progress" data-id="${x.id}">Reset progress</button>`);
+      actions.push(`<button class="btn sm" type="button" data-act="user-reset" data-id="${x.id}"${self ? ' disabled' : ''}>Reset password</button>`);
+      actions.push(`<button class="btn sm danger" type="button" data-act="user-delete" data-id="${x.id}"${self ? ' disabled' : ''}>Delete</button>`);
+    }
+    return `<tr>
+      <td>${x.id}</td>
+      <td><div><b>${esc(x.name)}</b>${self ? ' <span class="muted">(you)</span>' : ''}</div><div class="muted">${esc(x.email)}</div></td>
+      <td><span class="badge ${x.role === 'admin' ? 'admin' : ''}">${esc(x.role)}</span></td>
+      <td><span class="badge ${esc(x.status)}">${esc(x.status)}</span></td>
+      <td class="muted">${x.sessions == null ? '' : x.sessions} session${x.sessions === 1 ? '' : 's'}</td>
+      <td class="muted">${x.progressAt ? new Date(x.progressAt).toLocaleString() : '—'}</td>
+      <td><div class="actions">${actions.join('')}</div></td>
+    </tr>`;
+  }).join('');
+  $('#panel').innerHTML = `
+    <form class="bar" id="userFilter">
+      <label>Search<input name="q" value="${esc(u.q)}" placeholder="name or email"></label>
+      <label>Status<select name="status">
+        ${['all', 'active', 'disabled', 'deleted'].map(s => `<option${u.status === s ? ' selected' : ''}>${s}</option>`).join('')}
+      </select></label>
+      <button class="btn" type="submit">Filter</button>
+      <button class="btn ghost" type="button" data-act="users-refresh">Refresh</button>
+      <span class="muted">${u.total} user${u.total === 1 ? '' : 's'}</span>
+    </form>
+    <div class="tablewrap"><table><thead><tr><th>ID</th><th>User</th><th>Role</th><th>Status</th><th>Sessions</th><th>Last progress</th><th>Actions</th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="7" class="muted">No users match.</td></tr>'}</tbody></table></div>
+    <div class="pager"><button class="btn sm" type="button" data-act="users-prev"${u.offset ? '' : ' disabled'}>Previous</button>
+      <span class="muted">${u.total ? u.offset + 1 : 0}–${Math.min(u.offset + u.limit, u.total)} of ${u.total}</span>
+      <button class="btn sm" type="button" data-act="users-next"${u.offset + u.limit < u.total ? '' : ' disabled'}>Next</button></div>`;
+  $('#userFilter').onsubmit = e => {
+    e.preventDefault();
+    u.q = e.target.q.value.trim(); u.status = e.target.status.value; u.offset = 0; loadUsers();
+  };
+}
+
+async function loadUsers() {
+  const u = state.users;
+  try {
+    const p = new URLSearchParams({ q: u.q, status: u.status, limit: u.limit, offset: u.offset });
+    const r = await api('GET', '/api/admin/users?' + p.toString());
+    Object.assign(u, r);
+    renderUsers();
+  } catch (e) { $('#panel').innerHTML = `<p class="msg bad">${esc(e.message)}</p>`; }
+}
+
+function template(type) {
+  const examples = {
+    num: { type: 'num', prompt: 'Evaluate: $$2+3$$', hint: 'Add the two numbers.', steps: ['$2+3=5$'], val: 5, ans: '5', ansTex: '5', exact: true },
+    set: { type: 'set', prompt: 'Solve: $$x^2=4$$', hint: 'Take both square roots.', steps: ['$x=\\pm 2$'], vals: [-2, 2], ansTex: 'x=-2,\\;x=2', exact: true },
+    expr: { type: 'expr', prompt: 'Expand and simplify: $$(x+1)(x-1)$$', hint: 'Multiply each term.', steps: ['$x^2-x+x-1$', '$x^2-1$'], ans: 'x^2-1', ansTex: 'x^2-1', sample: [-3, 3] },
+    mc: { type: 'mc', prompt: 'Which number is even?', steps: ['$2$ is divisible by 2.'], options: [{ tex: '$2$', ok: true }, { tex: '$3$', ok: false }, { tex: '$5$', ok: false }, { tex: '$7$', ok: false }] },
+    fields: { type: 'fields', prompt: 'Complete both values: $$x=1,\\ y=2$$', steps: ['Read the values from the statement.'], fields: [{ label: 'x', name: 'x', ans: 1, ansTex: '1' }, { label: 'y', name: 'y', ans: 2, ansTex: '2' }] },
+  };
+  return JSON.parse(JSON.stringify(examples[type] || examples.expr));
+}
+
+function renderQuestions() {
+  const q = state.questions;
+  const rows = q.items.map(x => {
+    const actions = [
+      `<button class="btn sm" type="button" data-act="q-edit" data-id="${x.id}">Edit</button>`,
+    ];
+    if (x.status === 'active') actions.push(`<button class="btn sm" type="button" data-act="q-hide" data-id="${x.id}">Hide</button>`);
+    if (x.status === 'hidden') actions.push(`<button class="btn sm" type="button" data-act="q-show" data-id="${x.id}">Show</button>`);
+    if (x.status !== 'deleted') actions.push(`<button class="btn sm danger" type="button" data-act="q-delete" data-id="${x.id}">Delete</button>`);
+    if (x.status === 'deleted') actions.push(`<button class="btn sm" type="button" data-act="q-restore" data-id="${x.id}">Restore</button>`);
+    return `<tr>
+      <td>${x.id}</td>
+      <td>${esc(x.topic)}<div class="muted">${esc(x.skillId)}</div></td>
+      <td>${esc(x.type)}</td>
+      <td class="prompt">${esc(x.promptText)}</td>
+      <td><span class="badge ${x.source === 'manual' ? 'manual' : ''}">${esc(x.source)}</span></td>
+      <td><span class="badge ${esc(x.status)}">${esc(x.status)}</span></td>
+      <td><div class="actions">${actions.join('')}</div></td>
+    </tr>`;
+  }).join('');
+  const editor = state.editor ? editorHTML() : '';
+  $('#panel').innerHTML = `
+    ${editor}
+    <form class="bar" id="qFilter">
+      <label>Topic<select name="skill">${skillOptions(q.skill)}</select></label>
+      <label>Status<select name="status">${['all', 'active', 'hidden', 'deleted'].map(s => `<option${q.status === s ? ' selected' : ''}>${s}</option>`).join('')}</select></label>
+      <label>Source<select name="source">${['all', 'generated', 'manual'].map(s => `<option${q.source === s ? ' selected' : ''}>${s}</option>`).join('')}</select></label>
+      <label>Search<input name="q" value="${esc(q.q)}" placeholder="prompt text"></label>
+      <button class="btn" type="submit">Filter</button>
+      <button class="btn primary" type="button" data-act="q-new">New question</button>
+    </form>
+    <div class="tablewrap"><table><thead><tr><th>ID</th><th>Topic</th><th>Type</th><th>Prompt</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="7" class="muted">No questions match.</td></tr>'}</tbody></table></div>
+    <div class="pager"><button class="btn sm" type="button" data-act="q-prev"${q.offset ? '' : ' disabled'}>Previous</button>
+      <span class="muted">${q.total ? q.offset + 1 : 0}–${Math.min(q.offset + q.limit, q.total)} of ${q.total}</span>
+      <button class="btn sm" type="button" data-act="q-next"${q.offset + q.limit < q.total ? '' : ' disabled'}>Next</button></div>`;
+  $('#qFilter').onsubmit = e => {
+    e.preventDefault();
+    q.skill = e.target.skill.value; q.status = e.target.status.value; q.source = e.target.source.value;
+    q.q = e.target.q.value.trim(); q.offset = 0; loadQuestions();
+  };
+  if (state.editor) wireEditor();
+}
+
+function editorHTML() {
+  const ed = state.editor;
+  return `<section class="editor"><h2>${ed.id ? 'Edit question #' + ed.id : 'New question'}</h2>
+    <form id="qForm">
+      <div class="grid">
+        <label>Topic<select name="skillId">${state.skills.map(s => `<option value="${esc(s.id)}"${s.id === ed.skillId ? ' selected' : ''}>${esc(s.name)}</option>`).join('')}</select></label>
+        <label>Template type<select name="type">${['num', 'set', 'expr', 'mc', 'fields'].map(t => `<option${ed.type === t ? ' selected' : ''}>${t}</option>`).join('')}</select></label>
+        <label>Test an answer (optional)<input name="test" placeholder="e.g. 5, or A, B, C for multiple choice"></label>
+      </div>
+      <label style="margin-top:10px">Question JSON<textarea name="json" spellcheck="false">${esc(ed.json)}</textarea></label>
+      <p class="msg" id="qMsg"></p>
+      <div class="row" style="margin-top:8px">
+        <button class="btn primary" type="submit">${ed.id ? 'Save changes' : 'Create question'}</button>
+        <button class="btn" type="button" data-act="q-test">Test answer</button>
+        <button class="btn ghost" type="button" data-act="q-template">Load template</button>
+        <button class="btn ghost" type="button" data-act="q-cancel">Cancel</button>
+      </div>
+    </form></section>`;
+}
+
+function editorMsg(text, ok) {
+  const el = $('#qMsg');
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'msg ' + (ok ? 'ok' : 'bad');
+}
+
+function wireEditor() {
+  const form = $('#qForm');
+  form.onsubmit = async e => {
+    e.preventDefault();
+    let question;
+    try { question = JSON.parse(form.json.value); } catch (ex) { editorMsg('Invalid JSON: ' + ex.message, false); return; }
+    const skillId = form.skillId.value;
+    const ed = state.editor;
+    try {
+      if (ed.id) await api('PATCH', '/api/admin/questions/' + ed.id, { skillId, question });
+      else await api('POST', '/api/admin/questions', { skillId, question });
+      state.editor = null;
+      flash(ed.id ? 'Question updated.' : 'Question created.', 'ok');
+      await loadQuestions();
+    } catch (ex) { editorMsg(ex.message, false); }
+  };
+}
+
+async function loadQuestions() {
+  const q = state.questions;
+  try {
+    if (!state.skills.length) await loadSkills();
+    const p = new URLSearchParams({ skill: q.skill, status: q.status, source: q.source, q: q.q, limit: q.limit, offset: q.offset });
+    const r = await api('GET', '/api/admin/questions?' + p.toString());
+    Object.assign(q, r);
+    renderQuestions();
+  } catch (e) { $('#panel').innerHTML = `<p class="msg bad">${esc(e.message)}</p>`; }
+}
+
+async function openEditor(id) {
+  if (id) {
+    try {
+      const r = await api('GET', '/api/admin/questions/' + id);
+      const x = r.question;
+      const question = { ...x };
+      delete question.id; delete question.skillId; delete question.fingerprint;
+      delete question.source; delete question.status; delete question.createdAt; delete question.updatedAt; delete question.topic;
+      state.editor = { id: x.id, skillId: x.skillId, type: x.type, json: JSON.stringify(question, null, 2) };
+    } catch (e) { flash(e.message, 'bad'); return; }
+  } else {
+    const skillId = state.questions.skill || (state.skills[0] && state.skills[0].id) || '';
+    state.editor = { id: null, skillId, type: 'expr', json: JSON.stringify(template('expr'), null, 2) };
+  }
+  renderQuestions();
+  const ta = $('#qForm textarea'); if (ta) ta.focus();
+}
+
+function readEditorQuestion() {
+  const form = $('#qForm');
+  if (!form) throw new Error('Open a question first.');
+  try { return JSON.parse(form.json.value); }
+  catch (ex) { throw new Error('Invalid JSON: ' + ex.message); }
+}
+
+function renderAudit() {
+  const rows = state.audit.map(x => `<tr>
+    <td class="muted">${new Date(x.createdAt).toLocaleString()}</td>
+    <td>${esc(x.adminEmail)}</td>
+    <td><code>${esc(x.action)}</code></td>
+    <td>${esc(x.targetType)}${x.targetId ? ' #' + esc(x.targetId) : ''}</td>
+    <td class="prompt">${x.detail ? esc(JSON.stringify(x.detail)) : '—'}</td>
+  </tr>`).join('');
+  $('#panel').innerHTML = `<div class="row" style="margin-bottom:12px"><button class="btn" type="button" data-act="audit-refresh">Refresh</button><span class="muted">Newest first</span></div>
+    <div class="tablewrap"><table><thead><tr><th>When</th><th>Admin</th><th>Action</th><th>Target</th><th>Detail</th></tr></thead>
+    <tbody>${rows || '<tr><td colspan="5" class="muted">No admin changes yet.</td></tr>'}</tbody></table></div>`;
+}
+
+async function loadAudit() {
+  try {
+    state.audit = (await api('GET', '/api/admin/audit?limit=200')).items;
+    renderAudit();
+  } catch (e) { $('#panel').innerHTML = `<p class="msg bad">${esc(e.message)}</p>`; }
+}
+
+async function loadTab() {
+  if (state.tab === 'users') await loadUsers();
+  else if (state.tab === 'questions') await loadQuestions();
+  else await loadAudit();
+}
+
+document.addEventListener('click', async e => {
+  const tab = e.target.closest('[data-tab]');
+  if (tab) { state.tab = tab.dataset.tab; render(); return; }
+  const b = e.target.closest('[data-act]');
+  if (!b) return;
+  const act = b.dataset.act;
+  const id = Number(b.dataset.id);
+  const user = state.users.items.find(x => x.id === id);
+  try {
+    if (act === 'logout') {
+      try { await api('POST', '/api/auth/logout'); } catch (e) {}
+      state.me = null; render(); return;
+    }
+    if (act === 'users-refresh') return loadUsers();
+    if (act === 'users-prev') { state.users.offset = Math.max(0, state.users.offset - state.users.limit); return loadUsers(); }
+    if (act === 'users-next') { state.users.offset += state.users.limit; return loadUsers(); }
+    if (act === 'user-disable') { await api('PATCH', '/api/admin/users/' + id, { status: 'disabled' }); flash('User disabled.'); return loadUsers(); }
+    if (act === 'user-enable') { await api('PATCH', '/api/admin/users/' + id, { status: 'active' }); flash('User enabled.'); return loadUsers(); }
+    if (act === 'user-promote') { await api('PATCH', '/api/admin/users/' + id, { role: 'admin' }); flash('User promoted to admin.'); return loadUsers(); }
+    if (act === 'user-demote') {
+      if (!confirm(`Remove admin rights from ${user ? user.email : 'this user'}?`)) return;
+      await api('PATCH', '/api/admin/users/' + id, { role: 'student' }); flash('Admin rights removed.'); return loadUsers();
+    }
+    if (act === 'user-delete') {
+      if (!confirm(`Delete ${user ? user.email : 'this user'}? Their progress is kept and the account can be restored.`)) return;
+      await api('DELETE', '/api/admin/users/' + id); flash('User deleted.'); return loadUsers();
+    }
+    if (act === 'user-restore') { await api('POST', '/api/admin/users/' + id + '/restore'); flash('User restored.'); return loadUsers(); }
+    if (act === 'user-reset') {
+      const r = await api('POST', '/api/admin/users/' + id + '/reset-password');
+      showSecret(user ? user.email : 'user #' + id, r.password); return;
+    }
+    if (act === 'user-reset-progress') {
+      if (user) openResetProgress(user); return;
+    }
+    if (act === 'progress-close') { $('#progressDlg').close(); return; }
+    if (act === 'progress-confirm') {
+      const target = state.resetTarget;
+      if (!target) return;
+      const raw = $('#progressScope').value;
+      const split = raw.indexOf(':');
+      const scope = split < 0 ? raw : raw.slice(0, split);
+      const value = split < 0 ? '' : raw.slice(split + 1);
+      const label = $('#progressScope').selectedOptions[0] ? $('#progressScope').selectedOptions[0].textContent : scope;
+      if (!confirm(`Reset ${label} for ${target.email}? This cannot be undone.`)) return;
+      try {
+        const r = await api('POST', `/api/admin/users/${target.id}/reset-progress`, { scope, value });
+        $('#progressDlg').close();
+        flash(`Progress reset for ${target.email} (${r.removed} topic${r.removed === 1 ? '' : 's'} cleared).`);
+        state.resetTarget = null;
+        if (target.id === state.me.id) setTimeout(() => location.reload(), 700); else await loadUsers();
+      } catch (ex) { $('#progressMsg').textContent = ex.message; }
+      return;
+    }
+    if (act === 'copy-secret') {
+      const v = $('#secretValue'); v.select();
+      try { await navigator.clipboard.writeText(v.value); flash('Password copied.'); } catch (e) { flash('Select and copy the password.', 'bad'); }
+      return;
+    }
+    if (act === 'close-secret') { $('#secretDlg').close(); return; }
+    if (act === 'q-new') { state.editor = null; return openEditor(null); }
+    if (act === 'q-edit') return openEditor(id);
+    if (act === 'q-hide') { await api('PATCH', '/api/admin/questions/' + id, { status: 'hidden' }); flash('Question hidden.'); return loadQuestions(); }
+    if (act === 'q-show') { await api('PATCH', '/api/admin/questions/' + id, { status: 'active' }); flash('Question shown.'); return loadQuestions(); }
+    if (act === 'q-delete') {
+      if (!confirm('Delete this question? It will stop appearing in practice and can be restored later.')) return;
+      await api('DELETE', '/api/admin/questions/' + id); flash('Question deleted.'); return loadQuestions();
+    }
+    if (act === 'q-restore') { await api('POST', '/api/admin/questions/' + id + '/restore'); flash('Question restored.'); return loadQuestions(); }
+    if (act === 'q-cancel') { state.editor = null; return renderQuestions(); }
+    if (act === 'q-template') {
+      const form = $('#qForm');
+      const type = form.type.value;
+      state.editor.type = type;
+      state.editor.json = JSON.stringify(template(type), null, 2);
+      const skillId = form.skillId.value;
+      state.editor.skillId = skillId;
+      return renderQuestions();
+    }
+    if (act === 'q-test') {
+      let question;
+      try { question = readEditorQuestion(); } catch (ex) { return editorMsg(ex.message, false); }
+      try {
+        const r = await api('POST', '/api/admin/questions/test', { question, answer: $('#qForm').test.value });
+        editorMsg(r.ok ? 'Correct — the answer checker accepts that.' : 'Not accepted: ' + (r.err || 'wrong answer'), r.ok);
+      } catch (ex) { editorMsg(ex.message, false); }
+      return;
+    }
+    if (act === 'q-prev') { state.questions.offset = Math.max(0, state.questions.offset - state.questions.limit); return loadQuestions(); }
+    if (act === 'q-next') { state.questions.offset += state.questions.limit; return loadQuestions(); }
+    if (act === 'audit-refresh') return loadAudit();
+  } catch (ex) { flash(ex.message, 'bad'); }
+});
+
+(async function boot() {
+  try {
+    const r = await api('GET', '/api/auth/me');
+    state.me = r.user;
+    if (state.me.role === 'admin') await bootData();
+    else render();
+  } catch (e) {
+    state.me = null;
+    render();
+  }
+})();
+</script>
+</body>
+</html>
