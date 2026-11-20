@@ -1,6 +1,8 @@
 .DS_Store
 .env
-data/
+data/*
+!data/nsc/
+!data/nsc/**
 backups/
 node_modules/
 *.sqlite

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mohlodi.local/schema/figure.schema.json",
+  "title": "Figure",
+  "description": "A figure in a paper. The PNG crop is a reference only; the app draws the figure from `spec`. `exact` = the spec holds every number needed to redraw the figure faithfully. Values a learner must work out are marked given=false (and reveals=<question number>) so the app can hide them until answered.",
+  "type": "object",
+  "required": ["id", "paper_id", "kind", "caption", "source", "exact", "spec", "used_by"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^\\d{4}-(nov|jun|mar)-p[1-3]-fig-[0-9a-z.-]+$"},
+    "paper_id": {"type": "string"},
+    "kind": {"enum": ["function_graph", "trig_graph", "euclidean", "analytic_geometry", "3d_trig", "statistics_chart", "table", "illustrative"]},
+    "caption": {"type": "string", "description": "One-sentence description (also alt text)"},
+    "source": {
+      "type": "object",
+      "required": ["pdf_page", "bbox_px", "dpi", "file"],
+      "properties": {
+        "pdf_page": {"type": "integer"},
+        "printed_page": {"type": "integer"},
+        "dpi": {"type": "integer"},
+        "bbox_px": {"type": "array", "items": {"type": "integer"}, "minItems": 4, "maxItems": 4, "description": "[left, top, right, bottom] in the page render at `dpi`"},
+        "file": {"type": "string"}
+      }
+    },
+    "exact": {"type": "boolean"},
+    "spec": {"type": "object", "description": "Kind-specific drawing spec. See docs/DESIGN.md#figures."},
+    "used_by": {"type": "array", "items": {"type": "string"}},
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {"if": {"properties": {"kind": {"enum": ["function_graph", "trig_graph"]}}},
+     "then": {"properties": {"spec": {"required": ["axes", "functions"]}}}},
+    {"if": {"properties": {"kind": {"const": "euclidean"}}},
+     "then": {"properties": {"spec": {"required": ["points", "segments", "facts"]}}}}
+  ]
+}

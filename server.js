@@ -589,7 +589,8 @@ async function api(req, res, url) {
 
   if (route === 'GET /api/auth/me') return send(res, 200, { user: publicUser(user) });
 
-  if (route === 'GET /api/catalog') return send(res, 200, catalog.learner(db));
+  if (route === 'GET /api/courses') return send(res, 200, { courses: catalog.courses(db) });
+  if (route === 'GET /api/catalog') return send(res, 200, catalog.learner(db, url.searchParams.get('course') || 'algebra'));
 
   if (route === 'PATCH /api/account') {
     const body = await readJson(req);

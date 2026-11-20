@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mohlodi.local/schema/question.schema.json",
+  "title": "Question node",
+  "description": "One node in a paper's question tree. Level 1 = 'QUESTION n' (holds total_marks), deeper levels are sub-questions. Shared context (stem, figures, table) lives once on the highest node it applies to; the app shows a leaf with all ancestor stems/figures/tables. Leaves carry marks, answer_type, topic and skills.",
+  "type": "object",
+  "required": ["id", "paper_id", "number", "parent", "level", "order", "stem_md", "text_md", "marks", "answer_type", "topic", "subtopic", "skills", "cognitive_level", "figure_ids", "table", "memo_ref", "review_status"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^\\d{4}-(nov|jun|mar)-p[1-3]-\\d+(\\.\\d+)*$", "description": "<paper_id>-<number>, e.g. 2025-nov-p1-5.3.1"},
+    "paper_id": {"type": "string"},
+    "number": {"type": "string", "pattern": "^\\d+(\\.\\d+)*$"},
+    "parent": {"type": ["string", "null"], "description": "id of the parent node, null for QUESTION n"},
+    "level": {"type": "integer", "minimum": 1, "maximum": 4},
+    "order": {"type": "integer", "minimum": 0, "description": "Document order within the paper"},
+    "printed_page": {"type": "integer"},
+    "stem_md": {"type": ["string", "null"], "description": "Shared context for this node and all descendants. Markdown + KaTeX ($...$)."},
+    "text_md": {"type": ["string", "null"], "description": "The instruction/question itself. Markdown + KaTeX. Null for pure container nodes."},
+    "marks": {"type": ["integer", "null"], "minimum": 1, "description": "Marks for an answerable node (leaf). Null on containers."},
+    "total_marks": {"type": ["integer", "null"], "description": "Printed [n] total; only on level-1 nodes."},
+    "answer_type": {"type": ["string", "null"], "enum": [null, "value", "expression", "equation", "solution_set", "inequality", "set", "coordinates", "show_that", "proof", "sketch", "description", "reason"]},
+    "topic": {"type": ["string", "null"], "pattern": "^M\\d+$", "description": "CAPS unit id from taxonomy/topics.json"},
+    "subtopic": {"type": ["string", "null"], "pattern": "^M\\d+\\.\\d+$", "description": "CAPS section id from taxonomy/topics.json"},
+    "skills": {"type": "array", "maxItems": 3, "uniqueItems": true, "items": {"type": "string"}, "description": "1-3 skill ids (taxonomy/skills.json) on leaves; empty on containers"},
+    "cognitive_level": {"type": ["integer", "null"], "minimum": 1, "maximum": 4, "description": "CAPS level 1-4 (knowledge, routine, complex, problem solving). Filled from memos later."},
+    "figure_ids": {"type": "array", "items": {"type": "string"}},
+    "table": {
+      "type": ["object", "null"],
+      "required": ["header", "rows"],
+      "additionalProperties": false,
+      "properties": {
+        "caption": {"type": ["string", "null"]},
+        "header": {"type": "array", "items": {"type": "string"}},
+        "rows": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}
+      }
+    },
+    "memo_ref": {"type": ["string", "null"], "description": "Pointer into the memo file once memos are extracted"},
+    "review_status": {"enum": ["extracted", "reviewed", "approved"]},
+    "notes": {"type": "string", "description": "Extraction notes: ambiguities, reading decisions"}
+  }
+}

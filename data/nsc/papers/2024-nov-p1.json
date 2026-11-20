@@ -1,0 +1,2024 @@
+{
+  "id": "2024-nov-p1",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2024,
+  "session": "november",
+  "paper": 1,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2024-nov/2024-nov-p1.pdf",
+    "original_name": "2024-nov-p1.pdf",
+    "sha256": "e001fe6df14e38411c7080d21ef207324300abd8a73ae911f0cc8d8cb8d793c4",
+    "pdf_pages": 10,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=8W2dAxBUTQA%3d&tabid=5193&portalid=0&mid=13724",
+    "note": "Scan without a text layer. Unlike the 2025 papers the PDF includes the cover (printed page 1), the instructions (page 2) and the information sheet; PDF page n = printed page n. Source file and hash are recorded in sources/maths/manifest.json. Duration 3 hours as printed on the cover."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders, checked at 300 dpi where needed",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2024-nov-p1-1",
+      "paper_id": "2024-nov-p1",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 27,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2024-nov-p1-1.1",
+      "paper_id": "2024-nov-p1",
+      "number": "1.1",
+      "parent": "2024-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "Solve for $x$:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2024-nov-p1-1.1.1",
+      "paper_id": "2024-nov-p1",
+      "number": "1.1.1",
+      "parent": "2024-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$x(x-3)=0$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.3",
+      "skills": [
+        "alg.zero-product"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2024-nov-p1-1.1.2",
+      "paper_id": "2024-nov-p1",
+      "number": "1.1.2",
+      "parent": "2024-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$2x^{2}+1=4x$ (correct to TWO decimal places)",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.3",
+      "skills": [
+        "alg.quadratic-formula",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2024-nov-p1-1.1.3",
+      "paper_id": "2024-nov-p1",
+      "number": "1.1.3",
+      "parent": "2024-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$x^{2}-2x-3>0$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M2",
+      "subtopic": "M2.4",
+      "skills": [
+        "alg.quadratic-inequality",
+        "alg.factorise-trinomial"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2024-nov-p1-1.1.4",
+      "paper_id": "2024-nov-p1",
+      "number": "1.1.4",
+      "parent": "2024-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$2^{2x}-2^{x+2}-32=0$",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M1",
+      "subtopic": "M1.4",
+      "skills": [
+        "exp.exponential-equation-substitution",
+        "exp.laws-of-exponents"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2024-nov-p1-1.1.5",
+      "paper_id": "2024-nov-p1",
+      "number": "1.1.5",
+      "parent": "2024-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$\\sqrt{-2x+4}-x=2$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M1",
+      "subtopic": "M1.5",
+      "skills": [
+        "alg.surd-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6
+    },
+    {
+      "id": "2024-nov-p1-1.2",
+      "paper_id": "2024-nov-p1",
+      "number": "1.2",
+      "parent": "2024-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Solve for $x$ and $y$ simultaneously:\n\n$2x+y=3$\n\n$y^{2}+xy=2$",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.5",
+      "skills": [
+        "alg.simultaneous-linear-quadratic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2024-nov-p1-1.3",
+      "paper_id": "2024-nov-p1",
+      "number": "1.3",
+      "parent": "2024-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Consider the product $\\left(1+\\dfrac{1}{2}\\right)\\left(1+\\dfrac{1}{3}\\right)\\left(1+\\dfrac{1}{4}\\right)\\dots$\n\nEach factor in the product is of the form $\\left(1+\\dfrac{1}{n}\\right)$ for $n\\geq 2$.\n\nDetermine ALL the values of $n$ for which the product will be an integer value.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "set",
+      "topic": "M2",
+      "subtopic": "M2.1",
+      "skills": [
+        "alg.algebraic-fractions"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8,
+      "notes": "No dedicated skill for a telescoping product of the factors $\\frac{n+1}{n}$; tagged with alg.algebraic-fractions. Printed as a product of the first $n-1$ factors continuing with \"$\\dots$\"; wording kept as printed."
+    },
+    {
+      "id": "2024-nov-p1-2",
+      "paper_id": "2024-nov-p1",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 14,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2024-nov-p1-2.1",
+      "paper_id": "2024-nov-p1",
+      "number": "2.1",
+      "parent": "2024-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "The first term of an arithmetic series is $7$. The common difference of this series is $5$ and the series contains $20$ terms.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2024-nov-p1-2.1.1",
+      "paper_id": "2024-nov-p1",
+      "number": "2.1.1",
+      "parent": "2024-nov-p1-2.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Calculate the sum of this series.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.arithmetic-series-sum"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2024-nov-p1-2.1.2",
+      "paper_id": "2024-nov-p1",
+      "number": "2.1.2",
+      "parent": "2024-nov-p1-2.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "The original arithmetic series is extended to $75$ terms. The sum of these $75$ terms is $14\\,400$. Using sigma notation, write down an equation for the sum of the terms added to the original series.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.sigma-notation",
+        "seq.arithmetic-series-sum"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12
+    },
+    {
+      "id": "2024-nov-p1-2.2",
+      "paper_id": "2024-nov-p1",
+      "number": "2.2",
+      "parent": "2024-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "The sequence of the first differences of a quadratic pattern is: $1\\,;\\,3\\,;\\,5\\,;\\,\\dots$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13
+    },
+    {
+      "id": "2024-nov-p1-2.2.1",
+      "paper_id": "2024-nov-p1",
+      "number": "2.2.1",
+      "parent": "2024-nov-p1-2.2",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "If $T_{99}$ of this quadratic pattern is $9\\,632$, calculate the value of $T_{98}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-second-difference"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2024-nov-p1-2.2.2",
+      "paper_id": "2024-nov-p1",
+      "number": "2.2.2",
+      "parent": "2024-nov-p1-2.2",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "If it is further given that the third term of the quadratic pattern is $32$, determine the general term, $T_n$, of the quadratic pattern.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2024-nov-p1-3",
+      "paper_id": "2024-nov-p1",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "A circle with radius $6$ cm is drawn.\n\nA second, smaller circle is drawn through the centre of the first circle and also touches the first circle internally, as shown in the diagram.\n\nA third, smaller circle is drawn through the centre of the second circle and touches the second circle internally. The process of drawing circles continues and forms a geometric pattern.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p1-fig-3"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2024-nov-p1-3.1",
+      "paper_id": "2024-nov-p1",
+      "number": "3.1",
+      "parent": "2024-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the radius of the $3^{\\text{rd}}$ circle.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.4",
+      "skills": [
+        "seq.geometric-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17
+    },
+    {
+      "id": "2024-nov-p1-3.2",
+      "paper_id": "2024-nov-p1",
+      "number": "3.2",
+      "parent": "2024-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Calculate the sum of the areas of the first $10$ circles.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.geometric-series-sum",
+        "seq.geometric-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2024-nov-p1-3.3",
+      "paper_id": "2024-nov-p1",
+      "number": "3.3",
+      "parent": "2024-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Which circle has a diameter of $\\dfrac{3}{128}$ cm?",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.4",
+      "skills": [
+        "seq.solve-for-n",
+        "seq.geometric-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19
+    },
+    {
+      "id": "2024-nov-p1-4",
+      "paper_id": "2024-nov-p1",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "Given: $f(x)=a^{x}-1$ for $a>0$. $B\\left(2\\,;\\,\\dfrac{-5}{9}\\right)$ is a point on $f$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20
+    },
+    {
+      "id": "2024-nov-p1-4.1",
+      "paper_id": "2024-nov-p1",
+      "number": "4.1",
+      "parent": "2024-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Calculate the value of $a$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.exponential-graph-properties"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21,
+      "notes": "No dedicated skill for substituting a point into $y=a^x-1$ to find $a$; tagged with fn.exponential-graph-properties."
+    },
+    {
+      "id": "2024-nov-p1-4.2",
+      "paper_id": "2024-nov-p1",
+      "number": "4.2",
+      "parent": "2024-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the range of $f$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "set",
+      "topic": "M4",
+      "subtopic": "M4.1",
+      "skills": [
+        "fn.domain-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2024-nov-p1-4.3",
+      "paper_id": "2024-nov-p1",
+      "number": "4.3",
+      "parent": "2024-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Sketch the graph of $f$. Clearly show the intercepts with the axes and asymptotes, if any.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.sketch-exponential"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23
+    },
+    {
+      "id": "2024-nov-p1-4.4",
+      "paper_id": "2024-nov-p1",
+      "number": "4.4",
+      "parent": "2024-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "It is further given that $C$ is a point on $f$ at $y=\\dfrac{19}{8}$.\n\nDetermine the coordinates of $C^{\\prime}$, the image of $C$, when $C$ is reflected about the line $y=x$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-exp-log",
+        "exp.laws-of-exponents"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24
+    },
+    {
+      "id": "2024-nov-p1-5",
+      "paper_id": "2024-nov-p1",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": "Sketched below is the graph of $f(x)=\\dfrac{a}{x+p}+q$ having the domain $(-\\infty\\,;\\,1)\\cup(1\\,;\\,\\infty)$.\n\nThe graph of $f$ cuts the $y$-axis at $(0\\,;\\,1)$. A line of symmetry of $f$ is given by $g(x)=x-3$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p1-fig-5"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25
+    },
+    {
+      "id": "2024-nov-p1-5.1",
+      "paper_id": "2024-nov-p1",
+      "number": "5.1",
+      "parent": "2024-nov-p1-5",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Write down the value of $p$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.hyperbola-asymptotes"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2024-nov-p1-5.2",
+      "paper_id": "2024-nov-p1",
+      "number": "5.2",
+      "parent": "2024-nov-p1-5",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the equation of the horizontal asymptote of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.hyperbola-axes-of-symmetry",
+        "fn.hyperbola-asymptotes"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27
+    },
+    {
+      "id": "2024-nov-p1-5.3",
+      "paper_id": "2024-nov-p1",
+      "number": "5.3",
+      "parent": "2024-nov-p1-5",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the value of $a$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.hyperbola-equation-from-conditions"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28
+    },
+    {
+      "id": "2024-nov-p1-5.4",
+      "paper_id": "2024-nov-p1",
+      "number": "5.4",
+      "parent": "2024-nov-p1-5",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "For which values of $x$ is $f(x)\\geq 0$?",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.inequality-from-graph",
+        "fn.interval-notation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2024-nov-p1-5.5",
+      "paper_id": "2024-nov-p1",
+      "number": "5.5",
+      "parent": "2024-nov-p1-5",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Graph $f$ undergoes a transformation to $h$ where:\n\n- The domain and range of $h$ are the same as that of $f$\n- $h^{\\prime}(x)$, the derivative of $h$, is negative on its domain\n\nDescribe a possible transformation that $f$ could have undergone to result in $h$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.translate-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30,
+      "notes": "No dedicated skill for reflections of a hyperbola (the answer is a reflection, not a translation); tagged with fn.translate-graph as the closest transformation skill."
+    },
+    {
+      "id": "2024-nov-p1-6",
+      "paper_id": "2024-nov-p1",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "In the diagram below, the graphs of $f(x)=-x^{2}+4x+5$ and $g$, a straight line, are drawn.\n\n$C(3\\,;\\,8)$ is a point of intersection of $f$ and $g$. $EH$ is drawn parallel to the $y$-axis, with $E$ a point on $f$ and $H$ a point on $g$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 15,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p1-fig-6"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2024-nov-p1-6.1",
+      "paper_id": "2024-nov-p1",
+      "number": "6.1",
+      "parent": "2024-nov-p1-6",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of $B$, the turning point of $f$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2024-nov-p1-6.2",
+      "paper_id": "2024-nov-p1",
+      "number": "6.2",
+      "parent": "2024-nov-p1-6",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Show that the equation of the line through $A$ and $C$ is given by $g(x)=2x+2$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "fn.intercepts",
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2024-nov-p1-6.3",
+      "paper_id": "2024-nov-p1",
+      "number": "6.3",
+      "parent": "2024-nov-p1-6",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the maximum length of $EH$ for $f>g$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.vertical-distance-between-graphs",
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2024-nov-p1-6.4",
+      "paper_id": "2024-nov-p1",
+      "number": "6.4",
+      "parent": "2024-nov-p1-6",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": "Given: $k(x)=f(x+m)=-x^{2}-2mx-m^{2}+4x+4m+5$",
+      "text_md": "Determine the value of $m$ such that $g$ is a tangent to $k$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.tangent-equation",
+        "alg.nature-of-roots"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2024-nov-p1-7",
+      "paper_id": "2024-nov-p1",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 14,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2024-nov-p1-7.1",
+      "paper_id": "2024-nov-p1",
+      "number": "7.1",
+      "parent": "2024-nov-p1-7",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Mary's grandparents deposited R5 000 into a savings account on the day that she was born. The account pays interest at a rate of 6,8% p.a., compounded quarterly. Calculate the accumulated amount in this account on Mary's $16^{\\text{th}}$ birthday.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.1",
+      "skills": [
+        "fin.compound-growth"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2024-nov-p1-7.2",
+      "paper_id": "2024-nov-p1",
+      "number": "7.2",
+      "parent": "2024-nov-p1-7",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "After $4$ years, the value of a printer was half of its original value. Determine the rate at which the value of the printer depreciated over this period, if depreciation was calculated according to a straight-line method.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.3",
+      "skills": [
+        "fin.depreciation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2024-nov-p1-7.3",
+      "paper_id": "2024-nov-p1",
+      "number": "7.3",
+      "parent": "2024-nov-p1-7",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Tshepo was granted a loan of R100 000 on 1 March 2022 at an interest rate of 13,5% p.a., compounded monthly. Tshepo agreed to repay the loan over $5$ years in monthly instalments of R2 300,98, starting on 1 April 2022.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39
+    },
+    {
+      "id": "2024-nov-p1-7.3.1",
+      "paper_id": "2024-nov-p1",
+      "number": "7.3.1",
+      "parent": "2024-nov-p1-7.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Calculate the total interest that he will pay over the $5$ years.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.present-value-annuity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40,
+      "notes": "No dedicated skill for total interest (total of the instalments minus the loan); tagged with fin.present-value-annuity, the loan-and-instalment relationship."
+    },
+    {
+      "id": "2024-nov-p1-7.3.2",
+      "paper_id": "2024-nov-p1",
+      "number": "7.3.2",
+      "parent": "2024-nov-p1-7.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Tshepo paid R22 300,98 (his monthly instalment and an additional R20 000) on 1 March 2024 into the loan account. He continues to pay the original monthly instalment thereafter. How many months earlier will Tshepo repay the loan?",
+      "marks": 7,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.outstanding-balance",
+        "fin.solve-n-with-logs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41
+    },
+    {
+      "id": "2024-nov-p1-8",
+      "paper_id": "2024-nov-p1",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 18,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2024-nov-p1-8.1",
+      "paper_id": "2024-nov-p1",
+      "number": "8.1",
+      "parent": "2024-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Determine:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43
+    },
+    {
+      "id": "2024-nov-p1-8.1.1",
+      "paper_id": "2024-nov-p1",
+      "number": "8.1.1",
+      "parent": "2024-nov-p1-8.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\dfrac{d}{dx}\\left[3x-5x^{2}\\right]$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.6",
+      "skills": [
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2024-nov-p1-8.1.2",
+      "paper_id": "2024-nov-p1",
+      "number": "8.1.2",
+      "parent": "2024-nov-p1-8.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$g^{\\prime}(x)$ if $g(x)=\\dfrac{2}{x^{2}}-\\sqrt[3]{x^{7}}$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.6",
+      "skills": [
+        "calc.power-rule",
+        "exp.laws-of-exponents"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2024-nov-p1-8.2",
+      "paper_id": "2024-nov-p1",
+      "number": "8.2",
+      "parent": "2024-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the equation of the tangent to $f(x)=x^{3}-4x^{2}+2x+3$ at $x=2$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.tangent-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2024-nov-p1-8.3",
+      "paper_id": "2024-nov-p1",
+      "number": "8.3",
+      "parent": "2024-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Given: $f(x)=-6x^{2}$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47
+    },
+    {
+      "id": "2024-nov-p1-8.3.1",
+      "paper_id": "2024-nov-p1",
+      "number": "8.3.1",
+      "parent": "2024-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine $f^{\\prime}(x)$ from first principles.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.3",
+      "skills": [
+        "calc.first-principles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48
+    },
+    {
+      "id": "2024-nov-p1-8.3.2",
+      "paper_id": "2024-nov-p1",
+      "number": "8.3.2",
+      "parent": "2024-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Write down how you will restrict the domain of $f$ such that $f^{-1}$, the inverse of $f$, is a function.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-quadratic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49
+    },
+    {
+      "id": "2024-nov-p1-8.3.3",
+      "paper_id": "2024-nov-p1",
+      "number": "8.3.3",
+      "parent": "2024-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the equation of $f^{-1}$ for $f^{-1}(x)\\leq 0$. Write your answer in the form $y=\\dots$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-quadratic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2024-nov-p1-9",
+      "paper_id": "2024-nov-p1",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": "$A(1\\,;\\,9)$ and $B\\left(\\dfrac{5}{2}\\,;\\,8\\right)$ are the turning points of graph $f$ below.\n\n$C(0\\,;\\,7)$ is the $y$-intercept of $f$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 8,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p1-fig-9"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51
+    },
+    {
+      "id": "2024-nov-p1-9.1",
+      "paper_id": "2024-nov-p1",
+      "number": "9.1",
+      "parent": "2024-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "For which values of $x$ is $f$ decreasing?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.stationary-points"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2024-nov-p1-9.2",
+      "paper_id": "2024-nov-p1",
+      "number": "9.2",
+      "parent": "2024-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Write down the $x$-intercepts of $f^{\\prime}$, the derivative of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "set",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.stationary-points"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53
+    },
+    {
+      "id": "2024-nov-p1-9.3",
+      "paper_id": "2024-nov-p1",
+      "number": "9.3",
+      "parent": "2024-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "For which values of $x$ will $f$ be concave up?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.concavity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54
+    },
+    {
+      "id": "2024-nov-p1-9.4",
+      "paper_id": "2024-nov-p1",
+      "number": "9.4",
+      "parent": "2024-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the value of $k$ for which $y=f(x)+k$ will have THREE positive $x$-intercepts.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.sketch-cubic",
+        "fn.translate-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55,
+      "notes": "Printed as \"the value of $k$\"; the answer is an interval of values of $k$."
+    },
+    {
+      "id": "2024-nov-p1-10",
+      "paper_id": "2024-nov-p1",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": "A cyclist rode from town $P$ and stopped at town $T$. The speed (in km/h) at which this cyclist rode, is represented by the equation $s^{\\prime}(t)=-3t^{2}+18t$.\n\n**NOTE:** Speed is the rate of change of distance with respect to time.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 8,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56
+    },
+    {
+      "id": "2024-nov-p1-10.1",
+      "paper_id": "2024-nov-p1",
+      "number": "10.1",
+      "parent": "2024-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the maximum speed that the cyclist reached on this ride.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.optimisation-solve",
+        "calc.rate-of-change"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2024-nov-p1-10.2",
+      "paper_id": "2024-nov-p1",
+      "number": "10.2",
+      "parent": "2024-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the distance between town $P$ and town $T$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.rate-of-change",
+        "calc.stationary-points"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58,
+      "notes": "The distance has to be recovered from $s^{\\prime}(t)$ (reversing differentiation to $s(t)$); no dedicated skill, tagged with calc.rate-of-change and calc.stationary-points (the cyclist stops where $s^{\\prime}(t)=0$)."
+    },
+    {
+      "id": "2024-nov-p1-11",
+      "paper_id": "2024-nov-p1",
+      "number": "11",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "A certain number of learners are sitting for examinations in Mathematics, Tourism and Geography.\n\n- All these learners sit for at least one of these examinations.\n- The total number of learners who sit for Mathematics (M), is $22$.\n- The total number of learners sitting for Tourism (T), is $16$.\n- The total number of learners sitting for Geography (G), is $18$.\n- $5$ learners sit for Mathematics and Tourism, but not Geography.\n- $4$ learners sit for Mathematics and Geography, but not Tourism.\n- $3$ learners sit for Tourism and Geography, but not Mathematics.\n- $6$ learners sit for only Tourism.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2024-nov-p1-11.1",
+      "paper_id": "2024-nov-p1",
+      "number": "11.1",
+      "parent": "2024-nov-p1-11",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Draw a Venn diagram to represent ALL the learners sitting for these examinations.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M8",
+      "subtopic": "M8.2",
+      "skills": [
+        "prob.venn-diagram"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60
+    },
+    {
+      "id": "2024-nov-p1-11.2",
+      "paper_id": "2024-nov-p1",
+      "number": "11.2",
+      "parent": "2024-nov-p1-11",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Calculate the probability that a learner, chosen at random, will sit for examinations in at least TWO of the subjects.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.2",
+      "skills": [
+        "prob.venn-diagram",
+        "prob.addition-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2024-nov-p1-11.3",
+      "paper_id": "2024-nov-p1",
+      "number": "11.3",
+      "parent": "2024-nov-p1-11",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Determine if the events: sitting for examinations in Mathematics and sitting for examinations in Tourism are independent. Support your answer with the necessary calculations.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M8",
+      "subtopic": "M8.5",
+      "skills": [
+        "prob.independence-test"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62
+    },
+    {
+      "id": "2024-nov-p1-12",
+      "paper_id": "2024-nov-p1",
+      "number": "12",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "A company generates a $4$-character code using the $26$ letters of the alphabet and the $10$ digits, from $0$ to $9$.\n\nThe code is in the form:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 8,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": {
+        "caption": null,
+        "header": [
+          "letter",
+          "digit",
+          "letter",
+          "digit"
+        ],
+        "rows": []
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63
+    },
+    {
+      "id": "2024-nov-p1-12.1",
+      "paper_id": "2024-nov-p1",
+      "number": "12.1",
+      "parent": "2024-nov-p1-12",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Determine how many different codes can be formed if letters and digits may be repeated.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.8",
+      "skills": [
+        "count.fundamental-counting-principle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64
+    },
+    {
+      "id": "2024-nov-p1-12.2",
+      "paper_id": "2024-nov-p1",
+      "number": "12.2",
+      "parent": "2024-nov-p1-12",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Determine how many different codes can be formed if:\n\n- The letters $D$, $F$, $I$, $Q$, $U$ and $V$ may NOT be used\n- The code may NOT start with a $W$ or a $Z$\n- Letters or digits may NOT be repeated\n- The code ends with an odd digit",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.8",
+      "skills": [
+        "count.arrangements-with-restrictions",
+        "count.fundamental-counting-principle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65
+    },
+    {
+      "id": "2024-nov-p1-12.3",
+      "paper_id": "2024-nov-p1",
+      "number": "12.3",
+      "parent": "2024-nov-p1-12",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "The company wishes to increase the number of $4$-character codes formed in QUESTION 12.2 by allowing the letters $D$, $F$, $I$, $Q$, $U$ and $V$ to be used. Calculate the percentage increase in the number of different codes that can now be formed.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.8",
+      "skills": [
+        "count.arrangements-with-restrictions"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 66
+    }
+  ],
+  "figures": [
+    {
+      "id": "2024-nov-p1-fig-3",
+      "paper_id": "2024-nov-p1",
+      "kind": "illustrative",
+      "caption": "Three nested circles: radius 6 cm, then a smaller circle through the centre of the first and touching it internally, then a third inside the second in the same way (the centres of the first and second circles are marked with dots).",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          810,
+          205,
+          1200,
+          683
+        ],
+        "file": "figures/2024-nov-p1/fig-3.png"
+      },
+      "exact": false,
+      "spec": {
+        "scene": "nested circles all touching at the top; each smaller circle passes through the centre of the previous one",
+        "labels": [],
+        "centres_marked": [
+          "centre of 1st circle",
+          "centre of 2nd circle"
+        ],
+        "radii": {
+          "first": 6,
+          "ratio_to_next": 0.5,
+          "unit": "cm"
+        },
+        "animation_hint": "draw circle after circle, each half the radius of the previous one, always touching internally at the top"
+      },
+      "used_by": [
+        "2024-nov-p1-3"
+      ],
+      "notes": "Figure shows the first three circles only; the radii (6, 3, 1.5) follow from the text (each circle passes through the centre of the previous one)."
+    },
+    {
+      "id": "2024-nov-p1-fig-5",
+      "paper_id": "2024-nov-p1",
+      "kind": "function_graph",
+      "caption": "Hyperbola f with vertical asymptote x = 1 and a horizontal asymptote below the x-axis, cutting the y-axis at (0 ; 1), and the straight line g(x) = x - 3 as a line of symmetry.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          136,
+          433,
+          1249,
+          1044
+        ],
+        "file": "figures/2024-nov-p1/fig-5.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "view": {
+          "x": [
+            -4,
+            5
+          ],
+          "y": [
+            -6,
+            4
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "\\dfrac{-3}{x-1}-2",
+            "plain": "-3/(x-1)-2",
+            "domain": "x!=1",
+            "given": false,
+            "reveals": "5.3"
+          },
+          {
+            "name": "g",
+            "expr": "x-3",
+            "plain": "x-3",
+            "domain": "all real x",
+            "given": true
+          }
+        ],
+        "asymptotes": [
+          {
+            "of": "f",
+            "type": "vertical",
+            "equation": "x=1",
+            "drawn": true,
+            "given": true
+          },
+          {
+            "of": "f",
+            "type": "horizontal",
+            "equation": "y=-2",
+            "drawn": true,
+            "given": false,
+            "reveals": "5.2"
+          }
+        ],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin"
+          },
+          {
+            "label": "(0 ; 1)",
+            "xy": [
+              0,
+              1
+            ],
+            "role": "y_intercept",
+            "of": [
+              "f"
+            ],
+            "given": true
+          },
+          {
+            "label": "1",
+            "xy": [
+              1,
+              0
+            ],
+            "role": "asymptote_foot",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p1-5"
+      ],
+      "notes": "Values a=-3, p=-1, q=-2 are derived from the printed data (domain excludes 1, y-intercept (0;1), symmetry line y=x-3 through the intersection of the asymptotes); they are not printed. Diagram not to scale."
+    },
+    {
+      "id": "2024-nov-p1-fig-6",
+      "paper_id": "2024-nov-p1",
+      "kind": "function_graph",
+      "caption": "Parabola f(x) = -x^2 + 4x + 5 and straight line g intersecting at A (on the x-axis) and C(3 ; 8); B is the turning point of f, D its other x-intercept, and EH is a vertical segment between f and g.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          117,
+          410,
+          1249,
+          1044
+        ],
+        "file": "figures/2024-nov-p1/fig-6.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "view": {
+          "x": [
+            -2,
+            6
+          ],
+          "y": [
+            -3,
+            10
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "-x^{2}+4x+5",
+            "plain": "-x^2+4*x+5",
+            "domain": "all real x",
+            "given": true
+          },
+          {
+            "name": "g",
+            "expr": "2x+2",
+            "plain": "2*x+2",
+            "domain": "all real x",
+            "given": false,
+            "reveals": "6.2"
+          }
+        ],
+        "asymptotes": [],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin"
+          },
+          {
+            "label": "5",
+            "xy": [
+              0,
+              5
+            ],
+            "role": "y_intercept",
+            "of": [
+              "f"
+            ],
+            "given": true
+          },
+          {
+            "label": "A",
+            "xy": [
+              -1,
+              0
+            ],
+            "role": "intersection",
+            "of": [
+              "f",
+              "g"
+            ],
+            "given": false,
+            "reveals": "6.2"
+          },
+          {
+            "label": "B",
+            "xy": [
+              2,
+              9
+            ],
+            "role": "turning_point",
+            "of": [
+              "f"
+            ],
+            "given": false,
+            "reveals": "6.1"
+          },
+          {
+            "label": "C(3 ; 8)",
+            "xy": [
+              3,
+              8
+            ],
+            "role": "intersection",
+            "of": [
+              "f",
+              "g"
+            ],
+            "given": true
+          },
+          {
+            "label": "D",
+            "xy": [
+              5,
+              0
+            ],
+            "role": "x_intercept",
+            "of": [
+              "f"
+            ],
+            "given": false
+          }
+        ],
+        "segments": [
+          {
+            "label": "EH",
+            "from_label": "E",
+            "to_label": "H",
+            "vertical": true,
+            "note": "E on f, H on g, same x-coordinate; position not specified (0 < x_E < 3 as drawn)"
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p1-6"
+      ],
+      "notes": "g(x)=2x+2 is derived in 6.2. E and H are not at a fixed position (part of 6.3)."
+    },
+    {
+      "id": "2024-nov-p1-fig-9",
+      "paper_id": "2024-nov-p1",
+      "kind": "function_graph",
+      "caption": "Cubic graph f with turning points A(1 ; 9) and B(5/2 ; 8) and y-intercept C(0 ; 7).",
+      "source": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "dpi": 170,
+        "bbox_px": [
+          195,
+          433,
+          1171,
+          956
+        ],
+        "file": "figures/2024-nov-p1/fig-9.png"
+      },
+      "exact": false,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "view": {
+          "x": [
+            -1,
+            4
+          ],
+          "y": [
+            -2,
+            11
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": null,
+            "plain": null,
+            "domain": "all real x",
+            "given": true,
+            "shape": "cubic, increasing, local maximum at A, local minimum at B, positive leading coefficient"
+          }
+        ],
+        "asymptotes": [],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin"
+          },
+          {
+            "label": "A(1 ; 9)",
+            "xy": [
+              1,
+              9
+            ],
+            "role": "turning_point",
+            "of": [
+              "f"
+            ],
+            "given": true
+          },
+          {
+            "label": "B(5/2 ; 8)",
+            "xy": [
+              2.5,
+              8
+            ],
+            "role": "turning_point",
+            "of": [
+              "f"
+            ],
+            "given": true
+          },
+          {
+            "label": "C(0 ; 7)",
+            "xy": [
+              0,
+              7
+            ],
+            "role": "y_intercept",
+            "of": [
+              "f"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p1-9"
+      ],
+      "notes": "The equation of f is not given and the three printed points are not exactly consistent with one cubic (diagram not to scale), so exact=false; the app should draw a cubic through the labelled points only as an illustration."
+    }
+  ]
+}

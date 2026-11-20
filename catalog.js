@@ -86,7 +86,104 @@ function init(db) {
     );
     positions.set(topic.unit, pos + 1);
   }
+  ensureGraph(db);
+  require('./caps').seed(db);
+  syncAllEdges(db);
+  require('./nsc').importAll(db);
   syncCore(db);
+}
+
+const ALGEBRA_COURSE = 'algebra';
+
+function ensureGraph(db) {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS courses (
+      id          TEXT PRIMARY KEY,
+      name        TEXT NOT NULL,
+      description TEXT NOT NULL DEFAULT '',
+      position    INTEGER NOT NULL DEFAULT 0,
+      source      TEXT NOT NULL DEFAULT 'builtin',
+      status      TEXT NOT NULL DEFAULT 'active',
+      created_at  INTEGER NOT NULL,
+      updated_at  INTEGER NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS course_units (
+      course_id TEXT NOT NULL,
+      unit_id   TEXT NOT NULL,
+      name      TEXT NOT NULL,
+      position  INTEGER NOT NULL,
+      required  INTEGER NOT NULL DEFAULT 1,
+      PRIMARY KEY (course_id, unit_id)
+    );
+    CREATE TABLE IF NOT EXISTS course_topics (
+      course_id TEXT NOT NULL,
+      unit_id   TEXT NOT NULL,
+      topic_id  TEXT NOT NULL,
+      position  INTEGER NOT NULL,
+      PRIMARY KEY (course_id, topic_id)
+    );
+    CREATE INDEX IF NOT EXISTS course_topics_unit ON course_topics(course_id, unit_id, position);
+    CREATE TABLE IF NOT EXISTS topic_prereqs (
+      topic_id  TEXT NOT NULL,
+      prereq_id TEXT NOT NULL,
+      PRIMARY KEY (topic_id, prereq_id)
+    );
+    CREATE INDEX IF NOT EXISTS topic_prereqs_prereq ON topic_prereqs(prereq_id);
+    CREATE TABLE IF NOT EXISTS knowledge_points (
+      id        TEXT PRIMARY KEY,
+      topic_id  TEXT NOT NULL,
+      name      TEXT NOT NULL,
+      position  INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE INDEX IF NOT EXISTS knowledge_points_topic ON knowledge_points(topic_id, position);
+    CREATE TABLE IF NOT EXISTS bank_skill_map (
+      bank_code           TEXT PRIMARY KEY,
+      topic_id            TEXT NOT NULL,
+      knowledge_point_id  TEXT NOT NULL
+    );
+  `);
+  const now = Date.now();
+  db.prepare(`
+    INSERT OR IGNORE INTO courses (id, name, description, position, source, status, created_at, updated_at)
+    VALUES (?, ?, ?, 0, 'builtin', 'active', ?, ?)
+  `).run(ALGEBRA_COURSE, 'Algebra & trigonometry', 'The original algebra and trigonometry course.', now, now);
+  // Keep stored prerequisites aligned when the built-in graph changes, but only
+  // while an admin has not edited them away from the previous default.
+  const retarget = [
+    ['right-tri', '["unit-circle"]', '["special-angles"]'],
+    ['sum-diff', '["identities"]', '["basic-identities","special-angles"]'],
+    ['identities', '["unit-circle"]', '["unit-circle","basic-identities"]'],
+  ];
+  const readPre = db.prepare('SELECT pre FROM topics WHERE id = ?');
+  const writePre = db.prepare('UPDATE topics SET pre = ?, updated_at = ? WHERE id = ?');
+  for (const [id, from, to] of retarget) {
+    const row = readPre.get(id);
+    if (row && row.pre === from) writePre.run(to, now, id);
+  }
+  const unitClaimed = db.prepare('SELECT 1 FROM course_units WHERE unit_id = ?');
+  const addUnit = db.prepare('INSERT OR IGNORE INTO course_units (course_id, unit_id, name, position, required) VALUES (?, ?, ?, ?, 1)');
+  for (const unit of db.prepare('SELECT id, name, position FROM units').all()) {
+    if (!unitClaimed.get(unit.id)) addUnit.run(ALGEBRA_COURSE, unit.id, unit.name, unit.position);
+  }
+  const topicClaimed = db.prepare('SELECT 1 FROM course_topics WHERE topic_id = ?');
+  const addTopic = db.prepare('INSERT OR IGNORE INTO course_topics (course_id, unit_id, topic_id, position) VALUES (?, ?, ?, ?)');
+  for (const topic of db.prepare('SELECT id, unit_id, position FROM topics').all()) {
+    if (!topicClaimed.get(topic.id)) addTopic.run(ALGEBRA_COURSE, topic.unit_id, topic.id, topic.position);
+  }
+}
+
+function syncTopicEdges(db, topicId, pre) {
+  db.prepare('DELETE FROM topic_prereqs WHERE topic_id = ?').run(topicId);
+  const insert = db.prepare('INSERT OR IGNORE INTO topic_prereqs (topic_id, prereq_id) VALUES (?, ?)');
+  for (const id of pre) insert.run(topicId, id);
+}
+
+function syncAllEdges(db) {
+  db.prepare('DELETE FROM topic_prereqs').run();
+  const insert = db.prepare('INSERT INTO topic_prereqs (topic_id, prereq_id) VALUES (?, ?)');
+  for (const row of db.prepare('SELECT id, pre FROM topics').all()) {
+    for (const id of jsonArray(row.pre)) insert.run(row.id, id);
+  }
 }
 
 function syncCore(db) {
@@ -103,29 +200,51 @@ function syncCore(db) {
   for (const topic of core.SK) core.SKM[topic.id] = topic;
 }
 
-function learner(db) {
-  const units = db.prepare('SELECT id, name FROM units ORDER BY position, id').all();
-  const rows = db.prepare(`
-    SELECT t.* FROM topics t JOIN units u ON u.id = t.unit_id
-    WHERE t.status = 'active'
-    ORDER BY u.position, t.position, t.id
+function courses(db) {
+  return db.prepare(`
+    SELECT id, name, description, position, source, status FROM courses
+    WHERE status = 'active' ORDER BY position, id
   `).all();
-  const byId = new Map(rows.map(t => [t.id, t]));
+}
+
+function learner(db, courseId) {
+  const id = courseId == null || courseId === '' ? ALGEBRA_COURSE : String(courseId);
+  const course = db.prepare(`SELECT id, name, description FROM courses WHERE id = ? AND status = 'active'`).get(id);
+  if (!course) throw fail('Unknown course.', 404);
+  const units = db.prepare(`
+    SELECT unit_id AS id, name, position, required FROM course_units
+    WHERE course_id = ? ORDER BY position, unit_id
+  `).all(id);
+  const rows = db.prepare(`
+    SELECT t.*, ct.unit_id AS course_unit, ct.position AS course_pos
+    FROM course_topics ct
+    JOIN topics t ON t.id = ct.topic_id
+    JOIN course_units cu ON cu.course_id = ct.course_id AND cu.unit_id = ct.unit_id
+    WHERE ct.course_id = ? AND t.status = 'active'
+    ORDER BY cu.position, ct.position, t.id
+  `).all(id);
+  const members = new Set(rows.map(t => t.id));
+  // A course sees only prerequisite edges whose other end is in the course.
+  // Off-CAPS topics therefore drop out of the CAPS slice without being copied.
+  const projected = new Map(rows.map(t => [
+    t.id,
+    jsonArray(t.pre).filter(p => id === ALGEBRA_COURSE ? true : members.has(p)),
+  ]));
   const visible = new Set(rows.map(t => t.id));
   let changed = true;
   while (changed) {
     changed = false;
-    for (const id of [...visible]) {
-      const topic = byId.get(id);
-      if (jsonArray(topic.pre).some(p => !visible.has(p))) { visible.delete(id); changed = true; }
+    for (const topicId of [...visible]) {
+      if (projected.get(topicId).some(p => !visible.has(p))) { visible.delete(topicId); changed = true; }
     }
   }
   const topics = rows.filter(t => visible.has(t.id));
-  const activeUnits = units.filter(u => topics.some(t => t.unit_id === u.id));
+  const activeUnits = units.filter(u => topics.some(t => t.course_unit === u.id));
   return {
-    units: activeUnits,
+    course,
+    units: activeUnits.map(u => ({ id: u.id, name: u.name, required: !!u.required })),
     topics: topics.map(t => ({
-      id: t.id, unit: t.unit_id, name: t.name, pre: jsonArray(t.pre),
+      id: t.id, unit: t.course_unit, name: t.name, pre: projected.get(t.id),
       notes: t.notes || '', paul: t.paul || '', os: jsonLinks(t.os),
     })),
   };
@@ -194,6 +313,8 @@ function createUnit(db, input) {
   const position = (db.prepare('SELECT MAX(position) AS n FROM units').get().n || 0) + 1;
   const now = Date.now();
   db.prepare('INSERT INTO units (id, name, position, created_at, updated_at) VALUES (?, ?, ?, ?, ?)').run(id, name, position, now, now);
+  db.prepare('INSERT OR IGNORE INTO course_units (course_id, unit_id, name, position, required) VALUES (?, ?, ?, ?, 1)')
+    .run(ALGEBRA_COURSE, id, name, position);
   syncCore(db);
   return { id, name, position };
 }
@@ -204,6 +325,7 @@ function updateUnit(db, id, input) {
   const name = text(input.name, 80);
   if (!name) throw fail('Unit name is required.');
   db.prepare('UPDATE units SET name = ?, updated_at = ? WHERE id = ?').run(name, Date.now(), id);
+  db.prepare(`UPDATE course_units SET name = ? WHERE course_id = ? AND unit_id = ?`).run(name, ALGEBRA_COURSE, id);
   syncCore(db);
   return { id, name, position: row.position };
 }
@@ -214,6 +336,9 @@ function deleteUnit(db, id) {
   if (BUILTIN_UNIT_IDS.has(id)) throw fail('Built-in units cannot be deleted.', 403);
   const count = db.prepare('SELECT COUNT(*) AS n FROM topics WHERE unit_id = ?').get(id).n;
   if (count) throw fail('Move or delete the topics in this unit first.', 409);
+  const inCourse = db.prepare('SELECT COUNT(*) AS n FROM course_topics WHERE unit_id = ?').get(id).n;
+  if (inCourse) throw fail('Move or delete the topics in this unit first.', 409);
+  db.prepare('DELETE FROM course_units WHERE unit_id = ?').run(id);
   db.prepare('DELETE FROM units WHERE id = ?').run(id);
   syncCore(db);
   return true;
@@ -234,6 +359,9 @@ function createTopic(db, input) {
     INSERT INTO topics (id, unit_id, name, pre, notes, paul, os, position, source, status, created_at, updated_at)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'custom', ?, ?, ?)
   `).run(id, unitId, name, JSON.stringify(pre), text(input.notes, 30000), text(input.paul, 500), os ? JSON.stringify(os) : null, position, status, now, now);
+  db.prepare('INSERT OR IGNORE INTO course_topics (course_id, unit_id, topic_id, position) VALUES (?, ?, ?, ?)')
+    .run(ALGEBRA_COURSE, unitId, id, position);
+  syncTopicEdges(db, id, pre);
   syncCore(db);
   return topicRow(db, id);
 }
@@ -254,7 +382,11 @@ function updateTopic(db, id, input) {
     UPDATE topics SET unit_id = ?, name = ?, pre = ?, notes = ?, paul = ?, os = ?, status = ?, updated_at = ?
     WHERE id = ?
   `).run(unitId, name, JSON.stringify(pre), notes, paul, os ? JSON.stringify(os) : null, status, Date.now(), id);
-  if (unitId !== row.unit_id) db.prepare('UPDATE questions SET unit = ? WHERE skill_id = ?').run(unitId, id);
+  if (unitId !== row.unit_id) {
+    db.prepare('UPDATE questions SET unit = ? WHERE skill_id = ?').run(unitId, id);
+    db.prepare(`UPDATE course_topics SET unit_id = ? WHERE course_id = ? AND topic_id = ?`).run(unitId, ALGEBRA_COURSE, id);
+  }
+  syncTopicEdges(db, id, pre);
   syncCore(db);
   return topicRow(db, id);
 }
@@ -262,17 +394,22 @@ function updateTopic(db, id, input) {
 function deleteTopic(db, id) {
   const row = db.prepare('SELECT * FROM topics WHERE id = ?').get(id);
   if (!row) return false;
-  if (row.source === 'builtin' || BUILTIN_TOPIC_IDS.has(id)) throw fail('Built-in topics can be hidden, not deleted.', 403);
+  if (row.source === 'builtin' || row.source === 'caps' || BUILTIN_TOPIC_IDS.has(id)) throw fail('Built-in topics can be hidden, not deleted.', 403);
   const count = db.prepare('SELECT COUNT(*) AS n FROM questions WHERE skill_id = ?').get(id).n;
   if (count) throw fail('Hide the topic instead; it still has questions.', 409);
   const dependent = db.prepare('SELECT id, pre FROM topics WHERE id <> ?').all(id)
     .filter(t => jsonArray(t.pre).includes(id)).map(t => t.id);
   if (dependent.length) throw fail('This topic is a prerequisite for: ' + dependent.join(', ') + '.', 409);
+  db.prepare('DELETE FROM topic_prereqs WHERE topic_id = ? OR prereq_id = ?').run(id, id);
+  db.prepare('DELETE FROM course_topics WHERE topic_id = ?').run(id);
+  db.prepare('DELETE FROM knowledge_points WHERE topic_id = ?').run(id);
+  db.prepare('DELETE FROM bank_skill_map WHERE topic_id = ?').run(id);
   db.prepare('DELETE FROM topics WHERE id = ?').run(id);
   syncCore(db);
   return true;
 }
 
 module.exports = {
-  init, syncCore, learner, admin, createUnit, updateUnit, deleteUnit, createTopic, updateTopic, deleteTopic,
+  init, syncCore, learner, courses, admin, createUnit, updateUnit, deleteUnit, createTopic, updateTopic, deleteTopic,
+  ALGEBRA_COURSE,
 };
