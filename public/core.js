@@ -421,7 +421,17 @@ function triSVG(lab){ // right angle at C (bottom-right), angle θ at A (bottom-
  return `<svg class="fig" viewBox="0 0 260 150" role="img" aria-label="Right triangle"><polygon points="20,130 230,130 230,25" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="218,130 218,118 230,118" fill="none" stroke="currentColor" stroke-width="1.5"/>
  <path d="M 58 130 A 38 38 0 0 0 55.5 113" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="64" y="124" class="fl">${lab.th}</text>
  <text x="125" y="146" text-anchor="middle" class="fl">${lab.adj}</text><text x="240" y="82" class="fl">${lab.opp}</text><text x="110" y="68" text-anchor="end" class="fl">${lab.hyp}</text></svg>`}
-S({id:'right-tri',unit:'G',name:'Right-triangle trig',pre:['unit-circle'],paul:PT+'TrigFunctions.aspx',os:['Precalculus 5.4',OSP+'5-4-right-triangle-trigonometry'],
+S({id:'special-angles',unit:'G',name:'Special angles and CAST',pre:[],paul:PT+'TrigFunctions.aspx',os:['Precalculus 5.2',OSP+'5-2-unit-circle-sine-and-cosine-functions'],
+notes:`<p>In <strong>degrees</strong>, know sine, cosine and tangent of $0^\\circ$, $30^\\circ$, $45^\\circ$, $60^\\circ$ and $90^\\circ$. The hand trick: for $0,30,45,60,90$ the sine values are $\\sqrt n/2$ for $n=0,1,2,3,4$.</p><p>CAST tells the sign in each quadrant: all positive in I, sine in II, tangent in III, cosine in IV. A reference angle is the acute angle to the $x$-axis.</p>`,
+gen(){const rows=[['sin',30,'1/2',1/2,'\\frac{1}{2}'],['cos',60,'1/2',1/2,'\\frac{1}{2}'],['tan',45,'1',1,'1'],['sin',90,'1',1,'1'],['cos',90,'0',0,'0'],['sin',0,'0',0,'0'],['cos',0,'1',1,'1'],['cos',180,'-1',-1,'-1'],
+  ['tan',30,'sqrt(3)/3',Math.sqrt(3)/3,'\\frac{\\sqrt{3}}{3}'],['sin',45,'sqrt(2)/2',Math.SQRT2/2,'\\frac{\\sqrt{2}}{2}'],['cos',45,'sqrt(2)/2',Math.SQRT2/2,'\\frac{\\sqrt{2}}{2}'],['sin',60,'sqrt(3)/2',Math.sqrt(3)/2,'\\frac{\\sqrt{3}}{2}'],['cos',30,'sqrt(3)/2',Math.sqrt(3)/2,'\\frac{\\sqrt{3}}{2}'],['tan',60,'sqrt(3)',Math.sqrt(3),'\\sqrt{3}']];
+  if(Math.random()<.35){const quad=pick([['II','sine'],['III','tangent'],['IV','cosine']]);
+    const opts=[{tex:'sine',ok:quad[1]==='sine'},{tex:'cosine',ok:quad[1]==='cosine'},{tex:'tangent',ok:quad[1]==='tangent'}];
+    return {type:'mc',prompt:'Which ratio is positive in quadrant '+quad[0]+'?',options:shuffle(opts),ansTex:quad[1],hint:'CAST: all, sine, tangent, cosine as you go around from quadrant I.',steps:['Quadrant '+quad[0]+': '+quad[1]+' is positive.']}}
+  const [f,deg,ans,val,tex]=pick(rows);
+  return {type:'num',exact:true,val,ans,ansTex:tex,prompt:'Find the exact value (degrees): $$\\'+f+' '+deg+'^\\circ$$',hint:'Use the special-angle table. Stay in degrees.',steps:['$\\'+f+' '+deg+'^\\circ='+tex+'$']}}});
+
+S({id:'right-tri',unit:'G',name:'Right-triangle trig',pre:['special-angles'],paul:PT+'TrigFunctions.aspx',os:['Precalculus 5.4',OSP+'5-4-right-triangle-trigonometry'],
 notes:`$$\\sin\\theta=\\frac{\\text{opp}}{\\text{hyp}}\\qquad\\cos\\theta=\\frac{\\text{adj}}{\\text{hyp}}\\qquad\\tan\\theta=\\frac{\\text{opp}}{\\text{adj}}$$<p>Pick the ratio that links the side you know to the side you want. Make sure your calculator is in degree mode for these.</p>`,
 gen(){const th=R(15,75),kind=R(0,3);const rad=th*Math.PI/180;let known,val,lab,steps,want;
  if(kind===0){const h=R(5,30);val=h*Math.sin(rad);lab={th:th+'°',adj:'',opp:'x',hyp:String(h)};steps=[`Opposite and hypotenuse: use $\\sin$`,`$x=${h}\\sin ${th}^\\circ\\approx${val.toFixed(2)}$`]}
@@ -450,11 +460,16 @@ const IDS=[['\\sec x-\\tan x\\sin x','\\cos x',['sec x = 1/cos x and tan x = sin
  ['\\sec^2 x-1','\\tan^2 x',['Pythagorean identity: 1 + tan²x = sec²x']],['\\cot x\\sec x','\\csc x',['(cos x/sin x)(1/cos x) = 1/sin x']],['\\sin x\\cot x+\\cos x','2\\cos x',['sin x · cos x/sin x = cos x','cos x + cos x = 2cos x']],
  ['(1+\\tan^2 x)\\cos^2 x','1',['1 + tan²x = sec²x','sec²x · cos²x = 1']],['\\frac{\\csc x}{\\sec x}','\\cot x',['(1/sin x)/(1/cos x) = cos x/sin x']],['\\cos^4x-\\sin^4x','\\cos 2x',['Difference of squares: (cos²x - sin²x)(cos²x + sin²x)','= cos²x - sin²x = cos 2x']]];
 const IDPOOL=['\\sin x','\\cos x','\\tan x','\\csc x','\\sec x','\\cot x','1','\\tan^2 x','1+\\cos x','2\\cos x','\\cos 2x','\\sin 2x','1-\\sin x'];
-S({id:'identities',unit:'H',name:'Simplifying with identities',pre:['unit-circle'],paul:PT+'TrigFormulas.aspx',os:['Precalculus 7.1',OSP+'7-1-simplifying-and-verifying-trigonometric-identities'],
+S({id:'basic-identities',unit:'H',name:'Basic Pythagorean identities',pre:['special-angles'],paul:PT+'TrigFormulas.aspx',os:['Precalculus 7.1',OSP+'7-1-simplifying-and-verifying-trigonometric-identities'],
+notes:`<p>The identity CAPS uses constantly, in degrees:</p>$$\\sin^2\\theta+\\cos^2\\theta=1$$<p>So $\\sin^2\\theta=1-\\cos^2\\theta$ and $\\cos^2\\theta=1-\\sin^2\\theta$. Also $\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}$, defined where $\\cos\\theta\\ne 0$. Reciprocal ratios (secant, cosecant, cotangent) are not required.</p>`,
+gen(){const ask=pick([['sin','cos'],['cos','sin']]);const ok=`1-\\${ask[1]}^2\\theta`;const wrong=shuffle([`1+\\${ask[1]}^2\\theta`,`\\${ask[1]}^2\\theta-1`,`\\${ask[0]}\\theta\\${ask[1]}\\theta`]);
+  return {type:'mc',prompt:`Which expression equals $\\${ask[0]}^2\\theta$?`,options:shuffle([{tex:`$${ok}$`,ok:true},...wrong.map(w=>({tex:`$${w}$`,ok:false}))]),ansTex:ok,hint:'Rearrange $\\sin^2\\theta+\\cos^2\\theta=1$.',steps:[`$\\sin^2\\theta+\\cos^2\\theta=1$`,`$\\${ask[0]}^2\\theta=${ok}$`]}}});
+
+S({id:'identities',unit:'H',name:'Simplifying with identities',pre:['unit-circle','basic-identities'],paul:PT+'TrigFormulas.aspx',os:['Precalculus 7.1',OSP+'7-1-simplifying-and-verifying-trigonometric-identities'],
 notes:`$$\\sin^2x+\\cos^2x=1\\qquad 1+\\tan^2x=\\sec^2x\\qquad 1+\\cot^2x=\\csc^2x$$<p>Strategy: rewrite everything in sines and cosines, combine fractions, then look for a Pythagorean identity or a factorable pattern.</p>`,
 gen(){const [e,a,st]=pick(IDS);const wrong=shuffle(IDPOOL.filter(x=>x!==a)).slice(0,3);return {type:'mc',prompt:`Simplify: $$${e}$$`,options:shuffle([{tex:`$${a}$`,ok:true},...wrong.map(w=>({tex:`$${w}$`,ok:false}))]),ansTex:a,hint:'Rewrite in terms of sine and cosine.',steps:st.concat([`Result: $${a}$`])}}});
 
-S({id:'sum-diff',unit:'H',name:'Sum & difference formulas',pre:['identities'],paul:PT+'TrigFormulas.aspx',os:['Precalculus 7.2',OSP+'7-2-sum-and-difference-identities'],
+S({id:'sum-diff',unit:'H',name:'Sum & difference formulas',pre:['basic-identities','special-angles'],paul:PT+'TrigFormulas.aspx',os:['Precalculus 7.2',OSP+'7-2-sum-and-difference-identities'],
 notes:`$$\\sin(A\\pm B)=\\sin A\\cos B\\pm\\cos A\\sin B$$$$\\cos(A\\pm B)=\\cos A\\cos B\\mp\\sin A\\sin B$$$$\\tan(A\\pm B)=\\frac{\\tan A\\pm\\tan B}{1\\mp\\tan A\\tan B}$$<p>Split the angle into two you know, like $75^\\circ=45^\\circ+30^\\circ$.</p>`,
 gen(){const [ang,A,B,op]=pick([[15,45,30,'-'],[75,45,30,'+'],[105,60,45,'+'],[165,120,45,'+'],[195,150,45,'+'],[255,210,45,'+'],[285,240,45,'+']]);const f=pick(['sin','cos','tan']);const v=TF[f](ang*Math.PI/180);const ex=exactOf(v);
  const form={sin:`\\sin ${A}^\\circ\\cos ${B}^\\circ${op}\\cos ${A}^\\circ\\sin ${B}^\\circ`,cos:`\\cos ${A}^\\circ\\cos ${B}^\\circ${op==='+'?'-':'+'}\\sin ${A}^\\circ\\sin ${B}^\\circ`,tan:`\\frac{\\tan ${A}^\\circ${op}\\tan ${B}^\\circ}{1${op==='+'?'-':'+'}\\tan ${A}^\\circ\\tan ${B}^\\circ}`}[f];

@@ -1,0 +1,3188 @@
+{
+  "id": "2016-nov-p2",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2016,
+  "session": "november",
+  "paper": 2,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2016-nov/2016-nov-p2.pdf",
+    "original_name": "2016-nov-p2.pdf",
+    "sha256": "5fa5c314fdb62dbe426daf825072a48450353ac256267bb1d870d31f40b208e8",
+    "pdf_pages": 15,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=Mf2vXwdMvgs%3d&tabid=1508&portalid=0&mid=6179",
+    "note": "Scan without a text layer. National Senior Certificate paper (cover: NATIONAL SENIOR CERTIFICATE; running header: NSC). The PDF includes the cover (printed page 1), the instructions (page 2) and the information sheet (page 15); PDF page n = printed page n. The cover states that the question paper consists of 14 pages, 1 information sheet and an answer book of 28 pages, which is not in this PDF. Duration 3 hours as printed on the cover. Source file and hash are recorded in sources/maths/manifest.json."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders, checked at 400 dpi where needed",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2016-nov-p2-1",
+      "paper_id": "2016-nov-p2",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": "A survey was conducted at a local supermarket relating the distance that shoppers lived from the store to the average number of times they shopped at the store in a week. The results are shown in the table below.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-1"
+      ],
+      "table": {
+        "caption": "Distance from the store and average number of times shopped per week",
+        "header": [
+          "Distance from the store in km",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "7",
+          "8",
+          "10"
+        ],
+        "rows": [
+          [
+            "Average number of times shopped per week",
+            "12",
+            "10",
+            "7",
+            "7",
+            "6",
+            "2",
+            "3",
+            "2"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2016-nov-p2-1.1",
+      "paper_id": "2016-nov-p2",
+      "number": "1.1",
+      "parent": "2016-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Use the scatter plot to comment on the strength of the relationship between the distance a shopper lived from the store and the average number of times she/he shopped at the store in a week.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.scatter-plot",
+        "stat.regression-interpret-coefficients"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2016-nov-p2-1.2",
+      "paper_id": "2016-nov-p2",
+      "number": "1.2",
+      "parent": "2016-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Calculate the correlation coefficient of the data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.correlation-coefficient"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2016-nov-p2-1.3",
+      "paper_id": "2016-nov-p2",
+      "number": "1.3",
+      "parent": "2016-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Calculate the equation of the least squares regression line of the data.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-line-calculator"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2016-nov-p2-1.4",
+      "paper_id": "2016-nov-p2",
+      "number": "1.4",
+      "parent": "2016-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Use your answer at QUESTION 1.3 to estimate the average number of times that a shopper living $6$ km from the supermarket will visit the store in a week.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-predict"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2016-nov-p2-1.5",
+      "paper_id": "2016-nov-p2",
+      "number": "1.5",
+      "parent": "2016-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Sketch the least squares regression line on the scatter plot provided in the ANSWER BOOK.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-line-calculator",
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2016-nov-p2-2",
+      "paper_id": "2016-nov-p2",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "The heights of $160$ learners in a school are measured. The height of the shortest learner is $1,39$ m and the height of the tallest learner is $2,21$ m. The heights are represented in the histogram below.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 13,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-2"
+      ],
+      "table": {
+        "caption": "Class frequencies as labelled on the printed histogram (the cumulative-frequency table itself is only in the answer book, which is not in this PDF)",
+        "header": [
+          "Height (m)",
+          "1,3 – 1,5",
+          "1,5 – 1,7",
+          "1,7 – 1,9",
+          "1,9 – 2,1",
+          "2,1 – 2,3"
+        ],
+        "rows": [
+          [
+            "Number of learners",
+            "24",
+            "71",
+            "38",
+            "23",
+            "4"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6,
+      "notes": "Class frequencies 24, 71, 38, 23 and 4 are printed on the histogram bars (24+71+38+23+4=160). There is no bar in the interval starting at 1,1; the shortest recorded height is 1,39 m."
+    },
+    {
+      "id": "2016-nov-p2-2.1",
+      "paper_id": "2016-nov-p2",
+      "number": "2.1",
+      "parent": "2016-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Describe the skewness of the data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.3",
+      "skills": [
+        "stat.skewness-from-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2016-nov-p2-2.2",
+      "paper_id": "2016-nov-p2",
+      "number": "2.2",
+      "parent": "2016-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Calculate the range of the heights.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.1",
+      "skills": [
+        "stat.five-number-summary"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8,
+      "notes": "Range from the given shortest and tallest heights (1,39 m and 2,21 m), not from the histogram class endpoints."
+    },
+    {
+      "id": "2016-nov-p2-2.3",
+      "paper_id": "2016-nov-p2",
+      "number": "2.3",
+      "parent": "2016-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Complete the cumulative frequency column in the table given in the ANSWER BOOK.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.frequency-from-cumulative"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2016-nov-p2-2.4",
+      "paper_id": "2016-nov-p2",
+      "number": "2.4",
+      "parent": "2016-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Draw an ogive (cumulative frequency curve) to represent the data on the grid provided in the ANSWER BOOK.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2016-nov-p2-2.5",
+      "paper_id": "2016-nov-p2",
+      "number": "2.5",
+      "parent": "2016-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Eighty learners are less than $x$ metres in height. Estimate $x$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive",
+        "stat.frequency-from-cumulative"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2016-nov-p2-2.6",
+      "paper_id": "2016-nov-p2",
+      "number": "2.6",
+      "parent": "2016-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": "The person taking the measurements only had a $1,5$ m measuring tape available. In order to compensate for the short measuring tape, he decided to mount the tape on a wall at a height of $1$ m above the ground. After recording the measurements he discovered that the tape was mounted at $1,1$ m above the ground instead of $1$ m.\n\nHow does this error influence the following:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-2.6"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12
+    },
+    {
+      "id": "2016-nov-p2-2.6.1",
+      "paper_id": "2016-nov-p2",
+      "number": "2.6.1",
+      "parent": "2016-nov-p2-2.6",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Mean of the data set",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.1",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13
+    },
+    {
+      "id": "2016-nov-p2-2.6.2",
+      "paper_id": "2016-nov-p2",
+      "number": "2.6.2",
+      "parent": "2016-nov-p2-2.6",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Standard deviation of the data set",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.1",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2016-nov-p2-3",
+      "paper_id": "2016-nov-p2",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": "In the diagram, $\\mathrm{A}(-7\\,;\\,2)$, $\\mathrm{B}$, $\\mathrm{C}(6\\,;\\,3)$ and $\\mathrm{D}$ are the vertices of rectangle $\\mathrm{ABCD}$. The equation of $\\mathrm{AD}$ is $y=2x+16$. Line $\\mathrm{AB}$ cuts the $y$-axis at $\\mathrm{G}$. The $x$-intercept of line $\\mathrm{BC}$ is $\\mathrm{F}(p\\,;\\,0)$ and the angle of inclination of $\\mathrm{BC}$ with the positive $x$-axis is $\\alpha$. The diagonals of the rectangle intersect at $\\mathrm{M}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 19,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-3"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2016-nov-p2-3.1",
+      "paper_id": "2016-nov-p2",
+      "number": "3.1",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of $\\mathrm{M}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.midpoint-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2016-nov-p2-3.2",
+      "paper_id": "2016-nov-p2",
+      "number": "3.2",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Write down the gradient of $\\mathrm{BC}$ in terms of $p$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17
+    },
+    {
+      "id": "2016-nov-p2-3.3",
+      "paper_id": "2016-nov-p2",
+      "number": "3.3",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Hence, calculate the value of $p$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.parallel-perpendicular-gradients",
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2016-nov-p2-3.4",
+      "paper_id": "2016-nov-p2",
+      "number": "3.4",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the length of $\\mathrm{DB}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19
+    },
+    {
+      "id": "2016-nov-p2-3.5",
+      "paper_id": "2016-nov-p2",
+      "number": "3.5",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the size of $\\alpha$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.inclination-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20
+    },
+    {
+      "id": "2016-nov-p2-3.6",
+      "paper_id": "2016-nov-p2",
+      "number": "3.6",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the size of $\\mathrm{O}\\hat{\\mathrm{G}}\\mathrm{B}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.inclination-angle",
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21
+    },
+    {
+      "id": "2016-nov-p2-3.7",
+      "paper_id": "2016-nov-p2",
+      "number": "3.7",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the equation of the circle passing through points $\\mathrm{D}$, $\\mathrm{B}$ and $\\mathrm{C}$ in the form $(x-a)^{2}+(y-b)^{2}=r^{2}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.circle-equation",
+        "ageo.midpoint-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2016-nov-p2-3.8",
+      "paper_id": "2016-nov-p2",
+      "number": "3.8",
+      "parent": "2016-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "If $\\mathrm{AD}$ is shifted so that $\\mathrm{ABCD}$ becomes a square, will $\\mathrm{BC}$ be a tangent to the circle passing through points $\\mathrm{A}$, $\\mathrm{M}$ and $\\mathrm{B}$, where $\\mathrm{M}$ is now the intersection of the diagonals of the square $\\mathrm{ABCD}$? Motivate your answer.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.circle-tangent-equation",
+        "ageo.radius-equal-distances"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23
+    },
+    {
+      "id": "2016-nov-p2-4",
+      "paper_id": "2016-nov-p2",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "In the diagram, $\\mathrm{M}$ is the centre of the circle passing through $\\mathrm{T}(3\\,;\\,7)$, $\\mathrm{R}$ and $\\mathrm{S}(5\\,;\\,2)$. $\\mathrm{RT}$ is a diameter of the circle. $\\mathrm{K}(a\\,;\\,b)$ is a point in the $4^{\\text{th}}$ quadrant such that $\\mathrm{KTL}$ is a tangent to the circle at $\\mathrm{T}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 23,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-4"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24
+    },
+    {
+      "id": "2016-nov-p2-4.1",
+      "paper_id": "2016-nov-p2",
+      "number": "4.1",
+      "parent": "2016-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Give a reason why $\\mathrm{T}\\hat{\\mathrm{S}}\\mathrm{R}=90^{\\circ}$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.circle-equation",
+        "euc.circle-angle-theorems"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25
+    },
+    {
+      "id": "2016-nov-p2-4.2",
+      "paper_id": "2016-nov-p2",
+      "number": "4.2",
+      "parent": "2016-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the gradient of $\\mathrm{TS}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2016-nov-p2-4.3",
+      "paper_id": "2016-nov-p2",
+      "number": "4.3",
+      "parent": "2016-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Determine the equation of the line $\\mathrm{SR}$ in the form $y=mx+c$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.line-equation",
+        "ageo.parallel-perpendicular-gradients"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27
+    },
+    {
+      "id": "2016-nov-p2-4.4",
+      "paper_id": "2016-nov-p2",
+      "number": "4.4",
+      "parent": "2016-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": "The equation of the circle above is $(x-9)^{2}+\\left(y-6\\dfrac{1}{2}\\right)^{2}=36\\dfrac{1}{4}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28
+    },
+    {
+      "id": "2016-nov-p2-4.4.1",
+      "paper_id": "2016-nov-p2",
+      "number": "4.4.1",
+      "parent": "2016-nov-p2-4.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the length of $\\mathrm{TR}$ in surd form.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.distance-formula",
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2016-nov-p2-4.4.2",
+      "paper_id": "2016-nov-p2",
+      "number": "4.4.2",
+      "parent": "2016-nov-p2-4.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of $\\mathrm{R}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.midpoint-formula",
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30
+    },
+    {
+      "id": "2016-nov-p2-4.4.3",
+      "paper_id": "2016-nov-p2",
+      "number": "4.4.3",
+      "parent": "2016-nov-p2-4.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate $\\sin\\mathrm{R}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "trig.ratios-from-definition",
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2016-nov-p2-4.4.4",
+      "paper_id": "2016-nov-p2",
+      "number": "4.4.4",
+      "parent": "2016-nov-p2-4.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Show that $b=12a-29$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.circle-tangent-equation",
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2016-nov-p2-4.4.5",
+      "paper_id": "2016-nov-p2",
+      "number": "4.4.5",
+      "parent": "2016-nov-p2-4.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "If $\\mathrm{TK}=\\mathrm{TR}$, calculate the coordinates of $\\mathrm{K}$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula",
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2016-nov-p2-5",
+      "paper_id": "2016-nov-p2",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 21,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2016-nov-p2-5.1",
+      "paper_id": "2016-nov-p2",
+      "number": "5.1",
+      "parent": "2016-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Given:  $\\sin 16^{\\circ}=p$\nDetermine the following in terms of $p$, **without using a calculator**.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2016-nov-p2-5.1.1",
+      "paper_id": "2016-nov-p2",
+      "number": "5.1.1",
+      "parent": "2016-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\sin 196^{\\circ}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.1",
+      "skills": [
+        "trig.reduction-formulae",
+        "trig.cast-quadrant-signs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2016-nov-p2-5.1.2",
+      "paper_id": "2016-nov-p2",
+      "number": "5.1.2",
+      "parent": "2016-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\cos 16^{\\circ}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.1",
+      "skills": [
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2016-nov-p2-5.2",
+      "paper_id": "2016-nov-p2",
+      "number": "5.2",
+      "parent": "2016-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Given:  $\\cos(A-B)=\\cos A\\cos B+\\sin A\\sin B$",
+      "text_md": "Use the formula for $\\cos(A-B)$ to derive a formula for $\\sin(A+B)$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M10",
+      "subtopic": "M10.3",
+      "skills": [
+        "trig.compound-angle",
+        "trig.reduction-formulae"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2016-nov-p2-5.3",
+      "paper_id": "2016-nov-p2",
+      "number": "5.3",
+      "parent": "2016-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Simplify $\\dfrac{\\sqrt{1-\\cos^{2}2A}}{\\cos(-A)\\cdot\\cos(90^{\\circ}+A)}$ completely, given that $0^{\\circ}<A<90^{\\circ}$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.2",
+      "skills": [
+        "trig.identity-simplify",
+        "trig.reduction-formulae",
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39,
+      "notes": "Notation confirmed at 400 dpi: numerator √(1−cos² 2A); denominator cos(−A)·cos(90°+A)."
+    },
+    {
+      "id": "2016-nov-p2-5.4",
+      "paper_id": "2016-nov-p2",
+      "number": "5.4",
+      "parent": "2016-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Given:  $\\cos 2B=\\dfrac{3}{5}$ and $0^{\\circ}\\leq B\\leq 90^{\\circ}$\n\nDetermine, **without using a calculator**, the value of EACH of the following in its simplest form:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40
+    },
+    {
+      "id": "2016-nov-p2-5.4.1",
+      "paper_id": "2016-nov-p2",
+      "number": "5.4.1",
+      "parent": "2016-nov-p2-5.4",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\cos B$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.3",
+      "skills": [
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41
+    },
+    {
+      "id": "2016-nov-p2-5.4.2",
+      "paper_id": "2016-nov-p2",
+      "number": "5.4.2",
+      "parent": "2016-nov-p2-5.4",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\sin B$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.3",
+      "skills": [
+        "trig.identity-simplify",
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2016-nov-p2-5.4.3",
+      "paper_id": "2016-nov-p2",
+      "number": "5.4.3",
+      "parent": "2016-nov-p2-5.4",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\cos(B+45^{\\circ})$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.3",
+      "skills": [
+        "trig.compound-angle",
+        "trig.special-angles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43
+    },
+    {
+      "id": "2016-nov-p2-6",
+      "paper_id": "2016-nov-p2",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": "In the diagram the graph of $f(x)=2\\sin 2x$ is drawn for the interval $x\\in[-180^{\\circ}\\,;\\,180^{\\circ}]$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 12,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-6"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2016-nov-p2-6.1",
+      "paper_id": "2016-nov-p2",
+      "number": "6.1",
+      "parent": "2016-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "On the system of axes on which $f$ is drawn in the ANSWER BOOK, draw the graph of $g(x)=-\\cos 2x$ for $x\\in[-180^{\\circ}\\,;\\,180^{\\circ}]$. Clearly show all intercepts with the axes, the coordinates of the turning points and end points of the graph.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M10",
+      "subtopic": "M10.5",
+      "skills": [
+        "trig.basic-graphs",
+        "trig.amplitude-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2016-nov-p2-6.2",
+      "paper_id": "2016-nov-p2",
+      "number": "6.2",
+      "parent": "2016-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Write down the maximum value of $f(x)-3$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.5",
+      "skills": [
+        "trig.amplitude-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2016-nov-p2-6.3",
+      "paper_id": "2016-nov-p2",
+      "number": "6.3",
+      "parent": "2016-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the general solution of $f(x)=g(x)$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M10",
+      "subtopic": "M10.4",
+      "skills": [
+        "trig.general-solution",
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47
+    },
+    {
+      "id": "2016-nov-p2-6.4",
+      "paper_id": "2016-nov-p2",
+      "number": "6.4",
+      "parent": "2016-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Hence, determine the values of $x$ for which $f(x)<g(x)$ in the interval $x\\in[-180^{\\circ}\\,;\\,0^{\\circ}]$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M10",
+      "subtopic": "M10.5",
+      "skills": [
+        "trig.general-solution",
+        "fn.inequality-from-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48
+    },
+    {
+      "id": "2016-nov-p2-7",
+      "paper_id": "2016-nov-p2",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "$\\mathrm{E}$ is the apex of a pyramid having a square base $\\mathrm{ABCD}$. $\\mathrm{O}$ is the centre of the base. $\\mathrm{E}\\hat{\\mathrm{B}}\\mathrm{A}=\\theta$, $\\mathrm{AB}=3$ m and $\\mathrm{EO}$, the perpendicular height of the pyramid, is $x$.\n\nVolume of pyramid $=\\dfrac{1}{3}(\\text{area of base})\\times(\\perp\\text{ height})$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 12,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-7"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49
+    },
+    {
+      "id": "2016-nov-p2-7.1",
+      "paper_id": "2016-nov-p2",
+      "number": "7.1",
+      "parent": "2016-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Calculate the length of $\\mathrm{OB}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.right-triangle-solve",
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2016-nov-p2-7.2",
+      "paper_id": "2016-nov-p2",
+      "number": "7.2",
+      "parent": "2016-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Show that $\\cos\\theta=\\dfrac{3}{2\\sqrt{x^{2}+\\dfrac{9}{2}}}$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.right-triangle-solve",
+        "trig.3d-problem"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51,
+      "notes": "Notation confirmed at 400 dpi: denominator is 2√(x²+9/2)."
+    },
+    {
+      "id": "2016-nov-p2-7.3",
+      "paper_id": "2016-nov-p2",
+      "number": "7.3",
+      "parent": "2016-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "If the volume of the pyramid is $15$ m$^{3}$, calculate the value of $\\theta$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.3d-problem",
+        "trig.right-triangle-solve"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2016-nov-p2-8",
+      "paper_id": "2016-nov-p2",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 10,
+      "stem_md": "Give reasons for ALL statements and calculations in QUESTIONS 8, 9 and 10.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 12,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53
+    },
+    {
+      "id": "2016-nov-p2-8.1",
+      "paper_id": "2016-nov-p2",
+      "number": "8.1",
+      "parent": "2016-nov-p2-8",
+      "level": 2,
+      "printed_page": 10,
+      "stem_md": "In the diagram below $\\mathrm{PQRT}$ is a cyclic quadrilateral having $\\mathrm{RT}\\parallel\\mathrm{QP}$. The tangent at $\\mathrm{P}$ meets $\\mathrm{RT}$ produced at $\\mathrm{S}$. $\\mathrm{QP}=\\mathrm{QT}$ and $\\mathrm{P}\\hat{\\mathrm{T}}\\mathrm{S}=70^{\\circ}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-8.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54
+    },
+    {
+      "id": "2016-nov-p2-8.1.1",
+      "paper_id": "2016-nov-p2",
+      "number": "8.1.1",
+      "parent": "2016-nov-p2-8.1",
+      "level": 3,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "Give a reason why $\\hat{\\mathrm{P}}_{2}=70^{\\circ}$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.tangent-chord-theorem",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55
+    },
+    {
+      "id": "2016-nov-p2-8.1.2",
+      "paper_id": "2016-nov-p2",
+      "number": "8.1.2",
+      "parent": "2016-nov-p2-8.1",
+      "level": 3,
+      "printed_page": 10,
+      "stem_md": "Calculate, with reasons, the size of:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56
+    },
+    {
+      "id": "2016-nov-p2-8.1.2.1",
+      "paper_id": "2016-nov-p2",
+      "number": "8.1.2.1",
+      "parent": "2016-nov-p2-8.1.2",
+      "level": 4,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "(a)  $\\hat{\\mathrm{Q}}_{1}$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2016-nov-p2-8.1.2.2",
+      "paper_id": "2016-nov-p2",
+      "number": "8.1.2.2",
+      "parent": "2016-nov-p2-8.1.2",
+      "level": 4,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "(b)  $\\hat{\\mathrm{P}}_{1}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.cyclic-quad",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58
+    },
+    {
+      "id": "2016-nov-p2-8.2",
+      "paper_id": "2016-nov-p2",
+      "number": "8.2",
+      "parent": "2016-nov-p2-8",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": "$\\mathrm{A}$, $\\mathrm{B}$ and $\\mathrm{C}$ are points on the circle having centre $\\mathrm{O}$. $\\mathrm{S}$ and $\\mathrm{T}$ are points on $\\mathrm{AC}$ and $\\mathrm{AB}$ respectively such that $\\mathrm{OS}\\perp\\mathrm{AC}$ and $\\mathrm{OT}\\perp\\mathrm{AB}$. $\\mathrm{AB}=40$ and $\\mathrm{AC}=48$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-8.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2016-nov-p2-8.2.1",
+      "paper_id": "2016-nov-p2",
+      "number": "8.2.1",
+      "parent": "2016-nov-p2-8.2",
+      "level": 3,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "Calculate $\\mathrm{AT}$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.circle-angle-theorems"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60
+    },
+    {
+      "id": "2016-nov-p2-8.2.2",
+      "paper_id": "2016-nov-p2",
+      "number": "8.2.2",
+      "parent": "2016-nov-p2-8.2",
+      "level": 3,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "If $\\mathrm{OS}=\\dfrac{7}{15}\\mathrm{OT}$, calculate the radius $\\mathrm{OA}$ of the circle.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2016-nov-p2-9",
+      "paper_id": "2016-nov-p2",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 12,
+      "stem_md": "$\\mathrm{ABC}$ is a tangent to the circle $\\mathrm{BFE}$ at $\\mathrm{B}$. From $\\mathrm{C}$ a straight line is drawn parallel to $\\mathrm{BF}$ to meet $\\mathrm{FE}$ produced at $\\mathrm{D}$. $\\mathrm{EC}$ and $\\mathrm{BD}$ are drawn. $\\hat{\\mathrm{E}}_{1}=\\hat{\\mathrm{E}}_{2}=x$ and $\\hat{\\mathrm{C}}_{2}=y$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-9"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62
+    },
+    {
+      "id": "2016-nov-p2-9.1",
+      "paper_id": "2016-nov-p2",
+      "number": "9.1",
+      "parent": "2016-nov-p2-9",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": "Give a reason why EACH of the following is TRUE:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63
+    },
+    {
+      "id": "2016-nov-p2-9.1.1",
+      "paper_id": "2016-nov-p2",
+      "number": "9.1.1",
+      "parent": "2016-nov-p2-9.1",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "$\\hat{\\mathrm{B}}_{1}=x$",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.tangent-chord-theorem",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64
+    },
+    {
+      "id": "2016-nov-p2-9.1.2",
+      "paper_id": "2016-nov-p2",
+      "number": "9.1.2",
+      "parent": "2016-nov-p2-9.1",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "$\\mathrm{B}\\hat{\\mathrm{C}}\\mathrm{D}=\\hat{\\mathrm{B}}_{1}$",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.parallel-line-angles",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65
+    },
+    {
+      "id": "2016-nov-p2-9.2",
+      "paper_id": "2016-nov-p2",
+      "number": "9.2",
+      "parent": "2016-nov-p2-9",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Prove that $\\mathrm{BCDE}$ is a cyclic quadrilateral.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.cyclic-quad",
+        "euc.converse-theorems"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 66
+    },
+    {
+      "id": "2016-nov-p2-9.3",
+      "paper_id": "2016-nov-p2",
+      "number": "9.3",
+      "parent": "2016-nov-p2-9",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Which TWO other angles are each equal to $x$?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.cyclic-quad"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 67
+    },
+    {
+      "id": "2016-nov-p2-9.4",
+      "paper_id": "2016-nov-p2",
+      "number": "9.4",
+      "parent": "2016-nov-p2-9",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Prove that $\\hat{\\mathrm{B}}_{2}=\\hat{\\mathrm{C}}_{1}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 68
+    },
+    {
+      "id": "2016-nov-p2-10",
+      "paper_id": "2016-nov-p2",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 20,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 69
+    },
+    {
+      "id": "2016-nov-p2-10.1",
+      "paper_id": "2016-nov-p2",
+      "number": "10.1",
+      "parent": "2016-nov-p2-10",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": "In the diagram $\\triangle\\mathrm{PQR}$ is drawn. $\\mathrm{S}$ and $\\mathrm{T}$ are points on sides $\\mathrm{PQ}$ and $\\mathrm{PR}$ respectively such that $\\mathrm{ST}\\parallel\\mathrm{QR}$.",
+      "text_md": "Prove the theorem which states that $\\dfrac{\\mathrm{PS}}{\\mathrm{SQ}}=\\dfrac{\\mathrm{PT}}{\\mathrm{TR}}$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M8",
+      "subtopic": "M8.3",
+      "skills": [
+        "euc.prove-theorem",
+        "euc.proportionality-theorem"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-10.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 70
+    },
+    {
+      "id": "2016-nov-p2-10.2",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2",
+      "parent": "2016-nov-p2-10",
+      "level": 2,
+      "printed_page": 14,
+      "stem_md": "In the diagram $\\mathrm{HLKF}$ is a cyclic quadrilateral. The chords $\\mathrm{HL}$ and $\\mathrm{FK}$ are produced to meet at $\\mathrm{M}$. The line through $\\mathrm{F}$ parallel to $\\mathrm{KL}$ meets $\\mathrm{MH}$ produced at $\\mathrm{G}$. $\\mathrm{MK}=x$, $\\mathrm{KF}=2x$, $\\mathrm{ML}=y$ and $\\mathrm{LH}=\\mathrm{HG}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2016-nov-p2-fig-10.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 71
+    },
+    {
+      "id": "2016-nov-p2-10.2.1",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2.1",
+      "parent": "2016-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "Give a reason why $\\mathrm{G}\\hat{\\mathrm{F}}\\mathrm{M}=\\mathrm{L}\\hat{\\mathrm{K}}\\mathrm{M}$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M8",
+      "subtopic": "M8.4",
+      "skills": [
+        "euc.parallel-line-angles",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 72
+    },
+    {
+      "id": "2016-nov-p2-10.2.2",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2.2",
+      "parent": "2016-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": "Prove that:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 73
+    },
+    {
+      "id": "2016-nov-p2-10.2.2.1",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2.2.1",
+      "parent": "2016-nov-p2-10.2.2",
+      "level": 4,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "(a)  $\\mathrm{GH}=y$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M8",
+      "subtopic": "M8.3",
+      "skills": [
+        "euc.proportionality-theorem",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 74
+    },
+    {
+      "id": "2016-nov-p2-10.2.2.2",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2.2.2",
+      "parent": "2016-nov-p2-10.2.2",
+      "level": 4,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "(b)  $\\triangle\\mathrm{MFH}\\parallel\\triangle\\mathrm{MGF}$",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M8",
+      "subtopic": "M8.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 75
+    },
+    {
+      "id": "2016-nov-p2-10.2.2.3",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2.2.3",
+      "parent": "2016-nov-p2-10.2.2",
+      "level": 4,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "(c)  $\\dfrac{\\mathrm{GF}}{\\mathrm{FH}}=\\dfrac{3x}{2y}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M8",
+      "subtopic": "M8.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 76
+    },
+    {
+      "id": "2016-nov-p2-10.2.3",
+      "paper_id": "2016-nov-p2",
+      "number": "10.2.3",
+      "parent": "2016-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "Show that $\\dfrac{y}{x}=\\sqrt{\\dfrac{3}{2}}$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M8",
+      "subtopic": "M8.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 77
+    }
+  ],
+  "figures": [
+    {
+      "id": "2016-nov-p2-fig-1",
+      "paper_id": "2016-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Scatter plot of average number of times shopped per week against distance from the store in km, for the eight pairs in the table. No regression line is drawn (candidates sketch it in 1.5).",
+      "source": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "dpi": 170,
+        "bbox_px": [
+          168,
+          550,
+          1220,
+          1100
+        ],
+        "file": "figures/2016-nov-p2/fig-1.png"
+      },
+      "exact": true,
+      "spec": {
+        "chart_type": "scatter",
+        "title": "SCATTER PLOT",
+        "x_label": "Distance from the store in km",
+        "y_label": "Average number of times shopped per week",
+        "view": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            12
+          ]
+        },
+        "points": [
+          {
+            "xy": [
+              1,
+              12
+            ]
+          },
+          {
+            "xy": [
+              2,
+              10
+            ]
+          },
+          {
+            "xy": [
+              3,
+              7
+            ]
+          },
+          {
+            "xy": [
+              4,
+              7
+            ]
+          },
+          {
+            "xy": [
+              5,
+              6
+            ]
+          },
+          {
+            "xy": [
+              7,
+              2
+            ]
+          },
+          {
+            "xy": [
+              8,
+              3
+            ]
+          },
+          {
+            "xy": [
+              10,
+              2
+            ]
+          }
+        ],
+        "regression_line": false
+      },
+      "used_by": [
+        "2016-nov-p2-1"
+      ],
+      "notes": "The 8 points are the (distance ; average visits) pairs of the printed table, stored on the question node (exact=true). No least squares line is drawn on the printed scatter plot."
+    },
+    {
+      "id": "2016-nov-p2-fig-2",
+      "paper_id": "2016-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Histogram of the heights (in m) of 160 learners. Class frequencies 24, 71, 38, 23 and 4 are labelled on the bars. The x-axis is marked 1,1; 1,3; 1,5; 1,7; 1,9; 2,1; 2,3.",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          208,
+          388,
+          1147,
+          920
+        ],
+        "file": "figures/2016-nov-p2/fig-2.png"
+      },
+      "exact": true,
+      "spec": {
+        "chart_type": "histogram",
+        "title": "Histogram",
+        "x_label": "Heights (in m)",
+        "y_label": "Number of learners",
+        "bins": [
+          {
+            "interval": [
+              1.3,
+              1.5
+            ],
+            "frequency": 24
+          },
+          {
+            "interval": [
+              1.5,
+              1.7
+            ],
+            "frequency": 71
+          },
+          {
+            "interval": [
+              1.7,
+              1.9
+            ],
+            "frequency": 38
+          },
+          {
+            "interval": [
+              1.9,
+              2.1
+            ],
+            "frequency": 23
+          },
+          {
+            "interval": [
+              2.1,
+              2.3
+            ],
+            "frequency": 4
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-2"
+      ],
+      "notes": "Frequencies are printed on the bars (exact=true). There is no bar between 1,1 m and 1,3 m. The shortest and tallest heights (1,39 m and 2,21 m) are given in the stem, not on the histogram."
+    },
+    {
+      "id": "2016-nov-p2-fig-2.6",
+      "paper_id": "2016-nov-p2",
+      "kind": "illustrative",
+      "caption": "A $1,5$ m measuring tape shown mounted on a wall above the ground, with a vertical double-headed arrow labelled '$1,5$ m measuring tape' and a horizontal line labelled 'GROUND'.",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          790,
+          1340,
+          1220,
+          1635
+        ],
+        "file": "figures/2016-nov-p2/fig-2.6.png"
+      },
+      "exact": false,
+      "spec": {
+        "facts": [
+          {
+            "type": "length",
+            "object": "measuring_tape",
+            "size": "1,5 m",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-2.6"
+      ],
+      "notes": "Schematic diagram accompanying 2.6. The intended mounting height of 1 m and the actual height of 1,1 m are given in the stem, not labelled on the sketch."
+    },
+    {
+      "id": "2016-nov-p2-fig-3",
+      "paper_id": "2016-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Rectangle $\\mathrm{ABCD}$ with $\\mathrm{A}(-7\\,;\\,2)$ and $\\mathrm{C}(6\\,;\\,3)$. $\\mathrm{AD}$ has equation $y=2x+16$. $\\mathrm{AB}$ meets the $y$-axis at $\\mathrm{G}$; $\\mathrm{BC}$ meets the $x$-axis at $\\mathrm{F}(p\\,;\\,0)$. $\\alpha$ is the inclination of $\\mathrm{BC}$. Diagonals meet at $\\mathrm{M}$.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          104,
+          418,
+          1299,
+          1000
+        ],
+        "file": "figures/2016-nov-p2/fig-3.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "A(-7 ; 2)",
+            "xy": [
+              -7,
+              2
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "C(6 ; 3)",
+            "xy": [
+              6,
+              3
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "D",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "M",
+            "role": "intersection_of_diagonals",
+            "given": false,
+            "reveals": "3.1"
+          },
+          {
+            "label": "G",
+            "role": "y_intercept_of_AB",
+            "given": true
+          },
+          {
+            "label": "F(p ; 0)",
+            "role": "x_intercept_of_BC",
+            "given": false,
+            "reveals": "3.3"
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "D",
+            "equation": "y=2x+16",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "role": "diagonal",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "B",
+            "role": "diagonal",
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "label": "\\alpha",
+            "role": "inclination_of_BC",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-3"
+      ],
+      "notes": "A and C are given exactly. AD is labelled y=2x+16. p is found in 3.3. The figure is a coordinate sketch (not on a scaled grid)."
+    },
+    {
+      "id": "2016-nov-p2-fig-4",
+      "paper_id": "2016-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Circle centre $\\mathrm{M}$ through $\\mathrm{T}(3\\,;\\,7)$, $\\mathrm{R}$ and $\\mathrm{S}(5\\,;\\,2)$, with diameter $\\mathrm{RT}$. Tangent $\\mathrm{KTL}$ at $\\mathrm{T}$, with $\\mathrm{K}(a\\,;\\,b)$ in the fourth quadrant.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          198,
+          368,
+          1183,
+          1062
+        ],
+        "file": "figures/2016-nov-p2/fig-4.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "T(3 ; 7)",
+            "xy": [
+              3,
+              7
+            ],
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "S(5 ; 2)",
+            "xy": [
+              5,
+              2
+            ],
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "R",
+            "role": "on_circle",
+            "given": false,
+            "reveals": "4.4.2"
+          },
+          {
+            "label": "M",
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "K(a ; b)",
+            "role": "external",
+            "given": false,
+            "reveals": "4.4.5"
+          },
+          {
+            "label": "L",
+            "role": "on_tangent",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "centre": "M",
+            "through": [
+              "T",
+              "R",
+              "S"
+            ]
+          }
+        ],
+        "segments": [
+          {
+            "from": "T",
+            "to": "R",
+            "role": "diameter",
+            "given": true
+          },
+          {
+            "from": "T",
+            "to": "S",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "K",
+            "to": "L",
+            "role": "tangent_at_T",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-4"
+      ],
+      "notes": "T and S are given exactly. The circle equation is given in 4.4. R and K are found in later parts. The figure is a coordinate sketch."
+    },
+    {
+      "id": "2016-nov-p2-fig-6",
+      "paper_id": "2016-nov-p2",
+      "kind": "trig_graph",
+      "caption": "Graph of $f(x)=2\\sin 2x$ for $x\\in[-180^{\\circ}\\,;\\,180^{\\circ}]$.",
+      "source": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "dpi": 170,
+        "bbox_px": [
+          117,
+          353,
+          1259,
+          992
+        ],
+        "file": "figures/2016-nov-p2/fig-6.png"
+      },
+      "exact": true,
+      "spec": {
+        "functions": [
+          {
+            "name": "f",
+            "expression": "2\\sin 2x",
+            "domain": "[-180^{\\circ}, 180^{\\circ}]",
+            "given": true
+          }
+        ],
+        "axes": {
+          "x_label": "x",
+          "y_label": "y"
+        },
+        "view": {
+          "x": [
+            -180,
+            180
+          ],
+          "y": [
+            -2,
+            2
+          ]
+        },
+        "x_ticks": [
+          "-180^{\\circ}",
+          "-90^{\\circ}",
+          "0^{\\circ}",
+          "90^{\\circ}",
+          "180^{\\circ}"
+        ],
+        "y_ticks": [
+          1,
+          2,
+          -1,
+          -2
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-6"
+      ],
+      "notes": "The printed graph is f only. Candidates draw g(x)=−cos 2x on the grid in the answer book (6.1)."
+    },
+    {
+      "id": "2016-nov-p2-fig-7",
+      "paper_id": "2016-nov-p2",
+      "kind": "3d_trig",
+      "caption": "Pyramid with square base $\\mathrm{ABCD}$, centre $\\mathrm{O}$ and apex $\\mathrm{E}$. $\\mathrm{AB}=3$ m, perpendicular height $\\mathrm{EO}=x$, and $\\mathrm{E}\\hat{\\mathrm{B}}\\mathrm{A}=\\theta$.",
+      "source": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "dpi": 170,
+        "bbox_px": [
+          393,
+          485,
+          844,
+          1209
+        ],
+        "file": "figures/2016-nov-p2/fig-7.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "B",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "C",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "D",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "O",
+            "role": "centre_of_base",
+            "plane": "base"
+          },
+          {
+            "label": "E",
+            "role": "apex"
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "B",
+            "length": "3",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "O",
+            "length": "x",
+            "vertical": true,
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "label": "\\theta",
+            "at": "B",
+            "between": [
+              "EB",
+              "BA"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-7"
+      ],
+      "notes": "Schematic 3D diagram, not to scale. The volume formula is printed in a box in the stem, not in this crop."
+    },
+    {
+      "id": "2016-nov-p2-fig-8.1",
+      "paper_id": "2016-nov-p2",
+      "kind": "euclidean",
+      "caption": "Cyclic quadrilateral $\\mathrm{PQRT}$ with $\\mathrm{RT}\\parallel\\mathrm{QP}$. The tangent at $\\mathrm{P}$ meets $\\mathrm{RT}$ produced at $\\mathrm{S}$. $\\mathrm{QP}=\\mathrm{QT}$ and $\\mathrm{P}\\hat{\\mathrm{T}}\\mathrm{S}=70^{\\circ}$.",
+      "source": {
+        "pdf_page": 10,
+        "printed_page": 10,
+        "dpi": 170,
+        "bbox_px": [
+          327,
+          590,
+          1008,
+          1226
+        ],
+        "file": "figures/2016-nov-p2/fig-8.1.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "P",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "Q",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "R",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "external",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "Q",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "R",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "T",
+            "to": "P",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "P",
+            "role": "tangent_at_P",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "through": [
+              "P",
+              "Q",
+              "R",
+              "T"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "parallel",
+            "lines": [
+              "RT",
+              "QP"
+            ],
+            "given": true
+          },
+          {
+            "type": "equal_lengths",
+            "segments": [
+              "QP",
+              "QT"
+            ],
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "PTS",
+            "size": "70^{\\circ}",
+            "given": true
+          },
+          {
+            "type": "tangent",
+            "line": "SP",
+            "at": "P",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-8.1"
+      ],
+      "notes": "Diagram not to scale. Arrowheads on RT and QP mark the parallel lines. Tick marks on QP and QT mark equal lengths. Angle numbers at P, T and Q follow the printed labelling."
+    },
+    {
+      "id": "2016-nov-p2-fig-8.2",
+      "paper_id": "2016-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle centre $\\mathrm{O}$ with $\\mathrm{A}$, $\\mathrm{B}$ and $\\mathrm{C}$ on the circle. $\\mathrm{S}$ on $\\mathrm{AC}$ with $\\mathrm{OS}\\perp\\mathrm{AC}$; $\\mathrm{T}$ on $\\mathrm{AB}$ with $\\mathrm{OT}\\perp\\mathrm{AB}$. $\\mathrm{AB}=40$ and $\\mathrm{AC}=48$.",
+      "source": {
+        "pdf_page": 11,
+        "printed_page": 11,
+        "dpi": 170,
+        "bbox_px": [
+          447,
+          406,
+          899,
+          875
+        ],
+        "file": "figures/2016-nov-p2/fig-8.2.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "O",
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "A",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "C",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "on_AC",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "on_AB",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "C",
+            "length": "48",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "B",
+            "length": "40",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "S",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "A",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "centre": "O",
+            "through": [
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "perpendicular",
+            "lines": [
+              "OS",
+              "AC"
+            ],
+            "given": true
+          },
+          {
+            "type": "perpendicular",
+            "lines": [
+              "OT",
+              "AB"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-8.2"
+      ],
+      "notes": "Diagram not to scale. Right-angle boxes are shown at S and T. The lengths 40 and 48 are given in the stem, not labelled on the figure."
+    },
+    {
+      "id": "2016-nov-p2-fig-9",
+      "paper_id": "2016-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle $\\mathrm{BFE}$ with tangent $\\mathrm{ABC}$ at $\\mathrm{B}$. A line from $\\mathrm{C}$ parallel to $\\mathrm{BF}$ meets $\\mathrm{FE}$ produced at $\\mathrm{D}$. $\\mathrm{EC}$ and $\\mathrm{BD}$ are drawn. $\\hat{\\mathrm{E}}_{1}=\\hat{\\mathrm{E}}_{2}=x$ and $\\hat{\\mathrm{C}}_{2}=y$.",
+      "source": {
+        "pdf_page": 12,
+        "printed_page": 12,
+        "dpi": 170,
+        "bbox_px": [
+          262,
+          408,
+          1085,
+          1108
+        ],
+        "file": "figures/2016-nov-p2/fig-9.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "on_tangent",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "C",
+            "role": "external",
+            "given": true
+          },
+          {
+            "label": "D",
+            "role": "external",
+            "given": true
+          },
+          {
+            "label": "E",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "F",
+            "role": "on_circle",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "C",
+            "role": "tangent_at_B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "F",
+            "given": true
+          },
+          {
+            "from": "F",
+            "to": "E",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "E",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "through": [
+              "B",
+              "F",
+              "E"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "tangent",
+            "line": "ABC",
+            "at": "B",
+            "given": true
+          },
+          {
+            "type": "parallel",
+            "lines": [
+              "CD",
+              "BF"
+            ],
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "E_1",
+            "size": "x",
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "E_2",
+            "size": "x",
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "C_2",
+            "size": "y",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-9"
+      ],
+      "notes": "Diagram not to scale. Arrowheads on BF and CD mark the parallel lines. Angle numbers at B, E, D and C follow the printed labelling."
+    },
+    {
+      "id": "2016-nov-p2-fig-10.1",
+      "paper_id": "2016-nov-p2",
+      "kind": "euclidean",
+      "caption": "$\\triangle\\mathrm{PQR}$ with $\\mathrm{S}$ on $\\mathrm{PQ}$ and $\\mathrm{T}$ on $\\mathrm{PR}$ such that $\\mathrm{ST}\\parallel\\mathrm{QR}$. Theorem-proof diagram for $\\mathrm{PS}/\\mathrm{SQ}=\\mathrm{PT}/\\mathrm{TR}$.",
+      "source": {
+        "pdf_page": 13,
+        "printed_page": 13,
+        "dpi": 170,
+        "bbox_px": [
+          410,
+          428,
+          898,
+          1031
+        ],
+        "file": "figures/2016-nov-p2/fig-10.1.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "P",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "Q",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "R",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "on_PQ",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "on_PR",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "Q",
+            "given": true
+          },
+          {
+            "from": "P",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "T",
+            "given": true
+          }
+        ],
+        "circles": [],
+        "facts": [
+          {
+            "type": "parallel",
+            "lines": [
+              "ST",
+              "QR"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-10.1"
+      ],
+      "notes": "Theorem-proof diagram (proportionality theorem), not to scale. Arrowheads on ST and QR mark the parallel lines."
+    },
+    {
+      "id": "2016-nov-p2-fig-10.2",
+      "paper_id": "2016-nov-p2",
+      "kind": "euclidean",
+      "caption": "Cyclic quadrilateral $\\mathrm{HLKF}$. Chords $\\mathrm{HL}$ and $\\mathrm{FK}$ are produced to meet at $\\mathrm{M}$. The line through $\\mathrm{F}$ parallel to $\\mathrm{KL}$ meets $\\mathrm{MH}$ produced at $\\mathrm{G}$. $\\mathrm{MK}=x$, $\\mathrm{KF}=2x$, $\\mathrm{ML}=y$ and $\\mathrm{LH}=\\mathrm{HG}$.",
+      "source": {
+        "pdf_page": 14,
+        "printed_page": 14,
+        "dpi": 170,
+        "bbox_px": [
+          144,
+          340,
+          1291,
+          1060
+        ],
+        "file": "figures/2016-nov-p2/fig-10.2.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "H",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "L",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "K",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "F",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "M",
+            "role": "external",
+            "given": true
+          },
+          {
+            "label": "G",
+            "role": "external",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "M",
+            "to": "K",
+            "length": "x",
+            "given": true
+          },
+          {
+            "from": "K",
+            "to": "F",
+            "length": "2x",
+            "given": true
+          },
+          {
+            "from": "M",
+            "to": "L",
+            "length": "y",
+            "given": true
+          },
+          {
+            "from": "L",
+            "to": "H",
+            "given": true
+          },
+          {
+            "from": "H",
+            "to": "G",
+            "given": true
+          },
+          {
+            "from": "F",
+            "to": "G",
+            "given": true
+          },
+          {
+            "from": "K",
+            "to": "H",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "through": [
+              "H",
+              "L",
+              "K",
+              "F"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "cyclic",
+            "points": [
+              "H",
+              "L",
+              "K",
+              "F"
+            ],
+            "given": true
+          },
+          {
+            "type": "parallel",
+            "lines": [
+              "FG",
+              "KL"
+            ],
+            "given": true
+          },
+          {
+            "type": "equal_lengths",
+            "segments": [
+              "LH",
+              "HG"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2016-nov-p2-10.2"
+      ],
+      "notes": "Diagram not to scale. Tick marks on LH and HG mark equal lengths. An arrowhead on FG marks FG ∥ KL. Angle numbers at K, L, H and F follow the printed labelling."
+    }
+  ]
+}

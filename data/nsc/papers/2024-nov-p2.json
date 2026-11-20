@@ -1,0 +1,3017 @@
+{
+  "id": "2024-nov-p2",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2024,
+  "session": "november",
+  "paper": 2,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2024-nov/2024-nov-p2.pdf",
+    "original_name": "2024-nov-p2.pdf",
+    "sha256": "959facfee1bc34c11d828ab6451c110e077903527aa1b3121f9c4672b790adaf",
+    "pdf_pages": 14,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=ycHWvBVvV2M%3d&tabid=5193&portalid=0&mid=13724",
+    "note": "Scan without a text layer. The PDF includes the cover (printed page 1), instructions (page 2) and the information sheet (page 14); PDF page n = printed page n. The separate 23-page special answer book mentioned on the cover is not in the PDF. Source file and hash are recorded in sources/maths/manifest.json. Duration 3 hours as printed on the cover."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders, checked at 300 dpi where needed",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2024-nov-p2-1",
+      "paper_id": "2024-nov-p2",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": "At the beginning of a season, the coach of a junior boys' rugby team recorded the weight (in kg) of each player in his team and the number of push-ups that each player was able to do in one minute. The data is represented in the table and scatter plot below. The least squares regression line for the data is drawn.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-1"
+      ],
+      "table": {
+        "caption": null,
+        "header": [
+          "Weight (in kg) ($x$)",
+          "34",
+          "32",
+          "40",
+          "27",
+          "33",
+          "28",
+          "27",
+          "55",
+          "39",
+          "44",
+          "30",
+          "57",
+          "28",
+          "32",
+          "31"
+        ],
+        "rows": [
+          [
+            "Number of push-ups per minute ($y$)",
+            "26",
+            "21",
+            "6",
+            "20",
+            "16",
+            "26",
+            "23",
+            "7",
+            "18",
+            "14",
+            "17",
+            "8",
+            "28",
+            "25",
+            "20"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2024-nov-p2-1.1",
+      "paper_id": "2024-nov-p2",
+      "number": "1.1",
+      "parent": "2024-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Determine the equation of the least squares regression line for the data.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-line-calculator",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2024-nov-p2-1.2",
+      "paper_id": "2024-nov-p2",
+      "number": "1.2",
+      "parent": "2024-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Write down the correlation coefficient.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.8",
+      "skills": [
+        "stat.correlation-coefficient"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2024-nov-p2-1.3",
+      "paper_id": "2024-nov-p2",
+      "number": "1.3",
+      "parent": "2024-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "The coach uses the least squares regression line to set the target for the minimum number of push-ups by each team member according to their weight. Predict the number of push-ups that a member of the team, who weighs $29$ kg, should do to meet the target.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-predict"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2024-nov-p2-1.4",
+      "paper_id": "2024-nov-p2",
+      "number": "1.4",
+      "parent": "2024-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Write down the mean number of push-ups for the given data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.2",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2024-nov-p2-1.5",
+      "paper_id": "2024-nov-p2",
+      "number": "1.5",
+      "parent": "2024-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "The players trained hard during the season. At the end of the season, the coach reported that each player was able to do $5$ more push-ups per minute than they did at the beginning of the season. How does the increase in the number of push-ups influence the standard deviation of the data?",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.7",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2024-nov-p2-1.6",
+      "paper_id": "2024-nov-p2",
+      "number": "1.6",
+      "parent": "2024-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "At the beginning of the season, the coach used the least squares regression line as the minimum target for a player to aim for. Determine the maximum possible increase in the number of push-ups that a team member must obtain to reach the minimum target.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-predict",
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6,
+      "notes": "Wording kept as printed. Read from the scatter plot as the largest distance of a point below the regression line; no dedicated residual skill."
+    },
+    {
+      "id": "2024-nov-p2-2",
+      "paper_id": "2024-nov-p2",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "The cumulative frequency graph (ogive) shows the time taken (in minutes) for $60$ employees to travel to work each morning.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2024-nov-p2-2.1",
+      "paper_id": "2024-nov-p2",
+      "number": "2.1",
+      "parent": "2024-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Estimate the median travel time.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8
+    },
+    {
+      "id": "2024-nov-p2-2.2",
+      "paper_id": "2024-nov-p2",
+      "number": "2.2",
+      "parent": "2024-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Estimate the lower quartile.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2024-nov-p2-2.3",
+      "paper_id": "2024-nov-p2",
+      "number": "2.3",
+      "parent": "2024-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Estimate the interquartile range.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive",
+        "stat.five-number-summary"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2024-nov-p2-2.4",
+      "paper_id": "2024-nov-p2",
+      "number": "2.4",
+      "parent": "2024-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "The minimum and maximum times taken for an employee to travel to work are $5$ and $120$ minutes respectively. On the scaled line in the ANSWER BOOK, draw a box and whisker diagram to indicate the distribution of the data as represented in the ogive above.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M13",
+      "subtopic": "M13.4",
+      "skills": [
+        "stat.five-number-summary"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2024-nov-p2-2.5",
+      "paper_id": "2024-nov-p2",
+      "number": "2.5",
+      "parent": "2024-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "The company manager decided that all employees who travel for an hour or more will be allowed to work from home for part of the day. What percentage of the employees will be allowed to work from home for part of the day?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12
+    },
+    {
+      "id": "2024-nov-p2-2.6",
+      "paper_id": "2024-nov-p2",
+      "number": "2.6",
+      "parent": "2024-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": "Employees work $8$ hours in a normal working day. The manager decided the following rule for time to work from home:\n\n- An employee is allowed to work half an hour from home for each time interval of $20$ minutes, or part thereof, above an hour taken to travel to work.",
+      "text_md": "On a certain day, an employee takes $110$ minutes to travel to work. Calculate the number of minutes that this employee will be allowed to work from home on this day.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M2",
+      "subtopic": "M2.1",
+      "skills": [
+        "alg.words-to-equations"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13,
+      "notes": "Rule-based word problem with no statistics skill; tagged with alg.words-to-equations (no better fit in the skill graph)."
+    },
+    {
+      "id": "2024-nov-p2-3",
+      "paper_id": "2024-nov-p2",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": "In the diagram below, $\\triangle ACD$ has vertices $A$, $D(3\\,;\\,-9)$ and $C(-9\\,;\\,0)$, where $A$ is a point in the second quadrant. $B(-1\\,;\\,k)$ lies on side $DC$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 19,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-3"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2024-nov-p2-3.1",
+      "paper_id": "2024-nov-p2",
+      "number": "3.1",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the gradient of $DC$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2024-nov-p2-3.2",
+      "paper_id": "2024-nov-p2",
+      "number": "3.2",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the equation of $DC$ in the form $y=mx+c$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2024-nov-p2-3.3",
+      "paper_id": "2024-nov-p2",
+      "number": "3.3",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Show that $k=-6$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17
+    },
+    {
+      "id": "2024-nov-p2-3.4",
+      "paper_id": "2024-nov-p2",
+      "number": "3.4",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the length of $DC$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2024-nov-p2-3.5",
+      "paper_id": "2024-nov-p2",
+      "number": "3.5",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the ratio of $\\dfrac{DB}{DC}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19
+    },
+    {
+      "id": "2024-nov-p2-3.6",
+      "paper_id": "2024-nov-p2",
+      "number": "3.6",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "If $M$ is a point on $AD$ such that $AC\\parallel MB$, calculate the ratio of $\\dfrac{\\text{Area }\\triangle MBD}{\\text{Area }\\triangle ACD}$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.2",
+      "skills": [
+        "euc.proportionality-theorem",
+        "euc.area-ratio-triangles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20,
+      "notes": "Analytical-geometry diagram but a Euclidean-geometry ratio question (proportion/area); tagged with the euc skills."
+    },
+    {
+      "id": "2024-nov-p2-3.7",
+      "paper_id": "2024-nov-p2",
+      "number": "3.7",
+      "parent": "2024-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "If it is further given that the gradient of $AD$ is $-4$ and the length of $AD$ is $\\sqrt{612}$ units, calculate the coordinates of $A$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.gradient-formula",
+        "ageo.distance-formula",
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21
+    },
+    {
+      "id": "2024-nov-p2-4",
+      "paper_id": "2024-nov-p2",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "In the diagram, $M(1\\,;\\,3)$ is the centre of the circle. The circle cuts the $x$-axis at $N$. $ST$ is a tangent to the circle at $P(3\\,;\\,9)$. $R(d\\,;\\,1)$, with $d>0$, and $L$ lie on the circle. $O$ and $V$ are the $x$-intercepts of $PL$ and $RL$ respectively.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 20,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-4"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2024-nov-p2-4.1",
+      "paper_id": "2024-nov-p2",
+      "number": "4.1",
+      "parent": "2024-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Write down the coordinates of $L$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.midpoint-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23,
+      "notes": "$PL$ passes through the centre $M$ (as drawn), so $M$ is the midpoint of $PL$."
+    },
+    {
+      "id": "2024-nov-p2-4.2",
+      "paper_id": "2024-nov-p2",
+      "number": "4.2",
+      "parent": "2024-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Determine the equation of tangent $ST$ to the circle at $P$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-tangent-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24
+    },
+    {
+      "id": "2024-nov-p2-4.3",
+      "paper_id": "2024-nov-p2",
+      "number": "4.3",
+      "parent": "2024-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Show that the equation of the circle with centre $M$ is $x^{2}+y^{2}-2x-6y-30=0$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25
+    },
+    {
+      "id": "2024-nov-p2-4.4",
+      "paper_id": "2024-nov-p2",
+      "number": "4.4",
+      "parent": "2024-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Show that $d=7$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation",
+        "alg.zero-product"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2024-nov-p2-4.5",
+      "paper_id": "2024-nov-p2",
+      "number": "4.5",
+      "parent": "2024-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the size of $\\hat{L}$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.inclination-angle",
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27,
+      "notes": "Angle $\\hat{L}$ is the angle between $LP$ and $LR$ (the angle at $L$ in triangle $PLR$ as drawn)."
+    },
+    {
+      "id": "2024-nov-p2-4.6",
+      "paper_id": "2024-nov-p2",
+      "number": "4.6",
+      "parent": "2024-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "$TR$ is a tangent to the circle at $R$. Prove that $PT\\perp RT$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.parallel-perpendicular-gradients",
+        "ageo.circle-tangent-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28
+    },
+    {
+      "id": "2024-nov-p2-5",
+      "paper_id": "2024-nov-p2",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 12,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2024-nov-p2-5.1",
+      "paper_id": "2024-nov-p2",
+      "number": "5.1",
+      "parent": "2024-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "In the diagram, line $OP$ is given with $P(-3\\,;\\,-4)$. $K\\hat{O}P=A$.\n\nDetermine, **without using a calculator**, the value of:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-5.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30
+    },
+    {
+      "id": "2024-nov-p2-5.1.1",
+      "paper_id": "2024-nov-p2",
+      "number": "5.1.1",
+      "parent": "2024-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\cos A$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.1",
+      "skills": [
+        "trig.ratios-from-definition",
+        "trig.cast-quadrant-signs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2024-nov-p2-5.1.2",
+      "paper_id": "2024-nov-p2",
+      "number": "5.1.2",
+      "parent": "2024-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\cos 2A$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2024-nov-p2-5.1.3",
+      "paper_id": "2024-nov-p2",
+      "number": "5.1.3",
+      "parent": "2024-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\sin(A-B)$, if it is further given that $\\sin B=\\dfrac{4}{5}$ and $90^\\circ<B<360^\\circ$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.compound-angle",
+        "trig.cast-quadrant-signs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2024-nov-p2-5.2",
+      "paper_id": "2024-nov-p2",
+      "number": "5.2",
+      "parent": "2024-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "If $\\cos\\alpha=p$, express the following expression in terms of $p$:\n\n$$\\dfrac{\\cos\\left(\\dfrac{\\alpha}{2}-45^\\circ\\right)\\sin\\left(\\dfrac{\\alpha}{2}-45^\\circ\\right)}{2}$$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.double-angle",
+        "trig.reduction-formulae"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2024-nov-p2-6",
+      "paper_id": "2024-nov-p2",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 18,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2024-nov-p2-6.1",
+      "paper_id": "2024-nov-p2",
+      "number": "6.1",
+      "parent": "2024-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Given the identity: $\\cos(x-y)=\\cos x\\cos y+\\sin x\\sin y$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2024-nov-p2-6.1.1",
+      "paper_id": "2024-nov-p2",
+      "number": "6.1.1",
+      "parent": "2024-nov-p2-6.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Use the compound angle identity given above to derive a formula for $\\cos(x+y)$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.compound-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2024-nov-p2-6.1.2",
+      "paper_id": "2024-nov-p2",
+      "number": "6.1.2",
+      "parent": "2024-nov-p2-6.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Hence, or otherwise, show that:\n\n$$\\dfrac{\\cos(90^\\circ-x)\\cos y+\\sin(-y)\\cos(180^\\circ+x)}{\\cos x\\cos(360^\\circ+y)+\\sin(360^\\circ-x)\\sin y}=\\tan(x+y)$$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.reduction-formulae",
+        "trig.compound-angle",
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2024-nov-p2-6.2",
+      "paper_id": "2024-nov-p2",
+      "number": "6.2",
+      "parent": "2024-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Given: $f(x)=\\sqrt{6\\sin^{2}x-11\\cos(90^\\circ+x)+7}$",
+      "text_md": "Solve for $x$ in the interval $x\\in(0^\\circ\\,;\\,360^\\circ)$ if $f(x)=2$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M10",
+      "subtopic": "M10.7",
+      "skills": [
+        "trig.reduction-formulae",
+        "alg.factorise-trinomial",
+        "trig.general-solution"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39
+    },
+    {
+      "id": "2024-nov-p2-6.3",
+      "paper_id": "2024-nov-p2",
+      "number": "6.3",
+      "parent": "2024-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Consider the function: $g(x)=\\dfrac{4-8\\sin^{2}x}{3}$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40
+    },
+    {
+      "id": "2024-nov-p2-6.3.1",
+      "paper_id": "2024-nov-p2",
+      "number": "6.3.1",
+      "parent": "2024-nov-p2-6.3",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the maximum value of $g$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.2",
+      "skills": [
+        "trig.amplitude-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41
+    },
+    {
+      "id": "2024-nov-p2-6.3.2",
+      "paper_id": "2024-nov-p2",
+      "number": "6.3.2",
+      "parent": "2024-nov-p2-6.3",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Write down the smallest possible value of $x$ for which $g$ will have a maximum value in the interval $x\\in(0^\\circ\\,;\\,360^\\circ]$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.7",
+      "skills": [
+        "trig.general-solution"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2024-nov-p2-7",
+      "paper_id": "2024-nov-p2",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "In the diagram below, the graph of $f(x)=\\tan x$ is drawn for the interval $x\\in[-180^\\circ\\,;\\,180^\\circ]$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 11,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-7"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43
+    },
+    {
+      "id": "2024-nov-p2-7.1",
+      "paper_id": "2024-nov-p2",
+      "number": "7.1",
+      "parent": "2024-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Write down the equation of the asymptote of $f$ in the interval $x\\in[0^\\circ\\,;\\,180^\\circ]$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M5",
+      "subtopic": "M5.1",
+      "skills": [
+        "trig.basic-graphs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2024-nov-p2-7.2",
+      "paper_id": "2024-nov-p2",
+      "number": "7.2",
+      "parent": "2024-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Write down the values of $x$ in the interval $x\\in[-180^\\circ\\,;\\,0^\\circ]$ for which $f(x)\\leq 0$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M5",
+      "subtopic": "M5.1",
+      "skills": [
+        "trig.basic-graphs",
+        "fn.inequality-from-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2024-nov-p2-7.3",
+      "paper_id": "2024-nov-p2",
+      "number": "7.3",
+      "parent": "2024-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": "Given: $g(x)=\\cos 2x+1$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2024-nov-p2-7.3.1",
+      "paper_id": "2024-nov-p2",
+      "number": "7.3.1",
+      "parent": "2024-nov-p2-7.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Write down the period of $g$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.4",
+      "skills": [
+        "trig.graph-period"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47
+    },
+    {
+      "id": "2024-nov-p2-7.3.2",
+      "paper_id": "2024-nov-p2",
+      "number": "7.3.2",
+      "parent": "2024-nov-p2-7.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "On the grid given in the ANSWER BOOK, draw the graph of $g(x)=\\cos 2x+1$ for the interval $x\\in[-180^\\circ\\,;\\,180^\\circ]$. Clearly show the intercepts with the axes as well as the coordinates of the turning points.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M5",
+      "subtopic": "M5.1",
+      "skills": [
+        "trig.basic-graphs",
+        "trig.graph-period",
+        "trig.amplitude-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48
+    },
+    {
+      "id": "2024-nov-p2-7.4",
+      "paper_id": "2024-nov-p2",
+      "number": "7.4",
+      "parent": "2024-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Use the graphs to determine the general solution of $2\\cos^{3}x-\\sin x=0$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M10",
+      "subtopic": "M10.7",
+      "skills": [
+        "trig.general-solution",
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49,
+      "notes": "Printed as $2\\cos^3 x-\\sin x=0$ (checked at 300 dpi): dividing by $\\cos x$ gives $2\\cos^2 x=\\tan x$, i.e. $\\cos 2x+1=\\tan x$, so the graphs of $f$ and $g$ are used."
+    },
+    {
+      "id": "2024-nov-p2-8",
+      "paper_id": "2024-nov-p2",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 10,
+      "stem_md": "In the diagram, $C$ is the foot of a vertical building and $D$ is the top of the same building. The height of the building, $CD$, is $16$ m. Two observers are standing $19$ m apart at points $A$ and $B$, where $A$, $B$ and $C$ lie in the same horizontal plane. A painter is working at point $E$ on the building. The angle of elevation of $D$ from $A$ is $46{,}85^\\circ$. $D\\hat{E}B=122^\\circ$ and $B\\hat{C}A=105{,}61^\\circ$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-8"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2024-nov-p2-8.1",
+      "paper_id": "2024-nov-p2",
+      "number": "8.1",
+      "parent": "2024-nov-p2-8",
+      "level": 2,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "Calculate the length of $AC$, the distance between the observer at $A$ and the foot of the building.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M11",
+      "subtopic": "M11.1",
+      "skills": [
+        "trig.right-triangle-solve"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51
+    },
+    {
+      "id": "2024-nov-p2-8.2",
+      "paper_id": "2024-nov-p2",
+      "number": "8.2",
+      "parent": "2024-nov-p2-8",
+      "level": 2,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "Calculate how far the painter at $E$ is from the top of the building.",
+      "marks": 7,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M11",
+      "subtopic": "M11.5",
+      "skills": [
+        "trig.3d-problem",
+        "trig.sine-rule",
+        "trig.right-triangle-solve"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2024-nov-p2-9",
+      "paper_id": "2024-nov-p2",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 11,
+      "stem_md": "Provide reasons for your statements in QUESTIONS 9, 10 and 11.\n\nIn the diagram, $ABCD$ is a cyclic quadrilateral. $BC$ is produced to $E$. $AC$ is drawn. $\\hat{A}_1=\\dfrac{1}{2}\\hat{B}$, $\\hat{A}_2=46^\\circ$ and $\\hat{C}_1=86^\\circ$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 6,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-9"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53
+    },
+    {
+      "id": "2024-nov-p2-9.1",
+      "paper_id": "2024-nov-p2",
+      "number": "9.1",
+      "parent": "2024-nov-p2-9",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "Calculate, with a reason, the value of $\\hat{A}_1$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.cyclic-quad",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54
+    },
+    {
+      "id": "2024-nov-p2-9.2",
+      "paper_id": "2024-nov-p2",
+      "number": "9.2",
+      "parent": "2024-nov-p2-9",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "Hence, prove that $AD=DC$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.cyclic-quad",
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55
+    },
+    {
+      "id": "2024-nov-p2-10",
+      "paper_id": "2024-nov-p2",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 15,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56
+    },
+    {
+      "id": "2024-nov-p2-10.1",
+      "paper_id": "2024-nov-p2",
+      "number": "10.1",
+      "parent": "2024-nov-p2-10",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": "In the diagram, $\\triangle RST$ is drawn. Line $AB$ intersects $RS$ and $RT$ at $A$ and $B$ respectively such that $AB\\parallel ST$.",
+      "text_md": "Prove the theorem which states that a line drawn parallel to one side of a triangle divides the other two sides proportionally, i.e. $\\dfrac{RA}{AS}=\\dfrac{RB}{BT}$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.2",
+      "skills": [
+        "euc.prove-theorem"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-10.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2024-nov-p2-10.2",
+      "paper_id": "2024-nov-p2",
+      "number": "10.2",
+      "parent": "2024-nov-p2-10",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": "In the diagram, $O$ is the centre of the circle. $\\triangle PWS$ is drawn with $P$, $W$ and $S$ on the circle. $OR\\perp PS$. $PRS$ is produced to $T$. $SW$ and $OT$ intersect at $V$. $OV:OT=1:4$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-10.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58
+    },
+    {
+      "id": "2024-nov-p2-10.2.1",
+      "paper_id": "2024-nov-p2",
+      "number": "10.2.1",
+      "parent": "2024-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Prove, with reasons, that $OR:WS=1:2$",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.2",
+      "skills": [
+        "euc.midpoint-theorem",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2024-nov-p2-10.2.2",
+      "paper_id": "2024-nov-p2",
+      "number": "10.2.2",
+      "parent": "2024-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Calculate the length of $PT$ if $ST=15$ units.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.2",
+      "skills": [
+        "euc.proportionality-theorem",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60
+    },
+    {
+      "id": "2024-nov-p2-11",
+      "paper_id": "2024-nov-p2",
+      "number": "11",
+      "parent": null,
+      "level": 1,
+      "printed_page": 13,
+      "stem_md": "In the diagram, $A$, $B$, $G$ and $F$ lie on the larger circle. A smaller circle is drawn to touch the larger circle internally at $A$. $EA$ is a common tangent to both circles. $EBCF$ is a tangent to the smaller circle at $C$. $AC$ is produced to $G$. $AF$ cuts the smaller circle at $D$. $AB$, $CD$ and $GF$ are drawn.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 20,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2024-nov-p2-fig-11"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2024-nov-p2-11.1",
+      "paper_id": "2024-nov-p2",
+      "number": "11.1",
+      "parent": "2024-nov-p2-11",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "If $E\\hat{A}G=x$, determine with reasons, FOUR other angles that are equal to $x$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "set",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.tangent-chord-theorem",
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62
+    },
+    {
+      "id": "2024-nov-p2-11.2",
+      "paper_id": "2024-nov-p2",
+      "number": "11.2",
+      "parent": "2024-nov-p2-11",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Prove that $AG\\cdot AD=AC\\cdot AF$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.3",
+      "skills": [
+        "euc.similar-triangles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63,
+      "notes": "The printed multiplication dots in $AG.AD=AC.AF$ are transcribed as $\\cdot$."
+    },
+    {
+      "id": "2024-nov-p2-11.3",
+      "paper_id": "2024-nov-p2",
+      "number": "11.3",
+      "parent": "2024-nov-p2-11",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Prove that $\\triangle AGF\\,|||\\,\\triangle ABC$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.circle-angle-theorems"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64,
+      "notes": "The paper uses $|||$ for similarity (as in 2025 P2 Q11.2.2)."
+    },
+    {
+      "id": "2024-nov-p2-11.4",
+      "paper_id": "2024-nov-p2",
+      "number": "11.4",
+      "parent": "2024-nov-p2-11",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Prove that $GF^{2}=\\dfrac{BC\\cdot FC\\cdot AF}{AD}$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.ratio-manipulation",
+        "euc.tangent-chord-theorem"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65,
+      "notes": "The printed multiplication dots in $BC.FC.AF$ are transcribed as $\\cdot$."
+    }
+  ],
+  "figures": [
+    {
+      "id": "2024-nov-p2-fig-1",
+      "paper_id": "2024-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Scatter plot of push-ups per minute against weight (kg) for the 15 players, with the least squares regression line drawn.",
+      "source": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "dpi": 170,
+        "bbox_px": [
+          283,
+          595,
+          1240,
+          1181
+        ],
+        "file": "figures/2024-nov-p2/fig-1.png"
+      },
+      "exact": true,
+      "spec": {
+        "chart_type": "scatter",
+        "x_label": "Weight (in kg)",
+        "y_label": "Push-ups per minute",
+        "view": {
+          "x": [
+            0,
+            60
+          ],
+          "y": [
+            0,
+            30
+          ]
+        },
+        "points": [
+          {
+            "xy": [
+              34,
+              26
+            ]
+          },
+          {
+            "xy": [
+              32,
+              21
+            ]
+          },
+          {
+            "xy": [
+              40,
+              6
+            ]
+          },
+          {
+            "xy": [
+              27,
+              20
+            ]
+          },
+          {
+            "xy": [
+              33,
+              16
+            ]
+          },
+          {
+            "xy": [
+              28,
+              26
+            ]
+          },
+          {
+            "xy": [
+              27,
+              23
+            ]
+          },
+          {
+            "xy": [
+              55,
+              7
+            ]
+          },
+          {
+            "xy": [
+              39,
+              18
+            ]
+          },
+          {
+            "xy": [
+              44,
+              14
+            ]
+          },
+          {
+            "xy": [
+              30,
+              17
+            ]
+          },
+          {
+            "xy": [
+              57,
+              8
+            ]
+          },
+          {
+            "xy": [
+              28,
+              28
+            ]
+          },
+          {
+            "xy": [
+              32,
+              25
+            ]
+          },
+          {
+            "xy": [
+              31,
+              20
+            ]
+          }
+        ],
+        "given": true,
+        "regression_line": {
+          "drawn": true,
+          "given": false,
+          "reveals": "1.1",
+          "note": "equation not printed"
+        }
+      },
+      "used_by": [
+        "2024-nov-p2-1"
+      ],
+      "notes": "Data points are the 15 (x ; y) pairs of the printed table (the table is the exact data; the scatter plot shows the same pairs)."
+    },
+    {
+      "id": "2024-nov-p2-fig-2",
+      "paper_id": "2024-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Ogive (cumulative frequency graph) of travel time in minutes for 60 employees, rising from (0 ; 0) to (120 ; 60).",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          218,
+          331,
+          1230,
+          947
+        ],
+        "file": "figures/2024-nov-p2/fig-2.png"
+      },
+      "exact": false,
+      "spec": {
+        "chart_type": "ogive",
+        "x_label": "Time (in minutes)",
+        "y_label": "Cumulative frequency",
+        "view": {
+          "x": [
+            0,
+            140
+          ],
+          "y": [
+            0,
+            65
+          ]
+        },
+        "points": [
+          {
+            "xy": [
+              0,
+              0
+            ]
+          },
+          {
+            "xy": [
+              20,
+              5
+            ]
+          },
+          {
+            "xy": [
+              40,
+              13
+            ]
+          },
+          {
+            "xy": [
+              60,
+              26
+            ]
+          },
+          {
+            "xy": [
+              80,
+              42
+            ]
+          },
+          {
+            "xy": [
+              100,
+              57
+            ]
+          },
+          {
+            "xy": [
+              120,
+              60
+            ]
+          }
+        ],
+        "given": true,
+        "smooth_curve": true
+      },
+      "used_by": [
+        "2024-nov-p2-2"
+      ],
+      "notes": "Plotted points read off the printed grid (nearest gridline); values are approximate, so exact=false."
+    },
+    {
+      "id": "2024-nov-p2-fig-3",
+      "paper_id": "2024-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Triangle ACD with D(3 ; -9), C(-9 ; 0), A in the second quadrant, and B(-1 ; k) on DC.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          253,
+          351,
+          1249,
+          1152
+        ],
+        "file": "figures/2024-nov-p2/fig-3.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "A",
+            "xy": [
+              -3,
+              15
+            ],
+            "role": "vertex",
+            "given": false,
+            "reveals": "3.7"
+          },
+          {
+            "label": "C(-9 ; 0)",
+            "xy": [
+              -9,
+              0
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "D(3 ; -9)",
+            "xy": [
+              3,
+              -9
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "B(-1 ; k)",
+            "xy": [
+              -1,
+              -6
+            ],
+            "role": "point_on_segment",
+            "on": "DC",
+            "given": false,
+            "reveals": "3.3"
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-3"
+      ],
+      "notes": "A(-3 ; 15) is derived in 3.7 (gradient AD = -4, AD = sqrt(612)); k = -6 is derived in 3.3."
+    },
+    {
+      "id": "2024-nov-p2-fig-4",
+      "paper_id": "2024-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Circle with centre M(1 ; 3) through P(3 ; 9), R(d ; 1) and L; tangent ST at P; PL and RL cut the x-axis at O and V; the circle cuts the x-axis at N.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          205,
+          439,
+          1249,
+          1083
+        ],
+        "file": "figures/2024-nov-p2/fig-4.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin_and_x_intercept_of_PL",
+            "given": true
+          },
+          {
+            "label": "M(1 ; 3)",
+            "xy": [
+              1,
+              3
+            ],
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "P(3 ; 9)",
+            "xy": [
+              3,
+              9
+            ],
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "R(d ; 1)",
+            "xy": [
+              7,
+              1
+            ],
+            "role": "on_circle",
+            "given": false,
+            "reveals": "4.4"
+          },
+          {
+            "label": "L",
+            "xy": [
+              -1,
+              -3
+            ],
+            "role": "on_circle",
+            "given": false,
+            "reveals": "4.1"
+          },
+          {
+            "label": "V",
+            "xy": [
+              5,
+              0
+            ],
+            "role": "x_intercept_of_RL",
+            "given": false
+          },
+          {
+            "label": "N",
+            "xy": [
+              6.5677643628300215,
+              0
+            ],
+            "role": "x_intercept_of_circle",
+            "given": false
+          },
+          {
+            "label": "S",
+            "xy": null,
+            "role": "on_tangent",
+            "given": true
+          },
+          {
+            "label": "T",
+            "xy": null,
+            "role": "on_tangent",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "centre": "M",
+            "equation": "(x-1)^2+(y-3)^2=40",
+            "given": false,
+            "reveals": "4.3"
+          }
+        ],
+        "lines": [
+          {
+            "label": "ST",
+            "through": "P",
+            "tangent_to": "circle",
+            "given": true,
+            "equation": "y=-x/3+10",
+            "reveals": "4.2"
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "L",
+            "given": true
+          },
+          {
+            "from": "P",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "R",
+            "to": "L",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-4"
+      ],
+      "notes": "Positions of S and T on the tangent are not specified. Coordinates of R, L, V, N are derived from the printed data (R at d = 7 from 4.4)."
+    },
+    {
+      "id": "2024-nov-p2-fig-5.1",
+      "paper_id": "2024-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Angle A in standard position: from the positive x-axis (K) anticlockwise to line OP with P(-3 ; -4) in the third quadrant.",
+      "source": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "dpi": 170,
+        "bbox_px": [
+          497,
+          312,
+          839,
+          615
+        ],
+        "file": "figures/2024-nov-p2/fig-5.1.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "K",
+            "xy": null,
+            "role": "on_positive_x_axis",
+            "given": true
+          },
+          {
+            "label": "P(-3 ; -4)",
+            "xy": [
+              -3,
+              -4
+            ],
+            "role": "terminal_point",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "O",
+            "to": "P",
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "label": "A",
+            "at": "O",
+            "from_ray": "OK",
+            "to_ray": "OP",
+            "direction": "anticlockwise",
+            "size": null,
+            "given": true,
+            "note": "reflex angle through the second quadrant to the third; size not printed"
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-5.1"
+      ],
+      "notes": "K lies on the positive x-axis; its distance from O is not specified."
+    },
+    {
+      "id": "2024-nov-p2-fig-7",
+      "paper_id": "2024-nov-p2",
+      "kind": "trig_graph",
+      "caption": "Graph of f(x) = tan x on [-180 deg ; 180 deg] with vertical asymptotes at x = -90 deg and x = 90 deg.",
+      "source": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "dpi": 170,
+        "bbox_px": [
+          195,
+          361,
+          1279,
+          1015
+        ],
+        "file": "figures/2024-nov-p2/fig-7.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "0"
+        },
+        "view": {
+          "x": [
+            -180,
+            180
+          ],
+          "y": [
+            -3.5,
+            3.5
+          ]
+        },
+        "degree_interval": [
+          -180,
+          180
+        ],
+        "tick_marks": {
+          "x": [
+            -180,
+            -90,
+            0,
+            90,
+            180
+          ],
+          "y": [
+            -3,
+            -2,
+            -1,
+            1,
+            2,
+            3
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "\\tan x",
+            "plain": "tan(x*pi/180)",
+            "domain": "x != -90, 90 (degrees)",
+            "given": true
+          }
+        ],
+        "asymptotes": [
+          {
+            "of": "f",
+            "type": "vertical",
+            "equation": "x=-90^\\circ",
+            "drawn": true,
+            "given": true
+          },
+          {
+            "of": "f",
+            "type": "vertical",
+            "equation": "x=90^\\circ",
+            "drawn": true,
+            "given": true
+          }
+        ],
+        "points": [
+          {
+            "label": "0",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin"
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-7"
+      ]
+    },
+    {
+      "id": "2024-nov-p2-fig-8",
+      "paper_id": "2024-nov-p2",
+      "kind": "3d_trig",
+      "caption": "Vertical building CD (16 m) over a horizontal plane with observers at A and B, 19 m apart, and the painter at E on CD; angles 46,85 deg at A, 105,61 deg at C and 122 deg at E are marked.",
+      "source": {
+        "pdf_page": 10,
+        "printed_page": 10,
+        "dpi": 170,
+        "bbox_px": [
+          331,
+          478,
+          1171,
+          1269
+        ],
+        "file": "figures/2024-nov-p2/fig-8.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "observer",
+            "plane": "horizontal"
+          },
+          {
+            "label": "B",
+            "role": "observer",
+            "plane": "horizontal"
+          },
+          {
+            "label": "C",
+            "role": "foot_of_building",
+            "plane": "horizontal"
+          },
+          {
+            "label": "D",
+            "role": "top_of_building"
+          },
+          {
+            "label": "E",
+            "role": "painter_on_CD"
+          }
+        ],
+        "segments": [
+          {
+            "from": "C",
+            "to": "D",
+            "length": 16,
+            "vertical": true,
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "B",
+            "length": 19,
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "E",
+            "given": true
+          }
+        ],
+        "planes": [
+          {
+            "name": "horizontal plane",
+            "contains": [
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        ],
+        "right_angles": [
+          {
+            "at": "C",
+            "between": [
+              "CD",
+              "plane ABC"
+            ]
+          }
+        ],
+        "angles": [
+          {
+            "label": "angle of elevation of D from A",
+            "at": "A",
+            "between": [
+              "AC",
+              "AD"
+            ],
+            "size_deg": 46.85,
+            "given": true
+          },
+          {
+            "label": "BCA",
+            "at": "C",
+            "between": [
+              "CB",
+              "CA"
+            ],
+            "size_deg": 105.61,
+            "given": true
+          },
+          {
+            "label": "DEB",
+            "at": "E",
+            "between": [
+              "ED",
+              "EB"
+            ],
+            "size_deg": 122,
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-8"
+      ],
+      "notes": "Drawn over a photograph/illustration of a building (decorative background). Printed on the figure with decimal points (46,85 and 105.61); the text uses decimal commas."
+    },
+    {
+      "id": "2024-nov-p2-fig-9",
+      "paper_id": "2024-nov-p2",
+      "kind": "euclidean",
+      "caption": "Cyclic quadrilateral ABCD with BC produced to E and diagonal AC drawn; angles A1, A2 = 46 deg and C1 = 86 deg are marked.",
+      "source": {
+        "pdf_page": 11,
+        "printed_page": 11,
+        "dpi": 170,
+        "bbox_px": [
+          449,
+          439,
+          937,
+          976
+        ],
+        "file": "figures/2024-nov-p2/fig-9.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "C",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "D",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "E",
+            "role": "on_line_BC_produced",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "through": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "cyclic_quadrilateral",
+            "points": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "B",
+              "C",
+              "E"
+            ],
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "A2",
+            "size_deg": 46,
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "C1",
+            "size_deg": 86,
+            "given": true
+          },
+          {
+            "type": "angle_relation",
+            "statement": "A1 = 1/2 B",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-9"
+      ],
+      "notes": "Not to scale."
+    },
+    {
+      "id": "2024-nov-p2-fig-10.1",
+      "paper_id": "2024-nov-p2",
+      "kind": "euclidean",
+      "caption": "Triangle RST with line AB parallel to ST, A on RS and B on RT.",
+      "source": {
+        "pdf_page": 12,
+        "printed_page": 12,
+        "dpi": 170,
+        "bbox_px": [
+          419,
+          331,
+          995,
+          781
+        ],
+        "file": "figures/2024-nov-p2/fig-10.1.png"
+      },
+      "exact": true,
+      "spec": {
+        "points": [
+          {
+            "label": "R",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "A",
+            "role": "on_side",
+            "on": "RS",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "on_side",
+            "on": "RT",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "R",
+            "to": "S",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "T",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "B",
+            "given": true
+          }
+        ],
+        "facts": [
+          {
+            "type": "parallel",
+            "lines": [
+              "AB",
+              "ST"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-10.1"
+      ],
+      "notes": "Theorem diagram, not to scale."
+    },
+    {
+      "id": "2024-nov-p2-fig-10.2",
+      "paper_id": "2024-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle with centre O; triangle PWS inscribed with OR perpendicular to PS; PS produced to T; SW and OT meet at V.",
+      "source": {
+        "pdf_page": 12,
+        "printed_page": 12,
+        "dpi": 170,
+        "bbox_px": [
+          322,
+          1054,
+          1191,
+          1659
+        ],
+        "file": "figures/2024-nov-p2/fig-10.2.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "O",
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "P",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "W",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "R",
+            "role": "foot_of_perpendicular",
+            "on": "PS",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "on_line_PS_produced",
+            "given": true
+          },
+          {
+            "label": "V",
+            "role": "intersection_of_SW_and_OT",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "W",
+            "given": true
+          },
+          {
+            "from": "W",
+            "to": "S",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "P",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "T",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "centre": "O",
+            "through": [
+              "P",
+              "W",
+              "S"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "centre",
+            "point": "O",
+            "given": true
+          },
+          {
+            "type": "perpendicular",
+            "lines": [
+              "OR",
+              "PS"
+            ],
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "P",
+              "R",
+              "S",
+              "T"
+            ],
+            "given": true
+          },
+          {
+            "type": "ratio",
+            "statement": "OV:OT = 1:4",
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "P",
+              "O",
+              "W"
+            ],
+            "given": true,
+            "note": "P, O and W are drawn in a straight line (PW through the centre); not stated in the text"
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-10.2"
+      ],
+      "notes": "Not to scale. Whether PW is a diameter is shown only by the drawing."
+    },
+    {
+      "id": "2024-nov-p2-fig-11",
+      "paper_id": "2024-nov-p2",
+      "kind": "euclidean",
+      "caption": "Larger circle through A, B, G, F; smaller circle touching it internally at A; common tangent EA; tangent EBCF to the smaller circle at C; AC produced to G; AF cutting the smaller circle at D.",
+      "source": {
+        "pdf_page": 13,
+        "printed_page": 13,
+        "dpi": 170,
+        "bbox_px": [
+          302,
+          429,
+          1113,
+          956
+        ],
+        "file": "figures/2024-nov-p2/fig-11.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "on_large_circle",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "on_large_circle",
+            "given": true
+          },
+          {
+            "label": "G",
+            "role": "on_large_circle",
+            "given": true
+          },
+          {
+            "label": "F",
+            "role": "on_large_circle",
+            "given": true
+          },
+          {
+            "label": "C",
+            "role": "point_of_contact_with_EBCF",
+            "given": true
+          },
+          {
+            "label": "D",
+            "role": "on_small_circle_and_AF",
+            "given": true
+          },
+          {
+            "label": "E",
+            "role": "external_point",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "E",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "F",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "G",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "F",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "G",
+            "to": "F",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "name": "larger",
+            "through": [
+              "A",
+              "B",
+              "G",
+              "F"
+            ]
+          },
+          {
+            "name": "smaller",
+            "through": [
+              "A",
+              "C",
+              "D"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "touch_internally",
+            "circles": [
+              "smaller",
+              "larger"
+            ],
+            "at": "A",
+            "given": true
+          },
+          {
+            "type": "tangent",
+            "line": "EA",
+            "circles": [
+              "smaller",
+              "larger"
+            ],
+            "at": "A",
+            "given": true
+          },
+          {
+            "type": "tangent",
+            "line": "EBCF",
+            "circle": "smaller",
+            "at": "C",
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "E",
+              "B",
+              "C",
+              "F"
+            ],
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "A",
+              "C",
+              "G"
+            ],
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "A",
+              "D",
+              "F"
+            ],
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "EAG",
+            "size": "x",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2024-nov-p2-11"
+      ],
+      "notes": "Not to scale; angle labels 1-4 on the printed figure are not recorded individually."
+    }
+  ]
+}

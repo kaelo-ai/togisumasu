@@ -1,0 +1,3180 @@
+{
+  "id": "2020-nov-p2",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2020,
+  "session": "november",
+  "paper": 2,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2020-nov/2020-nov-p2.pdf",
+    "original_name": "2020-nov-p2.pdf",
+    "sha256": "9b7eb45885c1f1571749f1e55da2f40449a93a145d6eee3d795d54ea6628ca9c",
+    "pdf_pages": 15,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=f-OMZa2HZ5U%3d&tabid=2702&portalid=0&mid=9632",
+    "note": "Scan without a text layer. Combined Senior Certificate / National Senior Certificate paper (cover and running header: SC/NSC). The PDF includes the cover (printed page 1), the instructions (page 2) and the information sheet (page 15); PDF page n = printed page n. The cover mentions an answer book of 24 pages, which is not in this PDF. Duration 3 hours as printed on the cover. Source file and hash are recorded in sources/maths/manifest.json."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders, checked at 400 dpi where needed",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2020-nov-p2-1",
+      "paper_id": "2020-nov-p2",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": "A Mathematics teacher was curious to establish if her learners' Mathematics marks influenced their Physical Sciences marks. In the table below, the Mathematics and Physical Sciences marks of 15 learners in her class are given as percentages (%).",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-1"
+      ],
+      "table": {
+        "caption": null,
+        "header": [
+          "MATHEMATICS (AS %)",
+          "26",
+          "62",
+          "21",
+          "33",
+          "53",
+          "76",
+          "32",
+          "59",
+          "43",
+          "33",
+          "49",
+          "51",
+          "19",
+          "34",
+          "85"
+        ],
+        "rows": [
+          [
+            "PHYSICAL SCIENCES (AS %)",
+            "34",
+            "67",
+            "28",
+            "46",
+            "65",
+            "76",
+            "26",
+            "73",
+            "50",
+            "39",
+            "57",
+            "51",
+            "24",
+            "41",
+            "80"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2020-nov-p2-1.1",
+      "paper_id": "2020-nov-p2",
+      "number": "1.1",
+      "parent": "2020-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Determine the equation of the least squares regression line for the data.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-line-calculator"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2020-nov-p2-1.2",
+      "paper_id": "2020-nov-p2",
+      "number": "1.2",
+      "parent": "2020-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Draw the least squares regression line on the scatter plot provided in the ANSWER BOOK.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-line-calculator",
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2020-nov-p2-1.3",
+      "paper_id": "2020-nov-p2",
+      "number": "1.3",
+      "parent": "2020-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Predict the Physical Sciences mark of a learner who achieved $69\\%$ for Mathematics.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-predict"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2020-nov-p2-1.4",
+      "paper_id": "2020-nov-p2",
+      "number": "1.4",
+      "parent": "2020-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Write down the correlation coefficient between the Mathematics and Physical Sciences marks for the data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.8",
+      "skills": [
+        "stat.correlation-coefficient"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2020-nov-p2-1.5",
+      "paper_id": "2020-nov-p2",
+      "number": "1.5",
+      "parent": "2020-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Comment on the strength of the correlation between the Mathematics and Physical Sciences marks for the data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.8",
+      "skills": [
+        "stat.correlation-coefficient"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2020-nov-p2-1.6",
+      "paper_id": "2020-nov-p2",
+      "number": "1.6",
+      "parent": "2020-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "What trend did the teacher observe between the results of the two subjects?",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.8",
+      "skills": [
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6
+    },
+    {
+      "id": "2020-nov-p2-2",
+      "paper_id": "2020-nov-p2",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "The number of aircraft landing at the King Shaka International Airport and the Port Elizabeth Airport for the period starting in April 2017 and ending in March 2018, is shown in the double bar graph below.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2020-nov-p2-2.1",
+      "paper_id": "2020-nov-p2",
+      "number": "2.1",
+      "parent": "2020-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "The number of aircraft landing at the Port Elizabeth Airport exceeds the number of aircraft landing at the King Shaka International Airport during some months of the given period. During which month is this difference the greatest?",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.5",
+      "skills": [
+        "stat.draw-histogram"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8,
+      "notes": "Reading a double bar graph to compare monthly frequencies. No dedicated bar-graph-reading skill; tagged with stat.draw-histogram."
+    },
+    {
+      "id": "2020-nov-p2-2.2",
+      "paper_id": "2020-nov-p2",
+      "number": "2.2",
+      "parent": "2020-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "The number of aircraft landing at the King Shaka International Airport during these months are:\n\nCalculate the mean for the data.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.2",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": {
+        "caption": null,
+        "header": [
+          "2 182",
+          "2 323",
+          "2 267",
+          "2 334",
+          "2 346",
+          "2 175"
+        ],
+        "rows": [
+          [
+            "2 293",
+            "2 263",
+            "2 215",
+            "2 271",
+            "2 018",
+            "2 254"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2020-nov-p2-2.3",
+      "paper_id": "2020-nov-p2",
+      "number": "2.3",
+      "parent": "2020-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Calculate the standard deviation for the number of aircraft landing at the King Shaka International Airport for the given period.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.7",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2020-nov-p2-2.4",
+      "paper_id": "2020-nov-p2",
+      "number": "2.4",
+      "parent": "2020-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Determine the number of months in which the number of aircraft landing at the King Shaka International Airport were within one standard deviation of the mean.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.7",
+      "skills": [
+        "stat.within-one-sd",
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2020-nov-p2-2.5",
+      "paper_id": "2020-nov-p2",
+      "number": "2.5",
+      "parent": "2020-nov-p2-2",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Which ONE of the following statements is CORRECT?\n\nA. During December and January, there were more landings at the Port Elizabeth Airport than at the King Shaka International Airport.\n\nB. There was a greater variation in the number of aircraft landing at the King Shaka International Airport than at the Port Elizabeth Airport for the given period.\n\nC. The standard deviation of the number of landings at the Port Elizabeth Airport will be higher than the standard deviation of the number of landings at the King Shaka International Airport.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.7",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12,
+      "notes": "A multiple-choice comparison of the double bar graph (variation / standard deviation). Tagged with stat.mean-standard-deviation."
+    },
+    {
+      "id": "2020-nov-p2-3",
+      "paper_id": "2020-nov-p2",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": "$\\triangle$TSK is drawn. The equation of ST is $y=\\dfrac{1}{2}x+6$ and ST cuts the $x$-axis at M. $\\mathrm{W}(-4\\,;\\,4)$ lies on ST and R lies on SK such that WR is parallel to the $y$-axis. WK cuts the $x$-axis at V and the $y$-axis at $\\mathrm{P}(0\\,;\\,-4)$. KS produced cuts the $x$-axis at N. $\\mathrm{T}\\hat{\\mathrm{S}}\\mathrm{K}=\\theta$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 21,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-3"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13
+    },
+    {
+      "id": "2020-nov-p2-3.1",
+      "paper_id": "2020-nov-p2",
+      "number": "3.1",
+      "parent": "2020-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the gradient of WP.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2020-nov-p2-3.2",
+      "paper_id": "2020-nov-p2",
+      "number": "3.2",
+      "parent": "2020-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Show that $\\mathrm{WP}\\perp\\mathrm{ST}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.parallel-perpendicular-gradients"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2020-nov-p2-3.3",
+      "paper_id": "2020-nov-p2",
+      "number": "3.3",
+      "parent": "2020-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "If the equation of SK is given as $5y+2x+60=0$, calculate the coordinates of S.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.intersection-of-lines"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2020-nov-p2-3.4",
+      "paper_id": "2020-nov-p2",
+      "number": "3.4",
+      "parent": "2020-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the length of WR.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula",
+        "ageo.parallel-perpendicular-gradients"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17
+    },
+    {
+      "id": "2020-nov-p2-3.5",
+      "paper_id": "2020-nov-p2",
+      "number": "3.5",
+      "parent": "2020-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the size of $\\theta$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.inclination-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2020-nov-p2-3.6",
+      "paper_id": "2020-nov-p2",
+      "number": "3.6",
+      "parent": "2020-nov-p2-3",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Let L be a point in the third quadrant such that SWRL, in that order, forms a parallelogram. Calculate the area of SWRL.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.parallelogram-fourth-vertex",
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19,
+      "notes": "Area of parallelogram SWRL from base WR and the horizontal distance between the vertical sides. No dedicated coordinate-area skill; tagged with ageo.parallelogram-fourth-vertex and ageo.distance-formula."
+    },
+    {
+      "id": "2020-nov-p2-4",
+      "paper_id": "2020-nov-p2",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "$\\mathrm{M}(-3\\,;\\,4)$ is the centre of the large circle and a point on the small circle having centre $\\mathrm{O}(0\\,;\\,0)$. From $\\mathrm{N}(-11\\,;\\,p)$, a tangent is drawn to touch the large circle at T with NT parallel to the $y$-axis. NM is a tangent to the smaller circle at M with MOS a diameter.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 19,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-4"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20
+    },
+    {
+      "id": "2020-nov-p2-4.1",
+      "paper_id": "2020-nov-p2",
+      "number": "4.1",
+      "parent": "2020-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Determine the equation of the small circle.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21
+    },
+    {
+      "id": "2020-nov-p2-4.2",
+      "paper_id": "2020-nov-p2",
+      "number": "4.2",
+      "parent": "2020-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Determine the equation of the circle centred at M in the form $(x-a)^{2}+(y-b)^{2}=r^{2}$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation",
+        "ageo.circle-tangent-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2020-nov-p2-4.3",
+      "paper_id": "2020-nov-p2",
+      "number": "4.3",
+      "parent": "2020-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Determine the equation of NM in the form $y=mx+c$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-tangent-equation",
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23
+    },
+    {
+      "id": "2020-nov-p2-4.4",
+      "paper_id": "2020-nov-p2",
+      "number": "4.4",
+      "parent": "2020-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the length of SN.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula",
+        "ageo.radius-equal-distances"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24
+    },
+    {
+      "id": "2020-nov-p2-4.5",
+      "paper_id": "2020-nov-p2",
+      "number": "4.5",
+      "parent": "2020-nov-p2-4",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "If another circle with centre $\\mathrm{B}(-2\\,;\\,5)$ and radius $k$ touches the circle centred at M, determine the value(s) of $k$, correct to ONE decimal place.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circles-touching",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25
+    },
+    {
+      "id": "2020-nov-p2-5",
+      "paper_id": "2020-nov-p2",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": "The graphs of $f(x)=-\\dfrac{1}{2}\\cos x$ and $g(x)=\\sin(x+30^{\\circ})$, for the interval $x\\in[0^{\\circ}\\,;\\,180^{\\circ}]$, are drawn below. $\\mathrm{A}(130,9^{\\circ}\\,;\\,0,33)$ is the approximate point of intersection of the two graphs.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 8,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-5"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2020-nov-p2-5.1",
+      "paper_id": "2020-nov-p2",
+      "number": "5.1",
+      "parent": "2020-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Write down the period of $g$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.4",
+      "skills": [
+        "trig.graph-period"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27
+    },
+    {
+      "id": "2020-nov-p2-5.2",
+      "paper_id": "2020-nov-p2",
+      "number": "5.2",
+      "parent": "2020-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Write down the amplitude of $f$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.2",
+      "skills": [
+        "trig.amplitude-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28
+    },
+    {
+      "id": "2020-nov-p2-5.3",
+      "paper_id": "2020-nov-p2",
+      "number": "5.3",
+      "parent": "2020-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the value of $f(180^{\\circ})-g(180^{\\circ})$",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.1",
+      "skills": [
+        "trig.basic-graphs",
+        "trig.special-angles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2020-nov-p2-5.4",
+      "paper_id": "2020-nov-p2",
+      "number": "5.4",
+      "parent": "2020-nov-p2-5",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Use the graphs to determine the values of $x$, in the interval $x\\in[0^{\\circ}\\,;\\,180^{\\circ}]$, for which:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30
+    },
+    {
+      "id": "2020-nov-p2-5.4.1",
+      "paper_id": "2020-nov-p2",
+      "number": "5.4.1",
+      "parent": "2020-nov-p2-5.4",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$f(x-10^{\\circ})=g(x-10^{\\circ})$",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.5",
+      "skills": [
+        "trig.basic-graphs",
+        "trig.horizontal-shift"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2020-nov-p2-5.4.2",
+      "paper_id": "2020-nov-p2",
+      "number": "5.4.2",
+      "parent": "2020-nov-p2-5.4",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\sqrt{3}\\sin x+\\cos x\\geq 1$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.compound-angle",
+        "fn.inequality-from-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2020-nov-p2-6",
+      "paper_id": "2020-nov-p2",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 24,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2020-nov-p2-6.1",
+      "paper_id": "2020-nov-p2",
+      "number": "6.1",
+      "parent": "2020-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "In the diagram, $\\mathrm{P}(-5\\,;\\,12)$ and T lies on the positive $x$-axis. $\\mathrm{P}\\hat{\\mathrm{O}}\\mathrm{T}=\\theta$\n\nAnswer the following **without using a calculator**:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-6"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2020-nov-p2-6.1.1",
+      "paper_id": "2020-nov-p2",
+      "number": "6.1.1",
+      "parent": "2020-nov-p2-6.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Write down the value of $\\tan\\theta$",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.1",
+      "skills": [
+        "trig.ratios-from-definition"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2020-nov-p2-6.1.2",
+      "paper_id": "2020-nov-p2",
+      "number": "6.1.2",
+      "parent": "2020-nov-p2-6.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the value of $\\cos\\theta$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.1",
+      "skills": [
+        "trig.ratios-from-definition",
+        "trig.cast-quadrant-signs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2020-nov-p2-6.1.3",
+      "paper_id": "2020-nov-p2",
+      "number": "6.1.3",
+      "parent": "2020-nov-p2-6.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "$\\mathrm{S}(a\\,;\\,b)$ is a point in the third quadrant such that $\\mathrm{T}\\hat{\\mathrm{O}}\\mathrm{S}=\\theta+90^{\\circ}$ and $\\mathrm{OS}=6,5$ units. Calculate the value of $b$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.5",
+      "skills": [
+        "trig.reduction-formulae",
+        "trig.ratios-from-definition"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2020-nov-p2-6.2",
+      "paper_id": "2020-nov-p2",
+      "number": "6.2",
+      "parent": "2020-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine, **without using a calculator**, the value of the following trigonometric expression:\n\n$\\dfrac{\\sin 2x\\cdot\\cos(-x)+\\cos 2x\\cdot\\sin(360^{\\circ}-x)}{\\sin(180^{\\circ}+x)}$",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.5",
+      "skills": [
+        "trig.reduction-formulae",
+        "trig.compound-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2020-nov-p2-6.3",
+      "paper_id": "2020-nov-p2",
+      "number": "6.3",
+      "parent": "2020-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the general solution of the following equation:\n\n$6\\sin^{2}x+7\\cos x-3=0$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M10",
+      "subtopic": "M10.7",
+      "skills": [
+        "trig.general-solution",
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39
+    },
+    {
+      "id": "2020-nov-p2-6.4",
+      "paper_id": "2020-nov-p2",
+      "number": "6.4",
+      "parent": "2020-nov-p2-6",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Given: $x+\\dfrac{1}{x}=3\\cos A$  and  $x^{2}+\\dfrac{1}{x^{2}}=2$\n\nDetermine the value of $\\cos 2A$ **without using a calculator**.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40
+    },
+    {
+      "id": "2020-nov-p2-7",
+      "paper_id": "2020-nov-p2",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "A landscape artist plans to plant flowers within two concentric circles around a vertical light pole PQ. R is a point on the inner circle and S is a point on the outer circle. R, Q and S lie in the same horizontal plane. RS is a pipe used for the irrigation system in the garden.\n\n* The radius of the inner circle is $r$ units and the radius of the outer circle is QS.\n* The angle of elevation from S to P is $30^{\\circ}$.\n* $\\mathrm{R}\\hat{\\mathrm{Q}}\\mathrm{S}=2x$ and $\\mathrm{PQ}=\\sqrt{3}r$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-7"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41
+    },
+    {
+      "id": "2020-nov-p2-7.1",
+      "paper_id": "2020-nov-p2",
+      "number": "7.1",
+      "parent": "2020-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Show that $\\mathrm{QS}=3r$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M11",
+      "subtopic": "M11.1",
+      "skills": [
+        "trig.right-triangle-solve",
+        "trig.special-angles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2020-nov-p2-7.2",
+      "paper_id": "2020-nov-p2",
+      "number": "7.2",
+      "parent": "2020-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Determine, in terms of $r$, the area of the flower garden.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M11",
+      "subtopic": "M11.5",
+      "skills": [
+        "trig.3d-problem"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43,
+      "notes": "Area of the annulus $\\pi((3r)^{2}-r^{2})$. No dedicated circle-area skill; tagged with trig.3d-problem as part of the 3D garden context."
+    },
+    {
+      "id": "2020-nov-p2-7.3",
+      "paper_id": "2020-nov-p2",
+      "number": "7.3",
+      "parent": "2020-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Show that $\\mathrm{RS}=r\\sqrt{10-6\\cos 2x}$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M11",
+      "subtopic": "M11.4",
+      "skills": [
+        "trig.cosine-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2020-nov-p2-7.4",
+      "paper_id": "2020-nov-p2",
+      "number": "7.4",
+      "parent": "2020-nov-p2-7",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "If $r=10$ metres and $x=56^{\\circ}$, calculate RS.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M11",
+      "subtopic": "M11.4",
+      "skills": [
+        "trig.cosine-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2020-nov-p2-8",
+      "paper_id": "2020-nov-p2",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 17,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2020-nov-p2-8.1",
+      "paper_id": "2020-nov-p2",
+      "number": "8.1",
+      "parent": "2020-nov-p2-8",
+      "level": 2,
+      "printed_page": 10,
+      "stem_md": "O is the centre of the circle. KOM bisects chord LN and $\\mathrm{M}\\hat{\\mathrm{N}}\\mathrm{O}=26^{\\circ}$. K and P are points on the circle with $\\mathrm{N}\\hat{\\mathrm{K}}\\mathrm{P}=32^{\\circ}$. OP is drawn.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-8.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47,
+      "notes": "The printed stem has two periods after 'circle'; transcribed with one."
+    },
+    {
+      "id": "2020-nov-p2-8.1.1",
+      "paper_id": "2020-nov-p2",
+      "number": "8.1.1",
+      "parent": "2020-nov-p2-8.1",
+      "level": 3,
+      "printed_page": 10,
+      "stem_md": "Determine, giving reasons, the size of:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48
+    },
+    {
+      "id": "2020-nov-p2-8.1.1.1",
+      "paper_id": "2020-nov-p2",
+      "number": "8.1.1.1",
+      "parent": "2020-nov-p2-8.1.1",
+      "level": 4,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "(a) $\\hat{\\mathrm{O}}_{2}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49
+    },
+    {
+      "id": "2020-nov-p2-8.1.1.2",
+      "paper_id": "2020-nov-p2",
+      "number": "8.1.1.2",
+      "parent": "2020-nov-p2-8.1.1",
+      "level": 4,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "(b) $\\hat{\\mathrm{O}}_{1}$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2020-nov-p2-8.1.2",
+      "paper_id": "2020-nov-p2",
+      "number": "8.1.2",
+      "parent": "2020-nov-p2-8.1",
+      "level": 3,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "Prove, giving reasons, that KN bisects $\\mathrm{O}\\hat{\\mathrm{K}}\\mathrm{P}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51
+    },
+    {
+      "id": "2020-nov-p2-8.2",
+      "paper_id": "2020-nov-p2",
+      "number": "8.2",
+      "parent": "2020-nov-p2-8",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": "In $\\triangle$ABC, F and G are points on sides AB and AC respectively. D is a point on GC such that $\\hat{\\mathrm{D}}_{1}=\\hat{\\mathrm{B}}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-8.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2020-nov-p2-8.2.1",
+      "paper_id": "2020-nov-p2",
+      "number": "8.2.1",
+      "parent": "2020-nov-p2-8.2",
+      "level": 3,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "If AF is a tangent to the circle passing through points F, G and D, then prove, giving reasons, that $\\mathrm{FG}\\parallel\\mathrm{BC}$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.tangent-chord-theorem",
+        "euc.converse-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53
+    },
+    {
+      "id": "2020-nov-p2-8.2.2",
+      "paper_id": "2020-nov-p2",
+      "number": "8.2.2",
+      "parent": "2020-nov-p2-8.2",
+      "level": 3,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "If it is further given that $\\dfrac{\\mathrm{AF}}{\\mathrm{FB}}=\\dfrac{2}{5}$, $\\mathrm{AC}=2x-6$ and $\\mathrm{GC}=x+9$, then calculate the value of $x$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.2",
+      "skills": [
+        "euc.proportionality-theorem",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54
+    },
+    {
+      "id": "2020-nov-p2-9",
+      "paper_id": "2020-nov-p2",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 15,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55
+    },
+    {
+      "id": "2020-nov-p2-9.1",
+      "paper_id": "2020-nov-p2",
+      "number": "9.1",
+      "parent": "2020-nov-p2-9",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": "In the diagram, O is the centre of the circle. Points S, T and R lie on the circle. Chords ST, SR and TR are drawn in the circle. QS is a tangent to the circle at S.",
+      "text_md": "Use the diagram to prove the theorem which states that $\\mathrm{Q}\\hat{\\mathrm{S}}\\mathrm{T}=\\hat{\\mathrm{R}}$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.prove-theorem"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-9.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56
+    },
+    {
+      "id": "2020-nov-p2-9.2",
+      "paper_id": "2020-nov-p2",
+      "number": "9.2",
+      "parent": "2020-nov-p2-9",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": "Chord QN bisects $\\mathrm{M}\\hat{\\mathrm{N}}\\mathrm{P}$ and intersects chord MP at S. The tangent at P meets MN produced at R such that $\\mathrm{QN}\\parallel\\mathrm{PR}$. Let $\\hat{\\mathrm{P}}_{1}=x$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-9.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2020-nov-p2-9.2.1",
+      "paper_id": "2020-nov-p2",
+      "number": "9.2.1",
+      "parent": "2020-nov-p2-9.2",
+      "level": 3,
+      "printed_page": 13,
+      "stem_md": "Determine the following angles in terms of $x$. Give reasons",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58
+    },
+    {
+      "id": "2020-nov-p2-9.2.1.1",
+      "paper_id": "2020-nov-p2",
+      "number": "9.2.1.1",
+      "parent": "2020-nov-p2-9.2.1",
+      "level": 4,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "(a) $\\hat{\\mathrm{N}}_{2}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.circle-angle-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2020-nov-p2-9.2.1.2",
+      "paper_id": "2020-nov-p2",
+      "number": "9.2.1.2",
+      "parent": "2020-nov-p2-9.2.1",
+      "level": 4,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "(b) $\\hat{\\mathrm{Q}}_{2}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.tangent-chord-theorem",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60
+    },
+    {
+      "id": "2020-nov-p2-9.2.2",
+      "paper_id": "2020-nov-p2",
+      "number": "9.2.2",
+      "parent": "2020-nov-p2-9.2",
+      "level": 3,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Prove, giving reasons, that $\\dfrac{\\mathrm{MN}}{\\mathrm{NR}}=\\dfrac{\\mathrm{MS}}{\\mathrm{SQ}}$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.2",
+      "skills": [
+        "euc.proportionality-theorem",
+        "euc.similar-triangles",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2020-nov-p2-10",
+      "paper_id": "2020-nov-p2",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 14,
+      "stem_md": "In the diagram, a circle passes through D, B and E. Diameter ED of the circle is produced to C and AC is a tangent to the circle at B. M is a point on DE such that $\\mathrm{AM}\\perp\\mathrm{DE}$. AM and chord BE intersect at F.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 17,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2020-nov-p2-fig-10"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62
+    },
+    {
+      "id": "2020-nov-p2-10.1",
+      "paper_id": "2020-nov-p2",
+      "number": "10.1",
+      "parent": "2020-nov-p2-10",
+      "level": 2,
+      "printed_page": 14,
+      "stem_md": "Prove, giving reasons, that:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63
+    },
+    {
+      "id": "2020-nov-p2-10.1.1",
+      "paper_id": "2020-nov-p2",
+      "number": "10.1.1",
+      "parent": "2020-nov-p2-10.1",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "FBDM is a cyclic quadrilateral",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.converse-theorems",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64
+    },
+    {
+      "id": "2020-nov-p2-10.1.2",
+      "paper_id": "2020-nov-p2",
+      "number": "10.1.2",
+      "parent": "2020-nov-p2-10.1",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "$\\hat{\\mathrm{B}}_{3}=\\hat{\\mathrm{F}}_{1}$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.4",
+      "skills": [
+        "euc.cyclic-quad",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65
+    },
+    {
+      "id": "2020-nov-p2-10.1.3",
+      "paper_id": "2020-nov-p2",
+      "number": "10.1.3",
+      "parent": "2020-nov-p2-10.1",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "$\\triangle$CDB $|||$ $\\triangle$CBE",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M12",
+      "subtopic": "M12.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.acceptable-reasons"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 66
+    },
+    {
+      "id": "2020-nov-p2-10.2",
+      "paper_id": "2020-nov-p2",
+      "number": "10.2",
+      "parent": "2020-nov-p2-10",
+      "level": 2,
+      "printed_page": 14,
+      "stem_md": "If it is further given that $\\mathrm{CD}=2$ units and $\\mathrm{DE}=6$ units, calculate the length of:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 67
+    },
+    {
+      "id": "2020-nov-p2-10.2.1",
+      "paper_id": "2020-nov-p2",
+      "number": "10.2.1",
+      "parent": "2020-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "BC",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 68
+    },
+    {
+      "id": "2020-nov-p2-10.2.2",
+      "paper_id": "2020-nov-p2",
+      "number": "10.2.2",
+      "parent": "2020-nov-p2-10.2",
+      "level": 3,
+      "printed_page": 14,
+      "stem_md": null,
+      "text_md": "DB",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M12",
+      "subtopic": "M12.3",
+      "skills": [
+        "euc.similar-triangles",
+        "euc.ratio-manipulation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 69
+    }
+  ],
+  "figures": [
+    {
+      "id": "2020-nov-p2-fig-1",
+      "paper_id": "2020-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Scatter plot of Physical Sciences marks (%) against Mathematics marks (%) for the 15 learners in the table.",
+      "source": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "dpi": 170,
+        "bbox_px": [
+          238,
+          588,
+          1173,
+          1248
+        ],
+        "file": "figures/2020-nov-p2/fig-1.png"
+      },
+      "exact": true,
+      "spec": {
+        "chart_type": "scatter",
+        "x_label": "MATHEMATICS (%)",
+        "y_label": "PHYSICAL SCIENCES (%)",
+        "view": {
+          "x": [
+            0,
+            90
+          ],
+          "y": [
+            0,
+            90
+          ]
+        },
+        "points": [
+          {
+            "xy": [
+              26,
+              34
+            ]
+          },
+          {
+            "xy": [
+              62,
+              67
+            ]
+          },
+          {
+            "xy": [
+              21,
+              28
+            ]
+          },
+          {
+            "xy": [
+              33,
+              46
+            ]
+          },
+          {
+            "xy": [
+              53,
+              65
+            ]
+          },
+          {
+            "xy": [
+              76,
+              76
+            ]
+          },
+          {
+            "xy": [
+              32,
+              26
+            ]
+          },
+          {
+            "xy": [
+              59,
+              73
+            ]
+          },
+          {
+            "xy": [
+              43,
+              50
+            ]
+          },
+          {
+            "xy": [
+              33,
+              39
+            ]
+          },
+          {
+            "xy": [
+              49,
+              57
+            ]
+          },
+          {
+            "xy": [
+              51,
+              51
+            ]
+          },
+          {
+            "xy": [
+              19,
+              24
+            ]
+          },
+          {
+            "xy": [
+              34,
+              41
+            ]
+          },
+          {
+            "xy": [
+              85,
+              80
+            ]
+          }
+        ],
+        "given": true
+      },
+      "used_by": [
+        "2020-nov-p2-1"
+      ],
+      "notes": "The 15 points are the (Mathematics ; Physical Sciences) pairs of the printed table, which is the exact data (stored on the question node). No regression line is drawn on the printed scatter plot."
+    },
+    {
+      "id": "2020-nov-p2-fig-2",
+      "paper_id": "2020-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Double bar graph of the number of aircraft landing at King Shaka International Airport and Port Elizabeth Airport each month from April 2017 to March 2018.",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          195,
+          320,
+          1205,
+          952
+        ],
+        "file": "figures/2020-nov-p2/fig-2.png"
+      },
+      "exact": false,
+      "spec": {
+        "chart_type": "bar",
+        "x_label": "Months in the period 2017/2018",
+        "y_label": "Number of aircraft landing",
+        "view": {
+          "x": [
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+            "Jan",
+            "Feb",
+            "Mar"
+          ],
+          "y": [
+            0,
+            3000
+          ]
+        },
+        "series": [
+          {
+            "name": "King Shaka",
+            "values": [
+              2182,
+              2323,
+              2267,
+              2334,
+              2346,
+              2175,
+              2293,
+              2263,
+              2215,
+              2271,
+              2018,
+              2254
+            ],
+            "given": true
+          },
+          {
+            "name": "Port Elizabeth",
+            "given": false,
+            "note": "Values must be read from the printed bars and are approximate."
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-2"
+      ],
+      "notes": "King Shaka frequencies are given exactly in the table of 2.2 (April to March in reading order). Port Elizabeth frequencies are only in the graph, so exact=false. Source printed on the graph: http://www.airports.co.za/airports/statistics/aircraft"
+    },
+    {
+      "id": "2020-nov-p2-fig-3",
+      "paper_id": "2020-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Triangle TSK with ST: $y=\\frac{1}{2}x+6$ cutting the $x$-axis at M; $\\mathrm{W}(-4\\,;\\,4)$ on ST; WR parallel to the $y$-axis with R on SK; WK cutting the axes at V and $\\mathrm{P}(0\\,;\\,-4)$; KS produced cutting the $x$-axis at N; $\\mathrm{T}\\hat{\\mathrm{S}}\\mathrm{K}=\\theta$ and $\\beta$ marked at N.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          212,
+          446,
+          1190,
+          1283
+        ],
+        "file": "figures/2020-nov-p2/fig-3.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "W(-4 ; 4)",
+            "xy": [
+              -4,
+              4
+            ],
+            "role": "point_on_ST",
+            "given": true
+          },
+          {
+            "label": "P(0 ; -4)",
+            "xy": [
+              0,
+              -4
+            ],
+            "role": "y_intercept_of_WK",
+            "given": true
+          },
+          {
+            "label": "M",
+            "xy": [
+              -12,
+              0
+            ],
+            "role": "x_intercept_of_ST",
+            "given": false
+          },
+          {
+            "label": "S",
+            "xy": [
+              -20,
+              -4
+            ],
+            "role": "vertex",
+            "given": false,
+            "reveals": "3.3"
+          },
+          {
+            "label": "R",
+            "xy": [
+              -4,
+              -10.4
+            ],
+            "role": "on_SK",
+            "given": false,
+            "reveals": "3.4"
+          },
+          {
+            "label": "N",
+            "xy": [
+              -30,
+              0
+            ],
+            "role": "x_intercept_of_SK",
+            "given": false
+          },
+          {
+            "label": "V",
+            "role": "x_intercept_of_WK",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "K",
+            "role": "vertex",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "T",
+            "to": "S",
+            "given": true
+          },
+          {
+            "from": "S",
+            "to": "K",
+            "given": true
+          },
+          {
+            "from": "K",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "W",
+            "to": "R",
+            "role": "parallel_to_y_axis",
+            "given": true
+          },
+          {
+            "from": "W",
+            "to": "K",
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "label": "\\theta",
+            "at": "S",
+            "between": [
+              "ST",
+              "SK"
+            ],
+            "given": true
+          },
+          {
+            "label": "\\beta",
+            "at": "N",
+            "given": true
+          }
+        ],
+        "facts": [
+          {
+            "type": "parallel",
+            "lines": [
+              "WR",
+              "y-axis"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-3"
+      ],
+      "notes": "S(-20 ; -4) is asked in 3.3 (intersection of ST and SK: 5y+2x+60=0). R(-4 ; -52/5) and M(-12 ; 0), N(-30 ; 0) follow. L of parallelogram SWRL (3.6) is not drawn. Diagram not to scale."
+    },
+    {
+      "id": "2020-nov-p2-fig-4",
+      "paper_id": "2020-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Large circle centred at $\\mathrm{M}(-3\\,;\\,4)$ and small circle centred at $\\mathrm{O}(0\\,;\\,0)$ through M. From $\\mathrm{N}(-11\\,;\\,p)$ a tangent touches the large circle at T with NT parallel to the $y$-axis; NM is a tangent to the small circle at M, and MOS is a diameter.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          146,
+          388,
+          1323,
+          1012
+        ],
+        "file": "figures/2020-nov-p2/fig-4.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O(0 ; 0)",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "M(-3 ; 4)",
+            "xy": [
+              -3,
+              4
+            ],
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "N(-11 ; p)",
+            "xy": [
+              -11,
+              -2
+            ],
+            "role": "external",
+            "given": false,
+            "reveals": "4.3"
+          },
+          {
+            "label": "T",
+            "xy": [
+              -11,
+              4
+            ],
+            "role": "point_of_contact",
+            "given": false,
+            "reveals": "4.2"
+          },
+          {
+            "label": "S",
+            "xy": [
+              3,
+              -4
+            ],
+            "role": "endpoint_of_diameter",
+            "given": false
+          }
+        ],
+        "circles": [
+          {
+            "centre": "O",
+            "equation": "x^{2}+y^{2}=25",
+            "radius": 5,
+            "through": [
+              "M",
+              "S"
+            ],
+            "given": false,
+            "reveals": "4.1"
+          },
+          {
+            "centre": "M",
+            "equation": "(x+3)^{2}+(y-4)^{2}=64",
+            "radius": 8,
+            "through": [
+              "T"
+            ],
+            "given": false,
+            "reveals": "4.2"
+          }
+        ],
+        "segments": [
+          {
+            "from": "N",
+            "to": "T",
+            "role": "tangent_at_T",
+            "given": true
+          },
+          {
+            "from": "N",
+            "to": "M",
+            "role": "tangent_at_M",
+            "given": true
+          },
+          {
+            "from": "M",
+            "to": "S",
+            "role": "diameter",
+            "given": true
+          }
+        ],
+        "facts": [
+          {
+            "type": "tangent",
+            "line": "NT",
+            "at": "T",
+            "given": true
+          },
+          {
+            "type": "tangent",
+            "line": "NM",
+            "at": "M",
+            "given": true
+          },
+          {
+            "type": "parallel",
+            "lines": [
+              "NT",
+              "y-axis"
+            ],
+            "given": true
+          },
+          {
+            "type": "diameter",
+            "segment": "MOS",
+            "centre": "O",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-4"
+      ],
+      "notes": "T(-11 ; 4), N(-11 ; -2) and S(3 ; -4) follow from the tangent and diameter conditions (p is found with the equation of NM in 4.3). Diagram not to scale."
+    },
+    {
+      "id": "2020-nov-p2-fig-5",
+      "paper_id": "2020-nov-p2",
+      "kind": "trig_graph",
+      "caption": "Graphs of $f(x)=-\\frac{1}{2}\\cos x$ and $g(x)=\\sin(x+30^{\\circ})$ on $x\\in[0^{\\circ}\\,;\\,180^{\\circ}]$, intersecting approximately at $\\mathrm{A}(130,9^{\\circ}\\,;\\,0,33)$.",
+      "source": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "dpi": 170,
+        "bbox_px": [
+          228,
+          419,
+          1299,
+          1053
+        ],
+        "file": "figures/2020-nov-p2/fig-5.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": null
+        },
+        "view": {
+          "x": [
+            0,
+            180
+          ],
+          "y": [
+            -1.2,
+            1.3
+          ]
+        },
+        "degree_interval": [
+          0,
+          180
+        ],
+        "tick_marks": {
+          "x": [
+            0,
+            90,
+            150,
+            180
+          ],
+          "y": []
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "-\\dfrac{1}{2}\\cos x",
+            "plain": "-0.5*cos(x*pi/180)",
+            "domain": "x in [0, 180] (degrees)",
+            "given": true
+          },
+          {
+            "name": "g",
+            "expr": "\\sin(x+30^{\\circ})",
+            "plain": "sin((x+30)*pi/180)",
+            "domain": "x in [0, 180] (degrees)",
+            "given": true
+          }
+        ],
+        "asymptotes": [],
+        "points": [
+          {
+            "label": "A(130,9° ; 0,33)",
+            "xy": [
+              130.9,
+              0.33
+            ],
+            "role": "intersection",
+            "of": [
+              "f",
+              "g"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-5"
+      ],
+      "notes": "A is printed as an approximate intersection. Decimal commas as in the paper: 130,9° and 0,33."
+    },
+    {
+      "id": "2020-nov-p2-fig-6",
+      "paper_id": "2020-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Point $\\mathrm{P}(-5\\,;\\,12)$ in the second quadrant and T on the positive $x$-axis, with $\\mathrm{P}\\hat{\\mathrm{O}}\\mathrm{T}=\\theta$.",
+      "source": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "dpi": 170,
+        "bbox_px": [
+          347,
+          335,
+          1031,
+          895
+        ],
+        "file": "figures/2020-nov-p2/fig-6.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "P(-5 ; 12)",
+            "xy": [
+              -5,
+              12
+            ],
+            "role": "point",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "positive_x_axis",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "O",
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "label": "\\theta",
+            "at": "O",
+            "between": [
+              "OP",
+              "positive x-axis"
+            ],
+            "role": "PÔT",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-6.1"
+      ],
+      "notes": "S of 6.1.3 is not drawn. Diagram not to scale."
+    },
+    {
+      "id": "2020-nov-p2-fig-7",
+      "paper_id": "2020-nov-p2",
+      "kind": "3d_trig",
+      "caption": "Vertical light pole PQ of length $\\sqrt{3}r$ standing at the centre Q of two concentric circles in the horizontal plane. R is on the inner circle (radius $r$), S on the outer circle; $\\mathrm{R}\\hat{\\mathrm{Q}}\\mathrm{S}=2x$ and the angle of elevation from S to P is $30^{\\circ}$.",
+      "source": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "dpi": 170,
+        "bbox_px": [
+          420,
+          534,
+          1101,
+          1097
+        ],
+        "file": "figures/2020-nov-p2/fig-7.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "Q",
+            "role": "foot_of_pole",
+            "plane": "horizontal"
+          },
+          {
+            "label": "P",
+            "role": "top_of_pole"
+          },
+          {
+            "label": "R",
+            "role": "inner_circle",
+            "plane": "horizontal"
+          },
+          {
+            "label": "S",
+            "role": "outer_circle",
+            "plane": "horizontal"
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "Q",
+            "vertical": true,
+            "length": "\\sqrt{3}r",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "R",
+            "length": "r",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "S",
+            "given": false,
+            "reveals": "7.1"
+          },
+          {
+            "from": "R",
+            "to": "S",
+            "given": true
+          },
+          {
+            "from": "P",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "P",
+            "to": "S",
+            "given": true
+          }
+        ],
+        "planes": [
+          {
+            "name": "horizontal plane",
+            "contains": [
+              "Q",
+              "R",
+              "S"
+            ]
+          }
+        ],
+        "right_angles": [
+          {
+            "at": "Q",
+            "between": [
+              "PQ",
+              "plane QRS"
+            ],
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "label": "30^{\\circ}",
+            "role": "angle_of_elevation",
+            "at": "S",
+            "between": [
+              "SP",
+              "horizontal at S"
+            ],
+            "given": true
+          },
+          {
+            "label": "2x",
+            "at": "Q",
+            "between": [
+              "QR",
+              "QS"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-7"
+      ],
+      "notes": "Schematic 3D diagram, not to scale. QS=3r is shown in 7.1. Numerical values r=10 m and x=56° are given only in 7.4."
+    },
+    {
+      "id": "2020-nov-p2-fig-8.1",
+      "paper_id": "2020-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle with centre O. KOM bisects chord LN (equal marks on LM and MN); $\\mathrm{M}\\hat{\\mathrm{N}}\\mathrm{O}=26^{\\circ}$ and $\\mathrm{N}\\hat{\\mathrm{K}}\\mathrm{P}=32^{\\circ}$. OP is drawn. Angles at K, O and M are numbered.",
+      "source": {
+        "pdf_page": 10,
+        "printed_page": 10,
+        "dpi": 170,
+        "bbox_px": [
+          401,
+          463,
+          1014,
+          1032
+        ],
+        "file": "figures/2020-nov-p2/fig-8.1.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "O",
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "K",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "L",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "N",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "P",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "M",
+            "role": "midpoint_of_LN",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "K",
+            "to": "M",
+            "given": true
+          },
+          {
+            "from": "L",
+            "to": "N",
+            "role": "chord",
+            "given": true
+          },
+          {
+            "from": "K",
+            "to": "P",
+            "given": true
+          },
+          {
+            "from": "K",
+            "to": "N",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "P",
+            "given": true
+          },
+          {
+            "from": "O",
+            "to": "N",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "centre": "O",
+            "through": [
+              "K",
+              "L",
+              "N",
+              "P"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "midpoint",
+            "point": "M",
+            "of": "LN",
+            "given": true
+          },
+          {
+            "type": "collinear",
+            "points": [
+              "K",
+              "O",
+              "M"
+            ],
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "MNO",
+            "size": "26°",
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "NKP",
+            "size": "32°",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-8.1"
+      ],
+      "notes": "Diagram not to scale. Angle numbers at K (K1, K2), O (O1, O2, O3) and M (M1, M2) follow the printed labelling. Equal marks on LM and MN show that KOM bisects LN."
+    },
+    {
+      "id": "2020-nov-p2-fig-8.2",
+      "paper_id": "2020-nov-p2",
+      "kind": "euclidean",
+      "caption": "Triangle ABC with F on AB and G on AC; D on GC such that $\\hat{\\mathrm{D}}_{1}=\\hat{\\mathrm{B}}$. FG and FD are drawn.",
+      "source": {
+        "pdf_page": 11,
+        "printed_page": 11,
+        "dpi": 170,
+        "bbox_px": [
+          259,
+          327,
+          1004,
+          932
+        ],
+        "file": "figures/2020-nov-p2/fig-8.2.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "C",
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "F",
+            "role": "on_AB",
+            "given": true
+          },
+          {
+            "label": "G",
+            "role": "on_AC",
+            "given": true
+          },
+          {
+            "label": "D",
+            "role": "on_GC",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "F",
+            "to": "G",
+            "given": true
+          },
+          {
+            "from": "F",
+            "to": "D",
+            "given": true
+          }
+        ],
+        "circles": [],
+        "facts": [
+          {
+            "type": "angle",
+            "name": "D_1 equals B",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-8.2"
+      ],
+      "notes": "Diagram not to scale. The circle through F, G and D in 8.2.1 is not pre-drawn. Lengths in 8.2.2 are not marked on the diagram."
+    },
+    {
+      "id": "2020-nov-p2-fig-9.1",
+      "paper_id": "2020-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle with centre O, points S, T and R on the circumference, chords ST, SR and TR, and tangent QS at S. Used to prove the tangent-chord theorem $\\mathrm{Q}\\hat{\\mathrm{S}}\\mathrm{T}=\\hat{\\mathrm{R}}$.",
+      "source": {
+        "pdf_page": 12,
+        "printed_page": 12,
+        "dpi": 170,
+        "bbox_px": [
+          372,
+          493,
+          919,
+          983
+        ],
+        "file": "figures/2020-nov-p2/fig-9.1.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "O",
+            "role": "centre",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "R",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "Q",
+            "role": "point_on_tangent",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "S",
+            "to": "T",
+            "role": "chord",
+            "given": true
+          },
+          {
+            "from": "T",
+            "to": "R",
+            "role": "chord",
+            "given": true
+          },
+          {
+            "from": "R",
+            "to": "S",
+            "role": "chord",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "centre": "O",
+            "through": [
+              "S",
+              "T",
+              "R"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "tangent",
+            "line": "QS",
+            "at": "S",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-9.1"
+      ],
+      "notes": "Theorem-proof diagram, not to scale. Radii used in the standard proof are not pre-drawn."
+    },
+    {
+      "id": "2020-nov-p2-fig-9.2",
+      "paper_id": "2020-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle with points M, N, P and Q on the circumference. Chord QN bisects $\\mathrm{M}\\hat{\\mathrm{N}}\\mathrm{P}$ and meets MP at S. The tangent at P meets MN produced at R, with $\\mathrm{QN}\\parallel\\mathrm{PR}$ and $\\hat{\\mathrm{P}}_{1}=x$.",
+      "source": {
+        "pdf_page": 13,
+        "printed_page": 13,
+        "dpi": 170,
+        "bbox_px": [
+          232,
+          402,
+          1082,
+          1059
+        ],
+        "file": "figures/2020-nov-p2/fig-9.2.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "M",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "N",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "P",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "Q",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "S",
+            "role": "on_MP_and_QN",
+            "given": true
+          },
+          {
+            "label": "R",
+            "role": "on_MN_produced",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "M",
+            "to": "N",
+            "given": true
+          },
+          {
+            "from": "N",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "N",
+            "given": true
+          },
+          {
+            "from": "M",
+            "to": "P",
+            "given": true
+          },
+          {
+            "from": "M",
+            "to": "Q",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "P",
+            "given": true
+          },
+          {
+            "from": "P",
+            "to": "R",
+            "role": "tangent_at_P",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "through": [
+              "M",
+              "N",
+              "P",
+              "Q"
+            ]
+          }
+        ],
+        "facts": [
+          {
+            "type": "tangent",
+            "line": "PR",
+            "at": "P",
+            "given": true
+          },
+          {
+            "type": "parallel",
+            "lines": [
+              "QN",
+              "PR"
+            ],
+            "given": true
+          },
+          {
+            "type": "angle_bisector",
+            "angle": "MNP",
+            "ray": "QN",
+            "given": true
+          },
+          {
+            "type": "angle",
+            "name": "P_1",
+            "size": "x",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-9.2"
+      ],
+      "notes": "Diagram not to scale. Angle numbers at M, N, P and Q follow the printed labelling."
+    },
+    {
+      "id": "2020-nov-p2-fig-10",
+      "paper_id": "2020-nov-p2",
+      "kind": "euclidean",
+      "caption": "Circle through D, B and E. Diameter ED is produced to C; AC is a tangent at B. M on DE with $\\mathrm{AM}\\perp\\mathrm{DE}$; AM and chord BE meet at F. Angles at D, B, M and F are numbered.",
+      "source": {
+        "pdf_page": 14,
+        "printed_page": 14,
+        "dpi": 170,
+        "bbox_px": [
+          261,
+          388,
+          1167,
+          1192
+        ],
+        "file": "figures/2020-nov-p2/fig-10.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "D",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "B",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "E",
+            "role": "on_circle",
+            "given": true
+          },
+          {
+            "label": "C",
+            "role": "on_ED_produced",
+            "given": true
+          },
+          {
+            "label": "A",
+            "role": "external",
+            "given": true
+          },
+          {
+            "label": "M",
+            "role": "on_DE",
+            "given": true
+          },
+          {
+            "label": "F",
+            "role": "on_AM_and_BE",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "E",
+            "to": "D",
+            "role": "diameter",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "B",
+            "role": "tangent_at_B",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "E",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "M",
+            "given": true
+          }
+        ],
+        "circles": [
+          {
+            "through": [
+              "D",
+              "B",
+              "E"
+            ]
+          }
+        ],
+        "right_angles": [
+          {
+            "at": "M",
+            "between": [
+              "AM",
+              "DE"
+            ],
+            "given": true
+          }
+        ],
+        "facts": [
+          {
+            "type": "diameter",
+            "segment": "ED",
+            "given": true
+          },
+          {
+            "type": "tangent",
+            "line": "AC",
+            "at": "B",
+            "given": true
+          },
+          {
+            "type": "perpendicular",
+            "lines": [
+              "AM",
+              "DE"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2020-nov-p2-10"
+      ],
+      "notes": "Diagram not to scale. Angle numbers at D (D1, D2), B (B1, B2, B3), M (M1, M2) and F (F1, F2, F3, F4) follow the printed labelling. Lengths CD=2 and DE=6 are given only in 10.2."
+    }
+  ]
+}

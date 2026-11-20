@@ -1,0 +1,2077 @@
+{
+  "id": "2021-nov-p1",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2021,
+  "session": "november",
+  "paper": 1,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2021-nov/2021-nov-p1.pdf",
+    "original_name": "2021-nov-p1.pdf",
+    "sha256": "c8ed5e69b594c2fa82a2f2377ba449bdab55fdb5cc2401bb02c35a7632b330e5",
+    "pdf_pages": 10,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=sGgq9FNv0lQ%3d&tabid=2922&portalid=0&mid=10135",
+    "note": "Scan without a text layer. The PDF includes the cover (printed page 1), the instructions (page 2) and the information sheet (page 10); PDF page n = printed page n. Source file and hash are recorded in sources/maths/manifest.json. Duration 3 hours as printed on the cover."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders, checked at 400 dpi where needed",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2021-nov-p1-1",
+      "paper_id": "2021-nov-p1",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 24,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2021-nov-p1-1.1",
+      "paper_id": "2021-nov-p1",
+      "number": "1.1",
+      "parent": "2021-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "Solve for $x$:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2021-nov-p1-1.1.1",
+      "paper_id": "2021-nov-p1",
+      "number": "1.1.1",
+      "parent": "2021-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$x^{2}-2x-24=0$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.3",
+      "skills": [
+        "alg.factorise-trinomial",
+        "alg.zero-product"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2021-nov-p1-1.1.2",
+      "paper_id": "2021-nov-p1",
+      "number": "1.1.2",
+      "parent": "2021-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$2x^{2}-3x-3=0$  (correct to TWO decimal places)",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.3",
+      "skills": [
+        "alg.quadratic-formula",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2021-nov-p1-1.1.3",
+      "paper_id": "2021-nov-p1",
+      "number": "1.1.3",
+      "parent": "2021-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$x^{2}+5x\\leq -4$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M2",
+      "subtopic": "M2.4",
+      "skills": [
+        "alg.quadratic-inequality",
+        "alg.factorise-trinomial"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2021-nov-p1-1.1.4",
+      "paper_id": "2021-nov-p1",
+      "number": "1.1.4",
+      "parent": "2021-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$\\sqrt{x+28}=2-x$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M1",
+      "subtopic": "M1.5",
+      "skills": [
+        "alg.surd-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2021-nov-p1-1.2",
+      "paper_id": "2021-nov-p1",
+      "number": "1.2",
+      "parent": "2021-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Solve simultaneously for $x$ and $y$ in:\n\n$2y=3+x$ and $2xy+7=x^{2}+4y^{2}$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.5",
+      "skills": [
+        "alg.simultaneous-linear-quadratic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6
+    },
+    {
+      "id": "2021-nov-p1-1.3",
+      "paper_id": "2021-nov-p1",
+      "number": "1.3",
+      "parent": "2021-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "The roots of an equation are $x=\\dfrac{-n\\pm\\sqrt{n^{2}-4mp}}{2m}$ where $m$, $n$ and $p$ are positive real numbers. The numbers $m$, $n$ and $p$, in that order, form a geometric sequence.\n\nProve that $x$ is a non-real number.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M2",
+      "subtopic": "M2.6",
+      "skills": [
+        "alg.nature-of-roots",
+        "seq.geometric-common-ratio"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2021-nov-p1-2",
+      "paper_id": "2021-nov-p1",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": "Given the geometric series: $x+90+81+\\dots$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 6,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8
+    },
+    {
+      "id": "2021-nov-p1-2.1",
+      "paper_id": "2021-nov-p1",
+      "number": "2.1",
+      "parent": "2021-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Calculate the value of $x$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.4",
+      "skills": [
+        "seq.geometric-common-ratio"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2021-nov-p1-2.2",
+      "paper_id": "2021-nov-p1",
+      "number": "2.2",
+      "parent": "2021-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Show that the sum of the first $n$ terms is $S_{n}=1\\,000\\bigl(1-(0,9)^{n}\\bigr)$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.geometric-series-sum"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2021-nov-p1-2.3",
+      "paper_id": "2021-nov-p1",
+      "number": "2.3",
+      "parent": "2021-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Hence, or otherwise, calculate the sum to infinity.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.geometric-sum-to-infinity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2021-nov-p1-3",
+      "paper_id": "2021-nov-p1",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "Consider the quadratic number pattern: $-145\\,;\\,-122\\,;\\,-101\\,;\\,\\dots$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 11,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12
+    },
+    {
+      "id": "2021-nov-p1-3.1",
+      "paper_id": "2021-nov-p1",
+      "number": "3.1",
+      "parent": "2021-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the value of $\\mathrm{T}_{4}$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-second-difference"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13
+    },
+    {
+      "id": "2021-nov-p1-3.2",
+      "paper_id": "2021-nov-p1",
+      "number": "3.2",
+      "parent": "2021-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Show that the general term of this number pattern is $\\mathrm{T}_{n}=-n^{2}+26n-170$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-general-term",
+        "seq.quadratic-second-difference"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2021-nov-p1-3.3",
+      "paper_id": "2021-nov-p1",
+      "number": "3.3",
+      "parent": "2021-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Between which TWO terms of the quadratic number pattern will there be a difference of $-121$?",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-second-difference",
+        "seq.solve-for-n"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2021-nov-p1-3.4",
+      "paper_id": "2021-nov-p1",
+      "number": "3.4",
+      "parent": "2021-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "What value must be added to each term in the number pattern so that the value of the maximum term in the new number pattern formed will be $1$?",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-general-term",
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2021-nov-p1-4",
+      "paper_id": "2021-nov-p1",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "Consider the linear pattern: $5\\,;\\,7\\,;\\,9\\,;\\,\\dots$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17
+    },
+    {
+      "id": "2021-nov-p1-4.1",
+      "paper_id": "2021-nov-p1",
+      "number": "4.1",
+      "parent": "2021-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Determine $\\mathrm{T}_{51}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.2",
+      "skills": [
+        "seq.arithmetic-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2021-nov-p1-4.2",
+      "paper_id": "2021-nov-p1",
+      "number": "4.2",
+      "parent": "2021-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Calculate the sum of the first $51$ terms.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.arithmetic-series-sum"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19
+    },
+    {
+      "id": "2021-nov-p1-4.3",
+      "paper_id": "2021-nov-p1",
+      "number": "4.3",
+      "parent": "2021-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the expansion of $\\displaystyle\\sum_{n=1}^{5000}(2n+3)$. Show only the first $3$ terms and the last term of the expansion.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.sigma-notation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20
+    },
+    {
+      "id": "2021-nov-p1-4.4",
+      "paper_id": "2021-nov-p1",
+      "number": "4.4",
+      "parent": "2021-nov-p1-4",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Hence, or otherwise, calculate $\\displaystyle\\sum_{n=1}^{5000}(2n+3)+\\sum_{n=1}^{4999}(-2n-1)$.\n\nALL working details must be shown.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.sigma-notation",
+        "seq.arithmetic-series-sum"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21
+    },
+    {
+      "id": "2021-nov-p1-5",
+      "paper_id": "2021-nov-p1",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "Given: $f(x)=\\dfrac{-1}{x-3}+2$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2021-nov-p1-5.1",
+      "paper_id": "2021-nov-p1",
+      "number": "5.1",
+      "parent": "2021-nov-p1-5",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the equations of the asymptotes of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.hyperbola-asymptotes"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23
+    },
+    {
+      "id": "2021-nov-p1-5.2",
+      "paper_id": "2021-nov-p1",
+      "number": "5.2",
+      "parent": "2021-nov-p1-5",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the domain of $f$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "set",
+      "topic": "M4",
+      "subtopic": "M4.1",
+      "skills": [
+        "fn.domain-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24
+    },
+    {
+      "id": "2021-nov-p1-5.3",
+      "paper_id": "2021-nov-p1",
+      "number": "5.3",
+      "parent": "2021-nov-p1-5",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Determine the coordinates of the $x$-intercept of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.intercepts"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25
+    },
+    {
+      "id": "2021-nov-p1-5.4",
+      "paper_id": "2021-nov-p1",
+      "number": "5.4",
+      "parent": "2021-nov-p1-5",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the coordinates of the $y$-intercept of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.intercepts"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2021-nov-p1-5.5",
+      "paper_id": "2021-nov-p1",
+      "number": "5.5",
+      "parent": "2021-nov-p1-5",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Draw the graph of $f$. Clearly show ALL the asymptotes and intercepts with the axes.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.hyperbola-asymptotes",
+        "fn.intercepts"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27,
+      "notes": "No dedicated skill for sketching a hyperbola; tagged with fn.hyperbola-asymptotes and fn.intercepts."
+    },
+    {
+      "id": "2021-nov-p1-6",
+      "paper_id": "2021-nov-p1",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": "The graph of $f(x)=\\log_{4}x$ is drawn below.\n\n$\\mathrm{B}(k\\,;\\,2)$ is a point on $f$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 8,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2021-nov-p1-fig-6"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28
+    },
+    {
+      "id": "2021-nov-p1-6.1",
+      "paper_id": "2021-nov-p1",
+      "number": "6.1",
+      "parent": "2021-nov-p1-6",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the value of $k$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.4",
+      "skills": [
+        "fn.log-definition"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2021-nov-p1-6.2",
+      "paper_id": "2021-nov-p1",
+      "number": "6.2",
+      "parent": "2021-nov-p1-6",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the values of $x$ for which $-1\\leq f(x)\\leq 2$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.4",
+      "skills": [
+        "fn.log-definition",
+        "fn.interval-notation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30
+    },
+    {
+      "id": "2021-nov-p1-6.3",
+      "paper_id": "2021-nov-p1",
+      "number": "6.3",
+      "parent": "2021-nov-p1-6",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Write down the equation of $f^{-1}$, the inverse of $f$, in the form $y=\\dots$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-exp-log"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2021-nov-p1-6.4",
+      "paper_id": "2021-nov-p1",
+      "number": "6.4",
+      "parent": "2021-nov-p1-6",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "For which values of $x$ will $x\\cdot f^{-1}(x)<0$?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-exp-log",
+        "fn.inequality-from-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2021-nov-p1-7",
+      "paper_id": "2021-nov-p1",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "The graph of $f(x)=(x+4)(x-6)$ is drawn below.\n\nThe parabola cuts the $x$-axis at B and D and the $y$-axis at G.\n\nC is the turning point of $f$.\n\nLine AE has an angle of inclination of $\\theta$ and cuts the $x$-axis and $y$-axis at A and E respectively.\n\nT is a point on $f$ between B and G.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 17,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2021-nov-p1-fig-7"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2021-nov-p1-7.1",
+      "paper_id": "2021-nov-p1",
+      "number": "7.1",
+      "parent": "2021-nov-p1-7",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Write down the coordinates of B and D.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.intercepts"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2021-nov-p1-7.2",
+      "paper_id": "2021-nov-p1",
+      "number": "7.2",
+      "parent": "2021-nov-p1-7",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of C.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2021-nov-p1-7.3",
+      "paper_id": "2021-nov-p1",
+      "number": "7.3",
+      "parent": "2021-nov-p1-7",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Write down the range of $f$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "set",
+      "topic": "M4",
+      "subtopic": "M4.1",
+      "skills": [
+        "fn.domain-range",
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2021-nov-p1-7.4",
+      "paper_id": "2021-nov-p1",
+      "number": "7.4",
+      "parent": "2021-nov-p1-7",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": "Given that $\\theta=14,04^{\\circ}$ and the tangent to $f$ at T is perpendicular to AE.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2021-nov-p1-7.4.1",
+      "paper_id": "2021-nov-p1",
+      "number": "7.4.1",
+      "parent": "2021-nov-p1-7.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the gradient of AE, correct to TWO decimal places.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.inclination-angle",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2021-nov-p1-7.4.2",
+      "paper_id": "2021-nov-p1",
+      "number": "7.4.2",
+      "parent": "2021-nov-p1-7.4",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of T.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.tangent-equation",
+        "ageo.parallel-perpendicular-gradients"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39
+    },
+    {
+      "id": "2021-nov-p1-7.5",
+      "paper_id": "2021-nov-p1",
+      "number": "7.5",
+      "parent": "2021-nov-p1-7",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "A straight line, $g$, parallel to AE, cuts $f$ at $\\mathrm{K}(-3\\,;\\,-9)$ and R.\n\nCalculate the $x$-coordinate of R.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "ageo.parallel-perpendicular-gradients",
+        "alg.simultaneous-linear-quadratic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40
+    },
+    {
+      "id": "2021-nov-p1-8",
+      "paper_id": "2021-nov-p1",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 16,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41
+    },
+    {
+      "id": "2021-nov-p1-8.1",
+      "paper_id": "2021-nov-p1",
+      "number": "8.1",
+      "parent": "2021-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "A farmer bought a tractor for R980 000. The value of the tractor depreciates annually at a rate of 9,2% p.a. on the reducing-balance method. Calculate the book value of the tractor after $7$ years.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.3",
+      "skills": [
+        "fin.depreciation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2021-nov-p1-8.2",
+      "paper_id": "2021-nov-p1",
+      "number": "8.2",
+      "parent": "2021-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "How many years will it take for an amount of R75 000 to accrue to R116 253,50 in an account earning interest of 6,8% p.a., compounded quarterly?",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.2",
+      "skills": [
+        "fin.solve-n-with-logs",
+        "fin.compound-growth"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43
+    },
+    {
+      "id": "2021-nov-p1-8.3",
+      "paper_id": "2021-nov-p1",
+      "number": "8.3",
+      "parent": "2021-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Thabo wanted to save R450 000 as a deposit to buy a house on 30 June 2018.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2021-nov-p1-8.3.1",
+      "paper_id": "2021-nov-p1",
+      "number": "8.3.1",
+      "parent": "2021-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "He deposited a fixed amount of money at the end of every month into an account earning interest of 8,35% p.a., compounded monthly. His first deposit was made on 31 July 2013 and his $60^{\\text{th}}$ deposit on 30 June 2018. Calculate the amount he deposited monthly.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.future-value-annuity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2021-nov-p1-8.3.2",
+      "paper_id": "2021-nov-p1",
+      "number": "8.3.2",
+      "parent": "2021-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": "Thabo bought a house costing R1 500 000 and used his savings as the deposit. He obtained a home loan for the balance of the purchase price at an interest of 12% p.a., compounded monthly over $25$ years. He made his first monthly instalment of R11 058,85 towards the loan on 31 July 2018.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2021-nov-p1-8.3.2.1",
+      "paper_id": "2021-nov-p1",
+      "number": "8.3.2.1",
+      "parent": "2021-nov-p1-8.3.2",
+      "level": 4,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "(a) What will the balance outstanding on the loan be on 30 June 2039, $21$ years after the loan was granted?",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.outstanding-balance"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47,
+      "notes": "The paper labels both 8.3.2 sub-parts as (a); they are stored as 8.3.2.1 and 8.3.2.2."
+    },
+    {
+      "id": "2021-nov-p1-8.3.2.2",
+      "paper_id": "2021-nov-p1",
+      "number": "8.3.2.2",
+      "parent": "2021-nov-p1-8.3.2",
+      "level": 4,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "(a) Calculate the interest Thabo will have paid over the first $21$ years of the loan.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.outstanding-balance"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48,
+      "notes": "No dedicated skill for total interest paid on a loan; tagged with fin.outstanding-balance. The paper labels both 8.3.2 sub-parts as (a)."
+    },
+    {
+      "id": "2021-nov-p1-9",
+      "paper_id": "2021-nov-p1",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 12,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49
+    },
+    {
+      "id": "2021-nov-p1-9.1",
+      "paper_id": "2021-nov-p1",
+      "number": "9.1",
+      "parent": "2021-nov-p1-9",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine $f'(x)$ from first principles if it is given that $f(x)=2x^{2}-3x$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.3",
+      "skills": [
+        "calc.first-principles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2021-nov-p1-9.2",
+      "paper_id": "2021-nov-p1",
+      "number": "9.2",
+      "parent": "2021-nov-p1-9",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Determine:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51
+    },
+    {
+      "id": "2021-nov-p1-9.2.1",
+      "paper_id": "2021-nov-p1",
+      "number": "9.2.1",
+      "parent": "2021-nov-p1-9.2",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$\\dfrac{dy}{dx}$ if $y=4x^{5}-6x^{4}+3x$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.6",
+      "skills": [
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2021-nov-p1-9.2.2",
+      "paper_id": "2021-nov-p1",
+      "number": "9.2.2",
+      "parent": "2021-nov-p1-9.2",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "$D_{x}\\left[-\\dfrac{\\sqrt[3]{x}}{2}+\\left(\\dfrac{1}{3x}\\right)^{2}\\right]$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.6",
+      "skills": [
+        "calc.power-rule",
+        "exp.laws-of-exponents"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53
+    },
+    {
+      "id": "2021-nov-p1-10",
+      "paper_id": "2021-nov-p1",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": "The graph of $h(x)=ax^{3}+bx^{2}$ is drawn.\n\nThe graph has turning points at the origin, $\\mathrm{O}(0\\,;\\,0)$ and $\\mathrm{B}(4\\,;\\,32)$.\n\nA is an $x$-intercept of $h$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 15,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2021-nov-p1-fig-10"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54
+    },
+    {
+      "id": "2021-nov-p1-10.1",
+      "paper_id": "2021-nov-p1",
+      "number": "10.1",
+      "parent": "2021-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Show that $a=-1$ and $b=6$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.stationary-points",
+        "calc.cubic-equation-from-roots"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55
+    },
+    {
+      "id": "2021-nov-p1-10.2",
+      "paper_id": "2021-nov-p1",
+      "number": "10.2",
+      "parent": "2021-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of A.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "fn.intercepts",
+        "alg.factor-theorem-cubic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56
+    },
+    {
+      "id": "2021-nov-p1-10.3",
+      "paper_id": "2021-nov-p1",
+      "number": "10.3",
+      "parent": "2021-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Write down the values of $x$ for which $h$ is:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2021-nov-p1-10.3.1",
+      "paper_id": "2021-nov-p1",
+      "number": "10.3.1",
+      "parent": "2021-nov-p1-10.3",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Increasing",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.stationary-points",
+        "fn.interval-notation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58
+    },
+    {
+      "id": "2021-nov-p1-10.3.2",
+      "paper_id": "2021-nov-p1",
+      "number": "10.3.2",
+      "parent": "2021-nov-p1-10.3",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Concave down",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "calc.concavity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2021-nov-p1-10.4",
+      "paper_id": "2021-nov-p1",
+      "number": "10.4",
+      "parent": "2021-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "For which values of $k$ will $-(x-1)^{3}+6(x-1)^{2}-k=0$ have one negative and two distinct positive roots?",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.5",
+      "skills": [
+        "fn.translate-graph",
+        "calc.sketch-cubic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60,
+      "notes": "The equation is $h(x-1)=k$; the number and signs of roots are read from the translated cubic. Tagged with fn.translate-graph and calc.sketch-cubic."
+    },
+    {
+      "id": "2021-nov-p1-11",
+      "paper_id": "2021-nov-p1",
+      "number": "11",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "After travelling a distance of $20$ km from home, a person suddenly remembers that he did not close a tap in his garden. He decides to turn around immediately and return home to close the tap.\n\nThe cost of the water, at the rate at which water is flowing out of the tap, is R1,60 per hour.\n\nThe cost of petrol is $\\left(1,2+\\dfrac{x}{4000}\\right)$ rands per km, where $x$ is the average speed in km/h.\n\nCalculate the average speed at which the person must travel home to keep his cost as low as possible.",
+      "marks": 7,
+      "total_marks": 7,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.optimisation-model",
+        "calc.optimisation-solve"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2021-nov-p1-12",
+      "paper_id": "2021-nov-p1",
+      "number": "12",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 14,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62
+    },
+    {
+      "id": "2021-nov-p1-12.1",
+      "paper_id": "2021-nov-p1",
+      "number": "12.1",
+      "parent": "2021-nov-p1-12",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": "A and B are independent events. It is further given that:\n\n$\\mathrm{P}(\\text{A and B})=0,3$ and $\\mathrm{P}(\\text{only B})=0,2$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63
+    },
+    {
+      "id": "2021-nov-p1-12.1.1",
+      "paper_id": "2021-nov-p1",
+      "number": "12.1.1",
+      "parent": "2021-nov-p1-12.1",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Are A and B mutually exclusive? Motivate your answer.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M8",
+      "subtopic": "M8.3",
+      "skills": [
+        "prob.independence-test",
+        "prob.addition-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64
+    },
+    {
+      "id": "2021-nov-p1-12.1.2",
+      "paper_id": "2021-nov-p1",
+      "number": "12.1.2",
+      "parent": "2021-nov-p1-12.1",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": "Determine:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65
+    },
+    {
+      "id": "2021-nov-p1-12.1.2.1",
+      "paper_id": "2021-nov-p1",
+      "number": "12.1.2.1",
+      "parent": "2021-nov-p1-12.1.2",
+      "level": 4,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "$\\mathrm{P}(\\text{only A})$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.5",
+      "skills": [
+        "prob.independence-test",
+        "prob.addition-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 66
+    },
+    {
+      "id": "2021-nov-p1-12.1.2.2",
+      "paper_id": "2021-nov-p1",
+      "number": "12.1.2.2",
+      "parent": "2021-nov-p1-12.1.2",
+      "level": 4,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "$\\mathrm{P}(\\text{not A or not B})$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.5",
+      "skills": [
+        "prob.addition-rule",
+        "prob.independence-test"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 67
+    },
+    {
+      "id": "2021-nov-p1-12.2",
+      "paper_id": "2021-nov-p1",
+      "number": "12.2",
+      "parent": "2021-nov-p1-12",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": "A teacher has $5$ different poetry books, $4$ different dramas and $3$ different novels. She must arrange these $12$ books from left to right on a shelf.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 68
+    },
+    {
+      "id": "2021-nov-p1-12.2.1",
+      "paper_id": "2021-nov-p1",
+      "number": "12.2.1",
+      "parent": "2021-nov-p1-12.2",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Write down the probability that a novel will be the first book placed on the shelf.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.9",
+      "skills": [
+        "count.counting-probability"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 69
+    },
+    {
+      "id": "2021-nov-p1-12.2.2",
+      "paper_id": "2021-nov-p1",
+      "number": "12.2.2",
+      "parent": "2021-nov-p1-12.2",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Calculate the number of different ways these $12$ books can be placed on the shelf if any book can be placed in any position.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.8",
+      "skills": [
+        "count.fundamental-counting-principle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 70
+    },
+    {
+      "id": "2021-nov-p1-12.2.3",
+      "paper_id": "2021-nov-p1",
+      "number": "12.2.3",
+      "parent": "2021-nov-p1-12.2",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Calculate the probability that a poetry book is placed in the first position, the three novels are placed next to each other and a drama is placed in the last position.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M8",
+      "subtopic": "M8.9",
+      "skills": [
+        "count.counting-probability",
+        "count.arrangements-with-blocks",
+        "count.arrangements-with-restrictions"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 71
+    }
+  ],
+  "figures": [
+    {
+      "id": "2021-nov-p1-fig-6",
+      "paper_id": "2021-nov-p1",
+      "kind": "function_graph",
+      "caption": "Increasing log graph of $f(x)=\\log_{4}x$, passing through $\\mathrm{B}(k\\,;\\,2)$, with a vertical asymptote along the $y$-axis.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          380,
+          430,
+          1100,
+          900
+        ],
+        "file": "figures/2021-nov-p1/fig-6.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "view": {
+          "x": [
+            -1,
+            20
+          ],
+          "y": [
+            -3,
+            4
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "\\log_{4}x",
+            "plain": "__import__('math').log(x,4)",
+            "domain": "x>0",
+            "given": true
+          }
+        ],
+        "asymptotes": [
+          {
+            "of": "f",
+            "type": "vertical",
+            "equation": "x=0",
+            "drawn": true,
+            "given": true
+          }
+        ],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin"
+          },
+          {
+            "label": "B(k ; 2)",
+            "xy": [
+              16,
+              2
+            ],
+            "role": "point_on_f",
+            "of": [
+              "f"
+            ],
+            "given": false,
+            "reveals": "6.1"
+          }
+        ]
+      },
+      "used_by": [
+        "2021-nov-p1-6"
+      ],
+      "notes": "k=16 is derived in 6.1 from B(k ; 2) lying on $y=\\log_{4}x$. Diagram not to scale."
+    },
+    {
+      "id": "2021-nov-p1-fig-7",
+      "paper_id": "2021-nov-p1",
+      "kind": "function_graph",
+      "caption": "Parabola $f(x)=(x+4)(x-6)$ with $x$-intercepts B and D, $y$-intercept G and turning point C, and line AE of inclination $\\theta$ through A and E. T is a point on $f$ between B and G.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          200,
+          505,
+          1250,
+          1300
+        ],
+        "file": "figures/2021-nov-p1/fig-7.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "view": {
+          "x": [
+            -8,
+            10
+          ],
+          "y": [
+            -30,
+            12
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "(x+4)(x-6)",
+            "plain": "(x+4)*(x-6)",
+            "domain": "all real x",
+            "given": true
+          },
+          {
+            "name": "AE",
+            "expr": "(\\tan 14,04^{\\circ})(x-a_{A})",
+            "plain": "0.25*x + 1.5",
+            "domain": "all real x",
+            "given": false,
+            "reveals": "7.4.1",
+            "note": "Gradient tan 14,04° is asked in 7.4.1; the intercept of AE is not uniquely determined from the stem until that gradient is used with the drawn line."
+          }
+        ],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin"
+          },
+          {
+            "label": "B",
+            "xy": [
+              -4,
+              0
+            ],
+            "role": "x_intercept",
+            "of": [
+              "f"
+            ],
+            "given": false,
+            "reveals": "7.1"
+          },
+          {
+            "label": "D",
+            "xy": [
+              6,
+              0
+            ],
+            "role": "x_intercept",
+            "of": [
+              "f"
+            ],
+            "given": false,
+            "reveals": "7.1"
+          },
+          {
+            "label": "G",
+            "xy": [
+              0,
+              -24
+            ],
+            "role": "y_intercept",
+            "of": [
+              "f"
+            ],
+            "given": false
+          },
+          {
+            "label": "C",
+            "xy": [
+              1,
+              -25
+            ],
+            "role": "turning_point",
+            "of": [
+              "f"
+            ],
+            "given": false,
+            "reveals": "7.2"
+          },
+          {
+            "label": "A",
+            "role": "x_intercept",
+            "of": [
+              "AE"
+            ],
+            "given": true
+          },
+          {
+            "label": "E",
+            "role": "y_intercept",
+            "of": [
+              "AE"
+            ],
+            "given": true
+          },
+          {
+            "label": "T",
+            "role": "point_of_tangency",
+            "of": [
+              "f"
+            ],
+            "given": false,
+            "reveals": "7.4.2"
+          }
+        ],
+        "angles": [
+          {
+            "label": "\\theta",
+            "at": "A",
+            "role": "inclination_of_AE",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2021-nov-p1-7"
+      ],
+      "notes": "f is given, so B(-4 ; 0), D(6 ; 0), G(0 ; -24) and C(1 ; -25) follow. θ=14,04° is given in 7.4; the exact intercepts of AE are not printed. Diagram not to scale. Points A, E and T are labelled but their coordinates are not all determined from the printed diagram alone."
+    },
+    {
+      "id": "2021-nov-p1-fig-10",
+      "paper_id": "2021-nov-p1",
+      "kind": "function_graph",
+      "caption": "Cubic $h(x)=ax^{3}+bx^{2}$ with turning points at the origin O(0 ; 0) and B(4 ; 32), and a further $x$-intercept A.",
+      "source": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "dpi": 170,
+        "bbox_px": [
+          280,
+          400,
+          1150,
+          980
+        ],
+        "file": "figures/2021-nov-p1/fig-10.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "view": {
+          "x": [
+            -3,
+            8
+          ],
+          "y": [
+            -20,
+            40
+          ]
+        },
+        "functions": [
+          {
+            "name": "h",
+            "expr": "-x^{3}+6x^{2}",
+            "plain": "-x**3+6*x**2",
+            "domain": "all real x",
+            "given": false,
+            "reveals": "10.1"
+          }
+        ],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin_and_turning_point",
+            "of": [
+              "h"
+            ],
+            "given": true
+          },
+          {
+            "label": "B(4 ; 32)",
+            "xy": [
+              4,
+              32
+            ],
+            "role": "turning_point",
+            "of": [
+              "h"
+            ],
+            "given": true
+          },
+          {
+            "label": "A",
+            "xy": [
+              6,
+              0
+            ],
+            "role": "x_intercept",
+            "of": [
+              "h"
+            ],
+            "given": false,
+            "reveals": "10.2"
+          }
+        ]
+      },
+      "used_by": [
+        "2021-nov-p1-10"
+      ],
+      "notes": "a=-1 and b=6 are derived in 10.1 from the given turning points; A(6 ; 0) is asked in 10.2. Diagram not to scale."
+    }
+  ]
+}

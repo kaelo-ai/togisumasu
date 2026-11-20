@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mohlodi.local/schema/skill.schema.json",
+  "title": "Skill",
+  "description": "One node in the knowledge graph: a small, teachable skill with prerequisite skills.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "topic",
+    "prerequisites",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+\\.[a-z0-9-]+$",
+      "description": "<strand>.<slug>, never renamed once approved"
+    },
+    "name": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string",
+      "pattern": "^M\\d+(\\.\\d+)?$",
+      "description": "Home CAPS section (or unit)"
+    },
+    "prerequisites": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "approved",
+        "deprecated"
+      ]
+    },
+    "first_seen": {
+      "type": "string",
+      "description": "Paper id where the skill was first needed"
+    },
+    "replaced_by": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Optional per-skill summary of examiner-reported learner errors (NSC Diagnostic Reports). Full rows live in research/.",
+      "required": [
+        "source",
+        "count",
+        "years_flagged",
+        "examples"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "years_flagged": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "uniqueItems": true
+        },
+        "by_match": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": [
+              "paper",
+              "question",
+              "misconception"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "year": {
+                "type": "integer"
+              },
+              "paper": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string"
+              },
+              "page": {
+                "type": "string"
+              },
+              "misconception": {
+                "type": "string"
+              },
+              "match": {
+                "enum": [
+                  "exact",
+                  "partial",
+                  "new"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -23,7 +23,7 @@ Without Docker (Node 22.5 or newer):
 
 ```bash
 npm start          # http://localhost:3000, data in ./data
-npm test           # 92 tests: auth, isolation, question bank, catalog, admin, rate limits, AI tutor
+npm test           # auth, isolation, question bank, catalog, admin, rate limits, AI tutor, CAPS course
 npm run ai:check   # test your LLM settings
 npm run questions:seed -- 20   # optional: pre-generate 20 questions per topic
 npm run admin -- promote you@example.com   # make an existing account an admin
@@ -69,6 +69,12 @@ npm run admin -- promote you@example.com   # make an existing account an admin
 - A Content Security Policy allows only the MathJax CDN and Google Fonts.
 
 The browser keeps a per-user cache of your progress and a small cache of recently fetched questions. If the server is unreachable you can keep practising from the cached questions, and progress syncs when the connection returns.
+
+## Grade 12 CAPS
+
+The algebra course and the Grade 12 CAPS course are two slices of one topic graph. A topic such as integer exponents exists once and can belong to both. `GET /api/courses` lists them; `GET /api/catalog?course=gr12-caps` returns the CAPS slice. Unit 0 (Grade 10–11 foundations) is part of that course.
+
+NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
 
 ## Question bank
 
@@ -149,7 +155,9 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 ```
 server.js                  API, auth, admin routes, static files
 questions.js               SQLite question bank, FTS5 similarity, validation and seeding
-catalog.js                 units, topics and prerequisite graph in SQLite
+catalog.js                 units, topics, courses and the prerequisite graph in SQLite
+caps.js                    Grade 12 CAPS course slice and the bank-skill lookup
+nsc.js                     idempotent NSC paper import and the practice/exam pools
 admin.js                   operator CLI: promote/demote/disable/delete accounts
 ai.js                      LLM providers and the tutor prompt (`node ai.js check` tests it)
 public/core.js             maths parser, answer checking, skill definitions and generators

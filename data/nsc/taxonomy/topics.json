@@ -1,0 +1,526 @@
+{
+  "subject": "mathematics",
+  "curriculum": "CAPS",
+  "grade": 12,
+  "source": "Mind the Gap Mathematics Grade 12 (DBE, 2015), Units 1-13 and their sections; sections marked source=added are ours.",
+  "version": 1,
+  "units": [
+    {
+      "id": "M1",
+      "name": "Exponents and surds",
+      "strand": "Algebra",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M1.1",
+          "name": "The number system",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M1.2",
+          "name": "Working with irrational numbers",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M1.3",
+          "name": "Exponents",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M1.4",
+          "name": "Exponential equations",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M1.5",
+          "name": "Equations with rational exponents",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "name": "Algebra",
+      "strand": "Algebra",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M2.1",
+          "name": "Algebraic expressions",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M2.2",
+          "name": "Factorising",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M2.3",
+          "name": "Quadratic equations",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M2.4",
+          "name": "Quadratic inequalities",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M2.5",
+          "name": "Simultaneous equations",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M2.6",
+          "name": "The nature of the roots",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "name": "Number patterns, sequences and series",
+      "strand": "Sequences and series",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M3.1",
+          "name": "Number patterns",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M3.2",
+          "name": "Arithmetic sequences",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M3.3",
+          "name": "Quadratic sequences",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M3.4",
+          "name": "Geometric sequences",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M3.5",
+          "name": "Arithmetic and geometric series",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M4",
+      "name": "Functions",
+      "strand": "Functions",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M4.1",
+          "name": "What is a function? / notation",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M4.2",
+          "name": "Basic functions, formulas and graphs",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M4.3",
+          "name": "Inverse functions",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M4.4",
+          "name": "The logarithmic function",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M5",
+      "name": "Trigonometric functions",
+      "strand": "Trigonometry",
+      "papers": [
+        2
+      ],
+      "sections": [
+        {
+          "id": "M5.1",
+          "name": "Graphs of trigonometric functions",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M5.2",
+          "name": "Amplitude",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M5.3",
+          "name": "Vertical shift",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M5.4",
+          "name": "Period",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M5.5",
+          "name": "Horizontal shift",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M6",
+      "name": "Finance, growth and decay",
+      "strand": "Finance",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M6.1",
+          "name": "Simple and compound interest",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M6.2",
+          "name": "Calculating the value of P, i and n",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M6.3",
+          "name": "Simple and compound decay formulae",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M6.4",
+          "name": "Nominal and effective interest rates",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M6.5",
+          "name": "Investments with time and interest-rate changes",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M6.6",
+          "name": "Annuities",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M7",
+      "name": "Differential calculus",
+      "strand": "Calculus",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M7.1",
+          "name": "Average gradient",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M7.2",
+          "name": "Average rate of change",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M7.3",
+          "name": "The derivative at a point (first principles)",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M7.4",
+          "name": "Uses of the derivative",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M7.5",
+          "name": "Drawing the graph of a cubic polynomial",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M7.6",
+          "name": "Rules of differentiation",
+          "source": "added",
+          "note": "Not a Mind the Gap section, but tested every year (power rule, simplifying before differentiating)."
+        }
+      ]
+    },
+    {
+      "id": "M8",
+      "name": "Probability",
+      "strand": "Probability",
+      "papers": [
+        1
+      ],
+      "sections": [
+        {
+          "id": "M8.1",
+          "name": "Theoretical probability and relative frequency",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.2",
+          "name": "Venn diagrams",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.3",
+          "name": "Mutually exclusive events",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.4",
+          "name": "Complementary events",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.5",
+          "name": "Events which are not mutually exclusive",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.6",
+          "name": "Symbols and sets used in probability",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.7",
+          "name": "Tree diagrams and contingency tables",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.8",
+          "name": "Counting principles",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M8.9",
+          "name": "Counting principles in probability",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M9",
+      "name": "Analytical geometry",
+      "strand": "Geometry",
+      "papers": [
+        2
+      ],
+      "sections": [
+        {
+          "id": "M9.1",
+          "name": "Revision: distance, midpoint, gradient",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M9.2",
+          "name": "The equation of a line",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M9.3",
+          "name": "The inclination of a line",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M9.4",
+          "name": "Circles in analytical geometry",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M10",
+      "name": "Trigonometry",
+      "strand": "Trigonometry",
+      "papers": [
+        2
+      ],
+      "sections": [
+        {
+          "id": "M10.1",
+          "name": "Revision: trig ratios",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.2",
+          "name": "Trig ratios in the quadrants",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.3",
+          "name": "Solving triangles with trig",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.4",
+          "name": "Trig ratios of special angles",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.5",
+          "name": "Using reduction formulae",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.6",
+          "name": "Trigonometric identities",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.7",
+          "name": "Solving trigonometric equations",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.8",
+          "name": "Compound and double angle identities",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M10.9",
+          "name": "Values for which an identity is undefined",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M11",
+      "name": "Trigonometry: sine, cosine and area rules",
+      "strand": "Trigonometry",
+      "papers": [
+        2
+      ],
+      "sections": [
+        {
+          "id": "M11.1",
+          "name": "Right-angled triangles",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M11.2",
+          "name": "Area rule",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M11.3",
+          "name": "Sine rule",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M11.4",
+          "name": "Cosine rule",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M11.5",
+          "name": "Problems in two and three dimensions",
+          "source": "mind-the-gap"
+        }
+      ]
+    },
+    {
+      "id": "M12",
+      "name": "Euclidean geometry",
+      "strand": "Geometry",
+      "papers": [
+        2
+      ],
+      "sections": [
+        {
+          "id": "M12.1",
+          "name": "Revision: proportion and area of triangles",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M12.2",
+          "name": "Proportion theorems",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M12.3",
+          "name": "Similar polygons",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M12.4",
+          "name": "Circle geometry (Grade 11, examined in P2)",
+          "source": "added",
+          "note": "Mind the Gap Gr 12 omits it; NSC P2 always examines it."
+        }
+      ]
+    },
+    {
+      "id": "M13",
+      "name": "Statistics",
+      "strand": "Statistics",
+      "papers": [
+        2
+      ],
+      "sections": [
+        {
+          "id": "M13.1",
+          "name": "Bar graphs and frequency tables",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.2",
+          "name": "Measures of central tendency",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.3",
+          "name": "Measures of dispersion",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.4",
+          "name": "Five number summary and box-and-whisker plot",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.5",
+          "name": "Histograms and frequency polygons",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.6",
+          "name": "Cumulative frequency tables and graphs (ogives)",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.7",
+          "name": "Variance and standard deviation",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.8",
+          "name": "Bivariate data and the scatter plot",
+          "source": "mind-the-gap"
+        },
+        {
+          "id": "M13.9",
+          "name": "The linear regression line",
+          "source": "mind-the-gap"
+        }
+      ]
+    }
+  ]
+}
