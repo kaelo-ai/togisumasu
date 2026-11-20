@@ -7,6 +7,7 @@
 const nsc = require('./nsc.js');
 const catalog = require('./catalog.js');
 const bank = require('./questions.js');
+const diagrams = require('./diagrams.js');
 
 function escapeHtml(value) {
   return String(value == null ? '' : value)
@@ -40,10 +41,18 @@ function promptHtml(db, nodeId) {
   }
   chain.reverse();
   const blocks = [];
+  const figureIds = [];
   for (const node of chain) {
     if (node.stem_md) blocks.push(`<p>${escapeHtml(node.stem_md)}</p>`);
     if (node.table_json) blocks.push(tableHtml(node.table_json));
     if (node.text_md) blocks.push(`<p>${escapeHtml(node.text_md)}</p>`);
+    let ids = [];
+    try { ids = JSON.parse(node.figure_ids || '[]'); } catch (err) { ids = []; }
+    for (const id of ids) if (!figureIds.includes(id)) figureIds.push(id);
+  }
+  if (figureIds.length) {
+    const rows = db.prepare(`SELECT * FROM nsc_figures WHERE id IN (${figureIds.map(() => '?').join(',')})`).all(...figureIds);
+    for (const row of rows) blocks.push(diagrams.render(row));
   }
   return blocks.join('\n');
 }

@@ -74,7 +74,7 @@ The browser keeps a per-user cache of your progress and a small cache of recentl
 
 The algebra course and the Grade 12 CAPS course are two slices of one topic graph. A topic such as integer exponents exists once and can belong to both. `GET /api/courses` lists them; `GET /api/catalog?course=gr12-caps` returns the CAPS slice. Unit 0 (Grade 10–11 foundations) is part of that course.
 
-NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. A quiz (`POST /api/quiz`) always includes one practice-pool question, and only when every topic that question maps to, plus those topics' prerequisites inside the course, is mastered. `GET /api/exams` lists the 2022+ papers as full mocks and will not open a practice paper. The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
+NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. A quiz (`POST /api/quiz`) always includes one practice-pool question, and only when every topic that question maps to, plus those topics' prerequisites inside the course, is mastered. `GET /api/exams` lists the 2022+ papers as full mocks and will not open a practice paper. Figures on those questions are drawn as SVG from the spec; the scanned crops are not served. Euclidean proofs use a statement-and-reason picker. Answer keys are filled offline by `npm run keys:solve` or by `npm run keys:memos`. The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
 
 ## Question bank
 
@@ -163,6 +163,8 @@ catalog.js                 units, topics, courses and the prerequisite graph in 
 caps.js                    Grade 12 CAPS course slice and the bank-skill lookup
 nsc.js                     idempotent NSC paper import and the practice/exam pools
 quiz.js                    quiz assembly (gated past papers) and exam papers
+keys.js                    offline answer keys (double solve, memos, flagging)
+diagrams.js                SVG figures drawn from NSC specs
 admin.js                   operator CLI: promote/demote/disable/delete accounts
 ai.js                      LLM providers and the tutor prompt (`node ai.js check` tests it)
 public/core.js             maths parser, answer checking, skill definitions and generators
