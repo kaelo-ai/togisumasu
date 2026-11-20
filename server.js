@@ -11,6 +11,7 @@ const ai = require('./ai.js');
 const bank = require('./questions.js');
 const catalog = require('./catalog.js');
 const quizEngine = require('./quiz.js');
+const keys = require('./keys.js');
 
 const PORT = Number(process.env.PORT || 3000);
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
@@ -593,6 +594,10 @@ async function api(req, res, url) {
   if (route === 'POST /api/quiz') {
     const body = await readJson(req);
     return send(res, 200, quizEngine.assembleQuiz(db, body || {}));
+  }
+  if (route === 'POST /api/quiz/mark') {
+    const body = await readJson(req);
+    return send(res, 200, keys.markNode(db, String((body && body.nodeId) || ''), body && body.answer));
   }
   if (route === 'GET /api/exams') return send(res, 200, { exams: quizEngine.listExams(db) });
   const examRoute = url.pathname.match(/^\/api\/exams\/(\d{4}-nov-p[12])$/);

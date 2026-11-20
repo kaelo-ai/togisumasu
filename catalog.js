@@ -90,6 +90,7 @@ function init(db) {
   require('./caps').seed(db);
   syncAllEdges(db);
   require('./nsc').importAll(db);
+  require('./keys').init(db);
   syncCore(db);
 }
 

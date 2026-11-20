@@ -7,6 +7,18 @@ const { server, db } = require('../server.js');
 const quiz = require('../quiz.js');
 const nsc = require('../nsc.js');
 const catalog = require('../catalog.js');
+const keys = require('../keys.js');
+
+keys.init(db);
+const stamp = db.prepare(`
+  INSERT OR REPLACE INTO nsc_answer_keys
+    (node_id, provenance, answer_json, steps_json, solver_a, solver_b, updated_at)
+  VALUES (?, 'llm_double', ?, '[]', NULL, NULL, ?)
+`);
+const stampedAt = Date.now();
+for (const leaf of nsc.practiceLeaves(db)) {
+  stamp.run(leaf.id, JSON.stringify({ type: 'text', ans: '0', ansTex: '0', steps: ['test key'] }), stampedAt);
+}
 
 const results = [];
 function t(name, fn) {
@@ -59,6 +71,8 @@ t('every quiz includes a practice-pool paper and never a 2022+ paper', () => {
 t('eligible leaves are read from the practice view', () => {
   const sql = quiz.eligibleLeaves.toString();
   assert.match(sql, /nsc_practice_leaves/);
+  assert.match(sql, /llm_double/);
+  assert.match(sql, /memo/);
   const leaked = quiz.eligibleLeaves(db, capsIds, 'gr12-caps').filter(leaf => leaf.year >= 2022);
   assert.equal(leaked.length, 0);
 });

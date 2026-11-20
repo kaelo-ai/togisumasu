@@ -745,18 +745,21 @@ function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return
   if(it.kind==='paper'){const box=$('#qq');
     box.innerHTML=`<article class="qcard test washi-paper"><div class="qmeta"><span class="tag qz">Past paper</span><span>${esc(it.paperId)} Q${esc(it.number)} · ${it.marks} mark${it.marks===1?'':'s'}</span></div><div class="prompt">${it.prompt}</div>
      <label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit"></textarea>
-     <p class="gnote">This is a real NSC question. It is marked when an answer key is on file. Until then your answer is saved with the quiz and is not scored.</p>
+     <p class="gnote">This is a real NSC question from before 2022. It is marked on the server from its stored answer key.</p>
      <div class="actions row"><button class="btn primary" type="button" id="paperSave">Save and continue</button></div></article>`;
     typeset(box);
-    $('#paperSave').onclick=()=>{it.given=$('#paperIn').value;it.pending=true;quiz.i++;quizStep();window.scrollTo(0,0)};
+    $('#paperSave').onclick=async()=>{const given=$('#paperIn').value;const btn=$('#paperSave');btn.disabled=true;
+      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=given;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'quiz')}
+      catch(e){it.pending=true;it.given=given;it.ok=null}
+      quiz.i++;quizStep();window.scrollTo(0,0)};
     return}
   mountQuestion($('#qq'),it.question,{test:true,meta:()=>`<span class="tag qz">Quiz</span><span>Topic hidden. Choosing the method is part of the test.</span>`,
     answered:(ok,given)=>{it.ok=ok;it.given=given;record(it.topicId,ok,'quiz')},next:()=>{quiz.i++;quizStep();window.scrollTo(0,0)}})}
 function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');const papers=quiz.items.filter(x=>x.kind==='paper');
   if(!quiz.done){quiz.done=true;const q=Q();q.last=Date.now();q.recent=[];const sc=scored.filter(x=>x.ok).length;q.hist.push({t:Date.now(),score:sc,n:scored.length,papers:papers.length});if(q.hist.length>60)q.hist.shift();Store.save()}
-  const sc=scored.filter(x=>x.ok).length,n=scored.length,bad=[...new Set(scored.filter(x=>!x.ok).map(x=>x.topicId))];
+  const sc=scored.filter(x=>x.ok).length+papers.filter(x=>x.ok).length,n=scored.length+papers.filter(x=>x.ok!=null).length,bad=[...new Set(scored.filter(x=>!x.ok).map(x=>x.topicId))];
   host.innerHTML=`<section class="summary"><div class="panel"><div class="eyebrow">Quiz results</div><h1 class="tnum">${sc} / ${n}</h1>
-   <p>${papers.length} past-paper question${papers.length===1?'':'s'} saved and not scored yet.</p>
+   <p>${papers.length} past-paper question${papers.length===1?'':'s'} from before 2022.</p>
    ${bad.length?`<div class="lock repair"><b>Needs repair:</b> ${bad.map(id=>esc(SKM[id]?SKM[id].name:id)).join(', ')}.</div>`:'<p>The generated questions were all correct.</p>'}
    <div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="session">${bad.length?'Start repairs':'Continue learning'}</button><button class="btn" type="button" data-act="home">Course map</button></div></div>
    <ol class="qres">${quiz.items.map((x,i)=>{const paper=x.kind==='paper';const name=paper?(x.paperId+' Q'+x.number):(SKM[x.topicId]?SKM[x.topicId].name:x.topicId);
