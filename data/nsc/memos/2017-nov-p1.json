@@ -1,0 +1,1880 @@
+{
+  "id": "2017-nov-p1",
+  "paper_id": "2017-nov-p1",
+  "source": {
+    "pdf": "sources/maths/2017-nov/2017-nov-p1-memo.pdf",
+    "pdf_pages": 19,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=BvPSes02Sn4%3d&tabid=1856&portalid=0&mid=7350",
+    "sha256": "5569170d206e1ba31642f47358c40f6e01860893e6c328fe6dff90624577a668",
+    "note": "Official DBE November 2017 Mathematics P1 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt. Consistent accuracy applies in ALL aspects of the marking guidelines.",
+  "parts": [
+    {
+      "id": "2017-nov-p1-1.1.1",
+      "question_id": "2017-nov-p1-1.1.1",
+      "number": "1.1.1",
+      "marks": 3,
+      "answer_md": "$x=-7$ or $x=-2$",
+      "working_md": "$x^2+9x+14=0$\n\n$(x+7)(x+2)=0$\n\n$x=-7$ or $x=-2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-7$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-1.1.2",
+      "question_id": "2017-nov-p1-1.1.2",
+      "number": "1.1.2",
+      "marks": 4,
+      "answer_md": "$x=0,29$ or $x=-2,54$",
+      "working_md": "$4x^2+9x-3=0$\n\n$x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}=\\dfrac{-9\\pm\\sqrt{9^2-4(4)(-3)}}{2(4)}=\\dfrac{-9\\pm\\sqrt{129}}{8}$\n\n$x=0,29$ or $x=-2,54$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=0,29$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-2,54$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=0,29$ or $x=-2,54$",
+          "working_md": "$x^2+\\dfrac{9}{4}x+\\dfrac{81}{64}=\\dfrac{3}{4}+\\dfrac{81}{64}$\n\n$\\left(x+\\dfrac{9}{8}\\right)^2=\\dfrac{129}{64}$\n\n$x+\\dfrac{9}{8}=\\pm\\dfrac{\\sqrt{129}}{8}$\n\n$x=\\dfrac{-9\\pm\\sqrt{129}}{8}$\n\n$x=0,29$ or $x=-2,54$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "for adding $\\dfrac{81}{64}$ on both sides"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=0,29$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=-2,54$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-1.1.3",
+      "question_id": "2017-nov-p1-1.1.3",
+      "number": "1.1.3",
+      "marks": 4,
+      "answer_md": "$x=5$",
+      "working_md": "$\\sqrt{x^2-5}=2\\sqrt{x}$\n\n$x^2-5=4x$\n\n$x^2-4x-5=0$\n\n$(x-5)(x+1)=0$\n\n$x=5$ or $x=-1$\n\n$x=5$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^2-5=4x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both answers"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "select $x=5$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-1.2",
+      "question_id": "2017-nov-p1-1.2",
+      "number": "1.2",
+      "marks": 6,
+      "answer_md": "$x=1$, $y=-1$ or $x=7$, $y=17$",
+      "working_md": "$3x-y=4$\n\n$y=3x-4$\n\n$x^2+2xy-y^2=-2$\n\n$x^2+2x(3x-4)-(3x-4)^2=-2$\n\n$x^2+6x^2-8x-(9x^2-24x+16)=-2$\n\n$7x^2-8x-9x^2+24x-16=-2$\n\n$-2x^2+16x-14=0$\n\n$x^2-8x+7=0$\n\n$(x-7)(x-1)=0$\n\n$x=1$ or $x=7$\n\n$y=3(1)-4=-1$ or $y=3(7)-4=17$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$ the subject of the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-values"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=1$, $y=-1$ or $x=7$, $y=17$",
+          "working_md": "$x=\\dfrac{y+4}{3}$\n\n$\\left(\\dfrac{y+4}{3}\\right)^2+2\\left(\\dfrac{y+4}{3}\\right)y-y^2=-2$\n\n$y^2+8y+16+6y^2+24y-9y^2=-18$\n\n$-2y^2+32y+34=0$\n\n$y^2-16y-17=0$\n\n$(y-17)(y+1)=0$\n\n$y=-1$ or $y=17$\n\n$x=\\dfrac{-1+4}{3}=1$ or $x=\\dfrac{17+4}{3}=7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$ the subject of the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct standard form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-values"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-1.3.1",
+      "question_id": "2017-nov-p1-1.3.1",
+      "number": "1.3.1",
+      "marks": 3,
+      "answer_md": "$x\\in\\mathbb{R}$, $x\\neq-4$",
+      "working_md": "$x^2+8x+16>0$\n\n$(x+4)(x+4)>0$\n\n$x\\in\\mathbb{R}$, $x\\neq-4$\n\nOR: $x\\in(-\\infty\\,;\\,-4)$ or $x\\in(-4\\,;\\,\\infty)$\n\nOR: $x<-4$ or $x>-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(x+4)(x+4)$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "any one of the solutions"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-1.3.2",
+      "question_id": "2017-nov-p1-1.3.2",
+      "number": "1.3.2",
+      "marks": 4,
+      "answer_md": "$0<p<16$",
+      "working_md": "The graph of $y=x^2+8x+16$ has $y$-intercept $(0\\,;\\,16)$ and $x$-intercept $(-4\\,;\\,0)$.\n\nFor two negative unequal roots of $x^2+8x+16=p$: $0<p<16$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$16$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$0<p<16$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$0<p<16$",
+          "working_md": "$x^2+8x+16-p=0$\n\n$0<16-p<16$\n\n$-16<-p<0$\n\n$0<p<16$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$16$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$0<p<16$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$0<p<16$",
+          "working_md": "$x=\\dfrac{-8\\pm\\sqrt{64-4(16-p)}}{2}$\n\n$0<64-4(16-p)<64$\n\n$0<4p<64$\n\n$0<p<16$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$16$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$0<p<16$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$0<p<16$",
+          "working_md": "$x^2+8x+16-p=0$\n\nRoots are real and unequal: $8^2-4(16-p)>0$, so $4p>0$, $p>0$.\n\nRoots are $\\dfrac{-8\\pm\\sqrt{4p}}{2}$.\n\nFor both roots to be negative: $\\sqrt{4p}<8$, $4p<64$, $p<16$.\n\n$0<p<16$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$16$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$0<p<16$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-2.1.1",
+      "question_id": "2017-nov-p1-2.1.1",
+      "number": "2.1.1",
+      "marks": 2,
+      "answer_md": "Second difference $=-6$",
+      "working_md": "Terms: $5$, $-4$, $-19$, $-40$\n\nFirst differences: $-9$; $-15$; $-21$\n\nSecond difference $=-6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "first differences"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-6$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-2.1.2",
+      "question_id": "2017-nov-p1-2.1.2",
+      "number": "2.1.2",
+      "marks": 4,
+      "answer_md": "$T_n=-3n^2+8$",
+      "working_md": "$T_n=an^2+bn+c$\n\n$a=\\dfrac{\\text{second difference}}{2}=-3$\n\n$3a+b=-9$, so $3(-3)+b=-9$, $b=0$\n\n$a+b+c=5$, so $-3+0+c=5$, $c=8$\n\n$T_n=-3n^2+8$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=-3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$c=8$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_n=-3n^2+8$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T_n=-3n^2+8$",
+          "working_md": "$T_n=T_1+(n-1)d_1+\\dfrac{(n-1)(n-2)d_2}{2}$\n\n$=5+(n-1)(-9)+\\dfrac{(n-1)(n-2)(-6)}{2}$\n\n$=5-9n+9-3n^2+9n-6$\n\n$T_n=-3n^2+8$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=-3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$b=0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$c=8$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_n=-3n^2+8$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-2.1.3",
+      "question_id": "2017-nov-p1-2.1.3",
+      "number": "2.1.3",
+      "marks": 3,
+      "answer_md": "The $93$rd term has a value of $-25\\,939$",
+      "working_md": "$-3n^2+8=-25\\,939$\n\n$-3n^2=-25\\,947$\n\n$n^2=8649$\n\n$n=-93$ or $n=93$\n\nThe $93$rd term has a value of $-25\\,939$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_n=-25\\,939$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n^2=8649$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-2.2.1",
+      "question_id": "2017-nov-p1-2.2.1",
+      "number": "2.2.1",
+      "marks": 5,
+      "answer_md": "$T_{15}=59$",
+      "working_md": "$2k-7$, $k+8$ and $2k-1$\n\n$k+8-(2k-7)=2k-1-(k+8)$\n\n$-k+15=k-9$\n\n$2k=24$, $k=12$\n\nThe sequence is $17$; $20$; $23$; $\\ldots$, $d=3$\n\n$T_{15}=17+14(3)=59$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k+8-(2k-7)=2k-1-(k+8)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k=12$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$17$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$d=3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_{15}=59$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-2.2.2",
+      "question_id": "2017-nov-p1-2.2.2",
+      "number": "2.2.2",
+      "marks": 4,
+      "answer_md": "$S_{30}=3210$",
+      "working_md": "Sequence: $17$; $20$; $23$; $26$; $29$; $32$; $\\ldots$\n\nEvery alternate term of the sequence will be even: $20+26+32+\\cdots$\n\n$S_{30}=\\dfrac{30}{2}[2(20)+(29)(6)]=15[40+174]=3210$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$20+26+32+\\cdots$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=20$, $d=6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$S_{30}=3210$",
+          "working_md": "$T_{30}=20+29(6)=194$\n\n$S_{30}=\\dfrac{30}{2}(20+194)=3210$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=20$, $d=6$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{30}=194$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{30}=\\dfrac{30}{2}(20+194)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": "The official memo writes $T_{30}=94$ in one line; the sum formula uses $20+194$, so $T_{30}=194$."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-3.1",
+      "question_id": "2017-nov-p1-3.1",
+      "number": "3.1",
+      "marks": 2,
+      "answer_md": "$a=\\dfrac{2}{1+r}$",
+      "working_md": "$a+ar=2$\n\n$a(1+r)=2$\n\n$a=\\dfrac{2}{1+r}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a+ar=2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=\\dfrac{2}{1+r}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$a=\\dfrac{9-9r}{4}$",
+          "working_md": "$\\dfrac{a}{1-r}-2=\\dfrac{1}{4}$\n\n$4a-8(1-r)=1-r$\n\n$4a-8+8r=1-r$\n\n$4a=9-9r$\n\n$a=\\dfrac{9-9r}{4}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{a}{1-r}-2=\\dfrac{1}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=\\dfrac{9-9r}{4}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$a=\\dfrac{2}{1+r}$",
+          "working_md": "$S_n=\\dfrac{a(r^n-1)}{r-1}$\n\n$2=\\dfrac{a(r^2-1)}{r-1}=\\dfrac{a(r-1)(r+1)}{r-1}=a(r+1)$\n\n$a=\\dfrac{2}{r+1}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2=\\dfrac{a(r^2-1)}{r-1}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=\\dfrac{2}{1+r}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$a=\\dfrac{1-r}{4r^2}$",
+          "working_md": "$\\dfrac{ar^2}{1-r}=\\dfrac{1}{4}$\n\n$a=\\dfrac{1-r}{4r^2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{ar^2}{1-r}=\\dfrac{1}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=\\dfrac{1-r}{4r^2}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-3.2",
+      "question_id": "2017-nov-p1-3.2",
+      "number": "3.2",
+      "marks": 6,
+      "answer_md": "$r=\\dfrac{1}{3}$, $a=\\dfrac{3}{2}$",
+      "working_md": "$S_{\\infty}=T_1+T_2+\\displaystyle\\sum_{n=3}^{\\infty}T_n=2+\\dfrac{1}{4}$\n\n$\\dfrac{a}{1-r}=\\dfrac{9}{4}$\n\n$\\left(\\dfrac{2}{1+r}\\right)\\left(\\dfrac{1}{1-r}\\right)=\\dfrac{9}{4}$\n\n$\\dfrac{2}{1-r^2}=\\dfrac{9}{4}$\n\n$8=9-9r^2$\n\n$9r^2=1$\n\n$r=\\dfrac{1}{3}$\n\n$a=\\dfrac{3}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$S_{\\infty}=2+\\dfrac{1}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{a}{1-r}=\\dfrac{9}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $a$ into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$9r^2=1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$r=\\dfrac{1}{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=\\dfrac{3}{2}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$r=\\dfrac{1}{3}$, $a=\\dfrac{3}{2}$",
+          "working_md": "$S_{\\infty}=2+\\dfrac{1}{4}$, so $\\dfrac{a}{1-r}=\\dfrac{9}{4}$\n\n$4a=9-9r$, $r=\\dfrac{9-4a}{9}$\n\n$a+a\\left(\\dfrac{9-4a}{9}\\right)=2$\n\n$9a+9a-4a^2=18$\n\n$2a^2-9a+9=0$\n\n$(a-3)(2a-3)=0$\n\n$a=\\dfrac{3}{2}$ or $a=3$ (N/A)\n\n$r=\\dfrac{1}{3}$ or $r=-\\dfrac{1}{3}$ (N/A)",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{\\infty}=2+\\dfrac{1}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{a}{1-r}=\\dfrac{9}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r=\\dfrac{9-4a}{9}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $a$ into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=\\dfrac{3}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r=\\dfrac{1}{3}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$r=\\dfrac{1}{3}$, $a=\\dfrac{3}{2}$",
+          "working_md": "$r=\\dfrac{2-a}{a}$\n\n$\\dfrac{ar^2}{1-r}=\\dfrac{1}{4}$\n\n$4a\\left(\\dfrac{2-a}{a}\\right)^2=1-\\dfrac{2-a}{a}$\n\n$2a^2-9a+9=0$\n\n$(2a-3)(a-3)=0$\n\n$a=\\dfrac{3}{2}$ ($a\\neq 3$)\n\n$r=\\dfrac{1}{3}$ ($r\\neq-\\dfrac{1}{3}$)",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r=\\dfrac{2-a}{a}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{ar^2}{1-r}=\\dfrac{1}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $a$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$(2a-3)(a-3)=0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=\\dfrac{3}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r=\\dfrac{1}{3}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$r=\\dfrac{1}{3}$, $a=\\dfrac{3}{2}$",
+          "working_md": "$S_{\\infty}=2+\\dfrac{1}{4}$, so $\\dfrac{a}{1-r}=\\dfrac{9}{4}$\n\n$\\left(\\dfrac{1-r}{4r^2}\\right)\\left(\\dfrac{1}{1-r}\\right)=\\dfrac{9}{4}$\n\n$\\dfrac{1}{4r^2}=\\dfrac{9}{4}$\n\n$9r^2=1$\n\n$r=\\dfrac{1}{3}$, $a=\\dfrac{3}{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{\\infty}=2+\\dfrac{1}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{a}{1-r}=\\dfrac{9}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $a$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$9r^2=1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r=\\dfrac{1}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=\\dfrac{3}{2}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.1",
+      "question_id": "2017-nov-p1-4.1",
+      "number": "4.1",
+      "marks": 5,
+      "answer_md": "$a=\\dfrac{1}{2}$, $b=2$",
+      "working_md": "$f(x)=-ax^2+bx+6$\n\n$f'(x)=-2ax+b$\n\n$-2ax+b=3$ at $x=-1$, so $2a+b=3$ \\quad [1]\n\n$f(-1)=\\dfrac{7}{2}$\n\n$-a-b+6=\\dfrac{7}{2}$\n\n$-2a-2b+12=7$\n\n$2a+2b=5$ \\quad [2]\n\n$[2]-[1]$: $b=2$\n\n$2a+2=3$, $a=\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-2ax+b$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$2a+b=3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-a-b+6=\\dfrac{7}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "solve simultaneously"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$a=\\dfrac{1}{2}$, $b=2$",
+          "working_md": "$f'(x)=-2ax+b$\n\n$3=2a+b$, $b=3-2a$\n\n$\\dfrac{7}{2}=-a(-1)+(3-2a)(-1)+6$\n\n$a+3=\\dfrac{7}{2}$\n\n$a=\\dfrac{1}{2}$, $b=2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-2ax+b$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$2a+b=3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{7}{2}=-a(-1)+(3-2a)(-1)+6$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "solve simultaneously"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.2",
+      "question_id": "2017-nov-p1-4.2",
+      "number": "4.2",
+      "marks": 3,
+      "answer_md": "$(-2\\,;\\,0)$ and $(6\\,;\\,0)$",
+      "working_md": "$f(x)=-\\dfrac{1}{2}x^2+2x+6$\n\n$-\\dfrac{1}{2}x^2+2x+6=0$\n\n$-x^2+4x+12=0$\n\n$x^2-4x-12=0$\n\n$(x-6)(x+2)=0$\n\n$(-2\\,;\\,0)$, $(6\\,;\\,0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{1}{2}x^2+2x+6=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(-2\\,;\\,0)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(6\\,;\\,0)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.3",
+      "question_id": "2017-nov-p1-4.3",
+      "number": "4.3",
+      "marks": 3,
+      "answer_md": "$TP(2\\,;\\,8)$",
+      "working_md": "$f(x)=-\\dfrac{1}{2}x^2+2x+6$\n\n$f'(x)=-x+2=0$, or $x=-\\dfrac{b}{2a}=2$\n\n$y=-\\dfrac{1}{2}(2)^2+2(2)+6=8$\n\n$TP(2\\,;\\,8)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-x+2$ / $x=-\\dfrac{b}{2a}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=8$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$TP(2\\,;\\,8)$",
+          "working_md": "$y=-\\dfrac{1}{2}(x^2-4x-12)$\n\n$=-\\dfrac{1}{2}[(x-2)^2-4-12]$\n\n$=-\\dfrac{1}{2}(x-2)^2+8$\n\n$TP(2\\,;\\,8)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-\\dfrac{1}{2}(x-2)^2+8$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=2$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=8$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.4",
+      "question_id": "2017-nov-p1-4.4",
+      "number": "4.4",
+      "marks": 4,
+      "answer_md": "Sketch of $f$: a downward parabola with $x$-intercepts $(-2\\,;\\,0)$ and $(6\\,;\\,0)$, $y$-intercept $(0\\,;\\,6)$, and turning point $(2\\,;\\,8)$.",
+      "working_md": "Graph of $f$ showing the shape, both $x$-intercepts, the $y$-intercept and the turning point $(2\\,;\\,8)$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercepts"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(2\\,;\\,8)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.5",
+      "question_id": "2017-nov-p1-4.5",
+      "number": "4.5",
+      "marks": 3,
+      "answer_md": "$0<x<4$ or $(0\\,;\\,4)$",
+      "working_md": "$0<x<4$ or $(0\\,;\\,4)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$0<x<4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.6",
+      "question_id": "2017-nov-p1-4.6",
+      "number": "4.6",
+      "marks": 2,
+      "answer_md": "Sketch of $g$ with $x$-intercept $(-1\\,;\\,0)$ and $y$-intercept $(0\\,;\\,-1)$.",
+      "working_md": "Graph of $g$ showing the $x$-intercept $(-1\\,;\\,0)$ and $y$-intercept $(0\\,;\\,-1)$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercept"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-4.7",
+      "question_id": "2017-nov-p1-4.7",
+      "number": "4.7",
+      "marks": 3,
+      "answer_md": "$x\\le-2$ or $-1\\le x\\le 6$",
+      "working_md": "$x\\le-2$ or $-1\\le x\\le 6$\n\nOR: $(-\\infty\\,;\\,-2]$ or $[-1\\,;\\,6]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x\\le-2$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$-1\\le x\\le 6$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-5.1",
+      "question_id": "2017-nov-p1-5.1",
+      "number": "5.1",
+      "marks": 2,
+      "answer_md": "$y\\in\\mathbb{R}$, $y\\neq-1$",
+      "working_md": "$y\\in\\mathbb{R}$, $y\\neq-1$\n\nOR: $y<-1$ or $y>-1$\n\nOR: $y\\in(-\\infty\\,;\\,-1)$ or $y\\in(-1\\,;\\,\\infty)$\n\nOR: $\\mathbb{R}\\setminus\\{-1\\}$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-5.2",
+      "question_id": "2017-nov-p1-5.2",
+      "number": "5.2",
+      "marks": 2,
+      "answer_md": "$D(2\\,;\\,-1)$, $g(x)=\\dfrac{2}{x-2}-1$",
+      "working_md": "$D(2\\,;\\,-1)$\n\n$g(x)=\\dfrac{2}{x-2}-1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$D(2\\,;\\,-1)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{2}{x-2}-1$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-5.3",
+      "question_id": "2017-nov-p1-5.3",
+      "number": "5.3",
+      "marks": 3,
+      "answer_md": "$t=3$",
+      "working_md": "$f(x)=\\log_3 x$\n\n$\\log_3 t=1$, so $t=3$\n\nOR: $g(x)=\\dfrac{2}{x-2}-1$, $1=\\dfrac{2}{t-2}-1$, $t=3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution of $A$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$t=3$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-5.4",
+      "question_id": "2017-nov-p1-5.4",
+      "number": "5.4",
+      "marks": 2,
+      "answer_md": "$y=3^x$",
+      "working_md": "$x=\\log_3 y$\n\n$y=3^x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "interchange $x$ and $y$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=3^x$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-5.5",
+      "question_id": "2017-nov-p1-5.5",
+      "number": "5.5",
+      "marks": 2,
+      "answer_md": "$x<1$",
+      "working_md": "$3^x<3^1$\n\n$x<1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3^x<3^1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x<1$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\in(-\\infty\\,;\\,1)$",
+          "working_md": "$3^x<3^1$\n\n$x\\in(-\\infty\\,;\\,1)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$3^x<3^1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x\\in(-\\infty\\,;\\,1)$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-5.6",
+      "question_id": "2017-nov-p1-5.6",
+      "number": "5.6",
+      "marks": 3,
+      "answer_md": "$B(1\\,;\\,0)$",
+      "working_md": "Equation of the axis of symmetry: $y=-x+1$\n\nThe $x$-intercept of the axis of symmetry is at $x=1$.\n\n$f$ has an $x$-intercept at $B(1\\,;\\,0)$, which is the same as the $x$-intercept of the axis of symmetry.\n\nPoint of intersection: $B(1\\,;\\,0)$.",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "equation of the axis of symmetry"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$B$ or $(1\\,;\\,0)$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$B(1\\,;\\,0)$",
+          "working_md": "Since $BE=ED=1$ and $D$ lies on the axis of symmetry and the gradient of the axis of symmetry is $-1$, $B$ will also lie on the axis of symmetry. But $B$ also lies on $f$. Therefore $B(1\\,;\\,0)$ is the point of intersection between $f$ and the axis of symmetry with a negative gradient.",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$BE=ED=1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$B$ or $(1\\,;\\,0)$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-6.1",
+      "question_id": "2017-nov-p1-6.1",
+      "number": "6.1",
+      "marks": 5,
+      "answer_md": "$r=6,5\\%$",
+      "working_md": "$A=P(1+i)^n$\n\n$12\\,146,72=10\\,000\\left(1+\\dfrac{r}{12}\\right)^{36}$\n\n$\\left(1+\\dfrac{r}{12}\\right)^{36}=1,214672$\n\n$1+\\dfrac{r}{12}=1,214672^{1/36}=1,005416$\n\n$\\dfrac{r}{12}=0,005416$\n\n$r=0,06500=6,5\\%$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{r}{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=36$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution into the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1+\\dfrac{r}{12}=1,214672^{1/36}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6,5\\%$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-6.2.1",
+      "question_id": "2017-nov-p1-6.2.1",
+      "number": "6.2.1",
+      "marks": 4,
+      "answer_md": "$x=R5\\,536,95$",
+      "working_md": "$P=\\dfrac{x\\left[1-(1+i)^{-n}\\right]}{i}$\n\n$235\\,000=\\dfrac{x\\left[1-\\left(1+\\dfrac{0,11}{12}\\right)^{-54}\\right]}{\\dfrac{0,11}{12}}$\n\n$x=R5\\,536,95$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i=\\dfrac{0,11}{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=54$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution in $P$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-6.2.2",
+      "question_id": "2017-nov-p1-6.2.2",
+      "number": "6.2.2",
+      "marks": 6,
+      "answer_md": "$R23\\,739,57$",
+      "working_md": "Amount paid for the year: $(5\\,536,95\\times 12)=R66\\,443,40$\n\nBalance $=235\\,000\\left(1+\\dfrac{0,11}{12}\\right)^{12}-\\dfrac{5\\,536,95\\left[\\left(1+\\dfrac{0,11}{12}\\right)^{12}-1\\right]}{\\dfrac{0,11}{12}}=R192\\,296,17$\n\nInterest $=(5\\,536,95\\times 12)-(235\\,000-192\\,296,17)=66\\,443,40-42\\,703,83=R23\\,739,57$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$R66\\,443,40$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$235\\,000\\left(1+\\dfrac{0,11}{12}\\right)^{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5\\,536,95\\dfrac{\\left[\\left(1+\\dfrac{0,11}{12}\\right)^{12}-1\\right]}{\\dfrac{0,11}{12}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$R192\\,296,17$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$R42\\,703,83$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$R23\\,739,57$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$R23\\,739,60$",
+          "working_md": "Total amount paid in the first year $=R5\\,536,95\\times 12=R66\\,443,40$\n\nBalance on the loan after $1$ year is the present value of the remaining instalments:\n\n$P=\\dfrac{5\\,536,95\\left[1-\\left(1+\\dfrac{0,11}{12}\\right)^{-42}\\right]}{\\dfrac{0,11}{12}}=R192\\,296,20$\n\nAmount paid off: $R235\\,000-R192\\,296,20=R42\\,703,80$\n\nInterest $=R66\\,443,40-R42\\,703,80=R23\\,739,60$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R66\\,443,40$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n=-42$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R192\\,296,20$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R42\\,703,80$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R23\\,739,60$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$R23\\,739,57$",
+          "working_md": "$P=\\dfrac{5\\,536,95\\left[1-\\left(1+\\dfrac{0,11}{12}\\right)^{-12}\\right]}{\\dfrac{0,11}{12}}=R62\\,648,18$\n\n$235\\,000-62\\,648,18=R172\\,351,82$\n\nAfter $12$ months, money owed: $172\\,351,82\\left(1+\\dfrac{0,11}{12}\\right)^{12}=R192\\,296,17$\n\nAmount paid after $12$ months: $5\\,536,95\\times 12=R66\\,443,40$\n\nInterest: $R66\\,443,40-(235\\,000-192\\,296,17)=R23\\,739,57$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R62\\,648,18$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R172\\,351,82$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R192\\,296,17$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R66\\,443,40$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$235\\,000-192\\,296,17$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$R23\\,739,57$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The official memo gives $R23\\,739,57$ by the $A-F$ method and $R23\\,739,60$ from the outstanding-term present-value method, a rounding difference."
+    },
+    {
+      "id": "2017-nov-p1-7.1",
+      "question_id": "2017-nov-p1-7.1",
+      "number": "7.1",
+      "marks": 6,
+      "answer_md": "$f'(x)=4x-1$",
+      "working_md": "$f(x+h)=2(x+h)^2-(x+h)=2x^2+4xh+2h^2-x-h$\n\n$f(x+h)-f(x)=2x^2+4xh+2h^2-x-h-(2x^2-x)=4xh+2h^2-h$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}=\\lim_{h\\to 0}\\dfrac{4xh+2h^2-h}{h}=\\lim_{h\\to 0}(4x+2h-1)=4x-1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2x^2+4xh+2h^2-x-h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4xh+2h^2-h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\lim_{h\\to 0}(4x+2h-1)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4x-1$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$f'(x)=4x-1$",
+          "working_md": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}=\\lim_{h\\to 0}\\dfrac{2(x+h)^2-(x+h)-(2x^2-x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{2x^2+4xh+2h^2-x-h-2x^2+x}{h}=\\lim_{h\\to 0}\\dfrac{4xh+2h^2-h}{h}=\\lim_{h\\to 0}(4x+2h-1)=4x-1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2x^2+4xh+2h^2-x-h$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$4xh+2h^2-h$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\lim_{h\\to 0}(4x+2h-1)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$4x-1$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-7.2.1",
+      "question_id": "2017-nov-p1-7.2.1",
+      "number": "7.2.1",
+      "marks": 2,
+      "answer_md": "$6x-4$",
+      "working_md": "$D_x[(x+1)(3x-7)]=D_x(3x^2-4x-7)=6x-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3x^2-4x-7$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6x-4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-7.2.2",
+      "question_id": "2017-nov-p1-7.2.2",
+      "number": "7.2.2",
+      "marks": 4,
+      "answer_md": "$\\dfrac{dy}{dx}=\\dfrac{3}{2}x^{1/2}+5x^{-2}$",
+      "working_md": "$y=\\sqrt{x^3}-\\dfrac{5}{x}+\\dfrac{1}{2}\\pi$\n\n$y=x^{3/2}-5x^{-1}+\\dfrac{1}{2}\\pi$\n\n$\\dfrac{dy}{dx}=\\dfrac{3}{2}x^{1/2}+5x^{-2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^{3/2}-5x^{-1}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{3}{2}x^{1/2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$+5x^{-2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative of $\\dfrac{1}{2}\\pi$ is $0$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-8.1",
+      "question_id": "2017-nov-p1-8.1",
+      "number": "8.1",
+      "marks": 5,
+      "answer_md": "Point of inflection at $x=2$",
+      "working_md": "$f(x)=x^3-6x^2+9x$\n\n$f'(x)=3x^2-12x+9$\n\n$f''(x)=6x-12=0$\n\n$x=2$\n\n$f''(0)=6(0)-12=-12<0$\n\n$f''(3)=6(3)-12=6>0$\n\nPoint of inflection at $x=2$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^3-6x^2+9x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3x^2-12x+9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6x-12$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6x-12=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "explanation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-8.2",
+      "question_id": "2017-nov-p1-8.2",
+      "number": "8.2",
+      "marks": 4,
+      "answer_md": "Sketch of a cubic through $(0\\,;\\,0)$ and $(3\\,;\\,0)$ (a turning point), with a plotted point $(1\\,;\\,4)$.",
+      "working_md": "Graph of $f$ showing the shape, $(0\\,;\\,0)$, $(3\\,;\\,0)$ as a turning point, and $(1\\,;\\,4)$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(0\\,;\\,0)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(3\\,;\\,0)$ as a turning point"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(1\\,;\\,4)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-8.3",
+      "question_id": "2017-nov-p1-8.3",
+      "number": "8.3",
+      "marks": 2,
+      "answer_md": "$x>2$",
+      "working_md": "$f$ is concave up for $x>2$.\n\n$y=-f(x)$ will be concave down for $x>2$.",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$x>2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-8.4.1",
+      "question_id": "2017-nov-p1-8.4.1",
+      "number": "8.4.1",
+      "marks": 2,
+      "answer_md": "$(3\\,;\\,7)$",
+      "working_md": "$(3\\,;\\,7)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$7$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-8.4.2",
+      "question_id": "2017-nov-p1-8.4.2",
+      "number": "8.4.2",
+      "marks": 2,
+      "answer_md": "Do not agree with Claire; her statement is incorrect.",
+      "working_md": "Do not agree with Claire as her statement is incorrect. Between $x=1$ and $x=3$ the graph of $f$ is decreasing. Therefore at $x=2$ the gradient will have a negative value.\n\nOR: $f'(2)=3(2)^2-12(2)+9=-3\\neq 1$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "no"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "justification"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-9",
+      "question_id": "2017-nov-p1-9",
+      "number": "9",
+      "marks": 7,
+      "answer_md": "$\\mathrm{PB}=\\dfrac{\\sqrt{3}}{2}=0,87$",
+      "working_md": "$y=x^2+2$, $P(x\\,;\\,x^2+2)$, $B(0\\,;\\,3)$\n\n$\\mathrm{PB}^2=(x-0)^2+(x^2+2-3)^2=x^2+x^4-2x^2+1=x^4-x^2+1$\n\n$\\mathrm{PB}$ will be a minimum if $\\mathrm{PB}^2$ is a minimum.\n\n$\\dfrac{d}{dx}(\\mathrm{PB}^2)=4x^3-2x$\n\n$4x^3-2x=0$\n\n$x(2x^2-1)=0$\n\n$x=0$ or $x^2=\\dfrac{1}{2}$\n\n$x=\\dfrac{1}{\\sqrt{2}}$\n\n$\\mathrm{PB}^2=\\left(\\dfrac{1}{\\sqrt{2}}\\right)^4-\\left(\\dfrac{1}{\\sqrt{2}}\\right)^2+1=\\dfrac{1}{4}-\\dfrac{1}{2}+1=\\dfrac{3}{4}$\n\n$\\mathrm{PB}=\\dfrac{\\sqrt{3}}{2}=0,87$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(x-0)^2+(x^2+2-3)^2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^4-x^2+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4x^3-2x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{d}{dx}(\\mathrm{PB}^2)=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=\\dfrac{1}{\\sqrt{2}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{PB}^2=\\left(\\dfrac{1}{\\sqrt{2}}\\right)^4-\\left(\\dfrac{1}{\\sqrt{2}}\\right)^2+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{PB}=\\dfrac{\\sqrt{3}}{2}=0,87$",
+          "working_md": "Gradient of the tangent to the curve $=2x$.\n\nGradient of the line joining $B$ and the curve $=\\dfrac{x^2+2-3}{x-0}=\\dfrac{x^2-1}{x}$.\n\nThe shortest distance is where the tangent is perpendicular to $BP$:\n\n$\\dfrac{x^2-1}{x}=-\\dfrac{1}{2x}$\n\n$2x(x^2-1)=-x$\n\n$2x^3-2x=0$\n\n$x(2x^2-1)=0$\n\n$x=\\dfrac{1}{\\sqrt{2}}$\n\n$\\mathrm{PB}^2=\\left(\\dfrac{1}{\\sqrt{2}}\\right)^4-\\left(\\dfrac{1}{\\sqrt{2}}\\right)^2+1=\\dfrac{3}{4}$\n\n$\\mathrm{PB}=\\dfrac{\\sqrt{3}}{2}=0,87$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$=2x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{x^2-1}{x}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{x^2-1}{x}=-\\dfrac{1}{2x}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2x^3-2x=0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=\\dfrac{1}{\\sqrt{2}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{PB}^2=\\left(\\dfrac{1}{\\sqrt{2}}\\right)^4-\\left(\\dfrac{1}{\\sqrt{2}}\\right)^2+1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{BP}=\\dfrac{\\sqrt{3}}{2}=0,87$",
+          "working_md": "$P(k\\,;\\,k^2+2)$ and $B(0\\,;\\,3)$.\n\n$BP$ is perpendicular to the tangent to $y=x^2+2$ at $P$.\n\n$m_{\\text{tangent at }P}=2k$, $m_{BP}=-\\dfrac{1}{2k}$\n\nEquation of $BP$: $y=\\left(-\\dfrac{1}{2k}\\right)x+3$\n\n$y_P=\\left(-\\dfrac{1}{2k}\\right)(k)+3=2,5$\n\n$\\Rightarrow k^2+2=2,5$, so $k=\\sqrt{0,5}$ and $P(\\sqrt{0,5}\\,;\\,2,5)$\n\n$\\mathrm{BP}=\\sqrt{(\\sqrt{0,5}-0)^2+(2,5-3)^2}=\\sqrt{\\dfrac{3}{4}}=\\dfrac{\\sqrt{3}}{2}=0,87$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$P(k\\,;\\,k^2+2)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\text{tangent at }P}=2k$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{BP}=-\\dfrac{1}{2k}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=\\left(-\\dfrac{1}{2k}\\right)x+3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $y$ at $P$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $k$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-10.1",
+      "question_id": "2017-nov-p1-10.1",
+      "number": "10.1",
+      "marks": 4,
+      "answer_md": "Venn diagram with $n(S)=100$: $I$ only $49-x$; $I\\cap T$ only $4$; $T$ only $2$; $I\\cap T\\cap W=8$; $I\\cap W$ only $x$; $T\\cap W$ only $5$; $W$ only $60-x$; outside $14$.",
+      "working_md": "Place the eight values in the correct regions: $49-x$, $4$, $2$, $8$, $x$, $5$, $60-x$ and $14$, with $n(S)=100$.\n\n$2$ or $3$ correct: $1$ mark; $4$ or $5$ correct: $2$ marks; $6$ or $7$ correct: $3$ marks; $8$ correct: $4$ marks.",
+      "steps": [
+        {
+          "marks": 4,
+          "mark_type": null,
+          "description": "eight values in the correct positions (partial credit: $2$–$3$ correct $=1$; $4$–$5$ correct $=2$; $6$–$7$ correct $=3$)"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-10.2",
+      "question_id": "2017-nov-p1-10.2",
+      "number": "10.2",
+      "marks": 2,
+      "answer_md": "$x=42$",
+      "working_md": "$(49-x)+x+8+4+5+2+(60-x)+14=100$\n\n$-x+142=100$\n\n$x=42$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "setting up the equation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-10.3",
+      "question_id": "2017-nov-p1-10.3",
+      "number": "10.3",
+      "marks": 2,
+      "answer_md": "$\\dfrac{27}{100}$ or $27\\%$",
+      "working_md": "$\\mathrm{P}(\\text{use only one application})=\\dfrac{7+2+18}{100}=\\dfrac{27}{100}$ or $27\\%$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{7+2+18}{100}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-11.1",
+      "question_id": "2017-nov-p1-11.1",
+      "number": "11.1",
+      "marks": 3,
+      "answer_md": "$2250$",
+      "working_md": "$5\\times 5\\times 10\\times 9=2250$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5\\times 5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$10\\times 9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2250$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2017-nov-p1-11.2",
+      "question_id": "2017-nov-p1-11.2",
+      "number": "11.2",
+      "marks": 3,
+      "answer_md": "Codes of two letters and five digits",
+      "working_md": "Number of digits used, with letters $5\\times 5$:\n\n$1$ digit: $5\\times 5\\times 10=250$\n\n$2$ digits: $5\\times 5\\times 10\\times 9=2\\,250$\n\n$3$ digits: $5\\times 5\\times 10\\times 9\\times 8=18\\,000$\n\n$4$ digits: $5\\times 5\\times 10\\times 9\\times 8\\times 7=126\\,000$\n\n$5$ digits: $5\\times 5\\times 10\\times 9\\times 8\\times 7\\times 6=756\\,000$\n\nCodes of two letters and five digits will ensure unique numbers for $700\\,000$ clients.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5\\times 5\\times 10\\times 9\\times 8\\times 7\\times 6$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "five digits"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    }
+  ]
+}

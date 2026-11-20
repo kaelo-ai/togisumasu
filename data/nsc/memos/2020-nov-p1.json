@@ -1,0 +1,1644 @@
+{
+  "id": "2020-nov-p1",
+  "paper_id": "2020-nov-p1",
+  "source": {
+    "pdf": "sources/maths/2020-nov/2020-nov-p1-memo.pdf",
+    "pdf_pages": 18,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=P7kQcnNxRHY%3d&tabid=2702&portalid=0&mid=9632",
+    "sha256": "777705676eede2a85ac74b40bd523e0a3edfb3ea0922c6e5827478ee1448d90e",
+    "note": "Official DBE November 2020 Mathematics P1 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt.\nConsistent Accuracy applies in all aspects of the marking memorandum.\nRemember: (A) next to the description of a tick implies an accuracy mark.",
+  "parts": [
+    {
+      "id": "2020-nov-p1-1.1.1",
+      "question_id": "2020-nov-p1-1.1.1",
+      "number": "1.1.1",
+      "marks": 2,
+      "answer_md": "$x=0$ or $x=6$",
+      "working_md": "$x^2-6x=0$\n\n$x(x-6)=0$\n\n$x=0$ or $x=6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "common factor"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both answers"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-1.1.2",
+      "question_id": "2020-nov-p1-1.1.2",
+      "number": "1.1.2",
+      "marks": 3,
+      "answer_md": "$x=-0,88$ or $x=-9,12$",
+      "working_md": "$x^2+10x+8=0$\n\n$x=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}$\n\n$=\\dfrac{-10\\pm\\sqrt{10^2-4(1)(8)}}{2(1)}$\n\n$=\\dfrac{-10\\pm\\sqrt{68}}{2}$\n\n$x=-0,88$ or $x=-9,12$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-0,88$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-9,12$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-1.1.3",
+      "question_id": "2020-nov-p1-1.1.3",
+      "number": "1.1.3",
+      "marks": 3,
+      "answer_md": "$x<-2$ or $x>1$",
+      "working_md": "$(1-x)(x+2)<0$\n\nCritical values: $x=1$ or $x=-2$\n\n$x<-2$ or $x>1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct method"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-1.1.4",
+      "question_id": "2020-nov-p1-1.1.4",
+      "number": "1.1.4",
+      "marks": 5,
+      "answer_md": "$x=7$",
+      "working_md": "$\\sqrt{x+18}=x-2$\n\n$x+18=x^2-4x+4$\n\n$0=x^2-5x-14$\n\n$(x-7)(x+2)=0$\n\n$x=7$ or $x\\neq -2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "M",
+          "description": "squaring both sides"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both answers"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "rejection of $x=-2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-1.2",
+      "question_id": "2020-nov-p1-1.2",
+      "number": "1.2",
+      "marks": 6,
+      "answer_md": "$x=\\dfrac{9}{2}$, $y=-\\dfrac{3}{2}$ or $x=2$, $y=1$",
+      "working_md": "$x+y=3$\n\n$y=3-x$  ...... (1)\n\n$2x^2+4xy-y=15$  ...... (2)\n\nSubstitute (1) into (2):\n\n$2x^2+4x(3-x)-(3-x)=15$\n\n$2x^2+12x-4x^2-3+x-15=0$\n\n$-2x^2+13x-18=0$\n\n$2x^2-13x+18=0$\n\n$(2x-9)(x-2)=0$\n\n$x=\\dfrac{9}{2}$ or $x=2$\n\n$y=-\\dfrac{3}{2}$ or $y=1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$ subject of the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-values"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=\\dfrac{9}{2}$, $y=-\\dfrac{3}{2}$ or $x=2$, $y=1$",
+          "working_md": "$x+y=3$\n\n$x=3-y$  ...... (1)\n\n$2x^2+4xy-y=15$  ...... (2)\n\nSubstitute (1) into (2):\n\n$2(3-y)^2+4(3-y)y-y=15$\n\n$2y^2-12y+18-4y^2+12y-y-15=0$\n\n$-2y^2-y+3=0$\n\n$2y^2+y-3=0$\n\n$(2y+3)(y-1)=0$\n\n$y=-\\dfrac{3}{2}$ or $y=1$\n\n$x=\\dfrac{9}{2}$ or $x=2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$ subject of the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-values"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-1.3",
+      "question_id": "2020-nov-p1-1.3",
+      "number": "1.3",
+      "marks": 3,
+      "answer_md": "$n=11$",
+      "working_md": "$n^{200}<5^{300}$\n\n$(n^2)^{100}<(5^3)^{100}$\n\n$n^2<125$\n\nMaximum value of $n$ is $11$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(n^2)^{100}<(5^3)^{100}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n^2<125$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$11$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$n=11$",
+          "working_md": "$200\\log n<300\\log 5$\n\n$n<10^{\\frac{3}{2}\\log 5}$\n\n$n<11,18$\n\n$\\therefore n=11$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "use of logs"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n<11,18$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n=11$",
+          "working_md": "$n^{200}<5^{300}$\n\n$(n^2)^{100}<(5^3)^{100}$\n\n$n^2<5^3$\n\n$n<5^{3/2}$\n\n$n<11,18$\n\n$\\therefore n=11$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$(n^2)^{100}<(5^3)^{100}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n<11,18$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n=11$",
+          "working_md": "$n^{200}<5^{300}$\n\n$n<5^{300/200}$\n\n$n<11,18$\n\n$\\therefore n=11$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n<5^{300/200}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n<11,18$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n=11$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-2.1",
+      "question_id": "2020-nov-p1-2.1",
+      "number": "2.1",
+      "marks": 4,
+      "answer_md": "$x=1$ and $y=-5$",
+      "working_md": "$7\\,;\\,x\\,;\\,y\\,;\\,-11\\,;\\,\\dots$\n\n$a=7$\n\n$a+3d=-11$\n\n$7+3d=-11$\n\n$d=-6$\n\n$x=a+d=7+(-6)=1$\n\n$y=a+2d=7+2(-6)=-5$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$7+3d=-11$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$d=-6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $y$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=1$ and $y=-5$",
+          "working_md": "$a+3d=-11$\n\n$3d=-11-7$\n\n$3d=-18$\n\n$d=-6$\n\n$x=1$\n\n$y=-5$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$3d=-11-7$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$d=-6$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=-5$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=1$ and $y=-5$",
+          "working_md": "$x-7=y-x$ and $y-x=-11-y$\n\n$2x-7=y$  ...(1) $\\quad 2y=-11+x$  ...(2)\n\n(1) into (2):\n\n$2(2x-7)=-11+x$\n\n$4x-14=-11+x$\n\n$3x=3$\n\n$x=1$\n\n$y=2(1)-7=-5$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "2 equations"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $y$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-2.2.1",
+      "question_id": "2020-nov-p1-2.2.1",
+      "number": "2.2.1",
+      "marks": 4,
+      "answer_md": "$T_n=6n^2-9n$",
+      "working_md": "$-3\\,;\\,6\\,;\\,27\\,;\\,60\\,;\\,\\dots$\n\nFirst differences: $9$, $21$, $33$\n\nSecond differences: $12$, $12$\n\n$2a=12$\n\n$a=6$\n\n$3a+b=9$\n\n$3(6)+b=9$\n\n$b=-9$\n\n$a+b+c=-3$\n\n$6-9+c=-3$\n\n$c=0$\n\n$T_n=6n^2-9n$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "second difference"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=-9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$c=0$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-2.2.2",
+      "question_id": "2020-nov-p1-2.2.2",
+      "number": "2.2.2",
+      "marks": 2,
+      "answer_md": "$T_{50}=14\\,550$",
+      "working_md": "$T_{50}=6(50)^2-9(50)$\n\n$=14\\,550$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitute $50$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The memo awards full marks for the correct answer only."
+    },
+    {
+      "id": "2020-nov-p1-2.2.3",
+      "question_id": "2020-nov-p1-2.2.3",
+      "number": "2.2.3",
+      "marks": 3,
+      "answer_md": "$S_n=6n^2+3n$",
+      "working_md": "$9\\,;\\,21\\,;\\,33\\,;\\,\\dots$\n\n$a=9$\n\n$d=12$\n\n$S_n=\\dfrac{n}{2}\\bigl[2a+(n-1)d\\bigr]$\n\n$S_n=\\dfrac{n}{2}\\bigl[2(9)+(n-1)(12)\\bigr]$\n\n$=\\dfrac{n}{2}[18+12n-12]$\n\n$=\\dfrac{n}{2}[12n+6]$\n\n$=6n^2+3n$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a$ and $d$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{n}{2}[12n+6]$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-2.2.4",
+      "question_id": "2020-nov-p1-2.2.4",
+      "number": "2.2.4",
+      "marks": 4,
+      "answer_md": "$n=59$",
+      "working_md": "$-3+S_n=21\\,060$\n\n$S_n=21\\,063$\n\n$6n^2+3n=21\\,063$\n\n$6n^2+3n-21\\,063=0$\n\n$2n^2+n-7\\,021=0$\n\n$n=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}$\n\n$n=\\dfrac{-1\\pm\\sqrt{(1)^2-4(2)(-7021)}}{2(2)}$\n\n$n=59$ or $n\\neq -\\dfrac{119}{2}$\n\n$\\therefore n=59$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-3+S_n=21\\,060$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$59$ first differences",
+          "working_md": "$T_n=21\\,060$\n\n$6n^2-9n-21\\,060=0$\n\n$2n^2-3n-7\\,020=0$\n\n$n=60$\n\n$\\therefore 59$ first differences must be added.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The first method's quadratic formula is transcribed with $a=2$ from $2n^2+n-7021=0$."
+    },
+    {
+      "id": "2020-nov-p1-3.1",
+      "question_id": "2020-nov-p1-3.1",
+      "number": "3.1",
+      "marks": 3,
+      "answer_md": "The series is convergent ($-1<r<1$)",
+      "working_md": "$\\displaystyle\\sum_{k=1}^{\\infty}4\\cdot 3^{2-k}=12+4+\\dfrac{4}{3}+\\dots$ or $36\\left(\\dfrac{1}{3}\\right)^k$\n\n$r=\\dfrac{4}{12}=\\dfrac{1}{3}$\n\n$-1<\\dfrac{1}{3}<1$\n\n$\\therefore$ the series is convergent ($-1<r<1$)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$12+4+\\dfrac{4}{3}+\\dots$ or $36\\left(\\dfrac{1}{3}\\right)^k$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $r$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-1<r<1$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-3.2",
+      "question_id": "2020-nov-p1-3.2",
+      "number": "3.2",
+      "marks": 5,
+      "answer_md": "$p=5$",
+      "working_md": "$\\displaystyle\\sum_{k=p}^{\\infty}4\\cdot 3^{2-k}=4\\cdot 3^{2-p}+4\\cdot 3^{1-p}+4\\cdot 3^{-p}+\\dots$\n\n$a=4\\cdot 3^{2-p}$\n\n$r=\\dfrac{1}{3}$\n\n$S_{\\infty}=\\dfrac{a}{1-r}$\n\n$\\dfrac{2}{9}=\\dfrac{4\\cdot 3^{2-p}}{1-\\dfrac{1}{3}}$\n\n$4\\cdot 3^{2-p}=\\dfrac{4}{27}$\n\n$3^{2-p}=3^{-3}$\n\n$2-p=-3$\n\n$p=5$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "expression for $a$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $a$, $r$ and $S_{\\infty}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification $4\\cdot 3^{2-p}=\\dfrac{4}{27}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3^{2-p}=3^{-3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.1.1",
+      "question_id": "2020-nov-p1-4.1.1",
+      "number": "4.1.1",
+      "marks": 2,
+      "answer_md": "$x=1$ and $y=2$",
+      "working_md": "$x=1$\n\n$y=2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.1.2",
+      "question_id": "2020-nov-p1-4.1.2",
+      "number": "4.1.2",
+      "marks": 2,
+      "answer_md": "$y=-x+3$",
+      "working_md": "$y=mx+c$ OR $y-y_1=m(x-x_1)$ OR $y=-(x-p)+q$\n\n$2=-1+c$ or $y-2=-1(x-1)$ or $y=-(x-1)+2$\n\n$c=3$ $\\quad y-2=-x+1$ $\\quad y=-x+3$\n\n$y=-x+3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $m=-1$ and $(1\\,;\\,2)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.1.3",
+      "question_id": "2020-nov-p1-4.1.3",
+      "number": "4.1.3",
+      "marks": 4,
+      "answer_md": "Graph of $h$ showing asymptotes $x=1$ and $y=2$, intercepts $\\left(\\dfrac{5}{2}\\,;\\,0\\right)$ and $(0\\,;\\,5)$, and the correct shape.",
+      "working_md": "Sketch of $h$: vertical asymptote $x=1$, horizontal asymptote $y=2$, $x$-intercept $\\dfrac{5}{2}$, $y$-intercept $5$, and the correct shape.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "vertical asymptote $x=1$ and horizontal asymptote $y=2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercept $\\dfrac{5}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept $5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "shape"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.2.1",
+      "question_id": "2020-nov-p1-4.2.1",
+      "number": "4.2.1",
+      "marks": 2,
+      "answer_md": "$(-5\\,;\\,-8)$",
+      "working_md": "$(-5\\,;\\,-8)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=-8$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.2.2",
+      "question_id": "2020-nov-p1-4.2.2",
+      "number": "4.2.2",
+      "marks": 1,
+      "answer_md": "$y\\geq -8$ or $[-8\\,;\\,\\infty)$",
+      "working_md": "$y\\geq -8$ or $[-8\\,;\\,\\infty)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.2.3",
+      "question_id": "2020-nov-p1-4.2.3",
+      "number": "4.2.3",
+      "marks": 3,
+      "answer_md": "$m=-5$ and $n=2$",
+      "working_md": "$m=-5$\n\n$n=g(-5)$\n\n$=\\dfrac{1}{2}(-5)+\\dfrac{9}{2}$\n\n$=2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m=-5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.2.4",
+      "question_id": "2020-nov-p1-4.2.4",
+      "number": "4.2.4",
+      "marks": 3,
+      "answer_md": "$\\dfrac{65}{4}$ or $16,25$",
+      "working_md": "Area of trapezium $=\\dfrac{1}{2}(\\mathrm{DE}+\\mathrm{OC})\\times\\mathrm{OE}$\n\n$=\\dfrac{1}{2}(2+4,5)\\times 5$\n\n$=\\dfrac{65}{4}$ or $16,25$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "method"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{65}{4}$ or $16,25$",
+          "working_md": "Area of $\\triangle=\\dfrac{1}{2}b\\cdot h=\\dfrac{1}{2}(5)\\left(\\dfrac{5}{2}\\right)=\\dfrac{25}{4}$\n\nArea of rectangle $=b\\cdot h=(5)(2)=10$\n\nArea of trapezium $=\\dfrac{25}{4}+10=\\dfrac{65}{4}$ or $16,25$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{65}{4}$ or $16,25$",
+          "working_md": "$S(-9\\,;\\,0)$\n\nArea of $\\triangle\\mathrm{SOC}=\\dfrac{1}{2}b\\cdot h=\\dfrac{1}{2}(9)\\left(\\dfrac{9}{2}\\right)=\\dfrac{81}{4}$\n\nArea of $\\triangle\\mathrm{SED}=\\dfrac{1}{2}b\\cdot h=\\dfrac{1}{2}(4)(2)=4$\n\nArea of trapezium $=$ area $\\triangle\\mathrm{SOC}-$ area $\\triangle\\mathrm{SED}$\n\n$=\\dfrac{81}{4}-4=\\dfrac{65}{4}$ or $16,25$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.2.5",
+      "question_id": "2020-nov-p1-4.2.5",
+      "number": "4.2.5",
+      "marks": 2,
+      "answer_md": "$y=2x-9$",
+      "working_md": "$g^{-1}$: $x=\\dfrac{1}{2}y+\\dfrac{9}{2}$\n\n$g^{-1}$: $y=2x-9$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "changing $x$ and $y$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-4.2.6",
+      "question_id": "2020-nov-p1-4.2.6",
+      "number": "4.2.6",
+      "marks": 4,
+      "answer_md": "$(-3\\,;\\,-6)$",
+      "working_md": "$f(x)=\\dfrac{1}{2}(x+5)^2-8$\n\n$f(x)=\\dfrac{1}{2}(x^2+10x+25)-8$\n\n$f(x)=\\dfrac{1}{2}x^2+5x+4,5$\n\n$f'(x)=x+5$\n\n$h(x)=2x-9+k$\n\n$x+5=2$\n\n$x=-3$, $y=-6$\n\n$(-3\\,;\\,-6)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f'(x)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x+5=2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=-6$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(-3\\,;\\,-6)$",
+          "working_md": "$f(x)=h(x)$\n\n$\\dfrac{1}{2}(x+5)^2-8=2x-9+k$\n\n$\\dfrac{1}{2}x^2+3x+\\dfrac{27}{2}-k=0$\n\n$x=\\dfrac{-3}{2\\left(\\dfrac{1}{2}\\right)}=-3$ $\\quad b^2-4ac=0$\n\n$y=-6$\n\n$(-3\\,;\\,-6)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equating"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "turning point / $\\Delta=0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=-3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=-6$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-5.1",
+      "question_id": "2020-nov-p1-5.1",
+      "number": "5.1",
+      "marks": 1,
+      "answer_md": "$A(0\\,;\\,1)$",
+      "working_md": "$A(0\\,;\\,1)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-5.2",
+      "question_id": "2020-nov-p1-5.2",
+      "number": "5.2",
+      "marks": 3,
+      "answer_md": "$B(-2\\,;\\,9)$",
+      "working_md": "$9=3^{-x}$\n\n$3^2=3^{-x}$\n\n$x=-2$\n\n$B(-2\\,;\\,9)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3^2=3^{-x}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-5.3",
+      "question_id": "2020-nov-p1-5.3",
+      "number": "5.3",
+      "marks": 2,
+      "answer_md": "$x\\in(0\\,;\\,\\infty)$ or $x>0$",
+      "working_md": "$x\\in(0\\,;\\,\\infty)$ or $x>0$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-5.4",
+      "question_id": "2020-nov-p1-5.4",
+      "number": "5.4",
+      "marks": 3,
+      "answer_md": "$f$ is shifted $3$ units to the right",
+      "working_md": "$h(x)=27\\cdot 3^{-x}$\n\n$h(x)=3^{-(x-3)}$\n\n$f$ shifted $3$ units to the right",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$h(x)=3^{-(x-3)}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3$ units"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "right"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-5.5",
+      "question_id": "2020-nov-p1-5.5",
+      "number": "5.5",
+      "marks": 3,
+      "answer_md": "$x>3$",
+      "working_md": "$\\dfrac{27}{3^x}<1$ OR $3^{-x+3}<1$\n\n$3^x>27$ or $3^{-x+3}<3^0$\n\n$3^x>3^3$ or $-x+3<0$\n\n$x>3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3^x>27$ or $3^{-x+3}<3^0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3^x>3^3$ or $-x+3<0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x>3$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x>3$",
+          "working_md": "The graph shifts $3$ units to the right\n\nThus the $y$-intercept shifts $3$ units to the right $(3\\,;\\,1)$\n\n$\\therefore x>3$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "translation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-intercept"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-6.1.1",
+      "question_id": "2020-nov-p1-6.1.1",
+      "number": "6.1.1",
+      "marks": 4,
+      "answer_md": "$\\mathrm{R}234\\,888,53$",
+      "working_md": "$F=\\dfrac{x\\bigl[(1+i)^n-1\\bigr]}{i}$\n\n$=\\dfrac{1\\,000\\left[\\left(1+\\dfrac{0,075}{12}\\right)^{145}-1\\right]}{\\dfrac{0,075}{12}}$\n\n$=\\mathrm{R}234\\,888,53$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=145$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i=\\dfrac{0,075}{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-6.1.2",
+      "question_id": "2020-nov-p1-6.1.2",
+      "number": "6.1.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{R}253\\,123,54$",
+      "working_md": "$A=P(1+i)^n$\n\n$=234\\,888,53\\left(1+\\dfrac{0,075}{12}\\right)^{12}$\n\n$=\\mathrm{R}253\\,123,54$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-6.2",
+      "question_id": "2020-nov-p1-6.2",
+      "number": "6.2",
+      "marks": 3,
+      "answer_md": "$n=4$ years",
+      "working_md": "$A=P(1-i)^n$\n\n$92\\,537,64=250\\,000(1-0,22)^n$\n\n$0,37015056=(0,78)^n$\n\n$n=\\dfrac{\\log 0,37015056}{\\log 0,78}$\n\n$n=4$ years",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct use of logs"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-6.3.1",
+      "question_id": "2020-nov-p1-6.3.1",
+      "number": "6.3.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{R}78\\,173,49$",
+      "working_md": "Loan amount $=\\dfrac{x\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$=\\dfrac{1\\,500\\left[1-\\left(1+\\dfrac{0,113}{12}\\right)^{-72}\\right]}{\\dfrac{0,113}{12}}$\n\n$=\\mathrm{R}78\\,173,49323$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$72$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-6.3.2",
+      "question_id": "2020-nov-p1-6.3.2",
+      "number": "6.3.2",
+      "marks": 4,
+      "answer_md": "$\\mathrm{R}28\\,771,51$",
+      "working_md": "Balance after $5$ years: $P=\\dfrac{x\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$=\\dfrac{1\\,500\\left[1-\\left(1+\\dfrac{0,113}{12}\\right)^{-12}\\right]}{\\dfrac{0,113}{12}}$\n\n$=\\mathrm{R}16\\,945,00629$\n\nAmount paid: $\\mathrm{R}1\\,500\\times 60=\\mathrm{R}90\\,000$\n\nInterest $=$ amount paid $-$ [loan $-$ balance]\n\n$=\\mathrm{R}90\\,000-[\\mathrm{R}78\\,173,49323-\\mathrm{R}16\\,945,00629]$\n\n$=\\mathrm{R}28\\,771,51$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "$\\mathrm{R}16\\,945,00629$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{R}90\\,000-$ [loan $-$ balance]"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{R}28\\,771,51$",
+          "working_md": "Balance $=78\\,173,49\\left(1+\\dfrac{0,113}{12}\\right)^{60}-\\dfrac{1\\,500\\left[\\left(1+\\dfrac{0,113}{12}\\right)^{60}-1\\right]}{\\dfrac{0,113}{12}}$\n\nBalance $=\\mathrm{R}16\\,945,00$\n\nAmount paid: $\\mathrm{R}1\\,500\\times 60=\\mathrm{R}90\\,000$\n\nInterest $=$ amount paid $-$ [loan $-$ balance]\n\n$=\\mathrm{R}90\\,000-[\\mathrm{R}78\\,173,49323-\\mathrm{R}16\\,945,00629]$\n\n$=\\mathrm{R}28\\,771,51$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{R}16\\,945,00629$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{R}90\\,000-$ [loan $-$ balance]"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-7.1",
+      "question_id": "2020-nov-p1-7.1",
+      "number": "7.1",
+      "marks": 5,
+      "answer_md": "$f'(x)=4x$",
+      "working_md": "$f(x)=2x^2-1$\n\n$f(x+h)=2(x+h)^2-1$\n\n$=2(x^2+2xh+h^2)-1$\n\n$=2x^2+4xh+2h^2-1$\n\n$f(x+h)-f(x)=2x^2+4xh+2h^2-1-(2x^2-1)$\n\n$=4xh+2h^2$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{4xh+2h^2}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{h(4x+2h)}{h}$\n\n$=\\lim_{h\\to 0}(4x+2h)$\n\n$=4x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2x^2+4xh+2h^2-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4xh+2h^2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The memo states a penalty of $-1$ for notation only in 7.1."
+    },
+    {
+      "id": "2020-nov-p1-7.2.1",
+      "question_id": "2020-nov-p1-7.2.1",
+      "number": "7.2.1",
+      "marks": 3,
+      "answer_md": "$\\dfrac{2}{5}x^{-3/5}+3x^2$",
+      "working_md": "$\\dfrac{d}{dx}\\left(x^{2/5}+x^3\\right)$\n\n$=\\dfrac{2}{5}x^{-3/5}+3x^2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^{2/5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{2}{5}x^{-3/5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3x^2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-7.2.2",
+      "question_id": "2020-nov-p1-7.2.2",
+      "number": "7.2.2",
+      "marks": 4,
+      "answer_md": "$f'(x)=1$",
+      "working_md": "$f(x)=\\dfrac{4x^2-9}{4x+6}$\n\n$=\\dfrac{(2x-3)(2x+3)}{2(2x+3)}$\n\n$=\\dfrac{2x-3}{2}$\n\n$=x-\\dfrac{3}{2}$\n\n$f'(x)=1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(2x-3)(2x+3)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2(2x+3)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification to two separate terms"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-8.1",
+      "question_id": "2020-nov-p1-8.1",
+      "number": "8.1",
+      "marks": 2,
+      "answer_md": "$-1<x<2$",
+      "working_md": "$-1<x<2$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-8.2",
+      "question_id": "2020-nov-p1-8.2",
+      "number": "8.2",
+      "marks": 2,
+      "answer_md": "$x=\\dfrac{1}{2}$",
+      "working_md": "$x=\\dfrac{-1+2}{2}$\n\n$x=\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "method"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The memo awards full marks for the correct answer only."
+    },
+    {
+      "id": "2020-nov-p1-8.3",
+      "question_id": "2020-nov-p1-8.3",
+      "number": "8.3",
+      "marks": 2,
+      "answer_md": "$x>\\dfrac{1}{2}$",
+      "working_md": "From the graph $x>\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The memo awards full marks for the correct answer only."
+    },
+    {
+      "id": "2020-nov-p1-8.4",
+      "question_id": "2020-nov-p1-8.4",
+      "number": "8.4",
+      "marks": 4,
+      "answer_md": "$g(x)=-2x^3+3x^2+12x$",
+      "working_md": "$g(x)=ax^3+bx^2+cx$\n\n$g'(x)=3ax^2+2bx+c=-6x^2+6x+12$\n\n$3a=-6$, $2b=6$, $c=12$\n\n$a=-2$, $b=3$\n\n$g(x)=-2x^3+3x^2+12x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$g'(x)=3ax^2+2bx+c$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=-2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$g(x)=-2x^3+3x^2+12x$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-8.5",
+      "question_id": "2020-nov-p1-8.5",
+      "number": "8.5",
+      "marks": 5,
+      "answer_md": "$y=13,5x-0,25$",
+      "working_md": "$g'\\left(\\dfrac{1}{2}\\right)=-6\\left(\\dfrac{1}{2}\\right)^2+6\\left(\\dfrac{1}{2}\\right)+12$\n\n$m=\\dfrac{27}{2}$ or $13,5$\n\n$y=-2\\left(\\dfrac{1}{2}\\right)^3+3\\left(\\dfrac{1}{2}\\right)^2+12\\left(\\dfrac{1}{2}\\right)$\n\n$y=\\dfrac{13}{2}$ or $6,5$\n\n$y-y_1=m(x-x_1)$\n\n$y-6,5=13,5(x-0,5)$\n\n$y=13,5x-0,25$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "max gradient at $x=\\dfrac{1}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer for $m$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-9.1",
+      "question_id": "2020-nov-p1-9.1",
+      "number": "9.1",
+      "marks": 4,
+      "answer_md": "$\\mathrm{Cost}=90w^2+48wh$",
+      "working_md": "Total surface area $=2\\ell w+2wh+2\\ell h$\n\nbut $\\ell=3w$\n\nTotal surface area $=6w^2+2wh+6wh$\n\n$C=15(6w^2)+6(2wh+6wh)$\n\n$=15(6w^2)+6(8wh)$\n\n$=90w^2+48wh$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2\\ell w+2wh+2\\ell h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\ell=3w$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$15(6w^2)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6(2wh+6wh)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-9.2",
+      "question_id": "2020-nov-p1-9.2",
+      "number": "9.2",
+      "marks": 6,
+      "answer_md": "$w=0,76$",
+      "working_md": "$5=3w^2 h$\n\n$h=\\dfrac{5}{3w^2}$\n\n$C=90w^2+48wh$\n\n$C(w)=90w^2+48w\\left(\\dfrac{5}{3w^2}\\right)$\n\n$=90w^2+80w^{-1}$\n\n$C'(w)=180w-80w^{-2}$\n\n$180w-80w^{-2}=0$\n\n$180w^3-80=0$\n\n$w^3=\\dfrac{80}{180}$\n\n$w=\\sqrt[3]{\\dfrac{80}{180}}$\n\n$w=0,76$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$h=\\dfrac{5}{3w^2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$C(w)=90w^2+80w^{-1}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating derivative to zero"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $w$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-10.1",
+      "question_id": "2020-nov-p1-10.1",
+      "number": "10.1",
+      "marks": 2,
+      "answer_md": "$10^{10}$ or $10\\,000\\,000\\,000$",
+      "working_md": "$10^{10}$ or $10\\,000\\,000\\,000$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-10.2.1",
+      "question_id": "2020-nov-p1-10.2.1",
+      "number": "10.2.1",
+      "marks": 3,
+      "answer_md": "$1,024\\times 10^9$",
+      "working_md": "$8\\times 10\\times 10$ (area) $\\times$ $8\\times 8\\times 10$ (exchange) $\\times$ $2\\times 10\\times 10\\times 10$ (number)\n\nNumber of valid $10$-digit numbers\n\n$=(8\\times 10\\times 10)\\times(8\\times 8\\times 10)\\times(2\\times 10\\times 10\\times 10)$\n\n$=1,024\\times 10^9$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$8\\times 10\\times 10$ or $8\\times 8\\times 10$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2\\times 10\\times 10\\times 10$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "$1,024\\times 10^9$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-10.2.2",
+      "question_id": "2020-nov-p1-10.2.2",
+      "number": "10.2.2",
+      "marks": 2,
+      "answer_md": "$\\dfrac{64}{625}=0,1024=10,24\\%$",
+      "working_md": "$\\text{Probability}=\\dfrac{1,024\\times 10^9}{10^{10}}$\n\n$=\\dfrac{64}{625}=0,1024=10,24\\%$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{1,024\\times 10^9}{10^{10}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-11.1",
+      "question_id": "2020-nov-p1-11.1",
+      "number": "11.1",
+      "marks": 2,
+      "answer_md": "$0,25$ or $\\dfrac{1}{4}$",
+      "working_md": "$\\mathrm{P}(\\text{bull's eye first shot and second shot})$\n\n$=0,5\\times 0,5$\n\n$=0,25$ or $\\dfrac{1}{4}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "two $0,5$'s"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0,5\\times 0,5$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-11.2",
+      "question_id": "2020-nov-p1-11.2",
+      "number": "11.2",
+      "marks": 3,
+      "answer_md": "$0,5$ or $\\dfrac{1}{2}$",
+      "working_md": "$\\mathrm{P}$(bull's eye at least twice in 3 shots)\n\n$=(0,5\\times 0,5\\times 0,5)+(0,5\\times 0,5\\times 0,5)+(0,5\\times 0,5\\times 0,5)+(0,5\\times 0,5\\times 0,5)$\n\n$=0,125+0,125+0,125+0,125$\n\n$=0,5$ or $\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0,5\\times 0,5\\times 0,5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "four events"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p1-11.3",
+      "question_id": "2020-nov-p1-11.3",
+      "number": "11.3",
+      "marks": 3,
+      "answer_md": "$P=\\dfrac{2}{3}=0,67$",
+      "working_md": "Person shoots first:\n\n$(0,5)+(0,5)^3+(0,5)^5+\\dots$\n\n$P=\\dfrac{a}{1-r}$\n\n$P=\\dfrac{0,5}{1-0,25}$\n\n$P=\\dfrac{2}{3}=0,67$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(0,5)+(0,5)^3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dots+(0,5)^5+\\dots$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$P=\\dfrac{0,5}{1-0,25}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    }
+  ]
+}

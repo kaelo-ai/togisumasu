@@ -1,0 +1,1796 @@
+{
+  "id": "2021-nov-p1",
+  "paper_id": "2021-nov-p1",
+  "source": {
+    "pdf": "sources/maths/2021-nov/2021-nov-p1-memo.pdf",
+    "pdf_pages": 16,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=LJo4MZ4DRZM%3d&tabid=2922&portalid=0&mid=10135",
+    "sha256": "f7200245c6dc0ea0b22489eac95f2ae7977e55d4877d9788291da5ff6ecf4610",
+    "note": "Official DBE November 2021 Mathematics P1 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt.\nConsistent Accuracy applies in all aspects of the marking guidelines.",
+  "parts": [
+    {
+      "id": "2021-nov-p1-1.1.1",
+      "question_id": "2021-nov-p1-1.1.1",
+      "number": "1.1.1",
+      "marks": 3,
+      "answer_md": "$x=6$ or $x=-4$",
+      "working_md": "$x^2-2x-24=0$\n\n$(x-6)(x+4)=0$\n\n$x=6$ or $x=-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-1.1.2",
+      "question_id": "2021-nov-p1-1.1.2",
+      "number": "1.1.2",
+      "marks": 3,
+      "answer_md": "$x=2,19$ or $x=-0,69$",
+      "working_md": "$2x^2-3x-3=0$\n\n$x=\\dfrac{3\\pm\\sqrt{(-3)^2-4(2)(-3)}}{2(2)}$\n\n$x=\\dfrac{3\\pm\\sqrt{33}}{4}$\n\n$x=2,19$ or $x=-0,69$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=2,19$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-0,69$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-1.1.3",
+      "question_id": "2021-nov-p1-1.1.3",
+      "number": "1.1.3",
+      "marks": 4,
+      "answer_md": "$-4\\leq x\\leq -1$ or $x\\in[-4\\,;\\,-1]$",
+      "working_md": "$x^2+5x\\leq -4$\n\n$x^2+5x+4\\leq 0$\n\n$(x+4)(x+1)\\leq 0$\n\nCritical values: $x=-4$ or $x=-1$\n\n$-4\\leq x\\leq -1$ OR $x\\in[-4\\,;\\,-1]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-1.1.4",
+      "question_id": "2021-nov-p1-1.1.4",
+      "number": "1.1.4",
+      "marks": 4,
+      "answer_md": "$x=-3$",
+      "working_md": "$\\sqrt{x+28}=2-x$\n\n$(\\sqrt{x+28})^2=(2-x)^2$\n\n$x+28=4-4x+x^2$\n\n$x^2-5x-24=0$\n\n$(x-8)(x+3)=0$\n\n$x\\neq 8$ or $x=-3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "squaring both sides"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answers with selection"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-1.2",
+      "question_id": "2021-nov-p1-1.2",
+      "number": "1.2",
+      "marks": 6,
+      "answer_md": "$x=-2$, $y=\\dfrac{1}{2}$ or $x=-1$, $y=1$",
+      "working_md": "$2y=3+x$\n\n$x=2y-3$  ...(1)\n\n$2xy+7=x^2+4y^2$  ...(2)\n\n$2y(2y-3)+7=(2y-3)^2+4y^2$\n\n$4y^2-6y+7=4y^2-12y+9+4y^2$\n\n$4y^2-6y+2=0$\n\n$2y^2-3y+1=0$\n\n$(2y-1)(y-1)=0$\n\n$y=\\dfrac{1}{2}$ or $y=1$\n\n$x=-2$ or $x=-1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation 1"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-values"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=-2$, $y=\\dfrac{1}{2}$ or $x=-1$, $y=1$",
+          "working_md": "$2y=3+x$\n\n$y=\\dfrac{3}{2}+\\dfrac{x}{2}$  ...(1)\n\n$2xy+7=x^2+4y^2$  ...(2)\n\n$2x\\left(\\dfrac{3}{2}+\\dfrac{x}{2}\\right)+7=x^2+4\\left(\\dfrac{3}{2}+\\dfrac{x}{2}\\right)^2$\n\n$3x+x^2+7=x^2+9+6x+x^2$\n\n$x^2+3x+2=0$\n\n$(x+2)(x+1)=0$\n\n$x=-2$ or $x=-1$\n\n$y=\\dfrac{1}{2}$ or $y=1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation 1"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-values"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-1.3",
+      "question_id": "2021-nov-p1-1.3",
+      "number": "1.3",
+      "marks": 4,
+      "answer_md": "$\\Delta<0$, so $x$ is a non-real number",
+      "working_md": "$\\dfrac{n}{m}=\\dfrac{p}{n}$\n\n$n^2=mp$\n\n$\\Delta=b^2-4ac$\n\n$\\Delta=n^2-4mp$, but $n^2=mp$\n\n$\\Delta=n^2-4n^2$ OR $\\Delta=mp-4mp$\n\n$\\Delta=-3n^2$ OR $\\Delta=-3mp$\n\n$n^2>0$ $\\therefore -3n^2<0$ OR $mp>0$ $\\therefore -3mp<0$\n\n$\\therefore\\Delta<0\\implies x$ is a non-real number",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{n}{m}=\\dfrac{p}{n}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n^2=mp$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\Delta=-3n^2$ or $-3mp$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\Delta<0$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-2.1",
+      "question_id": "2021-nov-p1-2.1",
+      "number": "2.1",
+      "marks": 2,
+      "answer_md": "$x=100$",
+      "working_md": "$\\dfrac{90}{x}=\\dfrac{81}{90}$\n\n$81x=8100$\n\n$x=100$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{90}{x}=\\dfrac{81}{90}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=100$",
+          "working_md": "$x=90\\times\\dfrac{10}{9}$\n\n$x=100$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{10}{9}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-2.2",
+      "question_id": "2021-nov-p1-2.2",
+      "number": "2.2",
+      "marks": 2,
+      "answer_md": "$S_n=1\\,000\\bigl(1-(0,9)^n\\bigr)$",
+      "working_md": "$S_n=\\dfrac{a(1-r^n)}{1-r}$\n\n$S_n=\\dfrac{100\\bigl(1-(0,9)^n\\bigr)}{1-0,9}$\n\n$S_n=\\dfrac{100\\bigl(1-(0,9)^n\\bigr)}{0,1}$\n\n$\\therefore S_n=1\\,000\\bigl(1-(0,9)^n\\bigr)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$r=0,9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into correct formula"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-2.3",
+      "question_id": "2021-nov-p1-2.3",
+      "number": "2.3",
+      "marks": 2,
+      "answer_md": "$S_{\\infty}=1000$",
+      "working_md": "$S_{\\infty}=\\dfrac{a}{1-r}$\n\n$S_{\\infty}=\\dfrac{100}{1-\\dfrac{9}{10}}$\n\n$S_{\\infty}=1000$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$S_{\\infty}=1000$",
+          "working_md": "$S_{\\infty}=\\lim_{n\\to\\infty}\\bigl[1\\,000\\bigl(1-(0,9)^n\\bigr)\\bigr]$\n\n$S_{\\infty}=1000$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{\\infty}=\\lim_{n\\to\\infty}\\bigl[1\\,000\\bigl(1-(0,9)^n\\bigr)\\bigr]$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-3.1",
+      "question_id": "2021-nov-p1-3.1",
+      "number": "3.1",
+      "marks": 1,
+      "answer_md": "$-82$",
+      "working_md": "$-82$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-3.2",
+      "question_id": "2021-nov-p1-3.2",
+      "number": "3.2",
+      "marks": 3,
+      "answer_md": "$T_n=-n^2+26n-170$",
+      "working_md": "$-145\\,;\\,-122\\,;\\,-101\\,;\\,\\dots$\n\nFirst differences: $23$, $21$\n\nSecond differences: $-2$, $-2$\n\n$2a=-2$ $\\therefore a=-1$\n\n$3a+b=23$ $\\therefore 3(-1)+b=23$ $\\therefore b=26$\n\n$a+b+c=-145$ $\\therefore -1+26+c=-145$ $\\therefore c=-170$\n\n$\\therefore T_n=-n^2+26n-170$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2a=-2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3(-1)+b=23$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-1+26+c=-145$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T_n=-n^2+26n-170$",
+          "working_md": "$2a=-2$ $\\therefore a=-1$\n\n$c=-145+(-2)-23=-170$\n\n$\\therefore T_n=-n^2+bn-170$\n\n$-145=-1+b-170$\n\n$b=26$\n\n$\\therefore T_n=-n^2+26n-170$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2a=-2$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$c=-145+(-2)-23$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-145=-1+b-170$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-3.3",
+      "question_id": "2021-nov-p1-3.3",
+      "number": "3.3",
+      "marks": 4,
+      "answer_md": "Between $T_{73}$ and $T_{74}$",
+      "working_md": "$T_n=bn+c$ OR $T_n=a+(n-1)d=23+(n-1)(-2)=25-2n$\n\n$T_n=-2n+25$\n\n$-2n+25=-121$\n\n$-2n=-146$\n\n$n=73$\n\nBetween $T_{73}$ and $T_{74}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_n=-2n+25$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_n=-121$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=73$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Between $T_{73}$ and $T_{74}$",
+          "working_md": "$T_{n+1}-T_n=-(n+1)^2+26(n+1)-170-(-n^2+26n-170)$\n\n$-121=-2n+25$\n\n$n=73$\n\nBetween $T_{73}$ and $T_{74}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_n=-2n+25$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_n=-121$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n=73$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-3.4",
+      "question_id": "2021-nov-p1-3.4",
+      "number": "3.4",
+      "marks": 3,
+      "answer_md": "add $2$",
+      "working_md": "$n=\\dfrac{-b}{2a}=\\dfrac{-26}{2(1)}=13$\n\n$T_{13}=-1$\n\n$\\therefore$ add $2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$13$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_{13}=-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "add $2$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "add $2$",
+          "working_md": "$T_n'=-2n+26=0$\n\n$n=13$\n\n$T_{13}=-(13)^2+26(13)-170=-1$\n\n$\\therefore$ add $2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$13$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{13}=-1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "add $2$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The memo writes the first-method denominator as $2(1)$ even though $a=-1$. Transcribed as printed."
+    },
+    {
+      "id": "2021-nov-p1-4.1",
+      "question_id": "2021-nov-p1-4.1",
+      "number": "4.1",
+      "marks": 3,
+      "answer_md": "$T_{51}=105$",
+      "working_md": "$a=5$ and $d=2$\n\n$T_{51}=5+(51-1)(2)$\n\n$=105$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a$ and $d$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-4.2",
+      "question_id": "2021-nov-p1-4.2",
+      "number": "4.2",
+      "marks": 2,
+      "answer_md": "$S_{51}=2\\,805$",
+      "working_md": "$S_n=\\dfrac{n}{2}\\bigl[2a+(n-1)d\\bigr]$\n\n$S_{51}=\\dfrac{51}{2}\\bigl[2(5)+(51-1)2\\bigr]$ OR $S_{51}=\\dfrac{51}{2}[5+105]$\n\n$=2\\,805$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-4.3",
+      "question_id": "2021-nov-p1-4.3",
+      "number": "4.3",
+      "marks": 1,
+      "answer_md": "$\\displaystyle\\sum_{n=1}^{5000}(2n+3)=5+7+9+\\dots+10\\,003$",
+      "working_md": "$\\displaystyle\\sum_{n=1}^{5000}(2n+3)=5+7+9+\\dots+10\\,003$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "expansion"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-4.4",
+      "question_id": "2021-nov-p1-4.4",
+      "number": "4.4",
+      "marks": 4,
+      "answer_md": "$20\\,001$",
+      "working_md": "$T_1=-3$ $\\quad T_{4999}=-2(4\\,999)-1=-9\\,999$\n\n$\\therefore\\displaystyle\\sum_{n=1}^{5000}(2n+3)+\\sum_{n=1}^{4999}(-2n-1)$\n\n$=(5+7+9+\\dots+9\\,999+10\\,001+10\\,003)+(-3-5-7-9-\\dots-9\\,999)$\n\n$=10\\,001+10\\,003-3$\n\n$=20\\,001$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_1=-3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_{4999}=-9\\,999$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both expansions"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$20\\,001$",
+          "working_md": "$S_{4999}=\\dfrac{4\\,999}{2}\\bigl[2(-3)+(4\\,999-1)(-2)\\bigr]=-24\\,999\\,999$\n\n$S_{5000}=\\dfrac{5000}{2}\\bigl((2)(5)+(5\\,000-1)(2)\\bigr)=25\\,020\\,000$\n\n$\\displaystyle\\sum_{n=1}^{5000}(2n+3)+\\sum_{n=1}^{4999}(-2n-1)=25\\,020\\,000-24\\,999\\,999$\n\n$=20\\,001$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_1=-3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{4999}=-24\\,999\\,999$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{5000}=25\\,020\\,000$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "A",
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-5.1",
+      "question_id": "2021-nov-p1-5.1",
+      "number": "5.1",
+      "marks": 2,
+      "answer_md": "$x=3$ and $y=2$",
+      "working_md": "$x=3$\n\n$y=2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-5.2",
+      "question_id": "2021-nov-p1-5.2",
+      "number": "5.2",
+      "marks": 1,
+      "answer_md": "$x\\in\\mathbb{R}$, $x\\neq 3$",
+      "working_md": "$x\\in\\mathbb{R}$, $x\\neq 3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\in(-\\infty\\,;\\,3)\\cup(3\\,;\\,\\infty)$",
+          "working_md": "$x\\in(-\\infty\\,;\\,3)\\cup(3\\,;\\,\\infty)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x<3$ or $x>3$",
+          "working_md": "$x<3$ or $x>3$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-5.3",
+      "question_id": "2021-nov-p1-5.3",
+      "number": "5.3",
+      "marks": 2,
+      "answer_md": "$\\left(\\dfrac{7}{2}\\,;\\,0\\right)$",
+      "working_md": "$0=\\dfrac{-1}{x-3}+2$\n\n$-2x+6=-1$\n\n$x=\\dfrac{7}{2}$\n\n$x$-int: $\\left(\\dfrac{7}{2}\\,;\\,0\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-5.4",
+      "question_id": "2021-nov-p1-5.4",
+      "number": "5.4",
+      "marks": 2,
+      "answer_md": "$\\left(0\\,;\\,\\dfrac{7}{3}\\right)$",
+      "working_md": "$y$-int: $\\left(0\\,;\\,\\dfrac{7}{3}\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{7}{3}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-5.5",
+      "question_id": "2021-nov-p1-5.5",
+      "number": "5.5",
+      "marks": 3,
+      "answer_md": "Graph of $f$ showing asymptotes $x=3$ and $y=2$, intercepts $\\left(\\dfrac{7}{2}\\,;\\,0\\right)$ and $\\left(0\\,;\\,\\dfrac{7}{3}\\right)$, and the correct shape.",
+      "working_md": "Sketch of $f$: horizontal asymptote $y=2$, vertical asymptote $x=3$, $y$-intercept $\\approx 2,33$, $x$-intercept at $3,5$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "asymptotes"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "intercepts with the axes"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-6.1",
+      "question_id": "2021-nov-p1-6.1",
+      "number": "6.1",
+      "marks": 2,
+      "answer_md": "$k=16$",
+      "working_md": "$f(x)=\\log_4 x$\n\n$2=\\log_4 k$\n\n$4^2=k$\n\n$\\therefore k=16$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $(k\\,;\\,2)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-6.2",
+      "question_id": "2021-nov-p1-6.2",
+      "number": "6.2",
+      "marks": 2,
+      "answer_md": "$\\dfrac{1}{4}\\leq x\\leq 16$ or $x\\in\\left[\\dfrac{1}{4}\\,;\\,16\\right]$",
+      "working_md": "$-1=\\log_4 x$ $\\therefore x=\\dfrac{1}{4}$\n\n$\\dfrac{1}{4}\\leq x\\leq 16$ or $x\\in\\left[\\dfrac{1}{4}\\,;\\,16\\right]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=\\dfrac{1}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-6.3",
+      "question_id": "2021-nov-p1-6.3",
+      "number": "6.3",
+      "marks": 2,
+      "answer_md": "$y=4^x$",
+      "working_md": "$f(x)=\\log_4 x$\n\n$y=\\log_4 x$\n\n$x=\\log_4 y$\n\n$y=4^x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "swopping $x$ and $y$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-6.4",
+      "question_id": "2021-nov-p1-6.4",
+      "number": "6.4",
+      "marks": 2,
+      "answer_md": "$x<0$",
+      "working_md": "$x<0$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\in(-\\infty\\,;\\,0)$",
+          "working_md": "$x\\in(-\\infty\\,;\\,0)$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-7.1",
+      "question_id": "2021-nov-p1-7.1",
+      "number": "7.1",
+      "marks": 2,
+      "answer_md": "$B(-4\\,;\\,0)$ and $D(6\\,;\\,0)$",
+      "working_md": "$B(-4\\,;\\,0)$\n\n$D(6\\,;\\,0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$B(-4\\,;\\,0)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$D(6\\,;\\,0)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-7.2",
+      "question_id": "2021-nov-p1-7.2",
+      "number": "7.2",
+      "marks": 2,
+      "answer_md": "$C(1\\,;\\,-25)$",
+      "working_md": "$f(x)=x^2-2x-24$\n\n$x_{\\mathrm{tp}}=\\dfrac{-b}{2a}$ OR $2x-2=0$ OR $x=\\dfrac{-4+6}{2}$\n\n$x=\\dfrac{-(-2)}{2(1)}$\n\n$\\therefore x_{\\mathrm{tp}}=1$\n\n$y_{\\mathrm{tp}}=f(1)=1^2-2(1)-24=-25$\n\n$C(1\\,;\\,-25)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_{\\mathrm{tp}}=1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y_{\\mathrm{tp}}=-25$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-7.3",
+      "question_id": "2021-nov-p1-7.3",
+      "number": "7.3",
+      "marks": 1,
+      "answer_md": "$y\\geq -25$",
+      "working_md": "$y\\geq -25$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y\\in[-25\\,;\\,\\infty)$",
+          "working_md": "$y\\in[-25\\,;\\,\\infty)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-7.4.1",
+      "question_id": "2021-nov-p1-7.4.1",
+      "number": "7.4.1",
+      "marks": 1,
+      "answer_md": "$m_{\\mathrm{AE}}=0,25=\\dfrac{1}{4}$",
+      "working_md": "$m_{\\mathrm{AE}}=\\tan 14,04^{\\circ}=0,25=\\dfrac{1}{4}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-7.4.2",
+      "question_id": "2021-nov-p1-7.4.2",
+      "number": "7.4.2",
+      "marks": 5,
+      "answer_md": "$T(-1\\,;\\,-21)$",
+      "working_md": "$m_{\\mathrm{tang}}=-4$\n\n$f'(x)=2x-2$\n\n$2x-2=-4$\n\n$x_T=-1$\n\n$y_T=-21$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{tang}}=-4$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f'(x)=2x-2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_T=-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y_T=-21$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-7.5",
+      "question_id": "2021-nov-p1-7.5",
+      "number": "7.5",
+      "marks": 6,
+      "answer_md": "$x=\\dfrac{21}{4}=5,25$",
+      "working_md": "$m_{\\mathrm{line}}=\\dfrac{1}{4}$\n\n$y+9=\\dfrac{1}{4}(x+3)$ OR $-9=\\dfrac{1}{4}(-3)+c$\n\n$y+9=\\dfrac{1}{4}x+\\dfrac{3}{4}$ $\\quad c=-\\dfrac{33}{4}=-8,25$\n\n$y=\\dfrac{1}{4}x-\\dfrac{33}{4}$ OR $y=0,25x-8,25$\n\n$x^2-2x-24=\\dfrac{1}{4}x-\\dfrac{33}{4}$\n\n$4x^2-8x-96=x-33$\n\n$4x^2-9x-63=0$\n\n$(4x-21)(x+3)=0$\n\n$\\therefore x=\\dfrac{21}{4}=5,25$ or $x\\neq -3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{line}}=\\dfrac{1}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $m$ and $K(-3\\,;\\,-9)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=\\dfrac{1}{4}x-\\dfrac{33}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer with selection"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-8.1",
+      "question_id": "2021-nov-p1-8.1",
+      "number": "8.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{R}498\\,685,82$",
+      "working_md": "$A=P(1-i)^n$\n\n$A=980\\,000(1-0,092)^7$\n\n$A=\\mathrm{R}498\\,685,82$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-8.2",
+      "question_id": "2021-nov-p1-8.2",
+      "number": "8.2",
+      "marks": 4,
+      "answer_md": "$n=6,50$ years",
+      "working_md": "$A=P(1+i)^n$\n\n$116\\,253,50=75\\,000\\left(1+\\dfrac{0,068}{4}\\right)^{4n}$\n\n$1,550\\,046\\,667=(1,017)^{4n}$\n\n$\\log(1,550\\,046\\,667)=4n\\log(1,017)$\n\n$4n=\\dfrac{\\log(1,550\\,046\\,667)}{\\log(1,017)}$ or $4n=\\log_{1,017}(1,550\\,046\\,667)$\n\n$4n=25,99\\ldots$\n\n$n=6,50$ years",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{0,068}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution in correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct use of logs"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-8.3.1",
+      "question_id": "2021-nov-p1-8.3.1",
+      "number": "8.3.1",
+      "marks": 3,
+      "answer_md": "$x=\\mathrm{R}6\\,068,69$",
+      "working_md": "$F=\\dfrac{x\\bigl[(1+i)^n-1\\bigr]}{i}$\n\n$450\\,000=\\dfrac{x\\left[\\left(1+\\dfrac{0,0835}{12}\\right)^{60}-1\\right]}{\\dfrac{0,0835}{12}}$\n\n$x=\\mathrm{R}6\\,068,69$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i=\\dfrac{0,0835}{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-8.3.2.1",
+      "question_id": "2021-nov-p1-8.3.2.1",
+      "number": "8.3.2.1",
+      "marks": 3,
+      "answer_md": "$P=\\mathrm{R}419\\,948,32$",
+      "working_md": "$P=\\dfrac{x\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$P=\\dfrac{11\\,058,85\\left[1-\\left(1+\\dfrac{0,12}{12}\\right)^{-4\\times 12}\\right]}{\\dfrac{0,12}{12}}$\n\n$P=\\mathrm{R}419\\,948,32$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=48$ in $P$-formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$P=\\mathrm{R}419\\,952,39$",
+          "working_md": "$\\text{Balance}=A-F$\n\n$=P(1+i)^n-\\dfrac{x\\bigl[(1+i)^n-1\\bigr]}{i}$\n\n$=1\\,050\\,000\\left(1+\\dfrac{0,12}{12}\\right)^{12\\times 21}-\\dfrac{11\\,058,85\\left[\\left(1+\\dfrac{0,12}{12}\\right)^{12\\times 21}-1\\right]}{\\dfrac{0,12}{12}}$\n\n$=\\mathrm{R}12\\,887\\,702,20-\\mathrm{R}12\\,467\\,749,81$\n\n$=\\mathrm{R}419\\,952,39$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n=252$ in both formulae"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into correct formulae"
+            },
+            {
+              "marks": 1,
+              "mark_type": "A",
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-8.3.2.2",
+      "question_id": "2021-nov-p1-8.3.2.2",
+      "number": "8.3.2.2",
+      "marks": 3,
+      "answer_md": "$\\mathrm{R}2\\,156\\,778,52$",
+      "working_md": "Total paid $=11\\,058,85\\times 21\\times 12=2\\,786\\,830,20$\n\nLoan paid $=1\\,050\\,000-419\\,948,32=630\\,051,68$\n\nInterest paid $=2\\,786\\,830,20-630\\,051,68$\n\n$=\\mathrm{R}2\\,156\\,778,52$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$11\\,058,85\\times 21\\times 12$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1\\,050\\,000-$ balance outstanding"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{R}2\\,156\\,782,59$",
+          "working_md": "Total paid $=11\\,058,85\\times 21\\times 12=2\\,786\\,830,20$\n\nLoan paid $=1\\,050\\,000-419\\,952,39=630\\,047,61$\n\nInterest paid $=2\\,786\\,830,20-630\\,047,61$\n\n$=\\mathrm{R}2\\,156\\,782,59$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11\\,058,85\\times 21\\times 12$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$1\\,050\\,000-$ balance outstanding"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{R}2\\,156\\,778,52$",
+          "working_md": "Interest paid $=11\\,058,85\\times 21\\times 12-(1\\,050\\,000-419\\,948,32)$\n\n$=2\\,786\\,830,20-630\\,051,68$\n\n$=\\mathrm{R}2\\,156\\,778,52$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11\\,058,85\\times 21\\times 12$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$1\\,050\\,000-$ balance outstanding"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-9.1",
+      "question_id": "2021-nov-p1-9.1",
+      "number": "9.1",
+      "marks": 5,
+      "answer_md": "$f'(x)=4x-3$",
+      "working_md": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{2(x+h)^2-3(x+h)-(2x^2-3x)}{h}$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{2x^2+4xh+2h^2-3x-3h-2x^2+3x}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{4xh+2h^2-3h}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{h(4x+2h-3)}{h}$\n\n$=\\lim_{h\\to 0}(4x+2h-3)$\n\n$\\therefore f'(x)=4x-3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2x^2+4xh+2h^2-3x-3h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4xh+2h^2-3h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorisation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$f'(x)=4x-3$",
+          "working_md": "$f(x)=2x^2-3x$\n\n$f(x+h)=2(x+h)^2-3(x+h)$\n\n$f(x+h)=2x^2+4xh+2h^2-3x-3h$\n\n$f(x+h)-f(x)=4xh+2h^2-3h$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{4xh+2h^2-3h}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{h(4x+2h-3)}{h}$\n\n$=\\lim_{h\\to 0}(4x+2h-3)$\n\n$\\therefore f'(x)=4x-3$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2x^2+4xh+2h^2-3x-3h$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$4xh+2h^2-3h$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factorisation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-9.2.1",
+      "question_id": "2021-nov-p1-9.2.1",
+      "number": "9.2.1",
+      "marks": 3,
+      "answer_md": "$\\dfrac{dy}{dx}=20x^4-24x^3+3$",
+      "working_md": "$y=4x^5-6x^4+3x$\n\n$\\dfrac{dy}{dx}=20x^4-24x^3+3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$20x^4$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-24x^3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-9.2.2",
+      "question_id": "2021-nov-p1-9.2.2",
+      "number": "9.2.2",
+      "marks": 4,
+      "answer_md": "$-\\dfrac{1}{6}x^{-2/3}-\\dfrac{2}{9}x^{-3}$ or $-\\dfrac{1}{6x^{2/3}}-\\dfrac{2}{9x^3}$",
+      "working_md": "$D_x\\left[-\\dfrac{x^{1/3}}{2}+\\left(\\dfrac{1}{3x}\\right)^2\\right]$\n\n$D_x\\left[-\\dfrac{x^{1/3}}{2}+\\dfrac{x^{-2}}{9}\\right]$\n\n$=-\\dfrac{1}{6}x^{-2/3}-\\dfrac{2}{9}x^{-3}$\n\n$=-\\dfrac{1}{6x^{2/3}}-\\dfrac{2}{9x^3}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{x^{1/3}}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{x^{-2}}{9}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{1}{6}x^{-2/3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{2}{9}x^{-3}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-10.1",
+      "question_id": "2021-nov-p1-10.1",
+      "number": "10.1",
+      "marks": 5,
+      "answer_md": "$a=-1$ and $b=6$",
+      "working_md": "$h(x)=ax^3+bx^2$\n\n$h'(x)=3ax^2+2bx$\n\n$h'(4)=0$\n\n$48a+8b=0$\n\n$6a+b=0$  ...(1)\n\n$h(4)=32$\n\n$64a+16b=32$\n\n$4a+b=2$  ...(2)\n\n$(1)-(2)$: $2a=-2$\n\n$a=-1$\n\n$4(-1)+b=2$\n\n$b=6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$h'(x)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$h'(4)=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$48a+8b=0$ or $6a+b=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$h(4)=32$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$64a+16b=32$ or $4a+b=2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-10.2",
+      "question_id": "2021-nov-p1-10.2",
+      "number": "10.2",
+      "marks": 3,
+      "answer_md": "$A(6\\,;\\,0)$",
+      "working_md": "$h(x)=-x^3+6x^2$\n\n$-x^3+6x^2=0$\n\n$x^2(-x+6)=0$\n\n$x=0$ or $x=6$\n\n$\\therefore A(6\\,;\\,0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-x^3+6x^2=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$A(6\\,;\\,0)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-10.3.1",
+      "question_id": "2021-nov-p1-10.3.1",
+      "number": "10.3.1",
+      "marks": 2,
+      "answer_md": "$0<x<4$ or $0\\leq x\\leq 4$",
+      "working_md": "$0<x<4$ or $0\\leq x\\leq 4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "notation"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\in(0\\,;\\,4)$ or $x\\in[0\\,;\\,4]$",
+          "working_md": "$x\\in(0\\,;\\,4)$ or $x\\in[0\\,;\\,4]$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "critical values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "notation"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-10.3.2",
+      "question_id": "2021-nov-p1-10.3.2",
+      "number": "10.3.2",
+      "marks": 2,
+      "answer_md": "$x>2$",
+      "working_md": "$x>2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "notation"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\in(2\\,;\\,\\infty)$",
+          "working_md": "$x\\in(2\\,;\\,\\infty)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "notation"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-10.4",
+      "question_id": "2021-nov-p1-10.4",
+      "number": "10.4",
+      "marks": 3,
+      "answer_md": "$7<k<32$ or $k\\in(7\\,;\\,32)$",
+      "working_md": "$f(x)=h(x-1)=-(x-1)^3+6(x-1)^2$\n\n$f(0)=7$\n\n$7<k<32$ or $k\\in(7\\,;\\,32)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k<32$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "new $y$-intercept $=7$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$7<k<32$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-11",
+      "question_id": "2021-nov-p1-11",
+      "number": "11",
+      "marks": 7,
+      "answer_md": "$x=80$ km/h",
+      "working_md": "$\\text{Time}=\\dfrac{20}{x}$\n\n$\\text{Cost}=(\\text{water cost per hour}\\times\\text{time})+(\\text{kms}\\times\\mathrm{R}/\\mathrm{km})$\n\n$C(x)=1,6\\times\\dfrac{20}{x}+20\\left(1,2+\\dfrac{x}{4000}\\right)$\n\n$C(x)=\\dfrac{32}{x}+24+\\dfrac{x}{200}$\n\n$C'(x)=-\\dfrac{32}{x^2}+\\dfrac{1}{200}=0$\n\n$x^2=6\\,400$\n\n$x=80$ km/h",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{20}{x}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1,6\\times\\dfrac{20}{x}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$20\\left(1,2+\\dfrac{x}{4000}\\right)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$C(x)=\\dfrac{32}{x}+24+\\dfrac{x}{200}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$C'(x)=-\\dfrac{32}{x^2}+\\dfrac{1}{200}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$C'(x)=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-12.1.1",
+      "question_id": "2021-nov-p1-12.1.1",
+      "number": "12.1.1",
+      "marks": 1,
+      "answer_md": "No, because $\\mathrm{P}(\\text{A and B})\\neq 0$",
+      "working_md": "No, because $\\mathrm{P}(\\text{A and B})\\neq 0$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer and reason"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-12.1.2.1",
+      "question_id": "2021-nov-p1-12.1.2.1",
+      "number": "12.1.2.1",
+      "marks": 4,
+      "answer_md": "$\\mathrm{P}(\\text{only A})=0,3$",
+      "working_md": "$\\mathrm{P}(\\text{A and B})=0,3$ $\\quad\\mathrm{P}(\\text{only B})=0,2$\n\n$\\mathrm{P}(\\text{A and B})=\\mathrm{P}(\\text{A})\\times\\mathrm{P}(\\text{B})$\n\n$0,3=\\mathrm{P}(\\text{A})\\times 0,5$\n\n$\\mathrm{P}(\\text{A})=0,6$\n\n$\\mathrm{P}(\\text{only A})=0,3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{P}(\\text{A and B})=\\mathrm{P}(\\text{A})\\times\\mathrm{P}(\\text{B})$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0,5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{P}(\\text{A})=0,6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-12.1.2.2",
+      "question_id": "2021-nov-p1-12.1.2.2",
+      "number": "12.1.2.2",
+      "marks": 2,
+      "answer_md": "$0,7$",
+      "working_md": "$\\mathrm{P}(\\text{not A or not B})=0,2+0,2+0,3=0,7$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "method"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$0,7$",
+          "working_md": "$\\mathrm{P}(\\text{not A or not B})=1-\\mathrm{P}(\\text{A and B})=1-0,3=0,7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$0,7$",
+          "working_md": "$\\mathrm{P}(A'\\text{ or }B')=\\mathrm{P}(A')+\\mathrm{P}(B')-\\mathrm{P}(A'\\text{ and }B')$\n\n$=0,4+0,5-0,2=0,7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-12.2.1",
+      "question_id": "2021-nov-p1-12.2.1",
+      "number": "12.2.1",
+      "marks": 1,
+      "answer_md": "$\\mathrm{P}(\\text{novel})=\\dfrac{3}{12}=\\dfrac{1}{4}$",
+      "working_md": "$\\mathrm{P}(\\text{novel})=\\dfrac{3}{12}=\\dfrac{1}{4}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-12.2.2",
+      "question_id": "2021-nov-p1-12.2.2",
+      "number": "12.2.2",
+      "marks": 2,
+      "answer_md": "$12!=479\\,001\\,600$",
+      "working_md": "$12!=479\\,001\\,600$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2021-nov-p1-12.2.3",
+      "question_id": "2021-nov-p1-12.2.3",
+      "number": "12.2.3",
+      "marks": 4,
+      "answer_md": "$\\dfrac{1}{99}$",
+      "working_md": "$5$ (poetry) $\\times 3!$ (novels all together) $\\times 8!$ (arrangements of the rest of the books, including the novels) $\\times 4$ (drama)\n\n$\\mathrm{P}(\\text{start with poetry, end with drama AND all novels together})$\n\n$=\\dfrac{5\\times 3!\\times 8!\\times 4}{12!}$\n\n$=\\dfrac{1}{99}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5\\times 4$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3!=6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$8!$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "$\\dfrac{5\\times 3!\\times 8!\\times 4}{12!}=\\dfrac{1}{99}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    }
+  ]
+}
