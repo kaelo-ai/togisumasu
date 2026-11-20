@@ -753,7 +753,7 @@ function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return
   host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="home">Leave quiz</button><div class="meter quizm"><i style="width:${quiz.i/quiz.items.length*100}%"></i></div><span class="tnum" style="font-size:.85rem;color:var(--muted)">${quiz.i+1} / ${quiz.items.length}</span></div><div id="qq"></div>`;
   if(it.kind==='paper'){const box=$('#qq');
     box.innerHTML=`<article class="qcard test washi-paper"><div class="qmeta"><span class="tag qz">Past paper</span><span>${esc(it.paperId)} Q${esc(it.number)} · ${it.marks} mark${it.marks===1?'':'s'}</span></div><div class="prompt">${it.prompt}</div>
-     <label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit"></textarea>
+     <label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit" placeholder="${esc(it.hint||'')}"></textarea>${it.hint?`<p class="gnote">${esc(it.hint)}</p>`:''}
      <p class="gnote">This is a real NSC question from before 2022. It is marked on the server from its stored answer key.</p>
      <div class="actions row"><button class="btn primary" type="button" id="paperSave">Save and continue</button></div></article>`;
     typeset(box);
@@ -789,7 +789,7 @@ function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'h
   if(examTimer)clearInterval(examTimer);
   const p=exam.paper;
   host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="exams">All exams</button><span class="tnum" id="examClock" style="font-size:.95rem"></span><span style="color:var(--muted)">${esc(p.id)} · ${p.totalMarks} marks</span></div>
-   <section class="summary">${p.questions.map(q=>{const geom=q.geom?`<div class="geom"><div class="row"><label>Statement <select data-geom-stmt="${esc(q.id)}">${q.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><label>Reason <select data-geom-reason="${esc(q.id)}">${q.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><button class="btn" type="button" data-geom-add="${esc(q.id)}">Add step</button></div><ol data-geom-list="${esc(q.id)}" class="steps"></ol></div>`:`<label class="l" for="ex-${esc(q.id)}">Your answer</label><textarea id="ex-${esc(q.id)}" data-exam-ans="${esc(q.id)}" rows="3" style="width:100%;font:inherit">${esc(typeof exam.answers[q.id]==='string'?exam.answers[q.id]:'')}</textarea>`;
+   <section class="summary">${p.questions.map(q=>{const geom=q.geom?`<div class="geom"><div class="row"><label>Statement <select data-geom-stmt="${esc(q.id)}">${q.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><label>Reason <select data-geom-reason="${esc(q.id)}">${q.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><button class="btn" type="button" data-geom-add="${esc(q.id)}">Add step</button></div><ol data-geom-list="${esc(q.id)}" class="steps"></ol></div>`:`<label class="l" for="ex-${esc(q.id)}">Your answer</label>${q.hint?`<p class="gnote">${esc(q.hint)}</p>`:''}<textarea id="ex-${esc(q.id)}" data-exam-ans="${esc(q.id)}" rows="3" style="width:100%;font:inherit" placeholder="${esc(q.hint||'')}">${esc(typeof exam.answers[q.id]==='string'?exam.answers[q.id]:'')}</textarea>`;
      return `<article class="qcard washi-paper" style="margin-top:12px" data-exam-q="${esc(q.id)}"><div class="qmeta"><span class="tag qz">Q${esc(q.number)}</span><span>${q.marks} mark${q.marks===1?'':'s'}</span>${q.checkable?'':'<span>Reviewed from the memo</span>'}</div><div class="prompt">${q.prompt}</div>${geom}<div class="qra" data-exam-result="${esc(q.id)}"></div></article>`}).join('')}
    <div class="row" style="margin:16px 0"><button class="btn primary" type="button" id="examFinish">Finish exam</button></div>
    <p class="gnote" id="examNote"></p></section>`;
@@ -805,10 +805,11 @@ function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'h
   $('#examFinish').onclick=async()=>{exam.finished=true;clearInterval(examTimer);const note=$('#examNote');note.textContent='Marking…';
     try{const r=await API.req('POST','/api/exams/'+encodeURIComponent(p.id)+'/mark',{answers:exam.answers});
       let scored=0,right=0,review=0;
+      const memoNote=item=>(item.memoNotes||[]).length?`<p class="gnote">Memo note (official memo transcribed as printed): ${item.memoNotes.map(n=>esc(n.where)+': '+n.text).join(' ')}</p>`:'';
       for(const item of r.results){const box=host.querySelector(`[data-exam-result="${item.id}"]`);if(!box)continue;
-        if(!item.checkable){review++;box.innerHTML=`<span>Not auto-marked. Official answer: ${item.answer||''}</span>`}
-        else{scored++;if(item.ok)right++;box.innerHTML=`<span class="${item.ok?'':'no'}">${item.ok?'Correct':'Not the memo answer'}. Official answer: ${item.answer||''}</span>`}}
-      note.textContent=`Auto-marked ${right} of ${scored}. ${review} part${review===1?'':'s'} (sketches, free-form proofs and answers that are not a single value, expression or statement-reason chain) are shown with the official memo answer and are not scored. This paper stays out of quizzes.`;
+        if(!item.checkable){review++;box.innerHTML=`<span>Not auto-marked. Official answer: ${item.answer||''}</span>${memoNote(item)}`}
+        else{scored++;if(item.ok)right++;box.innerHTML=`<span class="${item.ok?'':'no'}">${item.ok?'Correct':'Not the memo answer'}. Official answer: ${item.answer||''}</span>${memoNote(item)}`}}
+      note.textContent=`Auto-marked ${right} of ${scored}. ${review} part${review===1?'':'s'} (sketches, free-form proofs and written explanations) are shown with the official memo answer and are not scored. This paper stays out of quizzes.`;
       typeset(host)}
     catch(e){note.textContent=e.message}};
   typeset(host)}
