@@ -10,6 +10,7 @@ const { DatabaseSync } = require('node:sqlite');
 const ai = require('./ai.js');
 const bank = require('./questions.js');
 const catalog = require('./catalog.js');
+const quizEngine = require('./quiz.js');
 
 const PORT = Number(process.env.PORT || 3000);
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
@@ -588,6 +589,18 @@ async function api(req, res, url) {
   if (!user) return send(res, 401, { error: 'Sign in first.' });
 
   if (route === 'GET /api/auth/me') return send(res, 200, { user: publicUser(user) });
+
+  if (route === 'POST /api/quiz') {
+    const body = await readJson(req);
+    return send(res, 200, quizEngine.assembleQuiz(db, body || {}));
+  }
+  if (route === 'GET /api/exams') return send(res, 200, { exams: quizEngine.listExams(db) });
+  const examRoute = url.pathname.match(/^\/api\/exams\/(\d{4}-nov-p[12])$/);
+  if (req.method === 'GET' && examRoute) {
+    const exam = quizEngine.examPaper(db, examRoute[1]);
+    if (!exam) return send(res, 404, { error: 'Exam paper not found.' });
+    return send(res, 200, { exam });
+  }
 
   if (route === 'GET /api/courses') return send(res, 200, { courses: catalog.courses(db) });
   if (route === 'GET /api/catalog') return send(res, 200, catalog.learner(db, url.searchParams.get('course') || 'algebra'));

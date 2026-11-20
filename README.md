@@ -74,7 +74,7 @@ The browser keeps a per-user cache of your progress and a small cache of recentl
 
 The algebra course and the Grade 12 CAPS course are two slices of one topic graph. A topic such as integer exponents exists once and can belong to both. `GET /api/courses` lists them; `GET /api/catalog?course=gr12-caps` returns the CAPS slice. Unit 0 (Grade 10–11 foundations) is part of that course.
 
-NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
+NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. A quiz (`POST /api/quiz`) always includes one practice-pool question, and only when every topic that question maps to, plus those topics' prerequisites inside the course, is mastered. `GET /api/exams` lists the 2022+ papers as full mocks and will not open a practice paper. The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
 
 ## Question bank
 
@@ -118,7 +118,11 @@ Question edits are versionless: changing a prompt gives it a new fingerprint, so
 | POST | `/api/auth/login` | – | `{email, password}` |
 | POST | `/api/auth/logout` | cookie | Clears the session |
 | GET | `/api/auth/me` | cookie | `{user}` |
-| GET | `/api/catalog` | cookie | Active units and topics |
+| GET | `/api/courses` | cookie | `{courses}` |
+| GET | `/api/catalog?course=` | cookie | One course slice. Omit `course` for algebra |
+| POST | `/api/quiz` | cookie | `{mastered, courseId}` → a quiz with one pre-2022 past-paper question |
+| GET | `/api/exams` | cookie | 2022+ papers |
+| GET | `/api/exams/:paperId` | cookie | One full exam, or 404 for a practice paper |
 | GET | `/api/progress` | cookie | `{data, updatedAt}` |
 | PUT | `/api/progress` | cookie | `{data}`, where `data.skills` must be an object |
 | PATCH | `/api/account` | cookie | `{name?, currentPassword?, newPassword?}` updates the signed-in account |
@@ -158,6 +162,7 @@ questions.js               SQLite question bank, FTS5 similarity, validation and
 catalog.js                 units, topics, courses and the prerequisite graph in SQLite
 caps.js                    Grade 12 CAPS course slice and the bank-skill lookup
 nsc.js                     idempotent NSC paper import and the practice/exam pools
+quiz.js                    quiz assembly (gated past papers) and exam papers
 admin.js                   operator CLI: promote/demote/disable/delete accounts
 ai.js                      LLM providers and the tutor prompt (`node ai.js check` tests it)
 public/core.js             maths parser, answer checking, skill definitions and generators

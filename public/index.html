@@ -455,8 +455,12 @@ function applyCatalog(c){const units=Array.isArray(c.units)?c.units:[],topics=Ar
   for(const t of topics)SK.push({...t,gen:BUILTIN_GENS[t.id]});
   for(const k of Object.keys(SKM))delete SKM[k];
   for(const s of SK)SKM[s.id]=s;
+  if(typeof resetAncestors==='function')resetAncestors();
   rebuildGraph()}
-async function loadCatalog(){if(CATALOG_LOADED)return;try{const r=await API.req('GET','/api/catalog');applyCatalog(r);CATALOG_LOADED=true}catch(e){console.warn('Could not load the topic catalog; using built-ins.',e.message)}}
+let COURSE='algebra';try{COURSE=localStorage.getItem('togisumasu-course')||'algebra'}catch(e){}
+let COURSES=[];
+async function loadCatalog(forceCourse){const id=forceCourse||COURSE||'algebra';if(CATALOG_LOADED&&!forceCourse)return;try{const r=await API.req('GET','/api/catalog?course='+encodeURIComponent(id));applyCatalog(r);COURSE=r.course&&r.course.id||id;CATALOG_LOADED=true;try{localStorage.setItem('togisumasu-course',COURSE)}catch(e){}
+  if(!COURSES.length){try{COURSES=(await API.req('GET','/api/courses')).courses||[]}catch(e){}}}catch(e){if(forceCourse&&forceCourse!=='algebra'){COURSE='algebra';return loadCatalog('algebra')}console.warn('Could not load the topic catalog; using built-ins.',e.message)}}
 const EMPTY=()=>({skills:{},log:{},t:0,qz:{recent:[],last:0,hist:[]},seen:{},resetAt:0});
 const Store={data:EMPTY(),mode:'account',timer:null,dirty:false,
   key(){return KEY+':'+(USER?USER.id:'none')},
@@ -501,7 +505,8 @@ const QUIZ_MIN=3;
 function quizDue(){const q=Q();return masteredIds().length>=QUIZ_MIN&&(q.recent.length>=2||(q.recent.length>=1&&Date.now()-q.last>4*DAY))}
 /* can this topic be practised right now? */
 /* everything a topic builds on, directly or indirectly */
-const ANC={};function ancestors(id){if(ANC[id])return ANC[id];const out=new Set();const u=x=>{const s=SKM[x];if(!s)return;s.pre.forEach(p=>{if(!out.has(p)){out.add(p);u(p)}})};u(id);return ANC[id]=out}
+const ANC={};function resetAncestors(){for(const k of Object.keys(ANC))delete ANC[k]}
+function ancestors(id){if(ANC[id])return ANC[id];const out=new Set();const u=x=>{const s=SKM[x];if(!s)return;s.pre.forEach(p=>{if(!out.has(p)){out.add(p);u(p)}})};u(id);return ANC[id]=out}
 /* only its own route can hold a topic back: missing prerequisites, a repair or an untested topic somewhere underneath it */
 function access(id){const s=st(id);if(s.lv>0||s.fix)return {ok:true};
   const miss=SKM[id].pre.filter(p=>st(p).lv===0);if(miss.length)return {ok:false,why:'pre',miss};
@@ -559,11 +564,14 @@ function render(){renderStats();const app=$('#app');
   else if(view.name==='skill')app.innerHTML=skillHTML(view.id,view.tab);
   else if(view.name==='session')app.innerHTML=`<div id="sessHost"></div>`;
   else if(view.name==='quiz')app.innerHTML=`<div id="quizHost"></div>`;
+  else if(view.name==='exams')app.innerHTML=examsHTML();
+  else if(view.name==='exam')app.innerHTML=`<div id="examHost"></div>`;
   app.insertAdjacentHTML('beforeend','<footer class="foot" id="foot"></footer>');renderFoot();
   if(view.name==='skill'){if(view.tab==='learn')mountExample();else mountPractice()}
   if(view.name==='home'&&homeMode==='graph')mountGraph();
   if(view.name==='session')sessionStep();
   if(view.name==='quiz')quizStep();
+  if(view.name==='exam')examStep();
   typeset(app)}
 function renderFoot(){const f=$('#foot');if(!f)return;
   f.innerHTML=`<span>${Store.mode==='account'?'Progress saved to your account':'Offline: saving on this device; it syncs when you reconnect'}</span><span>Notes: <a href="https://tutorial.math.lamar.edu/" target="_blank" rel="noopener">Paul's Online Notes</a> · extra problems: <a href="https://openstax.org/details/books/precalculus-2e" target="_blank" rel="noopener">OpenStax Precalculus 2e</a></span><span class="sp" id="resetZone"><button class="btn ghost sm" id="resetBtn" type="button">Reset progress</button></span>`}
@@ -576,13 +584,14 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   if(!tasks.length)tasks.push('<li class="t-new"><span class="tk">Mixed</span>Everything is mastered. Sessions keep all topics sharp.</li>');
   const title=rep.length?'Repair first, then move on':qd?'Quiz time':due.length?'Reviews and something new':m?'Keep building':'Start with the basics';
   const acc=Object.values(Store.data.skills).reduce((a,s)=>[a[0]+s.c,a[1]+s.a],[0,0]);const lastQ=Q().hist.slice(-1)[0];const totalTopics=Math.max(1,SK.length);
+  const courseSelect=COURSES.length>1?`<label class="mapfilter">Course <select id="courseSel" class="mapselect">${COURSES.map(c=>`<option value="${esc(c.id)}"${c.id===COURSE?' selected':''}>${esc(c.name)}</option>`).join('')}</select></label>`:'';
   const filterSelect=homeMode==='list'?`<label class="mapfilter"><span class="sr-only">Filter course map</span><select id="mapFilter" class="mapselect">${MAP_FILTERS.map(([v,l])=>`<option value="${v}"${mapFilter===v?' selected':''}>${l}</option>`).join('')}</select></label>`:'';
   let h=`<section class="today"><div class="panel"><div class="eyebrow">Today</div><h1>${title}</h1><ul class="tasks">${tasks.join('')}</ul>
-   <div class="row"><button class="btn primary" type="button" data-act="session">Start today's session</button>${!rep.length&&masteredIds().length>=QUIZ_MIN?`<button class="btn" type="button" data-act="quiz">${qd?'Take the quiz':'Quiz me now'}</button>`:''}</div></div>
+   <div class="row"><button class="btn primary" type="button" data-act="session">Start today's session</button>${!rep.length&&masteredIds().length>=QUIZ_MIN?`<button class="btn" type="button" data-act="quiz">${qd?'Take the quiz':'Quiz me now'}</button>`:''}${COURSE==='gr12-caps'?`<button class="btn" type="button" data-act="exams">Mock exams</button>`:''}</div></div>
    <div class="panel"><div class="eyebrow">Course progress</div><div class="row" style="margin-top:10px;align-items:baseline"><span class="big tnum">${m}</span><span style="color:var(--muted)">of ${SK.length} topics mastered</span></div>
    <div class="meter"><i style="width:${m/totalTopics*100}%"></i></div>
    <div class="kv tnum"><span>Questions answered</span><span>${acc[1]}</span><span>Accuracy</span><span>${acc[1]?Math.round(acc[0]/acc[1]*100)+'%':'–'}</span><span>Last quiz</span><span>${lastQ?`${lastQ.score}/${lastQ.n}`:'–'}</span><span>Day streak</span><span>${dayStreak()}</span></div></div></section>
-   <div class="maphead"><h2>Course map</h2><div class="map-tools">${filterSelect}<div class="seg" role="tablist" aria-label="Course map view"><button type="button" role="tab" data-mode="list" aria-selected="${homeMode!=='graph'}">List</button><button type="button" role="tab" data-mode="graph" aria-selected="${homeMode==='graph'}">Graph</button></div></div></div>`;
+   <div class="maphead"><h2>Course map</h2><div class="map-tools">${courseSelect}${filterSelect}<div class="seg" role="tablist" aria-label="Course map view"><button type="button" role="tab" data-mode="list" aria-selected="${homeMode!=='graph'}">List</button><button type="button" role="tab" data-mode="graph" aria-selected="${homeMode==='graph'}">Graph</button></div></div></div>`;
   if(homeMode==='graph')return h+graphShellHTML();
   const matches=s=>{const k=mapSkillState(s.id);return mapFilter==='all'||(mapFilter==='progress'&&(k==='learning'||k==='repair'))||(mapFilter==='due'&&k==='due')||(mapFilter==='mastered'&&k==='mastered')||(mapFilter==='locked'&&k==='locked')};
   let any=false;h+=`<section class="map">`;
@@ -721,30 +730,62 @@ async function sessionStep(){if(sessBusy)return;sessBusy=true;try{const host=$('
     answered:ok=>{sess.n++;if(ok)sess.right++;const ev=record(s.id,ok,it.kind);if(ev){if(ev.k==='mastered')sess.mastered.push(s.id);if(ev.k==='reviewed')sess.reviewed++;if(ev.k==='failedReview')sess.flagged.push(s.id);if(ev.k==='repaired'){sess.repaired.push(s.id);sess.flagged=sess.flagged.filter(x=>x!==s.id)}}return ev},
     next:()=>{sessionStep();window.scrollTo(0,0)},nextLabel:'Continue'})}finally{sessBusy=false}}
 
-/* ---------- quiz: fresh, interleaved, no hints; misses go to repair ---------- */
-const accOf=id=>{const s=st(id);return s.a?s.c/s.a:1};
-async function buildQuiz(){const pool=masteredIds();if(pool.length<QUIZ_MIN)return null;const N=Math.min(8,Math.max(5,pool.length));
-  const recent=Q().recent.filter(id=>pool.includes(id));const others=shuffle(pool.filter(id=>!recent.includes(id))).sort((a,b)=>(st(a).lq||0)-(st(b).lq||0)||accOf(a)-accOf(b));
-  let ids=recent.concat(others).slice(0,N);for(let g=0;ids.length<N&&g<200;g++){const c=pick(pool);if(ids.filter(x=>x===c).length<2)ids.push(c)}ids=shuffle(ids);
-  for(let i=1;i<ids.length;i++)if(ids[i]===ids[i-1]){const j=ids.findIndex((x,k)=>k>i&&x!==ids[i]);if(j>0)[ids[i],ids[j]]=[ids[j],ids[i]]}
-  const items=await Promise.all(ids.map(async id=>({id,q:await fresh(id)})));
-  return {items,i:0,done:false}}
+/* ---------- quiz: one gated past-paper question, plus generated questions. Never 2022+. ---------- */
 let quizBusy=false;
 async function startQuiz(){if(quizBusy)return;if(repairList().length){go({name:'skill',id:repairList()[0].id,tab:'practice'});return}
-  quizBusy=true;try{quiz=await buildQuiz();if(quiz)go({name:'quiz'})}finally{quizBusy=false}}
-function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return}if(quiz.i>=quiz.items.length){quizResults(host);return}
+  quizBusy=true;try{const r=await API.req('POST','/api/quiz',{mastered:masteredIds(),courseId:COURSE});
+    quiz=r.ok?{items:r.items,i:0,done:false}:{blocked:r.reason,items:[],i:0,done:false};go({name:'quiz'})}
+  catch(e){quiz={blocked:e.message,items:[],i:0,done:false};go({name:'quiz'})}
+  finally{quizBusy=false}}
+function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return}
+  if(quiz.blocked){host.innerHTML=`<section class="summary panel"><div class="eyebrow">Quiz</div><h1>No past-paper question is open yet</h1><p>Every quiz includes one NSC question from before 2022, and only after you have mastered the topics it depends on. Papers from 2022 onward stay in Mock exams.</p><div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="home">Back to the course</button></div></section>`;return}
+  if(quiz.i>=quiz.items.length){quizResults(host);return}
   const it=quiz.items[quiz.i];
   host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="home">Leave quiz</button><div class="meter quizm"><i style="width:${quiz.i/quiz.items.length*100}%"></i></div><span class="tnum" style="font-size:.85rem;color:var(--muted)">${quiz.i+1} / ${quiz.items.length}</span></div><div id="qq"></div>`;
-  mountQuestion($('#qq'),it.q,{test:true,meta:()=>`<span class="tag qz">Quiz</span><span>Topic hidden. Choosing the method is part of the test.</span>`,
-    answered:(ok,given)=>{it.ok=ok;it.given=given;record(it.id,ok,'quiz')},next:()=>{quiz.i++;quizStep();window.scrollTo(0,0)}})}
-function quizResults(host){if(!quiz.done){quiz.done=true;const q=Q();q.last=Date.now();q.recent=[];const sc=quiz.items.filter(x=>x.ok).length;q.hist.push({t:Date.now(),score:sc,n:quiz.items.length});if(q.hist.length>60)q.hist.shift();Store.save()}
-  const sc=quiz.items.filter(x=>x.ok).length,n=quiz.items.length,bad=[...new Set(quiz.items.filter(x=>!x.ok).map(x=>x.id))];
+  if(it.kind==='paper'){const box=$('#qq');
+    box.innerHTML=`<article class="qcard test washi-paper"><div class="qmeta"><span class="tag qz">Past paper</span><span>${esc(it.paperId)} Q${esc(it.number)} · ${it.marks} mark${it.marks===1?'':'s'}</span></div><div class="prompt">${it.prompt}</div>
+     <label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit"></textarea>
+     <p class="gnote">This is a real NSC question. It is marked when an answer key is on file. Until then your answer is saved with the quiz and is not scored.</p>
+     <div class="actions row"><button class="btn primary" type="button" id="paperSave">Save and continue</button></div></article>`;
+    typeset(box);
+    $('#paperSave').onclick=()=>{it.given=$('#paperIn').value;it.pending=true;quiz.i++;quizStep();window.scrollTo(0,0)};
+    return}
+  mountQuestion($('#qq'),it.question,{test:true,meta:()=>`<span class="tag qz">Quiz</span><span>Topic hidden. Choosing the method is part of the test.</span>`,
+    answered:(ok,given)=>{it.ok=ok;it.given=given;record(it.topicId,ok,'quiz')},next:()=>{quiz.i++;quizStep();window.scrollTo(0,0)}})}
+function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');const papers=quiz.items.filter(x=>x.kind==='paper');
+  if(!quiz.done){quiz.done=true;const q=Q();q.last=Date.now();q.recent=[];const sc=scored.filter(x=>x.ok).length;q.hist.push({t:Date.now(),score:sc,n:scored.length,papers:papers.length});if(q.hist.length>60)q.hist.shift();Store.save()}
+  const sc=scored.filter(x=>x.ok).length,n=scored.length,bad=[...new Set(scored.filter(x=>!x.ok).map(x=>x.topicId))];
   host.innerHTML=`<section class="summary"><div class="panel"><div class="eyebrow">Quiz results</div><h1 class="tnum">${sc} / ${n}</h1>
-   ${bad.length?`<div class="lock repair"><b>Needs repair:</b> ${bad.map(id=>esc(SKM[id].name)).join(', ')}.<br>Topics that build on ${bad.length>1?'these':'it'} stay closed until you get 2 in a row. Other routes stay open.</div>`:'<p>Clean sheet. Every topic in the quiz stays on schedule.</p>'}
+   <p>${papers.length} past-paper question${papers.length===1?'':'s'} saved and not scored yet.</p>
+   ${bad.length?`<div class="lock repair"><b>Needs repair:</b> ${bad.map(id=>esc(SKM[id]?SKM[id].name:id)).join(', ')}.</div>`:'<p>The generated questions were all correct.</p>'}
    <div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="session">${bad.length?'Start repairs':'Continue learning'}</button><button class="btn" type="button" data-act="home">Course map</button></div></div>
-   <ol class="qres">${quiz.items.map((x,i)=>`<li class="${x.ok?'ok':'no'}"><div class="qrh"><span class="mk">${x.ok?'✓':'✗'}</span><span>Question ${i+1}</span><button class="btn ghost sm" type="button" data-skill="${x.id}" style="padding:0 6px;min-height:0;margin-left:auto">${esc(SKM[x.id].name)}</button></div>
-     <div class="prompt">${x.q.prompt}</div><div class="qra"><span>Your answer: ${x.given||'<em>Not answered</em>'}</span><span>Correct: ${ansDisplay(x.q)}</span></div>
-     <details ${x.ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${x.q.steps.map(t=>`<li>${t}</li>`).join('')}</ol></details></li>`).join('')}</ol></section>`;typeset(host)}
+   <ol class="qres">${quiz.items.map((x,i)=>{const paper=x.kind==='paper';const name=paper?(x.paperId+' Q'+x.number):(SKM[x.topicId]?SKM[x.topicId].name:x.topicId);
+     return `<li class="${paper?'':x.ok?'ok':'no'}"><div class="qrh"><span class="mk">${paper?'…':x.ok?'✓':'✗'}</span><span>Question ${i+1}</span><span style="margin-left:auto">${esc(name)}</span></div>
+     <div class="prompt">${paper?x.prompt:x.question.prompt}</div><div class="qra"><span>Your answer: ${paper?(x.given?`<code>${esc(x.given)}</code>`:'<em>Not answered</em>'):(x.given||'<em>Not answered</em>')}</span>${paper?'':`<span>Correct: ${ansDisplay(x.question)}</span>`}</div>
+     ${paper?'':`<details ${x.ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${x.question.steps.map(t=>`<li>${t}</li>`).join('')}</ol></details>`}</li>`}).join('')}</ol></section>`;typeset(host)}
+
+/* ---------- exams: full 2022+ papers, timed, never used as quiz questions ---------- */
+let exam=null,examTimer=null;
+function examsHTML(){const list=exam&&exam.list||[];
+  return `<section class="summary panel"><div class="eyebrow">Mock exams</div><h1>NSC papers from 2022</h1><p>These papers are reserved for a full timed Paper 1 or Paper 2. They are not used in quizzes. Answer keys are applied when a memo or a checked key is on file.</p>
+   <ul class="tasks">${list.map(p=>`<li><button class="btn" type="button" data-exam="${esc(p.id)}">${esc(p.id)} · ${p.totalMarks} marks · ${p.durationMinutes||180} min</button></li>`).join('')||'<li>No exam papers are loaded.</li>'}</ul>
+   <div class="row"><button class="btn ghost" type="button" data-act="home">Back</button></div></section>`}
+async function startExams(){try{const r=await API.req('GET','/api/exams');exam={list:r.exams||[]};go({name:'exams'})}catch(e){exam={list:[]};go({name:'exams'})}}
+async function startExam(id){const r=await API.req('GET','/api/exams/'+encodeURIComponent(id));
+  exam={paper:r.exam,answers:{},endsAt:Date.now()+(r.exam.durationMinutes||180)*60000,finished:false};go({name:'exam'})}
+function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'home'});return}
+  if(examTimer)clearInterval(examTimer);
+  const p=exam.paper;
+  host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="exams">All exams</button><span class="tnum" id="examClock" style="font-size:.95rem"></span><span style="color:var(--muted)">${esc(p.id)} · ${p.totalMarks} marks</span></div>
+   <section class="summary">${p.questions.map(q=>`<article class="qcard washi-paper" style="margin-top:12px"><div class="qmeta"><span class="tag qz">Q${esc(q.number)}</span><span>${q.marks} mark${q.marks===1?'':'s'}</span></div><div class="prompt">${q.prompt}</div>
+     <label class="l" for="ex-${esc(q.id)}">Your answer</label><textarea id="ex-${esc(q.id)}" data-exam-ans="${esc(q.id)}" rows="3" style="width:100%;font:inherit">${esc(exam.answers[q.id]||'')}</textarea></article>`).join('')}
+   <div class="row" style="margin:16px 0"><button class="btn primary" type="button" id="examFinish">Finish exam</button></div>
+   <p class="gnote" id="examNote"></p></section>`;
+  host.querySelectorAll('[data-exam-ans]').forEach(el=>el.addEventListener('input',()=>{exam.answers[el.dataset.examAns]=el.value}));
+  const tick=()=>{const el=$('#examClock');if(!el)return;const left=exam.endsAt-Date.now();if(left<=0){el.textContent='Time';return}const m=Math.floor(left/60000),s=Math.floor((left%60000)/1000);el.textContent=m+':'+String(s).padStart(2,'0')};
+  tick();examTimer=setInterval(tick,1000);
+  $('#examFinish').onclick=()=>{exam.finished=true;clearInterval(examTimer);$('#examNote').textContent='Your answers are saved in this session. They are marked once an answer key is loaded. This paper stays out of quizzes.';};
+  typeset(host)}
 
 
 /* ---------- graph view ---------- */
@@ -821,10 +862,12 @@ document.addEventListener('keydown',e=>{const n=e.target.closest&&e.target.close
 document.addEventListener('click',e=>{const t=e.target.closest('[data-skill],[data-act],[data-tab]');if(!t)return;
   if(t.dataset.skill){e.preventDefault();const id=t.dataset.skill;go({name:'skill',id,tab:st(id).a>0?'practice':'learn'});return}
   if(t.dataset.tab){go({...view,tab:t.dataset.tab});return}
-  const a=t.dataset.act;if(a==='home')go({name:'home'});if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='another')mountExample()});
+  const a=t.dataset.act;if(a==='home'){if(examTimer)clearInterval(examTimer);go({name:'home'})}if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')startExams();if(a==='another')mountExample()});
 $('#homeBtn').onclick=()=>go({name:'home'});
 document.addEventListener('click',e=>{const u=e.target.closest('[data-unit-toggle]');if(!u)return;const id=u.dataset.unitToggle;if(collapsedUnits.has(id))collapsedUnits.delete(id);else collapsedUnits.add(id);saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
-document.addEventListener('change',e=>{if(e.target.id!=='mapFilter')return;mapFilter=e.target.value;saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
+document.addEventListener('change',e=>{if(e.target.id==='courseSel'){const id=e.target.value;loadCatalog(id).then(()=>{G.sel=null;G.unit=null;go({name:'home'})});return}
+  if(e.target.id!=='mapFilter')return;mapFilter=e.target.value;saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
+document.addEventListener('click',e=>{const paper=e.target.closest('[data-exam]');if(paper)startExam(paper.dataset.exam)});
 document.addEventListener('click',e=>{if(e.target.id==='resetBtn'){$('#resetZone').innerHTML='<span class="confirm">Erase all progress? <button class="btn sm" type="button" id="resetYes">Erase</button><button class="btn ghost sm" type="button" id="resetNo">Keep</button></span>'}
   if(e.target.id==='resetNo')renderFoot();if(e.target.id==='resetYes'){Store.data=EMPTY();Store.save();go({name:'home'})}});
 document.addEventListener('keydown',e=>{if(!activeQ||!document.querySelector('.qcard #qAct'))return;const tag=(e.target.tagName||'').toLowerCase();
