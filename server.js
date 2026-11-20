@@ -601,6 +601,12 @@ async function api(req, res, url) {
   }
   if (route === 'GET /api/exams') return send(res, 200, { exams: quizEngine.listExams(db) });
   const examRoute = url.pathname.match(/^\/api\/exams\/(\d{4}-nov-p[12])$/);
+  if (req.method === 'POST' && examRoute) {
+    const body = await readJson(req);
+    const results = quizEngine.markExam(db, examRoute[1], body && body.answers);
+    if (!results) return send(res, 404, { error: 'Exam paper not found.' });
+    return send(res, 200, { results });
+  }
   if (req.method === 'GET' && examRoute) {
     const exam = quizEngine.examPaper(db, examRoute[1]);
     if (!exam) return send(res, 404, { error: 'Exam paper not found.' });

@@ -1,0 +1,1927 @@
+{
+  "id": "2025-nov-p2",
+  "paper_id": "2025-nov-p2",
+  "source": {
+    "pdf": "sources/maths/2025-nov/2025-nov-p2-memo.pdf",
+    "pdf_pages": 26,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=0Hh6qly8lfU%3d&tabid=5742&portalid=0&mid=14845",
+    "sha256": "3ef079af681b149dffe25fb72393401f8370b3f0952b1af3f4026920f01b6a4c",
+    "note": "Official DBE November 2025 Mathematics P2 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt.\nIf a candidate has crossed out an attempt of a question and not redone the question, mark the crossed-out version.\nConsistent accuracy applies in ALL aspects of the Marking Guidelines. Stop marking at the second calculation error.\nAssuming answers/values in order to solve a problem is NOT acceptable.\n\nGeometry mark types used in this memo:\n- S: a mark for a correct statement (a statement mark is independent of a reason).\n- R: a mark for the correct reason (a reason mark may only be awarded if the statement is correct).\n- S/R: award a mark if statement AND reason are both correct.",
+  "parts": [
+    {
+      "id": "2025-nov-p2-1.1",
+      "question_id": "2025-nov-p2-1.1",
+      "number": "1.1",
+      "marks": 3,
+      "answer_md": "$\\hat{y}=331\\,397,20-22\\,988,32x$",
+      "working_md": "$a=331\\,397,20$\n\n$b=-22\\,988,32$\n\n$\\hat{y}=331\\,397,20-22\\,988,32x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=331\\,397,20$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=-22\\,988,32$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-1.2",
+      "question_id": "2025-nov-p2-1.2",
+      "number": "1.2",
+      "marks": 2,
+      "answer_md": "$\\hat{y}=216\\,455,60$",
+      "working_md": "$\\hat{y}=331\\,397,20-22\\,988,32(5)$\n\n$=216\\,455,60$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{y}=216\\,455,61$",
+          "working_md": "$\\hat{y}=216\\,455,61$ (calculator)",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-1.3",
+      "question_id": "2025-nov-p2-1.3",
+      "number": "1.3",
+      "marks": 2,
+      "answer_md": "The strong correlation ($r=-0,95$) suggests that the data points lie close to the regression line. Therefore, the prediction will be valid.",
+      "working_md": "The strong correlation ($r=-0,95$) suggests that the data points lie close to the regression line.\n\nTherefore, the prediction will be valid.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "strong correlation OR $r=-0,95$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-1.4",
+      "question_id": "2025-nov-p2-1.4",
+      "number": "1.4",
+      "marks": 1,
+      "answer_md": "The average decrease per year is $\\mathrm{R}\\,22\\,988,32$.",
+      "working_md": "The average decrease per year is $\\mathrm{R}\\,22\\,988,32$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-2.1.1",
+      "question_id": "2025-nov-p2-2.1.1",
+      "number": "2.1.1",
+      "marks": 1,
+      "answer_md": "$70$",
+      "working_md": "$70$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$70$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-2.1.2",
+      "question_id": "2025-nov-p2-2.1.2",
+      "number": "2.1.2",
+      "marks": 2,
+      "answer_md": "$27$",
+      "working_md": "No. of people $=67-40$\n\n$=27$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$67-40$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$27$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-2.1.3",
+      "question_id": "2025-nov-p2-2.1.3",
+      "number": "2.1.3",
+      "marks": 3,
+      "answer_md": "A histogram of class frequencies $16$, $24$, $19$, $8$ and $3$ on the intervals $0<t\\le 20$, $20<t\\le 40$, $40<t\\le 60$, $60<t\\le 80$ and $80<t\\le 100$, with no gaps between the bars.",
+      "working_md": "Class frequencies from the cumulative table: $16$, $24$, $19$, $8$, $3$.\n\nHistogram on $t$ (minutes) from $0$ to $100$ in intervals of $20$, with bars of heights $16$, $24$, $19$, $8$ and $3$ and no gaps between bars.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "two frequencies correct"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "all frequencies correct"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "no gaps between bars"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-2.1.4",
+      "question_id": "2025-nov-p2-2.1.4",
+      "number": "2.1.4",
+      "marks": 1,
+      "answer_md": "Skewed to the right or positively skewed.",
+      "working_md": "Skewed to the right OR positively skewed",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-2.2",
+      "question_id": "2025-nov-p2-2.2",
+      "number": "2.2",
+      "marks": 5,
+      "answer_md": "$3$ players",
+      "working_md": "$\\dfrac{11+14+19+20+8+10+2+14+x}{9}=12$\n\n$x+98=108$\n\n$x=10$\n\nThe $9^{\\text{th}}$ player scored $10$ points.\n\n$\\sigma=5,23$ ($5,22812$)\n\n$(\\bar{x}-\\sigma\\ ;\\ \\bar{x}+\\sigma)=(12-5,23\\ ;\\ 12+5,23)$\n\n$=(6,77\\ ;\\ 17,23)$\n\n$3$ players' points were outside one standard deviation of the mean.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating using mean"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard deviation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "interval"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.1",
+      "question_id": "2025-nov-p2-3.1",
+      "number": "3.1",
+      "marks": 2,
+      "answer_md": "$\\mathrm{QR}=8\\sqrt{5}$ units",
+      "working_md": "$\\mathrm{QR}=\\sqrt{(-4-12)^2+(-6-2)^2}$\n\n$=\\sqrt{320}=8\\sqrt{5}$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{QR}=\\sqrt{(-4-12)^2+(-6-2)^2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.2",
+      "question_id": "2025-nov-p2-3.2",
+      "number": "3.2",
+      "marks": 2,
+      "answer_md": "$m_{\\mathrm{QR}}=\\dfrac{1}{2}$",
+      "working_md": "$m_{\\mathrm{QR}}=\\dfrac{-6-2}{-4-12}$ OR $m_{\\mathrm{QR}}=\\dfrac{2-(-6)}{12-(-4)}$\n\n$m_{\\mathrm{QR}}=\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution of $Q(-4\\,;\\,-6)$ and $R(12\\,;\\,2)$ into gradient formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.3",
+      "question_id": "2025-nov-p2-3.3",
+      "number": "3.3",
+      "marks": 2,
+      "answer_md": "$\\theta=26,57^{\\circ}$",
+      "working_md": "$m_{\\mathrm{QR}}=\\dfrac{1}{2}$\n\n$\\tan\\theta=\\dfrac{1}{2}$\n\n$\\theta=26,57^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan\\theta=m_{\\mathrm{QR}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.4",
+      "question_id": "2025-nov-p2-3.4",
+      "number": "3.4",
+      "marks": 2,
+      "answer_md": "$y=\\dfrac{1}{2}x-4$",
+      "working_md": "$m_{\\mathrm{QR}}=\\dfrac{1}{2}$\n\n$-6=\\dfrac{1}{2}(-4)+c$ OR $y-2=\\dfrac{1}{2}(x-12)$\n\n$c=-4$\n\n$y-2=\\dfrac{1}{2}x-6$\n\n$y=\\dfrac{1}{2}x-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution of gradient and point $Q(-4\\,;\\,-6)$ or $R(12\\,;\\,2)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.5",
+      "question_id": "2025-nov-p2-3.5",
+      "number": "3.5",
+      "marks": 2,
+      "answer_md": "$S(15\\,;\\,16)$",
+      "working_md": "$Q\\to R:\\ (x\\,;\\,y)\\to(x+16\\,;\\,y+8)$\n\n$\\therefore S(15\\,;\\,16)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_S=15$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y_S=16$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.6",
+      "question_id": "2025-nov-p2-3.6",
+      "number": "3.6",
+      "marks": 5,
+      "answer_md": "$T(4\\,;\\,-2)$",
+      "working_md": "$m_{\\mathrm{QR}}=\\dfrac{1}{2}$\n\n$m_{\\mathrm{PT}}=-2$\n\nEquation of $PT$:\n\n$y=-2x+c$ OR $y-y_1=-2(x-x_1)$\n\n$8=-2(-1)+c$ OR $y-8=-2(x-(-1))$\n\n$c=6$\n\n$y-8=-2x-2$\n\n$y=-2x+6$\n\n$-2x+6=\\dfrac{1}{2}x-4$\n\n$-4x+12=x-8$\n\n$5x=20$\n\n$x=4$\n\n$y=\\dfrac{1}{2}(4)-4$\n\n$y=-2$\n\n$T(4\\,;\\,-2)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{PT}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation of $PT$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation $QR$ = equation $PT$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T(x_T\\,;\\,y_T)$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T(4\\,;\\,-2)$",
+          "working_md": "$\\mathrm{PQ}=\\sqrt{(-4-(-1))^2+(-6-8)^2}=\\sqrt{205}$\n\n$\\mathrm{PR}=\\sqrt{(12-(-1))^2+(2-8)^2}=\\sqrt{205}$\n\n$\\therefore \\triangle PQR$ is isosceles\n\n$\\therefore$ perpendicular height bisects the base $QR$\n\n$\\therefore T$ is the midpoint of $QR$\n\n$\\therefore T(4\\,;\\,-2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{PQ}=\\sqrt{205}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{PR}=\\sqrt{205}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\triangle PQR$ is isosceles"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "perpendicular height bisects the base $QR$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T(4\\,;\\,-2)$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-3.7",
+      "question_id": "2025-nov-p2-3.7",
+      "number": "3.7",
+      "marks": 3,
+      "answer_md": "Area of $PQRS=200$ units$^2$",
+      "working_md": "$\\mathrm{PT}=\\sqrt{\\bigl(4-(-1)\\bigr)^2+(-2-8)^2}$\n\n$\\mathrm{PT}=\\sqrt{125}=5\\sqrt{5}$ units $=11,18$ units\n\nArea of $PQRS=\\mathrm{QR}\\cdot\\mathrm{PT}$\n\n$=\\bigl(8\\sqrt{5}\\bigr)\\bigl(5\\sqrt{5}\\bigr)$\n\n$=200$ units$^2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "length of $PT$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $QR$ and $PT$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Area of $PQRS=200$ units$^2$",
+          "working_md": "$\\mathrm{PT}=\\sqrt{\\bigl(4-(-1)\\bigr)^2+(-2-8)^2}$\n\n$\\mathrm{PT}=\\sqrt{125}=5\\sqrt{5}$ units $=11,18$ units\n\nArea of $\\triangle PQR=\\dfrac{1}{2}\\bigl(8\\sqrt{5}\\bigr)\\bigl(5\\sqrt{5}\\bigr)$\n\n$=100$ units$^2$\n\nArea of $PQRS=2\\times$ area of $\\triangle PQR$\n\n$=200$ units$^2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "length of $PT$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $QR$ and $PT$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.1",
+      "question_id": "2025-nov-p2-4.1",
+      "number": "4.1",
+      "marks": 1,
+      "answer_md": "$p=-6$",
+      "working_md": "$p=-6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p=-6$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.2",
+      "question_id": "2025-nov-p2-4.2",
+      "number": "4.2",
+      "marks": 4,
+      "answer_md": "$q=4$",
+      "working_md": "$\\mathrm{M}\\hat{D}\\mathrm{B}=90^{\\circ}$ [$MC\\parallel y$-axis]\n\n$\\mathrm{AM}=\\mathrm{ME}=q+1$ [radii]\n\n$\\mathrm{MD}=q$\n\n$\\mathrm{AM}^2=\\mathrm{AD}^2+\\mathrm{MD}^2$ [Pythagoras]\n\n$(q+1)^2=(q-1)^2+q^2$\n\n$q^2+2q+1=q^2-2q+1+q^2$\n\n$q^2-4q=0$\n\n$q(q-4)=0$\n\n$q\\neq 0$ or $q=4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{AM}=q+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{MD}=q$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into Pythagoras"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.3",
+      "question_id": "2025-nov-p2-4.3",
+      "number": "4.3",
+      "marks": 2,
+      "answer_md": "$(x+6)^2+(y-4)^2=25$",
+      "working_md": "$\\mathrm{AM}=5$ units\n\n$(x+6)^2+(y-4)^2=25$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "LHS"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "RHS"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.4",
+      "question_id": "2025-nov-p2-4.4",
+      "number": "4.4",
+      "marks": 1,
+      "answer_md": "$3$ units",
+      "working_md": "$3$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.5",
+      "question_id": "2025-nov-p2-4.5",
+      "number": "4.5",
+      "marks": 3,
+      "answer_md": "$A(-9\\,;\\,0)$ and $B(-3\\,;\\,0)$",
+      "working_md": "$(x+6)^2+(0-4)^2=25$\n\n$(x+6)^2=9$\n\n$x+6=3$ or $x+6=-3$\n\n$x=-3$ or $x=-9$\n\n$A(-9\\,;\\,0)$\n\n$B(-3\\,;\\,0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substituting $y=0$ into equation of circle"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "coordinates of $A$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "coordinates of $B$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$A(-9\\,;\\,0)$ and $B(-3\\,;\\,0)$",
+          "working_md": "$(x+6)^2+(0-4)^2=25$\n\n$x^2+12x+36+16-25=0$\n\n$x^2+12x+27=0$\n\n$(x+3)(x+9)=0$\n\n$x=-3$ or $x=-9$\n\n$A(-9\\,;\\,0)$\n\n$B(-3\\,;\\,0)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substituting $y=0$ into equation of circle"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "coordinates of $A$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "coordinates of $B$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$A(-9\\,;\\,0)$ and $B(-3\\,;\\,0)$",
+          "working_md": "$q-1=3$\n\n$\\mathrm{DB}=\\mathrm{AD}=3$ [line from centre $\\perp$ to chord]\n\n$A(-9\\,;\\,0)$\n\n$B(-3\\,;\\,0)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{DB}=3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "coordinates of $A$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "coordinates of $B$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.6",
+      "question_id": "2025-nov-p2-4.6",
+      "number": "4.6",
+      "marks": 4,
+      "answer_md": "$y=\\dfrac{3}{4}x+\\dfrac{9}{4}$",
+      "working_md": "$m_{\\mathrm{MB}}=\\dfrac{4-0}{-6-(-3)}$\n\n$=-\\dfrac{4}{3}$\n\n$m_{\\mathrm{BC}}=\\dfrac{3}{4}$\n\n$y=\\dfrac{3}{4}x+c$ OR $y-y_1=\\dfrac{3}{4}(x-x_1)$\n\n$0=\\dfrac{3}{4}(-3)+c$ OR $y-0=\\dfrac{3}{4}\\bigl(x-(-3)\\bigr)$\n\n$c=\\dfrac{9}{4}$\n\n$y=\\dfrac{3}{4}(x+3)$\n\n$y=\\dfrac{3}{4}x+\\dfrac{9}{4}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{MB}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{BC}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of gradient $BC$ and coordinates of $B$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.7",
+      "question_id": "2025-nov-p2-4.7",
+      "number": "4.7",
+      "marks": 2,
+      "answer_md": "$C\\left(-6\\,;\\,-\\dfrac{9}{4}\\right)$",
+      "working_md": "$C\\left(-6\\,;\\,-\\dfrac{9}{4}\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_C$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y_C$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-4.8",
+      "question_id": "2025-nov-p2-4.8",
+      "number": "4.8",
+      "marks": 4,
+      "answer_md": "$A\\hat{C}B=106,26^{\\circ}$",
+      "working_md": "$\\tan\\alpha=\\dfrac{3}{4}$\n\n$\\alpha=36,87^{\\circ}$\n\n$m_{\\mathrm{AC}}=-\\dfrac{3}{4}$\n\n$\\tan\\beta=-\\dfrac{3}{4}$\n\n$\\beta=180^{\\circ}-36,87^{\\circ}$\n\n$\\beta=143,13^{\\circ}$\n\n$\\therefore A\\hat{C}B=106,26^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\alpha=36,87^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan\\beta=m_{\\mathrm{AC}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $\\beta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$A\\hat{C}B=106,26^{\\circ}$",
+          "working_md": "$\\tan M\\hat{A}B=m_{\\mathrm{MA}}=\\dfrac{4}{3}$\n\n$M\\hat{A}B=53,13^{\\circ}$\n\n$A\\hat{M}D=90^{\\circ}-53,13^{\\circ}$\n\n$A\\hat{M}D=36,87^{\\circ}$\n\n$M\\hat{A}C=90^{\\circ}$ [tangent $\\perp$ radius]\n\n$A\\hat{C}M=53,13^{\\circ}$\n\n$\\therefore A\\hat{C}B=106,26^{\\circ}$ [property of kite]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$M\\hat{A}B$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$A\\hat{M}D$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$A\\hat{C}M$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$A\\hat{C}B=106,26^{\\circ}$",
+          "working_md": "$\\tan A\\hat{C}D=\\dfrac{\\mathrm{AD}}{\\mathrm{DC}}$\n\n$\\tan A\\hat{C}D=\\dfrac{3}{\\dfrac{9}{4}}=\\dfrac{4}{3}$\n\n$A\\hat{C}D=53,13^{\\circ}$\n\n$\\therefore A\\hat{C}B=106,26^{\\circ}$ [property of kite]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "trig ratio in $\\triangle ACD$ or $\\triangle BCD$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan A\\hat{C}D$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$A\\hat{C}D$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$A\\hat{C}B=106,26^{\\circ}$",
+          "working_md": "$\\mathrm{AB}=6$ units\n\n$\\mathrm{AC}=\\mathrm{BC}=\\dfrac{15}{4}$ units [tangent from same point]\n\n$(\\mathrm{AB})^2=(\\mathrm{AC})^2+(\\mathrm{BC})^2-2(\\mathrm{AC})(\\mathrm{BC})\\cos\\hat{C}$\n\n$(6)^2=\\left(\\dfrac{15}{4}\\right)^2+\\left(\\dfrac{15}{4}\\right)^2-2\\left(\\dfrac{15}{4}\\right)\\left(\\dfrac{15}{4}\\right)\\cos\\hat{C}$\n\n$\\cos A\\hat{C}B=-0,28$\n\n$A\\hat{C}B=106,26^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{AC}=\\mathrm{BC}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into cosine-rule"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$A\\hat{C}B=106,26^{\\circ}$",
+          "working_md": "$\\tan M\\hat{A}B=m_{\\mathrm{MA}}=\\dfrac{4}{3}$\n\n$M\\hat{A}B=53,13^{\\circ}$\n\n$AMBC$ is a cyclic quad\n\n$\\therefore M\\hat{C}B=53,13^{\\circ}$ [$\\angle$s in the same seg]\n\n$\\therefore A\\hat{C}B=106,26^{\\circ}$ [property of kite]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$M\\hat{A}B$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$AMBC$ is a cyclic quad"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$M\\hat{C}B$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-5.1.1",
+      "question_id": "2025-nov-p2-5.1.1",
+      "number": "5.1.1",
+      "marks": 2,
+      "answer_md": "$\\cos 40^{\\circ}=\\dfrac{k}{\\sqrt{k^2+1}}$",
+      "working_md": "$r^2=k^2+1^2$ [Pythagoras]\n\n$r=\\sqrt{k^2+1}$\n\nA right triangle with opposite $k$ (to $50^{\\circ}$), adjacent $1$, and hypotenuse $\\sqrt{k^2+1}$; the complementary angle is $40^{\\circ}$.\n\n$\\cos 40^{\\circ}=\\dfrac{k}{\\sqrt{k^2+1}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "third side $=\\sqrt{k^2+1}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-5.1.2",
+      "question_id": "2025-nov-p2-5.1.2",
+      "number": "5.1.2",
+      "marks": 5,
+      "answer_md": "$-\\dfrac{1}{2}k$",
+      "working_md": "$\\dfrac{2\\sin 25^{\\circ}\\cos 25^{\\circ}}{-2+4\\sin^2 25^{\\circ}}$\n\n$=\\dfrac{\\sin 50^{\\circ}}{-2(1-2\\sin^2 25^{\\circ})}$\n\n$=\\dfrac{\\sin 50^{\\circ}}{-2\\cos 50^{\\circ}}$\n\n$=\\left(\\dfrac{k}{\\sqrt{k^2+1}}\\right)\\div\\left(\\dfrac{-2}{\\sqrt{k^2+1}}\\right)$ OR $=-\\dfrac{1}{2}\\tan 50^{\\circ}$\n\n$=-\\dfrac{1}{2}k$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin 50^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-2(1-2\\sin^2 25^{\\circ})$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "double angle"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "subst OR quotient identity"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-5.1.3",
+      "question_id": "2025-nov-p2-5.1.3",
+      "number": "5.1.3",
+      "marks": 4,
+      "answer_md": "$\\dfrac{k^2-1}{k^2+1}$",
+      "working_md": "$\\sin 10^{\\circ}=\\sin(50^{\\circ}-40^{\\circ})$\n\n$=\\sin 50^{\\circ}\\cos 40^{\\circ}-\\cos 50^{\\circ}\\sin 40^{\\circ}$\n\n$=\\left(\\dfrac{k}{\\sqrt{k^2+1}}\\right)\\left(\\dfrac{k}{\\sqrt{k^2+1}}\\right)-\\left(\\dfrac{1}{\\sqrt{k^2+1}}\\right)\\left(\\dfrac{1}{\\sqrt{k^2+1}}\\right)$\n\n$=\\dfrac{k^2-1}{k^2+1}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin 10^{\\circ}=\\sin(50^{\\circ}-40^{\\circ})$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct expansion"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "first term"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "second term"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{k^2-1}{k^2+1}$",
+          "working_md": "$\\sin 10^{\\circ}=\\cos 80^{\\circ}$\n\n$=\\cos 2(40^{\\circ})$\n\n$=2\\cos^2 40^{\\circ}-1$\n\n$=2\\left(\\dfrac{k}{\\sqrt{k^2+1}}\\right)^2-1$\n\n$=\\dfrac{2k^2}{k^2+1}-1$\n\n$=\\dfrac{k^2-1}{k^2+1}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin 10^{\\circ}=\\cos 80^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct expansion"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "substitution"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{\\sqrt{3}-k}{2\\sqrt{k^2+1}}$",
+          "working_md": "$\\sin 10^{\\circ}=\\sin(60^{\\circ}-50^{\\circ})$\n\n$=\\sin 60^{\\circ}\\cos 50^{\\circ}-\\cos 60^{\\circ}\\sin 50^{\\circ}$\n\n$=\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(\\dfrac{1}{\\sqrt{k^2+1}}\\right)-\\left(\\dfrac{1}{2}\\right)\\left(\\dfrac{k}{\\sqrt{k^2+1}}\\right)$\n\n$=\\dfrac{\\sqrt{3}-k}{2\\sqrt{k^2+1}}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin 10^{\\circ}=\\sin(60^{\\circ}-50^{\\circ})$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct expansion"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "first term"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "second term"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-5.2.1",
+      "question_id": "2025-nov-p2-5.2.1",
+      "number": "5.2.1",
+      "marks": 4,
+      "answer_md": "$-\\sin x$",
+      "working_md": "$\\dfrac{\\sin(540^{\\circ}+x)\\cdot\\cos(90^{\\circ}+x)}{\\sin(-x)}$\n\n$=\\dfrac{(-\\sin x)(-\\sin x)}{(-\\sin x)}$\n\n$=-\\sin x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(540^{\\circ}+x)=-\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos(90^{\\circ}+x)=-\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(-x)=-\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-5.2.2",
+      "question_id": "2025-nov-p2-5.2.2",
+      "number": "5.2.2",
+      "marks": 2,
+      "answer_md": "$x\\in(180^{\\circ}\\,;\\,360^{\\circ})$",
+      "working_md": "$x\\in(180^{\\circ}\\,;\\,360^{\\circ})$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$x\\in(180^{\\circ}\\,;\\,360^{\\circ})$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$180^{\\circ}<x<360^{\\circ}$",
+          "working_md": "$180^{\\circ}<x<360^{\\circ}$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$180^{\\circ}<x<360^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-6.1",
+      "question_id": "2025-nov-p2-6.1",
+      "number": "6.1",
+      "marks": 6,
+      "answer_md": "$\\mathrm{LHS}=\\mathrm{RHS}$",
+      "working_md": "$\\mathrm{LHS}=\\bigl[\\tan(180^{\\circ}-x)\\bigr](1-\\cos^2 x)+\\cos^2 x$\n\n$=(-\\tan x)(\\sin^2 x)+\\cos^2 x$\n\n$=\\left(-\\dfrac{\\sin x}{\\cos x}\\right)(\\sin^2 x)+\\cos^2 x$\n\n$=-\\dfrac{\\sin^3 x}{\\cos x}+\\cos^2 x$\n\n$=\\dfrac{\\sin^3 x-\\cos^3 x}{-\\cos x}$\n\n$=\\dfrac{(\\sin x-\\cos x)(\\sin^2 x+\\sin x\\cdot\\cos x+\\cos^2 x)}{-\\cos x}$\n\n$=\\dfrac{(\\sin x-\\cos x)(1+\\sin x\\cdot\\cos x)}{-\\cos x}$\n\n$=\\mathrm{RHS}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan(180^{\\circ}-x)=-\\tan x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1-\\cos^2 x=\\sin^2 x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "quotient identity"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification to a single fraction"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors for a difference of cubes"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin^2 x+\\cos^2 x=1$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{RHS}=\\mathrm{LHS}$",
+          "working_md": "$\\mathrm{RHS}=\\dfrac{(\\sin x-\\cos x)(1+\\sin x\\cdot\\cos x)}{-\\cos x}$\n\n$=\\dfrac{(\\sin x-\\cos x)(\\cos^2 x+\\sin^2 x+\\sin x\\cdot\\cos x)}{-\\cos x}$\n\n$=\\dfrac{\\sin x\\cos^2 x+\\sin^3 x+\\sin^2 x\\cos x-\\cos^3 x-\\sin^2 x\\cos x-\\sin x\\cos^2 x}{-\\cos x}$\n\n$=\\dfrac{\\sin^3 x-\\cos^3 x}{-\\cos x}$\n\n$=\\dfrac{\\sin^3 x}{-\\cos x}+\\cos^2 x$\n\n$=\\dfrac{-\\sin x}{\\cos x}(\\sin^2 x)+\\cos^2 x$\n\n$=-\\tan x(1-\\cos^2 x)+\\cos^2 x$\n\n$=\\mathrm{LHS}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$1=\\sin^2 x+\\cos^2 x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expansion"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "split fraction"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "quotient identity"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin^2 x=1-\\cos^2 x$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-6.2",
+      "question_id": "2025-nov-p2-6.2",
+      "number": "6.2",
+      "marks": 7,
+      "answer_md": "$x=116,57^{\\circ}+k\\cdot 180^{\\circ}$, $k\\in\\mathbb{Z}$ (reject $x=45^{\\circ}+k\\cdot 180^{\\circ}$)",
+      "working_md": "$\\sin^2 x\\ ;\\ \\cos^2 x\\ ;\\ \\dfrac{1}{2}\\sin 2x$\n\n$\\cos^2 x-\\sin^2 x=\\dfrac{1}{2}\\sin 2x-\\cos^2 x$\n\n$\\cos^2 x-\\sin^2 x=\\dfrac{1}{2}(2\\sin x\\cos x)-\\cos^2 x$\n\n$\\cos^2 x-\\sin^2 x=\\sin x\\cos x-\\cos^2 x$\n\n$2\\cos^2 x-\\sin x\\cos x-\\sin^2 x=0$\n\n$(2\\cos x+\\sin x)(\\cos x-\\sin x)=0$\n\n$2\\cos x=-\\sin x$ or $\\cos x=\\sin x$\n\n$\\tan x=-2$ or $\\tan x=1$\n\nref $\\angle=63,43^{\\circ}$ or ref $\\angle=45^{\\circ}$\n\n$x=116,57^{\\circ}+k\\cdot 180^{\\circ}$ or $x\\neq 45^{\\circ}+k\\cdot 180^{\\circ}$;\\ $k\\in\\mathbb{Z}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos^2 x-\\sin^2 x=\\dfrac{1}{2}\\sin 2x-\\cos^2 x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin 2x=2\\sin x\\cos x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both equations"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=116,57^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$116,57^{\\circ}+k\\cdot 180^{\\circ}$;\\ $k\\in\\mathbb{Z}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=116,57^{\\circ}+k\\cdot 180^{\\circ}$, $k\\in\\mathbb{Z}$ (reject $x=45^{\\circ}+k\\cdot 180^{\\circ}$)",
+          "working_md": "$\\sin^2 x\\ ;\\ \\cos^2 x\\ ;\\ \\dfrac{1}{2}\\sin 2x$\n\n$\\cos^2 x-\\sin^2 x=\\dfrac{1}{2}\\sin 2x-\\cos^2 x$\n\n$\\cos^2 x-\\sin^2 x=\\dfrac{1}{2}(2\\sin x\\cos x)-\\cos^2 x$\n\n$\\cos^2 x-\\sin^2 x=\\sin x\\cos x-\\cos^2 x$\n\n$\\cos^2 x-\\sin^2 x-\\sin x\\cos x+\\cos^2 x=0$\n\n$(\\cos x-\\sin x)(\\cos x+\\sin x)+\\cos x(\\cos x-\\sin x)=0$\n\n$(\\cos x-\\sin x)(\\cos x+\\sin x+\\cos x)=0$\n\n$\\cos x=\\sin x$ or $2\\cos x=-\\sin x$\n\n$\\tan x=1$ or $\\tan x=-2$\n\nref $\\angle=45^{\\circ}$ or ref $\\angle=63,43^{\\circ}$\n\n$x\\neq 45^{\\circ}+k\\cdot 180^{\\circ}$;\\ $k\\in\\mathbb{Z}$ or $x=116,57^{\\circ}+k\\cdot 180^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos^2 x-\\sin^2 x=\\dfrac{1}{2}\\sin 2x-\\cos^2 x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin 2x=2\\sin x\\cos x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "both equations"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=116,57^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$116,57^{\\circ}+k\\cdot 180^{\\circ}$;\\ $k\\in\\mathbb{Z}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The constant difference is not zero, so the memo rejects $\\tan x=1$, i.e. $x=45^{\\circ}+k\\cdot 180^{\\circ}$."
+    },
+    {
+      "id": "2025-nov-p2-7.1",
+      "question_id": "2025-nov-p2-7.1",
+      "number": "7.1",
+      "marks": 1,
+      "answer_md": "$180^{\\circ}$",
+      "working_md": "$180^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-7.2",
+      "question_id": "2025-nov-p2-7.2",
+      "number": "7.2",
+      "marks": 3,
+      "answer_md": "Graph of $g(x)=\\tan 2x-1$ for $x\\in[-135^{\\circ}\\,;\\,135^{\\circ}]$, with vertical asymptotes at $x=\\pm 45^{\\circ}$ and $x=\\pm 135^{\\circ}$, the characteristic tangent shape shifted $1$ unit down, and intercepts including $(-67,5^{\\circ}\\,;\\,0)$, $(0\\,;\\,-1)$ and $(22,5^{\\circ}\\,;\\,0)$.",
+      "working_md": "Sketch of $g(x)=\\tan 2x-1$ on $[-135^{\\circ}\\,;\\,135^{\\circ}]$:\n\n- vertical asymptotes at $x=-135^{\\circ}$, $x=-45^{\\circ}$, $x=45^{\\circ}$ and $x=135^{\\circ}$\n- tangent shape, shifted $1$ unit down, passing through $(0\\,;\\,-1)$\n- $x$-intercepts at $-67,5^{\\circ}$, $22,5^{\\circ}$ and $112,5^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "asymptotes"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "intercepts with axes"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-7.3",
+      "question_id": "2025-nov-p2-7.3",
+      "number": "7.3",
+      "marks": 1,
+      "answer_md": "$h(x)=-\\sin 2x$",
+      "working_md": "$f(x)=\\cos 2x$\n\n$h(x)=\\cos 2(x+45^{\\circ})$\n\n$=\\cos(2x+90^{\\circ})$\n\n$=-\\sin 2x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-7.4",
+      "question_id": "2025-nov-p2-7.4",
+      "number": "7.4",
+      "marks": 1,
+      "answer_md": "$y\\in[-1\\,;\\,1]$",
+      "working_md": "$y\\in[-1\\,;\\,1]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y\\in[-1\\,;\\,1]$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$-1\\le y\\le 1$",
+          "working_md": "$-1\\le y\\le 1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-1\\le y\\le 1$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-7.5",
+      "question_id": "2025-nov-p2-7.5",
+      "number": "7.5",
+      "marks": 4,
+      "answer_md": "$x\\in[0^{\\circ}\\,;\\,22,5^{\\circ}]\\cup[112,5^{\\circ}\\,;\\,135^{\\circ})$ or $0^{\\circ}\\le x\\le 22,5^{\\circ}$ or $112,5^{\\circ}\\le x<135^{\\circ}$",
+      "working_md": "$\\tan 2x-1=0$\n\n$\\tan 2x=1$\n\n$2x=45^{\\circ}$\n\n$x=22,5^{\\circ}$\n\n$(1-\\tan 2x)(\\cos 2x)\\ge 0$\n\n$-(\\tan 2x-1)(\\cos 2x)\\ge 0$\n\n$(\\tan 2x-1)(\\cos 2x)\\le 0$\n\n$x\\in[0^{\\circ}\\,;\\,22,5^{\\circ}]\\cup[112,5^{\\circ}\\,;\\,135^{\\circ})$\n\nOR\n\n$0^{\\circ}\\le x\\le 22,5^{\\circ}$ or $112,5^{\\circ}\\le x<135^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=22,5^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(\\tan 2x-1)(\\cos 2x)\\le 0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "first interval"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "second interval"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-8.1",
+      "question_id": "2025-nov-p2-8.1",
+      "number": "8.1",
+      "marks": 2,
+      "answer_md": "$\\mathrm{AB}=18$ cm",
+      "working_md": "Area of $ABCD=\\mathrm{BC}\\times\\mathrm{AB}$\n\n$648=2\\mathrm{AB}\\times\\mathrm{AB}$\n\n$\\mathrm{AB}^2=324$\n\n$\\mathrm{AB}=18$ cm",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{BC}=2\\mathrm{AB}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into area of rectangle"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-8.2",
+      "question_id": "2025-nov-p2-8.2",
+      "number": "8.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{AC}=18\\sqrt{5}=40,25$ cm",
+      "working_md": "$\\mathrm{AC}^2=\\mathrm{AB}^2+\\mathrm{BC}^2$ [Pythagoras]\n\n$=18^2+36^2$\n\n$\\mathrm{AC}=\\sqrt{1620}=18\\sqrt{5}=40,25$ cm",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{AC}^2=18^2+36^2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-8.3",
+      "question_id": "2025-nov-p2-8.3",
+      "number": "8.3",
+      "marks": 2,
+      "answer_md": "$\\mathrm{KC}=43,97$ cm",
+      "working_md": "$\\dfrac{\\mathrm{KC}}{\\sin K\\hat{B}C}=\\dfrac{\\mathrm{BC}}{\\sin B\\hat{K}C}$\n\n$\\dfrac{\\mathrm{KC}}{\\sin 104^{\\circ}}=\\dfrac{36}{\\sin 52,6^{\\circ}}$\n\n$\\mathrm{KC}=\\dfrac{36\\sin 104^{\\circ}}{\\sin 52,6^{\\circ}}$\n\n$\\mathrm{KC}=43,97$ cm",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into sine rule"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-8.4",
+      "question_id": "2025-nov-p2-8.4",
+      "number": "8.4",
+      "marks": 4,
+      "answer_md": "$K\\hat{A}C=80,60^{\\circ}$",
+      "working_md": "$\\mathrm{AK}^2=\\mathrm{AB}^2+\\mathrm{BK}^2$ [Pythagoras]\n\n$=18^2+18^2$\n\n$\\mathrm{AK}=\\sqrt{648}=18\\sqrt{2}$ cm $=25,46$ cm\n\n$\\mathrm{KC}^2=\\mathrm{AK}^2+\\mathrm{AC}^2-2\\cdot\\mathrm{AK}\\cdot\\mathrm{AC}\\cos K\\hat{A}C$\n\n$(43,97)^2=(18\\sqrt{2})^2+(18\\sqrt{5})^2-2(18\\sqrt{2})(18\\sqrt{5})(\\cos K\\hat{A}C)$\n\n$\\cos K\\hat{A}C=0,16\\ldots$\n\n$K\\hat{A}C=80,60^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "length of $AK$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into cosine rule"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-9.1",
+      "question_id": "2025-nov-p2-9.1",
+      "number": "9.1",
+      "marks": 5,
+      "answer_md": "$T\\hat{O}P=2\\,T\\hat{K}P$",
+      "working_md": "Construction: Draw $KO$ produced.\n\n$\\hat{O}_1=\\hat{K}_1+\\hat{T}$ [ext. $\\angle$ of $\\triangle$]\n\nBut $\\hat{K}_1=\\hat{T}$ [$\\angle$s opp. equal sides]\n\n$\\therefore\\hat{O}_1=2\\hat{K}_1$\n\n$\\hat{O}_2=\\hat{K}_2+\\hat{P}$ [ext. $\\angle$ of $\\triangle$]\n\nBut $\\hat{K}_2=\\hat{P}$ [$\\angle$s opp. equal sides]\n\n$\\therefore\\hat{O}_2=2\\hat{K}_2$\n\n$\\therefore\\hat{O}_1+\\hat{O}_2=2\\hat{K}_1+2\\hat{K}_2$\n\n$=2(\\hat{K}_1+\\hat{K}_2)$\n\n$\\therefore T\\hat{O}P=2\\,T\\hat{K}P$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "construction"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$\\hat{O}_1=\\hat{K}_1+\\hat{T}$ and $\\hat{K}_1=\\hat{T}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{O}_1=2\\hat{K}_1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{O}_2=2\\hat{K}_2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{O}_1+\\hat{O}_2=2(\\hat{K}_1+\\hat{K}_2)$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T\\hat{O}P=2\\,T\\hat{K}P$",
+          "working_md": "Construction: Draw $KO$.\n\n$\\hat{T}=\\hat{K}_1$ [$\\angle$s opp. equal sides]\n\n$\\therefore K\\hat{O}T=180^{\\circ}-2\\hat{K}_1$ [sum of $\\angle$s of $\\triangle$]\n\n$\\hat{P}=\\hat{K}_2$ [$\\angle$s opp. equal sides]\n\n$\\therefore K\\hat{O}P=180^{\\circ}-2\\hat{K}_2$ [sum of $\\angle$s of $\\triangle$]\n\n$T\\hat{O}P=360^{\\circ}-(K\\hat{O}T+K\\hat{O}P)$ [$\\angle$s around a point]\n\n$=360^{\\circ}-(180^{\\circ}-2\\hat{K}_1+180^{\\circ}-2\\hat{K}_2)$\n\n$=2\\hat{K}_1+2\\hat{K}_2$\n\n$=2(\\hat{K}_1+\\hat{K}_2)$\n\n$\\therefore T\\hat{O}P=2\\,T\\hat{K}P$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "construction"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$\\hat{T}=\\hat{K}_1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$K\\hat{O}T=180^{\\circ}-2\\hat{K}_1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$K\\hat{O}P=180^{\\circ}-2\\hat{K}_2$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$T\\hat{O}P=360^{\\circ}-(K\\hat{O}T+K\\hat{O}P)$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-9.2.1",
+      "question_id": "2025-nov-p2-9.2.1",
+      "number": "9.2.1",
+      "marks": 2,
+      "answer_md": "$\\hat{O}_2=64^{\\circ}$",
+      "working_md": "$\\hat{O}_2=64^{\\circ}$ [$\\angle$ at centre $=2\\times\\angle$ at circumference]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{O}_2=64^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\angle$ at centre $=2\\times\\angle$ at circumference"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{O}_2=64^{\\circ}$",
+          "working_md": "$\\mathrm{P}\\hat{L}\\mathrm{O}=\\hat{P}=32^{\\circ}$ [$\\angle$s opp. equal radii]\n\n$\\hat{O}_2=64^{\\circ}$ [ext. $\\angle$ of $\\triangle$]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$\\mathrm{P}\\hat{L}\\mathrm{O}=\\hat{P}=32^{\\circ}$ [$\\angle$s opp. equal radii]"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{O}_2=64^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-9.2.2",
+      "question_id": "2025-nov-p2-9.2.2",
+      "number": "9.2.2",
+      "marks": 3,
+      "answer_md": "$\\hat{M}=26^{\\circ}$",
+      "working_md": "$\\mathrm{P}\\hat{F}\\mathrm{M}=90^{\\circ}$ [tan $\\perp$ diameter]\n\n$\\hat{M}=26^{\\circ}$ [sum of $\\angle$s of $\\triangle$]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\mathrm{P}\\hat{F}\\mathrm{M}=90^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "tan $\\perp$ diameter"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{M}=26^{\\circ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-10.1",
+      "question_id": "2025-nov-p2-10.1",
+      "number": "10.1",
+      "marks": 3,
+      "answer_md": "$Q\\hat{T}S=55^{\\circ}$",
+      "working_md": "$\\hat{R}=55^{\\circ}$ [sum of $\\angle$s in $\\triangle$]\n\n$\\therefore Q\\hat{T}S=55^{\\circ}$ [$\\angle$s in the same seg]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{R}=55^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$Q\\hat{T}S=55^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\angle$s in the same seg"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$Q\\hat{T}S=55^{\\circ}$",
+          "working_md": "$\\hat{S}_2=35^{\\circ}$ [$\\angle$s in the same seg]\n\n$\\therefore Q\\hat{T}S=55^{\\circ}$ [sum of $\\angle$s in $\\triangle$]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{S}_2=35^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "$\\angle$s in the same seg"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$Q\\hat{T}S=55^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-10.2",
+      "question_id": "2025-nov-p2-10.2",
+      "number": "10.2",
+      "marks": 3,
+      "answer_md": "$PQ\\parallel SR$",
+      "working_md": "$S\\hat{P}Q=125^{\\circ}$ [opp. $\\angle$s of cyclic quad]\n\n$\\hat{S}_1=\\hat{R}=55^{\\circ}$ [given]\n\n$S\\hat{P}Q+\\hat{S}_1=180^{\\circ}$\n\n$\\therefore PQ\\parallel SR$ [co-int. $\\angle$s suppl.]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$S\\hat{P}Q=125^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "opp. $\\angle$s of cyclic quad"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$PQ\\parallel SR$ [co-int. $\\angle$s suppl.]"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$PQ\\parallel SR$",
+          "working_md": "$\\hat{S}_1=\\hat{R}=55^{\\circ}$ [given]\n\n$P\\hat{Q}R=125^{\\circ}$ [opp. $\\angle$s of cyclic quad]\n\n$\\therefore\\hat{Q}_1=125^{\\circ}-35^{\\circ}=90^{\\circ}$\n\n$\\therefore\\hat{Q}_1+\\hat{V}_1=180^{\\circ}$\n\n$\\therefore PQ\\parallel SR$ [co-int. $\\angle$s suppl.]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$P\\hat{Q}R=125^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "opp. $\\angle$s of cyclic quad"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "$PQ\\parallel SR$ [co-int. $\\angle$s suppl.]"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-10.3",
+      "question_id": "2025-nov-p2-10.3",
+      "number": "10.3",
+      "marks": 2,
+      "answer_md": "$PT$ is a diameter of the circle.",
+      "working_md": "$\\hat{Q}_1=90^{\\circ}$ [co-int. $\\angle$s; $PQ\\parallel SR$]\n\n$\\therefore PT$ is a diameter [converse $\\angle$ in semi-circle / chord subtends $90^{\\circ}$]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{Q}_1=90^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "converse $\\angle$ in semi-circle / chord subtends $90^{\\circ}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$PT$ is a diameter of the circle.",
+          "working_md": "$\\hat{S}_2=35^{\\circ}$ [ext. $\\angle$ of $\\triangle SVT$ or sum of $\\angle$s in $\\triangle$]\n\n$P\\hat{S}T=90^{\\circ}$\n\n$\\therefore PT$ is a diameter [converse $\\angle$ in semi-circle / chord subtends $90^{\\circ}$]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{S}_2=35^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "converse $\\angle$ in semi-circle / chord subtends $90^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The second method awards a statement mark for $\\hat{S}_2=35^{\\circ}$ and a reason mark for the diameter conclusion; $P\\hat{S}T=90^{\\circ}$ is shown without a separate tick."
+    },
+    {
+      "id": "2025-nov-p2-11.1.1",
+      "question_id": "2025-nov-p2-11.1.1",
+      "number": "11.1.1",
+      "marks": 2,
+      "answer_md": "$\\dfrac{\\mathrm{FD}}{\\mathrm{CF}}=\\dfrac{2}{3}$",
+      "working_md": "$\\dfrac{\\mathrm{FD}}{\\mathrm{CF}}=\\dfrac{\\mathrm{GA}}{\\mathrm{CG}}$ [prop. theorem; $AD\\parallel EF$ / line $\\parallel$ one side of $\\triangle$]\n\n$\\dfrac{\\mathrm{FD}}{\\mathrm{CF}}=\\dfrac{2}{3}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\dfrac{\\mathrm{FD}}{\\mathrm{CF}}=\\dfrac{\\mathrm{GA}}{\\mathrm{CG}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.1.2",
+      "question_id": "2025-nov-p2-11.1.2",
+      "number": "11.1.2",
+      "marks": 4,
+      "answer_md": "$\\dfrac{\\mathrm{BA}}{\\mathrm{EA}}=\\dfrac{11}{4}$",
+      "working_md": "$\\mathrm{FD}=\\dfrac{2}{3}\\mathrm{CF}$\n\nLet $\\mathrm{CF}=2x$. Then $\\mathrm{FD}=\\dfrac{2}{3}(2x)=\\dfrac{4}{3}x$\n\n$\\dfrac{\\mathrm{BA}}{\\mathrm{EA}}=\\dfrac{\\mathrm{BD}}{\\mathrm{FD}}$ [prop. theorem; $AD\\parallel EF$ / line $\\parallel$ one side of $\\triangle$]\n\n$\\dfrac{\\mathrm{BA}}{\\mathrm{EA}}=\\dfrac{5x-\\dfrac{4}{3}x}{\\dfrac{4}{3}x}$\n\n$=\\dfrac{11}{3}\\times\\dfrac{3}{4}$\n\n$=\\dfrac{11}{4}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{4}{3}x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\dfrac{\\mathrm{BA}}{\\mathrm{EA}}=\\dfrac{\\mathrm{BD}}{\\mathrm{FD}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.1.3",
+      "question_id": "2025-nov-p2-11.1.3",
+      "number": "11.1.3",
+      "marks": 4,
+      "answer_md": "$\\dfrac{9}{16}$",
+      "working_md": "$\\dfrac{\\text{Area of }\\triangle GCF}{\\text{Area of }GFDA}=\\dfrac{\\text{Area of }\\triangle GCF}{\\text{Area of }\\triangle CDA-\\text{Area of }\\triangle GCF}$\n\n$=\\dfrac{\\tfrac{1}{2}\\mathrm{GC}\\cdot\\mathrm{CF}\\sin\\hat{C}}{\\tfrac{1}{2}\\mathrm{AC}\\cdot\\mathrm{CD}\\sin\\hat{C}-\\tfrac{1}{2}\\mathrm{GC}\\cdot\\mathrm{CF}\\sin\\hat{C}}$\n\n$=\\dfrac{\\tfrac{1}{2}(3k)(3p)(\\sin\\hat{C})}{\\tfrac{1}{2}(5k)(5p)(\\sin\\hat{C})-\\tfrac{1}{2}(3k)(3p)(\\sin\\hat{C})}$\n\n$=\\dfrac{\\tfrac{1}{2}(9kp)(\\sin\\hat{C})}{\\tfrac{1}{2}\\sin\\hat{C}(25kp-9kp)}$\n\n$=\\dfrac{9}{16}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$GFDA=\\triangle CDA-\\triangle CGF$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tfrac{1}{2}(\\mathrm{GC})(\\mathrm{FC})\\sin\\hat{C}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tfrac{1}{2}\\mathrm{AC}\\cdot\\mathrm{CD}\\sin\\hat{C}-\\tfrac{1}{2}\\mathrm{GC}\\cdot\\mathrm{CF}\\sin\\hat{C}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.2.1",
+      "question_id": "2025-nov-p2-11.2.1",
+      "number": "11.2.1",
+      "marks": 2,
+      "answer_md": "$\\mathrm{PR}=\\dfrac{\\mathrm{PW}\\cdot\\mathrm{QR}}{\\mathrm{QE}}$",
+      "working_md": "$\\dfrac{\\mathrm{QE}}{\\mathrm{QR}}=\\dfrac{\\mathrm{PW}}{\\mathrm{PR}}$ [prop. theorem; $PQ\\parallel WE$ / line $\\parallel$ one side of $\\triangle$]\n\n$\\mathrm{PR}=\\dfrac{\\mathrm{PW}\\cdot\\mathrm{QR}}{\\mathrm{QE}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\dfrac{\\mathrm{QE}}{\\mathrm{QR}}=\\dfrac{\\mathrm{PW}}{\\mathrm{PR}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "prop. theorem; $PQ\\parallel WE$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.2.2",
+      "question_id": "2025-nov-p2-11.2.2",
+      "number": "11.2.2",
+      "marks": 1,
+      "answer_md": "$\\mathrm{PQ}^2=\\mathrm{RQ}\\cdot\\mathrm{QZ}$",
+      "working_md": "$\\dfrac{\\mathrm{PQ}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{QZ}}{\\mathrm{QP}}$ [$\\triangle PQZ\\mathrel{|||}\\triangle RQP$]\n\n$\\therefore\\mathrm{PQ}^2=\\mathrm{RQ}\\cdot\\mathrm{QZ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{\\mathrm{PQ}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{QZ}}{\\mathrm{QP}}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.2.3",
+      "question_id": "2025-nov-p2-11.2.3",
+      "number": "11.2.3",
+      "marks": 3,
+      "answer_md": "$\\triangle QSZ\\mathrel{|||}\\triangle QRS$",
+      "working_md": "In $\\triangle QSZ$ and $\\triangle QRS$:\n\n$\\hat{Q}_2=\\hat{Q}_2$ [common $\\angle$]\n\n$\\hat{S}_1=\\hat{R}_2$ [tan chord theorem]\n\n$\\hat{Z}_1=Q\\hat{S}R$ [$3^{\\text{rd}}$ $\\angle$ of $\\triangle$]\n\n$\\therefore\\triangle QSZ\\mathrel{|||}\\triangle QRS$ [AAA]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{Q}_2=\\hat{Q}_2$ [common $\\angle$]"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$\\hat{S}_1=\\hat{R}_2$ [tan chord theorem]"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S OR R",
+          "description": "$3^{\\text{rd}}$ $\\angle$ of $\\triangle$ or AAA"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.2.4",
+      "question_id": "2025-nov-p2-11.2.4",
+      "number": "11.2.4",
+      "marks": 3,
+      "answer_md": "$\\mathrm{PQ}=\\mathrm{QS}$",
+      "working_md": "$\\dfrac{\\mathrm{QS}}{\\mathrm{QR}}=\\dfrac{\\mathrm{QZ}}{\\mathrm{QS}}$ [$\\triangle QSZ\\mathrel{|||}\\triangle QRS$]\n\n$\\therefore\\mathrm{QS}^2=\\mathrm{QZ}\\cdot\\mathrm{QR}$\n\nBut $\\mathrm{PQ}^2=\\mathrm{RQ}\\cdot\\mathrm{QZ}$ [proved in 11.2.2]\n\n$\\therefore\\mathrm{PQ}=\\mathrm{QS}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$\\dfrac{\\mathrm{QS}}{\\mathrm{QR}}=\\dfrac{\\mathrm{QZ}}{\\mathrm{QS}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\mathrm{QS}^2=\\mathrm{QZ}\\cdot\\mathrm{QR}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\mathrm{PQ}=\\mathrm{QS}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2025-nov-p2-11.2.5",
+      "question_id": "2025-nov-p2-11.2.5",
+      "number": "11.2.5",
+      "marks": 4,
+      "answer_md": "$\\mathrm{PW}=\\dfrac{\\mathrm{QE}\\cdot\\mathrm{PZ}}{\\sqrt{\\mathrm{QR}\\cdot\\mathrm{QZ}}}$",
+      "working_md": "$\\dfrac{\\mathrm{PQ}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{PZ}}{\\mathrm{PR}}$ [$\\triangle PQZ\\mathrel{|||}\\triangle RQP$]\n\n$\\mathrm{PR}=\\dfrac{\\mathrm{QR}\\cdot\\mathrm{PZ}}{\\mathrm{PQ}}$\n\n$\\mathrm{PR}=\\dfrac{\\mathrm{PW}\\cdot\\mathrm{QR}}{\\mathrm{QE}}$ [proved in 11.2.1]\n\n$\\therefore\\dfrac{\\mathrm{PW}\\cdot\\mathrm{QR}}{\\mathrm{QE}}=\\dfrac{\\mathrm{QR}\\cdot\\mathrm{PZ}}{\\mathrm{PQ}}$\n\n$\\mathrm{PW}=\\dfrac{\\mathrm{QE}\\cdot\\mathrm{PZ}}{\\mathrm{PQ}}$\n\nBut $\\mathrm{PQ}^2=\\mathrm{RQ}\\cdot\\mathrm{QZ}$ [proved in 11.2.2]\n\n$\\therefore\\mathrm{PQ}=\\sqrt{\\mathrm{RQ}\\cdot\\mathrm{QZ}}$\n\n$\\therefore\\mathrm{PW}=\\dfrac{\\mathrm{QE}\\cdot\\mathrm{PZ}}{\\sqrt{\\mathrm{QR}\\cdot\\mathrm{QZ}}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{PR}=\\dfrac{\\mathrm{QR}\\cdot\\mathrm{PZ}}{\\mathrm{PQ}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\dfrac{\\mathrm{PW}\\cdot\\mathrm{QR}}{\\mathrm{QE}}=\\dfrac{\\mathrm{QR}\\cdot\\mathrm{PZ}}{\\mathrm{PQ}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{PW}=\\dfrac{\\mathrm{QE}\\cdot\\mathrm{PZ}}{\\mathrm{PQ}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{PQ}=\\sqrt{\\mathrm{RQ}\\cdot\\mathrm{QZ}}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    }
+  ]
+}
