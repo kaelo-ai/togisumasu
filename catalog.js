@@ -90,7 +90,10 @@ function init(db) {
   require('./caps').seed(db);
   syncAllEdges(db);
   require('./nsc').importAll(db);
-  require('./keys').init(db);
+  const keys = require('./keys');
+  keys.init(db);
+  const memoDir = require('node:path').join(__dirname, 'data', 'nsc', 'memos');
+  if (require('node:fs').existsSync(memoDir)) keys.importMemos(db, memoDir);
   syncCore(db);
 }
 

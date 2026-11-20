@@ -17,6 +17,6 @@ Left out on purpose:
 
 Reading note kept from the source: in `papers/2016-nov-p2.json`, question 2's histogram has class frequencies 24, 71, 38, 23 and 4 printed on the bars (they sum to 160). Those frequencies were read off the histogram because the cumulative-frequency table is only in the answer book, which is not in the PDF. Question 2.2's range uses the stated shortest and tallest heights (1,39 m and 2,21 m), not the class endpoints.
 
-No marking memoranda are in this snapshot. Answer keys are filled later by `keys.js` (official memo, or two agreeing offline solutions). Until a key is accepted, the question is not served.
+November 2025 Paper 1 and Paper 2 marking guidelines are in `memos/` (see `memos/PROVENANCE.md`). Other years are not in this snapshot yet. Where a memo is missing, a key can still be filled by two agreeing offline solutions. A flagged or missing key is not served. A memo key replaces either of those.
 
 Papers from 2022 onward are the exam pool. Papers from 2016–2021 are the practice pool. The split is a `CHECK` on `nsc_papers` plus the `nsc_practice_leaves` and `nsc_exam_papers` views, not a label the UI is trusted to honour.

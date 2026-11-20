@@ -154,21 +154,245 @@ function defaultComplete() {
   return (system, user) => ai.complete(cfg, system, user, { temperature: 0 });
 }
 
+const PAPER_ID = /^\d{4}-(nov|jun|mar)-p[1-3]$/;
+const PART_ID = /^\d{4}-(nov|jun|mar)-p[1-3]-\d+(\.\d+)*$/;
+const SR_TYPE = /^(S|R|S\/R|S-R|S OR R)$/i;
+
+function validateMemo(memo, filename = 'memo') {
+  if (!memo || typeof memo !== 'object') throw new Error(`${filename}: memo must be an object.`);
+  if (!PAPER_ID.test(memo.id || '') || memo.id !== memo.paper_id) throw new Error(`${filename}: id must be the paper id.`);
+  if (!Array.isArray(memo.parts) || !memo.parts.length) throw new Error(`${filename}: parts are required.`);
+  if (!memo.source || !memo.source.pdf) throw new Error(`${filename}: source.pdf is required.`);
+  if (!memo.extraction || !memo.extraction.date || !memo.extraction.method) throw new Error(`${filename}: extraction is required.`);
+  const seen = new Set();
+  for (const part of memo.parts) {
+    if (!part || !PART_ID.test(part.id || '') || part.id !== part.question_id) throw new Error(`${filename}: bad part id ${part && part.id}.`);
+    if (seen.has(part.id)) throw new Error(`${filename}: duplicate part ${part.id}.`);
+    seen.add(part.id);
+    if (!Number.isInteger(part.marks) || part.marks < 1) throw new Error(`${filename}: ${part.id} needs a positive mark total.`);
+    if (typeof part.answer_md !== 'string' || typeof part.working_md !== 'string') throw new Error(`${filename}: ${part.id} needs answer_md and working_md.`);
+    if (!Array.isArray(part.steps) || !part.steps.length) throw new Error(`${filename}: ${part.id} needs steps.`);
+    for (const step of part.steps) validateStep(step, filename, part.id);
+    if (!Array.isArray(part.alternatives)) throw new Error(`${filename}: ${part.id} alternatives must be a list.`);
+    for (const alt of part.alternatives) {
+      if (!alt || typeof alt.answer_md !== 'string' || !Array.isArray(alt.steps) || !alt.steps.length) throw new Error(`${filename}: ${part.id} has a bad alternative.`);
+      for (const step of alt.steps) validateStep(step, filename, part.id);
+    }
+  }
+  return memo;
+}
+
+function validateStep(step, filename, partId) {
+  if (!step || !Number.isInteger(step.marks) || step.marks < 1) throw new Error(`${filename}: ${partId} has a step without marks.`);
+  if (typeof step.description !== 'string' || !step.description.trim()) throw new Error(`${filename}: ${partId} has a step without a description.`);
+  if (step.mark_type != null && typeof step.mark_type !== 'string') throw new Error(`${filename}: ${partId} has a bad mark type.`);
+}
+
+function latexToPlain(md) {
+  let s = String(md || '');
+  s = s.replace(/\(reject[\s\S]*?\)/gi, ' ');
+  s = s.replace(/_\{[^{}]*\}/g, '');
+  s = s.replace(/_[0-9]+/g, '');
+  s = s.replace(/\\infty/g, '');
+  let prev;
+  do {
+    prev = s;
+    s = s.replace(/\\(?:d|t)?frac\{([^{}]+)\}\{([^{}]+)\}/g, '($1)/($2)');
+  } while (s !== prev);
+  s = s.replace(/\\sqrt\{([^{}]+)\}/g, 'sqrt($1)');
+  s = s.replace(/\\(?:mathrm|text|left|right|big|Big|hat|bar)\b/g, '');
+  s = s.replace(/\\[,;:!]/g, '');
+  s = s.replace(/\\[a-zA-Z]+/g, ' ');
+  s = s.replace(/[{}]/g, '');
+  s = s.replace(/(\d),(\d)/g, '$1.$2');
+  s = s.replace(/\$/g, ' ');
+  s = s.replace(/\\/g, ' ');
+  return s.replace(/\s+/g, ' ').trim();
+}
+
+function primaryValue(md) {
+  const plain = latexToPlain(md);
+  const rounded = [...plain.matchAll(/=\s*(-?\d+(?:\.\d+)?)(?!\s*\/)/g)];
+  if (rounded.length) return Number(rounded[rounded.length - 1][1]);
+  const named = plain.match(/^(?:[A-Za-z]+\s*=\s*)?(-?\d+(?:\.\d+)?)\s*(?:cm|units?|months|cups|players|degrees?)?$/i);
+  if (named) return Number(named[1]);
+  const signedFrac = plain.match(/(-?)\s*\(?\s*(\d+)\s*\)?\s*\/\s*\(?\s*(\d+)\s*\)?/);
+  if (signedFrac) return (signedFrac[1] === '-' ? -1 : 1) * Number(signedFrac[2]) / Number(signedFrac[3]);
+  const nums = plain.match(/-?\d+(?:\.\d+)?/g) || [];
+  if (nums.length === 1) return Number(nums[0]);
+  return null;
+}
+
+function splitStatementReason(description) {
+  const text = String(description || '').trim();
+  const match = text.match(/^(.*?)\[([^\]]+)\]\s*$/);
+  if (match && match[1].trim()) return { statement: match[1].replace(/\s+/g, ' ').trim(), reason: match[2].replace(/\s+/g, ' ').trim() };
+  return { statement: text.replace(/\s+/g, ' ').trim(), reason: '' };
+}
+
+function geometryChain(steps) {
+  const marked = (steps || []).filter(step => step.mark_type && SR_TYPE.test(String(step.mark_type).trim()));
+  if (!marked.length) return null;
+  const pairs = [];
+  let pending = null;
+  const flush = reason => {
+    if (!pending) return;
+    pairs.push({ statement: pending, reason });
+    pending = null;
+  };
+  for (const step of marked) {
+    const type = String(step.mark_type).toUpperCase().replace(/\s+/g, ' ');
+    const split = splitStatementReason(step.description);
+    if (type === 'S/R' || type === 'S-R' || type === 'S OR R') {
+      flush('follows from the line above');
+      pairs.push({ statement: split.statement, reason: split.reason || step.description });
+    } else if (type === 'S') {
+      if (split.reason) {
+        flush('follows from the line above');
+        pairs.push({ statement: split.statement, reason: split.reason });
+      } else {
+        flush('follows from the line above');
+        pending = split.statement;
+      }
+    } else if (split.reason) {
+      flush('follows from the line above');
+      pairs.push({ statement: split.statement, reason: split.reason });
+    } else if (pending) {
+      pairs.push({ statement: pending, reason: split.statement });
+      pending = null;
+    } else {
+      pairs.push({ statement: step.description, reason: split.statement });
+    }
+  }
+  flush('follows from the line above');
+  return pairs.length ? pairs : null;
+}
+
+const EXTRA_REASONS = [
+  'vertically opposite angles',
+  'corresponding angles; parallel lines',
+  'exterior angle of a cyclic quadrilateral',
+  'angles opposite equal sides',
+];
+const EXTRA_STATEMENTS = [
+  'the radii are equal',
+  'the lines are perpendicular',
+];
+
+function geometrySpec(chain) {
+  const statements = [];
+  const reasons = [];
+  const see = (list, text) => {
+    const found = list.find(item => item.text === text);
+    if (found) return found.id;
+    const id = (list === statements ? 's' : 'r') + (list.length + 1);
+    list.push({ id, text });
+    return id;
+  };
+  const linked = chain.map(step => ({ statement: see(statements, step.statement), reason: see(reasons, step.reason) }));
+  for (const text of EXTRA_STATEMENTS) if (statements.length < 2 || statements.length < linked.length + 1) see(statements, text);
+  for (const text of EXTRA_REASONS) if (reasons.length < 2 || reasons.length < linked.length + 1) see(reasons, text);
+  if (statements.length < 2) see(statements, 'a construction line is drawn');
+  if (reasons.length < 2) see(reasons, 'given');
+  return { type: 'geom', checkable: true, statements, reasons, chain: linked, ans: chain.map(step => step.statement).join('; '), ansTex: chain.map(step => step.statement).join('; ') };
+}
+
+function expressionSpec(md) {
+  const chunk = String(md || '').split(/\s+or\s+/i)[0];
+  let plain = latexToPlain(chunk);
+  const eq = plain.indexOf('=');
+  if (eq >= 0) plain = plain.slice(eq + 1).trim();
+  plain = plain.replace(/\s*(cm|units?|degrees?)\s*$/i, '').trim();
+  if (!plain || plain.length > 200) return null;
+  try { core.parse(plain); }
+  catch (err) { return null; }
+  const names = plain.match(/[a-zA-Z]+/g) || [];
+  const vars = [...new Set(names.filter(name => !['sqrt', 'sin', 'cos', 'tan', 'ln', 'log', 'pi', 'e'].includes(name)))];
+  if (vars.length > 1) return null;
+  return { type: 'expr', checkable: true, ans: plain, ansTex: chunk.trim(), var: vars[0] || 'x' };
+}
+
+function numericSpec(md, answerType) {
+  if (answerType === 'solution_set' && /\\in|k\s*\\cdot|y\s*=/.test(md) && /x\s*=/.test(md)) return null;
+  if (answerType === 'solution_set') {
+    const body = String(md).replace(/\(reject[\s\S]*?\)/gi, '');
+    const pieces = body.split(/\s+or\s+/i).map(piece => primaryValue(piece)).filter(v => Number.isFinite(v));
+    if (pieces.length >= 1 && pieces.length <= 6) return { type: 'set', checkable: true, vals: pieces, ans: pieces.join(', '), ansTex: md.trim(), tol: 0.015 };
+    return null;
+  }
+  const val = primaryValue(md);
+  if (!Number.isFinite(val)) return null;
+  return { type: 'num', checkable: true, val, ans: String(val), ansTex: md.trim(), tol: 0.015 };
+}
+
+function memoPartToSpec(part, answerType) {
+  const chain = geometryChain(part.steps) || (part.alternatives || []).map(alt => geometryChain(alt.steps)).find(Boolean);
+  let check = null;
+  if (chain) check = geometrySpec(chain);
+  else if (answerType === 'value' || answerType === 'show_that' || answerType === 'solution_set') check = numericSpec(part.answer_md, answerType === 'show_that' ? 'value' : answerType);
+  else if (answerType === 'expression' || answerType === 'show_that') check = expressionSpec(part.answer_md);
+  if (!check && (answerType === 'expression' || answerType === 'equation' || answerType === 'show_that')) check = expressionSpec(part.answer_md);
+  const base = {
+    answer_md: part.answer_md,
+    working_md: part.working_md,
+    notes: part.notes || null,
+    marks: part.marks,
+    steps: part.steps,
+    alternatives: part.alternatives || [],
+    answerType: answerType || null,
+  };
+  if (!check) return { ...base, type: 'memo', checkable: false, ans: part.answer_md, ansTex: part.answer_md };
+  return { ...base, ...check };
+}
+
+function importMemoFile(db, file) {
+  const memo = validateMemo(JSON.parse(fs.readFileSync(file, 'utf8')), path.basename(file));
+  const lookup = db.prepare('SELECT id, answer_type, paper_id FROM nsc_nodes WHERE id = ? AND is_leaf = 1');
+  const setRef = db.prepare('UPDATE nsc_nodes SET memo_ref = ? WHERE id = ?');
+  const stats = { keys: 0, checkable: 0, geom: 0, unchecked: [] };
+  for (const part of memo.parts) {
+    const node = lookup.get(part.question_id || part.id);
+    if (!node) throw new Error(`${path.basename(file)}: ${part.id} is not an imported question leaf.`);
+    if (node.paper_id !== memo.paper_id) throw new Error(`${part.id} belongs to ${node.paper_id}, not ${memo.paper_id}.`);
+    const spec = memoPartToSpec(part, node.answer_type);
+    saveKey(db, node.id, { provenance: 'memo', answer: spec, steps: part.steps, solverA: null, solverB: null });
+    setRef.run(part.id, node.id);
+    stats.keys++;
+    if (spec.checkable) stats.checkable++;
+    else stats.unchecked.push({ id: node.id, answerType: node.answer_type, answer: part.answer_md });
+    if (spec.type === 'geom') stats.geom++;
+  }
+  return stats;
+}
+
+function importLegacyAnswers(db, memo, filename) {
+  const answers = memo.answers || {};
+  let keys = 0;
+  for (const [nodeId, answer] of Object.entries(answers)) {
+    if (!canonical(answer)) throw new Error(`${filename}: ${nodeId} has no comparable answer.`);
+    const node = db.prepare('SELECT id FROM nsc_nodes WHERE id = ? AND is_leaf = 1').get(nodeId);
+    if (!node) throw new Error(`${filename}: ${nodeId} is not an imported question.`);
+    const spec = { ...answer, checkable: true, answer_md: answer.ansTex || answer.ans, steps: answer.steps || [], alternatives: answer.alternatives || [] };
+    saveKey(db, nodeId, { provenance: 'memo', answer: spec, steps: answer.steps || [], solverA: null, solverB: null });
+    db.prepare('UPDATE nsc_nodes SET memo_ref = ? WHERE id = ?').run(nodeId, nodeId);
+    keys++;
+  }
+  return { keys, checkable: keys, geom: 0, unchecked: [] };
+}
+
 function importMemos(db, dir) {
   init(db);
   if (!dir || !fs.existsSync(dir)) throw new Error('Memo directory not found.');
-  const files = fs.readdirSync(dir).filter(name => name.endsWith('.json'));
-  const stats = { files: files.length, keys: 0 };
+  const files = fs.readdirSync(dir).filter(name => name.endsWith('.json')).sort();
+  const stats = { files: files.length, keys: 0, checkable: 0, geom: 0, unchecked: [] };
   for (const name of files) {
-    const memo = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
-    const answers = memo.answers || {};
-    for (const [nodeId, answer] of Object.entries(answers)) {
-      if (!canonical(answer)) throw new Error(`${name}: ${nodeId} has no comparable answer.`);
-      const node = db.prepare('SELECT id FROM nsc_nodes WHERE id = ? AND is_leaf = 1').get(nodeId);
-      if (!node) throw new Error(`${name}: ${nodeId} is not an imported question.`);
-      saveKey(db, nodeId, { provenance: 'memo', answer, steps: answer.steps || [], solverA: null, solverB: null });
-      stats.keys++;
-    }
+    const file = path.join(dir, name);
+    const memo = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const part = Array.isArray(memo.parts) ? importMemoFile(db, file) : importLegacyAnswers(db, memo, name);
+    stats.keys += part.keys;
+    stats.checkable += part.checkable;
+    stats.geom += part.geom;
+    stats.unchecked.push(...part.unchecked);
   }
   return stats;
 }
@@ -190,21 +414,24 @@ function markNode(db, nodeId, input) {
     throw err;
   }
   const spec = JSON.parse(row.answer_json);
+  if (spec.type === 'memo' || spec.checkable === false) {
+    return { ok: null, checkable: false, provenance: row.provenance, answer: spec.answer_md || spec.ans || null };
+  }
   if (spec.type === 'geom') {
     const chain = Array.isArray(input) ? input : [];
-    return { ...core.check(spec, chain), provenance: row.provenance };
+    return { ...core.check(spec, chain), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
   if (spec.type === 'text') {
-    return { ok: normText(input) === normText(spec.ans), provenance: row.provenance };
+    return { ok: normText(input) === normText(spec.ans), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ans || null };
   }
   if (spec.type === 'set') {
-    return { ...core.check({ type: 'set', vals: spec.vals, ans: spec.ans, tol: spec.tol }, String(input == null ? '' : input)), provenance: row.provenance };
+    return { ...core.check({ type: 'set', vals: spec.vals, ans: spec.ans, tol: spec.tol }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
   if (spec.type === 'num') {
-    return { ...core.check({ type: 'num', val: spec.val, ans: spec.ans, exact: !!spec.exact, tol: spec.tol }, String(input == null ? '' : input)), provenance: row.provenance };
+    return { ...core.check({ type: 'num', val: spec.val, ans: spec.ans, exact: !!spec.exact, tol: spec.tol }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
   if (spec.type === 'expr') {
-    return { ...core.check({ type: 'expr', ans: spec.ans, var: spec.var || 'x', sample: spec.sample }, String(input == null ? '' : input)), provenance: row.provenance };
+    return { ...core.check({ type: 'expr', ans: spec.ans, var: spec.var || 'x', sample: spec.sample }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
   const err = new Error('This key cannot be marked yet.');
   err.status = 400;
@@ -213,6 +440,7 @@ function markNode(db, nodeId, input) {
 
 module.exports = {
   init, canonical, parseSolver, solveNode, solveMissing, importMemos, markNode, accepted, keyRow, ACCEPTED,
+  validateMemo, memoPartToSpec, primaryValue, geometryChain,
 };
 
 if (require.main === module) {

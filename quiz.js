@@ -175,16 +175,47 @@ function examPaper(db, paperId) {
     totalMarks: paper.total_marks,
     durationMinutes: paper.duration_minutes || 180,
     pool: paper.pool,
-    questions: leaves.map(leaf => ({
-      id: leaf.id,
-      number: leaf.number,
-      marks: leaf.marks,
-      answerType: leaf.answer_type,
-      prompt: promptHtml(db, leaf.id),
-      topics: nsc.topicsForNode(db, leaf.id),
-      servable: !!db.prepare(`SELECT 1 AS ok FROM nsc_answer_keys WHERE node_id = ? AND provenance IN ('memo', 'llm_double')`).get(leaf.id),
-    })),
+    questions: leaves.map(leaf => {
+      const key = db.prepare(`SELECT answer_json FROM nsc_answer_keys WHERE node_id = ? AND provenance IN ('memo', 'llm_double')`).get(leaf.id);
+      let checkable = false, geom = null;
+      if (key) {
+        const spec = JSON.parse(key.answer_json);
+        checkable = !!spec.checkable;
+        if (spec.type === 'geom') geom = { statements: spec.statements, reasons: spec.reasons };
+      }
+      return {
+        id: leaf.id,
+        number: leaf.number,
+        marks: leaf.marks,
+        answerType: leaf.answer_type,
+        prompt: promptHtml(db, leaf.id),
+        topics: nsc.topicsForNode(db, leaf.id),
+        servable: !!key,
+        checkable,
+        geom,
+      };
+    }),
   };
 }
 
-module.exports = { eligibleLeaves, assembleQuiz, listExams, examPaper, promptHtml };
+function markExam(db, paperId, answers) {
+  const paper = examPaper(db, paperId);
+  if (!paper) return null;
+  const keys = require('./keys.js');
+  const given = answers && typeof answers === 'object' ? answers : {};
+  return paper.questions.map(question => {
+    let marked;
+    try { marked = keys.markNode(db, question.id, given[question.id]); }
+    catch (err) { marked = { ok: null, checkable: false, answer: null }; }
+    return {
+      id: question.id,
+      number: question.number,
+      marks: question.marks,
+      ok: marked.ok,
+      checkable: !!marked.checkable,
+      answer: marked.answer || null,
+    };
+  });
+}
+
+module.exports = { eligibleLeaves, assembleQuiz, listExams, examPaper, markExam, promptHtml };
