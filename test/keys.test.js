@@ -18,6 +18,8 @@ async function t(name, fn) {
 
 const capsIds = catalog.learner(db, 'gr12-caps').topics.map(topic => topic.id);
 const leaves = db.prepare('SELECT id FROM nsc_nodes WHERE is_leaf = 1 ORDER BY id LIMIT 2').all();
+// Every paper now ships with a memo. Clear two keys so these leaves behave like a paper whose memo has not arrived.
+for (const leaf of leaves) db.prepare('DELETE FROM nsc_answer_keys WHERE node_id = ?').run(leaf.id);
 const agree = JSON.stringify({ type: 'num', ans: '7', ansTex: '7', val: 7, steps: ['zero product'] });
 const other = JSON.stringify({ type: 'num', ans: '4', ansTex: '4', val: 4, steps: ['different'] });
 

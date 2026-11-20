@@ -4,6 +4,7 @@
 // is in the mastered set. The practice view is the only read path, so a
 // 2022+ paper cannot be selected. Exams are the exam view, full papers.
 'use strict';
+const core = require('./public/core.js');
 const nsc = require('./nsc.js');
 const catalog = require('./catalog.js');
 const bank = require('./questions.js');
@@ -88,6 +89,8 @@ function eligibleLeaves(db, mastered, courseId) {
     JOIN nsc_papers p ON p.id = n.paper_id
     JOIN nsc_answer_keys k ON k.node_id = n.id
     WHERE k.provenance IN ('memo', 'llm_double')
+      AND COALESCE(json_extract(k.answer_json, '$.checkable'), 1) != 0
+      AND COALESCE(json_extract(k.answer_json, '$.type'), '') != 'memo'
     ORDER BY n.id
   `).all();
   const out = [];
@@ -99,7 +102,8 @@ function eligibleLeaves(db, mastered, courseId) {
     let ready = true;
     for (const id of needed) if (!have.has(id)) { ready = false; break; }
     if (!ready) continue;
-    out.push({ id: row.id, paperId: row.paper_id, year: row.year, number: row.number, marks: row.marks, topics, answerType: row.answer_type });
+    const kind = (db.prepare('SELECT json_extract(answer_json, \'$.type\') AS kind FROM nsc_answer_keys WHERE node_id = ?').get(row.id) || {}).kind || null;
+    out.push({ id: row.id, paperId: row.paper_id, year: row.year, number: row.number, marks: row.marks, topics, answerType: row.answer_type, kind });
   }
   return out;
 }
@@ -114,6 +118,8 @@ function paperItem(db, leaf) {
     marks: leaf.marks,
     topics: leaf.topics,
     answerType: leaf.answerType,
+    kind: leaf.kind || null,
+    hint: (leaf.kind && core.HINTS[leaf.kind]) || null,
     prompt: promptHtml(db, leaf.id),
     markable: true,
   };
@@ -177,10 +183,12 @@ function examPaper(db, paperId) {
     pool: paper.pool,
     questions: leaves.map(leaf => {
       const key = db.prepare(`SELECT answer_json FROM nsc_answer_keys WHERE node_id = ? AND provenance IN ('memo', 'llm_double')`).get(leaf.id);
-      let checkable = false, geom = null;
+      let checkable = false, geom = null, kind = null, notes = [];
       if (key) {
         const spec = JSON.parse(key.answer_json);
         checkable = !!spec.checkable;
+        kind = checkable ? spec.type : null;
+        notes = Array.isArray(spec.memo_notes) ? spec.memo_notes : [];
         if (spec.type === 'geom') geom = { statements: spec.statements, reasons: spec.reasons };
       }
       return {
@@ -192,6 +200,9 @@ function examPaper(db, paperId) {
         topics: nsc.topicsForNode(db, leaf.id),
         servable: !!key,
         checkable,
+        kind,
+        hint: (kind && core.HINTS[kind]) || null,
+        memoNotes: notes,
         geom,
       };
     }),
@@ -214,6 +225,7 @@ function markExam(db, paperId, answers) {
       ok: marked.ok,
       checkable: !!marked.checkable,
       answer: marked.answer || null,
+      memoNotes: question.memoNotes,
     };
   });
 }
