@@ -51,6 +51,13 @@ function canonical(spec) {
     if (!Number.isFinite(val)) return null;
     return JSON.stringify({ type, val: Math.round(val * 1e6) / 1e6 });
   }
+  if (type === 'geom') {
+    if (!Array.isArray(spec.chain) || !spec.chain.length) return null;
+    return JSON.stringify({
+      type,
+      chain: spec.chain.map(step => ({ statement: String(step.statement || ''), reason: String(step.reason || '') })),
+    });
+  }
   if (type === 'expr' || type === 'text') {
     const ans = normText(spec.ans);
     if (!ans) return null;
@@ -183,6 +190,10 @@ function markNode(db, nodeId, input) {
     throw err;
   }
   const spec = JSON.parse(row.answer_json);
+  if (spec.type === 'geom') {
+    const chain = Array.isArray(input) ? input : [];
+    return { ...core.check(spec, chain), provenance: row.provenance };
+  }
   if (spec.type === 'text') {
     return { ok: normText(input) === normText(spec.ans), provenance: row.provenance };
   }

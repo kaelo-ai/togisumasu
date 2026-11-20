@@ -623,6 +623,7 @@ async function mountExample(){const s=SKM[view.id],host=$('#exHost');if(!host)re
   if(!host.isConnected)return;
   host.innerHTML=`<article class="qcard washi-paper"><div class="prompt">${q.prompt}</div><div class="feedback"><div class="ansline"><b>Answer:</b> ${ansDisplay(q)}</div><ol class="steps">${q.steps.map(x=>`<li>${x}</li>`).join('')}</ol></div></article>`;typeset(host)}
 function ansDisplay(q){if(q.type==='mc'){const o=q.options.find(o=>o.ok);return o.tex}
+  if(q.type==='geom')return q.chain.map((step,i)=>{const st=q.statements.find(s=>s.id===step.statement),rs=q.reasons.find(s=>s.id===step.reason);return `${i+1}. ${esc(st?st.text:'')} (${esc(rs?rs.text:'')})`}).join('<br>');
   if(q.type==='fields')return q.fields.map(f=>`$${f.label}=${f.ansTex!=null?f.ansTex:f.ans}$`).join(', ');return `$${q.ansTex}$`}
 function lockHTML(id,a){if(a.why==='pre')return `<div class="lock"><div class="eyebrow">Locked</div><h3>Master the prerequisites first</h3><p>This topic builds on ${a.miss.map(p=>`<b>${esc(SKM[p].name)}</b>`).join(' and ')}. Practice opens as soon as ${a.miss.length>1?'they are':'it is'} mastered. You can read the Learn tab any time.</p><div class="row">${a.miss.map(p=>`<button class="btn${p===a.miss[0]?' primary':''}" type="button" data-skill="${p}">Go to ${esc(SKM[p].name)}</button>`).join('')}</div></div>`;
   if(a.why==='repair')return `<div class="lock repair"><div class="eyebrow">Repair first</div><h3>Something this builds on has slipped</h3><p>${a.rep.map(p=>`<b>${esc(SKM[p].name)}</b>`).join(', ')} ${a.rep.length>1?'need':'needs'} repair. Get 2 in a row, then this topic opens. Topics on other routes stay open.</p><div class="row">${a.rep.map((p,i)=>`<button class="btn${i?'':' primary'}" type="button" data-skill="${p}">Repair ${esc(SKM[p].name)}</button>`).join('')}</div></div>`;
@@ -642,6 +643,7 @@ const EVT={mastered:()=>'<div class="event">Topic mastered. It will come back fo
   repairing:e=>`<div class="event ${e.n?'':'miss'}">Repair: ${e.n}/2 in a row.</div>`,pulled:()=>'<div class="event miss">Missed. This topic comes back for review tomorrow.</div>'};
 let activeQ=null;
 function givenText(q,inp){if(inp==null)return '<em>Skipped</em>';if(q.type==='mc')return q.options[inp].tex;
+  if(q.type==='geom')return Array.isArray(inp)?inp.map((step,i)=>`${i+1}. ${esc((q.statements.find(s=>s.id===step.statement)||{}).text||step.statement)} (${esc((q.reasons.find(s=>s.id===step.reason)||{}).text||step.reason)})`).join('<br>'):'';
   if(q.type==='fields')return q.fields.map((f,i)=>`$${f.label}=$ <code>${esc(inp[i])}</code>`).join(', ');return `<code>${esc(inp)}</code>`}
 async function similarBankQuestion(q){
   const r=await API.req('GET',`/api/questions/${q.id}/similar?limit=12`);
@@ -651,8 +653,9 @@ async function similarBankQuestion(q){
   const full=await API.req('GET','/api/questions/'+pick.id);
   return full.question;
 }
-function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null;const inputs=()=>[...host.querySelectorAll('.mathin')];
-  const ui=q.type==='mc'?`<div class="opts" role="group" aria-label="Choices">${q.options.map((o,i)=>`<button class="opt" type="button" aria-pressed="false" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${o.tex}</span></button>`).join('')}</div>`
+function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain=[];const inputs=()=>[...host.querySelectorAll('.mathin')];
+  const geomUI=q.type==='geom'?`<div class="geom"><div class="row"><label>Statement <select id="geomStmt">${q.statements.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><label>Reason <select id="geomReason">${q.reasons.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><button class="btn" type="button" id="geomAdd">Add step</button></div><ol id="geomChain" class="steps"></ol><p class="gnote">Add the statements in order. Each one needs the reason you would write next to it.</p></div>`:'';
+  const ui=q.type==='geom'?geomUI:q.type==='mc'?`<div class="opts" role="group" aria-label="Choices">${q.options.map((o,i)=>`<button class="opt" type="button" aria-pressed="false" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${o.tex}</span></button>`).join('')}</div>`
    :q.type==='fields'?`<div class="fields">${q.fields.map((f,i)=>`<label class="field" for="qf${i}"><span class="fl">$${f.label}=$</span><input class="mathin" id="qf${i}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"></label>`).join('')}</div>${keys(true)}${help()}`
    :`<label class="l" for="qIn">Your answer</label><input class="mathin" id="qIn" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${PH[q.type]}"><div class="preview" id="qPrev" aria-live="polite"></div>${keys(q.type==='set'||q.type==='num')}${help()}`;
   const acts=ctx.test?`<button class="btn primary" type="button" id="qCheck">Submit answer</button><button class="btn ghost" type="button" id="qGive">I don't know</button>`
@@ -682,7 +685,13 @@ function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null;const inp
     if(sim)sim.onclick=async()=>{const msg=fb.querySelector('#qSimMsg');sim.disabled=true;sim.textContent='Finding a similar question…';if(live)live.textContent='Finding a similar question.';try{const nq=await similarBankQuestion(q);if(!host.isConnected)return;if(!nq){sim.disabled=false;sim.textContent='Try a similar question';if(msg)msg.textContent='No similar question is available yet.';if(live)live.textContent='No similar question is available yet.';return}mountQuestion(host,nq,ctx);host.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});if(live)live.textContent='A similar question is ready.'}catch(e){sim.disabled=false;sim.textContent='Try a similar question';if(msg)msg.textContent=e.message;if(live)live.textContent=e.message}};
     host.querySelector('#qAct').innerHTML=`<button class="btn primary" type="button" id="qNext">${ctx.nextLabel||'Next question'}</button>`;host.querySelector('#qNext').onclick=ctx.next;host.querySelector('#qNext').focus({preventScroll:true});typeset(fb);
     if(matchMedia('(max-width:640px)').matches)setTimeout(()=>fb.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}),60)}
-  host.querySelector('#qCheck').onclick=()=>{if(done)return;let inp;if(q.type==='mc'){if(sel==null){showErr('Pick one of the choices first.');return}inp=sel}
+  if(q.type==='geom'){const draw=()=>{const list=$('#geomChain');if(!list)return;list.innerHTML=geomChain.map((step,i)=>{const st=q.statements.find(s=>s.id===step.statement),rs=q.reasons.find(s=>s.id===step.reason);return `<li>${esc(st?st.text:step.statement)} <span style="color:var(--muted)">because</span> ${esc(rs?rs.text:step.reason)} <button class="btn ghost sm" type="button" data-geom-up="${i}">Up</button> <button class="btn ghost sm" type="button" data-geom-down="${i}">Down</button> <button class="btn ghost sm" type="button" data-geom-del="${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
+    list.querySelectorAll('[data-geom-del]').forEach(b=>b.onclick=()=>{geomChain.splice(+b.dataset.geomDel,1);draw()});
+    list.querySelectorAll('[data-geom-up]').forEach(b=>b.onclick=()=>{const i=+b.dataset.geomUp;if(i>0){[geomChain[i-1],geomChain[i]]=[geomChain[i],geomChain[i-1]];draw()}});
+    list.querySelectorAll('[data-geom-down]').forEach(b=>b.onclick=()=>{const i=+b.dataset.geomDown;if(i<geomChain.length-1){[geomChain[i+1],geomChain[i]]=[geomChain[i],geomChain[i+1]];draw()}})};
+    $('#geomAdd').onclick=()=>{if(done||geomChain.length>=12)return;geomChain.push({statement:$('#geomStmt').value,reason:$('#geomReason').value});draw()};draw()}
+  host.querySelector('#qCheck').onclick=()=>{if(done)return;let inp;if(q.type==='geom'){if(!geomChain.length){showErr('Add at least one statement and reason.');return}inp=geomChain.map(step=>({statement:step.statement,reason:step.reason}))}
+    else if(q.type==='mc'){if(sel==null){showErr('Pick one of the choices first.');return}inp=sel}
     else if(q.type==='fields')inp=inputs().map(i=>i.value);else inp=inputs()[0].value;const r=check(q,inp);
     if(r.err){showErr(r.err);return}finish(r.ok,false,r.per,inp)};
   host.querySelector('#qGive').onclick=()=>{if(!done)finish(false,true)};
