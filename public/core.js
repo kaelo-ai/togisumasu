@@ -75,6 +75,11 @@ function splitSet(s){return s.split(/,|;|\bor\b|\band\b/i).map(x=>x.trim()).filt
 function parseNum(s,q){const ast=parse(s);const v=ev(ast,{});if(q&&q.exact&&hasDec(ast))throw Error('Give an exact answer: use fractions, sqrt( ) or pi rather than decimals.');return {ast,v}}
 /* check(q, input) -> {ok, err?}  err = input problem (not counted as wrong) */
 function check(q,inp){try{
+  if(q.type==='geom'){
+    const chain=Array.isArray(q.chain)?q.chain:[];
+    if(!Array.isArray(inp)||!chain.length||inp.length!==chain.length)return {ok:false};
+    const per=chain.map((step,i)=>{const got=inp[i]||{};return got.statement===step.statement&&got.reason===step.reason});
+    return {ok:per.every(Boolean),per}}
   if(q.type==='mc')return {ok:!!q.options[inp]&&q.options[inp].ok};
   if(q.type==='fields'){const res=q.fields.map((f,i)=>{const s=(inp[i]||'').trim();if(!s)throw Error(`Fill in ${f.name||'every box'}`);
       if(f.undef&&NONE.test(s))return true;if(NONE.test(s))return false;const {v}=parseNum(s,{exact:f.tol==null&&q.exact!==false});return near(v,f.ans,f.tol)});

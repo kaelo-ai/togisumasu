@@ -10,7 +10,7 @@ const REJECT_TAGS = new Map([
 ]);
 
 let ftsEnabled = false;
-const TYPES = new Set(['mc', 'num', 'set', 'expr', 'fields']);
+const TYPES = new Set(['mc', 'num', 'set', 'expr', 'fields', 'geom']);
 const STATUSES = new Set(['active', 'hidden', 'deleted']);
 
 function qerr(message) {
@@ -137,6 +137,40 @@ function normalizeQuestion(input) {
       if (!core.REJECTS[tag]) throw qerr('Unknown answer-format rule.');
       q.reject = tag;
     }
+  } else if (type === 'geom') {
+    if (!Array.isArray(input.statements) || input.statements.length < 2 || input.statements.length > 12)
+      throw qerr('A geometry proof needs 2 to 12 statements.');
+    if (!Array.isArray(input.reasons) || input.reasons.length < 2 || input.reasons.length > 12)
+      throw qerr('A geometry proof needs 2 to 12 reasons.');
+    const seenS = new Set();
+    q.statements = input.statements.map((s, i) => {
+      const id = cleanText(s && s.id, 40);
+      const text = safeHtml(s && (s.text || s.tex), 500);
+      if (!id || !/^[a-z0-9_-]+$/i.test(id)) throw qerr(`Statement ${i + 1} needs an id.`);
+      if (!text) throw qerr(`Statement ${i + 1} needs text.`);
+      if (seenS.has(id)) throw qerr('Statement ids must be unique.');
+      seenS.add(id);
+      return { id, text };
+    });
+    const seenR = new Set();
+    q.reasons = input.reasons.map((s, i) => {
+      const id = cleanText(s && s.id, 40);
+      const text = safeHtml(s && (s.text || s.tex), 500);
+      if (!id || !/^[a-z0-9_-]+$/i.test(id)) throw qerr(`Reason ${i + 1} needs an id.`);
+      if (!text) throw qerr(`Reason ${i + 1} needs text.`);
+      if (seenR.has(id)) throw qerr('Reason ids must be unique.');
+      seenR.add(id);
+      return { id, text };
+    });
+    if (!Array.isArray(input.chain) || !input.chain.length || input.chain.length > 12)
+      throw qerr('Add the correct statement-and-reason chain.');
+    q.chain = input.chain.map((step, i) => {
+      const statement = cleanText(step && step.statement, 40);
+      const reason = cleanText(step && step.reason, 40);
+      if (!seenS.has(statement) || !seenR.has(reason)) throw qerr(`Step ${i + 1} must pick a listed statement and reason.`);
+      return { statement, reason };
+    });
+    if (!core.check(q, q.chain).ok) throw qerr('The chain does not pass the answer checker.');
   } else {
     if (!Array.isArray(input.fields) || !input.fields.length || input.fields.length > 8)
       throw qerr('Fill-in questions need 1 to 8 fields.');
@@ -167,7 +201,7 @@ function normalizeQuestion(input) {
   } else if (type === 'fields') {
     const right = core.check(q, q.fields.map(f => f.undef ? 'none' : String(f.ans)));
     if (!right.ok) throw qerr('The field answers do not pass the answer checker.');
-  } else {
+  } else if (type !== 'geom') {
     if (!q.ansTex) throw qerr('Answer display (ansTex) is required.');
     const answer = q.undef ? 'none' : String(q.ans);
     const right = core.check(q, answer);
