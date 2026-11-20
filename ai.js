@@ -45,7 +45,7 @@ function loadConfig(env = process.env) {
 }
 
 // Send a system prompt and one user message; resolve to the reply text.
-async function complete(cfg, system, userText) {
+async function complete(cfg, system, userText, options = {}) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), cfg.timeoutMs);
   try {
@@ -58,7 +58,7 @@ async function complete(cfg, system, userText) {
       url = cfg.baseUrl + '/chat/completions';
       headers = { 'content-type': 'application/json', ...(cfg.apiKey ? { authorization: 'Bearer ' + cfg.apiKey } : {}) };
       body = {
-        model: cfg.model, max_tokens: cfg.maxTokens, temperature: 0.3,
+        model: cfg.model, max_tokens: cfg.maxTokens, temperature: options.temperature == null ? 0.3 : options.temperature,
         messages: [{ role: 'system', content: system }, { role: 'user', content: userText }]
       };
     }

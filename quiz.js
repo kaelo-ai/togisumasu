@@ -77,6 +77,8 @@ function eligibleLeaves(db, mastered, courseId) {
     SELECT n.*, p.year, p.pool, p.paper AS paper_no
     FROM nsc_practice_leaves n
     JOIN nsc_papers p ON p.id = n.paper_id
+    JOIN nsc_answer_keys k ON k.node_id = n.id
+    WHERE k.provenance IN ('memo', 'llm_double')
     ORDER BY n.id
   `).all();
   const out = [];
@@ -104,7 +106,7 @@ function paperItem(db, leaf) {
     topics: leaf.topics,
     answerType: leaf.answerType,
     prompt: promptHtml(db, leaf.id),
-    markable: false,
+    markable: true,
   };
 }
 
@@ -171,7 +173,7 @@ function examPaper(db, paperId) {
       answerType: leaf.answer_type,
       prompt: promptHtml(db, leaf.id),
       topics: nsc.topicsForNode(db, leaf.id),
-      markable: false,
+      servable: !!db.prepare(`SELECT 1 AS ok FROM nsc_answer_keys WHERE node_id = ? AND provenance IN ('memo', 'llm_double')`).get(leaf.id),
     })),
   };
 }
