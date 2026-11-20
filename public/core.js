@@ -516,7 +516,7 @@ function normMath(s,o={}){s=String(s==null?'':s).replace(/\$/g,' ');let prev;
   s=s.replace(/\(\s*reject[\s\S]*?\)/gi,' ');
   s=s.replace(/\\displaystyle|\\limits/g,'').replace(/\\(?:hat|bar|tilde|overline)\{([^{}]*)\}/g,'$1');
   do{prev=s;s=s.replace(/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)').replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)')}while(s!==prev);
-  s=s.replace(/\\(arcsin|arccos|arctan|sin|cos|tan|sec|csc|cot|ln|log)(?![a-z])(_?)/g,(m,f,u)=>f+(u||' '));
+  s=s.replace(/\\(arcsin|arccos|arctan|sin|cos|tan|sec|csc|cot|ln|log)(?![a-z])(_?)/g,(m,f,u)=>' '+f+(u||' '));
   s=s.replace(/\(d([a-z])\)\/\(d([a-z])\)/g,'d$1/d$2');
   s=s.replace(/\^\{\\circ\}|\^\\circ|\\circ|\\degree|°|º/g,'');
   s=s.replace(/\\(?:left|right|bigl|bigr|Bigl|Bigr|big|Big)\b/g,'');
@@ -596,7 +596,7 @@ function checkPoints(q,s){if(q.names&&q.names.length===1&&!/=/.test(s))s=q.names
   const left=want.slice();for(const m of mine){const i=left.findIndex(w=>same(m,w));if(i<0)return {ok:false};left.splice(i,1)}return {ok:left.length===0}}
 /* trig general solutions: families base + k·period, compared as residues modulo a common period */
 function parseFamilies(s){let n=normMath(s,{decComma:true});
-  n=n.replace(/[,;]?\s*\(?\s*[kn]\s+in\s+Z\s*\)?/gi,' ').replace(/[,;]?\s*(where|for)?\s*[kn]\s+is\s+an?\s+integer/gi,' ').replace(/[,;]?\s*[kn]\s+integers?/gi,' ').trim();
+  n=n.replace(/[,;]?\s*\(?\s*[kn]\s+in\s+Z\s*\)?/gi,' ').replace(/[,;]?\s*(where|for)?\s*[kn]\s+is\s+an?\s+integer/gi,' ').replace(/[,;]?\s*[kn]\s+integers?/gi,' ').replace(/\s*,\s*or\s+/gi,' or ').replace(/[,;\s]+$/,'').trim();
   const parts=splitTop(n,/^(?:\s+or\s+|\s*;\s*|\s*,\s*|\s+and\s+)/i).filter(Boolean);if(!parts.length)throw Error('Type an answer first');
   return parts.map(p=>{const t=p.replace(/^[a-zA-Z]\s*=\s*/,'');if(/=/.test(t))throw Error('Write each solution as x = … + k·360');const ast=parse(t);
     const f=k=>ev(ast,{k,n:k});const b=f(0),P=f(1)-b;if(!isFinite(b)||!isFinite(P))throw Error('Check the solution');

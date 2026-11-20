@@ -416,9 +416,9 @@ const FORM_ORDER = {
   solution_set: [trigSpec, regionSpec, pointsSpec],
   coordinates: [pointsSpec],
   equation: [trigSpec, pointsSpec, exprSpec, valueSpec],
-  expression: [exprSpec, valueSpec],
-  show_that: [exprSpec],
-  value: [valueSpec, exprSpec],
+  expression: [exprSpec, valueSpec, regionSpec],
+  show_that: [exprSpec, pointsSpec],
+  value: [valueSpec, pointsSpec, regionSpec, exprSpec],
 };
 function formSpec(md, answerType) {
   for (const build of FORM_ORDER[answerType] || []) {
