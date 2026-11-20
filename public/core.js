@@ -88,9 +88,10 @@ function checkInner(q,inp){try{
   if(q.type==='fields'){const res=q.fields.map((f,i)=>{const s=(inp[i]||'').trim();if(!s)throw Error(`Fill in ${f.name||'every box'}`);
       if(f.undef&&NONE.test(s))return true;if(NONE.test(s))return false;const {v}=parseNum(s,{exact:f.tol==null&&q.exact!==false});return near(v,f.ans,f.tol)});
     return {ok:res.every(Boolean),per:res}}
-  const s=(inp||'').trim();if(!s)throw Error('Type an answer first');
+  let s=(inp||'').trim();if(!s)throw Error('Type an answer first');
   if(FORMS[q.type])return FORMS[q.type](q,s);
   if(q.type==='expr'&&(q.vars||q.label))return checkExprMulti(q,s);
+  if(q.type==='num'&&q.deg)s=s.replace(/(\d),(?=\d)/g,'$1.');   // NSC keys: 34,67 is a decimal comma
   if(q.type==='num'){if(NONE.test(s))return {ok:!!q.undef};if(q.undef)return {ok:false};const {ast,v}=parseNum(s,q);
     const reject=resolveReject(q);if(reject){const m=reject(ast,s);if(m)throw Error(m)}return {ok:near(v,q.val,q.tol)}}
   if(q.type==='set'){if(NONE.test(s))return {ok:q.vals.length===0};const vs=splitSet(s).map(x=>parseNum(x,q).v);if(!q.vals.length)return {ok:false};
@@ -611,9 +612,9 @@ const LABEL=/^\s*(?:[A-Za-z]{1,2}['’′]?(?:\^\(?-1\)?)?(?:\([a-z]\))?|d[a-z]\
 function stripLabel(s,vars){const i=s.indexOf('=');if(i<0)return s;const l=s.slice(0,i),r=s.slice(i+1);if(/=/.test(r))return s;if(LABEL.test(l))return r;
   let free=false;try{const used=new Set();walk(parse(l),n=>{if(n.t==='var')used.add(n.n)});free=!(vars||[]).some(v=>used.has(v))}catch(_){free=false}return free?r:s}
 function samples(vars,lo,hi,count){const out=[];for(let i=0;i<count;i++)out.push(Object.fromEntries(vars.map((v,j)=>[v,lo+(hi-lo)*(((i+1)*0.6180339887+j*0.4142135)%1)+0.0137*i/7])));return out}
-function checkExprMulti(q,s){const vars=q.vars&&q.vars.length?q.vars:[q.var||'x'];const ast=parse(stripLabel(normMath(s,{decComma:/;/.test(s)}),vars));const exp=parse(q.ans);const [lo,hi]=q.sample||[-3,3];let n=0;
+function checkExprMulti(q,s){const vars=q.vars&&q.vars.length?q.vars:[q.var||'x'];const ast=parse(stripLabel(normMath(s,{decComma:true}),vars));const exp=parse(q.ans);const [lo,hi]=q.sample||[-3,3];let n=0;
   for(const env of samples(vars,lo,hi,30)){if(n>=8)break;let e;try{e=ev(exp,env)}catch(_){continue}if(!isFinite(e)||Math.abs(e)>1e7)continue;const a=ev(ast,env);n++;if(!near(a,e,1e-6*Math.max(1,Math.abs(e))))return {ok:false}}return {ok:n>0}}
-function eqSides(s){const n=normMath(s,{decComma:/;/.test(s)});const parts=n.split('=');if(parts.length<2)throw Error('Type an equation with an = sign');if(/[<>!]$/.test(parts[0]))throw Error('Type an equation, not an inequality');return [parse(parts[0]),parse(parts[parts.length===2?1:1])]}
+function eqSides(s){const n=normMath(s,{decComma:true});const parts=n.split('=');if(parts.length<2)throw Error('Type an equation with an = sign');if(/[<>!]$/.test(parts[0]))throw Error('Type an equation, not an inequality');return [parse(parts[0]),parse(parts[parts.length===2?1:1])]}
 function checkEqn(q,s){const [L,R]=eqSides(s);const ML=parse(q.lhs),MR=parse(q.rhs);const vars=q.vars;const [lo,hi]=q.sample||[-3,3];
   let ratio=null,n=0,prop=true;for(const env of samples(vars,lo,hi,30)){if(n>=8)break;let m;try{m=ev(ML,env)-ev(MR,env)}catch(_){continue}if(!isFinite(m)||Math.abs(m)<1e-6||Math.abs(m)>1e7)continue;
     const g=ev(L,env)-ev(R,env);if(!isFinite(g)){prop=false;break}const r=g/m;n++;if(ratio===null)ratio=r;if(Math.abs(r)<1e-9||!near(r,ratio,1e-6*Math.max(1,Math.abs(ratio)))){prop=false;break}}

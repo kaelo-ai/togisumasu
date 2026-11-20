@@ -76,6 +76,7 @@ const other = JSON.stringify({ type: 'num', ans: '4', ansTex: '4', val: 4, steps
   });
 
   await t('marking a missing key is refused', async () => {
+    db.prepare('DELETE FROM nsc_answer_keys WHERE node_id = ?').run('2016-nov-p1-1.1.3');
     assert.throws(() => keys.markNode(db, '2016-nov-p1-1.1.3', '1'), /not served/);
   });
 

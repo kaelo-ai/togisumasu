@@ -103,7 +103,7 @@ function eligibleLeaves(db, mastered, courseId) {
     for (const id of needed) if (!have.has(id)) { ready = false; break; }
     if (!ready) continue;
     const kind = (db.prepare('SELECT json_extract(answer_json, \'$.type\') AS kind FROM nsc_answer_keys WHERE node_id = ?').get(row.id) || {}).kind || null;
-    out.push({ id: row.id, paperId: row.paper_id, year: row.year, number: row.number, marks: row.marks, topics, answerType: row.answer_type, kind });
+    out.push({ id: row.id, paperId: row.paper_id, year: row.year, number: row.number, marks: row.marks, topics, answerType: row.answer_type, form: kind });
   }
   return out;
 }
@@ -118,8 +118,8 @@ function paperItem(db, leaf) {
     marks: leaf.marks,
     topics: leaf.topics,
     answerType: leaf.answerType,
-    kind: leaf.kind || null,
-    hint: (leaf.kind && core.HINTS[leaf.kind]) || null,
+    form: leaf.form || null,
+    hint: (leaf.form && core.HINTS[leaf.form]) || null,
     prompt: promptHtml(db, leaf.id),
     markable: true,
   };
@@ -200,7 +200,7 @@ function examPaper(db, paperId) {
         topics: nsc.topicsForNode(db, leaf.id),
         servable: !!key,
         checkable,
-        kind,
+        form: kind,
         hint: (kind && core.HINTS[kind]) || null,
         memoNotes: notes,
         geom,

@@ -347,7 +347,7 @@ function pointsSpec(md) {
     const parsed = core.parsePoints(md, { decComma: true });
     const coords = parsed.pts.flat();
     const vars = [...new Set(coords.flatMap(varsIn))];
-    if (vars.length > 2 || (parsed.names && vars.some(v => parsed.names.includes(v)))) return null;
+    if (vars.length > 2 || (parsed.names && vars.length)) return null;
     if (!parsed.pts.length || parsed.pts.length > 6) return null;
     const spec = { type: 'points', checkable: true, pts: parsed.pts, names: parsed.names, vars, ans: n, ansTex: md.trim(), tol: 0.006 };
     if (!core.check(spec, n).ok) return null;
