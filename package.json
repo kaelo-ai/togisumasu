@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node --no-warnings=ExperimentalWarning server.js",
-    "test": "node --no-warnings=ExperimentalWarning test/api.test.js && node --no-warnings=ExperimentalWarning test/admin.test.js && node --no-warnings=ExperimentalWarning test/ai.test.js && node --no-warnings=ExperimentalWarning test/caps.test.js && node --no-warnings=ExperimentalWarning test/quiz.test.js && node --no-warnings=ExperimentalWarning test/keys.test.js && node --no-warnings=ExperimentalWarning test/geom.test.js",
+    "test": "node --no-warnings=ExperimentalWarning test/api.test.js && node --no-warnings=ExperimentalWarning test/admin.test.js && node --no-warnings=ExperimentalWarning test/ai.test.js && node --no-warnings=ExperimentalWarning test/caps.test.js && node --no-warnings=ExperimentalWarning test/quiz.test.js && node --no-warnings=ExperimentalWarning test/keys.test.js && node --no-warnings=ExperimentalWarning test/geom.test.js && node --no-warnings=ExperimentalWarning test/diagrams.test.js",
     "keys:solve": "node --no-warnings=ExperimentalWarning keys.js solve",
     "keys:memos": "node --no-warnings=ExperimentalWarning keys.js import-memos",
     "nsc:import": "node --no-warnings=ExperimentalWarning nsc.js",
