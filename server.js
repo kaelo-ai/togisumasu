@@ -925,8 +925,8 @@ const server = http.createServer(async (req, res) => {
 });
 
 if (require.main === module) {
-  server.listen(PORT, () => {
-    console.log(`Togisumasu listening on http://localhost:${PORT} (data in ${DATA_DIR})`);
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Togisumasu listening on http://0.0.0.0:${PORT} (data in ${DATA_DIR})`);
     console.log(`Question bank: ${bank.count(db)} questions in SQLite (FTS5 similarity search).`);
     console.log(AI.enabled ? `AI tutor: ${AI.provider} / ${AI.model} (limit ${AI.dailyLimit} per user per day)` : `AI tutor: off. ${AI.reason}`);
   });
