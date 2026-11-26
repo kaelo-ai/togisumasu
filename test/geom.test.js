@@ -11,6 +11,16 @@ function t(name, fn) {
   catch (e) { results.push(['FAIL', name, e.message]); }
 }
 
+t('picker text puts each hat straight after the letter it covers', () => {
+  const HAT = '\u0302';
+  assert.equal(core.plainTex('$Q\\hat{T}S=55^{\\circ}$'), 'QT' + HAT + 'S=55°');
+  assert.equal(core.plainTex('$\\hat{\\mathrm{R}}=55^{\\circ}$'), 'R' + HAT + '=55°');
+  assert.equal(core.plainTex('$\\hat{Q}_2=35^\\circ$'), 'Q' + HAT + '₂=35°');
+  assert.equal(core.plainTex('$\\hat{PQR}$'), 'PQ' + HAT + 'R');
+  assert.equal(core.plainTex('$\\angle$s in the same seg'), '∠s in the same seg');
+  assert.equal(core.plainTex('$ST\\parallel QR$'), 'ST‖QR');
+});
+
 const proof = {
   type: 'geom',
   prompt: 'Prove the two sides are equal.',

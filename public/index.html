@@ -397,6 +397,8 @@ details.help ul{margin:6px 0 0;padding-left:18px}
   .landing-card{justify-self:start;transform:rotate(-.6deg);max-width:520px}
   .landing-features{grid-template-columns:1fr}
 }
+/* Picker text uses combining hats (T\u0302). The body font and system-ui place them off the letter; these fonts put them on it. */
+.geom select,.geom li{font-family:"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -436,8 +438,11 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let mjChain=Promise.resolve();
+// Typesetting runs queued; by the time a node's turn comes the screen may have moved on (the answer
+// preview is replaced as soon as Check is pressed). A detached node has no font metrics, which is what
+// made MathJax write NaN sizes, so it is skipped.
 window.typeset=function(el){if(!el)return;if(window.__mjq){window.__mjq.push(el);return}
-  mjChain=mjChain.then(()=>{try{MathJax.typesetClear([el])}catch(e){}return MathJax.typesetPromise([el])}).catch(()=>{})};
+  mjChain=mjChain.then(()=>{if(!el.isConnected)return;try{MathJax.typesetClear([el])}catch(e){}return MathJax.typesetPromise([el])}).catch(()=>{})};
 const DAY=864e5,INT=[0,1,3,7,16,35,70],GOAL=20,KEY='togisumasu-progress-v1';
 const dkey=(t=Date.now())=>{const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 
@@ -574,7 +579,7 @@ function render(){renderStats();const app=$('#app');
   if(view.name==='exam')examStep();
   typeset(app)}
 function renderFoot(){const f=$('#foot');if(!f)return;
-  f.innerHTML=`<span>${Store.mode==='account'?'Progress saved to your account':'Offline: saving on this device; it syncs when you reconnect'}</span><span>Notes: <a href="https://tutorial.math.lamar.edu/" target="_blank" rel="noopener">Paul's Online Notes</a> · extra problems: <a href="https://openstax.org/details/books/precalculus-2e" target="_blank" rel="noopener">OpenStax Precalculus 2e</a></span><span class="sp" id="resetZone"><button class="btn ghost sm" id="resetBtn" type="button">Reset progress</button></span>`}
+  f.innerHTML=`<span>${Store.mode==='account'?'Progress saved to your account':'Offline: saving on this device; it syncs when you reconnect'}</span><span class="sp" id="resetZone"><button class="btn ghost sm" id="resetBtn" type="button">Reset progress</button></span>`}
 
 function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=repairList(),qd=quizDue();
   const tasks=[];rep.forEach(s=>tasks.push(`<li class="t-repair"><span class="tk">Repair</span>${esc(s.name)}</li>`));
@@ -779,10 +784,6 @@ function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');c
      <div class="prompt">${paper?x.prompt:x.question.prompt}</div><div class="qra"><span>Your answer: ${paper?(x.given?`<code>${esc(x.given)}</code>`:'<em>Not answered</em>'):(x.given||'<em>Not answered</em>')}</span>${paper?(x.answer?`<span>Official answer: ${x.answer}</span>`:''):`<span>Correct: ${ansDisplay(x.question)}</span>`}</div>
      ${paper?'':`<details ${x.ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${x.question.steps.map(t=>`<li>${t}</li>`).join('')}</ol></details>`}</li>`}).join('')}</ol></section>`;typeset(host)}
 
-// Statement and reason text for pickers: <option> cannot hold typeset maths, so LaTeX becomes plain symbols.
-function plainTex(s){let t=String(s==null?'':s).replace(/\$/g,'');let p;do{p=t;t=t.replace(/\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}/g,'$1/$2').replace(/\\sqrt\{([^{}]*)\}/g,'√($1)').replace(/\\(?:mathrm|text|mathbf|operatorname)\{([^{}]*)\}/g,'$1').replace(/\\hat\{([^{}]*)\}/g,'$1\u0302')}while(t!==p);
-  const SY={Delta:'Δ',triangle:'△',angle:'∠',parallel:'∥',perp:'⊥',cdot:'·',times:'×',circ:'°',alpha:'α',beta:'β',theta:'θ',neq:'≠',leq:'≤',geq:'≥',therefore:'∴',equiv:'≡',sim:'~',pi:'π',left:'',right:''};
-  t=t.replace(/\^\{?\\circ\}?/g,'°').replace(/\\([a-zA-Z]+)/g,(m,w)=>w in SY?SY[w]:w).replace(/\\[,;:! ]/g,' ').replace(/[{}]/g,'').replace(/\^2/g,'²');return t.replace(/\s+/g,' ').trim()}
 function unitLabel(u){return /^c\d+$/.test(String(u))?String(u).slice(1):String(u)}
 /* ---------- exams: full 2022+ papers, timed, never used as quiz questions ---------- */
 let exam=null,examTimer=null;

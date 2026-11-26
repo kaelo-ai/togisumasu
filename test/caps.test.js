@@ -30,6 +30,13 @@ function client() {
   };
 }
 
+t('the page footer carries no outside links on any course', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'public', 'index.html'), 'utf8');
+  const foot = html.slice(html.indexOf('function renderFoot'), html.indexOf('function homeHTML'));
+  assert.ok(foot.length > 0);
+  assert.doesNotMatch(foot, /<a\s|lamar\.edu|openstax/i);
+});
+
 t('exp-int is one node shared by both courses', () => {
   assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM topics WHERE id = 'exp-int'`).get().n, 1);
   const courses = db.prepare(`SELECT course_id FROM course_topics WHERE topic_id = 'exp-int' ORDER BY course_id`).all().map(r => r.course_id);

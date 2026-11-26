@@ -633,5 +633,12 @@ const HINTS={region:'Inequality or interval, e.g. -2 < x <= 3 or x > 5, or (-2; 
   trig:'General solution, e.g. x = 30 + k*360 or x = 150 + k*360 (k in Z); the ° sign is optional',eqn:'An equation, e.g. y = 2x + 3 (any equivalent form)',
   tuple:'Numbers in order, separated by ; e.g. 209; 186',expr:'An expression, e.g. 2k^2 - 1 (you may start with T_n = or f(x) =)',num:'A number, e.g. 3/4, -2, sqrt(3)/2, 34.67',set:'Every value, e.g. -2; 5',geom:'Pick each statement with its reason, in order'};
 
+/* Statement and reason text for geometry pickers. An <option> cannot hold typeset maths, so LaTeX becomes
+   plain symbols. A hat is U+0302 placed straight after the letter it covers: \hat{T} is T̂, and for a
+   three-letter angle \hat{PQR} the hat goes on the vertex Q. */
+function hatOn(x){const s=String(x).replace(/\\(?:mathrm|text)\{([^{}]*)\}/g,'$1').trim();if(/^[A-Za-z]{3}$/.test(s))return s[0]+s[1]+'\u0302'+s[2];return s.replace(/([A-Za-z])(?![A-Za-z])/,'$1\u0302')}
+function plainTex(s){let t=String(s==null?'':s).replace(/\$/g,'\u0000');let p;do{p=t;t=t.replace(/\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}/g,'$1/$2').replace(/\\sqrt\{([^{}]*)\}/g,'√($1)').replace(/\\(?:mathrm|text|mathbf|operatorname)\{([^{}]*)\}/g,'$1').replace(/\\hat\{([^{}]*)\}/g,(m,x)=>hatOn(x))}while(t!==p);
+  const SY={Delta:'Δ',triangle:'△',angle:'∠',parallel:'‖',perp:'⊥',cdot:'·',times:'×',circ:'°',alpha:'α',beta:'β',theta:'θ',neq:'≠',leq:'≤',geq:'≥',therefore:'∴',equiv:'≡',sim:'~',pi:'π',left:'',right:''};
+  t=t.replace(/_\{?(\d)\}?/g,(m,d)=>'₀₁₂₃₄₅₆₇₈₉'[d]).replace(/\^\{?\\circ\}?/g,'°').replace(/\^\{([a-z]+)\}/g,'$1').replace(/\\([a-zA-Z]+)/g,(m,w)=>w in SY?SY[w]:w).replace(/\\[,;:! ]/g,' ').replace(/[{}]/g,'').replace(/\^2/g,'²');return t.replace(/\u0000/g,'').replace(/\s*([‖⊥])\s*/g,'$1').replace(/\s+/g,' ').trim()}
 const SKM=Object.fromEntries(SK.map(s=>[s.id,s]));
-if(typeof module!=='undefined')module.exports={SK,SKM,check,parse,toTex,ev,normMath,parseRegion,regionAlts,parsePoints,parseFamilies,stripLabel,FORMS,HINTS,UNITS,noParenReject,factoredReject,radReject,singleFractionReject,REJECTS};
+if(typeof module!=='undefined')module.exports={SK,SKM,plainTex,hatOn,check,parse,toTex,ev,normMath,parseRegion,regionAlts,parsePoints,parseFamilies,stripLabel,FORMS,HINTS,UNITS,noParenReject,factoredReject,radReject,singleFractionReject,REJECTS};
