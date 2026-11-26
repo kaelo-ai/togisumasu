@@ -3,6 +3,8 @@
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 process.env.DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'togisumasu-quiz-'));
 process.env.QUESTION_SEED_PER_SKILL = '1';
+const { mailbox, registerVerified } = require('./helpers.js');
+const sent = mailbox();
 const { server, db } = require('../server.js');
 const quiz = require('../quiz.js');
 const nsc = require('../nsc.js');
@@ -119,7 +121,7 @@ server.listen(0, async () => {
     assert.equal((await anon('GET', '/api/exams')).status, 401);
   });
   await http('signed-in quiz refuses 2022 papers and exam route serves them', async () => {
-    assert.equal((await user('POST', '/api/auth/register', { email: 'quiz@example.com', name: 'Quiz', password: 'long-password' })).status, 201);
+    assert.equal((await registerVerified(user, { email: 'quiz@example.com', name: 'Quiz', password: 'long-password' }, sent)).status, 200);
     const built = await user('POST', '/api/quiz', { mastered: capsIds, courseId: 'gr12-caps', shuffle: false, choice: 0 });
     assert.equal(built.status, 200);
     assert.equal(built.json.ok, true);
@@ -134,6 +136,17 @@ server.listen(0, async () => {
     assert.equal(one.status, 200);
     assert.equal(one.json.exam.year, 2024);
     assert.equal(one.json.exam.questions.reduce((sum, q) => sum + q.marks, 0), 150);
+  });
+  await http('finishing an exam posts to its mark route and gets every part back', async () => {
+    const marked = await user('POST', '/api/exams/2025-nov-p2/mark', { answers: { '2025-nov-p2-2.1.1': '70', '2025-nov-p2-2.1.2': '28', '2025-nov-p2-5.1.3': '1 - 2/(k^2+1)' } });
+    assert.equal(marked.status, 200);
+    const byId = Object.fromEntries(marked.json.results.map(item => [item.id, item]));
+    assert.equal(byId['2025-nov-p2-2.1.1'].ok, true);
+    assert.equal(byId['2025-nov-p2-2.1.2'].ok, false);
+    assert.equal(byId['2025-nov-p2-5.1.3'].ok, true);
+    assert.equal(byId['2025-nov-p2-6.1'].checkable, false);
+    assert.ok(byId['2025-nov-p2-6.1'].answer);
+    assert.equal((await user('POST', '/api/exams/2016-nov-p1/mark', { answers: {} })).status, 404);
   });
   const failed = results.filter(row => row[0] === 'FAIL');
   for (const row of results) console.log(row[0] === 'ok' ? '  ok  ' + row[1] : '  FAIL  ' + row[1] + ' — ' + row[2]);

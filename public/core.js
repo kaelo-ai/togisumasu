@@ -30,7 +30,7 @@ function exactOf(v){for(const [x,t,s] of EXACT){if(Math.abs(Math.abs(v)-x)<1e-9)
 
 /* ---------- parser ---------- */
 const FN=['arcsin','arccos','arctan','asin','acos','atan','sqrt','cbrt','sin','cos','tan','sec','csc','cot','ln','log','abs'];
-const NAMES=[...FN,'pi','inf','e','x','y','t','h','i'];
+const NAMES=[...FN,'pi','inf','e','x','y','t','h','i',...'abcdfgjklmnopqrsuvwz'.split('')];   // one-letter parameters come last so pi, inf, sqrt… win
 function tokenize(s){s=s.replace(/−/g,'-').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/∞/g,'inf').replace(/²/g,'^2').replace(/³/g,'^3');
   const out=[];let i=0;while(i<s.length){const c=s[i];
     if(/\s/.test(c)){i++;continue}
@@ -57,9 +57,12 @@ function parse(s){const tk=tokenize(s);let p=0;const peek=()=>tk[p],eat=k=>{if(!
   if(!tk.length)throw Error('Type an answer first');const r=expr();if(p<tk.length)throw Error(tk[p].k===')'?'There is an extra “)”':`Unexpected “${tk[p].k||tk[p].v}”`);return r}
 const F={sqrt:Math.sqrt,cbrt:Math.cbrt,sin:Math.sin,cos:Math.cos,tan:Math.tan,sec:x=>1/Math.cos(x),csc:x=>1/Math.sin(x),cot:x=>1/Math.tan(x),ln:Math.log,log:Math.log10,abs:Math.abs,
   arcsin:Math.asin,arccos:Math.acos,arctan:Math.atan,asin:Math.asin,acos:Math.acos,atan:Math.atan};
+// NSC answers are in degrees: check() turns DEG on for keys marked deg
+let DEG=false;const TRIG_FN=new Set(['sin','cos','tan','sec','csc','cot']),INV_FN=new Set(['arcsin','arccos','arctan','asin','acos','atan']);
 function ev(n,env={}){switch(n.t){case'num':return n.v;case'const':return n.n==='pi'?Math.PI:n.n==='e'?Math.E:Infinity;
   case'var':if(n.n in env)return env[n.n];throw Error(`This answer shouldn't contain “${n.n}”`);
-  case'par':return ev(n.a,env);case'neg':return -ev(n.a,env);case'fn':return F[n.n](ev(n.a,env));
+  case'par':return ev(n.a,env);case'neg':return -ev(n.a,env);
+  case'fn':{let a=ev(n.a,env);if(DEG&&TRIG_FN.has(n.n))a=a*Math.PI/180;const r=F[n.n](a);return DEG&&INV_FN.has(n.n)?r*180/Math.PI:r}
   case'bin':{const a=ev(n.a,env),b=ev(n.b,env);return n.op==='+'?a+b:n.op==='-'?a-b:n.op==='*'?a*b:n.op==='/'?a/b:Math.pow(a,b)}}}
 function toTex(n){const w=x=>x.t==='par'?toTex(x.a):toTex(x);switch(n.t){case'num':return String(n.v);case'const':return n.n==='pi'?'\\pi':n.n==='inf'?'\\infty':'e';case'var':return n.n;
   case'par':return `\\left(${toTex(n.a)}\\right)`;case'neg':return '-'+toTex(n.a);
@@ -74,7 +77,8 @@ const NONE=/^\s*(none|no solutions?|no real solutions?|dne|∅|\{\s*\}|empty|und
 function splitSet(s){return s.split(/,|;|\bor\b|\band\b/i).map(x=>x.trim()).filter(Boolean)}
 function parseNum(s,q){const ast=parse(s);const v=ev(ast,{});if(q&&q.exact&&hasDec(ast))throw Error('Give an exact answer: use fractions, sqrt( ) or pi rather than decimals.');return {ast,v}}
 /* check(q, input) -> {ok, err?}  err = input problem (not counted as wrong) */
-function check(q,inp){try{
+function check(q,inp){const was=DEG;DEG=!!(q&&q.deg);try{return checkInner(q,inp)}finally{DEG=was}}
+function checkInner(q,inp){try{
   if(q.type==='geom'){
     const chain=Array.isArray(q.chain)?q.chain:[];
     if(!Array.isArray(inp)||!chain.length||inp.length!==chain.length)return {ok:false};
@@ -84,7 +88,10 @@ function check(q,inp){try{
   if(q.type==='fields'){const res=q.fields.map((f,i)=>{const s=(inp[i]||'').trim();if(!s)throw Error(`Fill in ${f.name||'every box'}`);
       if(f.undef&&NONE.test(s))return true;if(NONE.test(s))return false;const {v}=parseNum(s,{exact:f.tol==null&&q.exact!==false});return near(v,f.ans,f.tol)});
     return {ok:res.every(Boolean),per:res}}
-  const s=(inp||'').trim();if(!s)throw Error('Type an answer first');
+  let s=(inp||'').trim();if(!s)throw Error('Type an answer first');
+  if(FORMS[q.type])return FORMS[q.type](q,s);
+  if(q.type==='expr'&&(q.vars||q.label))return checkExprMulti(q,s);
+  if(q.type==='num'&&q.deg)s=s.replace(/(\d),(?=\d)/g,'$1.');   // NSC keys: 34,67 is a decimal comma
   if(q.type==='num'){if(NONE.test(s))return {ok:!!q.undef};if(q.undef)return {ok:false};const {ast,v}=parseNum(s,q);
     const reject=resolveReject(q);if(reject){const m=reject(ast,s);if(m)throw Error(m)}return {ok:near(v,q.val,q.tol)}}
   if(q.type==='set'){if(NONE.test(s))return {ok:q.vals.length===0};const vs=splitSet(s).map(x=>parseNum(x,q).v);if(!q.vals.length)return {ok:false};
@@ -503,5 +510,135 @@ gen(){if(Math.random()<.5){const b=R(4,20),c=R(4,20),A=R(25,140);const a=Math.sq
  let A,B;do{A=R(25,100);B=R(20,90)}while(A+B>165);const a=R(5,25);const b=a*Math.sin(B*Math.PI/180)/Math.sin(A*Math.PI/180);
  return {type:'num',val:b,tol:.011,ans:b.toFixed(2),ansTex:b.toFixed(2),prompt:`In triangle $ABC$, $A=${A}^\\circ$, $B=${B}^\\circ$ and $a=${a}$. Find $b$ (2 decimals).`,hint:'You know an angle-side pair: law of sines.',steps:[`$\\frac{b}{\\sin ${B}^\\circ}=\\frac{${a}}{\\sin ${A}^\\circ}$`,`$b=\\frac{${a}\\sin ${B}^\\circ}{\\sin ${A}^\\circ}\\approx${b.toFixed(2)}$`]}}});
 
+/* ---------- NSC answer forms: regions, points, general solutions, equations, ordered lists ----------
+   Strict on equivalence, lenient on formatting: <= or ≤, ∪ or "or", optional °, ; or , separators. */
+function normMath(s,o={}){s=String(s==null?'':s).replace(/\$/g,' ');let prev;
+  s=s.replace(/\(\s*reject[\s\S]*?\)/gi,' ');
+  s=s.replace(/\\displaystyle|\\limits/g,'').replace(/\\(?:hat|bar|tilde|overline)\{([^{}]*)\}/g,'$1');
+  do{prev=s;s=s.replace(/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)').replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)')}while(s!==prev);
+  s=s.replace(/\\(arcsin|arccos|arctan|sin|cos|tan|sec|csc|cot|ln|log)(?![a-z])(_?)/g,(m,f,u)=>' '+f+(u||' '));
+  s=s.replace(/\(d([a-z])\)\/\(d([a-z])\)/g,'d$1/d$2');
+  s=s.replace(/\^\{\\circ\}|\^\\circ|\\circ|\\degree|°|º/g,'');
+  s=s.replace(/\\(?:left|right|bigl|bigr|Bigl|Bigr|big|Big)\b/g,'');
+  s=s.replace(/\\(?:mathrm|text|operatorname|mathbf)\{([^{}]*)\}/g,'$1');
+  s=s.replace(/\\infty|∞/g,'inf').replace(/\\cup|∪/g,' U ').replace(/\\mathbb\{R\}|ℝ/g,' R ').replace(/\\mathbb\{Z\}|ℤ/g,' Z ').replace(/\\mathbb\{N\}|ℕ/g,' N ');
+  s=s.replace(/\\(?:leq|leqslant|le)(?![a-z])|≤|=</g,'<=').replace(/\\(?:geq|geqslant|ge)(?![a-z])|≥|=>/g,'>=').replace(/\\(?:neq|ne)(?![a-z])|≠|=\/=/g,'!=');
+  s=s.replace(/\\in(?![a-z])|∈/g,' in ').replace(/\\(?:cdot|times)(?![a-z])|[·×⋅]/g,'*').replace(/\\pi(?![a-z])/g,'pi').replace(/\\theta(?![a-z])|θ/g,'x');
+  s=s.replace(/\\[,;:! ]|\\q?quad/g,' ').replace(/[−–]/g,'-').replace(/\\dots|\\ldots|…/g,'...');
+  s=s.replace(/(?<!log)_\{[^{}]*\}/g,'').replace(/(?<!log)_[0-9A-Za-z]/g,'');
+  s=s.replace(/\{/g,'(').replace(/\}/g,')');
+  if(o.decComma)s=s.replace(/(\d),(?=\d)/g,'$1.');
+  s=s.replace(/(\d) (?=\d{3}(?!\d))/g,'$1');   // thousands written with spaces
+  s=s.replace(/\b([kn])\s*\.\s*(?=\d)/g,'$1*').replace(/(\d)\s*\.\s*(?=[kn]\b)/g,'$1*');
+  return s.replace(/\s+/g,' ').trim()}
+// split on a separator regex at bracket depth 0
+function splitTop(s,re){const out=[];let d=0,last=0;for(let i=0;i<s.length;i++){const c=s[i];if(c==='('||c==='[')d++;else if(c===')'||c===']')d--;
+  else if(d===0){re.lastIndex=0;const m=re.exec(s.slice(i));if(m&&m.index===0){out.push(s.slice(last,i));i+=m[0].length-1;last=i+1}}}out.push(s.slice(last));return out.map(x=>x.trim())}
+const OR_RE=/^(?:\s+or\s+|\s+U\s+|\s+u\s+)/i, AND_RE=/^(?:\s*,\s*|\s+and\s+|\s*&\s*)/i;
+function numOf(t){const v=ev(parse(t),{});if(Number.isNaN(v))throw Error(`“${t}” isn't a number`);return v}
+/* regions: sorted lists of intervals {lo,hi,li,hi_} (li/hi_ = endpoint included) */
+const ALL=[{lo:-Infinity,hi:Infinity,li:false,hi_:false}];
+function ivNorm(list){const a=list.map(v=>({lo:v.lo,hi:v.hi,li:v.lo===-Infinity?false:!!v.li,hi_:v.hi===Infinity?false:!!v.hi_}))
+  .filter(v=>v.lo<v.hi||(v.lo===v.hi&&v.li&&v.hi_)).sort((x,y)=>x.lo-y.lo||(+y.li)-(+x.li));const out=[];
+  for(const v of a){const l=out[out.length-1];if(l&&(v.lo<l.hi||(v.lo===l.hi&&(v.li||l.hi_)))){if(v.hi>l.hi){l.hi=v.hi;l.hi_=v.hi_}else if(v.hi===l.hi)l.hi_=l.hi_||v.hi_}else out.push({...v})}return out}
+function ivAnd(A,B){const out=[];for(const a of A)for(const b of B){const lo=Math.max(a.lo,b.lo),hi=Math.min(a.hi,b.hi);
+  const li=a.lo>b.lo?a.li:b.lo>a.lo?b.li:a.li&&b.li,hi_=a.hi<b.hi?a.hi_:b.hi<a.hi?b.hi_:a.hi_&&b.hi_;out.push({lo,hi,li,hi_})}return ivNorm(out)}
+const ivOr=(A,B)=>ivNorm(A.concat(B));
+function ivSame(A,B,tol){const nr=(a,b)=>a===b||(isFinite(a)&&isFinite(b)&&Math.abs(a-b)<=tol+1e-9*Math.max(1,Math.abs(b)));
+  return A.length===B.length&&A.every((a,i)=>{const b=B[i];return nr(a.lo,b.lo)&&nr(a.hi,b.hi)&&a.li===b.li&&a.hi_===b.hi_})}
+function ray(op,v){switch(op){case'<':return [{lo:-Infinity,hi:v,hi_:false}];case'<=':return [{lo:-Infinity,hi:v,hi_:true}];
+  case'>':return [{lo:v,hi:Infinity,li:false}];case'>=':return [{lo:v,hi:Infinity,li:true}];case'=':return [{lo:v,hi:v,li:true,hi_:true}];
+  case'!=':return [{lo:-Infinity,hi:v},{lo:v,hi:Infinity}]}throw Error('Bad comparison')}
+const FLIP={'<':'>','<=':'>=','>':'<','>=':'<=','=':'=','!=':'!='};
+const isVar=t=>/^[a-zA-Z]$/.test(t)&&!/^[eRZN]$/.test(t);
+function intervalSet(t){t=t.trim();if(/^R$/.test(t))return ALL;
+  const parts=splitTop(t,/^\s+U\s+/i);if(parts.length>1)return parts.map(intervalSet).reduce(ivOr);
+  const m=t.match(/^([\[\(])(.*)([\]\)])$/);if(!m)throw Error('Write an interval like (2; 5] or [0; inf)');
+  let ends=splitTop(m[2],/^\s*;\s*/);if(ends.length!==2)ends=splitTop(m[2],/^\s*,\s*/);if(ends.length!==2)throw Error('An interval needs two endpoints, like (2; 5]');
+  return ivNorm([{lo:numOf(ends[0]),hi:numOf(ends[1]),li:m[1]==='[',hi_:m[3]===']'}])}
+function regionAtom(t){t=t.trim();let m=t.match(/^([a-zA-Z])\s+in\s+(.+)$/);
+  if(m)return {v:m[1],set:intervalSet(m[2])};
+  if(/^[\[\(]/.test(t)&&/[\]\)]$/.test(t)&&!/(<|>|=)/.test(t))return {v:null,set:intervalSet(t)};
+  const bits=t.split(/(<=|>=|!=|<|>|=)/).map(x=>x.trim());if(bits.length<3)throw Error('Use <, <=, >, >= or interval brackets');
+  if(bits.length===3){const [a,op,b]=bits;if(isVar(a)&&!isVar(b))return {v:a,set:ivNorm(ray(op,numOf(b)))};if(isVar(b)&&!isVar(a))return {v:b,set:ivNorm(ray(FLIP[op],numOf(a)))};throw Error('Compare the variable with a number')}
+  if(bits.length===5){const [a,o1,x,o2,b]=bits;if(!isVar(x)||isVar(a)||isVar(b))throw Error('Write it like 2 < x <= 5');const up=/</.test(o1)&&/</.test(o2),dn=/>/.test(o1)&&/>/.test(o2);if(!up&&!dn)throw Error('Both signs in a double inequality must point the same way');
+    return {v:x,set:ivAnd(ivNorm(ray(FLIP[o1],numOf(a))),ivNorm(ray(o2,numOf(b))))}}
+  throw Error('Split it into simpler inequalities joined by "or"')}
+// returns the chunks between top-level "or"s, each the intersection of its comma/and parts
+function parseRegion(s,o={}){const n=normMath(s,{decComma:o.decComma!=null?o.decComma:/;/.test(s)});if(!n)throw Error('Type an answer first');
+  const chunks=splitTop(n,/^\s+or\s+/i).filter(Boolean).map(ch=>{let v=null,set=ALL;for(const p of splitTop(ch,AND_RE).filter(Boolean)){const a=regionAtom(p);if(a.v){if(v&&v!==a.v)throw Error('Use one variable');v=a.v}set=ivAnd(set,a.set)}return {v,set}});
+  if(!chunks.length)throw Error('Type an answer first');return chunks}
+// memo: chunks that overlap what came before start a new equivalent alternative
+function regionAlts(chunks){const alts=[];let acc=null;for(const c of chunks){if(acc&&ivAnd(acc,c.set).length){alts.push(acc);acc=c.set}else acc=acc?ivOr(acc,c.set):c.set}if(acc)alts.push(acc);return alts}
+function checkRegion(q,s){const ch=parseRegion(s);const alts=(q.alts||[]).map(a=>a.map(v=>({...v,lo:v.lo==null?-Infinity:v.lo,hi:v.hi==null?Infinity:v.hi})));const vs=ch.map(c=>c.v).filter(Boolean);if(q.var&&vs.some(v=>v.toLowerCase()!==q.var.toLowerCase()))return {ok:false};
+  const got=ch.map(c=>c.set).reduce(ivOr);const tol=q.tol!=null?q.tol:0.006;return {ok:alts.some(a=>ivSame(got,a,tol))}}
+/* points: (a; b) pairs, or named values like x = 2, y = -1 */
+function parenGroups(s){const out=[];let d=0,st=-1,rest='';for(let i=0;i<s.length;i++){const c=s[i];if(c==='('){if(d===0)st=i;d++}else if(c===')'){d--;if(d===0){out.push(s.slice(st+1,i));continue}}if(d===0&&c!==')')rest+=c}
+  if(d!==0)throw Error('Missing a closing parenthesis');return {groups:out,rest}}
+function parsePoints(s,o={}){const dc=o.decComma!=null?o.decComma:/;/.test(s);const n=normMath(s,{decComma:dc});if(!n)throw Error('Type an answer first');
+  const {groups,rest}=parenGroups(n);
+  const words=rest.split(/[\s,;]+/).filter(Boolean);
+  if(groups.length&&words.every(w=>/^(and|or|&|[A-Za-z]['’′]*)$/i.test(w))){const pts=groups.map(g=>{let c=splitTop(g,/^\s*;\s*/);if(c.length===1&&!dc)c=splitTop(g,/^\s*,\s*/);if(c.length!==2)throw Error('Write a point as (x; y)');return c});return {pts,names:null}}
+  const sols=splitTop(n,/^\s+or\s+/i).filter(Boolean).map(ch=>{const a=splitTop(ch,dc?/^(?:\s*[,;]\s*|\s+and\s+)/i:AND_RE).filter(Boolean);const named={};
+    for(const p of a){const m=p.match(/^([a-zA-Z])\s*=\s*(.+)$/);if(!m||/=/.test(m[2]))throw Error('Write points as (x; y), or as x = …, y = …');if(m[1] in named)throw Error(`${m[1]} appears twice`);named[m[1]]=m[2].trim()}return named});
+  const names=Object.keys(sols[0]).sort();if(!sols.every(x=>Object.keys(x).sort().join()===names.join()))throw Error('Give the same variables in every solution');
+  return {pts:sols.map(x=>names.map(k=>x[k])),names}}
+function envsFor(vars){return [0,1,2].map(i=>Object.fromEntries((vars||[]).map((v,j)=>[v,[1.37,-0.83,2.41][i]+0.29*j])))}
+function checkPoints(q,s){if(q.names&&q.names.length===1&&!/=/.test(s))s=q.names[0]+' = '+s;const got=parsePoints(s);let gp=got.pts;const qn=q.names||null;
+  if(qn&&got.names){if(got.names.join()!==qn.join())return {ok:false}}
+  else if(qn&&!got.names){if(qn.join()!=='x,y')return {ok:false}}
+  else if(!qn&&got.names){if(got.names.join()!=='x,y')return {ok:false}}
+  if(gp.length!==q.pts.length||gp.some(p=>p.length!==q.pts[0].length))return {ok:false};
+  const envs=envsFor(q.vars);const tol=q.tol!=null?q.tol:0.006;
+  const val=(t,env)=>{const v=ev(parse(t),env);return v};
+  const mine=gp.map(p=>envs.map(e=>p.map(c=>val(c,e)))),want=q.pts.map(p=>envs.map(e=>p.map(c=>val(c,e))));
+  const same=(a,b)=>a.every((row,i)=>row.every((v,j)=>near(v,b[i][j],tol+1e-9*Math.abs(b[i][j]))));
+  const left=want.slice();for(const m of mine){const i=left.findIndex(w=>same(m,w));if(i<0)return {ok:false};left.splice(i,1)}return {ok:left.length===0}}
+/* trig general solutions: families base + k·period, compared as residues modulo a common period */
+function parseFamilies(s){let n=normMath(s,{decComma:true});
+  n=n.replace(/[,;]?\s*\(?\s*[kn]\s+in\s+Z\s*\)?/gi,' ').replace(/[,;]?\s*(where|for)?\s*[kn]\s+is\s+an?\s+integer/gi,' ').replace(/[,;]?\s*[kn]\s+integers?/gi,' ').replace(/\s*,\s*or\s+/gi,' or ').replace(/[,;\s]+$/,'').trim();
+  const parts=splitTop(n,/^(?:\s+or\s+|\s*;\s*|\s*,\s*|\s+and\s+)/i).filter(Boolean);if(!parts.length)throw Error('Type an answer first');
+  const pm=[];for(const p of parts){const t=p.replace(/^[a-zA-Z]\s*=\s*/,'');if(/^(±|\+-|\+\/-|\\pm)/.test(t)){const r=t.replace(/^(±|\+-|\+\/-|\\pm)\s*/,'');pm.push(r,'-'+r)}else pm.push(t)}
+  return pm.map(p=>{const t=p;if(/=/.test(t))throw Error('Write each solution as x = … + k·360');const ast=parse(t);
+    const f=k=>ev(ast,{k,n:k});const b=f(0),P=f(1)-b;if(!isFinite(b)||!isFinite(P))throw Error('Check the solution');
+    if(Math.abs(P)<1e-9)return {base:b,period:0};if(Math.abs(f(2)-b-2*P)>1e-6||Math.abs(f(-1)-b+P)>1e-6)throw Error('Write it as x = angle + k·period');return {base:b,period:Math.abs(P)}})}
+function residues(fams,L,tol){const out=[];for(const f of fams){const reps=Math.round(L/f.period);for(let j=0;j<reps;j++){const r=(((f.base+j*f.period)%L)+L)%L;if(!out.some(x=>Math.min(Math.abs(x-r),L-Math.abs(x-r))<=tol))out.push(r)}}return out}
+function checkTrig(q,s){const got=parseFamilies(s);if(got.some(f=>!f.period))return {ok:false,missingPeriod:true};
+  const all=got.concat(q.fams);if(all.some(f=>Math.abs(f.period-Math.round(f.period))>1e-6))return {ok:false};
+  const gcdI=(a,b)=>b?gcdI(b,a%b):a;const L=all.map(f=>Math.round(f.period)).reduce((a,b)=>a/gcdI(a,b)*b);if(L>36000)return {ok:false};
+  const tol=q.tol!=null?q.tol:0.015;const A=residues(got,L,tol),B=residues(q.fams,L,tol);const hit=(x,set)=>set.some(y=>Math.min(Math.abs(x-y),L-Math.abs(x-y))<=tol);
+  return {ok:A.length===B.length&&A.every(x=>hit(x,B))&&B.every(y=>hit(y,A))}}
+/* expressions and equations in one or more variables */
+const LABEL=/^\s*(?:[A-Za-z]{1,2}['’′]?(?:\^\(?-1\)?)?(?:\([a-z]\))?|d[a-z]\/d[a-z])\s*$/;
+function stripLabel(s,vars){const i=s.indexOf('=');if(i<0)return s;const l=s.slice(0,i),r=s.slice(i+1);if(/=/.test(r))return s;if(LABEL.test(l))return r;
+  let free=false;try{const used=new Set();walk(parse(l),n=>{if(n.t==='var')used.add(n.n)});free=!(vars||[]).some(v=>used.has(v))}catch(_){free=false}return free?r:s}
+function samples(vars,lo,hi,count){const out=[];for(let i=0;i<count;i++)out.push(Object.fromEntries(vars.map((v,j)=>[v,lo+(hi-lo)*(((i+1)*0.6180339887+j*0.4142135)%1)+0.0137*i/7])));return out}
+function checkExprMulti(q,s){const vars=q.vars&&q.vars.length?q.vars:[q.var||'x'];const ast=parse(stripLabel(normMath(s,{decComma:true}),vars));const exp=parse(q.ans);const [lo,hi]=q.sample||[-3,3];let n=0;
+  for(const env of samples(vars,lo,hi,30)){if(n>=8)break;let e;try{e=ev(exp,env)}catch(_){continue}if(!isFinite(e)||Math.abs(e)>1e7)continue;const a=ev(ast,env);n++;if(!near(a,e,1e-6*Math.max(1,Math.abs(e))))return {ok:false}}return {ok:n>0}}
+function eqSides(s){const n=normMath(s,{decComma:true});const parts=n.split('=');if(parts.length<2)throw Error('Type an equation with an = sign');if(/[<>!]$/.test(parts[0]))throw Error('Type an equation, not an inequality');return [parse(parts[0]),parse(parts[parts.length===2?1:1])]}
+function checkEqn(q,s){const [L,R]=eqSides(s);const ML=parse(q.lhs),MR=parse(q.rhs);const vars=q.vars;const [lo,hi]=q.sample||[-3,3];
+  let ratio=null,n=0,prop=true;for(const env of samples(vars,lo,hi,30)){if(n>=8)break;let m;try{m=ev(ML,env)-ev(MR,env)}catch(_){continue}if(!isFinite(m)||Math.abs(m)<1e-6||Math.abs(m)>1e7)continue;
+    const g=ev(L,env)-ev(R,env);if(!isFinite(g)){prop=false;break}const r=g/m;n++;if(ratio===null)ratio=r;if(Math.abs(r)<1e-9||!near(r,ratio,1e-6*Math.max(1,Math.abs(ratio)))){prop=false;break}}
+  if(prop&&n>0)return {ok:true};
+  // explicit memo (y = f(x)): the learner's equation must hold on that curve and fail just off it
+  if(ML.t!=='var'||vars.length!==2)return {ok:false};const dep=ML.n,ind=vars.find(v=>v!==dep);let k=0;
+  for(const env of samples([ind],lo,hi,30)){if(k>=8)break;let y;try{y=ev(MR,env)}catch(_){continue}if(!isFinite(y)||Math.abs(y)>1e6)continue;const at=d=>{const e={...env,[dep]:y+d};return ev(L,e)-ev(R,e)};
+    const z=at(0),sc=Math.max(1,Math.abs(ev(L,{...env,[dep]:y})));if(!(Math.abs(z)<=1e-6*sc))return {ok:false};if([0.5,-1.3].some(d=>Math.abs(at(d))<=1e-6*sc))return {ok:false};k++}
+  return {ok:k>0}}
+/* ordered list of numbers, e.g. the next two terms "209; 186" */
+function checkTuple(q,s){const n=normMath(s,{decComma:/;/.test(s)});const items=splitTop(n,/;/.test(n)?/^\s*;\s*/:/^\s*,\s*|\s+and\s+/i).filter(Boolean).map(x=>numOf(x.replace(/^[A-Za-z]\w*\s*=\s*/,'')));
+  return {ok:items.length===q.vals.length&&items.every((v,i)=>near(v,q.vals[i],q.tol!=null?q.tol:0.006))}}
+const FORMS={region:checkRegion,points:checkPoints,trig:checkTrig,eqn:checkEqn,tuple:checkTuple};
+const HINTS={region:'Inequality or interval, e.g. -2 < x <= 3 or x > 5, or (-2; 3] U (5; inf)',points:'Points like (2; -3) and (1; 4), or x = 2, y = -3 or x = 1, y = 4',
+  trig:'General solution, e.g. x = 30 + k*360 or x = 150 + k*360 (k in Z); the ° sign is optional',eqn:'An equation, e.g. y = 2x + 3 (any equivalent form)',
+  tuple:'Numbers in order, separated by ; e.g. 209; 186',expr:'An expression, e.g. 2k^2 - 1 (you may start with T_n = or f(x) =)',num:'A number, e.g. 3/4, -2, sqrt(3)/2, 34.67',set:'Every value, e.g. -2; 5',geom:'Pick each statement with its reason, in order'};
+
+/* Statement and reason text for geometry pickers. An <option> cannot hold typeset maths, so LaTeX becomes
+   plain symbols. A hat is U+0302 placed straight after the letter it covers: \hat{T} is T̂, and for a
+   three-letter angle \hat{PQR} the hat goes on the vertex Q. */
+function hatOn(x){const s=String(x).replace(/\\(?:mathrm|text)\{([^{}]*)\}/g,'$1').trim();if(/^[A-Za-z]{3}$/.test(s))return s[0]+s[1]+'\u0302'+s[2];return s.replace(/([A-Za-z])(?![A-Za-z])/,'$1\u0302')}
+function plainTex(s){let t=String(s==null?'':s).replace(/\$/g,'\u0000');let p;do{p=t;t=t.replace(/\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}/g,'$1/$2').replace(/\\sqrt\{([^{}]*)\}/g,'√($1)').replace(/\\(?:mathrm|text|mathbf|operatorname)\{([^{}]*)\}/g,'$1').replace(/\\hat\{([^{}]*)\}/g,(m,x)=>hatOn(x))}while(t!==p);
+  const SY={Delta:'Δ',triangle:'△',angle:'∠',parallel:'‖',perp:'⊥',cdot:'·',times:'×',circ:'°',alpha:'α',beta:'β',theta:'θ',neq:'≠',leq:'≤',geq:'≥',therefore:'∴',equiv:'≡',sim:'~',pi:'π',left:'',right:''};
+  t=t.replace(/_\{?(\d)\}?/g,(m,d)=>'₀₁₂₃₄₅₆₇₈₉'[d]).replace(/\^\{?\\circ\}?/g,'°').replace(/\^\{([a-z]+)\}/g,'$1').replace(/\\([a-zA-Z]+)/g,(m,w)=>w in SY?SY[w]:w).replace(/\\[,;:! ]/g,' ').replace(/[{}]/g,'').replace(/\^2/g,'²');return t.replace(/\u0000/g,'').replace(/\s*([‖⊥])\s*/g,'$1').replace(/\s+/g,' ').trim()}
 const SKM=Object.fromEntries(SK.map(s=>[s.id,s]));
-if(typeof module!=='undefined')module.exports={SK,SKM,check,parse,toTex,ev,UNITS,noParenReject,factoredReject,radReject,singleFractionReject,REJECTS};
+if(typeof module!=='undefined')module.exports={SK,SKM,plainTex,hatOn,check,parse,toTex,ev,normMath,parseRegion,regionAlts,parsePoints,parseFamilies,stripLabel,FORMS,HINTS,UNITS,noParenReject,factoredReject,radReject,singleFractionReject,REJECTS};

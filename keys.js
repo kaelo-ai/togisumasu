@@ -297,19 +297,143 @@ function geometrySpec(chain) {
   return { type: 'geom', checkable: true, statements, reasons, chain: linked, ans: chain.map(step => step.statement).join('; '), ansTex: chain.map(step => step.statement).join('; ') };
 }
 
-function expressionSpec(md) {
+// Answer forms beyond a single number: inequalities and intervals, points, general solutions,
+// expressions and equations in a parameter, and ordered lists. Each builder returns null
+// unless the memo answer parses cleanly, so prose stays on the key for review.
+const PROSE_OK = /^(sqrt|cbrt|sin|cos|tan|ln|log|pi|inf|in|or|and|U)$/i;
+function prose(n) {
+  return (n.match(/[A-Za-z]{2,}/g) || []).some(word => !PROSE_OK.test(word));
+}
+function varsIn(text) {
+  const used = new Set();
+  const walkAst = node => {
+    if (!node || typeof node !== 'object') return;
+    if (node.t === 'var') used.add(node.n);
+    walkAst(node.a); walkAst(node.b);
+  };
+  walkAst(core.parse(text));
+  return [...used].sort();
+}
+function memoPlain(md) {
+  return core.normMath(md, { decComma: true });
+}
+
+function trigSpec(md) {
+  const n = memoPlain(md);
+  if (!/\bk\b|k\s*\*|\*\s*k\b|\dk\b/.test(n) || prose(n.replace(/\bk\s+in\s+Z\b/g, ''))) return null;
+  try {
+    const fams = core.parseFamilies(md);
+    if (!fams.length || fams.some(f => !f.period || Math.abs(f.period - Math.round(f.period)) > 1e-6)) return null;
+    return { type: 'trig', checkable: true, fams, ans: n, ansTex: md.trim(), tol: 0.015 };
+  } catch (err) { return null; }
+}
+
+function regionSpec(md) {
+  const n = memoPlain(md);
+  if (prose(n.replace(/\b[a-zA-Z]\s+in\s+/g, ' '))) return null;
+  try {
+    const chunks = core.parseRegion(md, { decComma: true });
+    const vars = [...new Set(chunks.map(c => c.v).filter(Boolean))];
+    if (vars.length > 1) return null;
+    const alts = core.regionAlts(chunks);
+    if (!alts.length || alts.some(a => !a.length)) return null;
+    return { type: 'region', checkable: true, var: vars[0] || null, alts, ans: n, ansTex: md.trim(), tol: 0.006 };
+  } catch (err) { return null; }
+}
+
+function pointsSpec(md) {
+  const n = memoPlain(md);
+  try {
+    const parsed = core.parsePoints(md, { decComma: true });
+    const coords = parsed.pts.flat();
+    const vars = [...new Set(coords.flatMap(varsIn))];
+    if (vars.length > 2 || (parsed.names && vars.length)) return null;
+    if (!parsed.pts.length || parsed.pts.length > 6) return null;
+    const spec = { type: 'points', checkable: true, pts: parsed.pts, names: parsed.names, vars, ans: n, ansTex: md.trim(), tol: 0.006 };
+    if (!core.check(spec, n).ok) return null;
+    return spec;
+  } catch (err) { return null; }
+}
+
+const LABEL_LHS = /^\s*(?:[A-Za-z]{1,2}['’′]?(?:\^\(?-1\)?)?(?:\([a-z]\))?|d[a-z]\/d[a-z])\s*$/;
+function exprSpec(md) {
   const chunk = String(md || '').split(/\s+or\s+/i)[0];
-  let plain = latexToPlain(chunk);
-  const eq = plain.indexOf('=');
-  if (eq >= 0) plain = plain.slice(eq + 1).trim();
-  plain = plain.replace(/\s*(cm|units?|degrees?)\s*$/i, '').trim();
-  if (!plain || plain.length > 200) return null;
-  try { core.parse(plain); }
-  catch (err) { return null; }
-  const names = plain.match(/[a-zA-Z]+/g) || [];
-  const vars = [...new Set(names.filter(name => !['sqrt', 'sin', 'cos', 'tan', 'ln', 'log', 'pi', 'e'].includes(name)))];
-  if (vars.length > 1) return null;
-  return { type: 'expr', checkable: true, ans: plain, ansTex: chunk.trim(), var: vars[0] || 'x' };
+  if (/log_|\\sum/.test(chunk)) return null;
+  const n = memoPlain(chunk).replace(/\s*(cm|units?|degrees?)\s*$/i, '');
+  if (!n || n.length > 200 || / in /.test(n) || /[,;]/.test(n) || /[<>!]/.test(n)) return null;
+  const sides = n.split('=').map(s => s.trim());
+  if (sides.length > 3 || sides.some(s => !s)) return null;
+  try {
+    if (sides.length === 1) {
+      if (prose(n) || /^[A-Za-z]$/.test(n)) return null;
+      const vars = varsIn(n);
+      if (vars.length > 2) return null;
+      return { type: 'expr', checkable: true, ans: n, ansTex: chunk.trim(), var: vars[0] || 'x', vars: vars.length ? vars : ['x'], label: true };
+    }
+    const rhs = sides[1];
+    if (prose(sides.slice(1).join(' '))) return null;
+    const label = LABEL_LHS.test(sides[0]) || (!prose(sides[0]) && varsIn(sides[0]).length === 0);
+    const rhsVars = varsIn(rhs);
+    if (label && !(sides[0] === 'y' && rhsVars.length === 1 && rhsVars[0] !== 'y')) {
+      if (rhsVars.length > 2) return null;
+      return { type: 'expr', checkable: true, ans: rhs, ansTex: chunk.trim(), var: rhsVars[0] || 'x', vars: rhsVars.length ? rhsVars : ['x'], label: true };
+    }
+    if (prose(sides[0])) return null;
+    const vars = [...new Set([...varsIn(sides[0]), ...rhsVars])].sort();
+    if (vars.length < 1 || vars.length > 2) return null;
+    return { type: 'eqn', checkable: true, lhs: sides[0], rhs, vars, ans: sides[0] + ' = ' + rhs, ansTex: chunk.trim() };
+  } catch (err) { return null; }
+}
+
+const UNIT_TAIL = /\s*(?:units?|cm|mm|km|m|minutes?|hours?|degrees?)(?:\s*\^\s*\(?[23]\)?)?\s*$/i;
+function valueSpec(md) {
+  const n = memoPlain(md);
+  if (/[<>!]/.test(n) || / in /.test(n) || /^[A-Za-z]$/.test(n)) return null;
+  const listed = n.split(/\s*;\s*/);
+  if (listed.length >= 2 && listed.length <= 8) {
+    try {
+      const vals = listed.map(item => core.ev(core.parse(item.replace(/^[A-Za-z]\w*\s*=\s*/, '')), {}));
+      if (vals.every(Number.isFinite)) return { type: 'tuple', checkable: true, vals, ans: listed.join('; '), ansTex: md.trim(), tol: 0.006 };
+    } catch (err) { /* not a list of numbers */ }
+  }
+  const chunks = n.split(/\s+or\s+/i).map(chunk => {
+    let text = chunk.replace(UNIT_TAIL, '').trim();
+    const eq = text.lastIndexOf('=');
+    if (eq >= 0) text = text.slice(eq + 1).trim();
+    text = text.replace(/(\d) (?=\d{3}\b)/g, '$1');
+    try { return core.ev(core.parse(text), {}); } catch (err) { return NaN; }
+  });
+  if (chunks.length && chunks.every(Number.isFinite) && chunks.every(v => Math.abs(v - chunks[0]) <= 1e-9 * Math.max(1, Math.abs(v)))) {
+    return { type: 'num', checkable: true, val: chunks[0], ans: String(chunks[0]), ansTex: md.trim(), tol: 0.015 };
+  }
+  return null;
+}
+
+const FORM_ORDER = {
+  inequality: [trigSpec, regionSpec],
+  set: [regionSpec, pointsSpec],
+  description: [regionSpec],
+  solution_set: [trigSpec, regionSpec, pointsSpec],
+  coordinates: [pointsSpec],
+  equation: [trigSpec, pointsSpec, exprSpec, valueSpec],
+  expression: [exprSpec, valueSpec, regionSpec],
+  show_that: [exprSpec, pointsSpec],
+  value: [valueSpec, pointsSpec, regionSpec, exprSpec],
+};
+function formSpec(md, answerType) {
+  for (const build of FORM_ORDER[answerType] || []) {
+    const spec = build(md);
+    // a key is kept only if the memo answer marks itself correct
+    if (!spec) continue;
+    spec.deg = true;
+    if ((spec.type === 'expr' || spec.type === 'eqn') && /\b(sin|cos|tan)\b/.test(spec.ans)) spec.sample = [-170, 170];
+    if (core.check(spec, spec.ans).ok === true) return spec;
+  }
+  return null;
+}
+
+function expressionSpec(md) {
+  return exprSpec(md);
 }
 
 function numericSpec(md, answerType) {
@@ -325,6 +449,20 @@ function numericSpec(md, answerType) {
   return { type: 'num', checkable: true, val, ans: String(val), ansTex: md.trim(), tol: 0.015 };
 }
 
+// Examiner and transcriber notes, kept verbatim. A memo typo is transcribed as printed and
+// explained in a note; the note travels with the key so the review screen can show it.
+function memoNotes(part) {
+  const out = [];
+  const add = (where, text) => { if (typeof text === 'string' && text.trim()) out.push({ where, text: text.trim() }); };
+  add('answer', part.notes);
+  (part.steps || []).forEach((step, i) => add('step ' + (i + 1), step.notes));
+  (part.alternatives || []).forEach((alt, i) => {
+    add('alternative ' + (i + 1), alt.notes);
+    (alt.steps || []).forEach((step, j) => add('alternative ' + (i + 1) + ', step ' + (j + 1), step.notes));
+  });
+  return out;
+}
+
 function memoPartToSpec(part, answerType) {
   const chain = geometryChain(part.steps) || (part.alternatives || []).map(alt => geometryChain(alt.steps)).find(Boolean);
   let check = null;
@@ -332,7 +470,9 @@ function memoPartToSpec(part, answerType) {
   else if (answerType === 'value' || answerType === 'show_that' || answerType === 'solution_set') check = numericSpec(part.answer_md, answerType === 'show_that' ? 'value' : answerType);
   else if (answerType === 'expression' || answerType === 'show_that') check = expressionSpec(part.answer_md);
   if (!check && (answerType === 'expression' || answerType === 'equation' || answerType === 'show_that')) check = expressionSpec(part.answer_md);
+  if (!check) check = formSpec(part.answer_md, answerType);
   const base = {
+    memo_notes: memoNotes(part),
     answer_md: part.answer_md,
     working_md: part.working_md,
     notes: part.notes || null,
@@ -349,7 +489,7 @@ function importMemoFile(db, file) {
   const memo = validateMemo(JSON.parse(fs.readFileSync(file, 'utf8')), path.basename(file));
   const lookup = db.prepare('SELECT id, answer_type, paper_id FROM nsc_nodes WHERE id = ? AND is_leaf = 1');
   const setRef = db.prepare('UPDATE nsc_nodes SET memo_ref = ? WHERE id = ?');
-  const stats = { keys: 0, checkable: 0, geom: 0, unchecked: [] };
+  const stats = { keys: 0, checkable: 0, geom: 0, unchecked: [], notes: [] };
   for (const part of memo.parts) {
     const node = lookup.get(part.question_id || part.id);
     if (!node) throw new Error(`${path.basename(file)}: ${part.id} is not an imported question leaf.`);
@@ -358,6 +498,7 @@ function importMemoFile(db, file) {
     saveKey(db, node.id, { provenance: 'memo', answer: spec, steps: part.steps, solverA: null, solverB: null });
     setRef.run(part.id, node.id);
     stats.keys++;
+    if (spec.memo_notes.length) stats.notes.push({ id: node.id, notes: spec.memo_notes });
     if (spec.checkable) stats.checkable++;
     else stats.unchecked.push({ id: node.id, answerType: node.answer_type, answer: part.answer_md });
     if (spec.type === 'geom') stats.geom++;
@@ -377,14 +518,14 @@ function importLegacyAnswers(db, memo, filename) {
     db.prepare('UPDATE nsc_nodes SET memo_ref = ? WHERE id = ?').run(nodeId, nodeId);
     keys++;
   }
-  return { keys, checkable: keys, geom: 0, unchecked: [] };
+  return { keys, checkable: keys, geom: 0, unchecked: [], notes: [] };
 }
 
 function importMemos(db, dir) {
   init(db);
   if (!dir || !fs.existsSync(dir)) throw new Error('Memo directory not found.');
   const files = fs.readdirSync(dir).filter(name => name.endsWith('.json')).sort();
-  const stats = { files: files.length, keys: 0, checkable: 0, geom: 0, unchecked: [] };
+  const stats = { files: files.length, keys: 0, checkable: 0, geom: 0, unchecked: [], notes: [], papers: {} };
   for (const name of files) {
     const file = path.join(dir, name);
     const memo = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -393,6 +534,8 @@ function importMemos(db, dir) {
     stats.checkable += part.checkable;
     stats.geom += part.geom;
     stats.unchecked.push(...part.unchecked);
+    stats.notes.push(...(part.notes || []));
+    stats.papers[name.replace(/\.json$/, '')] = { scored: part.checkable, unscored: part.keys - part.checkable };
   }
   return stats;
 }
@@ -415,7 +558,7 @@ function markNode(db, nodeId, input) {
   }
   const spec = JSON.parse(row.answer_json);
   if (spec.type === 'memo' || spec.checkable === false) {
-    return { ok: null, checkable: false, provenance: row.provenance, answer: spec.answer_md || spec.ans || null };
+    return { ok: null, checkable: false, provenance: row.provenance, answer: spec.answer_md || spec.ans || null, memoNotes: spec.memo_notes || [] };
   }
   if (spec.type === 'geom') {
     const chain = Array.isArray(input) ? input : [];
@@ -430,6 +573,9 @@ function markNode(db, nodeId, input) {
   if (spec.type === 'num') {
     return { ...core.check({ type: 'num', val: spec.val, ans: spec.ans, exact: !!spec.exact, tol: spec.tol }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
+  if (core.FORMS[spec.type] || (spec.type === 'expr' && (spec.vars || spec.label))) {
+    return { ...core.check(spec, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null, kind: spec.type };
+  }
   if (spec.type === 'expr') {
     return { ...core.check({ type: 'expr', ans: spec.ans, var: spec.var || 'x', sample: spec.sample }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
@@ -440,7 +586,7 @@ function markNode(db, nodeId, input) {
 
 module.exports = {
   init, canonical, parseSolver, solveNode, solveMissing, importMemos, markNode, accepted, keyRow, ACCEPTED,
-  validateMemo, memoPartToSpec, primaryValue, geometryChain,
+  validateMemo, memoPartToSpec, primaryValue, geometryChain, formSpec,
 };
 
 if (require.main === module) {

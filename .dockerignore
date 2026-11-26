@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+backups
+node_modules
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+test
+DEPLOY.md
+README.md
+docker-compose*.yml
+Caddyfile
+backup.sh
+fly.toml

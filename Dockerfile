@@ -6,8 +6,10 @@ ENV NODE_ENV=production \
     DATA_DIR=/data
 
 WORKDIR /app
-COPY package.json server.js ai.js questions.js catalog.js admin.js ./
+# Every server module and the course data (CAPS topics, NSC papers, memos, figure layouts) ship in the image.
+COPY package.json *.js ./
 COPY public ./public
+COPY data ./data
 
 # Run as the unprivileged "node" user that ships with the image
 RUN mkdir -p /data && chown -R node:node /data /app

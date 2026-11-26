@@ -1,0 +1,1905 @@
+{
+  "id": "2020-nov-p2",
+  "paper_id": "2020-nov-p2",
+  "source": {
+    "pdf": "sources/maths/2020-nov/2020-nov-p2-memo.pdf",
+    "pdf_pages": 27,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=R9cpC35sw60%3d&tabid=2702&portalid=0&mid=9632",
+    "sha256": "fcea408745b9d3c3a3a154c1e7f8e033a1e14d75cea7a64100cd3945dbdc0e14",
+    "note": "Official DBE November 2020 Mathematics P2 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-20",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt. If a candidate has crossed out an attempt of a question and not redone the question, mark the crossed out version. Consistent accuracy applies in ALL aspects of the marking memorandum. Stop marking at the second calculation error. Assuming answers/values in order to solve a problem is NOT acceptable. A mark for a correct statement (a statement mark is independent of a reason) is indicated by S. A mark for the correct reason (a reason mark may only be awarded if the statement is correct) is indicated by R. Award a mark if statement AND reason are both correct (S/R).",
+  "parts": [
+    {
+      "id": "2020-nov-p2-1.1",
+      "question_id": "2020-nov-p2-1.1",
+      "number": "1.1",
+      "marks": 3,
+      "answer_md": "$\\hat{y}=9,5+0,91x$",
+      "working_md": "$a=9,5$\n\n$b=0,909\\ldots=0,91$\n\n$\\hat{y}=9,5+0,91x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=9,5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=0,91$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-1.2",
+      "question_id": "2020-nov-p2-1.2",
+      "number": "1.2",
+      "marks": 2,
+      "answer_md": "Least squares regression line with the correct slope, passing through two of the points $(50\\,;\\,55)$, $(40\\,;\\,46)$, $(60\\,;\\,64)$, $(0\\,;\\,9,5)$ or $(45\\,;\\,50)$.",
+      "working_md": "Regression line drawn on the scatter plot with the correct slope, going through $2$ of the points $(50\\,;\\,55)$ or $(40\\,;\\,46)$ or $(60\\,;\\,64)$ or $(0\\,;\\,9,5)$ or $(45\\,;\\,50)$.",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "correct slope going through 2 points"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-1.3",
+      "question_id": "2020-nov-p2-1.3",
+      "number": "1.3",
+      "marks": 2,
+      "answer_md": "$72,22\\%$",
+      "working_md": "Final exam mark $\\approx 72,22\\%$ (calculator)",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$72,29\\%$",
+          "working_md": "$\\hat{y}=9,5+0,91(69)$\n\n$\\approx 72,29\\%$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-1.4",
+      "question_id": "2020-nov-p2-1.4",
+      "number": "1.4",
+      "marks": 1,
+      "answer_md": "$r=0,95$",
+      "working_md": "$r=0,95$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-1.5",
+      "question_id": "2020-nov-p2-1.5",
+      "number": "1.5",
+      "marks": 1,
+      "answer_md": "There is a very strong positive correlation between the Mathematics and Physical Sciences marks.",
+      "working_md": "There is a very strong positive correlation between the Mathematics and Physical Sciences marks.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "strong"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-1.6",
+      "question_id": "2020-nov-p2-1.6",
+      "number": "1.6",
+      "marks": 1,
+      "answer_md": "The higher the learners' Mathematics marks, the higher the learners' Physical Sciences marks.",
+      "working_md": "The teacher concludes that the higher the learners' Mathematics marks, the higher the learners' Physical Sciences marks.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-2.1",
+      "question_id": "2020-nov-p2-2.1",
+      "number": "2.1",
+      "marks": 1,
+      "answer_md": "July",
+      "working_md": "July",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-2.2",
+      "question_id": "2020-nov-p2-2.2",
+      "number": "2.2",
+      "marks": 2,
+      "answer_md": "$\\bar{x}=2\\,245,08$ aircraft landings",
+      "working_md": "$\\bar{x}=\\dfrac{26\\,941}{12}$\n\n$=2\\,245,083\\ldots\\approx 2\\,245,08$ aircraft landings",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$26\\,941$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The memo awards full marks for the correct answer only."
+    },
+    {
+      "id": "2020-nov-p2-2.3",
+      "question_id": "2020-nov-p2-2.3",
+      "number": "2.3",
+      "marks": 2,
+      "answer_md": "$\\sigma=86,30$",
+      "working_md": "Standard deviation for landings at the King Shaka International airport:\n\n$\\sigma=86,30$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-2.4",
+      "question_id": "2020-nov-p2-2.4",
+      "number": "2.4",
+      "marks": 3,
+      "answer_md": "$9$ months",
+      "working_md": "$(\\bar{x}-\\sigma\\,;\\,\\bar{x}+\\sigma)=(2\\,245,08-86,30\\,;\\,2\\,245,08+86,30)$\n\nlimit $=(2\\,158,78\\,;\\,2\\,331,38)$\n\nThere were $9$ months when the aircraft arrivals at the King Shaka International airport were within one standard deviation of the mean.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\bar{x}-\\sigma$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\bar{x}+\\sigma$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-2.5",
+      "question_id": "2020-nov-p2-2.5",
+      "number": "2.5",
+      "marks": 1,
+      "answer_md": "C",
+      "working_md": "The standard deviation of the number of landings at the Port Elizabeth Airport will be higher than the standard deviation of the number of arrivals at the King Shaka International Airport, OR C.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-3.1",
+      "question_id": "2020-nov-p2-3.1",
+      "number": "3.1",
+      "marks": 2,
+      "answer_md": "$m_{\\mathrm{WP}}=-2$",
+      "working_md": "$m_{\\mathrm{WP}}=\\dfrac{4-(-4)}{-4-0}=\\dfrac{8}{-4}$\n\n$m_{\\mathrm{WP}}=-2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $W$ and $P$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{WP}}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-3.2",
+      "question_id": "2020-nov-p2-3.2",
+      "number": "3.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{ST}\\perp\\mathrm{WP}$",
+      "working_md": "$m_{\\mathrm{ST}}=\\dfrac{1}{2}$ (given)\n\n$(m_{\\mathrm{WP}})(m_{\\mathrm{ST}})=(-2)\\left(\\dfrac{1}{2}\\right)$\n\n$=-1$\n\n$\\therefore\\mathrm{ST}\\perp\\mathrm{WP}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(m_{\\mathrm{WP}})(m_{\\mathrm{ST}})$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(m_{\\mathrm{WP}})(m_{\\mathrm{ST}})=-1$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-3.3",
+      "question_id": "2020-nov-p2-3.3",
+      "number": "3.3",
+      "marks": 4,
+      "answer_md": "$S(-20\\,;\\,-4)$",
+      "working_md": "$5y+2x+60=0$\n\n$\\therefore y=-\\dfrac{2}{5}x-12$\n\n$-\\dfrac{2}{5}x-12=\\dfrac{1}{2}x+6$\n\n$-4x-120=5x+60$\n\n$9x=-180$\n\n$x=-20$\n\n$\\therefore y=-\\dfrac{2}{5}(-20)-12$\n\n$\\therefore y=-4$\n\n$\\therefore S(-20\\,;\\,-4)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-value"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$S(-20\\,;\\,-4)$",
+          "working_md": "$5y+2x+60=0$\n\n$5\\left(\\dfrac{1}{2}x+6\\right)+2x+60=0$\n\n$\\dfrac{5}{2}x+30+2x+60=0$\n\n$\\dfrac{9}{2}x=-90$ $\\therefore x=-20$\n\n$\\therefore y=-\\dfrac{2}{5}(-20)-12$\n\n$\\therefore y=-4$\n\n$\\therefore S(-20\\,;\\,-4)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$S(-20\\,;\\,-4)$",
+          "working_md": "$5y+2x=-60$  ........(1)\n\n$2y-x=12$  ........(2)\n\n$(1)+2(2)$: $9y=-36$\n\n$y=-4$\n\n$2(-4)-x=12$\n\n$x=-20$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "adding"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-3.4",
+      "question_id": "2020-nov-p2-3.4",
+      "number": "3.4",
+      "marks": 4,
+      "answer_md": "$\\mathrm{WR}=\\dfrac{72}{5}$ units or $\\mathrm{WR}=14\\dfrac{2}{5}$ units",
+      "working_md": "$y=-\\dfrac{2}{5}(-4)-12$ OR $5y+2(-4)+60=0$\n\n$y=-\\dfrac{52}{5}$\n\n$\\therefore R\\left(-4\\,;\\,-\\dfrac{52}{5}\\right)$ OR $R(-4\\,;\\,-10,4)$\n\n$\\therefore\\mathrm{WR}=4-\\left(-\\dfrac{52}{5}\\right)$ OR $\\mathrm{WR}=\\sqrt{(-4-(-4))^2+\\left(4-\\left(-\\dfrac{52}{5}\\right)\\right)^2}$\n\n$\\therefore\\mathrm{WR}=\\dfrac{72}{5}$ units or $\\mathrm{WR}=14\\dfrac{2}{5}$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "method or substitution into distance formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$14,4$ units",
+          "working_md": "$\\mathrm{WR}=\\mathrm{ST}-\\mathrm{SK}$\n\n$=\\dfrac{1}{2}x+6-\\left(-\\dfrac{2}{5}x-12\\right)$\n\n$=\\dfrac{9}{10}x+18$\n\n$=\\dfrac{9}{10}(-4)+18$\n\n$=14,4$ units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $x=-4$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-3.5",
+      "question_id": "2020-nov-p2-3.5",
+      "number": "3.5",
+      "marks": 5,
+      "answer_md": "$\\theta=48,37^{\\circ}$",
+      "working_md": "$m_{\\mathrm{SK}}=-\\dfrac{2}{5}$\n\n$\\beta=158,19\\ldots^{\\circ}$ (ref $\\angle=21,801\\ldots^{\\circ}$)\n\n$M\\hat{N}S=21,80\\ldots^{\\circ}$\n\n$m_{\\mathrm{ST}}=\\dfrac{1}{2}$\n\n$N\\hat{M}S=26,56\\ldots^{\\circ}$\n\n$\\theta=21,80\\ldots^{\\circ}+26,56\\ldots^{\\circ}$ [ext $\\angle$ of $\\triangle$]\n\n$\\theta=48,366\\ldots^{\\circ}=48,37^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{SK}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "size of $\\beta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "size of $N\\hat{M}S$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "method"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-3.6",
+      "question_id": "2020-nov-p2-3.6",
+      "number": "3.6",
+      "marks": 4,
+      "answer_md": "$230,4$ square units",
+      "working_md": "In $\\triangle\\mathrm{SRW}$:\n\n$\\perp h=-4-(-20)$\n\n$\\perp h=16$ units\n\nArea $\\triangle\\mathrm{SRW}=\\dfrac{1}{2}(\\perp h)(\\mathrm{WR})$\n\n$=\\dfrac{1}{2}(16)\\left(\\dfrac{72}{5}\\right)$\n\n$=115,2$ square units\n\nArea $\\mathrm{SWRL}=2\\times$ area $\\triangle\\mathrm{SRW}$\n\n$=2(115,2)$\n\n$=230,4$ square units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\perp h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "area of $\\triangle$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$230,40$ square units",
+          "working_md": "In $\\triangle\\mathrm{SRW}$:\n\n$\\perp h=-4-(-20)$\n\n$\\perp h=16$ units\n\nArea $\\mathrm{SWRL}=16\\times\\dfrac{72}{5}$\n\n$=230,40$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\perp h$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$230,41$ square units",
+          "working_md": "$\\mathrm{SW}=\\sqrt{(-20+4)^2+(-4-4)^2}=8\\sqrt{5}=17,89$\n\n$\\mathrm{SR}=\\sqrt{(-20+4)^2+\\left(-4+\\dfrac{52}{5}\\right)^2}=\\dfrac{16\\sqrt{29}}{5}=17,23$\n\nArea $\\mathrm{SWRL}=2\\times$ area $\\triangle\\mathrm{SRW}$\n\n$=2\\left(\\dfrac{1}{2}\\mathrm{SW}\\times\\mathrm{SR}\\sin\\theta\\right)$\n\n$=2\\left(\\dfrac{1}{2}(8\\sqrt{5})\\left(\\dfrac{16\\sqrt{29}}{5}\\right)\\sin 48,37^{\\circ}\\right)$\n\n$=230,41$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{SW}=8\\sqrt{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{SR}=\\dfrac{16\\sqrt{29}}{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-4.1",
+      "question_id": "2020-nov-p2-4.1",
+      "number": "4.1",
+      "marks": 2,
+      "answer_md": "$x^2+y^2=25$",
+      "working_md": "$x^2+y^2=r^2$\n\n$\\therefore r^2=(-3)^2+(4)^2=25$\n\n$x^2+y^2=25$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-4.2",
+      "question_id": "2020-nov-p2-4.2",
+      "number": "4.2",
+      "marks": 3,
+      "answer_md": "$(x+3)^2+(y-4)^2=64$",
+      "working_md": "$\\mathrm{TM}\\perp\\mathrm{TN}$ [tangent $\\perp$ radius]\n\n$T(-11\\,;\\,4)$\n\n$r=-3-(-11)=8$\n\n$(x+3)^2+(y-4)^2=64$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_T=-11$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "LHS"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "RHS"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-4.3",
+      "question_id": "2020-nov-p2-4.3",
+      "number": "4.3",
+      "marks": 4,
+      "answer_md": "$y=\\dfrac{3}{4}x+\\dfrac{25}{4}$",
+      "working_md": "$O(0\\,;\\,0)$ and $M(-3\\,;\\,4)$\n\n$m_{\\mathrm{OM}}=\\dfrac{4-0}{-3-0}=-\\dfrac{4}{3}$ OR $\\dfrac{0-4}{0-(-3)}=-\\dfrac{4}{3}$\n\n$m_{\\mathrm{NM}}=\\dfrac{3}{4}$\n\n$y-4=\\dfrac{3}{4}(x-(-3))$ OR $y=\\dfrac{3}{4}x+c$\n\n$y-4=\\dfrac{3}{4}x+\\dfrac{9}{4}$ $\\quad 4=\\dfrac{3}{4}(-3)+c$\n\n$\\therefore y=\\dfrac{3}{4}x+\\dfrac{25}{4}$ $\\quad c=\\dfrac{25}{4}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{OM}}=-\\dfrac{4}{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{NM}}=\\dfrac{3}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $m$ and $M$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-4.4",
+      "question_id": "2020-nov-p2-4.4",
+      "number": "4.4",
+      "marks": 5,
+      "answer_md": "$\\mathrm{SN}=10\\sqrt{2}$ units or $14,14$ units",
+      "working_md": "$N(-11\\,;\\,p)$\n\n$y=\\dfrac{3}{4}x+\\dfrac{25}{4}$\n\n$p=\\dfrac{3}{4}(-11)+\\dfrac{25}{4}$ OR $\\dfrac{4-p}{-3-(-11)}=\\dfrac{3}{4}$\n\n$p=-2$\n\n$\\therefore N(-11\\,;\\,-2)$\n\n$\\dfrac{-3+x_S}{2}=0$ and $\\dfrac{4+y_S}{2}=0$\n\n$\\therefore S(3\\,;\\,-4)$\n\n$\\mathrm{SN}=\\sqrt{(-11-3)^2+(-2-(-4))^2}$\n\n$=10\\sqrt{2}$ units or $14,14$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $x=-11$ into the equation or gradient"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p=-2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_S$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y_S$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "CA",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-4.5",
+      "question_id": "2020-nov-p2-4.5",
+      "number": "4.5",
+      "marks": 5,
+      "answer_md": "$k=6,6$ or $k=9,4$",
+      "working_md": "$B(-2\\,;\\,5)$\n\n$\\mathrm{BM}=\\sqrt{2}$ units\n\nRadius of circle centred at $M=8$ units\n\n$k=8-\\sqrt{2}$ or $k=8+\\sqrt{2}$\n\n$=6,59$ units or $=9,41$ units\n\n$=6,6$ units or $=9,4$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sqrt{2}$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$k=6,6$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$k=9,4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-5.1",
+      "question_id": "2020-nov-p2-5.1",
+      "number": "5.1",
+      "marks": 1,
+      "answer_md": "$360^{\\circ}$",
+      "working_md": "Period of $g=360^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-5.2",
+      "question_id": "2020-nov-p2-5.2",
+      "number": "5.2",
+      "marks": 1,
+      "answer_md": "$\\dfrac{1}{2}$",
+      "working_md": "Amplitude of $f=\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "A",
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-5.3",
+      "question_id": "2020-nov-p2-5.3",
+      "number": "5.3",
+      "marks": 1,
+      "answer_md": "$1$",
+      "working_md": "$f(180^{\\circ})-g(180^{\\circ})$\n\n$=\\dfrac{1}{2}-\\left(-\\dfrac{1}{2}\\right)$\n\n$=1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-5.4.1",
+      "question_id": "2020-nov-p2-5.4.1",
+      "number": "5.4.1",
+      "marks": 1,
+      "answer_md": "$x=140,9^{\\circ}$",
+      "working_md": "$x=140,9^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=140,9^{\\circ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-5.4.2",
+      "question_id": "2020-nov-p2-5.4.2",
+      "number": "5.4.2",
+      "marks": 4,
+      "answer_md": "$x\\in[0^{\\circ}\\,;\\,120^{\\circ}]$ or $0^{\\circ}\\leq x\\leq 120^{\\circ}$",
+      "working_md": "$\\sqrt{3}\\sin x+\\cos x\\geq 1$\n\n$\\dfrac{\\sqrt{3}}{2}\\sin x+\\dfrac{1}{2}\\cos x\\geq\\dfrac{1}{2}$\n\n$\\sin x\\cos 30^{\\circ}+\\cos x\\sin 30^{\\circ}\\geq\\dfrac{1}{2}$\n\n$\\sin(x+30^{\\circ})\\geq\\dfrac{1}{2}$\n\n$\\sin(x+30^{\\circ})=\\dfrac{1}{2}$ at $x=0^{\\circ}$ or $x=120^{\\circ}$\n\n$\\therefore x\\in[0^{\\circ}\\,;\\,120^{\\circ}]$ OR $0^{\\circ}\\leq x\\leq 120^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "dividing by $2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos 30^{\\circ}$; $\\sin 30^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(x+30^{\\circ})\\geq\\dfrac{1}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "interval"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-6.1.1",
+      "question_id": "2020-nov-p2-6.1.1",
+      "number": "6.1.1",
+      "marks": 1,
+      "answer_md": "$\\tan\\theta=-\\dfrac{12}{5}$ or $-2\\dfrac{2}{5}$",
+      "working_md": "$\\tan\\theta=-\\dfrac{12}{5}$ or $-2\\dfrac{2}{5}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-6.1.2",
+      "question_id": "2020-nov-p2-6.1.2",
+      "number": "6.1.2",
+      "marks": 3,
+      "answer_md": "$\\cos\\theta=-\\dfrac{5}{13}$",
+      "working_md": "$(\\mathrm{OP})^2=(-5)^2+(12)^2$\n\n$\\mathrm{OP}=13$\n\n$\\cos\\theta=-\\dfrac{5}{13}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "Pythagoras"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{OP}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-6.1.3",
+      "question_id": "2020-nov-p2-6.1.3",
+      "number": "6.1.3",
+      "marks": 4,
+      "answer_md": "$b=-\\dfrac{5}{2}$",
+      "working_md": "$\\sin(\\theta+90^{\\circ})=\\dfrac{b}{6,5}$\n\n$\\cos\\theta=\\dfrac{b}{6,5}$\n\n$-\\dfrac{5}{13}=\\dfrac{b}{6,5}$\n\n$b=-\\dfrac{5}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(\\theta+90^{\\circ})=\\dfrac{b}{6,5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos\\theta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{5}{13}=\\dfrac{b}{6,5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $b$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$b=-\\dfrac{5}{2}$",
+          "working_md": "$\\cos(90^{\\circ}+\\theta)=\\dfrac{a}{6,5}$\n\n$-\\sin\\theta=\\dfrac{a}{6,5}$\n\n$-\\dfrac{12}{13}=\\dfrac{a}{6,5}$ $\\therefore a=-6$\n\n$b=-\\sqrt{(6,5)^2-(-6)^2}=-\\dfrac{5}{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos(\\theta+90^{\\circ})=\\dfrac{a}{6,5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-\\sin\\theta$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $a$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $b$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-6.2",
+      "question_id": "2020-nov-p2-6.2",
+      "number": "6.2",
+      "marks": 5,
+      "answer_md": "$-1$",
+      "working_md": "$\\dfrac{\\sin 2x\\cdot\\cos(-x)+\\cos 2x\\cdot\\sin(360^{\\circ}-x)}{\\sin(180^{\\circ}+x)}$\n\n$=\\dfrac{\\sin 2x\\cos x+\\cos 2x(-\\sin x)}{-\\sin x}$\n\n$=\\dfrac{\\sin(2x-x)}{-\\sin x}$\n\n$=\\dfrac{\\sin x}{-\\sin x}$\n\n$=-1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos(-x)=\\cos x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(360^{\\circ}-x)=-\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(180^{\\circ}+x)=-\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "numerator $=\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-6.3",
+      "question_id": "2020-nov-p2-6.3",
+      "number": "6.3",
+      "marks": 6,
+      "answer_md": "$x=109,47^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$ or $x=250,53^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$",
+      "working_md": "$6\\sin^2 x+7\\cos x-3=0$\n\n$6(1-\\cos^2 x)+7\\cos x-3=0$\n\n$6-6\\cos^2 x+7\\cos x-3=0$\n\n$6\\cos^2 x-7\\cos x-3=0$\n\n$(3\\cos x+1)(2\\cos x-3)=0$\n\n$\\cos x=-\\dfrac{1}{3}$ or $\\cos x=\\dfrac{3}{2}$ (N/A)\n\n$\\therefore x=109,47^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$ or\n\n$x=250,53^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "identity"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both solutions of $\\cos x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=109,47^{\\circ}$ and $250,53^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-6.4",
+      "question_id": "2020-nov-p2-6.4",
+      "number": "6.4",
+      "marks": 5,
+      "answer_md": "$\\cos 2A=-\\dfrac{1}{9}$",
+      "working_md": "$x+\\dfrac{1}{x}=3\\cos A$\n\n$(3\\cos A)^2=\\left(x+\\dfrac{1}{x}\\right)^2$\n\n$9\\cos^2 A=x^2+\\dfrac{1}{x^2}+2$\n\n$9\\cos^2 A=2+2$\n\n$\\cos^2 A=\\dfrac{4}{9}$\n\n$\\cos 2A=2\\cos^2 A-1$\n\n$=2\\left(\\dfrac{4}{9}\\right)-1$\n\n$=-\\dfrac{1}{9}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "squaring both sides"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$9\\cos^2 A=x^2+\\dfrac{1}{x^2}+2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos^2 A=\\dfrac{4}{9}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos 2A=2\\cos^2 A-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\cos 2A=-\\dfrac{1}{9}$",
+          "working_md": "$x^2-2+\\dfrac{1}{x^2}=0$\n\n$\\left(x-\\dfrac{1}{x}\\right)^2=0$\n\n$x^2=1$\n\n$x=\\pm 1$\n\n$3\\cos A=2$ or $3\\cos A=-2$\n\n$\\cos A=\\dfrac{2}{3}$ or $\\cos A=-\\dfrac{2}{3}$\n\n$\\cos 2A=2\\cos^2 A-1$\n\n$=2\\left(\\pm\\dfrac{2}{3}\\right)^2-1$\n\n$=-\\dfrac{1}{9}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=\\pm 1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos A=\\dfrac{2}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos A=-\\dfrac{2}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "double-angle identity"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-7.1",
+      "question_id": "2020-nov-p2-7.1",
+      "number": "7.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{QS}=3r$",
+      "working_md": "$\\tan 30^{\\circ}=\\dfrac{\\sqrt{3}\\,r}{\\mathrm{QS}}$\n\n$\\mathrm{QS}=\\dfrac{\\sqrt{3}\\,r}{\\tan 30^{\\circ}}$\n\n$=\\dfrac{\\sqrt{3}\\,r}{\\dfrac{1}{\\sqrt{3}}}$ or $\\dfrac{\\sqrt{3}\\,r}{\\dfrac{\\sqrt{3}}{3}}$\n\n$=3r$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "trig ratio"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{QS}$ subject"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-7.2",
+      "question_id": "2020-nov-p2-7.2",
+      "number": "7.2",
+      "marks": 2,
+      "answer_md": "$8\\pi r^2$",
+      "working_md": "Area of flower garden $=\\pi(3r)^2-\\pi r^2$\n\n$=9\\pi r^2-\\pi r^2$\n\n$=8\\pi r^2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into difference of areas"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-7.3",
+      "question_id": "2020-nov-p2-7.3",
+      "number": "7.3",
+      "marks": 3,
+      "answer_md": "$\\mathrm{RS}=r\\sqrt{10-6\\cos 2x}$",
+      "working_md": "$\\mathrm{RS}^2=r^2+(3r)^2-2(r)(3r)\\cos 2x$\n\n$=r^2+9r^2-6r^2\\cos 2x$\n\n$=10r^2-6r^2\\cos 2x$\n\n$=r^2(10-6\\cos 2x)$\n\n$\\mathrm{RS}=r\\sqrt{10-6\\cos 2x}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the cosine rule correctly"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$10r^2-6r^2\\cos 2x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$r^2(10-6\\cos 2x)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-7.4",
+      "question_id": "2020-nov-p2-7.4",
+      "number": "7.4",
+      "marks": 2,
+      "answer_md": "$35$ m",
+      "working_md": "$\\mathrm{RS}=10\\sqrt{10-6\\cos 2(56^{\\circ})}$\n\n$=34,9966\\ldots$\n\n$\\approx 35$ m",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-8.1.1.1",
+      "question_id": "2020-nov-p2-8.1.1.1",
+      "number": "8.1.1.1",
+      "marks": 2,
+      "answer_md": "$\\hat{O}_2=64^{\\circ}$",
+      "working_md": "$\\hat{O}_2=64^{\\circ}$ [$\\angle$ at the centre $=2\\times\\angle$ at the circumference]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{O}_2=64^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\angle$ at the centre $=2\\times\\angle$ at the circumference"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-8.1.1.2",
+      "question_id": "2020-nov-p2-8.1.1.2",
+      "number": "8.1.1.2",
+      "marks": 4,
+      "answer_md": "$\\hat{O}_1=52^{\\circ}$",
+      "working_md": "$\\hat{M}_2=90^{\\circ}$ [line from the centre to the midpoint of a chord]\n\n$K\\hat{O}N=90^{\\circ}+26^{\\circ}=116^{\\circ}$ [ext $\\angle$ of $\\triangle$]\n\n$\\hat{O}_1=116^{\\circ}-64^{\\circ}=52^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{M}_2=90^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "line from the centre to the midpoint of a chord"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$K\\hat{O}N=116^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{O}_1=52^{\\circ}$",
+          "working_md": "$\\hat{M}_2=90^{\\circ}$ [line from the centre to the midpoint of a chord]\n\n$\\hat{O}_3=64^{\\circ}$ [sum of $\\angle$s in $\\triangle$]\n\n$\\hat{O}_1=52^{\\circ}$ [$\\angle$s on a straight line]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{M}_2=90^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "line from the centre to the midpoint of a chord"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{O}_3=64^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-8.1.2",
+      "question_id": "2020-nov-p2-8.1.2",
+      "number": "8.1.2",
+      "marks": 3,
+      "answer_md": "$\\mathrm{KN}$ bisects $O\\hat{K}P$",
+      "working_md": "$P\\hat{K}O+\\hat{P}=128^{\\circ}$ [sum of $\\angle$s in $\\triangle$]\n\n$P\\hat{K}O=\\hat{P}$ [$\\angle$s opposite equal sides]\n\n$=64^{\\circ}$\n\n$\\therefore\\hat{K}_2=32^{\\circ}$ or $\\hat{K}_2=\\hat{K}_1$\n\n$\\therefore\\mathrm{KN}$ bisects $O\\hat{K}P$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$P\\hat{K}O=\\hat{P}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$=64^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{K}_2=32^{\\circ}$ or $\\hat{K}_2=\\hat{K}_1$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{KN}$ bisects $O\\hat{K}P$",
+          "working_md": "$\\hat{K}_2=K\\hat{N}O$ [$\\angle$s opposite equal sides]\n\n$\\hat{K}_2+K\\hat{N}O=64^{\\circ}$ [sum of $\\angle$s in $\\triangle$]\n\n$\\therefore\\hat{K}_2=32^{\\circ}$ or $\\hat{K}_2=\\hat{K}_1$\n\n$\\therefore\\mathrm{KN}$ bisects $O\\hat{K}P$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{K}_2=K\\hat{N}O$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{K}_2+K\\hat{N}O=64^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{K}_2=32^{\\circ}$ or $\\hat{K}_2=\\hat{K}_1$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-8.2.1",
+      "question_id": "2020-nov-p2-8.2.1",
+      "number": "8.2.1",
+      "marks": 4,
+      "answer_md": "$\\mathrm{FG}\\parallel\\mathrm{BC}$",
+      "working_md": "$\\hat{F}_1=\\hat{D}_1$ [tan-chord theorem]\n\n$\\hat{D}_1=\\hat{B}$ [given]\n\n$\\therefore\\hat{F}_1=\\hat{B}$\n\n$\\therefore\\mathrm{FG}\\parallel\\mathrm{BC}$ [corresponding $\\angle$s equal]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{F}_1=\\hat{D}_1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "tan-chord theorem"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\hat{F}_1=\\hat{B}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "corresponding $\\angle$s equal"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-8.2.2",
+      "question_id": "2020-nov-p2-8.2.2",
+      "number": "8.2.2",
+      "marks": 4,
+      "answer_md": "$x=31$",
+      "working_md": "$\\dfrac{\\mathrm{GC}}{\\mathrm{AC}}=\\dfrac{\\mathrm{FB}}{\\mathrm{AB}}$ [line $\\parallel$ one side of $\\triangle$]\n\n$\\dfrac{x+9}{2x-6}=\\dfrac{5}{7}$\n\n$7x+63=10x-30$\n\n$3x=93$\n\n$x=31$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\dfrac{\\mathrm{GC}}{\\mathrm{AC}}=\\dfrac{\\mathrm{FB}}{\\mathrm{AB}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "line $\\parallel$ one side of $\\triangle$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=31$",
+          "working_md": "$\\mathrm{AG}=2x-6-(x+9)=x-15$\n\n$\\dfrac{\\mathrm{AG}}{\\mathrm{GC}}=\\dfrac{\\mathrm{AF}}{\\mathrm{FB}}$ [line $\\parallel$ one side of $\\triangle$]\n\n$\\dfrac{x-15}{x+9}=\\dfrac{2}{5}$\n\n$5x-75=2x+18$\n\n$3x=93$\n\n$x=31$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\dfrac{\\mathrm{AG}}{\\mathrm{GC}}=\\dfrac{\\mathrm{AF}}{\\mathrm{FB}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "line $\\parallel$ one side of $\\triangle$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=31$",
+          "working_md": "$\\dfrac{\\mathrm{AF}}{\\mathrm{AB}}=\\dfrac{\\mathrm{AG}}{\\mathrm{AC}}$ [line $\\parallel$ one side of $\\triangle$]\n\n$\\dfrac{2}{7}=\\dfrac{x-15}{2x-6}$\n\n$4x-12=7x-105$\n\n$3x=93$\n\n$x=31$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\dfrac{\\mathrm{AF}}{\\mathrm{AB}}=\\dfrac{\\mathrm{AG}}{\\mathrm{AC}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "line $\\parallel$ one side of $\\triangle$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-9.1",
+      "question_id": "2020-nov-p2-9.1",
+      "number": "9.1",
+      "marks": 5,
+      "answer_md": "$\\mathrm{Q}\\hat{\\mathrm{S}}\\mathrm{T}=\\hat{\\mathrm{R}}$",
+      "working_md": "Construction: Draw diameter $\\mathrm{KS}$ and draw $\\mathrm{KR}$.\n\n$Q\\hat{S}T=90^{\\circ}-T\\hat{S}K$ [radius $\\perp$ tangent]\n\n$S\\hat{R}K=90^{\\circ}$ [$\\angle$ in a semi-circle]\n\n$\\therefore S\\hat{R}T=90^{\\circ}-K\\hat{R}T$\n\n$T\\hat{S}K=T\\hat{R}K$ [$\\angle$s in the same segment]\n\n$\\therefore Q\\hat{S}T=\\hat{R}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "construction"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$Q\\hat{S}T=90^{\\circ}-T\\hat{S}K$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$S\\hat{R}K=90^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$S\\hat{R}T=90^{\\circ}-K\\hat{R}T$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$T\\hat{S}K=T\\hat{R}K$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{Q}\\hat{\\mathrm{S}}\\mathrm{T}=\\hat{\\mathrm{R}}$",
+          "working_md": "Construction: Draw radii $\\mathrm{OS}$ and $\\mathrm{OT}$.\n\n$Q\\hat{S}T=90^{\\circ}-O\\hat{S}T$ [radius $\\perp$ tangent]\n\n$O\\hat{S}T=S\\hat{T}O$ [$\\angle$s opposite equal sides]\n\n$\\therefore S\\hat{O}T=180^{\\circ}-2O\\hat{S}T$ [$\\angle$s of $\\triangle$]\n\n$\\hat{R}=90^{\\circ}-O\\hat{S}T$ [$\\angle$ at the centre $=2\\times\\angle$ at the circumference]\n\n$\\therefore Q\\hat{S}T=\\hat{R}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "construction"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$Q\\hat{S}T=90^{\\circ}-O\\hat{S}T$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$O\\hat{S}T=S\\hat{T}O$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$S\\hat{O}T=180^{\\circ}-2O\\hat{S}T$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$\\hat{R}=90^{\\circ}-O\\hat{S}T$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{Q}\\hat{\\mathrm{S}}\\mathrm{T}=\\hat{\\mathrm{R}}$",
+          "working_md": "Construction: Draw diameter $\\mathrm{KS}$ and join $\\mathrm{K}$ to $\\mathrm{T}$.\n\n$Q\\hat{S}T=90^{\\circ}-T\\hat{S}K$ [radius $\\perp$ tangent]\n\n$S\\hat{T}K=90^{\\circ}$ [$\\angle$ in a semi-circle]\n\n$\\therefore\\hat{K}=90^{\\circ}-T\\hat{S}K$\n\n$\\therefore Q\\hat{S}T=\\hat{K}$\n\nbut $\\hat{R}=\\hat{K}$ [$\\angle$s in the same segment]\n\n$\\therefore Q\\hat{S}T=\\hat{R}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "construction"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$Q\\hat{S}T=90^{\\circ}-T\\hat{S}K$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$S\\hat{T}K=90^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{K}=90^{\\circ}-T\\hat{S}K$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$\\hat{R}=\\hat{K}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{Q}\\hat{\\mathrm{S}}\\mathrm{T}=\\hat{\\mathrm{R}}$",
+          "working_md": "Construction: Draw radii $\\mathrm{OT}$, $\\mathrm{OR}$ and $\\mathrm{OS}$.\n\n$O\\hat{S}T=O\\hat{T}S$ [$\\angle$s opposite equal radii]\n\nAlso: $O\\hat{T}R=O\\hat{R}T$ and $O\\hat{R}S=O\\hat{S}R$\n\n$2x+2y+2z=180^{\\circ}$ [$\\angle$s of $\\triangle$]\n\n$x+y+z=90^{\\circ}$\n\n$y+z=90^{\\circ}-x$\n\n$O\\hat{S}Q=90^{\\circ}$ [radius $\\perp$ tangent]\n\n$\\therefore T\\hat{S}Q=90^{\\circ}-x$\n\n$\\therefore T\\hat{S}Q=y+z=\\hat{R}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "construction"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$O\\hat{S}T=O\\hat{T}S$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$y+z=90^{\\circ}-x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$O\\hat{S}Q=90^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$T\\hat{S}Q=90^{\\circ}-x$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-9.2.1.1",
+      "question_id": "2020-nov-p2-9.2.1.1",
+      "number": "9.2.1.1",
+      "marks": 2,
+      "answer_md": "$\\hat{N}_2=x$",
+      "working_md": "$\\hat{N}_2=x$ [alt $\\angle$s; $\\mathrm{PR}\\parallel\\mathrm{NQ}$]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{N}_2=x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "alt $\\angle$s; $\\mathrm{PR}\\parallel\\mathrm{NQ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-9.2.1.2",
+      "question_id": "2020-nov-p2-9.2.1.2",
+      "number": "9.2.1.2",
+      "marks": 2,
+      "answer_md": "$\\hat{Q}_2=x$",
+      "working_md": "$\\hat{Q}_2=x$ [tan-chord theorem]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{Q}_2=x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "tan-chord theorem"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{Q}_2=x$",
+          "working_md": "$\\hat{M}_2=x$ [tan-chord theorem]\n\n$\\hat{Q}_2=x$ [$\\angle$s in the same segment]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$\\hat{M}_2=x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$\\hat{Q}_2=x$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-9.2.2",
+      "question_id": "2020-nov-p2-9.2.2",
+      "number": "9.2.2",
+      "marks": 6,
+      "answer_md": "$\\dfrac{\\mathrm{MN}}{\\mathrm{NR}}=\\dfrac{\\mathrm{MS}}{\\mathrm{SQ}}$",
+      "working_md": "$\\dfrac{\\mathrm{MN}}{\\mathrm{NR}}=\\dfrac{\\mathrm{MS}}{\\mathrm{SP}}$ [$\\mathrm{QN}\\parallel\\mathrm{PR}$; proportional theorem]\n\n$\\hat{N}_1=\\hat{N}_2=x$ [given]\n\n$\\hat{P}_3=x$ [$\\angle$s in the same segment]\n\n$\\hat{P}_3=\\hat{Q}_2$ [$=x$]\n\n$\\mathrm{SQ}=\\mathrm{PS}$ [sides opposite equal $\\angle$s]\n\n$\\dfrac{\\mathrm{MN}}{\\mathrm{NR}}=\\dfrac{\\mathrm{MS}}{\\mathrm{SQ}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\dfrac{\\mathrm{MN}}{\\mathrm{NR}}=\\dfrac{\\mathrm{MS}}{\\mathrm{SP}}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\mathrm{QN}\\parallel\\mathrm{PR}$; proportional theorem"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{N}_1=\\hat{N}_2=x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{P}_3=x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\angle$s in the same segment"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "sides opposite equal $\\angle$s"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-10.1.1",
+      "question_id": "2020-nov-p2-10.1.1",
+      "number": "10.1.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{FBDM}$ is a cyclic quadrilateral",
+      "working_md": "$D\\hat{B}E=90^{\\circ}$ [$\\angle$ in a semi-circle]\n\n$\\therefore D\\hat{M}A=90^{\\circ}$ [$\\mathrm{AM}\\perp\\mathrm{DE}$]\n\n$\\therefore\\mathrm{FBDM}$ is a cyclic quadrilateral [converse of opposite $\\angle$s of a cyclic quad]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$D\\hat{B}E=90^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\angle$ in a semi-circle"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "converse of opposite $\\angle$s of a cyclic quad"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{FBDM}$ is a cyclic quadrilateral",
+          "working_md": "$D\\hat{B}E=90^{\\circ}$ [$\\angle$ in a semi-circle]\n\n$\\hat{M}_2=D\\hat{B}E=90^{\\circ}$\n\n$\\therefore\\mathrm{FBDM}$ is a cyclic quadrilateral [converse of the exterior $\\angle$ of a cyclic quad]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$D\\hat{B}E=90^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "$\\angle$ in a semi-circle"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "converse of the exterior $\\angle$ of a cyclic quad"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-10.1.2",
+      "question_id": "2020-nov-p2-10.1.2",
+      "number": "10.1.2",
+      "marks": 4,
+      "answer_md": "$\\hat{B}_3=\\hat{F}_1$",
+      "working_md": "$\\hat{B}_3=\\hat{D}_2$ [tan-chord theorem]\n\n$\\hat{F}_1=\\hat{D}_2$ [ext $\\angle$ of a cyclic quad]\n\n$\\therefore\\hat{B}_3=\\hat{F}_1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{B}_3=\\hat{D}_2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "tan-chord theorem"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{F}_1=\\hat{D}_2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "ext $\\angle$ of a cyclic quad"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{B}_3=\\hat{F}_1$",
+          "working_md": "$\\hat{B}_1=\\hat{E}=x$ [tan-chord theorem]\n\n$\\hat{F}_1=90^{\\circ}-x$ [$\\angle$ sum in $\\triangle$]\n\n$\\hat{D}_2=90^{\\circ}-x$ [$\\angle$ sum in $\\triangle$]\n\n$\\therefore\\hat{F}_1=\\hat{D}_2$\n\n$\\hat{B}_3=\\hat{D}_2$ [tan-chord theorem]\n\n$\\therefore\\hat{B}_3=\\hat{F}_1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{B}_1=\\hat{E}=x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "tan-chord theorem"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\hat{F}_1=90^{\\circ}-x=\\hat{D}_2$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "tan-chord theorem"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{B}_3=\\hat{F}_1$",
+          "working_md": "$\\hat{B}_1=\\hat{E}=x$ [tan-chord theorem]\n\n$\\hat{B}_3=90^{\\circ}-x$ [straight line]\n\n$\\hat{F}_1=90^{\\circ}-x$ [sum of $\\angle$s in $\\triangle$]\n\n$\\therefore\\hat{B}_3=\\hat{F}_1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{B}_1=\\hat{E}=x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "tan-chord theorem"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{B}_3=90^{\\circ}-x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{F}_1=90^{\\circ}-x$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-10.1.3",
+      "question_id": "2020-nov-p2-10.1.3",
+      "number": "10.1.3",
+      "marks": 3,
+      "answer_md": "$\\triangle\\mathrm{CDB}\\parallel\\parallel\\triangle\\mathrm{CBE}$",
+      "working_md": "In $\\triangle\\mathrm{CDB}$ and $\\triangle\\mathrm{CBE}$:\n\n$\\hat{C}=\\hat{C}$ [common $\\angle$]\n\n$C\\hat{B}D=C\\hat{E}B$ [tan-chord theorem]\n\n$C\\hat{D}B=C\\hat{B}E$ [$\\angle$ sum in $\\triangle$]\n\n$\\triangle\\mathrm{CDB}\\parallel\\parallel\\triangle\\mathrm{CBE}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "$\\hat{C}=\\hat{C}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "$C\\hat{B}D=C\\hat{E}B$"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "$\\angle$ sum in $\\triangle$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\triangle\\mathrm{CDB}\\parallel\\parallel\\triangle\\mathrm{CBE}$",
+          "working_md": "In $\\triangle\\mathrm{CDB}$ and $\\triangle\\mathrm{CBE}$:\n\n$C\\hat{B}D=C\\hat{E}B$ [tan-chord theorem]\n\n$\\hat{C}=\\hat{C}$ [common $\\angle$]\n\n$\\triangle\\mathrm{CDB}\\parallel\\parallel\\triangle\\mathrm{CBE}$ [$\\angle$;$\\angle$;$\\angle$]",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S/R",
+              "description": "$C\\hat{B}D=C\\hat{E}B$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "$\\hat{C}=\\hat{C}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "$\\triangle\\mathrm{CDB}\\parallel\\parallel\\triangle\\mathrm{CBE}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-10.2.1",
+      "question_id": "2020-nov-p2-10.2.1",
+      "number": "10.2.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{BC}=4$",
+      "working_md": "$\\dfrac{\\mathrm{BC}}{\\mathrm{EC}}=\\dfrac{\\mathrm{DC}}{\\mathrm{BC}}$ [similar $\\triangle$s]\n\n$\\mathrm{BC}^2=\\mathrm{EC}\\times\\mathrm{DC}$\n\n$=8\\times 2$\n\n$=16$\n\n$\\mathrm{BC}=4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "ratio"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2020-nov-p2-10.2.2",
+      "question_id": "2020-nov-p2-10.2.2",
+      "number": "10.2.2",
+      "marks": 4,
+      "answer_md": "$\\mathrm{DB}=\\dfrac{6}{\\sqrt{5}}=2,68$ units",
+      "working_md": "$\\dfrac{\\mathrm{BC}}{\\mathrm{EC}}=\\dfrac{\\mathrm{DB}}{\\mathrm{BE}}$ [similar $\\triangle$s]\n\n$\\dfrac{\\mathrm{DB}}{\\mathrm{BE}}=\\dfrac{4}{8}=\\dfrac{1}{2}$\n\n$\\mathrm{BE}=2\\mathrm{DB}$\n\n$\\mathrm{DB}^2+\\mathrm{BE}^2=\\mathrm{DE}^2$ [Pythagoras]\n\n$\\mathrm{DB}^2+(2\\mathrm{DB})^2=36$\n\n$5\\mathrm{DB}^2=36$\n\n$\\mathrm{DB}^2=\\dfrac{36}{5}$\n\n$\\mathrm{DB}=\\dfrac{6}{\\sqrt{5}}=2,68$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{BE}=2\\mathrm{DB}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into Pythagoras"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{DB}^2=\\dfrac{36}{5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    }
+  ]
+}

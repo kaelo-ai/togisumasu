@@ -397,6 +397,8 @@ details.help ul{margin:6px 0 0;padding-left:18px}
   .landing-card{justify-self:start;transform:rotate(-.6deg);max-width:520px}
   .landing-features{grid-template-columns:1fr}
 }
+/* Picker text uses combining hats (T\u0302). The body font and system-ui place them off the letter; these fonts put them on it. */
+.geom select,.geom li{font-family:"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -436,14 +438,18 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let mjChain=Promise.resolve();
+// Typesetting runs queued; by the time a node's turn comes the screen may have moved on (the answer
+// preview is replaced as soon as Check is pressed). A detached node has no font metrics, which is what
+// made MathJax write NaN sizes, so it is skipped.
 window.typeset=function(el){if(!el)return;if(window.__mjq){window.__mjq.push(el);return}
-  mjChain=mjChain.then(()=>{try{MathJax.typesetClear([el])}catch(e){}return MathJax.typesetPromise([el])}).catch(()=>{})};
+  mjChain=mjChain.then(()=>{if(!el.isConnected)return;try{MathJax.typesetClear([el])}catch(e){}return MathJax.typesetPromise([el])}).catch(()=>{})};
 const DAY=864e5,INT=[0,1,3,7,16,35,70],GOAL=20,KEY='togisumasu-progress-v1';
 const dkey=(t=Date.now())=>{const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 
 /* ---------- progress store: your account on this server; a per-account cache on this device for offline use ---------- */
+const bp=p=>(window.BASE_PATH||'')+p;
 const API={async req(method,url,body){
-  const r=await fetch(url,{method,credentials:'same-origin',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
+  const r=await fetch(bp(url),{method,credentials:'same-origin',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
   let j={};try{j=await r.json()}catch(e){}
   if(!r.ok)throw Object.assign(new Error(j.error||'Something went wrong. Try again.'),{status:r.status});return j}};
 let USER=null;
@@ -474,7 +480,7 @@ const Store={data:EMPTY(),mode:'account',timer:null,dirty:false,
     this.cache()},
   save(){this.data.t=Date.now();this.cache();this.dirty=true;clearTimeout(this.timer);this.timer=setTimeout(()=>this.push(),1200)},
   async push(keepalive){if(!USER)return;clearTimeout(this.timer);this.dirty=false;
-    try{const r=await fetch('/api/progress',{method:'PUT',credentials:'same-origin',keepalive:!!keepalive,headers:{'Content-Type':'application/json'},body:JSON.stringify({data:this.data})});
+    try{const r=await fetch(bp('/api/progress'),{method:'PUT',credentials:'same-origin',keepalive:!!keepalive,headers:{'Content-Type':'application/json'},body:JSON.stringify({data:this.data})});
       if(r.status===401){USER=null;go({name:'auth',mode:'login',msg:'Your session ended. Sign in again; your progress on this device is kept.'});return}
       if(!r.ok)throw new Error('save failed');
       if(this.mode!=='account'){this.mode='account';renderFoot()}}
@@ -552,13 +558,15 @@ function renderStats(){renderAcct();if(!USER){$('#stats').innerHTML='';return}co
 
 function renderAcct(){const a=$('#acct');if(!a)return;
   if(!USER){a.innerHTML=view.name==='landing'?`<button class="btn ghost sm" type="button" data-auth="login">Sign in</button>${REG_OPEN?'<button class="btn primary sm" type="button" data-auth="register">Create account</button>':''}`:'';return}
-  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="/admin">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
+  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="'+bp('/admin')+'">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
 
 /* ---------- views ---------- */
 let view={name:'home'},sess=null,quiz=null;
-function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing')v={name:'landing'};view=v;render();window.scrollTo(0,0)}
+function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing'&&v.name!=='verify'&&v.name!=='reset')v={name:'landing'};view=v;render();window.scrollTo(0,0)}
 function render(){renderStats();const app=$('#app');
-  if(view.name==='auth'){app.innerHTML=authHTML(view);const f=$('#authForm input');if(f)f.focus();return}
+  if(view.name==='auth'){app.innerHTML=authHTML(view);const f=$('#authForm input, #forgotForm input, #resetForm input');if(f)f.focus();return}
+  if(view.name==='verify'){app.innerHTML=verifyHTML(view);if(view.token&&!view.error&&!view.pending){view.pending=true;consumeVerify(view.token)}return}
+  if(view.name==='reset'){app.innerHTML=resetHTML(view);const f=$('#resetForm input');if(f)f.focus();return}
   if(view.name==='landing'){app.innerHTML=landingHTML();typeset(app);return}
   if(view.name==='home')app.innerHTML=homeHTML();
   else if(view.name==='skill')app.innerHTML=skillHTML(view.id,view.tab);
@@ -574,7 +582,7 @@ function render(){renderStats();const app=$('#app');
   if(view.name==='exam')examStep();
   typeset(app)}
 function renderFoot(){const f=$('#foot');if(!f)return;
-  f.innerHTML=`<span>${Store.mode==='account'?'Progress saved to your account':'Offline: saving on this device; it syncs when you reconnect'}</span><span>Notes: <a href="https://tutorial.math.lamar.edu/" target="_blank" rel="noopener">Paul's Online Notes</a> · extra problems: <a href="https://openstax.org/details/books/precalculus-2e" target="_blank" rel="noopener">OpenStax Precalculus 2e</a></span><span class="sp" id="resetZone"><button class="btn ghost sm" id="resetBtn" type="button">Reset progress</button></span>`}
+  f.innerHTML=`<span>${Store.mode==='account'?'Progress saved to your account':'Offline: saving on this device; it syncs when you reconnect'}</span><span class="sp" id="resetZone"><button class="btn ghost sm" id="resetBtn" type="button">Reset progress</button></span>`}
 
 function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=repairList(),qd=quizDue();
   const tasks=[];rep.forEach(s=>tasks.push(`<li class="t-repair"><span class="tk">Repair</span>${esc(s.name)}</li>`));
@@ -597,7 +605,7 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   let any=false;h+=`<section class="map">`;
   for(const [u,un] of UNITS){const allList=SK.filter(s=>s.unit===u);const list=allList.filter(matches);if(!list.length)continue;any=true;
     const um=allList.filter(s=>st(s.id).lv>0).length;const pct=Math.round(um/allList.length*100);const collapsed=collapsedUnits.has(u);
-    h+=`<div class="unit${collapsed?' is-collapsed':''}"><h2><button class="unit-head" type="button" data-unit-toggle="${u}" aria-expanded="${!collapsed}" aria-controls="unit-${u}"><span class="ul">${u}</span><span>${esc(un)}</span><span class="ct tnum">${um}/${allList.length}</span><span class="uring" style="--p:${pct}" role="img" aria-label="${um} of ${allList.length} topics mastered"></span><span class="chev" aria-hidden="true">▾</span></button></h2><ul class="skills" id="unit-${u}">`;
+    h+=`<div class="unit${collapsed?' is-collapsed':''}"><h2><button class="unit-head" type="button" data-unit-toggle="${u}" aria-expanded="${!collapsed}" aria-controls="unit-${u}"><span class="ul">${esc(unitLabel(u))}</span><span>${esc(un)}</span><span class="ct tnum">${um}/${allList.length}</span><span class="uring" style="--p:${pct}" role="img" aria-label="${um} of ${allList.length} topics mastered"></span><span class="chev" aria-hidden="true">▾</span></button></h2><ul class="skills" id="unit-${u}">`;
     for(const s of list){const k=mapSkillState(s.id);const x=st(s.id);let meta='';
       if(k==='repair')meta=`<span class="mt repair">Needs repair</span>`;else if(k==='due')meta=`<span class="mt due">Review due</span>`;else if(k==='mastered')meta=`<span class="mt">Mastered<span class="lv">${[1,2,3,4,5,6].map(i=>`<i class="${i<=x.lv?'on':''}"></i>`).join('')}</span></span>`;
       else if(rec&&rec.id===s.id)meta=`<span class="mt rec">Up next</span>`;else if(k==='learning')meta=`<span class="mt">${x.s}/3 in a row</span>`;else if(k==='locked')meta=`<span class="mt">Locked</span>`;
@@ -654,7 +662,7 @@ async function similarBankQuestion(q){
   return full.question;
 }
 function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain=[];const inputs=()=>[...host.querySelectorAll('.mathin')];
-  const geomUI=q.type==='geom'?`<div class="geom"><div class="row"><label>Statement <select id="geomStmt">${q.statements.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><label>Reason <select id="geomReason">${q.reasons.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><button class="btn" type="button" id="geomAdd">Add step</button></div><ol id="geomChain" class="steps"></ol><p class="gnote">Add the statements in order. Each one needs the reason you would write next to it.</p></div>`:'';
+  const geomUI=q.type==='geom'?`<div class="geom"><div class="row"><label>Statement <select id="geomStmt">${q.statements.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><label>Reason <select id="geomReason">${q.reasons.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><button class="btn" type="button" id="geomAdd">Add step</button></div><ol id="geomChain" class="steps"></ol><p class="gnote">Add the statements in order. Each one needs the reason you would write next to it.</p></div>`:'';
   const ui=q.type==='geom'?geomUI:q.type==='mc'?`<div class="opts" role="group" aria-label="Choices">${q.options.map((o,i)=>`<button class="opt" type="button" aria-pressed="false" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${o.tex}</span></button>`).join('')}</div>`
    :q.type==='fields'?`<div class="fields">${q.fields.map((f,i)=>`<label class="field" for="qf${i}"><span class="fl">$${f.label}=$</span><input class="mathin" id="qf${i}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"></label>`).join('')}</div>${keys(true)}${help()}`
    :`<label class="l" for="qIn">Your answer</label><input class="mathin" id="qIn" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${PH[q.type]}"><div class="preview" id="qPrev" aria-live="polite"></div>${keys(q.type==='set'||q.type==='num')}${help()}`;
@@ -685,7 +693,7 @@ function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain
     if(sim)sim.onclick=async()=>{const msg=fb.querySelector('#qSimMsg');sim.disabled=true;sim.textContent='Finding a similar question…';if(live)live.textContent='Finding a similar question.';try{const nq=await similarBankQuestion(q);if(!host.isConnected)return;if(!nq){sim.disabled=false;sim.textContent='Try a similar question';if(msg)msg.textContent='No similar question is available yet.';if(live)live.textContent='No similar question is available yet.';return}mountQuestion(host,nq,ctx);host.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});if(live)live.textContent='A similar question is ready.'}catch(e){sim.disabled=false;sim.textContent='Try a similar question';if(msg)msg.textContent=e.message;if(live)live.textContent=e.message}};
     host.querySelector('#qAct').innerHTML=`<button class="btn primary" type="button" id="qNext">${ctx.nextLabel||'Next question'}</button>`;host.querySelector('#qNext').onclick=ctx.next;host.querySelector('#qNext').focus({preventScroll:true});typeset(fb);
     if(matchMedia('(max-width:640px)').matches)setTimeout(()=>fb.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}),60)}
-  if(q.type==='geom'){const draw=()=>{const list=$('#geomChain');if(!list)return;list.innerHTML=geomChain.map((step,i)=>{const st=q.statements.find(s=>s.id===step.statement),rs=q.reasons.find(s=>s.id===step.reason);return `<li>${esc(st?st.text:step.statement)} <span style="color:var(--muted)">because</span> ${esc(rs?rs.text:step.reason)} <button class="btn ghost sm" type="button" data-geom-up="${i}">Up</button> <button class="btn ghost sm" type="button" data-geom-down="${i}">Down</button> <button class="btn ghost sm" type="button" data-geom-del="${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
+  if(q.type==='geom'){const draw=()=>{const list=$('#geomChain');if(!list)return;list.innerHTML=geomChain.map((step,i)=>{const st=q.statements.find(s=>s.id===step.statement),rs=q.reasons.find(s=>s.id===step.reason);return `<li>${esc(plainTex(st?st.text:step.statement))} <span style="color:var(--muted)">because</span> ${esc(plainTex(rs?rs.text:step.reason))} <button class="btn ghost sm" type="button" data-geom-up="${i}">Up</button> <button class="btn ghost sm" type="button" data-geom-down="${i}">Down</button> <button class="btn ghost sm" type="button" data-geom-del="${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
     list.querySelectorAll('[data-geom-del]').forEach(b=>b.onclick=()=>{geomChain.splice(+b.dataset.geomDel,1);draw()});
     list.querySelectorAll('[data-geom-up]').forEach(b=>b.onclick=()=>{const i=+b.dataset.geomUp;if(i>0){[geomChain[i-1],geomChain[i]]=[geomChain[i],geomChain[i-1]];draw()}});
     list.querySelectorAll('[data-geom-down]').forEach(b=>b.onclick=()=>{const i=+b.dataset.geomDown;if(i<geomChain.length-1){[geomChain[i+1],geomChain[i]]=[geomChain[i],geomChain[i+1]];draw()}})};
@@ -753,12 +761,15 @@ function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return
   host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="home">Leave quiz</button><div class="meter quizm"><i style="width:${quiz.i/quiz.items.length*100}%"></i></div><span class="tnum" style="font-size:.85rem;color:var(--muted)">${quiz.i+1} / ${quiz.items.length}</span></div><div id="qq"></div>`;
   if(it.kind==='paper'){const box=$('#qq');
     box.innerHTML=`<article class="qcard test washi-paper"><div class="qmeta"><span class="tag qz">Past paper</span><span>${esc(it.paperId)} Q${esc(it.number)} · ${it.marks} mark${it.marks===1?'':'s'}</span></div><div class="prompt">${it.prompt}</div>
-     <label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit"></textarea>
+     ${it.geom?`<div class="geom"><div class="row"><label>Statement <select id="paperStmt">${it.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><label>Reason <select id="paperReason">${it.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><button class="btn" type="button" id="paperAdd">Add step</button></div><ol id="paperChain" class="steps"></ol></div>`:`<label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit" placeholder="${esc(it.hint||'')}"></textarea>`}${it.hint?`<p class="gnote">${esc(it.hint)}</p>`:''}
      <p class="gnote">This is a real NSC question from before 2022. It is marked on the server from its stored answer key.</p>
      <div class="actions row"><button class="btn primary" type="button" id="paperSave">Save and continue</button></div></article>`;
     typeset(box);
-    $('#paperSave').onclick=async()=>{const given=$('#paperIn').value;const btn=$('#paperSave');btn.disabled=true;
-      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=given;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'quiz')}
+    const chain=[];const drawChain=()=>{const list=$('#paperChain');if(!list)return;list.innerHTML=chain.map((step,i)=>{const st=it.geom.statements.find(s=>s.id===step.statement),rs=it.geom.reasons.find(s=>s.id===step.reason);return `<li>${esc(plainTex(st?st.text:''))} <span style="color:var(--muted)">because</span> ${esc(plainTex(rs?rs.text:''))} <button class="btn ghost sm" type="button" data-chain-del="${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
+      list.querySelectorAll('[data-chain-del]').forEach(b=>b.onclick=()=>{chain.splice(+b.dataset.chainDel,1);drawChain()})};
+    if(it.geom){drawChain();$('#paperAdd').onclick=()=>{if(chain.length<12){chain.push({statement:$('#paperStmt').value,reason:$('#paperReason').value});drawChain()}}}
+    $('#paperSave').onclick=async()=>{const given=it.geom?chain.slice():$('#paperIn').value;const btn=$('#paperSave');btn.disabled=true;
+      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=it.geom?given.map(s=>{const st=it.geom.statements.find(x=>x.id===s.statement),rs=it.geom.reasons.find(x=>x.id===s.reason);return plainTex(st?st.text:'')+' ('+plainTex(rs?rs.text:'')+')'}).join('; '):given;it.answer=r.answer||null;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'quiz')}
       catch(e){it.pending=true;it.given=given;it.ok=null}
       quiz.i++;quizStep();window.scrollTo(0,0)};
     return}
@@ -772,10 +783,11 @@ function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');c
    ${bad.length?`<div class="lock repair"><b>Needs repair:</b> ${bad.map(id=>esc(SKM[id]?SKM[id].name:id)).join(', ')}.</div>`:'<p>The generated questions were all correct.</p>'}
    <div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="session">${bad.length?'Start repairs':'Continue learning'}</button><button class="btn" type="button" data-act="home">Course map</button></div></div>
    <ol class="qres">${quiz.items.map((x,i)=>{const paper=x.kind==='paper';const name=paper?(x.paperId+' Q'+x.number):(SKM[x.topicId]?SKM[x.topicId].name:x.topicId);
-     return `<li class="${paper?'':x.ok?'ok':'no'}"><div class="qrh"><span class="mk">${paper?'…':x.ok?'✓':'✗'}</span><span>Question ${i+1}</span><span style="margin-left:auto">${esc(name)}</span></div>
-     <div class="prompt">${paper?x.prompt:x.question.prompt}</div><div class="qra"><span>Your answer: ${paper?(x.given?`<code>${esc(x.given)}</code>`:'<em>Not answered</em>'):(x.given||'<em>Not answered</em>')}</span>${paper?'':`<span>Correct: ${ansDisplay(x.question)}</span>`}</div>
+     return `<li class="${paper&&x.ok==null?'':x.ok?'ok':'no'}"><div class="qrh"><span class="mk">${paper&&x.ok==null?'…':x.ok?'✓':'✗'}</span><span>Question ${i+1}</span><span style="margin-left:auto">${esc(name)}</span></div>
+     <div class="prompt">${paper?x.prompt:x.question.prompt}</div><div class="qra"><span>Your answer: ${paper?(x.given?`<code>${esc(x.given)}</code>`:'<em>Not answered</em>'):(x.given||'<em>Not answered</em>')}</span>${paper?(x.answer?`<span>Official answer: ${x.answer}</span>`:''):`<span>Correct: ${ansDisplay(x.question)}</span>`}</div>
      ${paper?'':`<details ${x.ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${x.question.steps.map(t=>`<li>${t}</li>`).join('')}</ol></details>`}</li>`}).join('')}</ol></section>`;typeset(host)}
 
+function unitLabel(u){return /^c\d+$/.test(String(u))?String(u).slice(1):String(u)}
 /* ---------- exams: full 2022+ papers, timed, never used as quiz questions ---------- */
 let exam=null,examTimer=null;
 function examsHTML(){const list=exam&&exam.list||[];
@@ -789,13 +801,13 @@ function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'h
   if(examTimer)clearInterval(examTimer);
   const p=exam.paper;
   host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="exams">All exams</button><span class="tnum" id="examClock" style="font-size:.95rem"></span><span style="color:var(--muted)">${esc(p.id)} · ${p.totalMarks} marks</span></div>
-   <section class="summary">${p.questions.map(q=>{const geom=q.geom?`<div class="geom"><div class="row"><label>Statement <select data-geom-stmt="${esc(q.id)}">${q.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><label>Reason <select data-geom-reason="${esc(q.id)}">${q.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><button class="btn" type="button" data-geom-add="${esc(q.id)}">Add step</button></div><ol data-geom-list="${esc(q.id)}" class="steps"></ol></div>`:`<label class="l" for="ex-${esc(q.id)}">Your answer</label><textarea id="ex-${esc(q.id)}" data-exam-ans="${esc(q.id)}" rows="3" style="width:100%;font:inherit">${esc(typeof exam.answers[q.id]==='string'?exam.answers[q.id]:'')}</textarea>`;
+   <section class="summary">${p.questions.map(q=>{const geom=q.geom?`<div class="geom"><div class="row"><label>Statement <select data-geom-stmt="${esc(q.id)}">${q.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><label>Reason <select data-geom-reason="${esc(q.id)}">${q.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><button class="btn" type="button" data-geom-add="${esc(q.id)}">Add step</button></div><ol data-geom-list="${esc(q.id)}" class="steps"></ol></div>`:`<label class="l" for="ex-${esc(q.id)}">Your answer</label>${q.hint?`<p class="gnote">${esc(q.hint)}</p>`:''}<textarea id="ex-${esc(q.id)}" data-exam-ans="${esc(q.id)}" rows="3" style="width:100%;font:inherit" placeholder="${esc(q.hint||'')}">${esc(typeof exam.answers[q.id]==='string'?exam.answers[q.id]:'')}</textarea>`;
      return `<article class="qcard washi-paper" style="margin-top:12px" data-exam-q="${esc(q.id)}"><div class="qmeta"><span class="tag qz">Q${esc(q.number)}</span><span>${q.marks} mark${q.marks===1?'':'s'}</span>${q.checkable?'':'<span>Reviewed from the memo</span>'}</div><div class="prompt">${q.prompt}</div>${geom}<div class="qra" data-exam-result="${esc(q.id)}"></div></article>`}).join('')}
    <div class="row" style="margin:16px 0"><button class="btn primary" type="button" id="examFinish">Finish exam</button></div>
    <p class="gnote" id="examNote"></p></section>`;
   host.querySelectorAll('[data-exam-ans]').forEach(el=>el.addEventListener('input',()=>{exam.answers[el.dataset.examAns]=el.value}));
   const drawGeom=id=>{const list=host.querySelector(`[data-geom-list="${id}"]`);if(!list)return;const chain=Array.isArray(exam.answers[id])?exam.answers[id]:[];const q=p.questions.find(item=>item.id===id);
-    list.innerHTML=chain.map((step,i)=>{const st=q.geom.statements.find(s=>s.id===step.statement),rs=q.geom.reasons.find(s=>s.id===step.reason);return `<li>${esc(st?st.text:step.statement)} <span style="color:var(--muted)">because</span> ${esc(rs?rs.text:step.reason)} <button class="btn ghost sm" type="button" data-geom-del="${esc(id)}:${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
+    list.innerHTML=chain.map((step,i)=>{const st=q.geom.statements.find(s=>s.id===step.statement),rs=q.geom.reasons.find(s=>s.id===step.reason);return `<li>${esc(plainTex(st?st.text:step.statement))} <span style="color:var(--muted)">because</span> ${esc(plainTex(rs?rs.text:step.reason))} <button class="btn ghost sm" type="button" data-geom-del="${esc(id)}:${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
     list.querySelectorAll('[data-geom-del]').forEach(b=>b.onclick=()=>{const i=+b.dataset.geomDel.split(':')[1];exam.answers[id].splice(i,1);drawGeom(id)})};
   host.querySelectorAll('[data-geom-add]').forEach(b=>b.onclick=()=>{const id=b.dataset.geomAdd;const chain=Array.isArray(exam.answers[id])?exam.answers[id]:(exam.answers[id]=[]);if(chain.length>=12)return;
     chain.push({statement:host.querySelector(`[data-geom-stmt="${id}"]`).value,reason:host.querySelector(`[data-geom-reason="${id}"]`).value});drawGeom(id)});
@@ -805,10 +817,11 @@ function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'h
   $('#examFinish').onclick=async()=>{exam.finished=true;clearInterval(examTimer);const note=$('#examNote');note.textContent='Marking…';
     try{const r=await API.req('POST','/api/exams/'+encodeURIComponent(p.id)+'/mark',{answers:exam.answers});
       let scored=0,right=0,review=0;
+      const memoNote=item=>(item.memoNotes||[]).length?`<p class="gnote">Memo note (official memo transcribed as printed): ${item.memoNotes.map(n=>esc(n.where)+': '+n.text).join(' ')}</p>`:'';
       for(const item of r.results){const box=host.querySelector(`[data-exam-result="${item.id}"]`);if(!box)continue;
-        if(!item.checkable){review++;box.innerHTML=`<span>Not auto-marked. Official answer: ${item.answer||''}</span>`}
-        else{scored++;if(item.ok)right++;box.innerHTML=`<span class="${item.ok?'':'no'}">${item.ok?'Correct':'Not the memo answer'}. Official answer: ${item.answer||''}</span>`}}
-      note.textContent=`Auto-marked ${right} of ${scored}. ${review} part${review===1?'':'s'} (sketches, free-form proofs and answers that are not a single value, expression or statement-reason chain) are shown with the official memo answer and are not scored. This paper stays out of quizzes.`;
+        if(!item.checkable){review++;box.innerHTML=`<span>Not auto-marked. Official answer: ${item.answer||''}</span>${memoNote(item)}`}
+        else{scored++;if(item.ok)right++;box.innerHTML=`<span class="${item.ok?'':'no'}">${item.ok?'Correct':'Not the memo answer'}. Official answer: ${item.answer||''}</span>${memoNote(item)}`}}
+      note.textContent=`Auto-marked ${right} of ${scored}. ${review} part${review===1?'':'s'} (sketches, free-form proofs and written explanations) are shown with the official memo answer and are not scored. This paper stays out of quizzes.`;
       typeset(host)}
     catch(e){note.textContent=e.message}};
   typeset(host)}
@@ -854,7 +867,7 @@ function graphSVG(){const {xy,NW,NH,W,H,cols,CW,PAD}=LAYOUT,rec=recommended();co
     const ty=L.length===1?[y+NH/2+4]:[y+NH/2-4,y+NH/2+11];
     const ring=k==='learning'?`<rect x="${x+30}" y="${y+NH-5}" width="${(NW-38)*Math.min(3,x0.s)/3}" height="3" rx="1.5" class="prog"/>`:'';
     n+=`<g class="${cls}" data-node="${s.id}" tabindex="0" role="button" aria-label="${esc(s.name)}: ${k}"><title>${esc(s.name)}</title><rect x="${x}" y="${y}" width="${NW}" height="${NH}" rx="8" class="box"/>
-     <text x="${x+15}" y="${y+NH/2+4}" class="ul" text-anchor="middle">${s.unit}</text><line x1="${x+28}" y1="${y+8}" x2="${x+28}" y2="${y+NH-8}" class="sep"/>
+     <text x="${x+15}" y="${y+NH/2+4}" class="ul" text-anchor="middle">${esc(unitLabel(s.unit))}</text><line x1="${x+28}" y1="${y+8}" x2="${x+28}" y2="${y+NH-8}" class="sep"/>
      ${L.map((t,i)=>`<text x="${x+36}" y="${ty[i]}" class="lbl">${esc(t)}</text>`).join('')}${ring}${k==='next'?`<text x="${x+NW-8}" y="${y-5}" text-anchor="end" class="nexttag">UP NEXT</text>`:''}</g>`}
   const mk=(id,c)=>`<marker id="${id}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${c}"/></marker>`;
   return `<svg id="gsvg" viewBox="0 0 ${W} ${H}" width="${W*G.zoom}" height="${H*G.zoom}" role="img" aria-label="Topic dependency graph"><defs>${mk('ar','var(--edge)')}${mk('aru','var(--accent)')}${mk('ard','var(--mark)')}</defs>${hdr}<g>${e}</g><g>${n}</g></svg>`}
@@ -951,7 +964,33 @@ function landingHTML(){
     <footer class="landing-foot"><span>Togisumasu · 研ぎ澄ます</span><span>to sharpen the mind</span></footer>
   </div>`;
 }
-function authHTML(v){const reg=v.mode==='register'&&REG_OPEN;
+function authHTML(v){
+  if(v.mode==='forgot'){
+    return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+     <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Forgot your password?</h1>
+     <p class="lead">${v.sent?'If that email is registered, we sent a reset link. Check your inbox and spam folder.':'Enter your email and we will send a reset link if an account exists.'}</p>
+     ${v.sent?'<p class="authnote"><button class="btn ghost sm" type="button" data-auth="login">Back to sign in</button></p>':`<form class="authform" id="forgotForm" novalidate>
+      <label>Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+      <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
+      <button class="btn primary" type="submit">Send reset link</button>
+     </form>
+     <p class="authnote"><button class="btn ghost sm" type="button" data-auth="login">Back to sign in</button></p>`}
+    </section></div>`;
+  }
+  if(v.mode==='check-email'){
+    return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+     <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Check your email</h1>
+     <p class="lead">We sent a verification link to ${esc(v.email||'your inbox')}. It expires in 24 hours.</p>
+     <p class="authnote">Didn't get it? Check spam, or request a new link.</p>
+     <form class="authform" id="resendForm">
+      <input type="hidden" name="email" value="${esc(v.email||'')}">
+      <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
+      <button class="btn" type="submit">Resend verification email</button>
+     </form>
+     <p class="authnote"><button class="btn ghost sm" type="button" data-auth="login">Back to sign in</button></p>
+    </section></div>`;
+  }
+  const reg=v.mode==='register'&&REG_OPEN;
   return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
    <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">${reg?'Create your account':'Welcome back'}</h1>
    <p class="lead">${reg?'Your progress is saved to your account and only you can see it.':'Sign in to pick up where you left off.'}</p>
@@ -961,20 +1000,96 @@ function authHTML(v){const reg=v.mode==='register'&&REG_OPEN;
     ${reg?'<label>Name<input name="fullname" autocomplete="name" maxlength="60" required></label>':''}
     <label>Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
     <label>Password<input name="password" type="password" autocomplete="${reg?'new-password':'current-password'}" minlength="8" required>${reg?'<span style="font-weight:400">At least 8 characters</span>':''}</label>
+    ${reg?'':'<p class="authnote"><button class="btn ghost sm" type="button" data-auth="forgot">Forgot your password?</button></p>'}
     <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
     <button class="btn primary" type="submit">${reg?'Create account':'Sign in'}</button>
    </form>
    ${REG_OPEN?'':'<p class="authnote">New accounts are closed on this server. Ask the person who runs it.</p>'}
   </section></div>`}
+function verifyHTML(v){
+  return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+   <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">${v.error?'Verification did not work':'Verifying your email'}</h1>
+   <p class="lead">${v.error?esc(v.error):'Please wait a moment…'}</p>
+   ${v.error?`<p class="authnote"><button class="btn" type="button" data-auth="login">Sign in</button> <button class="btn ghost" type="button" data-auth="register">Request a new link</button></p>`:''}
+  </section></div>`}
+function resetHTML(v){
+  if(v.done){
+    return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+     <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Password updated</h1>
+     <p class="lead">You are signed in and can keep going.</p>
+    </section></div>`;
+  }
+  return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+   <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Choose a new password</h1>
+   <p class="lead">This reset link can be used only once and expires in an hour.</p>
+   <form class="authform" id="resetForm" novalidate>
+    <label>New password<input name="password" type="password" autocomplete="new-password" minlength="8" required><span style="font-weight:400">At least 8 characters</span></label>
+    <label>Confirm password<input name="password2" type="password" autocomplete="new-password" minlength="8" required></label>
+    <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
+    <button class="btn primary" type="submit">Update password</button>
+   </form>
+   <p class="authnote"><button class="btn ghost sm" type="button" data-auth="forgot">Request a new link</button></p>
+  </section></div>`}
+function pathInsideApp(){
+  const base=(window.BASE_PATH||'').replace(/\/$/,'');
+  let path=location.pathname || '/';
+  if(base && (path===base || path.startsWith(base+'/'))) path=path.slice(base.length) || '/';
+  return path.replace(/\/$/,'') || '/';
+}
+async function consumeVerify(token){
+  try{
+    const r=await API.req('POST','/api/auth/verify',{token});
+    USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;
+    history.replaceState({},'',bp('/')+(location.hash||''));
+    go({name:'home'});
+  }catch(x){go({name:'verify',error:x.message})}
+}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-auth]');if(a)go({name:'auth',mode:a.dataset.auth})});
-document.addEventListener('submit',async e=>{if(e.target.id!=='authForm')return;e.preventDefault();
+document.addEventListener('submit',async e=>{
+  if(e.target.id==='forgotForm'){
+    e.preventDefault();
+    const f=e.target,btn=f.querySelector('button[type=submit]'),err=$('#authErr'),email=(f.elements.namedItem('email')||{}).value.trim();
+    if(!email){err.textContent='Enter your email.';return}
+    err.textContent='';btn.disabled=true;btn.textContent='Sending…';
+    try{await API.req('POST','/api/auth/forgot-password',{email});go({name:'auth',mode:'forgot',sent:true})}
+    catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Send reset link'}
+    return;
+  }
+  if(e.target.id==='resendForm'){
+    e.preventDefault();
+    const f=e.target,btn=f.querySelector('button[type=submit]'),err=$('#authErr'),email=(f.elements.namedItem('email')||{}).value.trim();
+    err.textContent='';btn.disabled=true;btn.textContent='Sending…';
+    try{await API.req('POST','/api/auth/resend-verification',{email});err.textContent='If that email needs verification, we sent a new link.';btn.disabled=false;btn.textContent='Resend verification email'}
+    catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Resend verification email'}
+    return;
+  }
+  if(e.target.id==='resetForm'){
+    e.preventDefault();
+    const f=e.target,btn=f.querySelector('button[type=submit]'),err=$('#authErr');
+    const password=(f.elements.namedItem('password')||{}).value||'',password2=(f.elements.namedItem('password2')||{}).value||'';
+    if(password.length<8){err.textContent='Use a password of at least 8 characters.';return}
+    if(password!==password2){err.textContent='The new passwords do not match.';return}
+    err.textContent='';btn.disabled=true;btn.textContent='Updating…';
+    try{
+      const r=await API.req('POST','/api/auth/reset-password',{token:view.token,password});
+      USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;
+      history.replaceState({},'',bp('/')+(location.hash||''));
+      go({name:'home'});
+    }catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Update password'}
+    return;
+  }
+  if(e.target.id!=='authForm')return;e.preventDefault();
   const f=e.target,mode=f.dataset.authmode,btn=f.querySelector('button[type=submit]'),err=$('#authErr'),val=n=>(f.elements.namedItem(n)||{}).value||'';
   const body={email:val('email').trim(),password:val('password')};if(mode==='register')body.name=val('fullname').trim();
   if(mode==='register'&&!body.name){err.textContent='Enter your name.';return}
   if(!body.email||!body.password){err.textContent='Enter your email and password.';return}
   if(mode==='register'&&body.password.length<8){err.textContent='Use a password of at least 8 characters.';return}
   err.textContent='';btn.disabled=true;btn.textContent=mode==='register'?'Creating account…':'Signing in…';
-  try{const r=await API.req('POST','/api/auth/'+mode,body);USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;go({name:'home'})}
+  try{
+    const r=await API.req('POST','/api/auth/'+mode,body);
+    if(mode==='register'){go({name:'auth',mode:'check-email',email:body.email});return}
+    USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;go({name:'home'})
+  }
   catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent=mode==='register'?'Create account':'Sign in'}});
 async function logout(){if(Store.dirty)await Store.push();try{await API.req('POST','/api/auth/logout')}catch(e){}
   try{localStorage.removeItem(Store.key())}catch(e){}USER=null;Store.data=EMPTY();sess=null;quiz=null;go({name:'landing'})}
@@ -1009,6 +1124,11 @@ async function askTutor(btn,out,payload){btn.disabled=true;btn.textContent='Thin
   catch(e){out.innerHTML=`<p class="warn">${esc(e.message)}</p>`;btn.disabled=false;btn.textContent='Try again'}}
 async function boot(){
   try{const c=await API.req('GET','/api/auth/config');REG_OPEN=!!c.registration;AI_ON=!!c.ai}catch(e){}
+  const path=pathInsideApp();
+  const params=new URLSearchParams(location.search);
+  if(path==='/verify'&&params.get('token')){go({name:'verify',token:params.get('token')});return}
+  if(path==='/reset-password'&&params.get('token')){go({name:'reset',token:params.get('token')});return}
+  if(path==='/forgot-password'){go({name:'auth',mode:'forgot'});return}
   try{const r=await API.req('GET','/api/auth/me');USER=r.user;await loadCatalog();await Store.load();go({name:'home'})}
   catch(e){USER=null;go({name:'landing'})}}
 boot();

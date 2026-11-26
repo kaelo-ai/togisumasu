@@ -38,6 +38,13 @@ npm run admin -- promote you@example.com   # make an existing account an admin
 | `QUESTION_SEED_PER_SKILL` | `8` | Questions pre-generated per topic on first start. More are added on demand. |
 | `ALLOW_REGISTRATION` | `true` | Set to `false` once your account(s) exist. |
 | `ADMIN_EMAIL` | (empty) | Comma-separated email(s) that become admin on registration or startup. Leave empty and use `node admin.js promote` instead. |
+| `APP_BASE_URL` | `http://localhost:$PORT` | Public origin used in verification and password-reset links. |
+| `BASE_PATH` | (empty) | Optional URL prefix if the app is served under a subpath, for example `/apps/samasu`. |
+| `EMAIL_FROM` | `Togisumasu <onboarding@resend.dev>` | Sender shown to recipients. Switch this to your domain after it is verified in Resend. |
+| `RESEND_API_KEY` | (empty) | Sending-only Resend key. If unset, emails are logged to the console and not sent. |
+| `RESEND_TEMPLATE_VERIFY` | (empty) | Optional Resend template ID or alias. If unset, built-in HTML is sent. |
+| `RESEND_TEMPLATE_RESET` | (empty) | Optional Resend template ID or alias for password-reset emails. |
+| `RESEND_TEMPLATE_WELCOME` | (empty) | Optional Resend template ID or alias for the welcome email. |
 | `SESSION_DAYS` | `30` | How long a sign-in lasts. |
 | `COOKIE_SECURE` | `auto` | `auto` marks the cookie Secure on HTTPS requests; `true` forces it. |
 | `TRUST_PROXY` | `false` | `true` only behind a reverse proxy. The production compose files set it for you. |
@@ -74,7 +81,7 @@ The browser keeps a per-user cache of your progress and a small cache of recentl
 
 The algebra course and the Grade 12 CAPS course are two slices of one topic graph. A topic such as integer exponents exists once and can belong to both. `GET /api/courses` lists them; `GET /api/catalog?course=gr12-caps` returns the CAPS slice. Unit 0 (Grade 10–11 foundations) is part of that course.
 
-NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. A quiz (`POST /api/quiz`) always includes one practice-pool question, and only when every topic that question maps to, plus those topics' prerequisites inside the course, is mastered. `GET /api/exams` lists the 2022+ papers as full mocks and will not open a practice paper. Figures on those questions are drawn as SVG from the spec; the scanned crops are not served. Euclidean proofs use a statement-and-reason picker. Answer keys are filled offline by `npm run keys:solve` or by `npm run keys:memos`. November 2025 Paper 1 and Paper 2 memos are already in `data/nsc/memos/` and load on startup. The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
+NSC November papers 2016–2021 are the practice pool. Papers from 2022 onward are the exam pool. Both rules are `CHECK` constraints and SQL views (`nsc_practice_leaves`, `nsc_exam_papers`), so a query cannot mix them. A quiz (`POST /api/quiz`) always includes one practice-pool question, and only when every topic that question maps to, plus those topics' prerequisites inside the course, is mastered. `GET /api/exams` lists the 2022+ papers as full mocks and will not open a practice paper. Figures on those questions are drawn as SVG from the spec; the scanned crops are not served. Geometry figures are laid out by `euclid.js`, which solves the stated facts (on a circle, on a side, parallel, perpendicular, tangent, midpoint, equal lengths, ratios, given angles) so the drawing agrees with the question; 3D figures are drawn as a parallel projection that keeps lines, midpoints, faces and verticals. Solved positions are stored in `data/nsc/figure-layouts.json`; rerun `npm run figures:layout` after editing a figure spec (a test fails when they are stale). Euclidean proofs use a statement-and-reason picker. Answer keys are filled offline by `npm run keys:solve` or by `npm run keys:memos`. Official memos for all twenty November papers (2016–2025, P1 and P2) are in `data/nsc/memos/` and load on startup. The deterministic checker scores values, inequalities and intervals, points, trig general solutions, parameter expressions, rearranged equations and statement-reason chains; sketches, proofs and written explanations are shown with the memo answer and are never served in quizzes (see `data/nsc/memos/PROVENANCE.md`). The papers, the CAPS topic list and the skill lookup live in `data/nsc/` (see `data/nsc/PROVENANCE.md`). Bank skill ids are mapped through `bank_skill_map` and are not foreign keys. Re-import with `npm run nsc:import`.
 
 ## Question bank
 
@@ -165,6 +172,7 @@ nsc.js                     idempotent NSC paper import and the practice/exam poo
 quiz.js                    quiz assembly (gated past papers) and exam papers
 keys.js                    offline answer keys (double solve, memos, flagging)
 diagrams.js                SVG figures drawn from NSC specs
+euclid.js                  geometry figure layout: solves the spec's facts for point positions
 admin.js                   operator CLI: promote/demote/disable/delete accounts
 ai.js                      LLM providers and the tutor prompt (`node ai.js check` tests it)
 public/core.js             maths parser, answer checking, skill definitions and generators

@@ -3,6 +3,7 @@
 // is still drawn so the picture matches the paper.
 'use strict';
 const core = require('./public/core.js');
+const euclid = require('./euclid.js');
 
 function esc(value) {
   return String(value == null ? '' : value)
@@ -120,54 +121,56 @@ function plotAnalytic(spec) {
   return axes(fr, spec) + lines + circles + points.map(point => pointMark(fr, point)).join('');
 }
 
-function plotEuclidean(spec) {
-  const points = (spec.points || []).map(point => ({ ...point }));
-  const placed = new Map();
-  points.forEach((point, i) => {
-    if (point.xy) {
-      placed.set(point.label, { x: 160 + point.xy[0], y: 120 - point.xy[1] });
-      return;
-    }
-    const angle = -Math.PI / 2 + i * 2 * Math.PI / Math.max(points.length, 1);
-    placed.set(point.label, { x: 160 + 78 * Math.cos(angle), y: 118 + 70 * Math.sin(angle) });
-  });
-  for (const point of points) {
-    if (placed.has(point.label) && point.xy) continue;
-    const role = String(point.role || '');
-    const produced = role.match(/on_line_([A-Z])([A-Z])/);
-    if (produced) {
-      const a = placed.get(produced[1]), b = placed.get(produced[2]);
-      if (a && b) placed.set(point.label, { x: b.x + (b.x - a.x) * 0.55, y: b.y + (b.y - a.y) * 0.55 });
-    }
-  }
-  const at = label => placed.get(label) || lookupPlace(placed, label);
-  function lookupPlace(map, label) {
-    for (const [key, value] of map) if (key.split('(')[0].trim() === label) return value;
-    return null;
-  }
-  const segs = (spec.segments || []).map(seg => {
-    const a = at(seg.from), b = at(seg.to);
+function plotEuclidean(spec, seed, threeD) {
+  // Positions come from euclid.js, which solves the stated facts (on a circle, on a side,
+  // parallel, perpendicular, tangent, midpoint, equal lengths, ratios, given angles).
+  const { model, g } = euclid.layout(spec, seed, threeD ? { threeD: true } : null);
+  const drawnSegments = threeD ? model.segmentsDrawn : (spec.segments || []);
+  const n = model.labels.length;
+  if (!n) return '';
+  const drawn = model.circles.filter(c => c.drawn);
+  const xs = [], ys = [];
+  for (let i = 0; i < n; i++) { xs.push(g.X(i)); ys.push(g.Y(i)); }
+  for (const c of drawn) { xs.push(g.cx(c) - g.rad(c), g.cx(c) + g.rad(c)); ys.push(g.cy(c) - g.rad(c), g.cy(c) + g.rad(c)); }
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  const k = Math.min((320 - 56) / Math.max(maxX - minX, 1e-6), (240 - 44) / Math.max(maxY - minY, 1e-6));
+  const mx = (minX + maxX) / 2, my = (minY + maxY) / 2;
+  const at = i => ({ x: 160 + (g.X(i) - mx) * k, y: 120 - (g.Y(i) - my) * k });
+  const index = new Map(model.labels.map((label, i) => [label, i]));
+  const find = label => { const i = index.get(String(label || '').split('(')[0].trim()); return i == null ? null : at(i); };
+  const f = v => v.toFixed(1);
+  const circles = drawn.map(c => `<circle cx="${f(160 + (g.cx(c) - mx) * k)}" cy="${f(120 - (g.cy(c) - my) * k)}" r="${f(g.rad(c) * k)}" fill="none" stroke="currentColor" stroke-width="1.2"/>`).join('');
+  const segs = drawnSegments.map(seg => {
+    const a = find(seg.from), b = find(seg.to);
     if (!a || !b) return '';
-    return `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="currentColor" stroke-width="1.5"/>`;
+    return `<line x1="${f(a.x)}" y1="${f(a.y)}" x2="${f(b.x)}" y2="${f(b.y)}" stroke="currentColor" stroke-width="1.5"/>`;
   }).join('');
-  let circle = '';
-  if ((spec.circles || []).length) {
-    const through = spec.circles[0].through || [];
-    const pts = through.map(at).filter(Boolean);
-    if (pts.length >= 3) {
-      const cx = pts.reduce((s, p) => s + p.x, 0) / pts.length;
-      const cy = pts.reduce((s, p) => s + p.y, 0) / pts.length;
-      const r = pts.reduce((s, p) => s + Math.hypot(p.x - cx, p.y - cy), 0) / pts.length;
-      circle = `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" fill="none" stroke="currentColor" stroke-width="1.2"/>`;
-    }
-  }
-  const labels = [...placed].map(([label, p]) => `<text x="${(p.x + 6).toFixed(1)}" y="${(p.y - 6).toFixed(1)}" font-size="12">${esc(String(label).split('(')[0])}</text>`).join('');
-  const dots = [...placed].map(([, p]) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.2" fill="currentColor"/>`).join('');
-  return circle + segs + dots + labels;
+  const pts = model.labels.map((_, i) => at(i));
+  const cxAll = pts.reduce((s, p) => s + p.x, 0) / n, cyAll = pts.reduce((s, p) => s + p.y, 0) / n;
+  const dots = pts.map(p => `<circle cx="${f(p.x)}" cy="${f(p.y)}" r="2.2" fill="currentColor"/>`).join('');
+  // Labels sit just outside the figure, away from its middle, so they do not land on a line.
+  const labels = pts.map((p, i) => {
+    const dx = p.x - cxAll, dy = p.y - cyAll, d = Math.hypot(dx, dy) || 1;
+    return `<text x="${f(p.x + dx / d * 10)}" y="${f(p.y + dy / d * 10)}" font-size="12" text-anchor="middle" dominant-baseline="middle">${esc(model.labels[i])}</text>`;
+  }).join('');
+  return circles + segs + dots + labels;
 }
 
 function plotStats(spec) {
-  const fr = frame(spec);
+  const view = spec.view || {};
+  // A bar chart over named categories (months, say) has text on the x axis, not a numeric range.
+  const categories = Array.isArray(view.x) && view.x.some(v => typeof v !== 'number') ? view.x.map(String) : null;
+  const fr = frame(categories ? { ...spec, view: { ...view, x: [0, categories.length] } } : spec);
+  if (categories) {
+    const series = (spec.series || []).filter(s => Array.isArray(s.values));
+    const slot = fr.width / categories.length, w = Math.max(2, (slot - 4) / Math.max(series.length, 1));
+    const bars = series.map((s, k) => s.values.map((v, i) => {
+      const h = Math.max(0, Number(v) || 0) / (fr.y[1] || 1) * fr.height;
+      return `<rect x="${(fr.left + i * slot + 2 + k * w).toFixed(1)}" y="${(fr.top + fr.height - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="none" stroke="currentColor"/>`;
+    }).join('')).join('');
+    const ticks = categories.map((c, i) => `<text x="${(fr.left + (i + 0.5) * slot).toFixed(1)}" y="${fr.top + fr.height + 12}" font-size="8" text-anchor="middle">${esc(c)}</text>`).join('');
+    return axes(fr, { axes: { x_label: spec.x_label, y_label: spec.y_label } }) + bars + ticks;
+  }
   const dots = (spec.points || []).filter(point => point.xy).map(point => {
     const p = fr.map(point.xy[0], point.xy[1]);
     return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.3" fill="currentColor"/>`;
@@ -186,7 +189,7 @@ function render(figure) {
   let body = '';
   if (kind === 'function_graph' || kind === 'trig_graph') body = plotGraph(spec);
   else if (kind === 'analytic_geometry') body = plotAnalytic(spec);
-  else if (kind === 'euclidean' || kind === '3d_trig') body = plotEuclidean(spec);
+  else if (kind === 'euclidean' || kind === '3d_trig') body = plotEuclidean(spec, figure.id, kind === '3d_trig');
   else if (kind === 'statistics_chart') body = plotStats(spec);
   else body = `<text x="24" y="120" font-size="13">${esc((figure && figure.caption) || kind || 'Diagram')}</text>`;
   const caption = esc((figure && figure.caption) || 'Diagram');
