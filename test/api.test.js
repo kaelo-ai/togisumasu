@@ -2,6 +2,8 @@
 'use strict';
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 process.env.DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'togisumasu-test-'));
+const { mailbox, lastMail, tokenFrom, registerVerified } = require('./helpers.js');
+const sent = mailbox();
 const { server, db } = require('../server.js');
 
 let base;
@@ -33,12 +35,26 @@ server.listen(0, async () => {
   await t('unauthenticated progress is 401', async () => assert.equal((await anon('GET', '/api/progress')).status, 401));
   await t('short password rejected', async () => assert.equal((await anon('POST', '/api/auth/register', { email: 'x@y.co', name: 'X', password: 'short' })).status, 400));
   await t('bad email rejected', async () => assert.equal((await anon('POST', '/api/auth/register', { email: 'nope', name: 'X', password: 'longenough1' })).status, 400));
-  await t('register A sets HttpOnly cookie', async () => {
+  await t('register A waits for email verification', async () => {
     const r = await a('POST', '/api/auth/register', { email: 'alice@example.com', name: 'Alice', password: 'alice-pass-123' });
-    assert.equal(r.status, 201); assert.match(r.setCookie, /HttpOnly/); assert.match(r.setCookie, /SameSite=Lax/);
+    assert.equal(r.status, 201); assert.equal(r.json.needsVerification, true);
+    assert.equal((await a('GET', '/api/auth/me')).status, 401);
   });
   await t('duplicate email (any case) is 409', async () => assert.equal((await anon('POST', '/api/auth/register', { email: 'ALICE@example.com', name: 'A2', password: 'whatever123' })).status, 409));
-  await t('register B', async () => assert.equal((await b('POST', '/api/auth/register', { email: 'bob@example.com', name: 'Bob', password: 'bob-pass-123' })).status, 201));
+  await t('unverified login is 403', async () => {
+    const r = await anon('POST', '/api/auth/login', { email: 'alice@example.com', password: 'alice-pass-123' });
+    assert.equal(r.status, 403); assert.equal(r.json.needsVerification, true);
+  });
+  await t('verify A sets HttpOnly cookie', async () => {
+    const msg = lastMail(sent, 'verify', 'alice@example.com');
+    const r = await a('POST', '/api/auth/verify', { token: tokenFrom(msg) });
+    assert.equal(r.status, 200); assert.match(r.setCookie, /HttpOnly/); assert.match(r.setCookie, /SameSite=Lax/);
+    assert.equal(r.json.user.email, 'alice@example.com'); assert.equal(r.json.user.emailVerified, true);
+  });
+  await t('register B', async () => {
+    const r = await registerVerified(b, { email: 'bob@example.com', name: 'Bob', password: 'bob-pass-123' }, sent);
+    assert.equal(r.status, 200);
+  });
   await t('/me returns own user', async () => assert.equal((await a('GET', '/api/auth/me')).json.user.email, 'alice@example.com'));
   await t('new account has empty progress', async () => assert.equal((await a('GET', '/api/progress')).json.data, null));
   await t('question bank is seeded in SQLite', async () => {

@@ -3,6 +3,8 @@
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 process.env.DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'togisumasu-caps-'));
 process.env.QUESTION_SEED_PER_SKILL = '1';
+const { mailbox, registerVerified } = require('./helpers.js');
+const sent = mailbox();
 const { server, db } = require('../server.js');
 const catalog = require('../catalog.js');
 const caps = require('../caps.js');
@@ -163,7 +165,7 @@ server.listen(0, async () => {
     assert.equal((await anon('GET', '/api/catalog?course=gr12-caps')).status, 401);
   });
   await http('signed-in learner can load the CAPS course', async () => {
-    assert.equal((await user('POST', '/api/auth/register', { email: 'caps@example.com', name: 'Caps', password: 'long-password' })).status, 201);
+    assert.equal((await registerVerified(user, { email: 'caps@example.com', name: 'Caps', password: 'long-password' }, sent)).status, 200);
     const r = await user('GET', '/api/catalog?course=gr12-caps');
     assert.equal(r.status, 200);
     assert.equal(r.json.course.id, 'gr12-caps');

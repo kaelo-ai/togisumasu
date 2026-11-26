@@ -2,6 +2,7 @@
 // Zero npm dependencies: Node's built-in http, crypto and sqlite modules.
 // Serves the single-page app from ./public and a small JSON API for accounts, progress and questions.
 'use strict';
+require('./env.js');
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -12,6 +13,7 @@ const bank = require('./questions.js');
 const catalog = require('./catalog.js');
 const quizEngine = require('./quiz.js');
 const keys = require('./keys.js');
+const email = require('./email.js');
 
 const PORT = Number(process.env.PORT || 3000);
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
@@ -23,6 +25,26 @@ const TRUST_PROXY = /^(1|true|yes)$/i.test(process.env.TRUST_PROXY || '');
 const ALLOW_REGISTRATION = !/^(0|false|no)$/i.test(process.env.ALLOW_REGISTRATION || 'true');
 const ADMIN_EMAILS = String(process.env.ADMIN_EMAIL || '')
   .split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+const BASE_PATH = normalizeBasePath(process.env.BASE_PATH || '');
+const APP_BASE_URL = String(process.env.APP_BASE_URL || '').replace(/\/$/, '');
+const VERIFY_MS = 24 * 60 * 60 * 1000;
+const RESET_MS = 60 * 60 * 1000;
+
+function normalizeBasePath(p) {
+  p = String(p || '').trim();
+  if (!p || p === '/') return '';
+  if (!p.startsWith('/')) p = '/' + p;
+  return p.replace(/\/$/, '');
+}
+
+// Public links in emails. APP_BASE_URL is the origin (and may already include BASE_PATH).
+function publicUrl(pathname) {
+  const origin = APP_BASE_URL || `http://localhost:${PORT}`;
+  const prefix = BASE_PATH;
+  const root = prefix && (origin === prefix || origin.endsWith(prefix)) ? origin : origin + prefix;
+  if (!pathname.startsWith('/')) pathname = '/' + pathname;
+  return root + pathname;
+}
 const MAX_BODY = 1024 * 1024; // 1 MB is far more than a progress document needs
 const AI = ai.loadConfig(); // operator-supplied LLM key and provider; learners never see it
 
@@ -39,6 +61,7 @@ db.exec(`
     pass_hash  TEXT NOT NULL,
     role       TEXT NOT NULL DEFAULT 'student',
     status     TEXT NOT NULL DEFAULT 'active',
+    email_verified_at INTEGER,
     created_at INTEGER NOT NULL
   );
   CREATE TABLE IF NOT EXISTS sessions (
@@ -69,20 +92,42 @@ db.exec(`
     created_at  INTEGER NOT NULL
   );
   CREATE INDEX IF NOT EXISTS admin_audit_created ON admin_audit(created_at DESC);
+  CREATE TABLE IF NOT EXISTS email_tokens (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    type       TEXT NOT NULL,
+    token_hash TEXT NOT NULL UNIQUE,
+    expires_at INTEGER NOT NULL,
+    used_at    INTEGER,
+    created_at INTEGER NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS email_tokens_user ON email_tokens(user_id, type);
 `);
 for (const [name, declaration] of [
   ['role', "role TEXT NOT NULL DEFAULT 'student'"],
   ['status', "status TEXT NOT NULL DEFAULT 'active'"],
+  ['email_verified_at', 'email_verified_at INTEGER'],
 ]) {
   const cols = db.prepare('PRAGMA table_info(users)').all();
-  if (!cols.some(c => c.name === name)) db.exec(`ALTER TABLE users ADD COLUMN ${declaration}`);
+  if (!cols.some(c => c.name === name)) {
+    db.exec(`ALTER TABLE users ADD COLUMN ${declaration}`);
+    if (name === 'email_verified_at') {
+      // Accounts that existed before verification was added keep working.
+      db.prepare('UPDATE users SET email_verified_at = created_at WHERE email_verified_at IS NULL').run();
+    }
+  }
 }
 bank.init(db);
 bank.seed(db, Number(process.env.QUESTION_SEED_PER_SKILL || 8));
 const q = {
   userByEmail: db.prepare('SELECT * FROM users WHERE email = ?'),
-  userById: db.prepare('SELECT id, email, name, role, status, created_at FROM users WHERE id = ?'),
+  userById: db.prepare('SELECT id, email, name, role, status, created_at, email_verified_at FROM users WHERE id = ?'),
   insertUser: db.prepare('INSERT INTO users (email, name, pass_hash, role, created_at) VALUES (?, ?, ?, ?, ?)'),
+  markVerified: db.prepare('UPDATE users SET email_verified_at = ? WHERE id = ?'),
+  insertToken: db.prepare('INSERT INTO email_tokens (user_id, type, token_hash, expires_at, used_at, created_at) VALUES (?, ?, ?, ?, NULL, ?)'),
+  tokenByHash: db.prepare('SELECT * FROM email_tokens WHERE token_hash = ?'),
+  consumeToken: db.prepare('UPDATE email_tokens SET used_at = ? WHERE id = ? AND used_at IS NULL'),
+  invalidateTokens: db.prepare('UPDATE email_tokens SET used_at = ? WHERE user_id = ? AND type = ? AND used_at IS NULL'),
   insertSession: db.prepare('INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?, ?, ?)'),
   sessionByHash: db.prepare('SELECT user_id, expires_at FROM sessions WHERE token_hash = ?'),
   deleteSession: db.prepare('DELETE FROM sessions WHERE token_hash = ?'),
@@ -142,7 +187,8 @@ function isHttps(req) {
 }
 function sessionCookie(req, token, maxAgeSec) {
   const secure = COOKIE_SECURE === 'true' || (COOKIE_SECURE === 'auto' && isHttps(req));
-  return `sid=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSec}${secure ? '; Secure' : ''}`;
+  const cookiePath = BASE_PATH || '/';
+  return `sid=${token}; Path=${cookiePath}; HttpOnly; SameSite=Lax; Max-Age=${maxAgeSec}${secure ? '; Secure' : ''}`;
 }
 function currentUser(req) {
   const token = parseCookies(req).sid;
@@ -205,7 +251,65 @@ function readJson(req) {
   });
 }
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const publicUser = u => ({ id: u.id, email: u.email, name: u.name, role: u.role });
+const publicUser = u => ({
+  id: u.id, email: u.email, name: u.name, role: u.role,
+  emailVerified: u.email_verified_at != null,
+});
+
+function issueToken(userId, type, ttlMs) {
+  q.invalidateTokens.run(Date.now(), userId, type);
+  const raw = crypto.randomBytes(32).toString('base64url');
+  q.insertToken.run(userId, type, sha256(raw), Date.now() + ttlMs, Date.now());
+  return raw;
+}
+
+function readToken(raw, type) {
+  const token = String(raw || '').trim();
+  if (!token) return null;
+  const row = q.tokenByHash.get(sha256(token));
+  if (!row || row.type !== type || row.used_at != null || row.expires_at < Date.now()) return null;
+  return row;
+}
+
+function consumeToken(row) {
+  const info = q.consumeToken.run(Date.now(), row.id);
+  return info.changes > 0;
+}
+
+function fireAndForget(label, promise) {
+  Promise.resolve(promise).catch(err => console.error(label + ':', err.message || err));
+}
+
+async function deliverVerification(user) {
+  const raw = issueToken(user.id, 'verify', VERIFY_MS);
+  await email.sendVerification({
+    to: user.email,
+    name: user.name,
+    url: publicUrl('/verify?token=' + raw),
+    expiresIn: '24 hours',
+    idempotencyKey: `verify-email/${user.id}/${sha256(raw).slice(0, 16)}`,
+  });
+}
+
+async function deliverReset(user) {
+  const raw = issueToken(user.id, 'reset', RESET_MS);
+  await email.sendPasswordReset({
+    to: user.email,
+    name: user.name,
+    url: publicUrl('/reset-password?token=' + raw),
+    expiresIn: '1 hour',
+    idempotencyKey: `password-reset/${user.id}/${sha256(raw).slice(0, 16)}`,
+  });
+}
+
+async function deliverWelcome(user) {
+  await email.sendWelcome({
+    to: user.email,
+    name: user.name,
+    url: publicUrl('/'),
+    idempotencyKey: `welcome-email/${user.id}`,
+  });
+}
 
 /* ---------------- admin ---------------- */
 function audit(admin, action, targetType, targetId, detail) {
@@ -561,9 +665,9 @@ async function api(req, res, url) {
     if (q.userByEmail.get(e)) return send(res, 409, { error: 'An account with that email already exists. Sign in instead.' });
     const role = ADMIN_EMAILS.includes(e) ? 'admin' : 'student';
     const info = q.insertUser.run(e, n, hashPassword(p), role, Date.now());
-    const user = q.userById.get(Number(info.lastInsertRowid));
-    const token = createSession(user.id);
-    return send(res, 201, { user: publicUser(user) }, { 'Set-Cookie': sessionCookie(req, token, SESSION_DAYS * 86400) });
+    const created = q.userById.get(Number(info.lastInsertRowid));
+    fireAndForget('verification email', deliverVerification(created));
+    return send(res, 201, { ok: true, needsVerification: true, email: created.email });
   }
 
   if (route === 'POST /api/auth/login') {
@@ -575,6 +679,7 @@ async function api(req, res, url) {
     const ok = verifyPassword(p, row ? row.pass_hash : DUMMY_HASH) && !!row;
     if (!ok) return send(res, 401, { error: 'Email or password is incorrect.' });
     if (row.status !== 'active') return send(res, 403, { error: 'This account is disabled. Ask an administrator to restore it.' });
+    if (row.email_verified_at == null) return send(res, 403, { error: 'Check your email for a verification link before signing in.', needsVerification: true });
     const token = createSession(row.id);
     return send(res, 200, { user: publicUser(row) }, { 'Set-Cookie': sessionCookie(req, token, SESSION_DAYS * 86400) });
   }
@@ -583,6 +688,68 @@ async function api(req, res, url) {
     const token = parseCookies(req).sid;
     if (token) q.deleteSession.run(sha256(token));
     return send(res, 200, { ok: true }, { 'Set-Cookie': sessionCookie(req, '', 0) });
+  }
+
+  if (route === 'POST /api/auth/verify') {
+    const { token } = await readJson(req);
+    const row = readToken(token, 'verify');
+    if (!row || !consumeToken(row)) return send(res, 400, { error: 'This verification link is invalid or has expired.' });
+    const account = q.userById.get(row.user_id);
+    if (!account || account.status === 'deleted') return send(res, 400, { error: 'This verification link is invalid or has expired.' });
+    if (account.email_verified_at == null) q.markVerified.run(Date.now(), account.id);
+    const user = q.userById.get(account.id);
+    fireAndForget('welcome email', deliverWelcome(user));
+    const session = createSession(user.id);
+    return send(res, 200, { user: publicUser(user) }, { 'Set-Cookie': sessionCookie(req, session, SESSION_DAYS * 86400) });
+  }
+
+  if (route === 'POST /api/auth/resend-verification') {
+    const ip = clientIp(req);
+    const { email: rawEmail } = await readJson(req);
+    const e = String(rawEmail || '').trim().toLowerCase();
+    if (rateLimited('reverify:' + ip, 8) || rateLimited('reverify:' + e, 5)) {
+      return send(res, 429, { error: 'Too many attempts. Try again in a few minutes.' });
+    }
+    const row = q.userByEmail.get(e);
+    // Same response whether or not the account exists or is already verified.
+    if (row && row.status === 'active' && row.email_verified_at == null) {
+      fireAndForget('verification email', deliverVerification(row));
+    } else {
+      verifyPassword('timing-pad', DUMMY_HASH);
+    }
+    return send(res, 200, { ok: true, message: 'If that email needs verification, we sent a new link.' });
+  }
+
+  if (route === 'POST /api/auth/forgot-password') {
+    const ip = clientIp(req);
+    const { email: rawEmail } = await readJson(req);
+    const e = String(rawEmail || '').trim().toLowerCase();
+    if (rateLimited('forgot:' + ip, 8) || rateLimited('forgot:' + e, 5)) {
+      return send(res, 429, { error: 'Too many attempts. Try again in a few minutes.' });
+    }
+    const row = q.userByEmail.get(e);
+    if (row && row.status === 'active') {
+      fireAndForget('password reset email', deliverReset(row));
+    } else {
+      verifyPassword('timing-pad', DUMMY_HASH);
+    }
+    return send(res, 200, { ok: true, message: 'If that email is registered, we sent a reset link.' });
+  }
+
+  if (route === 'POST /api/auth/reset-password') {
+    const body = await readJson(req);
+    const password = String((body && body.password) || '');
+    if (password.length < 8 || password.length > 200) return send(res, 400, { error: 'Use a password of at least 8 characters.' });
+    const row = readToken(body && body.token, 'reset');
+    if (!row || !consumeToken(row)) return send(res, 400, { error: 'This reset link is invalid or has expired.' });
+    const account = q.userById.get(row.user_id);
+    if (!account || account.status !== 'active') return send(res, 400, { error: 'This reset link is invalid or has expired.' });
+    q.setPassword.run(hashPassword(password), account.id);
+    q.deleteSessions.run(account.id);
+    if (account.email_verified_at == null) q.markVerified.run(Date.now(), account.id);
+    const user = q.userById.get(account.id);
+    const session = createSession(user.id);
+    return send(res, 200, { user: publicUser(user) }, { 'Set-Cookie': sessionCookie(req, session, SESSION_DAYS * 86400) });
   }
 
   // Everything below needs a signed-in user, and only ever touches that user's row.
@@ -713,6 +880,13 @@ async function api(req, res, url) {
 
 /* ---------------- static files ---------------- */
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon', '.json': 'application/json' };
+function injectBasePath(buf, rel) {
+  if (rel !== '/index.html' && rel !== '/admin.html') return buf;
+  const snippet = `<script>window.BASE_PATH=${JSON.stringify(BASE_PATH)};</script>`;
+  const html = buf.toString('utf8');
+  return Buffer.from(html.includes('</head>') ? html.replace('</head>', snippet + '</head>') : snippet + html);
+}
+
 function serveStatic(req, res, url) {
   let rel = decodeURIComponent(url.pathname);
   if (rel === '/admin' || rel === '/admin/') rel = '/admin.html';
@@ -722,13 +896,24 @@ function serveStatic(req, res, url) {
   fs.readFile(file, (err, buf) => {
     if (err) return send(res, 404, 'Not found');
     const noCache = rel === '/index.html' || rel === '/admin.html';
+    const body = injectBasePath(buf, rel);
     res.writeHead(200, { ...SECURITY_HEADERS, 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream', 'Cache-Control': noCache ? 'no-cache' : 'public, max-age=3600' });
-    res.end(req.method === 'HEAD' ? undefined : buf);
+    res.end(req.method === 'HEAD' ? undefined : body);
   });
+}
+
+function stripBasePath(pathname) {
+  if (!BASE_PATH) return pathname || '/';
+  if (pathname === BASE_PATH || pathname === BASE_PATH + '/') return '/';
+  if (pathname.startsWith(BASE_PATH + '/')) return pathname.slice(BASE_PATH.length) || '/';
+  return null;
 }
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
+  const stripped = stripBasePath(url.pathname);
+  if (stripped == null) return send(res, 404, { error: 'Not found' });
+  url.pathname = stripped;
   try {
     if (url.pathname.startsWith('/api/')) return await api(req, res, url);
     if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method not allowed');

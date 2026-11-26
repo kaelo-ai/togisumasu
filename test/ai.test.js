@@ -2,6 +2,8 @@
 'use strict';
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), http = require('node:http'), assert = require('node:assert/strict');
 const ai = require('../ai.js');
+const { mailbox, registerVerified } = require('./helpers.js');
+const sent = mailbox();
 
 const seen = [];
 const fake = http.createServer((req, res) => {
@@ -44,7 +46,8 @@ fake.listen(0, async () => {
 
     await t('config reports ai:true', async () => assert.equal((await call('GET', '/api/auth/config')).json.ai, true));
     await t('explain needs sign-in', async () => assert.equal((await call('POST', '/api/ai/explain', Q)).status, 401));
-    await call('POST', '/api/auth/register', { email: 'k@example.com', name: 'K', password: 'password123' });
+    const reg = await registerVerified(call, { email: 'k@example.com', name: 'K', password: 'password123' }, sent);
+    if (reg.status !== 200) throw new Error('register/verify failed: ' + reg.status);
     await t('explain returns text and remaining', async () => {
       const r = await call('POST', '/api/ai/explain', Q);
       assert.equal(r.status, 200); assert.match(r.json.text, /flipped the sign/); assert.equal(r.json.remaining, 1);
