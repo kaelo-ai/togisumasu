@@ -123,23 +123,66 @@ function plotAnalytic(spec) {
 function plotEuclidean(spec) {
   const points = (spec.points || []).map(point => ({ ...point }));
   const placed = new Map();
-  points.forEach((point, i) => {
-    if (point.xy) {
-      placed.set(point.label, { x: 160 + point.xy[0], y: 120 - point.xy[1] });
-      return;
-    }
-    const angle = -Math.PI / 2 + i * 2 * Math.PI / Math.max(points.length, 1);
-    placed.set(point.label, { x: 160 + 78 * Math.cos(angle), y: 118 + 70 * Math.sin(angle) });
-  });
-  for (const point of points) {
-    if (placed.has(point.label) && point.xy) continue;
+  const name = label => String(label).split('(')[0].trim();
+  // A point that sits on a side, at a midpoint or at an intersection is placed from the points
+  // that define it, so S on PQ and T on PR with ST parallel to QR are drawn that way.
+  const derived = point => {
     const role = String(point.role || '');
-    const produced = role.match(/on_line_([A-Z])([A-Z])/);
-    if (produced) {
-      const a = placed.get(produced[1]), b = placed.get(produced[2]);
-      if (a && b) placed.set(point.label, { x: b.x + (b.x - a.x) * 0.55, y: b.y + (b.y - a.y) * 0.55 });
+    let m = role.match(/^(?:intersection_of_|intersection_|on_)?([A-Z])([A-Z])_(?:and_)?(?:on_)?([A-Z])([A-Z])$/);
+    if (m) return { kind: 'cross', ends: [m[1], m[2], m[3], m[4]] };
+    // A point given as lying on a side, where another drawn segment passes through it, is where the two cross.
+    const of = /^[A-Z]{2}$/.test(String(point.of || '')) ? point.of : null;
+    const through = (spec.segments || []).find(seg => seg.through === point.label);
+    if (of && through) return { kind: 'cross', ends: [of[0], of[1], through.from, through.to] };
+    if (of && /^on_(?:segment|side|line)$/.test(role)) return { kind: 'along', ends: [of[0], of[1]] };
+    if ((m = role.match(/^midpoint_of_([A-Z])([A-Z])$/))) return { kind: 'along', ends: [m[1], m[2]], t: 0.5 };
+    if ((m = role.match(/^on_(?:line_)?([A-Z])([A-Z])_?produced$/))) return { kind: 'beyond', ends: [m[1], m[2]] };
+    if ((m = role.match(/^on_(?:side_|segment_)?([A-Z])([A-Z])$/))) return { kind: 'along', ends: [m[1], m[2]] };
+    return null;
+  };
+  const hasCircle = (spec.circles || []).length > 0;
+  const base = points.filter(point => !point.xy && !derived(point) && !(hasCircle && /^centre/.test(String(point.role || ''))));
+  points.forEach(point => {
+    if (point.xy) placed.set(point.label, { x: 160 + point.xy[0], y: 120 - point.xy[1] });
+    else if (hasCircle && /^centre/.test(String(point.role || '')) && !placed.has('__centre')) { placed.set(point.label, { x: 160, y: 118 }); placed.set('__centre', true); }
+  });
+  placed.delete('__centre');
+  base.forEach((point, i) => {
+    const angle = -Math.PI / 2 + i * 2 * Math.PI / Math.max(base.length, 1);
+    placed.set(point.label, { x: 160 + 82 * Math.cos(angle), y: 118 + 82 * Math.sin(angle) });
+  });
+  const find = label => { for (const [key, value] of placed) if (name(key) === label) return value; return null; };
+  const alongCount = new Map();
+  for (let pass = 0; pass < 3; pass++) {
+    for (const point of points) {
+      if (placed.has(point.label)) continue;
+      const how = derived(point);
+      if (!how) continue;
+      const ends = how.ends.map(find);
+      if (ends.some(p => !p)) continue;
+      if (how.kind === 'along') {
+        const key = how.ends.join('');
+        const n = alongCount.get(key) || 0;
+        alongCount.set(key, n + 1);
+        const t = how.t != null ? how.t : [0.42, 0.68, 0.25][n % 3];
+        placed.set(point.label, { x: ends[0].x + (ends[1].x - ends[0].x) * t, y: ends[0].y + (ends[1].y - ends[0].y) * t });
+      } else if (how.kind === 'beyond') {
+        placed.set(point.label, { x: ends[1].x + (ends[1].x - ends[0].x) * 0.55, y: ends[1].y + (ends[1].y - ends[0].y) * 0.55 });
+      } else {
+        const [p1, p2, p3, p4] = ends;
+        const d = (p1.x - p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x - p4.x);
+        // Parallel in this rough layout: keep the point on its first line rather than off in a corner.
+        if (Math.abs(d) < 1e-6) { placed.set(point.label, { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }); continue; }
+        const u = ((p1.x - p3.x) * (p3.y - p4.y) - (p1.y - p3.y) * (p3.x - p4.x)) / d;
+        placed.set(point.label, { x: p1.x + u * (p2.x - p1.x), y: p1.y + u * (p2.y - p1.y) });
+      }
     }
   }
+  const rest = points.filter(point => !placed.has(point.label));
+  rest.forEach((point, i) => {
+    const angle = -Math.PI / 2 + (i + 0.5) * 2 * Math.PI / Math.max(rest.length, 1);
+    placed.set(point.label, { x: 160 + 110 * Math.cos(angle), y: 118 + 95 * Math.sin(angle) });
+  });
   const at = label => placed.get(label) || lookupPlace(placed, label);
   function lookupPlace(map, label) {
     for (const [key, value] of map) if (key.split('(')[0].trim() === label) return value;
@@ -154,7 +197,10 @@ function plotEuclidean(spec) {
   if ((spec.circles || []).length) {
     const through = spec.circles[0].through || [];
     const pts = through.map(at).filter(Boolean);
-    if (pts.length >= 3) {
+    const onRing = p => Math.abs(Math.hypot(p.x - 160, p.y - 118) - 82) < 0.5;
+    if (pts.length >= 3 && pts.every(onRing)) {
+      circle = `<circle cx="160" cy="118" r="82" fill="none" stroke="currentColor" stroke-width="1.2"/>`;
+    } else if (pts.length >= 3) {
       const cx = pts.reduce((s, p) => s + p.x, 0) / pts.length;
       const cy = pts.reduce((s, p) => s + p.y, 0) / pts.length;
       const r = pts.reduce((s, p) => s + Math.hypot(p.x - cx, p.y - cy), 0) / pts.length;
@@ -167,7 +213,20 @@ function plotEuclidean(spec) {
 }
 
 function plotStats(spec) {
-  const fr = frame(spec);
+  const view = spec.view || {};
+  // A bar chart over named categories (months, say) has text on the x axis, not a numeric range.
+  const categories = Array.isArray(view.x) && view.x.some(v => typeof v !== 'number') ? view.x.map(String) : null;
+  const fr = frame(categories ? { ...spec, view: { ...view, x: [0, categories.length] } } : spec);
+  if (categories) {
+    const series = (spec.series || []).filter(s => Array.isArray(s.values));
+    const slot = fr.width / categories.length, w = Math.max(2, (slot - 4) / Math.max(series.length, 1));
+    const bars = series.map((s, k) => s.values.map((v, i) => {
+      const h = Math.max(0, Number(v) || 0) / (fr.y[1] || 1) * fr.height;
+      return `<rect x="${(fr.left + i * slot + 2 + k * w).toFixed(1)}" y="${(fr.top + fr.height - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" fill="none" stroke="currentColor"/>`;
+    }).join('')).join('');
+    const ticks = categories.map((c, i) => `<text x="${(fr.left + (i + 0.5) * slot).toFixed(1)}" y="${fr.top + fr.height + 12}" font-size="8" text-anchor="middle">${esc(c)}</text>`).join('');
+    return axes(fr, { axes: { x_label: spec.x_label, y_label: spec.y_label } }) + bars + ticks;
+  }
   const dots = (spec.points || []).filter(point => point.xy).map(point => {
     const p = fr.map(point.xy[0], point.xy[1]);
     return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.3" fill="currentColor"/>`;
