@@ -1,0 +1,49 @@
+# Togisumasu on Fly.io.
+# SQLite lives on a single volume, so this app must run exactly one Machine.
+# auto_stop_machines = "stop" and min_machines_running = 0 keep the bill
+# inside the Free plan's $5 credit for a single tester: the Machine stops when
+# idle (volume still costs $0.15) and starts again on the next request, with
+# a short cold start. Suspend would wake faster but is not needed here.
+
+app = "togisumasu"
+primary_region = "jnb"
+swap_size_mb = 512
+kill_timeout = "30s"
+
+[build]
+
+[env]
+  PORT = "3000"
+  DATA_DIR = "/data"
+  NODE_ENV = "production"
+  TRUST_PROXY = "true"
+  COOKIE_SECURE = "true"
+  ALLOW_REGISTRATION = "true"
+  DOMAIN = "togisumasu.fly.dev"
+  APP_BASE_URL = "https://togisumasu.fly.dev"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[http_service.checks]]
+  grace_period = "1m"
+  interval = "15s"
+  method = "GET"
+  path = "/api/health"
+  timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
+  cpus = 1
+  processes = ["app"]
+
+[mounts]
+  source = "togisumasu_data"
+  destination = "/data"
+  initial_size = "1gb"
