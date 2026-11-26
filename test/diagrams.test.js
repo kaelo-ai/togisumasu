@@ -2,6 +2,7 @@
 'use strict';
 const fs = require('node:fs'), os = require('node:os'), path = require('node:path'), assert = require('node:assert/strict');
 const diagrams = require('../diagrams.js');
+const euclid = require('../euclid.js');
 
 process.env.DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'togisumasu-fig-'));
 process.env.QUESTION_SEED_PER_SKILL = '1';
@@ -47,6 +48,49 @@ t('a bar chart over months draws its bars and never writes NaN into the svg', ()
   assert.doesNotMatch(svg, /NaN|Infinity/);
   assert.equal((svg.match(/<rect /g) || []).length, 12);
   assert.match(svg, />Apr</);
+});
+
+const optionsFor = fig => fig.kind === '3d_trig' ? { threeD: true } : null;
+// Figures whose stated facts the solver cannot yet meet within tolerance. Keep this list short and named.
+const APPROXIMATE = ['2024-nov-p2-fig-11'];
+
+t('the stored figure layouts were solved from the current specs', () => {
+  const stored = euclid.storedLayouts();
+  const stale = euclid.paperFigures().filter(fig => !stored[fig.id] || stored[fig.id].hash !== euclid.specHash(fig.spec, optionsFor(fig))).map(fig => fig.id);
+  assert.deepEqual(stale, [], 'run npm run figures:layout');
+});
+
+t('every geometry figure meets its stated facts, apart from the named approximate ones', () => {
+  const failing = euclid.paperFigures().filter(fig => euclid.report(fig.spec, fig.id, optionsFor(fig)).failing.length).map(fig => fig.id);
+  assert.deepEqual(failing, APPROXIMATE);
+});
+
+t('solving from scratch puts V at the foot of QT on SR with QT perpendicular to SR', () => {
+  const fig = figure('2025-nov-p2.json', '2025-nov-p2-fig-10');
+  const { g, model, residuals } = euclid.solve(fig.spec, fig.id);
+  const i = label => model.labels.indexOf(label);
+  assert.ok(Math.abs(g.lineDist(i('V'), i('S'), i('R'))) < euclid.TOLERANCE, 'V on SR');
+  assert.ok(Math.abs(g.lineDist(i('V'), i('Q'), i('T'))) < euclid.TOLERANCE, 'V on QT');
+  assert.ok(Math.abs(g.dot(i('Q'), i('T'), i('S'), i('R'))) < euclid.TOLERANCE, 'QT ⊥ SR');
+  for (const label of 'PQRST') assert.ok(Math.abs(g.onCircle(model.circles[0], i(label))) < euclid.TOLERANCE, label + ' on the circle');
+  assert.ok(residuals.every(r => r.residual < euclid.TOLERANCE));
+});
+
+t('a tangent is perpendicular to the radius at its point of contact', () => {
+  const fig = euclid.paperFigures().find(f => (f.spec.facts || []).some(x => x.type === 'tangent' && x.line === 'SP' && x.at === 'P'));
+  const { g, model } = euclid.layout(fig.spec, fig.id);
+  const i = label => model.labels.indexOf(label);
+  const c = model.circles.find(x => x.through.has(i('P')));
+  const radial = { x: g.X(i('P')) - g.cx(c), y: g.Y(i('P')) - g.cy(c) }, line = { x: g.X(i('S')) - g.X(i('P')), y: g.Y(i('S')) - g.Y(i('P')) };
+  assert.ok(Math.abs(radial.x * line.x + radial.y * line.y) / Math.hypot(radial.x, radial.y) / Math.hypot(line.x, line.y) < euclid.TOLERANCE);
+});
+
+t('a 3D figure keeps a pole on level ground vertical in the drawing', () => {
+  const fig = figure('2022-nov-p2.json', '2022-nov-p2-fig-7');
+  const { g, model } = euclid.layout(fig.spec, fig.id, { threeD: true });
+  const i = label => model.labels.indexOf(label);
+  assert.ok(Math.abs(g.X(i('A')) - g.X(i('B'))) < 0.01, 'AB is vertical');
+  assert.ok(g.Y(i('A')) > g.Y(i('B')), 'the top is above the foot');
 });
 
 t('a function graph is an svg path and not a cropped image', () => {
