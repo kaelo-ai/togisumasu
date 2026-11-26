@@ -163,6 +163,22 @@ t('practice memos make 2016–2021 leaves quiz-servable; unscored memo parts are
   assert.ok(!open.some(leaf => leaf.id === '2021-nov-p2-2.1'), 'a scatter-plot sketch is not served in a quiz');
 });
 
+t('a geometry past-paper question in a quiz carries its statement and reason choices', () => {
+  const all = db.prepare('SELECT id FROM topics').all().map(row => row.id);
+  const open = quiz.eligibleLeaves(db, all, 'gr12-caps');
+  const index = open.findIndex(leaf => leaf.form === 'geom');
+  assert.ok(index >= 0);
+  const built = quiz.assembleQuiz(db, { mastered: all, choice: index, shuffle: false });
+  const paper = built.items.find(item => item.kind === 'paper');
+  assert.ok(paper.geom && paper.geom.statements.length && paper.geom.reasons.length, 'geometry choices');
+  const key = spec(paper.id);
+  assert.equal(keys.markNode(db, paper.id, key.chain).ok, true);
+  assert.equal(keys.markNode(db, paper.id, [...key.chain].reverse()).ok, key.chain.length === 1);
+  const plain = open.find(leaf => leaf.form === 'region');
+  const other = quiz.assembleQuiz(db, { mastered: all, choice: open.indexOf(plain), shuffle: false }).items.find(item => item.kind === 'paper');
+  assert.equal(other.geom, null);
+});
+
 t('2022+ stays in the exam pool and out of quizzes', () => {
   const papers = db.prepare(`SELECT id, pool, year FROM nsc_papers WHERE year >= 2022 ORDER BY id`).all();
   assert.equal(papers.length, 8);

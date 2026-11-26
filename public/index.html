@@ -597,7 +597,7 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   let any=false;h+=`<section class="map">`;
   for(const [u,un] of UNITS){const allList=SK.filter(s=>s.unit===u);const list=allList.filter(matches);if(!list.length)continue;any=true;
     const um=allList.filter(s=>st(s.id).lv>0).length;const pct=Math.round(um/allList.length*100);const collapsed=collapsedUnits.has(u);
-    h+=`<div class="unit${collapsed?' is-collapsed':''}"><h2><button class="unit-head" type="button" data-unit-toggle="${u}" aria-expanded="${!collapsed}" aria-controls="unit-${u}"><span class="ul">${u}</span><span>${esc(un)}</span><span class="ct tnum">${um}/${allList.length}</span><span class="uring" style="--p:${pct}" role="img" aria-label="${um} of ${allList.length} topics mastered"></span><span class="chev" aria-hidden="true">▾</span></button></h2><ul class="skills" id="unit-${u}">`;
+    h+=`<div class="unit${collapsed?' is-collapsed':''}"><h2><button class="unit-head" type="button" data-unit-toggle="${u}" aria-expanded="${!collapsed}" aria-controls="unit-${u}"><span class="ul">${esc(unitLabel(u))}</span><span>${esc(un)}</span><span class="ct tnum">${um}/${allList.length}</span><span class="uring" style="--p:${pct}" role="img" aria-label="${um} of ${allList.length} topics mastered"></span><span class="chev" aria-hidden="true">▾</span></button></h2><ul class="skills" id="unit-${u}">`;
     for(const s of list){const k=mapSkillState(s.id);const x=st(s.id);let meta='';
       if(k==='repair')meta=`<span class="mt repair">Needs repair</span>`;else if(k==='due')meta=`<span class="mt due">Review due</span>`;else if(k==='mastered')meta=`<span class="mt">Mastered<span class="lv">${[1,2,3,4,5,6].map(i=>`<i class="${i<=x.lv?'on':''}"></i>`).join('')}</span></span>`;
       else if(rec&&rec.id===s.id)meta=`<span class="mt rec">Up next</span>`;else if(k==='learning')meta=`<span class="mt">${x.s}/3 in a row</span>`;else if(k==='locked')meta=`<span class="mt">Locked</span>`;
@@ -753,12 +753,15 @@ function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return
   host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="home">Leave quiz</button><div class="meter quizm"><i style="width:${quiz.i/quiz.items.length*100}%"></i></div><span class="tnum" style="font-size:.85rem;color:var(--muted)">${quiz.i+1} / ${quiz.items.length}</span></div><div id="qq"></div>`;
   if(it.kind==='paper'){const box=$('#qq');
     box.innerHTML=`<article class="qcard test washi-paper"><div class="qmeta"><span class="tag qz">Past paper</span><span>${esc(it.paperId)} Q${esc(it.number)} · ${it.marks} mark${it.marks===1?'':'s'}</span></div><div class="prompt">${it.prompt}</div>
-     <label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit" placeholder="${esc(it.hint||'')}"></textarea>${it.hint?`<p class="gnote">${esc(it.hint)}</p>`:''}
+     ${it.geom?`<div class="geom"><div class="row"><label>Statement <select id="paperStmt">${it.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><label>Reason <select id="paperReason">${it.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(s.text)}</option>`).join('')}</select></label><button class="btn" type="button" id="paperAdd">Add step</button></div><ol id="paperChain" class="steps"></ol></div>`:`<label class="l" for="paperIn">Your answer</label><textarea class="mathin" id="paperIn" rows="4" style="width:100%;font:inherit" placeholder="${esc(it.hint||'')}"></textarea>`}${it.hint?`<p class="gnote">${esc(it.hint)}</p>`:''}
      <p class="gnote">This is a real NSC question from before 2022. It is marked on the server from its stored answer key.</p>
      <div class="actions row"><button class="btn primary" type="button" id="paperSave">Save and continue</button></div></article>`;
     typeset(box);
-    $('#paperSave').onclick=async()=>{const given=$('#paperIn').value;const btn=$('#paperSave');btn.disabled=true;
-      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=given;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'quiz')}
+    const chain=[];const drawChain=()=>{const list=$('#paperChain');if(!list)return;list.innerHTML=chain.map((step,i)=>{const st=it.geom.statements.find(s=>s.id===step.statement),rs=it.geom.reasons.find(s=>s.id===step.reason);return `<li>${esc(st?st.text:'')} <span style="color:var(--muted)">because</span> ${esc(rs?rs.text:'')} <button class="btn ghost sm" type="button" data-chain-del="${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
+      list.querySelectorAll('[data-chain-del]').forEach(b=>b.onclick=()=>{chain.splice(+b.dataset.chainDel,1);drawChain()})};
+    if(it.geom){drawChain();$('#paperAdd').onclick=()=>{if(chain.length<12){chain.push({statement:$('#paperStmt').value,reason:$('#paperReason').value});drawChain()}}}
+    $('#paperSave').onclick=async()=>{const given=it.geom?chain.slice():$('#paperIn').value;const btn=$('#paperSave');btn.disabled=true;
+      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=it.geom?given.map(s=>{const st=it.geom.statements.find(x=>x.id===s.statement),rs=it.geom.reasons.find(x=>x.id===s.reason);return (st?st.text:'')+' ('+(rs?rs.text:'')+')'}).join('; '):given;it.answer=r.answer||null;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'quiz')}
       catch(e){it.pending=true;it.given=given;it.ok=null}
       quiz.i++;quizStep();window.scrollTo(0,0)};
     return}
@@ -772,10 +775,11 @@ function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');c
    ${bad.length?`<div class="lock repair"><b>Needs repair:</b> ${bad.map(id=>esc(SKM[id]?SKM[id].name:id)).join(', ')}.</div>`:'<p>The generated questions were all correct.</p>'}
    <div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="session">${bad.length?'Start repairs':'Continue learning'}</button><button class="btn" type="button" data-act="home">Course map</button></div></div>
    <ol class="qres">${quiz.items.map((x,i)=>{const paper=x.kind==='paper';const name=paper?(x.paperId+' Q'+x.number):(SKM[x.topicId]?SKM[x.topicId].name:x.topicId);
-     return `<li class="${paper?'':x.ok?'ok':'no'}"><div class="qrh"><span class="mk">${paper?'…':x.ok?'✓':'✗'}</span><span>Question ${i+1}</span><span style="margin-left:auto">${esc(name)}</span></div>
-     <div class="prompt">${paper?x.prompt:x.question.prompt}</div><div class="qra"><span>Your answer: ${paper?(x.given?`<code>${esc(x.given)}</code>`:'<em>Not answered</em>'):(x.given||'<em>Not answered</em>')}</span>${paper?'':`<span>Correct: ${ansDisplay(x.question)}</span>`}</div>
+     return `<li class="${paper&&x.ok==null?'':x.ok?'ok':'no'}"><div class="qrh"><span class="mk">${paper&&x.ok==null?'…':x.ok?'✓':'✗'}</span><span>Question ${i+1}</span><span style="margin-left:auto">${esc(name)}</span></div>
+     <div class="prompt">${paper?x.prompt:x.question.prompt}</div><div class="qra"><span>Your answer: ${paper?(x.given?`<code>${esc(x.given)}</code>`:'<em>Not answered</em>'):(x.given||'<em>Not answered</em>')}</span>${paper?(x.answer?`<span>Official answer: ${x.answer}</span>`:''):`<span>Correct: ${ansDisplay(x.question)}</span>`}</div>
      ${paper?'':`<details ${x.ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${x.question.steps.map(t=>`<li>${t}</li>`).join('')}</ol></details>`}</li>`}).join('')}</ol></section>`;typeset(host)}
 
+function unitLabel(u){return /^c\d+$/.test(String(u))?String(u).slice(1):String(u)}
 /* ---------- exams: full 2022+ papers, timed, never used as quiz questions ---------- */
 let exam=null,examTimer=null;
 function examsHTML(){const list=exam&&exam.list||[];
@@ -855,7 +859,7 @@ function graphSVG(){const {xy,NW,NH,W,H,cols,CW,PAD}=LAYOUT,rec=recommended();co
     const ty=L.length===1?[y+NH/2+4]:[y+NH/2-4,y+NH/2+11];
     const ring=k==='learning'?`<rect x="${x+30}" y="${y+NH-5}" width="${(NW-38)*Math.min(3,x0.s)/3}" height="3" rx="1.5" class="prog"/>`:'';
     n+=`<g class="${cls}" data-node="${s.id}" tabindex="0" role="button" aria-label="${esc(s.name)}: ${k}"><title>${esc(s.name)}</title><rect x="${x}" y="${y}" width="${NW}" height="${NH}" rx="8" class="box"/>
-     <text x="${x+15}" y="${y+NH/2+4}" class="ul" text-anchor="middle">${s.unit}</text><line x1="${x+28}" y1="${y+8}" x2="${x+28}" y2="${y+NH-8}" class="sep"/>
+     <text x="${x+15}" y="${y+NH/2+4}" class="ul" text-anchor="middle">${esc(unitLabel(s.unit))}</text><line x1="${x+28}" y1="${y+8}" x2="${x+28}" y2="${y+NH-8}" class="sep"/>
      ${L.map((t,i)=>`<text x="${x+36}" y="${ty[i]}" class="lbl">${esc(t)}</text>`).join('')}${ring}${k==='next'?`<text x="${x+NW-8}" y="${y-5}" text-anchor="end" class="nexttag">UP NEXT</text>`:''}</g>`}
   const mk=(id,c)=>`<marker id="${id}" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="${c}"/></marker>`;
   return `<svg id="gsvg" viewBox="0 0 ${W} ${H}" width="${W*G.zoom}" height="${H*G.zoom}" role="img" aria-label="Topic dependency graph"><defs>${mk('ar','var(--edge)')}${mk('aru','var(--accent)')}${mk('ard','var(--mark)')}</defs>${hdr}<g>${e}</g><g>${n}</g></svg>`}

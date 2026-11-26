@@ -109,7 +109,14 @@ function eligibleLeaves(db, mastered, courseId) {
 }
 
 function paperItem(db, leaf) {
+  let geom = null;
+  if (leaf.form === 'geom') {
+    const key = db.prepare(`SELECT answer_json FROM nsc_answer_keys WHERE node_id = ?`).get(leaf.id);
+    const spec = key ? JSON.parse(key.answer_json) : null;
+    if (spec && spec.type === 'geom') geom = { statements: spec.statements, reasons: spec.reasons };
+  }
   return {
+    geom,
     kind: 'paper',
     id: leaf.id,
     paperId: leaf.paperId,

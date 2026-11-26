@@ -598,7 +598,8 @@ function checkPoints(q,s){if(q.names&&q.names.length===1&&!/=/.test(s))s=q.names
 function parseFamilies(s){let n=normMath(s,{decComma:true});
   n=n.replace(/[,;]?\s*\(?\s*[kn]\s+in\s+Z\s*\)?/gi,' ').replace(/[,;]?\s*(where|for)?\s*[kn]\s+is\s+an?\s+integer/gi,' ').replace(/[,;]?\s*[kn]\s+integers?/gi,' ').replace(/\s*,\s*or\s+/gi,' or ').replace(/[,;\s]+$/,'').trim();
   const parts=splitTop(n,/^(?:\s+or\s+|\s*;\s*|\s*,\s*|\s+and\s+)/i).filter(Boolean);if(!parts.length)throw Error('Type an answer first');
-  return parts.map(p=>{const t=p.replace(/^[a-zA-Z]\s*=\s*/,'');if(/=/.test(t))throw Error('Write each solution as x = … + k·360');const ast=parse(t);
+  const pm=[];for(const p of parts){const t=p.replace(/^[a-zA-Z]\s*=\s*/,'');if(/^(±|\+-|\+\/-|\\pm)/.test(t)){const r=t.replace(/^(±|\+-|\+\/-|\\pm)\s*/,'');pm.push(r,'-'+r)}else pm.push(t)}
+  return pm.map(p=>{const t=p;if(/=/.test(t))throw Error('Write each solution as x = … + k·360');const ast=parse(t);
     const f=k=>ev(ast,{k,n:k});const b=f(0),P=f(1)-b;if(!isFinite(b)||!isFinite(P))throw Error('Check the solution');
     if(Math.abs(P)<1e-9)return {base:b,period:0};if(Math.abs(f(2)-b-2*P)>1e-6||Math.abs(f(-1)-b+P)>1e-6)throw Error('Write it as x = angle + k·period');return {base:b,period:Math.abs(P)}})}
 function residues(fams,L,tol){const out=[];for(const f of fams){const reps=Math.round(L/f.period);for(let j=0;j<reps;j++){const r=(((f.base+j*f.period)%L)+L)%L;if(!out.some(x=>Math.min(Math.abs(x-r),L-Math.abs(x-r))<=tol))out.push(r)}}return out}

@@ -67,6 +67,9 @@ t('trig general solutions with k ∈ Z', () => {
   const spec = key('$x=42^{\\circ}+k\\cdot 360^{\\circ}$ or $x=-14^{\\circ}-k\\cdot 120^{\\circ}$, $k\\in\\mathbb{Z}$', 'solution_set');
   assert.equal(spec.type, 'trig');
   yes(spec, 'x = 42 + k360 or x = -14 + 120k, k ∈ Z', 'x=42°+k.360° ; x=106°+k.120°; x = -14 + k·120', 'x = -14 + k*120 or x = 42 + k*360 (k in Z)');
+  const pm = key('$x=180^{\\circ}+k\\cdot 360^{\\circ}$ or $x=120^{\\circ}+k\\cdot 360^{\\circ}$ or $x=240^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$', 'solution_set');
+  yes(pm, 'x = 180 + k360 or x = ±120 + k360', 'x=180°+k.360°; x=+-120°+k.360°');
+  no(pm, 'x = ±120 + k360');
   no(spec, 'x = 42 or x = -14', 'x = 42 + k360', 'x = 42 + k180 or x = -14 + k120', 'x = 43 + k360 or x = -14 + k120');
   assert.equal(core.check(spec, 'x = 42 or x = -14').missingPeriod, true);
   const rounded = key('$x=116,57^{\\circ}+k\\cdot 180^{\\circ}$, $k\\in\\mathbb{Z}$ (reject $x=45^{\\circ}+k\\cdot 180^{\\circ}$)', 'solution_set');
