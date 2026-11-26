@@ -135,6 +135,17 @@ server.listen(0, async () => {
     assert.equal(one.json.exam.year, 2024);
     assert.equal(one.json.exam.questions.reduce((sum, q) => sum + q.marks, 0), 150);
   });
+  await http('finishing an exam posts to its mark route and gets every part back', async () => {
+    const marked = await user('POST', '/api/exams/2025-nov-p2/mark', { answers: { '2025-nov-p2-2.1.1': '70', '2025-nov-p2-2.1.2': '28', '2025-nov-p2-5.1.3': '1 - 2/(k^2+1)' } });
+    assert.equal(marked.status, 200);
+    const byId = Object.fromEntries(marked.json.results.map(item => [item.id, item]));
+    assert.equal(byId['2025-nov-p2-2.1.1'].ok, true);
+    assert.equal(byId['2025-nov-p2-2.1.2'].ok, false);
+    assert.equal(byId['2025-nov-p2-5.1.3'].ok, true);
+    assert.equal(byId['2025-nov-p2-6.1'].checkable, false);
+    assert.ok(byId['2025-nov-p2-6.1'].answer);
+    assert.equal((await user('POST', '/api/exams/2016-nov-p1/mark', { answers: {} })).status, 404);
+  });
   const failed = results.filter(row => row[0] === 'FAIL');
   for (const row of results) console.log(row[0] === 'ok' ? '  ok  ' + row[1] : '  FAIL  ' + row[1] + ' — ' + row[2]);
   console.log(`\n${results.length - failed.length} passed, ${failed.length} failed`);

@@ -600,14 +600,14 @@ async function api(req, res, url) {
     return send(res, 200, keys.markNode(db, String((body && body.nodeId) || ''), body && body.answer));
   }
   if (route === 'GET /api/exams') return send(res, 200, { exams: quizEngine.listExams(db) });
-  const examRoute = url.pathname.match(/^\/api\/exams\/(\d{4}-nov-p[12])$/);
-  if (req.method === 'POST' && examRoute) {
+  const examRoute = url.pathname.match(/^\/api\/exams\/(\d{4}-nov-p[12])(\/mark)?$/);
+  if (req.method === 'POST' && examRoute && examRoute[2]) {
     const body = await readJson(req);
     const results = quizEngine.markExam(db, examRoute[1], body && body.answers);
     if (!results) return send(res, 404, { error: 'Exam paper not found.' });
     return send(res, 200, { results });
   }
-  if (req.method === 'GET' && examRoute) {
+  if (req.method === 'GET' && examRoute && !examRoute[2]) {
     const exam = quizEngine.examPaper(db, examRoute[1]);
     if (!exam) return send(res, 404, { error: 'Exam paper not found.' });
     return send(res, 200, { exam });
