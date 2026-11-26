@@ -38,6 +38,13 @@ npm run admin -- promote you@example.com   # make an existing account an admin
 | `QUESTION_SEED_PER_SKILL` | `8` | Questions pre-generated per topic on first start. More are added on demand. |
 | `ALLOW_REGISTRATION` | `true` | Set to `false` once your account(s) exist. |
 | `ADMIN_EMAIL` | (empty) | Comma-separated email(s) that become admin on registration or startup. Leave empty and use `node admin.js promote` instead. |
+| `APP_BASE_URL` | `http://localhost:$PORT` | Public origin used in verification and password-reset links. |
+| `BASE_PATH` | (empty) | Optional URL prefix if the app is served under a subpath, for example `/apps/samasu`. |
+| `EMAIL_FROM` | `Togisumasu <onboarding@resend.dev>` | Sender shown to recipients. Switch this to your domain after it is verified in Resend. |
+| `RESEND_API_KEY` | (empty) | Sending-only Resend key. If unset, emails are logged to the console and not sent. |
+| `RESEND_TEMPLATE_VERIFY` | (empty) | Optional Resend template ID or alias. If unset, built-in HTML is sent. |
+| `RESEND_TEMPLATE_RESET` | (empty) | Optional Resend template ID or alias for password-reset emails. |
+| `RESEND_TEMPLATE_WELCOME` | (empty) | Optional Resend template ID or alias for the welcome email. |
 | `SESSION_DAYS` | `30` | How long a sign-in lasts. |
 | `COOKIE_SECURE` | `auto` | `auto` marks the cookie Secure on HTTPS requests; `true` forces it. |
 | `TRUST_PROXY` | `false` | `true` only behind a reverse proxy. The production compose files set it for you. |
