@@ -442,8 +442,9 @@ const DAY=864e5,INT=[0,1,3,7,16,35,70],GOAL=20,KEY='togisumasu-progress-v1';
 const dkey=(t=Date.now())=>{const d=new Date(t);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 
 /* ---------- progress store: your account on this server; a per-account cache on this device for offline use ---------- */
+const bp=p=>(window.BASE_PATH||'')+p;
 const API={async req(method,url,body){
-  const r=await fetch(url,{method,credentials:'same-origin',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
+  const r=await fetch(bp(url),{method,credentials:'same-origin',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
   let j={};try{j=await r.json()}catch(e){}
   if(!r.ok)throw Object.assign(new Error(j.error||'Something went wrong. Try again.'),{status:r.status});return j}};
 let USER=null;
@@ -474,7 +475,7 @@ const Store={data:EMPTY(),mode:'account',timer:null,dirty:false,
     this.cache()},
   save(){this.data.t=Date.now();this.cache();this.dirty=true;clearTimeout(this.timer);this.timer=setTimeout(()=>this.push(),1200)},
   async push(keepalive){if(!USER)return;clearTimeout(this.timer);this.dirty=false;
-    try{const r=await fetch('/api/progress',{method:'PUT',credentials:'same-origin',keepalive:!!keepalive,headers:{'Content-Type':'application/json'},body:JSON.stringify({data:this.data})});
+    try{const r=await fetch(bp('/api/progress'),{method:'PUT',credentials:'same-origin',keepalive:!!keepalive,headers:{'Content-Type':'application/json'},body:JSON.stringify({data:this.data})});
       if(r.status===401){USER=null;go({name:'auth',mode:'login',msg:'Your session ended. Sign in again; your progress on this device is kept.'});return}
       if(!r.ok)throw new Error('save failed');
       if(this.mode!=='account'){this.mode='account';renderFoot()}}
@@ -552,13 +553,15 @@ function renderStats(){renderAcct();if(!USER){$('#stats').innerHTML='';return}co
 
 function renderAcct(){const a=$('#acct');if(!a)return;
   if(!USER){a.innerHTML=view.name==='landing'?`<button class="btn ghost sm" type="button" data-auth="login">Sign in</button>${REG_OPEN?'<button class="btn primary sm" type="button" data-auth="register">Create account</button>':''}`:'';return}
-  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="/admin">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
+  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="'+bp('/admin')+'">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
 
 /* ---------- views ---------- */
 let view={name:'home'},sess=null,quiz=null;
-function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing')v={name:'landing'};view=v;render();window.scrollTo(0,0)}
+function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing'&&v.name!=='verify'&&v.name!=='reset')v={name:'landing'};view=v;render();window.scrollTo(0,0)}
 function render(){renderStats();const app=$('#app');
-  if(view.name==='auth'){app.innerHTML=authHTML(view);const f=$('#authForm input');if(f)f.focus();return}
+  if(view.name==='auth'){app.innerHTML=authHTML(view);const f=$('#authForm input, #forgotForm input, #resetForm input');if(f)f.focus();return}
+  if(view.name==='verify'){app.innerHTML=verifyHTML(view);if(view.token&&!view.error&&!view.pending){view.pending=true;consumeVerify(view.token)}return}
+  if(view.name==='reset'){app.innerHTML=resetHTML(view);const f=$('#resetForm input');if(f)f.focus();return}
   if(view.name==='landing'){app.innerHTML=landingHTML();typeset(app);return}
   if(view.name==='home')app.innerHTML=homeHTML();
   else if(view.name==='skill')app.innerHTML=skillHTML(view.id,view.tab);
@@ -960,7 +963,33 @@ function landingHTML(){
     <footer class="landing-foot"><span>Togisumasu · 研ぎ澄ます</span><span>to sharpen the mind</span></footer>
   </div>`;
 }
-function authHTML(v){const reg=v.mode==='register'&&REG_OPEN;
+function authHTML(v){
+  if(v.mode==='forgot'){
+    return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+     <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Forgot your password?</h1>
+     <p class="lead">${v.sent?'If that email is registered, we sent a reset link. Check your inbox and spam folder.':'Enter your email and we will send a reset link if an account exists.'}</p>
+     ${v.sent?'<p class="authnote"><button class="btn ghost sm" type="button" data-auth="login">Back to sign in</button></p>':`<form class="authform" id="forgotForm" novalidate>
+      <label>Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+      <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
+      <button class="btn primary" type="submit">Send reset link</button>
+     </form>
+     <p class="authnote"><button class="btn ghost sm" type="button" data-auth="login">Back to sign in</button></p>`}
+    </section></div>`;
+  }
+  if(v.mode==='check-email'){
+    return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+     <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Check your email</h1>
+     <p class="lead">We sent a verification link to ${esc(v.email||'your inbox')}. It expires in 24 hours.</p>
+     <p class="authnote">Didn't get it? Check spam, or request a new link.</p>
+     <form class="authform" id="resendForm">
+      <input type="hidden" name="email" value="${esc(v.email||'')}">
+      <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
+      <button class="btn" type="submit">Resend verification email</button>
+     </form>
+     <p class="authnote"><button class="btn ghost sm" type="button" data-auth="login">Back to sign in</button></p>
+    </section></div>`;
+  }
+  const reg=v.mode==='register'&&REG_OPEN;
   return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
    <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">${reg?'Create your account':'Welcome back'}</h1>
    <p class="lead">${reg?'Your progress is saved to your account and only you can see it.':'Sign in to pick up where you left off.'}</p>
@@ -970,20 +999,96 @@ function authHTML(v){const reg=v.mode==='register'&&REG_OPEN;
     ${reg?'<label>Name<input name="fullname" autocomplete="name" maxlength="60" required></label>':''}
     <label>Email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>
     <label>Password<input name="password" type="password" autocomplete="${reg?'new-password':'current-password'}" minlength="8" required>${reg?'<span style="font-weight:400">At least 8 characters</span>':''}</label>
+    ${reg?'':'<p class="authnote"><button class="btn ghost sm" type="button" data-auth="forgot">Forgot your password?</button></p>'}
     <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
     <button class="btn primary" type="submit">${reg?'Create account':'Sign in'}</button>
    </form>
    ${REG_OPEN?'':'<p class="authnote">New accounts are closed on this server. Ask the person who runs it.</p>'}
   </section></div>`}
+function verifyHTML(v){
+  return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+   <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">${v.error?'Verification did not work':'Verifying your email'}</h1>
+   <p class="lead">${v.error?esc(v.error):'Please wait a moment…'}</p>
+   ${v.error?`<p class="authnote"><button class="btn" type="button" data-auth="login">Sign in</button> <button class="btn ghost" type="button" data-auth="register">Request a new link</button></p>`:''}
+  </section></div>`}
+function resetHTML(v){
+  if(v.done){
+    return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+     <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Password updated</h1>
+     <p class="lead">You are signed in and can keep going.</p>
+    </section></div>`;
+  }
+  return `<div class="authwrap"><section class="authcard washi-paper" aria-labelledby="authTitle">
+   <div class="eyebrow">Togisumasu · 研ぎ澄ます</div><h1 id="authTitle">Choose a new password</h1>
+   <p class="lead">This reset link can be used only once and expires in an hour.</p>
+   <form class="authform" id="resetForm" novalidate>
+    <label>New password<input name="password" type="password" autocomplete="new-password" minlength="8" required><span style="font-weight:400">At least 8 characters</span></label>
+    <label>Confirm password<input name="password2" type="password" autocomplete="new-password" minlength="8" required></label>
+    <p class="autherr" id="authErr" role="alert">${v.msg?esc(v.msg):''}</p>
+    <button class="btn primary" type="submit">Update password</button>
+   </form>
+   <p class="authnote"><button class="btn ghost sm" type="button" data-auth="forgot">Request a new link</button></p>
+  </section></div>`}
+function pathInsideApp(){
+  const base=(window.BASE_PATH||'').replace(/\/$/,'');
+  let path=location.pathname || '/';
+  if(base && (path===base || path.startsWith(base+'/'))) path=path.slice(base.length) || '/';
+  return path.replace(/\/$/,'') || '/';
+}
+async function consumeVerify(token){
+  try{
+    const r=await API.req('POST','/api/auth/verify',{token});
+    USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;
+    history.replaceState({},'',bp('/')+(location.hash||''));
+    go({name:'home'});
+  }catch(x){go({name:'verify',error:x.message})}
+}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-auth]');if(a)go({name:'auth',mode:a.dataset.auth})});
-document.addEventListener('submit',async e=>{if(e.target.id!=='authForm')return;e.preventDefault();
+document.addEventListener('submit',async e=>{
+  if(e.target.id==='forgotForm'){
+    e.preventDefault();
+    const f=e.target,btn=f.querySelector('button[type=submit]'),err=$('#authErr'),email=(f.elements.namedItem('email')||{}).value.trim();
+    if(!email){err.textContent='Enter your email.';return}
+    err.textContent='';btn.disabled=true;btn.textContent='Sending…';
+    try{await API.req('POST','/api/auth/forgot-password',{email});go({name:'auth',mode:'forgot',sent:true})}
+    catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Send reset link'}
+    return;
+  }
+  if(e.target.id==='resendForm'){
+    e.preventDefault();
+    const f=e.target,btn=f.querySelector('button[type=submit]'),err=$('#authErr'),email=(f.elements.namedItem('email')||{}).value.trim();
+    err.textContent='';btn.disabled=true;btn.textContent='Sending…';
+    try{await API.req('POST','/api/auth/resend-verification',{email});err.textContent='If that email needs verification, we sent a new link.';btn.disabled=false;btn.textContent='Resend verification email'}
+    catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Resend verification email'}
+    return;
+  }
+  if(e.target.id==='resetForm'){
+    e.preventDefault();
+    const f=e.target,btn=f.querySelector('button[type=submit]'),err=$('#authErr');
+    const password=(f.elements.namedItem('password')||{}).value||'',password2=(f.elements.namedItem('password2')||{}).value||'';
+    if(password.length<8){err.textContent='Use a password of at least 8 characters.';return}
+    if(password!==password2){err.textContent='The new passwords do not match.';return}
+    err.textContent='';btn.disabled=true;btn.textContent='Updating…';
+    try{
+      const r=await API.req('POST','/api/auth/reset-password',{token:view.token,password});
+      USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;
+      history.replaceState({},'',bp('/')+(location.hash||''));
+      go({name:'home'});
+    }catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent='Update password'}
+    return;
+  }
+  if(e.target.id!=='authForm')return;e.preventDefault();
   const f=e.target,mode=f.dataset.authmode,btn=f.querySelector('button[type=submit]'),err=$('#authErr'),val=n=>(f.elements.namedItem(n)||{}).value||'';
   const body={email:val('email').trim(),password:val('password')};if(mode==='register')body.name=val('fullname').trim();
   if(mode==='register'&&!body.name){err.textContent='Enter your name.';return}
   if(!body.email||!body.password){err.textContent='Enter your email and password.';return}
   if(mode==='register'&&body.password.length<8){err.textContent='Use a password of at least 8 characters.';return}
   err.textContent='';btn.disabled=true;btn.textContent=mode==='register'?'Creating account…':'Signing in…';
-  try{const r=await API.req('POST','/api/auth/'+mode,body);USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;go({name:'home'})}
+  try{
+    const r=await API.req('POST','/api/auth/'+mode,body);
+    if(mode==='register'){go({name:'auth',mode:'check-email',email:body.email});return}
+    USER=r.user;await loadCatalog();await Store.load();sess=null;quiz=null;go({name:'home'})
+  }
   catch(x){err.textContent=x.message;btn.disabled=false;btn.textContent=mode==='register'?'Create account':'Sign in'}});
 async function logout(){if(Store.dirty)await Store.push();try{await API.req('POST','/api/auth/logout')}catch(e){}
   try{localStorage.removeItem(Store.key())}catch(e){}USER=null;Store.data=EMPTY();sess=null;quiz=null;go({name:'landing'})}
@@ -1018,6 +1123,11 @@ async function askTutor(btn,out,payload){btn.disabled=true;btn.textContent='Thin
   catch(e){out.innerHTML=`<p class="warn">${esc(e.message)}</p>`;btn.disabled=false;btn.textContent='Try again'}}
 async function boot(){
   try{const c=await API.req('GET','/api/auth/config');REG_OPEN=!!c.registration;AI_ON=!!c.ai}catch(e){}
+  const path=pathInsideApp();
+  const params=new URLSearchParams(location.search);
+  if(path==='/verify'&&params.get('token')){go({name:'verify',token:params.get('token')});return}
+  if(path==='/reset-password'&&params.get('token')){go({name:'reset',token:params.get('token')});return}
+  if(path==='/forgot-password'){go({name:'auth',mode:'forgot'});return}
   try{const r=await API.req('GET','/api/auth/me');USER=r.user;await loadCatalog();await Store.load();go({name:'home'})}
   catch(e){USER=null;go({name:'landing'})}}
 boot();

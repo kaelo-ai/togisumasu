@@ -3,6 +3,8 @@
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 process.env.DATA_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'togisumasu-admin-test-'));
 process.env.ADMIN_EMAIL = 'root@example.com';
+const { mailbox, registerVerified } = require('./helpers.js');
+const sent = mailbox();
 const { server, db } = require('../server.js');
 
 let base;
@@ -29,13 +31,13 @@ server.listen(0, async () => {
   let rootId, bobId, questionId, tempPassword;
 
   await t('bootstrap admin registers with admin role', async () => {
-    const r = await root('POST', '/api/auth/register', { email: 'root@example.com', name: 'Root', password: 'root-pass-123' });
-    assert.equal(r.status, 201); assert.equal(r.json.user.role, 'admin');
+    const r = await registerVerified(root, { email: 'root@example.com', name: 'Root', password: 'root-pass-123' }, sent);
+    assert.equal(r.status, 200); assert.equal(r.json.user.role, 'admin');
     rootId = r.json.user.id;
   });
   await t('normal account registers as student', async () => {
-    const r = await bob('POST', '/api/auth/register', { email: 'bob@example.com', name: 'Bob', password: 'bob-pass-123' });
-    assert.equal(r.status, 201); assert.equal(r.json.user.role, 'student');
+    const r = await registerVerified(bob, { email: 'bob@example.com', name: 'Bob', password: 'bob-pass-123' }, sent);
+    assert.equal(r.status, 200); assert.equal(r.json.user.role, 'student');
     bobId = r.json.user.id;
   });
   await t('anonymous admin endpoint is 401', async () => assert.equal((await anon('GET', '/api/admin/users')).status, 401));

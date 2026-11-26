@@ -111,11 +111,11 @@ dialog input,dialog select{width:100%;padding:9px;border:1px solid var(--line);b
 </head>
 <body>
 <header class="top"><div class="in">
-  <a class="brand" href="/"><span class="glyph">研</span> Togisumasu <span class="tagline">to sharpen the mind</span></a>
+  <a class="brand" href="/" data-app-home><span class="glyph">研</span> Togisumasu <span class="tagline">to sharpen the mind</span></a>
   <span class="badge admin">Admin</span>
   <span class="spacer"></span>
   <span id="who" class="muted"></span>
-  <a class="btn ghost sm" href="/">Learner app</a>
+  <a class="btn ghost sm" href="/" data-app-home>Learner app</a>
   <button class="btn ghost sm" type="button" data-act="logout" id="logoutBtn" hidden>Sign out</button>
 </div></header>
 <main class="wrap" id="app"><p class="muted">Loading…</p></main>
@@ -154,8 +154,10 @@ const state = {
   audit: [], editor: null,
 };
 
+const bp = p => (window.BASE_PATH || '') + p;
+document.querySelectorAll('[data-app-home]').forEach(a => { a.setAttribute('href', bp('/')); });
 async function api(method, url, body) {
-  const r = await fetch(url, {
+  const r = await fetch(bp(url), {
     method, credentials: 'same-origin',
     headers: body !== undefined ? { 'Content-Type': 'application/json' } : {},
     body: body !== undefined ? JSON.stringify(body) : undefined,
@@ -196,7 +198,7 @@ function loginHTML(message) {
 function deniedHTML() {
   return `<section class="panel" style="margin-top:20px"><h1>Admin access required</h1>
     <p class="muted">You are signed in as <b>${esc(state.me.email)}</b>, but this account is not an administrator.</p>
-    <div class="row" style="margin-top:12px"><a class="btn" href="/">Back to the app</a><button class="btn ghost" type="button" data-act="logout">Sign out</button></div></section>`;
+    <div class="row" style="margin-top:12px"><a class="btn" href="${bp('/')}">Back to the app</a><button class="btn ghost" type="button" data-act="logout">Sign out</button></div></section>`;
 }
 
 function shellHTML() {
@@ -691,7 +693,7 @@ function scheduleDup() {
 async function exportQuestions(format) {
   const q = state.questions;
   const p = new URLSearchParams({ skill: q.skill, status: q.status, source: q.source, q: q.q, format });
-  const r = await fetch('/api/admin/questions/export?' + p.toString(), { credentials: 'same-origin' });
+  const r = await fetch(bp('/api/admin/questions/export?' + p.toString()), { credentials: 'same-origin' });
   if (!r.ok) {
     let json = {};
     try { json = await r.json(); } catch (e) {}
