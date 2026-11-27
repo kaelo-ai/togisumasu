@@ -1,0 +1,176 @@
+/* Courses page: a library of books on shelves, one shelf per level.
+   Feel borrowed from abakcus.com/books: calm white/tonal page, serif titles, small tracked
+   uppercase labels, soft long shadows, hover lifts. Spines and covers are drawn in CSS/SVG. */
+:root{
+  --f-serif:"Fraunces","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --wood-hi:#DDB585; --wood:#C49461; --wood-lo:#9A6B3B; --wood-edge:#7E5530;
+  --shelf-back:#F6F1E7; --shelf-back-lo:#EDE4D3; --shelf-shadow:rgba(60,40,15,.22);
+  --sp-maths-1:#24345F; --sp-maths-2:#1F4D73; --sp-maths-3:#3A3D84; --sp-maths-4:#2D2A4F;
+  --sp-stats-1:#1D6556; --sp-stats-2:#2E7A63; --sp-stats-3:#3C6B48;
+  --sp-phys-1:#7A2D29; --sp-phys-2:#8E3E24; --sp-phys-3:#6A2B45;
+  --sp-sci-1:#8A6A22; --sp-sci-2:#5C6A2E;
+  --ribbon:#D9A21B; --ribbon-now:#B23A2B;
+}
+:root[data-theme="dark"]{
+  --wood-hi:#6E4E31; --wood:#5A3E26; --wood-lo:#43301E; --wood-edge:#2E2014;
+  --shelf-back:#16130F; --shelf-back-lo:#110F0C; --shelf-shadow:rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --wood-hi:#6E4E31; --wood:#5A3E26; --wood-lo:#43301E; --wood-edge:#2E2014;
+  --shelf-back:#16130F; --shelf-back-lo:#110F0C; --shelf-shadow:rgba(0,0,0,.6);}}
+
+.lib-head{margin:28px 0 8px;display:grid;gap:10px}
+.lib-head h1{font-family:var(--f-serif);font-weight:400;font-size:clamp(2rem,5vw,3rem);letter-spacing:-.01em;line-height:1.1}
+.lib-lead{margin:0;color:var(--muted);font-family:var(--f-serif);font-size:1.06rem;max-width:40rem}
+.lib-now{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:4px;font-size:.9rem;color:var(--muted)}
+.lib-now b{color:var(--ink);font-weight:600}
+.lib-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0 0;padding:0;list-style:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lib-legend li{display:flex;align-items:center;gap:7px}
+.lib-legend i{width:10px;height:16px;border-radius:2px;display:inline-block;background:var(--c)}
+.lib-legend i.rib{width:8px;height:12px;border-radius:0;background:var(--ribbon);clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%)}
+
+.shelf{margin-top:38px}
+.shelf-h{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:12px}
+.shelf-h h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(1.3rem,2.6vw,1.7rem);letter-spacing:-.005em}
+.shelf-h .sub{color:var(--muted);font-family:var(--f-serif);font-size:.95rem;flex:1 1 18rem}
+.shelf-h .ct{margin-left:auto;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+
+/* the cabinet: back panel + books + plank. Scrolls sideways when the row is wider than the screen. */
+.shelf-cab{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--shelf-back-lo),var(--shelf-back) 30%);box-shadow:inset 0 10px 24px -14px var(--shelf-shadow),inset 0 0 0 1px color-mix(in srgb,var(--line) 60%,transparent)}
+.shelf-scroll{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.shelf-row{position:relative;display:flex;align-items:flex-end;gap:4px;min-width:max-content;width:100%;padding:30px 22px 16px;margin:0;list-style:none}
+.shelf-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:16px;border-radius:2px 2px 4px 4px;
+  background:linear-gradient(180deg,var(--wood-hi) 0 3px,var(--wood) 3px 60%,var(--wood-lo) 100%),var(--wood);
+  box-shadow:0 10px 16px -8px var(--shelf-shadow),inset 0 -2px 0 var(--wood-edge)}
+.shelf-row>li{display:flex;align-items:flex-end;scroll-snap-align:start;position:relative;z-index:1}
+.shelf-row>li.bookend{margin-left:auto;padding-left:18px}
+.bookend span{display:grid;place-items:center;width:34px;height:52px;border-radius:4px 4px 2px 2px;background:var(--seal);color:#FFF6E8;font-size:1rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),2px 3px 6px -3px rgba(0,0,0,.35)}
+
+/* a spine */
+.book{--w:54px;--h:226px;--c:var(--sp-maths-1);--ink:#F4EBD8;--gild:rgba(236,200,120,.85);
+  position:relative;display:block;width:var(--w);height:var(--h);margin:0 0 16px;padding:0;border:0;border-radius:3px 3px 2px 2px;cursor:pointer;color:var(--ink);
+  background:linear-gradient(90deg,rgba(0,0,0,.30) 0,rgba(255,255,255,.12) 14%,rgba(255,255,255,0) 38%,rgba(0,0,0,.10) 78%,rgba(0,0,0,.34) 100%),var(--c);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),1px 0 0 rgba(0,0,0,.10),0 2px 2px -1px rgba(0,0,0,.25);
+  transform-origin:50% 100%;transition:transform .38s cubic-bezier(.2,.8,.2,1),box-shadow .38s ease,filter .38s ease;will-change:transform}
+.book::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.38) 48%,transparent 66%);background-size:260% 100%;background-position:130% 0;
+  transition:background-position .7s ease;mix-blend-mode:soft-light}
+.book .band{position:absolute;left:0;right:0;height:6px;border-top:1px solid var(--gild);border-bottom:1px solid var(--gild);opacity:.9}
+.book .band.t{top:14px}.book .band.b{bottom:30px}
+.book .tt{position:absolute;top:28px;bottom:42px;left:0;right:0;display:flex;align-items:flex-start;justify-content:center;writing-mode:vertical-rl;
+  font-family:var(--f-serif);font-size:.9rem;line-height:1.12;letter-spacing:.01em;text-align:start;overflow:hidden;padding:4px 0;font-weight:500}
+.book .mk{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:600 .56rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.book .soon{position:absolute;left:5px;right:5px;bottom:46px;padding:3px 0;border-radius:2px;background:#F3EBDA;color:#5B4A2F;font:700 .48rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.book.is-soon{filter:saturate(.55) brightness(.98)}
+.book.s-stats{--c:var(--sp-stats-1)} .book.s-physics{--c:var(--sp-phys-1)} .book.s-science{--c:var(--sp-sci-1)}
+.book.v2.s-maths{--c:var(--sp-maths-2)} .book.v3.s-maths{--c:var(--sp-maths-3)} .book.v4.s-maths{--c:var(--sp-maths-4)}
+.book.v2.s-stats{--c:var(--sp-stats-2)} .book.v3.s-stats,.book.v4.s-stats{--c:var(--sp-stats-3)}
+.book.v2.s-physics{--c:var(--sp-phys-2)} .book.v3.s-physics,.book.v4.s-physics{--c:var(--sp-phys-3)}
+.book.v2.s-science,.book.v4.s-science{--c:var(--sp-sci-2)}
+/* the two real courses get their own bindings */
+.book.b-caps{--c:#EEE2C6;--ink:#2A2118;--gild:rgba(163,58,43,.75)}
+.book.b-caps .seal{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:20px;height:20px;display:grid;place-items:center;border-radius:3px;background:var(--seal);color:#FFF6E8;font-size:.7rem}
+.book.b-caps .mk{bottom:7px}
+.book.b-algebra{--c:#1A1A1A;--ink:#EFE6D3}
+/* enrolled: a ribbon bookmark peeks out of the top */
+.book.is-enrolled::after{content:"";position:absolute;top:-12px;right:9px;width:9px;height:24px;background:var(--ribbon);clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%);box-shadow:0 1px 0 rgba(0,0,0,.2);z-index:-1}
+.book.is-current::after{background:var(--ribbon-now)}
+
+/* hover: the book lifts and tilts out of the row; the next one leans in; a sheen runs down the spine */
+@media (hover:hover){
+  .book:hover{transform:translateY(-16px) rotate(-2.2deg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),0 22px 26px -14px rgba(0,0,0,.5);filter:none}
+  .book:hover::before{background-position:-30% 0}
+  .shelf-row>li:has(.book:hover)+li .book{transform:rotate(2.4deg) translateX(3px)}
+}
+.book:focus-visible{outline:2px solid var(--accent);outline-offset:4px;transform:translateY(-16px) rotate(-2.2deg);box-shadow:0 22px 26px -14px rgba(0,0,0,.5);filter:none}
+.book:focus-visible::before{background-position:-30% 0}
+.book.is-out{visibility:hidden}
+
+/* ---------- the open book ---------- */
+.bookdlg{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;overflow:hidden;color:var(--paper-ink)}
+.bookdlg::backdrop{background:transparent}
+.bk-scrim{position:absolute;inset:0;background:rgba(24,18,10,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;transition:opacity .45s ease}
+.bookdlg.is-open .bk-scrim{opacity:1}
+.bk-close{position:absolute;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));z-index:5;background:rgba(255,255,255,.92);color:#111;border-color:transparent;opacity:0;transition:opacity .3s ease .2s}
+.bookdlg.is-open .bk-close{opacity:1}
+.bk-stage{position:absolute;inset:0;display:grid;place-items:center;perspective:2200px;pointer-events:none}
+.bk3d{--W:390px;--H:540px;--D:40px;position:relative;width:var(--W);height:var(--H);transform-style:preserve-3d;pointer-events:auto}
+.bk3d>*{position:absolute;top:0;height:100%}
+.bk-pages{left:0;width:100%;border-radius:2px 8px 8px 2px;background:var(--paper);color:var(--paper-ink);transform:translateZ(-1px);
+  box-shadow:1px 1px 0 var(--paper-line),3px 3px 0 var(--paper-soft),4px 4px 0 var(--paper-line),6px 6px 0 var(--paper-soft),18px 28px 50px -24px rgba(0,0,0,.55);overflow:hidden}
+.bk-pages::before{content:"";position:absolute;inset:0;background:var(--washi-fiber);mix-blend-mode:var(--washi-blend);pointer-events:none}
+.bk-pages::after{content:"";position:absolute;top:0;bottom:0;left:0;width:34px;background:linear-gradient(90deg,rgba(60,40,15,.18),transparent);pointer-events:none}
+.bk-back{left:0;width:100%;border-radius:2px 8px 8px 2px;background:var(--c);transform:translateZ(calc(var(--D) * -1))}
+.bk-spine{left:calc(var(--D) * -1);width:var(--D);transform-origin:100% 50%;transform:rotateY(-90deg);background:linear-gradient(90deg,rgba(0,0,0,.3),rgba(255,255,255,.1) 20%,rgba(0,0,0,0) 45%,rgba(0,0,0,.3)),var(--c);color:var(--ink);border-radius:3px;backface-visibility:hidden}
+.bk-spine .tt{position:absolute;inset:30px 0 40px;display:flex;justify-content:center;writing-mode:vertical-rl;font-family:var(--f-serif);font-size:clamp(.8rem,calc(var(--D)*.28),1.3rem);overflow:hidden}
+.bk-cover{left:0;width:100%;transform-origin:0 50%;transform-style:preserve-3d;transform:translateZ(1px)}
+.bk-cover>div{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px 8px 8px 2px;overflow:hidden}
+.bk-front{background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.06) 4%,rgba(0,0,0,0) 7%),repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px),var(--c);color:var(--ink);
+  display:flex;flex-direction:column;padding:38px 34px 30px 40px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.bk-front .eyebrow{color:inherit;opacity:.78;letter-spacing:.2em;font-size:.64rem}
+.bk-front h3{font-family:var(--f-serif);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.08;margin-top:14px}
+.bk-front .art{margin:auto 0;align-self:center;width:62%;max-width:200px;opacity:.9}
+.bk-front .foot{display:flex;justify-content:space-between;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.8}
+.bk-front .sticker{position:absolute;top:22px;right:-38px;transform:rotate(35deg);background:#F3EBDA;color:#5B4A2F;padding:6px 44px;font:700 .62rem/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.bk-inside{transform:rotateY(180deg);background:var(--paper-soft);color:var(--paper-ink);border-radius:8px 2px 2px 8px!important;padding:38px 34px 30px;display:flex;flex-direction:column;gap:12px;overflow:auto!important}
+.bk-inside::after{content:"";position:absolute;top:0;bottom:0;right:0;width:30px;background:linear-gradient(270deg,rgba(60,40,15,.2),transparent);pointer-events:none}
+.bk-meta .eyebrow{color:var(--paper-muted)}
+.bk-meta h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2rem);line-height:1.1;margin-top:8px}
+.bk-meta p{margin:0;color:var(--paper-muted);font-family:var(--f-serif)}
+.bk-pill{display:inline-flex;align-items:center;gap:6px;width:max-content;padding:4px 10px;border-radius:999px;font:600 .68rem/1.2 var(--f-body);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--paper-line);color:var(--paper-muted)}
+.bk-pill.on{background:var(--ribbon);border-color:var(--ribbon);color:#2A1F05}
+.bk-pill.now{background:var(--ribbon-now);border-color:var(--ribbon-now);color:#FFF4EC}
+.bk-src{font-size:.82rem;color:var(--paper-muted)}
+.bk-src b{color:var(--paper-ink);font-weight:600}
+.bk-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.bk-actions .btn[disabled]{opacity:.55;cursor:not-allowed}
+.bk-note{font-size:.82rem;color:var(--paper-muted);margin:0}
+.bk-page{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:34px 30px 22px 46px}
+.bk-page .bk-meta,.bk-page .bk-actions{display:none}
+.bk-page .toc-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:1px solid var(--paper-line);padding-bottom:10px}
+.bk-page .toc-h h3{font-family:var(--f-serif);font-weight:400;font-size:1.5rem;font-variant:small-caps;letter-spacing:.04em}
+.bk-page .toc-h span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-muted);font-weight:600}
+.toc{flex:1;overflow:auto;margin:0;padding:6px 4px 10px 0;list-style:none;counter-reset:ch;scrollbar-width:thin}
+.toc>li{counter-increment:ch;padding:9px 0;border-bottom:1px dotted var(--paper-line)}
+.toc .ch{display:flex;align-items:baseline;gap:10px;font-family:var(--f-serif);font-size:1rem}
+.toc .ch::before{content:counter(ch);min-width:1.6em;color:var(--paper-muted);font-variant-numeric:oldstyle-nums;font-size:.9rem}
+.toc .ch .n{margin-left:auto;font:600 .66rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--paper-muted);white-space:nowrap}
+.toc.flat .ch{font-size:.98rem}
+.toc .tops{margin:6px 0 2px 2.1em;padding:0;list-style:none;columns:2 11rem;column-gap:18px;font-size:.8rem;line-height:1.45;color:var(--paper-muted)}
+.toc .tops li{break-inside:avoid;padding:1px 0}
+.toc .tops li.core::after{content:"core";margin-left:5px;font:700 .5rem/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--seal);vertical-align:1px}
+.toc-load{color:var(--paper-muted);font-style:italic;padding:14px 0}
+/* phones: a single page, the cover swings away and the page carries the details */
+.bk3d.single .bk-page{padding:26px 20px 18px 26px;overflow:auto}
+.bk3d.single .bk-page .bk-meta,.bk3d.single .bk-page .bk-actions{display:flex}
+.bk3d.single .bk-page .bk-meta{flex-direction:column;gap:8px;margin-bottom:14px}
+.bk3d.single .bk-page .bk-actions-host{position:sticky;bottom:-18px;z-index:2;margin:14px -20px 0 -26px;padding:12px 20px 14px 26px;border-top:1px solid var(--paper-line);background:var(--paper);box-shadow:0 -12px 18px -14px rgba(60,40,15,.35)}
+.bk3d.single .bk-page .bk-actions{margin:0;padding:0}
+/* once open on a phone the book is a flat page: no 3D left to confuse hit-testing or scrolling */
+.bk3d.single.settled{transform-style:flat}
+.bk3d.single.settled .bk-cover,.bk3d.single.settled .bk-spine,.bk3d.single.settled .bk-back{display:none}
+.bk3d.single .toc{overflow:visible;flex:none}
+.bk3d.single .toc .tops{columns:1}
+.bk3d.single .bk-pages::after{width:18px}
+
+/* home: the course chip that replaced the dropdown */
+.coursechip{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 14px 5px 8px;font:inherit;font-size:.86rem;min-height:34px;cursor:pointer}
+.coursechip:hover{border-color:var(--ink)}
+.coursechip .sp{width:8px;height:20px;border-radius:2px;background:var(--seal);box-shadow:3px 0 0 -1px var(--sp-maths-1),6px 0 0 -2px var(--ribbon)}
+.coursechip .chg{color:var(--muted);font-size:.78rem;border-left:1px solid var(--line);padding-left:10px}
+
+@media (max-width:680px){
+  .shelf-row{padding:26px 14px 16px}
+  .book{--w:48px;--h:208px}
+  .book .tt{font-size:.82rem}
+  .shelf-h .ct{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .book,.book::before,.bk-scrim,.bk-close{transition:none}
+  .book:hover,.book:focus-visible{transform:none}
+  .shelf-row>li:has(.book:hover)+li .book{transform:none}
+}
+.acct .btn[aria-current]{color:var(--ink);border-color:var(--line)}
+.top:has(#logoutBtn) .brand-sub{display:none}
+.book.long .tt{font-size:.78rem;line-height:1.08}
+@media (max-width:680px){.book.long .tt{font-size:.72rem}}

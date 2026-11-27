@@ -441,7 +441,8 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .geom select,.geom li{font-family:"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/courses.css">
 <script>
 window.__mjq=[];
 window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'},options:{enableMenu:false},
@@ -459,6 +460,7 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
   <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme"></button>
 </div></header>
 <main class="wrap" id="app" tabindex="-1"><div class="boot">Loading…</div></main>
+<dialog id="bookDlg" class="bookdlg" aria-labelledby="bkTitle"></dialog>
 <dialog id="accountDlg" class="accountdlg" aria-labelledby="accountTitle">
   <form id="accountForm" class="authform" novalidate>
     <div class="eyebrow">Account</div>
@@ -476,6 +478,8 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
 <script src="/core.js"></script>
 <script src="/caps-gen.js"></script>
 <script src="/mastery.js"></script>
+<script src="/course-catalog.js"></script>
+<script src="/courses.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -596,11 +600,13 @@ function renderStats(){renderAcct();if(!USER){$('#stats').innerHTML='';return}co
 
 function renderAcct(){const a=$('#acct');if(!a)return;
   if(!USER){a.innerHTML=view.name==='landing'?`<button class="btn ghost sm" type="button" data-auth="login">Sign in</button>${REG_OPEN?'<button class="btn primary sm" type="button" data-auth="register">Create account</button>':''}`:'';return}
-  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="'+bp('/admin')+'">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
+  a.innerHTML=`<span class="who" title="${esc(USER.email)}">${esc(USER.name)}</span><button class="btn ghost sm" type="button" data-act="courses"${view.name==='courses'?' aria-current="page"':''}>Courses</button><button class="btn ghost sm" type="button" id="settingsBtn">Settings</button>${USER.role==='admin'?'<a class="btn ghost sm" href="'+bp('/admin')+'">Admin</a>':''}<button class="btn ghost sm" type="button" id="logoutBtn">Sign out</button>`}
 
 /* ---------- views ---------- */
 let view={name:'home'},sess=null,quiz=null;
-function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing'&&v.name!=='verify'&&v.name!=='reset')v={name:'landing'};view=v;render();window.scrollTo(0,0)}
+function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing'&&v.name!=='verify'&&v.name!=='reset')v={name:'landing'};view=v;
+  try{const want=v.name==='courses'?'#courses':'';if(USER&&(location.hash.startsWith('#courses')?want!==location.hash.split('/')[0]:want))history.replaceState(null,'',location.pathname+location.search+want)}catch(e){}
+  render();window.scrollTo(0,0)}
 function render(){renderStats();const app=$('#app');
   if(view.name==='auth'){app.innerHTML=authHTML(view);const f=$('#authForm input, #forgotForm input, #resetForm input');if(f)f.focus();return}
   if(view.name==='verify'){app.innerHTML=verifyHTML(view);if(view.token&&!view.error&&!view.pending){view.pending=true;consumeVerify(view.token)}return}
@@ -611,6 +617,7 @@ function render(){renderStats();const app=$('#app');
   else if(view.name==='session')app.innerHTML=`<div id="sessHost"></div>`;
   else if(view.name==='quiz')app.innerHTML=`<div id="quizHost"></div>`;
   else if(view.name==='exams')app.innerHTML=examsHTML();
+  else if(view.name==='courses')app.innerHTML=Courses.coursesHTML();
   else if(view.name==='exam')app.innerHTML=`<div id="examHost"></div>`;
   else if(view.name==='place')app.innerHTML=`<div id="placeHost"></div>`;
   app.insertAdjacentHTML('beforeend','<footer class="foot" id="foot"></footer>');renderFoot();
@@ -633,7 +640,8 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   if(!tasks.length)tasks.push('<li class="t-new"><span class="tk">Mixed</span>Everything is mastered. Sessions keep all topics sharp.</li>');
   const title=sh.length?'Let\'s shore up a foundation first':rep.length?'Repair first, then move on':qd?'Quiz time':due.length?'Reviews and something new':m?'Keep building':'Start with the basics';
   const acc=Object.values(Store.data.skills).reduce((a,s)=>[a[0]+s.c,a[1]+s.a],[0,0]);const lastQ=Q().hist.slice(-1)[0];const totalTopics=Math.max(1,SK.length);
-  const courseSelect=COURSES.length>1?`<label class="mapfilter">Course <select id="courseSel" class="mapselect">${COURSES.map(c=>`<option value="${esc(c.id)}"${c.id===COURSE?' selected':''}>${esc(c.name)}</option>`).join('')}</select></label>`:'';
+  const curBook=window.CourseCatalog&&CourseCatalog.find(COURSE);const curName=curBook?curBook.title:((COURSES.find(c=>c.id===COURSE)||{}).name||'Course');
+  const courseSelect=`<button type="button" class="coursechip" data-act="courses" aria-label="Current course: ${esc(curName)}. Change course"><span class="sp" aria-hidden="true"></span>${esc(curName)}<span class="chg">Change</span></button>`;
   const filterSelect=homeMode==='list'?`<label class="mapfilter"><span class="sr-only">Filter course map</span><select id="mapFilter" class="mapselect">${MAP_FILTERS.map(([v,l])=>`<option value="${v}"${mapFilter===v?' selected':''}>${l}</option>`).join('')}</select></label>`:'';
   let h=`<section class="today"><div class="panel"><div class="eyebrow">Today</div><h1>${title}</h1><ul class="tasks">${tasks.join('')}</ul>
    <div class="row"><button class="btn primary" type="button" data-act="session">Start today's session</button>${!rep.length&&masteredIds().length>=QUIZ_MIN?`<button class="btn" type="button" data-act="quiz">${qd?'Take the quiz':'Quiz me now'}</button>`:''}${COURSE==='gr12-caps'?`<button class="btn" type="button" data-act="exams">Mock exams</button>`:''}</div>${placementCta()}</div>
@@ -1043,11 +1051,10 @@ document.addEventListener('keydown',e=>{const n=e.target.closest&&e.target.close
 document.addEventListener('click',e=>{const t=e.target.closest('[data-skill],[data-act],[data-tab]');if(!t)return;
   if(t.dataset.skill){e.preventDefault();const id=t.dataset.skill;go({name:'skill',id,tab:st(id).a>0?'practice':'learn'});return}
   if(t.dataset.tab){go({...view,tab:t.dataset.tab});return}
-  const a=t.dataset.act;if(a==='home'){if(examTimer)clearInterval(examTimer);go({name:'home'})}if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')startExams();if(a==='another')mountExample();if(a==='place')openPlacement();if(a==='place-start'||a==='place-retake')beginPlacement()});
+  const a=t.dataset.act;if(a==='home'){if(examTimer)clearInterval(examTimer);go({name:'home'})}if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')startExams();if(a==='another')mountExample();if(a==='place')openPlacement();if(a==='place-start'||a==='place-retake')beginPlacement();if(a==='courses')go({name:'courses'})});
 $('#homeBtn').onclick=()=>go({name:'home'});
 document.addEventListener('click',e=>{const u=e.target.closest('[data-unit-toggle]');if(!u)return;const id=u.dataset.unitToggle;if(collapsedUnits.has(id))collapsedUnits.delete(id);else collapsedUnits.add(id);saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
-document.addEventListener('change',e=>{if(e.target.id==='courseSel'){const id=e.target.value;loadCatalog(id).then(()=>{G.sel=null;G.unit=null;go({name:'home'})});return}
-  if(e.target.id!=='mapFilter')return;mapFilter=e.target.value;saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
+document.addEventListener('change',e=>{if(e.target.id!=='mapFilter')return;mapFilter=e.target.value;saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
 document.addEventListener('click',e=>{const paper=e.target.closest('[data-exam]');if(paper)startExam(paper.dataset.exam)});
 document.addEventListener('click',e=>{if(e.target.id==='resetBtn'){$('#resetZone').innerHTML='<span class="confirm">Erase all progress? <button class="btn sm" type="button" id="resetYes">Erase</button><button class="btn ghost sm" type="button" id="resetNo">Keep</button></span>'}
   if(e.target.id==='resetNo')renderFoot();if(e.target.id==='resetYes'){Store.data=EMPTY();Store.save();go({name:'home'})}});
@@ -1381,7 +1388,8 @@ async function boot(){
   if(path==='/verify'&&params.get('token')){go({name:'verify',token:params.get('token')});return}
   if(path==='/reset-password'&&params.get('token')){go({name:'reset',token:params.get('token')});return}
   if(path==='/forgot-password'){go({name:'auth',mode:'forgot'});return}
-  try{const r=await API.req('GET','/api/auth/me');USER=r.user;await loadCatalog();await Store.load();go({name:'home'})}
+  try{const r=await API.req('GET','/api/auth/me');USER=r.user;await loadCatalog();await Store.load();
+    const m=/^#courses(?:\/([\w-]+))?$/.exec(location.hash);if(m){go({name:'courses'});if(m[1])requestAnimationFrame(()=>Courses.openById(m[1]))}else go({name:'home'})}
   catch(e){USER=null;go({name:'landing'})}}
 boot();
 </script>
