@@ -5847,6 +5847,17 @@
       "description": "Needed for 2021-nov-p2 Q4.3 (circle centred at N reflected about y=x; M is the image of N). No existing skill covers reflection of a point or figure in the line y=x.",
       "status": "proposed",
       "first_seen": "2021-nov-p2"
+    },
+    {
+      "id": "fn.reflect-in-axes",
+      "name": "Reflect a graph in the x-axis or y-axis (y = -f(x), y = f(-x))",
+      "topic": "M4.2",
+      "prerequisites": [
+        "fn.translate-graph"
+      ],
+      "description": "Needed for 2015-nov-p1 Q4.3 (g is the reflection of f(x) = 2^{x+1} - 8 in the y-axis). fn.translate-graph covers shifts only, and ageo.reflect-in-y-equals-x covers reflection in y = x.",
+      "status": "proposed",
+      "first_seen": "2015-nov-p1"
     }
   ]
 }

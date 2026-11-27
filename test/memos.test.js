@@ -1,4 +1,4 @@
-// Official November memos 2016–2025: schema, full leaf coverage, idempotent import,
+// Official November memos 2014–2025: schema, full leaf coverage, idempotent import,
 // practice memos open quizzes behind prerequisites, 2022+ stays in the exam pool.
 'use strict';
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
@@ -14,7 +14,7 @@ const core = require('../public/core.js');
 
 const MEMOS = path.join(__dirname, '..', 'data', 'nsc', 'memos');
 const PAPERS = [];
-for (let year = 2016; year <= 2025; year++) for (const p of [1, 2]) PAPERS.push(`${year}-nov-p${p}`);
+for (let year = 2014; year <= 2025; year++) for (const p of [1, 2]) PAPERS.push(`${year}-nov-p${p}`);
 const results = [];
 function t(name, fn) {
   try { fn(); results.push(['ok', name]); }
@@ -22,7 +22,7 @@ function t(name, fn) {
 }
 const spec = id => JSON.parse(keys.keyRow(db, id).answer_json);
 
-t('the memo schema accepts all 20 files and rejects a broken part', () => {
+t('the memo schema accepts all 24 files and rejects a broken part', () => {
   for (const id of PAPERS) {
     const name = id + '.json';
     const memo = JSON.parse(fs.readFileSync(path.join(MEMOS, name), 'utf8'));
@@ -34,7 +34,7 @@ t('the memo schema accepts all 20 files and rejects a broken part', () => {
   assert.throws(() => keys.validateMemo(bad, 'bad.json'), /steps/);
 });
 
-t('every leaf of all 20 papers has one memo key and each paper totals 150', () => {
+t('every leaf of all 24 papers has one memo key and each paper totals 150', () => {
   for (const paperId of PAPERS) {
     const leaves = db.prepare('SELECT id, marks FROM nsc_nodes WHERE paper_id = ? AND is_leaf = 1').all(paperId);
     assert.ok(leaves.length, paperId);
@@ -112,7 +112,7 @@ t('import is idempotent and a memo replaces llm_double and flagged keys', () => 
   assert.equal(after.n, before.n);
   assert.equal(after.j, before.j);
   assert.equal(again.keys, before.n);
-  assert.equal(Object.keys(again.papers).length, 20);
+  assert.equal(Object.keys(again.papers).length, 24);
   db.prepare(`UPDATE nsc_answer_keys SET provenance = 'flagged', answer_json = NULL WHERE node_id = '2021-nov-p1-1.1.3'`).run();
   db.prepare(`UPDATE nsc_answer_keys SET provenance = 'llm_double' WHERE node_id = '2025-nov-p1-2.2.1'`).run();
   keys.importMemos(db, MEMOS);
@@ -152,7 +152,7 @@ t('a memo-keyed 2021 leaf enters a quiz only once its prerequisites are mastered
   assert.equal(keys.markNode(db, leafId, '-4 <= x <= -1').ok, true);
 });
 
-t('practice memos make 2016–2021 leaves quiz-servable; unscored memo parts are not served', () => {
+t('practice memos make 2014–2021 leaves quiz-servable; unscored memo parts are not served', () => {
   const all = db.prepare('SELECT id FROM topics').all().map(row => row.id);
   const open = quiz.eligibleLeaves(db, all, 'gr12-caps');
   assert.ok(open.length > 300, 'only ' + open.length);
@@ -166,17 +166,53 @@ t('practice memos make 2016–2021 leaves quiz-servable; unscored memo parts are
 t('a geometry past-paper question in a quiz carries its statement and reason choices', () => {
   const all = db.prepare('SELECT id FROM topics').all().map(row => row.id);
   const open = quiz.eligibleLeaves(db, all, 'gr12-caps');
-  const index = open.findIndex(leaf => leaf.form === 'geom');
+  const index = open.findIndex(leaf => {
+    if (leaf.form !== 'geom') return false;
+    const key = spec(leaf.id);
+    return Array.isArray(key.chain) && key.chain.length > 1 && keys.markNode(db, leaf.id, [...key.chain].reverse()).ok === false;
+  });
   assert.ok(index >= 0);
   const built = quiz.assembleQuiz(db, { mastered: all, choice: index, shuffle: false });
   const paper = built.items.find(item => item.kind === 'paper');
   assert.ok(paper.geom && paper.geom.statements.length && paper.geom.reasons.length, 'geometry choices');
   const key = spec(paper.id);
   assert.equal(keys.markNode(db, paper.id, key.chain).ok, true);
-  assert.equal(keys.markNode(db, paper.id, [...key.chain].reverse()).ok, key.chain.length === 1);
+  assert.equal(keys.markNode(db, paper.id, [...key.chain].reverse()).ok, false);
   const plain = open.find(leaf => leaf.form === 'region');
   const other = quiz.assembleQuiz(db, { mastered: all, choice: open.indexOf(plain), shuffle: false }).items.find(item => item.kind === 'paper');
   assert.equal(other.geom, null);
+});
+
+t('2014 and 2015 typo notes and the derived 2015 P2 3.4 answer travel with the key', () => {
+  const derived = spec('2015-nov-p2-3.4');
+  assert.equal(derived.marks, 1);
+  assert.match(derived.ansTex || derived.answer_md, /7\\sqrt\{2\}/);
+  assert.ok(derived.memo_notes.some(note => /omit/.test(note.text) && /149/.test(note.text)));
+  const typo2014p1 = spec('2014-nov-p1-3.1.3');
+  assert.ok(typo2014p1.memo_notes.some(note => /T_\{32\}/.test(note.text) && /n=52/.test(note.text)));
+  const typo2014p2 = spec('2014-nov-p2-3.4.1');
+  assert.ok(typo2014p2.memo_notes.some(note => /m_\{\\mathrm\{MB\}\}/.test(note.text) && /-4\/3/.test(note.text)));
+  const typo2015p1 = spec('2015-nov-p1-9.5');
+  assert.ok(typo2015p1.memo_notes.some(note => /x\^2-x-6=0/.test(note.text)));
+  const typo2015p2 = spec('2015-nov-p2-6.1');
+  assert.ok(typo2015p2.memo_notes.some(note => /q=\\frac\{1\}\{2\}/.test(note.text) && /alternative/.test(note.where)));
+  const mapped = db.prepare(`SELECT topic_id FROM bank_skill_map WHERE bank_code = 'fn.reflect-in-axes'`).get();
+  assert.equal(mapped.topic_id, 'transform');
+  assert.ok(db.prepare(`SELECT 1 AS ok FROM nsc_node_skills WHERE node_id = '2015-nov-p1-4.3' AND bank_code = 'fn.reflect-in-axes'`).get());
+  assert.equal(db.prepare(`SELECT pool FROM nsc_papers WHERE id = '2014-nov-p1'`).get().pool, 'practice');
+  assert.equal(db.prepare(`SELECT pool FROM nsc_papers WHERE id = '2015-nov-p2'`).get().pool, 'practice');
+  assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE year IN (2012, 2013)`).get().n, 0);
+  const angle = spec('2014-nov-p2-8.1.2');
+  assert.notEqual(angle.type, 'geom');
+  assert.equal(angle.checkable, true);
+  assert.equal(keys.markNode(db, '2014-nov-p2-8.1.2', '42').ok, true);
+  const length = spec('2015-nov-p2-11.2.2');
+  assert.notEqual(length.type, 'geom');
+  assert.equal(length.checkable, true);
+  assert.equal(keys.markNode(db, '2015-nov-p2-11.2.2', '4,67').ok, true);
+  const reasons = spec('2014-nov-p2-10.1');
+  assert.notEqual(reasons.type, 'geom');
+  assert.equal(reasons.checkable, false);
 });
 
 t('2022+ stays in the exam pool and out of quizzes', () => {

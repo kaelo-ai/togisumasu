@@ -515,6 +515,7 @@ gen(){if(Math.random()<.5){const b=R(4,20),c=R(4,20),A=R(25,140);const a=Math.sq
 function normMath(s,o={}){s=String(s==null?'':s).replace(/\$/g,' ');let prev;
   s=s.replace(/\(\s*reject[\s\S]*?\)/gi,' ');
   s=s.replace(/\\displaystyle|\\limits/g,'').replace(/\\(?:hat|bar|tilde|overline)\{([^{}]*)\}/g,'$1');
+  s=s.replace(/(-?\d+)\\(?:d|t)?frac\{(\d+)\}\{(\d+)\}/g,'($1+($2)/($3))');
   do{prev=s;s=s.replace(/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g,'($1)/($2)').replace(/\\sqrt\{([^{}]*)\}/g,'sqrt($1)')}while(s!==prev);
   s=s.replace(/\\(arcsin|arccos|arctan|sin|cos|tan|sec|csc|cot|ln|log)(?![a-z])(_?)/g,(m,f,u)=>' '+f+(u||' '));
   s=s.replace(/\(d([a-z])\)\/\(d([a-z])\)/g,'d$1/d$2');
