@@ -191,6 +191,13 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .aibox p{margin:6px 0}.aibox .aimeta{font-size:12px;color:var(--muted);margin-top:8px}
 .event{margin-top:12px;padding:10px 14px;border-radius:8px;background:var(--good-soft);color:var(--good);font-weight:600}
 .event.miss{background:var(--mark-soft);color:var(--ink)}
+.event.bad{background:var(--mark-soft);color:var(--ink)}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:.9rem;color:var(--muted);margin-left:8px}
+.timer.over{color:var(--mark)}
+.tag.flu{background:var(--mark-soft);color:var(--ink)}
+.place-lists{display:grid;gap:14px;margin:16px 0}
+.place-lists ul{margin:6px 0 0;padding-left:1.2em}
+.place-lists h3{margin:0;font-size:1rem}
 .streakdots{display:inline-flex;gap:4px;margin-left:auto}
 .streakdots i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--good)}
 .streakdots i.on{background:var(--good)}
@@ -552,7 +559,7 @@ async function loadFresh(id){const S=Store.data.seen=Store.data.seen||{};const a
 const freshChains={};
 function fresh(id){const prev=freshChains[id]||Promise.resolve();const p=prev.catch(()=>{}).then(()=>loadFresh(id));freshChains[id]=p;return p}
 async function exampleQuestion(id){try{const q=await fetchQuestion(id,[]);cacheQuestion(id,q);return q}catch(e){if(!networkFailure(e))throw e;const c=cachedQuestions(id);if(c.length)return c[Math.floor(Math.random()*c.length)];if(SKM[id]&&typeof SKM[id].gen==='function')return SKM[id].gen();throw new Error('No example is available for this topic yet.')}}
-function record(id,ok,mode){const out=Mastery.applyAnswer(Store.data,{id,ok,mode,now:Date.now()},catView());Store.data=out.progress;Store.save();renderStats();return out.event}
+function record(id,ok,mode,extra){const out=Mastery.applyAnswer(Store.data,{id,ok,mode,now:Date.now(),ms:extra&&extra.ms,hint:!!(extra&&extra.hint)},catView());Store.data=out.progress;Store.save();renderStats();return out.event}
 function recommended(skip=[]){const c=SK.filter(s=>!skip.includes(s.id)&&st(s.id).lv===0&&!st(s.id).fix&&access(s.id).ok).map(s=>({...s,inProgress:st(s.id).a>0,core:!!s.core,coreScore:s.coreScore||0}));return Mastery.pickRecommended(c)}
 function dayStreak(){const L=Store.data.log;let n=0,t=Date.now();if(!L[dkey(t)])t-=DAY;while(L[dkey(t)]){n++;t-=DAY}return n}
 const masteredCount=()=>SK.filter(s=>st(s.id).lv>0).length;
@@ -578,12 +585,14 @@ function render(){renderStats();const app=$('#app');
   else if(view.name==='quiz')app.innerHTML=`<div id="quizHost"></div>`;
   else if(view.name==='exams')app.innerHTML=examsHTML();
   else if(view.name==='exam')app.innerHTML=`<div id="examHost"></div>`;
+  else if(view.name==='place')app.innerHTML=`<div id="placeHost"></div>`;
   app.insertAdjacentHTML('beforeend','<footer class="foot" id="foot"></footer>');renderFoot();
   if(view.name==='skill'){if(view.tab==='learn')mountExample();else mountPractice()}
   if(view.name==='home'&&homeMode==='graph')mountGraph();
   if(view.name==='session')sessionStep();
   if(view.name==='quiz')quizStep();
   if(view.name==='exam')examStep();
+  if(view.name==='place')placementStep();
   typeset(app)}
 function renderFoot(){const f=$('#foot');if(!f)return;
   f.innerHTML=`<span>${Store.mode==='account'?'Progress saved to your account':'Offline: saving on this device; it syncs when you reconnect'}</span><span class="sp" id="resetZone"><button class="btn ghost sm" id="resetBtn" type="button">Reset progress</button></span>`}
@@ -600,7 +609,7 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   const courseSelect=COURSES.length>1?`<label class="mapfilter">Course <select id="courseSel" class="mapselect">${COURSES.map(c=>`<option value="${esc(c.id)}"${c.id===COURSE?' selected':''}>${esc(c.name)}</option>`).join('')}</select></label>`:'';
   const filterSelect=homeMode==='list'?`<label class="mapfilter"><span class="sr-only">Filter course map</span><select id="mapFilter" class="mapselect">${MAP_FILTERS.map(([v,l])=>`<option value="${v}"${mapFilter===v?' selected':''}>${l}</option>`).join('')}</select></label>`:'';
   let h=`<section class="today"><div class="panel"><div class="eyebrow">Today</div><h1>${title}</h1><ul class="tasks">${tasks.join('')}</ul>
-   <div class="row"><button class="btn primary" type="button" data-act="session">Start today's session</button>${!rep.length&&masteredIds().length>=QUIZ_MIN?`<button class="btn" type="button" data-act="quiz">${qd?'Take the quiz':'Quiz me now'}</button>`:''}${COURSE==='gr12-caps'?`<button class="btn" type="button" data-act="exams">Mock exams</button>`:''}</div></div>
+   <div class="row"><button class="btn primary" type="button" data-act="session">Start today's session</button>${!rep.length&&masteredIds().length>=QUIZ_MIN?`<button class="btn" type="button" data-act="quiz">${qd?'Take the quiz':'Quiz me now'}</button>`:''}${COURSE==='gr12-caps'?`<button class="btn" type="button" data-act="exams">Mock exams</button>`:''}</div>${placementCta()}</div>
    <div class="panel"><div class="eyebrow">Course progress</div><div class="row" style="margin-top:10px;align-items:baseline"><span class="big tnum">${m}</span><span style="color:var(--muted)">of ${SK.length} topics mastered</span></div>
    <div class="meter"><i style="width:${m/totalTopics*100}%"></i></div>
    <div class="kv tnum"><span>Questions answered</span><span>${acc[1]}</span><span>Accuracy</span><span>${acc[1]?Math.round(acc[0]/acc[1]*100)+'%':'–'}</span><span>Last quiz</span><span>${lastQ?`${lastQ.score}/${lastQ.n}`:'–'}</span><span>Day streak</span><span>${dayStreak()}</span></div></div></section>
@@ -660,13 +669,14 @@ async function mountPractice(){const s=SKM[view.id];const a=access(s.id);if(!a.o
     return;
   }
   mountQuestion(host,q,{meta:()=>`<span class="tag${rep?' rep':''}">${rep?'Repair':'Practice'}</span>${staged?kpMeta(s.id):`<span>${rep?'Get 2 in a row to repair this topic':x.lv>0?(isDue(s.id)?'This counts as your review':'Extra practice'):'Get 3 in a row to master this topic'}</span>${x.lv>0&&!rep?'':`<span class="streakdots">${Array.from({length:need},(_,i)=>`<i class="${i<Math.min(need,x.s||0)?'on':''}"></i>`).join('')}</span>`}`}`,
-    answered:ok=>{const ev=record(s.id,ok,'practice');$('#pill').innerHTML=pillOf(s.id);return ev},next:()=>mountPractice()})}
+    mode:'practice',answered:(ok,extra)=>{const ev=record(s.id,ok,'practice',extra);$('#pill').innerHTML=pillOf(s.id);return ev},next:()=>mountPractice()})}
 
 /* ---------- question card ---------- */
 const PH={num:'e.g. 3/4, -2, sqrt(3)/2, 5pi/6',set:'e.g. -2, 5   (or none)',expr:'e.g. 2k^2 - 1',trig:HINTS.trig,tuple:HINTS.tuple,eqn:HINTS.eqn,points:HINTS.points,region:HINTS.region};
-const EVT={mastered:()=>'<div class="event">Topic mastered. It will come back for review tomorrow and in quizzes.</div>',reviewed:e=>`<div class="event">Review passed. Next review in ${e.d} days.</div>`,
-  failedReview:()=>'<div class="event bad">Review missed. This topic now needs repair: 2 in a row before you move on.</div>',repaired:()=>'<div class="event">Repaired. This topic is back on your review schedule.</div>',
-  repairing:e=>`<div class="event ${e.n?'':'miss'}">Repair: ${e.n}/2 in a row.</div>`,pulled:()=>'<div class="event miss">Missed. This topic comes back for review tomorrow.</div>'};
+const EVT={mastered:()=>'<div class="event">Topic mastered. It will come back for review tomorrow and in quizzes.</div>',reviewed:e=>`<div class="event">Review passed. Next review in ${e.d} day${e.d===1?'':'s'}${e.ease!=null&&e.ease!==1?` <span class="muted">(spacing ${Number(e.ease).toFixed(2)}×)</span>`:''}.</div>`,
+  failedReview:e=>`<div class="event bad">Review missed. This topic now needs repair: 2 in a row before you move on.${e&&e.ease!=null&&e.ease!==1?` The next interval will be shorter (spacing ${Number(e.ease).toFixed(2)}×).`:''}</div>`,repaired:()=>'<div class="event">Repaired. This topic is back on your review schedule.</div>',
+  repairing:e=>`<div class="event ${e.n?'':'miss'}">Repair: ${e.n}/2 in a row.</div>`,pulled:()=>'<div class="event miss">Missed. This topic comes back for review tomorrow.</div>',
+  shore:e=>e&&e.reason==='rate'?`<div class="event miss">Accuracy on this topic is under ${Math.round(Mastery.RATE.minAccuracy*100)}% over the last ${Mastery.RATE.window} tries. Let's shore up a key foundation first.</div>`:''};
 let activeQ=null;
 function givenText(q,inp){if(inp==null)return '<em>Skipped</em>';if(q.type==='mc')return q.options[inp].tex;
   if(q.type==='geom')return Array.isArray(inp)?inp.map((step,i)=>`${i+1}. ${esc((q.statements.find(s=>s.id===step.statement)||{}).text||step.statement)} (${esc((q.reasons.find(s=>s.id===step.reason)||{}).text||step.reason)})`).join('<br>'):'';
@@ -679,14 +689,14 @@ async function similarBankQuestion(q){
   const full=await API.req('GET','/api/questions/'+pick.id);
   return full.question;
 }
-function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain=[];const inputs=()=>[...host.querySelectorAll('.mathin')];
+function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain=[],usedHint=false,tick=null;const startedAt=Date.now();const elapsed=()=>Date.now()-startedAt;const inputs=()=>[...host.querySelectorAll('.mathin')];
   const geomUI=q.type==='geom'?`<div class="geom"><div class="row"><label>Statement <select id="geomStmt">${q.statements.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><label>Reason <select id="geomReason">${q.reasons.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><button class="btn" type="button" id="geomAdd">Add step</button></div><ol id="geomChain" class="steps"></ol><p class="gnote">Add the statements in order. Each one needs the reason you would write next to it.</p></div>`:'';
   const ui=q.type==='geom'?geomUI:q.type==='mc'?`<div class="opts" role="group" aria-label="Choices">${q.options.map((o,i)=>`<button class="opt" type="button" aria-pressed="false" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span>${o.tex}</span></button>`).join('')}</div>`
    :q.type==='fields'?`<div class="fields">${q.fields.map((f,i)=>`<label class="field" for="qf${i}"><span class="fl">$${f.label}=$</span><input class="mathin" id="qf${i}" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"></label>`).join('')}</div>${keys(true)}${help()}`
    :`<label class="l" for="qIn">Your answer</label><input class="mathin" id="qIn" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="${PH[q.type]}"><div class="preview" id="qPrev" aria-live="polite"></div>${keys(q.type==='set'||q.type==='num')}${help()}`;
   const acts=ctx.test?`<button class="btn primary" type="button" id="qCheck">Submit answer</button><button class="btn ghost" type="button" id="qGive">I don't know</button>`
-   :`<button class="btn primary" type="button" id="qCheck">Check</button>${q.hint?'<button class="btn ghost" type="button" id="qHint">Hint</button>':''}<button class="btn ghost" type="button" id="qGive">Show solution</button>`;
-  host.innerHTML=`<article class="qcard${ctx.test?' test':''} washi-paper"><div class="qmeta">${ctx.meta()}</div>${ctx.intro||''}<div class="prompt">${q.prompt}</div><div class="answer">${ui}</div>
+   :`<button class="btn primary" type="button" id="qCheck">Check</button>${q.hint&&!ctx.noHint?'<button class="btn ghost" type="button" id="qHint">Hint</button>':''}<button class="btn ghost" type="button" id="qGive">Show solution</button>`;
+  host.innerHTML=`<article class="qcard${ctx.test?' test':''}${ctx.timed?' fluency':''} washi-paper"><div class="qmeta">${ctx.meta()}${ctx.timed?`<span class="timer" id="qTimer" aria-live="off"></span>`:''}</div>${ctx.intro||''}<div class="prompt">${q.prompt}</div><div class="answer">${ui}</div>
    <div class="hintbox" id="qHintBox" hidden>${q.hint||''}</div><div class="feedback" id="qFb" hidden></div><div class="actions row" id="qAct">${acts}</div><div class="sr-only" id="qLive" role="status" aria-live="polite"></div></article>`;
   const fb=host.querySelector('#qFb');
   host.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;sel=+b.dataset.i;host.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
@@ -696,14 +706,16 @@ function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain
     try{const parts=q.type==='set'?splitSet(v):[v];p.innerHTML='\\('+parts.map(x=>toTex(parse(x))).join(',\;')+'\\)';typeset(p)}catch(e){p.innerHTML=`<span class="pe">${esc(e.message)}</span>`}}
   host.querySelectorAll('.key').forEach(k=>k.onclick=()=>{const inp=lastIn||inputs()[0];if(!inp||done)return;const ins=k.dataset.k,s0=inp.selectionStart??inp.value.length,s1=inp.selectionEnd??s0;
     inp.value=inp.value.slice(0,s0)+ins+inp.value.slice(s1);const pos=s0+(ins.endsWith('()')?ins.length-1:ins.length);inp.focus();inp.setSelectionRange(pos,pos);inp.dispatchEvent(new Event('input'))});
-  const hb=host.querySelector('#qHint');if(hb)hb.onclick=()=>{const b=host.querySelector('#qHintBox');b.hidden=false;hb.hidden=true;typeset(b)};
-  function finish(ok,gaveUp,per,inp){done=true;activeQ.done=true;const card=host.querySelector('.qcard');if(card)card.classList.add('done');
-    if(ctx.test){ctx.answered(ok,givenText(q,gaveUp?null:inp));ctx.next();return}
+  const hb=host.querySelector('#qHint');if(hb)hb.onclick=()=>{usedHint=true;const b=host.querySelector('#qHintBox');b.hidden=false;hb.hidden=true;typeset(b)};  if(ctx.timed){const target=+ctx.timed;const paint=()=>{const n=host.querySelector('#qTimer');if(!n||done)return;const left=target-elapsed();n.textContent=left>=0?`${Math.ceil(left/1000)}s left`:`${Math.ceil(-left/1000)}s over target`;n.classList.toggle('over',left<0)};paint();tick=setInterval(paint,200)}
+  function finish(ok,gaveUp,per,inp){done=true;activeQ.done=true;if(tick)clearInterval(tick);const card=host.querySelector('.qcard');if(card)card.classList.add('done');
+    const extra={ms:elapsed(),hint:usedHint||(!ctx.test&&gaveUp),idk:!!(ctx.test&&gaveUp)};
+    if(ctx.test){ctx.answered(ok,givenText(q,gaveUp?null:inp),extra);ctx.next();return}
     inputs().forEach((el,i)=>{el.readOnly=true;if(!gaveUp)el.classList.add(per?(per[i]?'ok':'no'):ok?'ok':'no')});
     host.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true;if(q.options[i].ok)b.classList.add('ok');else if(i===sel)b.classList.add('no')});
-    const ev=ctx.answered(ok);const evh=ev&&EVT[ev.k]?EVT[ev.k](ev):'';
+    const ev=ctx.answered(ok,extra);const evh=ev&&EVT[ev.k]?EVT[ev.k](ev):'';
+    const xp=ok?Mastery.xpFor(ctx.mode||'practice'):0;
     const canSimilar=!ctx.test&&q.id&&view.name==='skill'&&view.tab==='practice';
-    fb.hidden=false;fb.innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'Correct':gaveUp?'Here is how it works':'Not quite'}${ok?'<span class="xp">+1</span>':''}</div>
+    fb.hidden=false;fb.innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'Correct':gaveUp?'Here is how it works':'Not quite'}${ok&&xp?`<span class="xp">+${xp}</span>`:''}</div>
       ${ok?'':`<div class="ansline"><b>Answer:</b> ${ansDisplay(q)}</div>`}<details ${ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${q.steps.map(x=>`<li>${x}</li>`).join('')}</ol></details>${!ok&&AI_ON?`<div class="row" style="margin-top:10px"><button class="btn ghost sm" type="button" id="qAi">${gaveUp?'Explain it another way':'Explain my mistake'}</button></div><div id="qAiOut"></div>`:''}${!ok&&canSimilar?`<div class="row" style="margin-top:10px"><button class="btn sm" type="button" id="qSimilar">Try a similar question</button><span class="warn" id="qSimMsg" role="status"></span></div>`:''}${evh}`;
     const live=host.querySelector('#qLive');if(live)live.textContent=ok?'Correct answer.':gaveUp?'Solution shown. Review the worked solution.':'Not quite. Review the answer and worked solution.';
     const aib=fb.querySelector('#qAi');if(aib)aib.onclick=()=>askTutor(aib,fb.querySelector('#qAiOut'),{topic:ctx.meta(),prompt:q.prompt,answer:q.ansTex||ansDisplay(q),given:gaveUp?'':givenText(q,inp),steps:q.steps});
@@ -728,16 +740,84 @@ function keys(set){return `<div class="keys" aria-label="Insert symbols">${[['�
 function help(){return `<details class="help"><summary>How to type answers</summary><ul><li>Fractions: <code>3/4</code>, <code>-5/2</code>. Exact answers only unless the question asks you to round.</li><li>Roots: <code>sqrt(2)</code> or <code>√2</code>; cube roots <code>cbrt(x)</code>. Pi: <code>pi</code> or <code>π</code>.</li><li>Powers: <code>x^2</code>. Multiplication can be implied: <code>2x</code>, <code>3sqrt(5)</code>, <code>(x+1)(x-2)</code>.</li><li>Several answers: separate with commas. No solution: <code>none</code>. Undefined: <code>undefined</code>.</li></ul></details>`}
 
 /* ---------- session: repairs → quiz → interleaved new work, reviews and mixed practice ---------- */
-function startSession(){const due=dueList().map(s=>s.id).slice(0,8);sess={n:0,right:0,mastered:[],reviewed:0,flagged:[],repaired:[],reviews:due,cur:null,curN:0,tried:[],lastKind:null,sinceMix:0,lastMix:null,repTries:{},
+
+function placementCta(){
+  if(!SK.some(s=>s.unit===Mastery.PLACEMENT.unit))return '';
+  const pl=Mastery.placementState(Store.data);
+  if(pl.status==='active')return `<p style="margin:12px 0 0">Your Unit 0 diagnostic is in progress. <button class="btn sm" type="button" data-act="place">Continue</button></p>`;
+  if(pl.status==='done'){
+    const n=(pl.credited||[]).length,inf=(pl.inferred||[]).length,stay=(pl.remains||[]).length;
+    return `<div style="margin:12px 0 0"><p style="margin:0 0 8px">You last took the optional Unit 0 diagnostic. <b>${n}</b> topic${n===1?'':'s'} credited, <b>${inf}</b> inferred, <b>${stay}</b> stay on the taught path.</p><div class="row"><button class="btn sm" type="button" data-act="place">See results</button><button class="btn ghost sm" type="button" data-act="place-retake">Retake diagnostic</button></div></div>`;
+  }
+  return `<div style="margin:12px 0 0"><p style="margin:0 0 8px">Unit 0 (Grade 10–11 foundations) is still the default taught path. An optional diagnostic can mark some of those topics as already mastered, conservatively.</p><button class="btn sm" type="button" data-act="place">Optional Unit 0 diagnostic</button></div>`;
+}
+function openPlacement(){
+  const pl=Mastery.placementState(Store.data);
+  if(pl.status==='done')go({name:'place',phase:'results'});
+  else if(pl.status==='active')go({name:'place',phase:'q'});
+  else go({name:'place',phase:'intro'});
+}
+function beginPlacement(){
+  Store.data=Mastery.startPlacement(Store.data,catView(),Date.now());
+  Store.save();
+  go({name:'place',phase:'q'});
+}
+function finishPlacement(){
+  const out=Mastery.finalizePlacement(Store.data,catView(),Date.now());
+  Store.data=out.progress;Store.save();
+  go({name:'place',phase:'results'});
+}
+function placeNames(ids){return (ids||[]).map(id=>`<li>${esc((SKM[id]&&SKM[id].name)||id)}</li>`).join('')||'<li>None</li>'}
+async function placementStep(){
+  const host=$('#placeHost');if(!host)return;
+  const pl=Mastery.placementState(Store.data);
+  if(view.phase==='intro'){
+    host.innerHTML=`<section class="summary panel"><div class="eyebrow">Optional</div><h1>Unit 0 diagnostic</h1>
+      <p>Unit 0 stays the default taught path. This optional check can mark some Grade 10–11 foundations as already mastered, conservatively.</p>
+      <p>We start with later topics and only credit a topic if you answer correctly, confidently, and reasonably quickly (under ${Math.round(Mastery.PLACEMENT.passMs/1000)} seconds). An <b>I don't know</b> button is always there. A miss, a skip, or a slow answer leaves that topic on the normal path. Earlier skills are inferred only when a later pass clearly depends on them.</p>
+      <p>About ${Mastery.PLACEMENT.maxItems} questions or fewer. No XP is awarded, and you can retake it later.</p>
+      <div class="row" style="margin-top:16px"><button class="btn primary" type="button" data-act="place-start">Start diagnostic</button><button class="btn" type="button" data-act="home">Not now</button></div></section>`;
+    return;
+  }
+  if(view.phase==='results'){
+    const n=(pl.credited||[]).length,inf=(pl.inferred||[]).length;
+    host.innerHTML=`<section class="summary panel"><div class="eyebrow">Diagnostic results</div><h1>${n||inf?'Some foundations are already in place':'We\'ll teach Unit 0 as usual'}</h1>
+      <p>Only confident, reasonably quick answers were credited. Everything else stays on the normal taught path.</p>
+      <div class="place-lists">
+        <div><h3>Credited (${n})</h3><ul>${placeNames(pl.credited)}</ul></div>
+        <div><h3>Inferred from those (${inf})</h3><ul>${placeNames(pl.inferred)}</ul></div>
+        <div><h3>Stay on the normal path (${(pl.remains||[]).length})</h3><ul>${placeNames(pl.remains)}</ul></div>
+      </div>
+      <div class="row" style="margin-top:16px"><button class="btn primary" type="button" data-act="home">Back to the course map</button><button class="btn" type="button" data-act="place-retake">Retake diagnostic</button></div></section>`;
+    typeset(host);return;
+  }
+  const id=Mastery.nextPlacementTopic(Store.data,catView());
+  if(!id){finishPlacement();return}
+  const s=SKM[id];
+  const asked=(pl.items||[]).length;
+  host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="home">Exit</button><div class="meter"><i style="width:${Math.min(100,asked/Mastery.PLACEMENT.maxItems*100)}%"></i></div><span class="tnum" style="font-size:.85rem;color:var(--muted)">Question ${asked+1} of up to ${Mastery.PLACEMENT.maxItems}</span></div><div class="boot">Loading question…</div><div id="pq"></div>`;
+  let q;try{q=await fresh(id)}catch(e){host.innerHTML=`<p class="warn">Could not load a question. ${esc(e.message)}</p>`;return}
+  if(!host.isConnected)return;const loading=host.querySelector('.boot');if(loading)loading.remove();
+  mountQuestion($('#pq'),q,{test:true,mode:'place',meta:()=>`<span class="tag">Diagnostic</span><span>${esc(s.name)}</span>`,
+    answered:(ok,given,extra)=>{
+      const out=Mastery.applyPlacementAnswer(Store.data,{id,ok,idk:!!(extra&&extra.idk),ms:extra&&extra.ms,now:Date.now()},catView());
+      Store.data=out.progress;Store.save();
+      if(out.done)view._placeDone=true;
+    },
+    next:()=>{if(view._placeDone){view._placeDone=false;finishPlacement()}else{view.phase='q';placementStep();window.scrollTo(0,0)}}});
+}
+
+function startSession(){const due=dueList().map(s=>s.id).slice(0,8);sess={n:0,right:0,mastered:[],reviewed:0,flagged:[],repaired:[],reviews:due,cur:null,curN:0,tried:[],lastKind:null,sinceMix:0,lastMix:null,repTries:{},fluency:null,fluencyDone:false,
   max:Math.max(12,Math.min(24,due.length+repairList().length*2+8))};go({name:'session'})}
 function mixPool(){return masteredIds().filter(id=>id!==sess.cur&&!isDue(id))}
 function pickMix(){const P=mixPool();const not=P.filter(p=>p!==sess.lastMix);const base=not.length?not:P;const pre=sess.cur?SKM[sess.cur].pre.filter(p=>base.includes(p)):[];
   const c=pre.length&&Math.random()<.6?pick(pre):pick(base);sess.lastMix=c;return c}
 function nextItem(){const sh=shoreQueue();
-  if(sh.length){const s=sh[0];return {id:s.id,kind:'shore',from:s.from,first:true}}
+  if(sh.length){const s=sh[0];return {id:s.id,kind:'shore',from:s.from,first:true,reason:s.reason}}
   const rep=repairList();
   if(rep.length){const id=rep[0].id;sess.repTries[id]=(sess.repTries[id]||0)+1;return sess.repTries[id]<=6?{id,kind:'repair',first:sess.repTries[id]===1}:{stop:id}}
   if(quizDue()&&!sess.skipQuiz)return {quiz:true};
+  if(sess.fluency&&sess.fluency.length)return {id:sess.fluency.shift(),kind:'fluency'};
   if(sess.n>=sess.max)return null;
   if(!sess.cur||st(sess.cur).lv>0||sess.curN>=8){const r=recommended(sess.tried);sess.cur=r?r.id:null;sess.curN=0;sess.sinceMix=0;if(r)sess.tried.push(r.id)}
   const revs=sess.reviews.filter(isDue);let kind;
@@ -747,11 +827,14 @@ function nextItem(){const sh=shoreQueue();
   else kind='new';
   if(!kind)return null;sess.lastKind=kind==='example'?'new':kind;
   if(kind==='review'){const id=revs[0];sess.reviews=sess.reviews.filter(x=>x!==id);return {id,kind}}
-  if(kind==='mixed'){sess.sinceMix=0;return {id:pickMix(),kind}}
+  if(kind==='mixed'){sess.sinceMix=0;
+    if(!sess.fluencyDone){const set=Mastery.pickFluencySet(Store.data,catView(),Date.now());
+      if(set.length){sess.fluencyDone=true;sess.fluency=set.slice();Store.data={...Store.data,fluencyLast:set[0]};Store.save();return {id:sess.fluency.shift(),kind:'fluency'}}}
+    return {id:pickMix(),kind}}
   sess.sinceMix++;sess.curN++;
   if(Mastery.exampleDue(Store.data,sess.cur,catView()))return {id:sess.cur,kind:'example',first:true};
   return {id:sess.cur,kind:'new',first:sess.curN===1&&st(sess.cur).a===0}}
-const KIND={new:['New',''],review:['Review','rev'],mixed:['Mixed review','mix'],repair:['Repair','rep'],shore:['Shore up','shore'],example:['Example','']};
+const KIND={new:['New',''],review:['Review','rev'],mixed:['Mixed review','mix'],fluency:['Fluency','flu'],repair:['Repair','rep'],shore:['Shore up','shore'],example:['Example','']};
 let sessBusy=false;
 async function sessionStep(){if(sessBusy)return;sessBusy=true;try{const host=$('#sessHost');const it=nextItem();
   if(it&&it.quiz){const now=Date.now();Store.data=Mastery.noteQuizDue(Store.data,now,true);Store.save();const must=Mastery.mustTakeQuiz(Store.data,now,true);const left=Math.max(0,Mastery.DAILY.quiz.maxDefers-((Store.data.qz||{}).defers||0));const skip=must?'':`<button class="btn" type="button" id="skipQuiz">Not now, keep going</button>`;const note=must?`You've put this quiz off as often as the course allows. New work on this route waits until you take it.`:`You can put this off ${left} more time${left===1?'':'s'}, or for up to ${Mastery.DAILY.quiz.deferDays} days from when it first came due. Until you take it, only topics that build on your newly mastered ones wait. Other routes stay open.`;host.innerHTML=`<section class="summary panel"><div class="eyebrow">Quiz time</div><h1>Show what you've kept</h1><p>You've mastered new topics since your last quiz. This one mixes ${Math.min(8,Math.max(5,masteredIds().length))} fresh questions from across everything you've mastered, in random order. No hints; solutions come at the end.</p><p>Any topic you miss goes into repair. You'll answer a few questions on it before anything that builds on it opens.</p><div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="quiz">Start the quiz</button>${skip}</div><p style="margin:10px 0 0;font-size:.86rem;color:var(--muted)">${note}</p></section>`;if($('#skipQuiz'))$('#skipQuiz').onclick=()=>{const out=Mastery.deferQuiz(Store.data,Date.now());Store.data=out.progress;Store.save();if(out.ok){sess.skipQuiz=true;sessionStep()}};return}
@@ -771,11 +854,12 @@ async function sessionStep(){if(sessBusy)return;sessBusy=true;try{const host=$('
     const btn=$('#tryLikeThis');if(btn)btn.onclick=()=>{Store.data=Mastery.markExampleSeen(Store.data,s.id);Store.save();sessionStep();window.scrollTo(0,0)};
     return;
   }
-  const shoreBanner=it.kind==='shore'?`<div class="lock shore" style="margin-bottom:12px"><div class="eyebrow">Foundation first</div><h3>Let's shore up ${esc(s.name)} first</h3><p>${it.from&&SKM[it.from]?`A miss on <b>${esc(SKM[it.from].name)}</b> pointed back at this skill. Do a short review, then continue.`:'This earlier skill needs a short review before you retry the harder topic.'}</p></div>`:'';
+  const rateShore=it.kind==='shore'&&(it.reason==='rate'||sess.shoreWhy==='rate')&&(it.from&&SKM[it.from]||sess.shoreFrom&&SKM[sess.shoreFrom]);
+  const shoreBanner=it.kind==='shore'?`<div class="lock shore" style="margin-bottom:12px"><div class="eyebrow">Foundation first</div><h3>Let's shore up ${esc(s.name)} first</h3><p>${rateShore?`Accuracy on <b>${esc((SKM[it.from]||SKM[sess.shoreFrom]).name)}</b> was under ${Math.round(Mastery.RATE.minAccuracy*100)}% over the last ${Mastery.RATE.window} tries. Do a short review of this key prerequisite, then continue.`:it.from&&SKM[it.from]?`A miss on <b>${esc(SKM[it.from].name)}</b> pointed back at this skill. Do a short review, then continue.`:'This earlier skill needs a short review before you retry the harder topic.'}</p></div>`:'';
   const intro=(shoreBanner)+(it.kind==='new'&&it.first?noteBox('New topic: the key idea'):it.kind==='repair'&&it.first?noteBox('Repair: a quick refresher','<p style="margin:8px 0 0">You missed this topic. Get 2 in a row to put it back on your schedule.</p>'):'');
   const staged=Mastery.isStaged(s)&&it.kind==='new';
-  mountQuestion($('#sq'),q,{intro,meta:()=>`<span class="tag ${cls}">${lab}</span><button class="btn ghost sm" type="button" data-skill="${s.id}" style="padding:0 6px;min-height:0">${esc(s.name)}</button>${staged?kpMeta(s.id):''}`,
-    answered:ok=>{sess.n++;if(ok)sess.right++;const ev=record(s.id,ok,it.kind);if(ev){if(ev.k==='mastered')sess.mastered.push(s.id);if(ev.k==='reviewed')sess.reviewed++;if(ev.k==='failedReview')sess.flagged.push(s.id);if(ev.k==='repaired'){sess.repaired.push(s.id);sess.flagged=sess.flagged.filter(x=>x!==s.id)}}return ev},
+  mountQuestion($('#sq'),q,{intro,mode:it.kind,timed:it.kind==='fluency'?Mastery.FLUENCY.targetMs:0,noHint:it.kind==='fluency',meta:()=>`<span class="tag ${cls}">${lab}</span><button class="btn ghost sm" type="button" data-skill="${s.id}" style="padding:0 6px;min-height:0">${esc(s.name)}</button>${it.kind==='fluency'?`<span class="target">Aim for ${Mastery.FLUENCY.targetMs/1000}s. No auto-submit.</span>`:''}${staged?kpMeta(s.id):''}`,
+    answered:(ok,extra)=>{sess.n++;if(ok)sess.right++;const ev=record(s.id,ok,it.kind,extra);if(ev){if(ev.k==='mastered')sess.mastered.push(s.id);if(ev.k==='reviewed')sess.reviewed++;if(ev.k==='failedReview')sess.flagged.push(s.id);if(ev.k==='repaired'){sess.repaired.push(s.id);sess.flagged=sess.flagged.filter(x=>x!==s.id)}if(ev.k==='shore'){sess.shoreWhy=ev.reason;sess.shoreFrom=s.id;sess.shoreRate=ev.rate}}return ev},
     next:()=>{sessionStep();window.scrollTo(0,0)},nextLabel:'Continue'})}finally{sessBusy=false}}
 
 /* ---------- quiz: one gated past-paper question, plus generated questions. Never 2022+. ---------- */
@@ -932,7 +1016,7 @@ document.addEventListener('keydown',e=>{const n=e.target.closest&&e.target.close
 document.addEventListener('click',e=>{const t=e.target.closest('[data-skill],[data-act],[data-tab]');if(!t)return;
   if(t.dataset.skill){e.preventDefault();const id=t.dataset.skill;go({name:'skill',id,tab:st(id).a>0?'practice':'learn'});return}
   if(t.dataset.tab){go({...view,tab:t.dataset.tab});return}
-  const a=t.dataset.act;if(a==='home'){if(examTimer)clearInterval(examTimer);go({name:'home'})}if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')startExams();if(a==='another')mountExample()});
+  const a=t.dataset.act;if(a==='home'){if(examTimer)clearInterval(examTimer);go({name:'home'})}if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')startExams();if(a==='another')mountExample();if(a==='place')openPlacement();if(a==='place-start'||a==='place-retake')beginPlacement()});
 $('#homeBtn').onclick=()=>go({name:'home'});
 document.addEventListener('click',e=>{const u=e.target.closest('[data-unit-toggle]');if(!u)return;const id=u.dataset.unitToggle;if(collapsedUnits.has(id))collapsedUnits.delete(id);else collapsedUnits.add(id);saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
 document.addEventListener('change',e=>{if(e.target.id==='courseSel'){const id=e.target.value;loadCatalog(id).then(()=>{G.sel=null;G.unit=null;go({name:'home'})});return}
