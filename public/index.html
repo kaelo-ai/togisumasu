@@ -383,10 +383,13 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .landing-card .sample-foot{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;font-size:.74rem;color:var(--paper-muted)}
 .landing-card .sample-foot span{border:1px solid var(--paper-line);border-radius:99px;padding:2px 9px}
 .seal{position:absolute;top:18px;right:18px;width:44px;height:44px;display:grid;place-items:center;border:2px solid var(--seal);color:var(--seal);font-family:var(--f-display);font-size:1.3rem;border-radius:8px;transform:rotate(4deg);opacity:.9;z-index:2}
-.landing-section{padding:clamp(34px,6vw,74px) 0;border-top:1px solid var(--line)}
+.landing-section{padding:clamp(34px,6vw,74px) 0;border-top:1px solid var(--line);scroll-margin-top:88px}
 .landing-section h2,.landing-close h2{font-size:clamp(1.8rem,3.8vw,2.8rem);letter-spacing:-.03em;margin:8px 0 12px}
 .landing-section>p,.landing-close p{color:var(--muted);max-width:56ch;margin:0 0 22px}
 .landing-features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+@media (max-width:1100px){
+  .landing-features{grid-template-columns:repeat(2,1fr)}
+}
 .landing-features .feature{padding:22px;box-shadow:none}
 .landing-features .feature-k{font-family:var(--f-mono);font-size:.74rem;color:var(--seal)}
 .landing-features h3{font-size:1.02rem;margin:12px 0 8px}
@@ -409,6 +412,7 @@ details.help ul{margin:6px 0 0;padding-left:18px}
   .landing-hero{grid-template-columns:1fr;min-height:0;padding-bottom:40px}
   .landing-card{justify-self:start;transform:rotate(-.6deg);max-width:520px}
   .landing-features{grid-template-columns:1fr}
+  .landing-section{scroll-margin-top:128px}
 }
 /* Picker text uses combining hats (T\u0302). The body font and system-ui place them off the letter; these fonts put them on it. */
 .geom select,.geom li{font-family:"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif}
@@ -1063,11 +1067,14 @@ function landingHTML(){
     <section class="landing-section" id="how">
       <div class="eyebrow">How it works</div>
       <h2>Practice that stays with you.</h2>
-      <p>Short lessons, worked examples, then just enough practice to make the idea stick. The app remembers what needs repair and brings it back at the right moment.</p>
+      <p>Short staged lessons, worked examples, then just enough practice to make the idea stick. The app follows a map of ideas, brings back what needs repair at the right moment, and keeps a full bank of past papers for when you are ready.</p>
       <div class="landing-features">
-        <article class="washi-paper feature"><span class="feature-k">01</span><h3>One idea at a time</h3><p>Read the idea, follow a worked example, then try it yourself. Nothing extra in the way.</p></article>
-        <article class="washi-paper feature"><span class="feature-k">02</span><h3>Repair, don't rush</h3><p>When something slips, the app brings it back for two clean answers before you move on.</p></article>
-        <article class="washi-paper feature"><span class="feature-k">03</span><h3>Built to grow</h3><p>Starting with algebra and trigonometry, with room for more mathematics and statistics later.</p></article>
+        <article class="washi-paper feature"><span class="feature-k">01</span><h3>One idea at a time</h3><p>Topics are taught in short stages. Read the idea, follow a worked example, then try it yourself. An optional diagnostic lets you skip what you already know.</p></article>
+        <article class="washi-paper feature"><span class="feature-k">02</span><h3>Strength flows through the map</h3><p>A correct answer also strengthens the earlier ideas it rests on. A miss flags the later topics that depend on it, so a gap does not stay hidden.</p></article>
+        <article class="washi-paper feature"><span class="feature-k">03</span><h3>Repair, don't rush</h3><p>When something slips, the app brings it back until you have two clean answers. If it keeps slipping — two misses, or a weak run of attempts — you go back to the earlier idea it rests on.</p></article>
+        <article class="washi-paper feature"><span class="feature-k">04</span><h3>Useful work, every day</h3><p>Each day has a 30 XP goal, with more credit for useful work: new ideas, repairs, reviews that are due, and exam questions. The path prefers the topics that carry the most marks in the exam.</p></article>
+        <article class="washi-paper feature"><span class="feature-k">05</span><h3>Reviews that adapt</h3><p>Ideas come back just as they start to fade. The gap grows when you answer surely and quickly, and shrinks when you hesitate, need a hint, or miss. Mixed review can include a short timed fluency round.</p></article>
+        <article class="washi-paper feature"><span class="feature-k">06</span><h3>Past papers, used carefully</h3><p>Quizzes can draw on November NSC papers from before 2022. The 2022 and later papers are kept for full exams. Every November paper from 2012 to 2025 is in the bank, with the official memos, and the diagrams are drawn in the app.</p></article>
       </div>
     </section>
     <section class="landing-close">
