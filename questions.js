@@ -243,6 +243,8 @@ function init(db) {
   addColumn(db, 'questions', 'updated_at', 'updated_at INTEGER');
   addColumn(db, 'questions', 'source', "source TEXT NOT NULL DEFAULT 'generated'");
   addColumn(db, 'questions', 'status', "status TEXT NOT NULL DEFAULT 'active'");
+  addColumn(db, 'questions', 'kp', 'kp INTEGER');
+  db.exec('CREATE INDEX IF NOT EXISTS questions_skill_kp ON questions(skill_id, status, kp)');
   db.exec(`
     CREATE INDEX IF NOT EXISTS questions_status ON questions(skill_id, status);
     UPDATE questions SET updated_at = created_at WHERE updated_at IS NULL;
@@ -282,8 +284,8 @@ function insert(db, skillId, question, options = {}) {
   const now = Date.now();
   const info = db.prepare(`
     INSERT OR IGNORE INTO questions
-      (skill_id, unit, type, prompt, prompt_text, hint, steps, answer, answer_tex, options, fields, data, fingerprint, created_at, updated_at, source, status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (skill_id, unit, type, prompt, prompt_text, hint, steps, answer, answer_tex, options, fields, data, fingerprint, created_at, updated_at, source, status, kp)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     skillId,
     skill.unit,
@@ -302,18 +304,21 @@ function insert(db, skillId, question, options = {}) {
     now,
     options.source === 'manual' ? 'manual' : 'generated',
     STATUSES.has(options.status) ? options.status : 'active',
+    question.kp == null || question.kp === '' ? null : Number(question.kp),
   );
   if (!info.changes) return null;
   return { id: Number(info.lastInsertRowid), fingerprint: fp, ...data };
 }
 
-function generate(db, skillId, exclude = new Set()) {
+function generate(db, skillId, exclude = new Set(), kp) {
   const skill = core.SKM[skillId];
   if (!skill || typeof skill.gen !== 'function') return null;
+  const wantKp = kp == null || kp === '' ? null : Number(kp);
   for (let attempt = 0; attempt < 80; attempt++) {
     let question;
-    try { question = skill.gen(); } catch (err) { continue; }
+    try { question = wantKp == null ? skill.gen() : skill.gen(wantKp); } catch (err) { continue; }
     if (!question || !question.prompt || !question.type) continue;
+    if (wantKp != null) question.kp = wantKp;
     const fp = fingerprint(question.prompt);
     if (exclude.has(fp)) continue;
     exclude.add(fp);
@@ -334,21 +339,26 @@ function rowToQuestion(row) {
   };
 }
 
-function next(db, skillId, exclude = []) {
+function next(db, skillId, exclude = [], opts = {}) {
   const skill = core.SKM[skillId];
   if (!skill || skill.status !== 'active') return null;
   const seen = [...new Set(exclude.map(String).filter(Boolean))].slice(-250);
+  const wantKp = opts && opts.kp != null && opts.kp !== '' ? Number(opts.kp) : null;
+  const kpClause = wantKp == null ? '' : ' AND kp = ?';
+  const kpArgs = wantKp == null ? [] : [wantKp];
   let row;
   if (seen.length) {
     const marks = seen.map(() => '?').join(',');
-    row = db.prepare(`SELECT * FROM questions WHERE skill_id = ? AND status = 'active' AND fingerprint NOT IN (${marks}) ORDER BY RANDOM() LIMIT 1`).get(skillId, ...seen);
+    row = db.prepare(`SELECT * FROM questions WHERE skill_id = ? AND status = 'active'${kpClause} AND fingerprint NOT IN (${marks}) ORDER BY RANDOM() LIMIT 1`).get(skillId, ...kpArgs, ...seen);
   } else {
-    row = db.prepare("SELECT * FROM questions WHERE skill_id = ? AND status = 'active' ORDER BY RANDOM() LIMIT 1").get(skillId);
+    row = db.prepare(`SELECT * FROM questions WHERE skill_id = ? AND status = 'active'${kpClause} ORDER BY RANDOM() LIMIT 1`).get(skillId, ...kpArgs);
   }
   if (!row) {
-    const generated = generate(db, skillId, new Set(seen));
+    const generated = generate(db, skillId, new Set(seen), wantKp);
     if (generated) return generated;
-    row = db.prepare("SELECT * FROM questions WHERE skill_id = ? AND status = 'active' ORDER BY RANDOM() LIMIT 1").get(skillId);
+    if (wantKp == null) {
+      row = db.prepare("SELECT * FROM questions WHERE skill_id = ? AND status = 'active' ORDER BY RANDOM() LIMIT 1").get(skillId);
+    }
   }
   return row ? rowToQuestion(row) : null;
 }

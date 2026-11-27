@@ -1,6 +1,7 @@
 /* ===== core: math parser, answer checking, problem generators (no DOM) ===== */
 const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const Rnz=(a,b)=>{let v;do v=R(a,b);while(v===0);return v};
+const wantKp=(n,kp)=>kp==null||!(kp>=0)?R(0,n):Math.max(0,Math.min(n,kp|0));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a};
@@ -122,11 +123,21 @@ function rayTex(op,v){return op==='<'?iv('-\\infty',v,false,false):op==='<='?iv(
 const P='https://tutorial.math.lamar.edu/Classes/Alg/',PT='https://tutorial.math.lamar.edu/Extras/AlgebraTrigReview/';
 const OSC='https://openstax.org/books/college-algebra-2e/pages/',OSP='https://openstax.org/books/precalculus-2e/pages/';
 const UNITS=[['A','Foundations'],['B','Equations & inequalities'],['C','Lines, circles & functions'],['D','Graphs & polynomials'],['E','Exponentials & logarithms'],['F','Systems'],['G','Trig functions'],['H','Identities & trig equations']];
-const SK=[];const S=o=>SK.push(o);
+const SK=[];const S=o=>{
+  if(typeof o.gen==='function'){
+    const raw=o.gen;
+    o.gen=function(kp){
+      const q=raw.call(this,kp);
+      if(q&&q.kp==null&&typeof kp==='number'&&kp>=0)q.kp=kp;
+      return q;
+    };
+  }
+  SK.push(o);
+};
 
 S({id:'exp-int',unit:'A',name:'Integer exponents',pre:[],paul:P+'IntegerExponents.aspx',os:['College Algebra 1.2',OSC+'1-2-exponents-and-scientific-notation'],
 notes:`<p>With the same base, add exponents when you multiply, subtract when you divide, and multiply when you raise a power to a power. A negative exponent means reciprocal.</p>$$a^m a^n=a^{m+n}\\qquad \\frac{a^m}{a^n}=a^{m-n}\\qquad (a^m)^n=a^{mn}\\qquad a^{-n}=\\frac{1}{a^n}$$<p>Watch the sign: $(-3)^2=9$ but $-3^2=-9$. The exponent applies before the minus unless parentheses say otherwise.</p>`,
-gen(){const k=R(0,2);
+gen(kp){const k=wantKp(2,kp);
  if(k===0){const a=pick([2,3]);let m,n,p,e;do{m=Rnz(-4,5);n=Rnz(-4,5);p=Rnz(-4,5);e=m+n-p}while(e<-3||e>3);const v=e>=0?frac(a**e):frac(1,a**-e);
   return {type:'num',exact:true,val:v.v,ans:v.txt,ansTex:v.tex,prompt:`Simplify to a single number: $$\\frac{${a}^{${m}}\\cdot ${a}^{${n}}}{${a}^{${p}}}$$`,hint:'Same base, so combine exponents: add on top, then subtract the bottom exponent.',
   steps:[`Top: $${a}^{${m}}\\cdot ${a}^{${n}}=${a}^{${m+n}}$`,`Divide: $${a}^{${m+n}-(${p})}=${a}^{${e}}$`,e<0?`Negative exponent means reciprocal: $${a}^{${e}}=\\frac{1}{${a}^{${-e}}}=${v.tex}$`:`$${a}^{${e}}=${v.tex}$`]}}
@@ -139,13 +150,13 @@ gen(){const k=R(0,2);
 
 S({id:'exp-rat',unit:'A',name:'Rational exponents',pre:['exp-int'],paul:P+'RationalExponents.aspx',os:['College Algebra 1.3',OSC+'1-3-radicals-and-rational-exponents'],
 notes:`<p>The denominator of a rational exponent is a root; the numerator is a power. Take the root first so the numbers stay small.</p>$$a^{m/n}=\\left(\\sqrt[n]{a}\\right)^m\\qquad a^{-m/n}=\\frac{1}{a^{m/n}}$$<p>Example: $8^{2/3}=(\\sqrt[3]{8})^2=2^2=4$.</p>`,
-gen(){let r,k,m;do{r=pick([2,3,4]);k=R(2,r===2?9:r===3?5:3);m=R(1,3)}while(m%r===0||k**m>600||k**r>1000);const neg=Math.random()<.4;const base=k**r;const v=neg?frac(1,k**m):frac(k**m);
+gen(kp){let r,k,m;do{r=pick([2,3,4]);k=R(2,r===2?9:r===3?5:3);m=R(1,3)}while(m%r===0||k**m>600||k**r>1000);const neg=kp==null?Math.random()<.4:kp>=1;const base=k**r;const v=neg?frac(1,k**m):frac(k**m);
  const ex=frac(m,r);return {type:'num',exact:true,val:v.v,ans:v.txt,ansTex:v.tex,prompt:`Evaluate: $$${base}^{${neg?'-':''}${ex.tex}}$$`,hint:`The denominator ${r} means take the ${r===2?'square':r===3?'cube':'4th'} root first.`,
   steps:[`$\\sqrt[${r}]{${base}}=${k}$`,`Raise to the power ${m}: $${k}^{${m}}=${k**m}$`].concat(neg?[`Negative exponent means reciprocal: $${v.tex}$`]:[])}}});
 
 S({id:'radicals',unit:'A',name:'Simplifying & rationalizing radicals',pre:['exp-rat'],paul:P+'Radicals.aspx',os:['College Algebra 1.3',OSC+'1-3-radicals-and-rational-exponents'],
 notes:`<p>Pull out the largest perfect-square factor: $\\sqrt{72}=\\sqrt{36\\cdot 2}=6\\sqrt2$. To rationalize, multiply top and bottom by the radical, or by the conjugate when the denominator is a sum or difference.</p>$$\\frac{c}{\\sqrt p+q}\\cdot\\frac{\\sqrt p-q}{\\sqrt p-q}=\\frac{c(\\sqrt p-q)}{p-q^2}$$<p>Enter roots as <code>sqrt(2)</code> or <code>√2</code>.</p>`,
-gen(){const k=R(0,2);const sf=[2,3,5,6,7,10,11];
+gen(kp){const k=wantKp(2,kp);const sf=[2,3,5,6,7,10,11];
  if(k===0){const s=R(2,7),f=pick(sf),n=s*s*f;return {type:'num',exact:true,val:Math.sqrt(n),ans:`${s}sqrt(${f})`,ansTex:`${s}\\sqrt{${f}}`,reject:radReject,prompt:`Simplify: $$\\sqrt{${n}}$$`,hint:`Look for a perfect square that divides ${n}.`,
   steps:[`$${n}=${s*s}\\cdot ${f}$ and $${s*s}$ is a perfect square`,`$\\sqrt{${n}}=\\sqrt{${s*s}}\\sqrt{${f}}=${s}\\sqrt{${f}}$`]}}
  if(k===1){const f=pick(sf),a=R(2,14);const c=frac(a,f);const tex=`${c.d===1?(c.n===1?'':c.n):''}${c.d===1?'':''}`;
@@ -159,7 +170,7 @@ gen(){const k=R(0,2);const sf=[2,3,5,6,7,10,11];
 
 S({id:'poly-mult',unit:'A',name:'Multiplying polynomials',pre:[],paul:P+'Polynomials.aspx',os:['College Algebra 1.4',OSC+'1-4-polynomials'],
 notes:`<p>Multiply every term of the first factor by every term of the second, then combine like terms. For two binomials this is FOIL.</p>$$(a+b)^2=a^2+2ab+b^2\\qquad (a+b)(a-b)=a^2-b^2$$<p>The common mistake: $(x+3)^2\\ne x^2+9$. You lose the middle term $6x$.</p>`,
-gen(){const k=R(0,2);let p,q,show;
+gen(kp){const k=wantKp(2,kp);let p,q,show;
  if(k===0){p=[R(1,4),Rnz(-7,7)];q=[Rnz(-3,4),Rnz(-7,7)];show=`(${lin(...p)})(${lin(...q)})`}
  else if(k===1){p=[R(1,4),Rnz(-6,6)];q=p;show=`(${lin(...p)})^2`}
  else{p=[1,Rnz(-4,4)];q=[1,Rnz(-4,4),Rnz(-5,5)];show=`(${lin(...p)})(${poly(q)})`}
@@ -168,7 +179,7 @@ gen(){const k=R(0,2);let p,q,show;
 
 S({id:'factoring',unit:'A',name:'Factoring polynomials',pre:['poly-mult'],paul:P+'Factoring.aspx',os:['College Algebra 1.5',OSC+'1-5-factoring-polynomials'],
 notes:`<p>Always pull out the greatest common factor first. For $x^2+bx+c$, find two numbers that multiply to $c$ and add to $b$. For $ax^2+bx+c$, try factor pairs of $a$ and $c$ (or use the ac-method).</p>$$a^2-b^2=(a-b)(a+b)$$<p>Check by expanding your answer.</p>`,
-gen(){const k=R(0,3);let fac,cs,steps;
+gen(kp){const k=wantKp(3,kp);let fac,cs,steps;
  if(k===0){let r,s;do{r=Rnz(-9,9);s=Rnz(-9,9)}while(r===-s);cs=[1,r+s,r*s];fac=`(x${sg(r)})(x${sg(s)})`;steps=[`Need two numbers with product $${r*s}$ and sum $${r+s}$: ${r} and ${s}`]}
  else if(k===1){let a,b,c,d;do{a=R(2,5);b=Rnz(-7,7);c=1;d=Rnz(-7,7)}while(gcd(a,b)!==1);cs=polyMul([a,b],[c,d]);fac=`(${lin(a,b)})(x${sg(d)})`;steps=[`Leading coefficient ${a} splits as ${a}·1; try pairs for ${cs[2]} until the middle term is $${cs[1]}x$`]}
  else if(k===2){const p=R(1,5),q=R(1,9);cs=[p*p,0,-q*q];fac=`(${lin(p,-q)})(${lin(p,q)})`;steps=[`Difference of squares: $(${p===1?'':p}x)^2-${q}^2$`]}
@@ -188,7 +199,7 @@ gen(){if(Math.random()<.5){let r1,r2,r3;do{r1=Rnz(-6,6);r2=R(-6,6);r3=R(-6,6)}wh
 
 S({id:'complex',unit:'A',name:'Complex numbers',pre:['poly-mult'],paul:P+'ComplexNumbers.aspx',os:['Precalculus 3.1',OSP+'3-1-complex-numbers'],
 notes:`<p>Treat $i$ like a variable, then replace $i^2$ with $-1$. To divide, multiply top and bottom by the conjugate of the denominator.</p>$$\\frac{a+bi}{c+di}\\cdot\\frac{c-di}{c-di}=\\frac{(a+bi)(c-di)}{c^2+d^2}$$<p>Powers cycle every 4: $i,\\,-1,\\,-i,\\,1$.</p>`,
-gen(){const k=R(0,2);const ci=(a,b)=>`${a}${b<0?' - ':' + '}${Math.abs(b)===1?'':Math.abs(b)}i`;
+gen(kp){const k=wantKp(2,kp);const ci=(a,b)=>`${a}${b<0?' - ':' + '}${Math.abs(b)===1?'':Math.abs(b)}i`;
  const out=(re,im,prompt,hint,steps)=>({type:'fields',prompt:prompt+`<p class="sub">Write the answer as $a+bi$.</p>`,fields:[{label:'a',name:'the real part',ans:re.v,ansTex:re.tex},{label:'b',name:'the imaginary part',ans:im.v,ansTex:im.tex}],ansTex:`${re.tex}${im.v<0?'':'+'}${im.tex}i`,hint,steps});
  if(k===0){const a=Rnz(-6,6),b=Rnz(-6,6),c=Rnz(-6,6),d=Rnz(-6,6);const re=a*c-b*d,im=a*d+b*c;
   return out(frac(re),frac(im),`Multiply: $$(${ci(a,b)})(${ci(c,d)})$$`,'FOIL, then use $i^2=-1$.',[`FOIL: $${a*c}${sg(a*d)}i${sg(b*c)}i${sg(b*d)}i^2$`,`$i^2=-1$: $${a*c}${sg(-b*d)}${sg(a*d+b*c)}i$`,`$= ${re}${im<0?'-':'+'}${Math.abs(im)}i$`])}
@@ -240,7 +251,7 @@ gen(){let a,b,c,D;do{a=R(1,3);b=R(-7,7);c=Rnz(-6,6);D=b*b-4*a*c}while(D<=0||Numb
 
 S({id:'discriminant',unit:'B',name:'The discriminant',pre:['quad-formula'],paul:P+'SolveQuadraticEqnSummary.aspx',os:['College Algebra 2.5',OSC+'2-5-quadratic-equations'],
 notes:`<p>The discriminant $D=b^2-4ac$ tells you what kind of solutions to expect without solving.</p><ul><li>$D>0$: two distinct real solutions</li><li>$D=0$: one repeated real solution</li><li>$D<0$: two complex (non-real) solutions</li></ul>`,
-gen(){const t=R(0,2);let a,b,c,D;do{a=Rnz(-4,4);b=R(-8,8);c=R(-8,8);D=b*b-4*a*c}while((t===0&&D<=0)||(t===1&&D!==0)||(t===2&&D>=0));
+gen(kp){const t=wantKp(2,kp);let a,b,c,D;do{a=Rnz(-4,4);b=R(-8,8);c=R(-8,8);D=b*b-4*a*c}while((t===0&&D<=0)||(t===1&&D!==0)||(t===2&&D>=0));
  if(t===1){const r=Rnz(-5,5),k=pick([1,2,-1,4]);a=k;b=-2*k*r;c=k*r*r;D=0}
  const o=[['Two distinct real solutions',D>0],['One repeated real solution',D===0],['Two complex (non-real) solutions',D<0]];
  return {type:'mc',prompt:`How many and what kind of solutions does this equation have? $$${poly([a,b,c])}=0$$`,options:o.map(([tex,ok])=>({tex,ok})),ansTex:`D=${D}`,hint:'Compute $b^2-4ac$ and look at its sign.',
@@ -282,7 +293,7 @@ gen(){const a=pick([1,2,3,4]),b=Rnz(-8,8),c=R(1,9);const op=pick(['<','<=','>','
 
 S({id:'lines',unit:'C',name:'Slope & equations of lines',pre:['linear-eq'],paul:P+'Lines.aspx',os:['Precalculus 2.1',OSP+'2-1-linear-functions'],
 notes:`$$m=\\frac{y_2-y_1}{x_2-x_1}\\qquad y-y_1=m(x-x_1)\\qquad y=mx+b$$<p>Parallel lines share a slope. Perpendicular slopes are negative reciprocals: $m_\\perp=-\\frac1m$.</p>`,
-gen(){const k=R(0,1);if(k===0){let x1,y1,x2,y2;do{x1=R(-6,6);y1=R(-6,6);x2=R(-6,6);y2=R(-6,6)}while(x1===x2||y1===y2);const m=frac(y2-y1,x2-x1);const b=frac(y1*m.d-m.n*x1,m.d);
+gen(kp){const k=wantKp(1,kp);if(k===0){let x1,y1,x2,y2;do{x1=R(-6,6);y1=R(-6,6);x2=R(-6,6);y2=R(-6,6)}while(x1===x2||y1===y2);const m=frac(y2-y1,x2-x1);const b=frac(y1*m.d-m.n*x1,m.d);
   return {type:'fields',prompt:`Find the line through $(${x1},${y1})$ and $(${x2},${y2})$ in the form $y=mx+b$.`,fields:[{label:'m',name:'m',ans:m.v,ansTex:m.tex},{label:'b',name:'b',ans:b.v,ansTex:b.tex}],ansTex:`y=${m.tex}x${b.v<0?'':'+'}${b.tex}`,hint:'Slope first, then plug one point into $y=mx+b$ to find $b$.',
   steps:[`$m=\\frac{${y2}-(${y1})}{${x2}-(${x1})}=${m.tex}$`,`$${y1}=${m.tex}(${x1})+b$`,`$b=${b.tex}$`]}}
  const m=frac(Rnz(-5,5),R(1,4)),c=R(-5,5),px=R(-6,6),py=R(-6,6);const mp=frac(-m.d,m.n);const b=frac(py*mp.d-mp.n*px,mp.d);
@@ -297,7 +308,7 @@ gen(){const h=Rnz(-6,6),k=Rnz(-6,6),r=R(1,7);const F=h*h+k*k-r*r;
 
 S({id:'func-eval',unit:'C',name:'Function notation',pre:['poly-mult'],paul:P+'FunctionDefn.aspx',os:['Precalculus 1.1',OSP+'1-1-functions-and-function-notation'],
 notes:`<p>$f(\\text{something})$ means: replace every $x$ in the formula with that something, in parentheses.</p><p>$f(x+h)$ is <em>not</em> $f(x)+h$. Substitute the whole expression $x+h$.</p>`,
-gen(){const k=R(0,2);if(k===0){const a=Rnz(-4,4),b=R(-6,6),c=R(-9,9),t=Rnz(-4,4);const v=a*t*t+b*t+c;
+gen(kp){const k=wantKp(2,kp);if(k===0){const a=Rnz(-4,4),b=R(-6,6),c=R(-9,9),t=Rnz(-4,4);const v=a*t*t+b*t+c;
   return {type:'num',val:v,ans:String(v),ansTex:String(v),prompt:`If $f(x)=${poly([a,b,c])}$, find $f(${t})$.`,hint:'Put the input in parentheses before squaring.',steps:[`$f(${t})=${a}(${t})^2${sg(b)}(${t})${sgz(c)}$`,`$=${a*t*t}${sg(b*t)}${sgz(c)}=${v}$`]}}
  if(k===1){let a,b,t;do{a=Rnz(-6,6);b=Rnz(-6,6);t=R(-5,5)}while(t===b);const v=frac(t+a,t-b);
   return {type:'num',exact:true,val:v.v,ans:v.txt,ansTex:v.tex,prompt:`If $g(x)=\\dfrac{x${sg(a)}}{x${sg(-b)}}$, find $g(${t})$.`,hint:'Substitute and simplify the fraction.',steps:[`$g(${t})=\\frac{${t}${sg(a)}}{${t}${sg(-b)}}=\\frac{${t+a}}{${t-b}}=${v.tex}$`]}}
@@ -307,7 +318,7 @@ gen(){const k=R(0,2);if(k===0){const a=Rnz(-4,4),b=R(-6,6),c=R(-9,9),t=Rnz(-4,4)
 
 S({id:'domain',unit:'C',name:'Domain of a function',pre:['func-eval','linear-ineq'],paul:P+'FunctionDefn.aspx',os:['Precalculus 1.2',OSP+'1-2-domain-and-range'],
 notes:`<p>Two things to rule out in real-valued algebra:</p><ul><li>Division by zero: exclude values that make a denominator $0$.</li><li>Even roots of negatives: require what's under $\\sqrt{\\ }$ to be $\\ge 0$.</li></ul>`,
-gen(){const k=R(0,2);let prompt,opts,steps;
+gen(kp){const k=wantKp(2,kp);let prompt,opts,steps;
  if(k===0){const a=R(1,4),b=Rnz(-9,9);const v=frac(b,a),w=frac(-b,a);prompt=`$$f(x)=\\sqrt{${lin(a,-b)}}$$`;
   opts=[[iv(v.tex,'\\infty',true,false),1],[iv(v.tex,'\\infty',false,false),0],[iv('-\\infty',v.tex,false,true),0],[iv(w.tex,'\\infty',true,false),0]];steps=[`Need $${lin(a,-b)}\\ge0$`,`$x\\ge${v.tex}$`]}
  else if(k===1){const K=R(1,6),c=Rnz(-7,7);prompt=`$$f(x)=\\frac{x${sg(c)}}{x^2-${K*K}}$$`;
@@ -324,7 +335,7 @@ gen(){const a=Rnz(-4,4),b=R(-6,6),c=R(-5,5);const f=lin(a,b),g=poly([1,0,c]);
 
 S({id:'inverse',unit:'C',name:'Inverse functions',pre:['composition','literal'],paul:P+'InverseFunctions.aspx',os:['Precalculus 1.7',OSP+'1-7-inverse-functions'],
 notes:`<p>To find $f^{-1}$: write $y=f(x)$, swap $x$ and $y$, then solve for $y$.</p><p>Check: $f\\big(f^{-1}(x)\\big)=x$. Enter cube roots as <code>cbrt(x)</code>.</p>`,
-gen(){const k=R(0,2);if(k===0){const a=Rnz(-5,5),b=Rnz(-8,8);return {type:'expr',ans:`(x-(${b}))/(${a})`,ansTex:`\\frac{x${sg(-b)}}{${a}}`,prompt:`Find $f^{-1}(x)$ for $f(x)=${lin(a,b)}$.`,hint:'Swap $x$ and $y$, then solve for $y$.',steps:[`$x=${lin(a,b,'y')}$`,`$y=\\frac{x${sg(-b)}}{${a}}$`]}}
+gen(kp){const k=wantKp(2,kp);if(k===0){const a=Rnz(-5,5),b=Rnz(-8,8);return {type:'expr',ans:`(x-(${b}))/(${a})`,ansTex:`\\frac{x${sg(-b)}}{${a}}`,prompt:`Find $f^{-1}(x)$ for $f(x)=${lin(a,b)}$.`,hint:'Swap $x$ and $y$, then solve for $y$.',steps:[`$x=${lin(a,b,'y')}$`,`$y=\\frac{x${sg(-b)}}{${a}}$`]}}
  if(k===1){const K=Rnz(-8,8);return {type:'expr',sample:[K+.3,K+9],ans:`cbrt(x-(${K}))`,ansTex:`\\sqrt[3]{x${sg(-K)}}`,prompt:`Find $f^{-1}(x)$ for $f(x)=x^3${sg(K)}$.`,hint:'Swap, isolate $y^3$, then take a cube root.',steps:[`$x=y^3${sg(K)}$`,`$y^3=x${sg(-K)}$`,`$y=\\sqrt[3]{x${sg(-K)}}$`]}}
  let a,b,d;do{a=Rnz(-4,4);b=Rnz(-6,6);d=Rnz(-5,5)}while(a*d===b);return {type:'expr',ans:`((${b})-(${d})*x)/(x-(${a}))`,ansTex:`\\frac{${-d===1?'':-d===-1?'-':-d}x${sg(b)}}{x${sg(-a)}}`.replace(/^\\frac\{(-?\d*)x/,(m,c)=>m),prompt:`Find $f^{-1}(x)$ for $f(x)=\\dfrac{${lin(a,b)}}{x${sg(d)}}$.`,hint:'Swap, multiply by the denominator, gather the $y$-terms and factor out $y$.',
   steps:[`$x=\\frac{${lin(a,b,'y')}}{y${sg(d)}}$`,`$xy${sg(d)}x=${lin(a,b,'y')}$`,`$y(x${sg(-a)})=${-d}x${sg(b)}$`,`$y=\\frac{${-d}x${sg(b)}}{x${sg(-a)}}$`]}}});
@@ -366,7 +377,7 @@ gen(){let r;do{r=[R(-4,4),R(-4,4),R(-4,4)]}while(new Set(r).size<3);let lead=1,r
 
 S({id:'log-eval',unit:'E',name:'Evaluating logarithms',pre:['exp-rat'],paul:P+'LogFunctions.aspx',os:['Precalculus 4.3',OSP+'4-3-logarithmic-functions'],
 notes:`$$\\log_b a=c\\iff b^c=a$$<p>Ask: “$b$ to what power gives $a$?” $\\ln$ is base $e$ and $\\log$ with no base is base 10.</p><p>Example: $\\log_4 8=\\tfrac32$ because $4^{3/2}=8$.</p>`,
-gen(){const k=R(0,3);let prompt,v,steps;
+gen(kp){const k=wantKp(3,kp);let prompt,v,steps;
  if(k===0){const b=pick([2,3,5,10]),e=R(-2,4);const arg=e>=0?String(b**e):`\\frac{1}{${b**-e}}`;prompt=b===10?`\\log ${arg}`:`\\log_{${b}} ${arg}`;v=frac(e);steps=[`$${arg}=${b}^{${e}}$`,`So the log is $${e}$`]}
  else if(k===1){const [b,base,m]=pick([[4,2,2],[8,2,3],[9,3,2],[27,3,3],[16,2,4],[25,5,2]]);let j;do{j=R(-3,5)}while(j===0||j%m===0);const arg=j>0?String(base**j):`\\frac{1}{${base**-j}}`;
   v=frac(j,m);prompt=`\\log_{${b}} ${arg}`;steps=[`Write both as powers of ${base}: $${b}=${base}^{${m}}$, $${arg}=${base}^{${j}}$`,`$(${base}^{${m}})^c=${base}^{${j}}\\Rightarrow ${m}c=${j}$`,`$c=${v.tex}$`]}
@@ -376,7 +387,7 @@ gen(){const k=R(0,3);let prompt,v,steps;
 
 S({id:'log-props',unit:'E',name:'Logarithm properties',pre:['log-eval'],paul:P+'LogFunctions.aspx',os:['Precalculus 4.5',OSP+'4-5-logarithmic-properties'],
 notes:`$$\\log_b(MN)=\\log_b M+\\log_b N\\qquad \\log_b\\tfrac MN=\\log_b M-\\log_b N\\qquad \\log_b M^p=p\\log_b M$$<p>There is no rule for $\\log_b(M+N)$.</p><p>Change of base: $\\log_b a=\\dfrac{\\ln a}{\\ln b}$.</p>`,
-gen(){const k=R(0,2);if(k===0){const b=pick([2,3,5,6]),e=R(1,3),B=R(2,9);const A=B*b**e;
+gen(kp){const k=wantKp(2,kp);if(k===0){const b=pick([2,3,5,6]),e=R(1,3),B=R(2,9);const A=B*b**e;
   return {type:'num',exact:true,val:e,ans:String(e),ansTex:String(e),prompt:`Evaluate: $$\\log_{${b}} ${A}-\\log_{${b}} ${B}$$`,hint:'Combine into a single log using the quotient rule.',steps:[`$\\log_{${b}}\\frac{${A}}{${B}}=\\log_{${b}}${A/B}$`,`$${A/B}=${b}^{${e}}$, so the value is $${e}$`]}}
  if(k===1){const b=pick([2,3,5,10]),e=R(2,3),m=R(2,3);let c;do{c=R(2,9)}while(gcd(c,b)!==1&&false);const top=b**e*c**m;
   return {type:'num',exact:true,val:e,ans:String(e),ansTex:String(e),prompt:`Evaluate: $$\\log_{${b}} ${top}-${m}\\log_{${b}} ${c}$$`,hint:'Move the coefficient into an exponent first.',steps:[`$${m}\\log_{${b}}${c}=\\log_{${b}}${c**m}$`,`$\\log_{${b}}\\frac{${top}}{${c**m}}=\\log_{${b}}${top/c**m}=${e}$`]}}
@@ -386,7 +397,7 @@ gen(){const k=R(0,2);if(k===0){const b=pick([2,3,5,6]),e=R(1,3),B=R(2,9);const A
 
 S({id:'exp-eq',unit:'E',name:'Exponential equations',pre:['log-props','linear-eq'],paul:P+'SolveExpEqns.aspx',os:['Precalculus 4.6',OSP+'4-6-exponential-and-logarithmic-equations'],
 notes:`<p>If both sides can be written with the same base, set the exponents equal. Otherwise isolate the exponential and take $\\ln$ of both sides.</p>$$e^{kx}=A\\;\\Rightarrow\\; x=\\frac{\\ln A}{k}$$<p>Exact answers like <code>ln(7)/3</code> are accepted.</p>`,
-gen(){const k=R(0,2);if(k===0){const [B1,B2,base,m,n]=pick([[2,4,2,1,2],[2,8,2,1,3],[4,8,2,2,3],[3,9,3,1,2],[9,27,3,2,3],[5,25,5,1,2]]);let a,b,c;do{a=Rnz(-3,3);b=R(-5,5);c=R(-5,5)}while(m*a===n);
+gen(kp){const k=wantKp(2,kp);if(k===0){const [B1,B2,base,m,n]=pick([[2,4,2,1,2],[2,8,2,1,3],[4,8,2,2,3],[3,9,3,1,2],[9,27,3,2,3],[5,25,5,1,2]]);let a,b,c;do{a=Rnz(-3,3);b=R(-5,5);c=R(-5,5)}while(m*a===n);
   const x=frac(n*c-m*b,m*a-n);return {type:'num',exact:true,val:x.v,ans:x.txt,ansTex:x.tex,prompt:`Solve: $$${B1}^{${lin(a,b)}}=${B2}^{x${sgz(c)}}$$`,hint:`Rewrite both sides as powers of ${base}.`,
   steps:[`$${base}^{${m}(${lin(a,b)})}=${base}^{${n}(x${sgz(c)})}$`,`$${lin(m*a,m*b)}=${lin(n,n*c)}$`,`$x=${x.tex}$`]}}
  if(k===1){const c=R(2,5),kk=R(2,6),v=c*2**kk;return {type:'num',exact:true,val:kk,ans:String(kk),ansTex:String(kk),prompt:`Solve: $$${c}\\cdot 2^{x}=${v}$$`,hint:`Divide by ${c} first.`,steps:[`$2^x=${2**kk}$`,`$x=${kk}$`]}}
@@ -401,7 +412,7 @@ gen(){if(Math.random()<.55){const [b,k,d,x1,x2]=pick(LOGQ);return {type:'set',ex
 
 S({id:'interest',unit:'E',name:'Growth & compound interest',pre:['exp-eq'],paul:P+'ExpLogApplications.aspx',os:['Precalculus 4.7',OSP+'4-7-exponential-and-logarithmic-models'],
 notes:`$$A=P\\left(1+\\frac rn\\right)^{nt}\\qquad A=Pe^{rt}\\text{ (continuous)}$$<p>$P$ = principal, $r$ = annual rate as a decimal, $n$ = compounds per year, $t$ = years. Use a calculator and round to 2 decimals.</p>`,
-gen(){const P=pick([500,1000,1500,2500,5000,10000]),rp=pick([3,4,5,6,7,8,9]),r=rp/100,t=R(2,10);const k=R(0,2);
+gen(kp){const P=pick([500,1000,1500,2500,5000,10000]),rp=pick([3,4,5,6,7,8,9]),r=rp/100,t=R(2,10);const k=wantKp(2,kp);
  if(k===0){const [n,nm]=pick([[1,'annually'],[4,'quarterly'],[12,'monthly']]);const A=P*(1+r/n)**(n*t);return {type:'num',val:A,tol:.011,ans:r2(A).toFixed(2),ansTex:money(A),prompt:`You invest $${money(P)}$ at ${rp}% per year, compounded ${nm}. How much is it worth after ${t} years? (Round to the cent.)`,hint:`$n=${n}$, $r=${r}$.`,
   steps:[`$A=${P}\\left(1+\\frac{${r}}{${n}}\\right)^{${n}\\cdot${t}}$`,`$A\\approx${money(A)}$`]}}
  if(k===1){const A=P*Math.exp(r*t);return {type:'num',val:A,tol:.011,ans:r2(A).toFixed(2),ansTex:money(A),prompt:`$${money(P)}$ earns ${rp}% compounded continuously. What is it worth after ${t} years? (Round to the cent.)`,hint:'$A=Pe^{rt}$.',steps:[`$A=${P}e^{${r}\\cdot${t}}$`,`$A\\approx${money(A)}$`]}}
@@ -445,7 +456,7 @@ gen(){const rows=[['sin',30,'1/2',1/2,'\\frac{1}{2}'],['cos',60,'1/2',1/2,'\\fra
 
 S({id:'right-tri',unit:'G',name:'Right-triangle trig',pre:['special-angles'],paul:PT+'TrigFunctions.aspx',os:['Precalculus 5.4',OSP+'5-4-right-triangle-trigonometry'],
 notes:`$$\\sin\\theta=\\frac{\\text{opp}}{\\text{hyp}}\\qquad\\cos\\theta=\\frac{\\text{adj}}{\\text{hyp}}\\qquad\\tan\\theta=\\frac{\\text{opp}}{\\text{adj}}$$<p>Pick the ratio that links the side you know to the side you want. Make sure your calculator is in degree mode for these.</p>`,
-gen(){const th=R(15,75),kind=R(0,3);const rad=th*Math.PI/180;let known,val,lab,steps,want;
+gen(kp){const th=R(15,75),kind=wantKp(3,kp);const rad=th*Math.PI/180;let known,val,lab,steps,want;
  if(kind===0){const h=R(5,30);val=h*Math.sin(rad);lab={th:th+'°',adj:'',opp:'x',hyp:String(h)};steps=[`Opposite and hypotenuse: use $\\sin$`,`$x=${h}\\sin ${th}^\\circ\\approx${val.toFixed(2)}$`]}
  else if(kind===1){const h=R(5,30);val=h*Math.cos(rad);lab={th:th+'°',adj:'x',opp:'',hyp:String(h)};steps=[`Adjacent and hypotenuse: use $\\cos$`,`$x=${h}\\cos ${th}^\\circ\\approx${val.toFixed(2)}$`]}
  else if(kind===2){const a=R(4,25);val=a*Math.tan(rad);lab={th:th+'°',adj:String(a),opp:'x',hyp:''};steps=[`Opposite and adjacent: use $\\tan$`,`$x=${a}\\tan ${th}^\\circ\\approx${val.toFixed(2)}$`]}
