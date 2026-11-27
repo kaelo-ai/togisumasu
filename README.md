@@ -77,6 +77,14 @@ npm run admin -- promote you@example.com   # make an existing account an admin
 
 The browser keeps a per-user cache of your progress and a small cache of recently fetched questions. If the server is unreachable you can keep practising from the cached questions, and progress syncs when the connection returns.
 
+## How practice is scheduled
+
+Each topic with a question generator is taught as ordered knowledge points: a worked example, then two close variants, then a harder part. Mastery cannot come from three easy items of the first part.
+
+A miss on a repair (or twice on the same knowledge point) queues a review of the key prerequisite actually being used, which may sit several steps back, with the message “Let’s shore up X first.” If no key prerequisite is listed, the direct prerequisites are used.
+
+Successful practice also sends fractional review credit down the topic graph (FIRe): later work pushes back earlier due dates in proportion to how much of the earlier skill it practises. A miss pulls in the due dates of more advanced topics that depend on it. The parameters live in `public/mastery.js` (`Mastery.FIRE`). Curriculum splits, key prerequisites and manual weights are seeded from `mastery-data.js`. Topics without a question generator stay on the older three-in-a-row flow.
+
 ## Grade 12 CAPS
 
 The algebra course and the Grade 12 CAPS course are two slices of one topic graph. A topic such as integer exponents exists once and can belong to both. `GET /api/courses` lists them; `GET /api/catalog?course=gr12-caps` returns the CAPS slice. Unit 0 (Grade 10–11 foundations) is part of that course.

@@ -815,7 +815,9 @@ async function api(req, res, url) {
     const skill = String(url.searchParams.get('skill') || '');
     if (!bank.hasSkill(skill)) return send(res, 404, { error: 'Unknown topic.' });
     const exclude = String(url.searchParams.get('exclude') || '').split(',').filter(Boolean).slice(-250);
-    const question = bank.next(db, skill, exclude);
+    const kpRaw = url.searchParams.get('kp');
+    const kp = kpRaw == null || kpRaw === '' ? undefined : Number(kpRaw);
+    const question = bank.next(db, skill, exclude, { kp });
     if (!question) return send(res, 404, { error: 'No questions are available for that topic yet.' });
     return send(res, 200, { question });
   }

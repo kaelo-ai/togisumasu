@@ -1,5 +1,7 @@
 'use strict';
 const core = require('./public/core.js');
+const masteryData = require('./mastery-data.js');
+const Mastery = require('./public/mastery.js');
 
 const BUILTIN_UNITS = core.UNITS.map(([id, name]) => ({ id, name }));
 const BUILTIN_TOPICS = core.SK.map(s => ({
@@ -89,6 +91,7 @@ function init(db) {
   ensureGraph(db);
   require('./caps').seed(db);
   syncAllEdges(db);
+  masteryData.seed(db);
   require('./nsc').importAll(db);
   const keys = require('./keys');
   keys.init(db);
@@ -244,13 +247,24 @@ function learner(db, courseId) {
   }
   const topics = rows.filter(t => visible.has(t.id));
   const activeUnits = units.filter(u => topics.some(t => t.course_unit === u.id));
+  const lesson = masteryData.loadForCourse(db, topics.map(t => t.id));
   return {
     course,
     units: activeUnits.map(u => ({ id: u.id, name: u.name, required: !!u.required })),
-    topics: topics.map(t => ({
-      id: t.id, unit: t.course_unit, name: t.name, pre: projected.get(t.id),
-      notes: t.notes || '', paul: t.paul || '', os: jsonLinks(t.os),
-    })),
+    topics: topics.map(t => {
+      const kps = (lesson.kpsBy.get(t.id) || []).map(k => ({ ...k }));
+      const keyPrereqs = (lesson.keyBy.get(t.id) || []).slice();
+      const gen = typeof GENERATORS.get(t.id) === 'function';
+      const fallback = !gen || !kps.length;
+      return {
+        id: t.id, unit: t.course_unit, name: t.name, pre: projected.get(t.id),
+        notes: t.notes || '', paul: t.paul || '', os: jsonLinks(t.os),
+        kps, keyPrereqs, fallback, staged: !fallback,
+      };
+    }),
+    encompassing: lesson.encompassing,
+    fire: Mastery.FIRE,
+    lesson: { passCount: Mastery.LESSON.passCount, failsBeforeShore: Mastery.LESSON.failsBeforeShore },
   };
 }
 
@@ -415,5 +429,5 @@ function deleteTopic(db, id) {
 
 module.exports = {
   init, syncCore, learner, courses, admin, createUnit, updateUnit, deleteUnit, createTopic, updateTopic, deleteTopic,
-  ALGEBRA_COURSE,
+  ALGEBRA_COURSE, masteryCoverage: (db) => masteryData.coverage(db),
 };
