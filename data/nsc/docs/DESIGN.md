@@ -64,7 +64,7 @@ So, as Math Academy does, the core structure is a **graph of small skills with p
 
 **How the skill list grows:** while extracting a paper, the extractor (a person or a model) picks skills from the current `skills.json` and **proposes a new skill only when none fits**. New skills enter with `status: "proposed"`. Kaelo approves, merges or renames them. Approved ids are never renamed; a replaced skill gets `deprecated` + `replaced_by`. The validator checks that every tag exists and that the graph has no cycles.
 
-**Current seed (133 skills, all `proposed`):**
+**Current seed (134 skills, all `proposed`):**
 * 54 from extracting Nov 2025 P1.
 * 52 from the 2025 NSC Diagnostic Report, using the strands `stat`, `ageo`, `trig` and `euc` plus a few `fn`/`alg`.
 * `gen.rounding-precision`.

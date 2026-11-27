@@ -195,6 +195,7 @@ function latexToPlain(md) {
   s = s.replace(/_[0-9]+/g, '');
   s = s.replace(/\\infty/g, '');
   let prev;
+  s = s.replace(/(-?\d+)\\(?:d|t)?frac\{(\d+)\}\{(\d+)\}/g, '($1+($2)/($3))');
   do {
     prev = s;
     s = s.replace(/\\(?:d|t)?frac\{([^{}]+)\}\{([^{}]+)\}/g, '($1)/($2)');
@@ -265,7 +266,16 @@ function geometryChain(steps) {
     }
   }
   flush('follows from the line above');
-  return pairs.length ? pairs : null;
+  if (!pairs.length) return null;
+  // Older official memos often print only S/R ticks; the statement lives in answer_md.
+  // A chain of tick labels is not a statement-and-reason proof, so fall through.
+  const tick = /^(S|R|S\/R|S-R|S OR R|A|CA|M|A\/S)$/i;
+  const filler = /^(follows from the line above)$/i;
+  const real = pairs.some(step =>
+    (step.statement && !tick.test(step.statement.trim())) ||
+    (step.reason && !tick.test(step.reason.trim()) && !filler.test(step.reason.trim()))
+  );
+  return real ? pairs : null;
 }
 
 const EXTRA_REASONS = [
@@ -403,8 +413,9 @@ function valueSpec(md) {
     text = text.replace(/(\d) (?=\d{3}\b)/g, '$1');
     try { return core.ev(core.parse(text), {}); } catch (err) { return NaN; }
   });
-  if (chunks.length && chunks.every(Number.isFinite) && chunks.every(v => Math.abs(v - chunks[0]) <= 1e-9 * Math.max(1, Math.abs(v)))) {
-    return { type: 'num', checkable: true, val: chunks[0], ans: String(chunks[0]), ansTex: md.trim(), tol: 0.015 };
+  const tol = 0.015;
+  if (chunks.length && chunks.every(Number.isFinite) && chunks.every(v => Math.abs(v - chunks[0]) <= tol)) {
+    return { type: 'num', checkable: true, val: chunks[0], ans: String(chunks[0]), ansTex: md.trim(), tol };
   }
   return null;
 }
@@ -444,6 +455,9 @@ function numericSpec(md, answerType) {
     if (pieces.length >= 1 && pieces.length <= 6) return { type: 'set', checkable: true, vals: pieces, ans: pieces.join(', '), ansTex: md.trim(), tol: 0.015 };
     return null;
   }
+  const agreed = valueSpec(md);
+  if (agreed) return agreed;
+  if (/\bor\b/i.test(String(md))) return null;
   const val = primaryValue(md);
   if (!Number.isFinite(val)) return null;
   return { type: 'num', checkable: true, val, ans: String(val), ansTex: md.trim(), tol: 0.015 };
@@ -482,7 +496,7 @@ function memoPartToSpec(part, answerType) {
     answerType: answerType || null,
   };
   if (!check) return { ...base, type: 'memo', checkable: false, ans: part.answer_md, ansTex: part.answer_md };
-  return { ...base, ...check };
+  return { ...base, ...check, deg: true };
 }
 
 function importMemoFile(db, file) {
@@ -571,7 +585,7 @@ function markNode(db, nodeId, input) {
     return { ...core.check({ type: 'set', vals: spec.vals, ans: spec.ans, tol: spec.tol }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
   if (spec.type === 'num') {
-    return { ...core.check({ type: 'num', val: spec.val, ans: spec.ans, exact: !!spec.exact, tol: spec.tol }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
+    return { ...core.check({ type: 'num', val: spec.val, ans: spec.ans, exact: !!spec.exact, tol: spec.tol, deg: !!spec.deg }, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null };
   }
   if (core.FORMS[spec.type] || (spec.type === 'expr' && (spec.vars || spec.label))) {
     return { ...core.check(spec, String(input == null ? '' : input)), checkable: true, provenance: row.provenance, answer: spec.answer_md || spec.ansTex || null, kind: spec.type };

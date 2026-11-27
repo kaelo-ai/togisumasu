@@ -126,6 +126,14 @@ t('prose, sketches and log bases stay unscored', () => {
   ]) assert.equal(keys.formSpec(md, type), null, md);
 });
 
+t('a rounded decimal and the equivalent mixed number are the same value', () => {
+  const spec = key('$4,67$  or  $4\\dfrac{2}{3}$', 'value');
+  assert.equal(spec.type, 'num');
+  assert.equal(core.check(spec, '4,67').ok, true);
+  assert.equal(core.check(spec, '14/3').ok, true);
+  assert.equal(core.check(spec, '2/3').ok, false);
+});
+
 t('every form has an input hint', () => {
   for (const type of ['region', 'points', 'trig', 'eqn', 'tuple', 'expr', 'num']) assert.ok(core.HINTS[type], type);
 });

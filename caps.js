@@ -242,6 +242,7 @@ const SKILL_TOPIC = {
   'fn.hyperbola-axes-of-symmetry': 'hyperbola',
   'fn.inequality-from-graph': 'poly-ineq',
   'fn.translate-graph': 'transform',
+  'fn.reflect-in-axes': 'transform',
   'fn.log-definition': 'log-eval',
   'fn.inverse-exp-log': 'inverse',
   'fn.inverse-quadratic': 'inverse',

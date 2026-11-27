@@ -1,0 +1,2057 @@
+{
+  "id": "2014-nov-p2",
+  "paper_id": "2014-nov-p2",
+  "source": {
+    "pdf": "sources/maths/2014-nov/2014-nov-p2-memo.pdf",
+    "pdf_pages": 23,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=_XS29vTWY-I%3d&tabid=568&portalid=0&mid=1527",
+    "sha256": "1a10f56e2cab0beb9f1245107716b8c396d60f96420e4a34290140b2e7f477fd",
+    "note": "Official DBE November 2014 Mathematics P2 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only. The PDF text layer is column-scrambled; page renders were authoritative."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-27",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt. If a candidate has crossed out an attempt of a question and not redone the question, mark the crossed out version. Consistent accuracy applies in ALL aspects of the marking memorandum. Assuming answers/values in order to solve a problem is NOT acceptable.",
+  "parts": [
+    {
+      "id": "2014-nov-p2-1.1",
+      "question_id": "2014-nov-p2-1.1",
+      "number": "1.1",
+      "marks": 2,
+      "answer_md": "$68$",
+      "working_md": "$\\bar{x}=\\dfrac{816}{12}=68$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{816}{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$68$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-1.2",
+      "question_id": "2014-nov-p2-1.2",
+      "number": "1.2",
+      "marks": 1,
+      "answer_md": "$18,42$",
+      "working_md": "$\\sigma=18{,}42$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-1.3",
+      "question_id": "2014-nov-p2-1.3",
+      "number": "1.3",
+      "marks": 3,
+      "answer_md": "$6$",
+      "working_md": "$(68-18{,}42;\\ 68+18{,}42)=(49{,}58;\\ 86{,}42)$\n\n$\\therefore 6$ candidates had a mark within one standard deviation of the mean.",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "interval"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-1.4",
+      "question_id": "2014-nov-p2-1.4",
+      "number": "1.4",
+      "marks": 3,
+      "answer_md": "$\\hat{y}=0,66x+22,83$",
+      "working_md": "$a=22{,}828\\ldots=22{,}83$\n\n$b=0{,}66429\\ldots=0{,}66$\n\n$\\therefore\\hat{y}=0{,}66x+22{,}83$  OR  $\\hat{y}=22{,}83+0{,}66x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $a$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $b$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-1.5",
+      "question_id": "2014-nov-p2-1.5",
+      "number": "1.5",
+      "marks": 2,
+      "answer_md": "$62\\%$",
+      "working_md": "$\\hat{y}=0{,}66x+22{,}83$\n\n$y=0{,}66(60)+22{,}83$\n\n$62{,}43\\ldots\\%\\approx 62\\%$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $60$ into the equation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$63\\%$",
+          "working_md": "$62{,}69\\%\\approx 63\\%$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": "The official alternative prints $62,69\\%\\approx 63\\%$ (consistent with the unrounded $a$ and $b$ from 1.4) against two answer marks."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-1.6",
+      "question_id": "2014-nov-p2-1.6",
+      "number": "1.6",
+      "marks": 1,
+      "answer_md": "$(82;62)$",
+      "working_md": "$(82;62)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-2.1",
+      "question_id": "2014-nov-p2-2.1",
+      "number": "2.1",
+      "marks": 1,
+      "answer_md": "$50<x\\leq 60$",
+      "working_md": "$50<x\\leq 60$  OR  $50\\leq x<60$  OR  between $50$ and $60$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-2.2.1",
+      "question_id": "2014-nov-p2-2.2.1",
+      "number": "2.2.1",
+      "marks": 2,
+      "answer_md": "Cumulative frequencies: $1,\\ 8,\\ 21,\\ 38,\\ 47,\\ 52,\\ 54,\\ 55$",
+      "working_md": "Frequencies $1,7,13,17,9,5,2,1$ give cumulative frequencies $1,8,21,38,47,52,54,55$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$8$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$55$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-2.2.2",
+      "question_id": "2014-nov-p2-2.2.2",
+      "number": "2.2.2",
+      "marks": 3,
+      "answer_md": "Ogive drawn, grounded at $(20;0)$, plotted at the upper limits, with a smooth shape.",
+      "working_md": "Ogive of cumulative frequency against speed (km/h).",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "grounding at $(20;0)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "plotting at the upper limits"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "smooth shape of the curve"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-2.3",
+      "question_id": "2014-nov-p2-2.3",
+      "number": "2.3",
+      "marks": 2,
+      "answer_md": "$11$",
+      "working_md": "$55-44$  (accept $43$–$45$)\n\n$\\approx 11$ motorists  (accept $10$–$12$ motorists)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$44$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$11$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.1",
+      "question_id": "2014-nov-p2-3.1",
+      "number": "3.1",
+      "marks": 1,
+      "answer_md": "$5$",
+      "working_md": "$r=\\mathrm{MN}=5$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.2",
+      "question_id": "2014-nov-p2-3.2",
+      "number": "3.2",
+      "marks": 1,
+      "answer_md": "$(x-5)^{2}+(y-4)^{2}=25$",
+      "working_md": "$(x-5)^{2}+(y-4)^{2}=25$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.3",
+      "question_id": "2014-nov-p2-3.3",
+      "number": "3.3",
+      "marks": 3,
+      "answer_md": "$\\mathrm{A}(2;0)$",
+      "working_md": "$\\mathrm{A}(x;0)$\n\n$(x-5)^{2}+(0-4)^{2}=25$\n\n$x^{2}-10x+25+16=25$\n\n$x^{2}-10x+16=0$\n\n$(x-8)(x-2)=0$\n\n$\\therefore x=8$  or  $x=2$\n\n$\\therefore\\mathrm{A}(2;0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitute into the equation; $y=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form or perfect square form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{A}(2;0)$",
+          "working_md": "$(x-5)^{2}+(0-4)^{2}=25$\n\n$(x-5)^{2}+16=25$\n\n$(x-5)^{2}=9$\n\n$(x-5)=\\pm 3$\n\n$\\therefore x=8$  or  $x=2$\n\n$\\therefore\\mathrm{A}(2;0)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitute into the equation; $y=0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form or perfect square form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.4.1",
+      "question_id": "2014-nov-p2-3.4.1",
+      "number": "3.4.1",
+      "marks": 2,
+      "answer_md": "$m_{\\mathrm{MB}}=\\dfrac{4}{3}$",
+      "working_md": "$m_{\\mathrm{MB}}=\\dfrac{4-0}{5-8}=\\dfrac{4}{3}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $\\mathrm{M}$ and $\\mathrm{B}$ into the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{MB}}=\\dfrac{4}{3}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The official memo prints $m_{\\mathrm{MB}}=(4-0)/(5-8)=4/3$. The coordinates $\\mathrm{M}(5;4)$ and $\\mathrm{B}(8;0)$ give $(4-0)/(5-8)=-4/3$. The tangent gradient $m_{\\mathrm{PB}}=3/4$ in 3.4.2 is consistent with $m_{\\mathrm{MB}}=-4/3$."
+    },
+    {
+      "id": "2014-nov-p2-3.4.2",
+      "question_id": "2014-nov-p2-3.4.2",
+      "number": "3.4.2",
+      "marks": 3,
+      "answer_md": "$y=\\dfrac{3}{4}x-6$",
+      "working_md": "$m_{\\mathrm{MB}}\\times m_{\\mathrm{PB}}=-1$  (tangent $\\perp$ radius)\n\n$m_{\\mathrm{PB}}=\\dfrac{3}{4}$\n\n$y=\\dfrac{3}{4}x+c$\n\n$0=\\dfrac{3}{4}(8)+c$\n\n$y=\\dfrac{3}{4}x-6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{MB}}\\times m_{\\mathrm{PB}}=-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{PB}}=\\dfrac{3}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=\\dfrac{3}{4}x-6$",
+          "working_md": "$m_{\\mathrm{MB}}\\times m_{\\mathrm{PB}}=-1$  (tangent $\\perp$ radius)\n\n$m_{\\mathrm{PB}}=\\dfrac{3}{4}$\n\n$y-y_{1}=\\dfrac{3}{4}(x-x_{1})$\n\n$y-0=\\dfrac{3}{4}(x-8)$\n\n$y=\\dfrac{3}{4}x-6$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\mathrm{MB}}\\times m_{\\mathrm{PB}}=-1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\mathrm{PB}}=\\dfrac{3}{4}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.5",
+      "question_id": "2014-nov-p2-3.5",
+      "number": "3.5",
+      "marks": 2,
+      "answer_md": "$y=9$",
+      "working_md": "$y_{\\mathrm{K}}=y_{\\mathrm{M}}+r=4+5$\n\n$y=9$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.6",
+      "question_id": "2014-nov-p2-3.6",
+      "number": "3.6",
+      "marks": 2,
+      "answer_md": "$\\mathrm{L}(20;9)$",
+      "working_md": "At $\\mathrm{L}$:\n\n$\\dfrac{3}{4}x-6=9$\n\n$3x-24=36$\n\n$3x=60$\n\n$x=20$\n\n$\\therefore\\mathrm{L}(20;9)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating simultaneously"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.7",
+      "question_id": "2014-nov-p2-3.7",
+      "number": "3.7",
+      "marks": 2,
+      "answer_md": "$\\sqrt{250}$  or  $5\\sqrt{10}$",
+      "working_md": "$\\mathrm{ML}=\\sqrt{(x_{2}-x_{1})^{2}+(y_{2}-y_{1})^{2}}$\n\n$=\\sqrt{(20-5)^{2}+(9-4)^{2}}$\n\n$=\\sqrt{225+25}$\n\n$=\\sqrt{250}$  or  $5\\sqrt{10}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution into the distance formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer in surd form"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-3.8",
+      "question_id": "2014-nov-p2-3.8",
+      "number": "3.8",
+      "marks": 5,
+      "answer_md": "$(x-12,5)^{2}+(y-6,5)^{2}=62,5$",
+      "working_md": "$\\mathrm{MK}\\perp\\mathrm{KL}$  OR  $\\mathrm{M}\\hat{\\mathrm{K}}\\mathrm{L}=90^{\\circ}$  (radius $\\perp$ tangent)\n\n$\\therefore\\mathrm{ML}$ is a diameter as it subtends a right angle.\n\n$r=\\dfrac{\\mathrm{ML}}{2}=\\dfrac{\\sqrt{250}}{2}=\\sqrt{\\dfrac{125}{2}}$  or  $7{,}91$\n\nCentre of the circle $=$ midpoint of $\\mathrm{ML}$:\n\n$x=\\dfrac{5+20}{2}=\\dfrac{25}{2}=12{,}5$  $\\qquad$  $y=\\dfrac{4+9}{2}=\\dfrac{13}{2}=6{,}5$\n\nCentre: $(12{,}5;\\ 6{,}5)$\n\n$\\therefore (x-12{,}5)^{2}+(y-6{,}5)^{2}=\\dfrac{250}{4}=\\dfrac{125}{2}=62{,}5$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $r$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=12,5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=6,5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer in the correct form"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(x-12,5)^{2}+(y-6,5)^{2}=62,5$",
+          "working_md": "$\\mathrm{MK}\\perp\\mathrm{KL}$  OR  $\\mathrm{M}\\hat{\\mathrm{K}}\\mathrm{L}=90^{\\circ}$  (radius $\\perp$ tangent)\n\n$\\therefore\\mathrm{ML}$ is a diameter as it subtends a right angle.\n\nCentre: $x=\\dfrac{5+20}{2}=12{,}5$,  $y=\\dfrac{4+9}{2}=6{,}5$\n\n$(x-12{,}5)^{2}+(y-6{,}5)^{2}=r^{2}$\n\nSubst $(5;4)$:  $(5-12{,}5)^{2}+(4-6{,}5)^{2}=r^{2}$\n\n$62{,}5=r^{2}$\n\n$\\therefore (x-12{,}5)^{2}+(y-6{,}5)^{2}=\\dfrac{250}{4}=\\dfrac{125}{2}=62{,}5$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=12,5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=6,5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $r^{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer in the correct form"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(x-12,5)^{2}+(y-6,5)^{2}=62,5$",
+          "working_md": "By symmetry about $\\mathrm{LM}$:\n\n$\\mathrm{MK}\\perp\\mathrm{KL}$  OR  $\\mathrm{M}\\hat{\\mathrm{K}}\\mathrm{L}=90^{\\circ}$  (radius $\\perp$ tangent)\n\n$\\therefore\\mathrm{ML}$ is a diameter as it subtends a right angle.\n\n$r=\\dfrac{\\mathrm{ML}}{2}=\\dfrac{\\sqrt{250}}{2}=\\sqrt{\\dfrac{125}{2}}$  or  $7{,}91$\n\nCentre: $x=\\dfrac{5+20}{2}=12{,}5$,  $y=\\dfrac{4+9}{2}=6{,}5$\n\n$\\therefore (x-12{,}5)^{2}+(y-6{,}5)^{2}=\\dfrac{250}{4}=\\dfrac{125}{2}=62{,}5$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $r$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=12,5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=6,5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer in the correct form"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-4.1",
+      "question_id": "2014-nov-p2-4.1",
+      "number": "4.1",
+      "marks": 2,
+      "answer_md": "$\\mathrm{E}\\left(-2\\dfrac{2}{3};0\\right)$  or  $\\mathrm{E}\\left(-\\dfrac{8}{3};0\\right)$",
+      "working_md": "$y=0$:  $3x+8=0$\n\n$x=-\\dfrac{8}{3}$\n\n$\\therefore\\mathrm{E}\\left(-2\\dfrac{2}{3};0\\right)$  OR  $\\mathrm{E}\\left(-\\dfrac{8}{3};0\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-value"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-4.2",
+      "question_id": "2014-nov-p2-4.2",
+      "number": "4.2",
+      "marks": 3,
+      "answer_md": "$26,57^{\\circ}$",
+      "working_md": "$\\tan\\mathrm{D}\\hat{\\mathrm{E}}\\mathrm{O}=m_{\\mathrm{DE}}=3$\n\n$\\therefore\\mathrm{D}\\hat{\\mathrm{E}}\\mathrm{O}=71{,}565\\ldots=71{,}57^{\\circ}$\n\n$\\mathrm{D}\\hat{\\mathrm{A}}\\mathrm{E}=71{,}565\\ldots^{\\circ}-45^{\\circ}=26{,}57^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan\\mathrm{D}\\hat{\\mathrm{E}}\\mathrm{O}=3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$71,565\\ldots^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$26,57^{\\circ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-4.3",
+      "question_id": "2014-nov-p2-4.3",
+      "number": "4.3",
+      "marks": 4,
+      "answer_md": "$y=\\dfrac{1}{2}x+\\dfrac{9}{2}$",
+      "working_md": "$m_{\\mathrm{AB}}=\\tan 26{,}57^{\\circ}=\\dfrac{1}{2}$\n\n$y=\\dfrac{1}{2}x+c$\n\n$5=\\dfrac{1}{2}(1)+c$\n\n$y=\\dfrac{1}{2}x+4\\dfrac{1}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{AB}}=\\tan 26,57^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{AB}}=\\dfrac{1}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $m$ and $(1;5)$ into the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=\\dfrac{1}{2}x+\\dfrac{9}{2}$",
+          "working_md": "$m_{\\mathrm{AB}}=\\tan 26{,}57^{\\circ}=\\dfrac{1}{2}$\n\n$y-y_{1}=\\dfrac{1}{2}(x-x_{1})$\n\n$y-5=\\dfrac{1}{2}(x-1)$\n\n$y=\\dfrac{1}{2}x+\\dfrac{9}{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\mathrm{AB}}=\\tan 26,57^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\mathrm{AB}}=\\dfrac{1}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $m$ and $(1;5)$ into the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-4.4",
+      "question_id": "2014-nov-p2-4.4",
+      "number": "4.4",
+      "marks": 4,
+      "answer_md": "$\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+      "working_md": "Solve $x-2y+9=0$ and $y=3x+8$ simultaneously:\n\n$x-2(3x+8)+9=0$\n\n$x-6x-16+9=0$\n\n$-5x=7$\n\n$x=-1\\dfrac{2}{5}$\n\n$\\therefore y=3\\left(-1\\dfrac{2}{5}\\right)+8=3\\dfrac{4}{5}$\n\n$\\therefore\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-value"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "working_md": "$x=2y-9$\n\n$y=3(2y-9)+8$\n\n$y=6y-27+8$\n\n$\\therefore y=3\\dfrac{4}{5}$\n\n$x=2\\left(3\\dfrac{4}{5}\\right)-9=-1\\dfrac{2}{5}$\n\n$\\therefore\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "working_md": "$3x+8=\\dfrac{1}{2}x+4\\dfrac{1}{2}$\n\n$6x+16=x+9$\n\n$5x=-7$\n\n$\\therefore x=-1\\dfrac{2}{5}$\n\n$\\therefore y=3\\left(-1\\dfrac{2}{5}\\right)+8=3\\dfrac{4}{5}$\n\n$\\therefore\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equating"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "working_md": "$x-2y=-9$  .........(1)\n\n$-6x+2y=16$  .........(2)\n\n$(1)+(2)$:  $-5x=7$\n\n$\\therefore x=-1\\dfrac{2}{5}$\n\n$\\therefore -1\\dfrac{2}{5}-2y=-9$\n\n$y=3\\dfrac{4}{5}$\n\n$\\therefore\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "adding"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "working_md": "$y=3x+8$  .........(1)\n\n$6y=3x+27$  .........(2)\n\n$(1)-(2)$:  $-5y=-19$\n\n$\\therefore y=3\\dfrac{4}{5}$\n\n$3\\dfrac{4}{5}=3x+8$\n\n$x=-1\\dfrac{2}{5}$\n\n$\\therefore\\mathrm{D}\\left(-1\\dfrac{2}{5};\\ 3\\dfrac{4}{5}\\right)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "subtracting"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-4.5",
+      "question_id": "2014-nov-p2-4.5",
+      "number": "4.5",
+      "marks": 6,
+      "answer_md": "$8,22$ square units",
+      "working_md": "Area $\\mathrm{DMOE}=$ area $\\triangle\\mathrm{AMO}-$ area $\\triangle\\mathrm{ADE}$\n\n$x_{\\mathrm{A}}=2(0)-9$  $\\therefore\\mathrm{A}(-9;0)$\n\nArea $\\triangle\\mathrm{AMO}=\\dfrac{1}{2}\\cdot\\mathrm{AO}\\cdot\\mathrm{OM}=\\dfrac{1}{2}(9)\\left(4\\dfrac{1}{2}\\right)=20{,}25$\n\nArea $\\triangle\\mathrm{ADE}=\\dfrac{1}{2}\\cdot\\mathrm{AE}\\cdot y_{\\mathrm{D}}=\\dfrac{1}{2}\\left(9-2\\dfrac{2}{3}\\right)\\left(3\\dfrac{4}{5}\\right)=12{,}03$\n\nOR  area $\\triangle\\mathrm{ADE}=\\dfrac{1}{2}\\mathrm{AD}\\cdot\\mathrm{AE}\\cdot\\sin\\mathrm{D}\\hat{\\mathrm{A}}\\mathrm{E}=\\dfrac{1}{2}\\left(\\dfrac{19\\sqrt{5}}{5}\\right)\\left(6\\dfrac{1}{3}\\right)\\sin 26{,}57^{\\circ}=12{,}03$\n\n$\\therefore$ area $\\mathrm{DMOE}=8{,}22$ square units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct method"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x_{\\mathrm{A}}=-9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{1}{2}(9)\\left(4\\dfrac{1}{2}\\right)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{AE}=9-2\\dfrac{2}{3}=6\\dfrac{1}{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y_{\\mathrm{D}}=3\\dfrac{4}{5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$8,22$ square units",
+          "working_md": "Area $\\mathrm{DMOE}=$ area of rectangle $\\mathrm{DCOG}+$ area $\\triangle\\mathrm{DMG}+$ area $\\triangle\\mathrm{DEC}$\n\n$=\\left(1\\dfrac{2}{5}\\times 3\\dfrac{4}{5}\\right)+\\dfrac{1}{2}\\left(1\\dfrac{2}{5}\\right)\\left(\\dfrac{7}{10}\\right)+\\dfrac{1}{2}\\left(3\\dfrac{4}{5}\\right)\\left(\\dfrac{19}{15}\\right)$\n\n$=8{,}22$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$3\\dfrac{4}{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$1\\dfrac{2}{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$0,7$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{19}{15}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$8,22$ square units  or  $\\dfrac{493}{60}$  or  $8\\dfrac{13}{60}$",
+          "working_md": "Area $\\mathrm{DMOE}=$ area $\\triangle\\mathrm{EDO}+$ area $\\triangle\\mathrm{ODM}$\n\n$=\\dfrac{1}{2}(\\mathrm{EO}\\times y_{\\mathrm{D}})+\\dfrac{1}{2}(\\mathrm{OM}\\times(-x_{\\mathrm{D}}))$\n\n$=\\dfrac{1}{2}\\left[\\dfrac{8}{3}\\times\\dfrac{19}{5}+\\dfrac{9}{2}\\times\\dfrac{7}{5}\\right]$\n\n$=\\dfrac{1}{2}\\left(\\dfrac{304+189}{30}\\right)=\\dfrac{493}{60}$  or  $8\\dfrac{13}{60}$  or  $8{,}22$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y_{\\mathrm{D}}=\\dfrac{19}{5}$ or $3\\dfrac{4}{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{EO}=\\dfrac{8}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-x_{\\mathrm{D}}=\\dfrac{7}{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{OM}=\\dfrac{9}{2}$ or $4\\dfrac{1}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$8,22$ square units  or  $\\dfrac{493}{60}$  or  $8\\dfrac{13}{60}$",
+          "working_md": "Area $\\mathrm{DMOE}=$ area $\\triangle\\mathrm{EOF}-$ area $\\triangle\\mathrm{DMF}$\n\n$=\\dfrac{1}{2}(\\mathrm{EO}\\times\\mathrm{OF})-\\dfrac{1}{2}(\\mathrm{OF}-\\mathrm{OM})(-x_{\\mathrm{D}})$\n\n$=\\dfrac{1}{2}\\left[\\dfrac{8}{3}\\times 8-\\dfrac{7}{2}\\times\\dfrac{7}{5}\\right]$\n\n$=\\dfrac{1}{2}\\left(\\dfrac{640-147}{30}\\right)=\\dfrac{493}{60}$  or  $8\\dfrac{13}{60}$  or  $8{,}22$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y_{\\mathrm{F}}=8$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{EO}=\\dfrac{8}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-x_{\\mathrm{D}}=\\dfrac{7}{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{FM}=3\\dfrac{1}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$8,22$ square units  or  $\\dfrac{493}{60}$  or  $8\\dfrac{13}{60}$",
+          "working_md": "Area $\\triangle\\mathrm{EOM}=\\dfrac{1}{2}(\\mathrm{EO}\\times\\mathrm{OM})=\\dfrac{1}{2}\\left(\\dfrac{8}{3}\\times\\dfrac{9}{2}\\right)=6$ square units\n\n$\\mathrm{ED}=\\sqrt{\\left(-\\dfrac{7}{5}+\\dfrac{8}{3}\\right)^{2}+\\left(\\dfrac{19}{5}\\right)^{2}}=\\dfrac{19\\sqrt{10}}{15}$  or  $4{,}005\\ldots$\n\n$\\mathrm{DM}=\\sqrt{\\left(\\dfrac{7}{5}\\right)^{2}+\\left(\\dfrac{9}{2}-\\dfrac{19}{5}\\right)^{2}}=\\dfrac{7\\sqrt{5}}{10}$  or  $1{,}565\\ldots$\n\nArea $\\triangle\\mathrm{EDM}=\\dfrac{1}{2}(\\mathrm{ED}\\times\\mathrm{DM}\\times\\sin\\mathrm{E}\\hat{\\mathrm{D}}\\mathrm{M})=\\dfrac{1}{2}\\left(\\dfrac{19\\sqrt{10}}{15}\\right)\\left(\\dfrac{7\\sqrt{5}}{10}\\right)\\sin 135^{\\circ}=\\dfrac{133}{60}$  or  $2{,}216\\ldots$\n\n$\\therefore$ area $\\mathrm{DMOE}=$ area $\\triangle\\mathrm{EOM}+$ area $\\triangle\\mathrm{EDM}=6+2{,}216\\ldots=\\dfrac{493}{60}$  or  $8\\dfrac{13}{60}$  or  $8{,}22$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "area $\\triangle\\mathrm{EOM}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{ED}=\\dfrac{19\\sqrt{10}}{15}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{DM}=\\dfrac{7\\sqrt{5}}{10}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "area $\\triangle\\mathrm{EDM}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-5.1",
+      "question_id": "2014-nov-p2-5.1",
+      "number": "5.1",
+      "marks": 2,
+      "answer_md": "$x=60^{\\circ}$",
+      "working_md": "$\\sin\\mathrm{C}\\hat{\\mathrm{A}}\\mathrm{P}=\\dfrac{\\mathrm{CP}}{\\mathrm{AP}}$\n\n$\\sin x=\\dfrac{4\\sqrt{3}}{8}=\\dfrac{\\sqrt{3}}{2}$\n\n$x=60^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct sine ratio"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{\\sqrt{3}}{2}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=60^{\\circ}$",
+          "working_md": "$\\dfrac{\\sin 90^{\\circ}}{8}=\\dfrac{\\sin x}{4\\sqrt{3}}$\n\n$\\sin x=\\dfrac{4\\sqrt{3}}{8}=\\dfrac{\\sqrt{3}}{2}$\n\n$x=60^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct sine ratio"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{\\sqrt{3}}{2}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-5.2",
+      "question_id": "2014-nov-p2-5.2",
+      "number": "5.2",
+      "marks": 4,
+      "answer_md": "$\\mathrm{AD}=4,96$",
+      "working_md": "$\\mathrm{C}\\hat{\\mathrm{P}}\\mathrm{A}=\\mathrm{D}\\hat{\\mathrm{P}}\\mathrm{A}=30^{\\circ}$  ($\\mathrm{AP}$ bisects $\\mathrm{D}\\hat{\\mathrm{P}}\\mathrm{C}$)\n\n$\\mathrm{AD}^{2}=\\mathrm{AP}^{2}+\\mathrm{DP}^{2}-2\\cdot\\mathrm{AP}\\cdot\\mathrm{DP}\\cdot\\cos\\mathrm{A}\\hat{\\mathrm{P}}\\mathrm{D}$\n\n$=8^{2}+4^{2}-2(8)(4)\\cos 30^{\\circ}$\n\n$=8^{2}+4^{2}-2(8)(4)\\left(\\dfrac{\\sqrt{3}}{2}\\right)$\n\n$=24{,}57\\ldots$\n\n$\\mathrm{AD}=4{,}96$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{D}\\hat{\\mathrm{P}}\\mathrm{A}=30^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution into the cosine rule"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$24,57\\ldots$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4,96$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-5.3",
+      "question_id": "2014-nov-p2-5.3",
+      "number": "5.3",
+      "marks": 3,
+      "answer_md": "$y=23,78^{\\circ}$",
+      "working_md": "$\\dfrac{\\sin\\mathrm{D}\\hat{\\mathrm{A}}\\mathrm{P}}{\\mathrm{DP}}=\\dfrac{\\sin\\mathrm{A}\\hat{\\mathrm{P}}\\mathrm{D}}{\\mathrm{AD}}$\n\n$\\dfrac{\\sin y}{4}=\\dfrac{\\sin 30^{\\circ}}{4{,}96}$\n\n$\\sin y=\\dfrac{4\\sin 30^{\\circ}}{4{,}96}=0{,}403\\ldots$\n\n$y=23{,}78^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct substitution into the sine rule"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin y$ as subject"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$23,78^{\\circ}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=23,82^{\\circ}$",
+          "working_md": "$\\mathrm{AD}^{2}=\\mathrm{AP}^{2}+\\mathrm{DP}^{2}-2\\cdot\\mathrm{AP}\\cdot\\mathrm{DP}\\cdot\\cos\\mathrm{D}\\hat{\\mathrm{A}}\\mathrm{P}$\n\n$4^{2}=8^{2}+(4{,}96)^{2}-2(8)(4{,}96)\\cos y$\n\n$\\cos y=\\dfrac{8^{2}+(4{,}96)^{2}-4^{2}}{2(8)(4{,}96)}$\n\n$\\cos y=0{,}9148\\ldots$\n\n$y=23{,}82^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct substitution into the cosine rule"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos y$ as subject"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$23,82^{\\circ}$"
+            }
+          ],
+          "notes": "The official sine-rule and cosine-rule answers differ by rounding ($23,78^{\\circ}$ and $23,82^{\\circ}$); both are transcribed as printed."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-6.1",
+      "question_id": "2014-nov-p2-6.1",
+      "number": "6.1",
+      "marks": 5,
+      "answer_md": "$\\cos 2x$",
+      "working_md": "$\\cos^{2}(180^{\\circ}+x)+\\tan(x-180^{\\circ})\\sin(720^{\\circ}-x)\\cos x$\n\n$=(-\\cos x)^{2}+\\bigl[- (-\\tan x)\\bigr](-\\sin x)(\\cos x)$\n\n$=\\cos^{2}x+\\left(\\dfrac{\\sin x}{\\cos x}\\right)(-\\sin x)(\\cos x)$\n\n$=\\cos^{2}x-\\sin^{2}x$\n\n$=\\cos 2x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(-\\cos x)^{2}$ or $\\cos^{2}x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan x$ or $-(-\\tan x)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\sin x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan x=\\dfrac{\\sin x}{\\cos x}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos^{2}x-\\sin^{2}x$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-6.2",
+      "question_id": "2014-nov-p2-6.2",
+      "number": "6.2",
+      "marks": 3,
+      "answer_md": "$\\sin(\\alpha-\\beta)=\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta$",
+      "working_md": "$\\sin(\\alpha-\\beta)=\\cos\\bigl[90^{\\circ}-(\\alpha-\\beta)\\bigr]$\n\n$=\\cos\\bigl[(90^{\\circ}-\\alpha)+\\beta\\bigr]$\n\n$=\\cos(90^{\\circ}-\\alpha)\\cos\\beta-\\sin(90^{\\circ}-\\alpha)\\sin\\beta$\n\n$=\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "rewrite as $\\cos[(90^{\\circ}-\\alpha)+\\beta]$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "expansion"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\sin(\\alpha-\\beta)=\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta$",
+          "working_md": "$\\sin(\\alpha-\\beta)=\\cos\\bigl[90^{\\circ}-(\\alpha-\\beta)\\bigr]$\n\n$=\\cos\\bigl[(90^{\\circ}+\\beta)+(-\\alpha)\\bigr]$\n\n$=\\cos(90^{\\circ}+\\beta)\\cos(-\\alpha)-\\sin(90^{\\circ}+\\beta)\\sin(-\\alpha)$\n\n$=(-\\sin\\beta)\\cos\\alpha-\\cos\\beta(-\\sin\\alpha)$\n\n$=\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "rewrite as $\\cos[(90^{\\circ}+\\beta)+(-\\alpha)]$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expansion"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-6.3",
+      "question_id": "2014-nov-p2-6.3",
+      "number": "6.3",
+      "marks": 4,
+      "answer_md": "$\\sin 62^{\\circ}$",
+      "working_md": "$x^{2}-y^{2}=\\sin^{2}76^{\\circ}-\\cos^{2}76^{\\circ}$\n\n$=-(\\cos^{2}76^{\\circ}-\\sin^{2}76^{\\circ})$\n\n$=-\\cos 2(76^{\\circ})$\n\n$=-\\cos 152^{\\circ}$\n\n$=-(-\\cos 28^{\\circ})$\n\n$=\\cos 28^{\\circ}$\n\n$=\\cos(90^{\\circ}-62^{\\circ})=\\sin 62^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-(\\cos^{2}76^{\\circ}-\\sin^{2}76^{\\circ})$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "recognition of the cosine double angle"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\cos 152^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos 28^{\\circ}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\sin 62^{\\circ}$",
+          "working_md": "$x^{2}-y^{2}=\\sin^{2}76^{\\circ}-\\cos^{2}76^{\\circ}$\n\n$=\\sin 76^{\\circ}\\sin 76^{\\circ}-\\cos 76^{\\circ}\\cos 76^{\\circ}$\n\n$=\\sin 76^{\\circ}\\cos 14^{\\circ}-\\cos 76^{\\circ}\\sin 14^{\\circ}$\n\n$=\\sin(76^{\\circ}-14^{\\circ})$\n\n$=\\sin 62^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos 14^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin 14^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "recognition of the sine compound angle"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin(76^{\\circ}-14^{\\circ})$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\sin 62^{\\circ}$",
+          "working_md": "$x^{2}-y^{2}=\\sin^{2}76^{\\circ}-\\cos^{2}76^{\\circ}$\n\n$=\\cos^{2}14^{\\circ}-\\sin^{2}14^{\\circ}$\n\n$=\\cos 2(14^{\\circ})$\n\n$=\\cos 28^{\\circ}$\n\n$=\\sin 62^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos^{2}14^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin^{2}14^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "recognition of the cosine double angle"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos 28^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-7.1",
+      "question_id": "2014-nov-p2-7.1",
+      "number": "7.1",
+      "marks": 2,
+      "answer_md": "$0\\leq y\\leq 2$  or  $y\\in[0;2]$",
+      "working_md": "$0\\leq y\\leq 2$  or  $y\\in[0;2]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "notation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-7.2",
+      "question_id": "2014-nov-p2-7.2",
+      "number": "7.2",
+      "marks": 2,
+      "answer_md": "$\\sin x(2\\sin x+1)=0$",
+      "working_md": "$\\sin x+1=\\cos 2x$\n\n$\\sin x+1=1-2\\sin^{2}x$\n\n$2\\sin^{2}x+\\sin x=0$\n\n$\\sin x(2\\sin x+1)=0$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1-2\\sin^{2}x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-7.3",
+      "question_id": "2014-nov-p2-7.3",
+      "number": "7.3",
+      "marks": 4,
+      "answer_md": "$x=k\\cdot 180^{\\circ}$  or  $x=210^{\\circ}+k\\cdot 360^{\\circ}$  or  $x=330^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$",
+      "working_md": "$\\sin x(2\\sin x+1)=0$\n\n$\\sin x=0$  or  $\\sin x=-\\dfrac{1}{2}$\n\n$x=0^{\\circ}+k\\cdot 360^{\\circ}$  or  $x=180^{\\circ}+k\\cdot 360^{\\circ}$  OR  $x=k\\cdot 180^{\\circ}$\n\n$x=210^{\\circ}+k\\cdot 360^{\\circ}$  or  $x=330^{\\circ}+k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin x=0$ or $\\sin x=-\\dfrac{1}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0^{\\circ}$; $180^{\\circ}$  OR  $x=k\\cdot 180^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$210^{\\circ}$; $330^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k\\cdot 360^{\\circ}$, $k\\in\\mathbb{Z}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-7.4",
+      "question_id": "2014-nov-p2-7.4",
+      "number": "7.4",
+      "marks": 3,
+      "answer_md": "Sketch of $f$ and $g$ on $[-90^{\\circ};270^{\\circ}]$, intersecting on the $y$-axis and at $180^{\\circ}$, with the correct intercepts and turning points.",
+      "working_md": "The official sketch shows $f$ as a sine-type wave of amplitude $2$ (maximum $2$ at $90^{\\circ}$, minimum $-2$ at $270^{\\circ}$) and $g$ as a cosine-type wave of amplitude $1$, both passing through $(0;1)$ and $(180^{\\circ};1)$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercepts"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "min/max points"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-7.5",
+      "question_id": "2014-nov-p2-7.5",
+      "number": "7.5",
+      "marks": 3,
+      "answer_md": "$x=-60^{\\circ};\\ -30^{\\circ};\\ 150^{\\circ};\\ 180^{\\circ}$",
+      "working_md": "$f(x)=g(x)$ at $x=-30^{\\circ};\\ 0^{\\circ};\\ 180^{\\circ};\\ 210^{\\circ}$\n\n$\\therefore f(x+30^{\\circ})=g(x+30^{\\circ})$ at $x=-60^{\\circ};\\ -30^{\\circ};\\ 150^{\\circ};\\ 180^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-30^{\\circ}$; $0^{\\circ}$; $180^{\\circ}$; $210^{\\circ}$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$-60^{\\circ}$; $-30^{\\circ}$; $150^{\\circ}$; $180^{\\circ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-7.6",
+      "question_id": "2014-nov-p2-7.6",
+      "number": "7.6",
+      "marks": 5,
+      "answer_md": "$30^{\\circ}<x<60^{\\circ}$  or  $x\\in(30^{\\circ};60^{\\circ})$",
+      "working_md": "The series will converge if $-1<r<1$\n\n$-1<2\\cos 2x<1$\n\n$-\\dfrac{1}{2}<\\cos 2x<\\dfrac{1}{2}$\n\n$\\therefore 30^{\\circ}<x<60^{\\circ}$  or  $x\\in(30^{\\circ};60^{\\circ})$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-1<r<1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$r=2\\cos 2x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{1}{2}<\\cos 2x<\\dfrac{1}{2}$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$30^{\\circ}<x<60^{\\circ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-8.1.1",
+      "question_id": "2014-nov-p2-8.1.1",
+      "number": "8.1.1",
+      "marks": 2,
+      "answer_md": "$x=96^{\\circ}$",
+      "working_md": "$x=96^{\\circ}$  [$\\angle$ at the centre $=2\\times\\angle$ at the circumference]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-8.1.2",
+      "question_id": "2014-nov-p2-8.1.2",
+      "number": "8.1.2",
+      "marks": 2,
+      "answer_md": "$y=42^{\\circ}$",
+      "working_md": "$\\hat{\\mathrm{C}}_{2}+\\hat{\\mathrm{B}}_{2}=180^{\\circ}-96^{\\circ}=84^{\\circ}$  [sum of $\\angle$s in $\\triangle$]\n\n$y=\\hat{\\mathrm{B}}_{2}=42^{\\circ}$  [$\\angle$s opp equal sides]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-8.2.1",
+      "question_id": "2014-nov-p2-8.2.1",
+      "number": "8.2.1",
+      "marks": 2,
+      "answer_md": "$\\hat{\\mathrm{F}}_{1}=90^{\\circ}$",
+      "working_md": "$\\hat{\\mathrm{F}}_{1}=90^{\\circ}$  [line from the centre to the midpoint of a chord]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-8.2.2",
+      "question_id": "2014-nov-p2-8.2.2",
+      "number": "8.2.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{A}\\hat{\\mathrm{B}}\\mathrm{C}=150^{\\circ}$",
+      "working_md": "$\\mathrm{A}\\hat{\\mathrm{B}}\\mathrm{C}=150^{\\circ}$  [opposite $\\angle$s of a cyclic quad]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-8.3.1",
+      "question_id": "2014-nov-p2-8.3.1",
+      "number": "8.3.1",
+      "marks": 2,
+      "answer_md": "Tangent $\\perp$ radius/diameter; tangents from a common point.",
+      "working_md": "(a) tangent $\\perp$ radius/diameter\n\n(b) tangents from a common point  OR  tangents from the same point",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-8.3.2",
+      "question_id": "2014-nov-p2-8.3.2",
+      "number": "8.3.2",
+      "marks": 4,
+      "answer_md": "$x=5$",
+      "working_md": "$\\mathrm{AB}^{2}+\\mathrm{BC}^{2}=\\mathrm{AC}^{2}$\n\n$x^{2}+(x+7)^{2}=13^{2}$  (Theorem of Pythagoras)\n\n$x^{2}+x^{2}+14x+49=169$\n\n$2x^{2}+14x-120=0$\n\n$x^{2}+7x-60=0$\n\n$(x-5)(x+12)=0$\n\n$x=5$  ($x\\neq -12$)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{AB}^{2}+\\mathrm{BC}^{2}=\\mathrm{AC}^{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^{2}+(x+7)^{2}=13^{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-9.1.1",
+      "question_id": "2014-nov-p2-9.1.1",
+      "number": "9.1.1",
+      "marks": 1,
+      "answer_md": "Same base $(\\mathrm{DE})$ and same height (between parallel lines)",
+      "working_md": "Same base $(\\mathrm{DE})$ and same height (between parallel lines)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "same base between $\\parallel$ lines"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-9.1.2",
+      "question_id": "2014-nov-p2-9.1.2",
+      "number": "9.1.2",
+      "marks": 5,
+      "answer_md": "$\\dfrac{\\mathrm{AD}}{\\mathrm{DB}}=\\dfrac{\\mathrm{AE}}{\\mathrm{EC}}$",
+      "working_md": "$\\dfrac{\\mathrm{AD}}{\\mathrm{DB}}=\\dfrac{\\dfrac{1}{2}\\mathrm{AE}\\times k}{\\dfrac{1}{2}\\mathrm{EC}\\times k}$\n\nBut area $\\triangle\\mathrm{DEB}=$ area $\\triangle\\mathrm{DEC}$  (same base and same height)\n\n$\\therefore\\dfrac{\\text{area }\\triangle\\mathrm{ADE}}{\\text{area }\\triangle\\mathrm{DEB}}=\\dfrac{\\text{area }\\triangle\\mathrm{ADE}}{\\text{area }\\triangle\\mathrm{DEC}}$\n\n$\\therefore\\dfrac{\\mathrm{AD}}{\\mathrm{DB}}=\\dfrac{\\mathrm{AE}}{\\mathrm{EC}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-9.2.1",
+      "question_id": "2014-nov-p2-9.2.1",
+      "number": "9.2.1",
+      "marks": 3,
+      "answer_md": "$\\dfrac{\\mathrm{EM}}{\\mathrm{AM}}=\\dfrac{3}{7}$",
+      "working_md": "$\\dfrac{\\mathrm{EM}}{\\mathrm{AM}}=\\dfrac{\\mathrm{FD}}{\\mathrm{AD}}$  [line parallel to one side of $\\triangle$  OR  proportional theorem; $\\mathrm{EF}\\parallel\\mathrm{BD}$]\n\n$\\dfrac{\\mathrm{EM}}{\\mathrm{AM}}=\\dfrac{3}{7}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-9.2.2",
+      "question_id": "2014-nov-p2-9.2.2",
+      "number": "9.2.2",
+      "marks": 3,
+      "answer_md": "$\\dfrac{\\mathrm{CM}}{\\mathrm{ME}}=\\dfrac{7}{3}$",
+      "working_md": "$\\mathrm{CM}=\\mathrm{AM}$  [diags of a parallelogram bisect]\n\n$\\dfrac{\\mathrm{CM}}{\\mathrm{ME}}=\\dfrac{\\mathrm{AM}}{\\mathrm{ME}}=\\dfrac{7}{3}$  (from 9.2.1)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-9.2.3",
+      "question_id": "2014-nov-p2-9.2.3",
+      "number": "9.2.3",
+      "marks": 4,
+      "answer_md": "$\\dfrac{3}{7}$",
+      "working_md": "$h$ of $\\triangle\\mathrm{FDC}=h$ of $\\triangle\\mathrm{BDC}$  ($\\mathrm{AD}\\parallel\\mathrm{BC}$)\n\n$\\dfrac{\\text{area }\\triangle\\mathrm{FDC}}{\\text{area }\\triangle\\mathrm{BDC}}=\\dfrac{\\dfrac{1}{2}\\mathrm{FD}\\,h}{\\dfrac{1}{2}\\mathrm{BC}\\,h}$\n\n$=\\dfrac{\\mathrm{FD}}{\\mathrm{AD}}$  [opp sides of a parallelogram equal]\n\n$=\\dfrac{3}{7}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{AD}\\parallel\\mathrm{BC}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the area formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{3}{7}$",
+          "working_md": "$\\dfrac{\\text{area }\\triangle\\mathrm{FDC}}{\\text{area }\\triangle\\mathrm{ADC}}=\\dfrac{\\mathrm{FD}}{\\mathrm{AD}}=\\dfrac{3}{7}$  [same heights]\n\nBut area $\\triangle\\mathrm{ADC}=$ area $\\triangle\\mathrm{BDC}$  [diags of a parallelogram bisect the area]\n\n$\\dfrac{\\text{area }\\triangle\\mathrm{FDC}}{\\text{area }\\triangle\\mathrm{BDC}}=\\dfrac{3}{7}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "R"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-10.1",
+      "question_id": "2014-nov-p2-10.1",
+      "number": "10.1",
+      "marks": 5,
+      "answer_md": "Tangent-chord theorem; tangent-chord theorem; corresponding angles equal; $\\angle$s subtended by chord $\\mathrm{PQ}$ or $\\angle$s in the same segment; alternate $\\angle$s, $\\mathrm{WT}\\parallel\\mathrm{SP}$.",
+      "working_md": "10.1.1 Tangent-chord theorem\n\n10.1.2 Tangent-chord theorem\n\n10.1.3 Corresponding angles equal\n\n10.1.4 $\\angle$s subtended by chord $\\mathrm{PQ}$  OR  $\\angle$s in the same segment\n\n10.1.5 Alternate $\\angle$s; $\\mathrm{WT}\\parallel\\mathrm{SP}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-10.2",
+      "question_id": "2014-nov-p2-10.2",
+      "number": "10.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{RT}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$",
+      "working_md": "$\\dfrac{\\mathrm{RW}}{\\mathrm{RS}}=\\dfrac{\\mathrm{RT}}{\\mathrm{RP}}$  [line parallel to one side of $\\triangle$  OR  proportional theorem; $\\mathrm{WT}\\parallel\\mathrm{SP}$]\n\n$\\therefore\\mathrm{RT}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{RT}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$",
+          "working_md": "$\\triangle\\mathrm{RTW}\\parallel\\parallel\\triangle\\mathrm{RPS}$  [$\\angle\\angle$]\n\n$\\therefore\\dfrac{\\mathrm{RW}}{\\mathrm{RS}}=\\dfrac{\\mathrm{RT}}{\\mathrm{RP}}$\n\n$\\therefore\\mathrm{RT}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-10.3",
+      "question_id": "2014-nov-p2-10.3",
+      "number": "10.3",
+      "marks": 4,
+      "answer_md": "$y=\\hat{\\mathrm{Q}}_{1}$",
+      "working_md": "$y=\\hat{\\mathrm{T}}_{2}=\\hat{\\mathrm{R}}_{3}$  [tan-chord theorem]\n\n$y=\\hat{\\mathrm{R}}_{3}=\\hat{\\mathrm{Q}}_{1}$  [$\\angle$s in the same segment]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-10.4",
+      "question_id": "2014-nov-p2-10.4",
+      "number": "10.4",
+      "marks": 3,
+      "answer_md": "$\\hat{\\mathrm{Q}}_{3}=\\hat{\\mathrm{W}}_{2}$",
+      "working_md": "$\\hat{\\mathrm{Q}}_{3}=\\mathrm{P}\\hat{\\mathrm{S}}\\mathrm{R}$  [ext $\\angle$ of a cyclic quad]\n\n$\\mathrm{P}\\hat{\\mathrm{S}}\\mathrm{R}=\\hat{\\mathrm{W}}_{2}$  [corresp $\\angle$s; $\\mathrm{WT}\\parallel\\mathrm{SP}$]\n\n$\\therefore\\hat{\\mathrm{Q}}_{3}=\\hat{\\mathrm{W}}_{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "R",
+          "description": "R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\hat{\\mathrm{Q}}_{3}=\\hat{\\mathrm{W}}_{2}$",
+          "working_md": "$\\hat{\\mathrm{Q}}_{3}=x$  [$\\angle$s in the same segment]\n\n$\\hat{\\mathrm{Q}}_{3}=180^{\\circ}-(x+y)$  [$\\angle$s on a straight line]\n\n$\\hat{\\mathrm{W}}_{2}=180^{\\circ}-(x+y)$  [$\\angle$s of $\\triangle\\mathrm{WRT}$]\n\n$\\therefore\\hat{\\mathrm{Q}}_{3}=\\hat{\\mathrm{W}}_{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "R",
+              "description": "R"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-10.5",
+      "question_id": "2014-nov-p2-10.5",
+      "number": "10.5",
+      "marks": 3,
+      "answer_md": "$\\triangle\\mathrm{RTS}\\parallel\\parallel\\triangle\\mathrm{RQP}$",
+      "working_md": "In $\\triangle\\mathrm{RTS}$ and $\\triangle\\mathrm{RQP}$:\n\n$\\hat{\\mathrm{R}}_{3}=\\hat{\\mathrm{R}}_{2}=y$  [proven above]\n\n$\\hat{\\mathrm{S}}_{2}=\\hat{\\mathrm{P}}_{2}$  [$\\angle$s in the same segment]\n\n$\\mathrm{R}\\hat{\\mathrm{T}}\\mathrm{S}=\\mathrm{R}\\hat{\\mathrm{Q}}\\mathrm{P}$  [3rd angle of $\\triangle$]\n\n$\\therefore\\triangle\\mathrm{RTS}\\parallel\\parallel\\triangle\\mathrm{RQP}$  [$\\angle\\angle$]",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "S/R"
+        },
+        {
+          "marks": 1,
+          "mark_type": "S/R",
+          "description": "S  OR  $[\\angle\\angle]$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p2-10.6",
+      "question_id": "2014-nov-p2-10.6",
+      "number": "10.6",
+      "marks": 3,
+      "answer_md": "$\\dfrac{\\mathrm{WR}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RS}^{2}}{\\mathrm{RP}^{2}}$",
+      "working_md": "$\\dfrac{\\mathrm{RT}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}$  [$\\triangle\\mathrm{RTS}\\parallel\\parallel\\triangle\\mathrm{RQP}$]\n\n$\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}\\times\\dfrac{\\mathrm{RT}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RT}}{\\mathrm{RQ}}\\times\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}$\n\n$\\left(\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}\\right)^{2}=\\left(\\dfrac{\\mathrm{RT}}{\\mathrm{RP}}\\right)\\left(\\dfrac{\\mathrm{RS}}{\\mathrm{RQ}}\\right)$\n\n$=\\left(\\dfrac{\\mathrm{RW}}{\\mathrm{RS}}\\right)\\left(\\dfrac{\\mathrm{RS}}{\\mathrm{RQ}}\\right)$  [proven in 10.2]\n\n$=\\dfrac{\\mathrm{RW}}{\\mathrm{RQ}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": "S",
+          "description": "S"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\times\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}$ on both sides"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\left(\\dfrac{\\mathrm{RT}}{\\mathrm{RP}}\\right)\\left(\\dfrac{\\mathrm{RS}}{\\mathrm{RQ}}\\right)$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{\\mathrm{WR}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RS}^{2}}{\\mathrm{RP}^{2}}$",
+          "working_md": "$\\dfrac{\\mathrm{RT}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}$  [$\\triangle\\mathrm{RTS}\\parallel\\parallel\\triangle\\mathrm{RQP}$]\n\nBut $\\mathrm{RT}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$  [proven in 10.2]\n\n$\\therefore\\dfrac{\\mathrm{RT}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RQ}\\cdot\\mathrm{RS}}=\\dfrac{\\mathrm{RS}}{\\mathrm{RP}}$\n\n$\\mathrm{WR}\\cdot\\mathrm{RP}^{2}=\\mathrm{RQ}\\cdot\\mathrm{RS}^{2}$\n\n$\\therefore\\dfrac{\\mathrm{WR}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RS}^{2}}{\\mathrm{RP}^{2}}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{RT}=\\dfrac{\\mathrm{WR}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "multiplication"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{\\mathrm{WR}}{\\mathrm{RQ}}=\\dfrac{\\mathrm{RS}^{2}}{\\mathrm{RP}^{2}}$",
+          "working_md": "$\\dfrac{\\mathrm{RT}}{\\mathrm{RS}}=\\dfrac{\\mathrm{RQ}}{\\mathrm{RP}}$  [$\\triangle\\mathrm{RTS}\\parallel\\parallel\\triangle\\mathrm{RQP}$]\n\n$\\mathrm{RQ}=\\dfrac{\\mathrm{RT}\\cdot\\mathrm{RP}}{\\mathrm{RS}}$\n\nand $\\mathrm{WR}=\\dfrac{\\mathrm{RT}\\cdot\\mathrm{RS}}{\\mathrm{RP}}$  [proven in 10.2]\n\n$\\dfrac{\\mathrm{WR}}{\\mathrm{RQ}}=\\dfrac{\\dfrac{\\mathrm{RT}\\cdot\\mathrm{RS}}{\\mathrm{RP}}}{\\dfrac{\\mathrm{RT}\\cdot\\mathrm{RP}}{\\mathrm{RS}}}=\\dfrac{\\mathrm{RT}\\cdot\\mathrm{RS}}{\\mathrm{RP}}\\times\\dfrac{\\mathrm{RS}}{\\mathrm{RT}\\cdot\\mathrm{RP}}=\\dfrac{\\mathrm{RS}^{2}}{\\mathrm{RP}^{2}}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": "S",
+              "description": "S"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{WR}=\\dfrac{\\mathrm{RT}\\cdot\\mathrm{RS}}{\\mathrm{RP}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,2134 @@
+{
+  "id": "2014-nov-p1",
+  "paper_id": "2014-nov-p1",
+  "source": {
+    "pdf": "sources/maths/2014-nov/2014-nov-p1-memo.pdf",
+    "pdf_pages": 22,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=KNmGWZqhp04%3d&tabid=568&portalid=0&mid=1527",
+    "sha256": "3f4e519b187b06ddaadb95f7a702986a714c15140a18526687d8419629422687",
+    "note": "Official DBE November 2014 Mathematics P1 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only. The PDF text layer is column-scrambled; page renders were authoritative."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-27",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answers a question TWICE, only mark the FIRST attempt. Consistent accuracy applies in all aspects of the marking memorandum.",
+  "parts": [
+    {
+      "id": "2014-nov-p1-1.1.1",
+      "question_id": "2014-nov-p1-1.1.1",
+      "number": "1.1.1",
+      "marks": 2,
+      "answer_md": "$x=2$ or $x=-4$",
+      "working_md": "$(x-2)(4+x)=0$\n\n$x=2$  or  $x=-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-1.1.2",
+      "question_id": "2014-nov-p1-1.1.2",
+      "number": "1.1.2",
+      "marks": 4,
+      "answer_md": "$x=2,52$ or $x=-1,85$",
+      "working_md": "$3x^{2}-2x-14=0$\n\n$x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}$\n\n$x=\\dfrac{2\\pm\\sqrt{(-2)^{2}-4(3)(-14)}}{2(3)}$\n\n$=\\dfrac{2\\pm\\sqrt{172}}{6}$\n\n$x=2{,}52$  or  $x=-1{,}85$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answers"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=2,52$ or $x=-1,85$",
+          "working_md": "$x^{2}-\\dfrac{2}{3}x+\\dfrac{1}{9}=\\dfrac{14}{3}+\\dfrac{1}{9}$\n\n$\\left(x-\\dfrac{1}{3}\\right)^{2}=\\dfrac{43}{9}$\n\n$x-\\dfrac{1}{3}=\\pm\\dfrac{\\sqrt{43}}{3}$\n\n$\\therefore x=\\dfrac{1\\pm\\sqrt{43}}{3}$\n\n$x=2{,}52$  or  $x=-1{,}85$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "for adding $\\dfrac{1}{9}$ on both sides"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=\\dfrac{1\\pm\\sqrt{43}}{3}$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answers"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-1.1.3",
+      "question_id": "2014-nov-p1-1.1.3",
+      "number": "1.1.3",
+      "marks": 3,
+      "answer_md": "$x=2$",
+      "working_md": "$2^{x+2}+2^{x}=20$\n\n$2^{x}(2^{2}+1)=20$\n\n$2^{x}=\\dfrac{20}{5}$\n\n$2^{x}=2^{2}$\n\n$\\therefore x=2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "common factor"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=2$",
+          "working_md": "$2^{x}\\cdot 2^{2}+2^{x}=2^{2}\\cdot 5$\n\n$2^{x}(2^{2}+1)=2^{2}\\cdot 5$\n\n$2^{x}\\cdot 5=2^{2}\\cdot 5$\n\n$\\therefore x=2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "common factor"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=2$",
+          "working_md": "$4\\cdot 2^{x}+2^{x}=20$\n\n$5\\cdot 2^{x}=20$\n\n$2^{x}=4=2^{2}$\n\n$\\therefore x=2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$5\\cdot 2^{x}=20$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2^{x}=4$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-1.2",
+      "question_id": "2014-nov-p1-1.2",
+      "number": "1.2",
+      "marks": 6,
+      "answer_md": "$(0;-\\dfrac{3}{2})$  and  $(1;-1)$",
+      "working_md": "$x=2y+3$  .........(1)\n\n$3x^{2}-5xy=24+16y$  .........(2)\n\n(1) in (2):\n\n$3(2y+3)^{2}-5(2y+3)y=24+16y$\n\n$3(4y^{2}+12y+9)-10y^{2}-15y=24+16y$\n\n$12y^{2}+36y+27-10y^{2}-15y-24-16y=0$\n\n$2y^{2}+5y+3=0$\n\n$(2y+3)(y+1)=0$\n\n$y=-\\dfrac{3}{2}$  or  $y=-1$\n\n$\\therefore x=2\\left(-\\dfrac{3}{2}\\right)+3$  or  $x=2(-1)+3$\n\n$x=0$  or  $x=1$\n\n$\\left(0;-\\dfrac{3}{2}\\right)$  $\\left(1;-1\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorisation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-values"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(0;-\\dfrac{3}{2})$  and  $(1;-1)$",
+          "working_md": "$y=\\dfrac{x-3}{2}$\n\n$3x^{2}-5x\\left(\\dfrac{x-3}{2}\\right)=24+16\\left(\\dfrac{x-3}{2}\\right)$\n\n$3x^{2}-\\dfrac{5x^{2}-15x}{2}=24+\\dfrac{16x-48}{2}$\n\n$\\times 2$: $6x^{2}-5x^{2}+15x=48+16x-48$\n\n$x^{2}-x=0$\n\n$x(x-1)=0$\n\n$x=0$  or  $x=1$\n\n$y=-\\dfrac{3}{2}$  or  $y=-1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-values"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-1.3",
+      "question_id": "2014-nov-p1-1.3",
+      "number": "1.3",
+      "marks": 4,
+      "answer_md": "$-1<x<4$  or  $x\\in(-1;4)$",
+      "working_md": "$(x-1)(x-2)<6$\n\n$x^{2}-3x+2<6$\n\n$x^{2}-3x-4<0$\n\n$(x+1)(x-4)<0$\n\n$-1<x<4$  or  $x\\in(-1;4)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorisation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values in the context of the inequality"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "notation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-1.4",
+      "question_id": "2014-nov-p1-1.4",
+      "number": "1.4",
+      "marks": 2,
+      "answer_md": "$k\\leq -4$",
+      "working_md": "$-k-4\\geq 0$\n\n$k\\leq -4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-k-4\\geq 0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-2.1",
+      "question_id": "2014-nov-p1-2.1",
+      "number": "2.1",
+      "marks": 1,
+      "answer_md": "$23$",
+      "working_md": "$T_{4}=23$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$23$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-2.2",
+      "question_id": "2014-nov-p1-2.2",
+      "number": "2.2",
+      "marks": 3,
+      "answer_md": "$1752$",
+      "working_md": "$T_{251}=a+(n-1)d$\n\n$=2+(251-1)(7)$\n\n$=1752$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=2$ and $d=7$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1752$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-2.3",
+      "question_id": "2014-nov-p1-2.3",
+      "number": "2.3",
+      "marks": 2,
+      "answer_md": "$\\displaystyle\\sum_{n=1}^{251}(7n-5)$",
+      "working_md": "$\\displaystyle\\sum_{n=1}^{251}(7n-5)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "general term"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "complete answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\displaystyle\\sum_{p=0}^{250}(7p+2)$",
+          "working_md": "$\\displaystyle\\sum_{p=0}^{250}(7p+2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "general term"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "complete answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-2.4",
+      "question_id": "2014-nov-p1-2.4",
+      "number": "2.4",
+      "marks": 2,
+      "answer_md": "$220127$",
+      "working_md": "$S_{n}=\\dfrac{n}{2}[a+\\ell]$\n\n$S_{n}=\\dfrac{251}{2}[2+1752]$\n\n$=220127$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$220127$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$220127$",
+          "working_md": "$S_{n}=\\dfrac{n}{2}[2a+(n-1)d]$\n\n$=\\dfrac{251}{2}[2(2)+(251-1)(7)]$\n\n$=220127$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$220127$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-2.5",
+      "question_id": "2014-nov-p1-2.5",
+      "number": "2.5",
+      "marks": 4,
+      "answer_md": "$63$",
+      "working_md": "The new series is $16+44+72+\\cdots+1752$\n\n$16+28(n-1)=1752$\n\n$1736=28(n-1)$\n\n$62=n-1$\n\n$n=63$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "generating new series divisible by 4"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_{n}=1752$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$63$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$63$",
+          "working_md": "$2+9+16+23+30+37+44+51+\\cdots+1752$\n\n$T_{3}$ is divisible by 4.\n\nThen $T_{7}$, $T_{11}$, $T_{15}$, $\\ldots$, $T_{251}$ are divisible by 4, thus each 4th term is divisible by 4.\n\n$\\therefore$ number of terms divisible by 4 will be $\\dfrac{251-3}{4}+1=63$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{3}$ is divisible by 4"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "identifying terms divisible by 4"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "reasoning"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$63$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$63$",
+          "working_md": "Position of terms divisible by 4:\n\n$3;\\ 7;\\ 11;\\ \\ldots;\\ 247;\\ 251$\n\n$T_{n}=4n-1=251$\n\n$4n=252$\n\n$n=63$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "generating sequence involving position of terms"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{n}=251$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$63$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The official first method prints three ticks against a (4) subtotal; ‘generating new series divisible by 4’ is allocated 2 marks to match the printed total."
+    },
+    {
+      "id": "2014-nov-p1-3.1.1",
+      "question_id": "2014-nov-p1-3.1.1",
+      "number": "3.1.1",
+      "marks": 2,
+      "answer_md": "$p=-13$",
+      "working_md": "$-1;\\ -7;\\ -11;\\ p;\\ \\ldots$\n\nFirst differences: $-6$, $-4$, $p+11$; second differences: $2$, $2$.\n\n$p+11-(-4)=2$\n\n$p+15=2$\n\n$p=-13$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p+15=2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p=-13$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$p=-13$",
+          "working_md": "$-1;\\ -7;\\ -11;\\ p;\\ \\ldots$\n\nFirst differences: $-6$, $-4$, $p+11$; second differences: $2$, $2$.\n\n$p+11=-2$\n\n$p=-13$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "first differences"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$p=-13$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-3.1.2",
+      "question_id": "2014-nov-p1-3.1.2",
+      "number": "3.1.2",
+      "marks": 4,
+      "answer_md": "$T_{n}=n^{2}-9n+7$",
+      "working_md": "$2a=2$\n\n$a=1$\n\n$3a+b=-6$\n\n$3(1)+b=-6$\n\n$b=-9$\n\n$a+b+c=-1$\n\n$1-9+c=-1$\n\n$c=7$\n\n$T_{n}=n^{2}-9n+7$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=-9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$c=7$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T_{n}=n^{2}-9n+7$",
+          "working_md": "$T_{n}=T_{1}+(n-1)d_{1}+\\dfrac{(n-1)(n-2)}{2}d_{2}$\n\n$=-1+(n-1)(-6)+\\dfrac{(n-1)(n-2)(2)}{2}$\n\n$=-1-6n+6+\\dfrac{2n^{2}-6n+4}{2}$\n\n$=n^{2}-9n+7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of first and second differences"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$T_{n}=n^{2}-9n+7$",
+          "working_md": "$7;\\ -1;\\ -7;\\ -11;\\ p;\\ \\ldots$\n\n$T_{0}=7=c$\n\n$2a=2$  $\\therefore a=1$\n\n$3a+b=-6$  $\\therefore b=-9$\n\n$T_{n}=n^{2}-9n+7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$c$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$b$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$T_{n}=n^{2}-9n+7$",
+          "working_md": "$a=\\dfrac{1}{2}(2)=1$\n\n$\\therefore T_{n}=n^{2}+bn+c$\n\n$T_{1}=-1$  $\\therefore 1+b+c=-1$  .........(1)\n\n$T_{2}=-7$  $\\therefore 4+2b+c=-7$  .........(2)\n\n$(2)-(1)$:  $3+b=-6$\n\n$\\therefore b=-9$\n\nsub in (1): $c=7$\n\n$\\therefore T_{n}=n^{2}-9n+7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$b$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$c$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-3.1.3",
+      "question_id": "2014-nov-p1-3.1.3",
+      "number": "3.1.3",
+      "marks": 4,
+      "answer_md": "$T_{32}=2243$ and $T_{33}=2339$",
+      "working_md": "The sequence of first differences is:  $-6;\\ -4;\\ -2;\\ 0;\\ \\ldots$\n\n$-6+(n-1)(2)=96$\n\n$n=52$\n\n$\\therefore$ two terms are:\n\n$T_{32}=52^{2}-9(52)+7=2243$\n\n$T_{33}=53^{2}-9(53)+7=2339$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-6+(n-1)(2)=96$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$52$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2243$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2339$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T_{32}=2243$ and $T_{33}=2339$",
+          "working_md": "The sequence of first differences is:  $-6;\\ -4;\\ -2;\\ 0;\\ \\ldots$\n\nThe formula for the sequence of first differences is $T_{n}=2n-8$.\n\n$2n-8=96$\n\n$2n=104$\n\n$n=52$\n\n$\\therefore$ two terms are:\n\n$T_{32}=52^{2}-9(52)+7=2243$\n\n$T_{33}=53^{2}-9(53)+7=2339$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2n-8=96$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$52$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2243$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2339$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$T_{32}=2243$ and $T_{33}=2339$",
+          "working_md": "$T_{n}-T_{n-1}=96$\n\n$\\bigl(n^{2}-9n+7\\bigr)-\\bigl[(n-1)^{2}-9(n-1)+7\\bigr]=96$\n\n$n^{2}-9n+7-n^{2}+2n-1+9n-9-7=96$\n\n$2n=106$\n\n$n=53$\n\n$T_{32}=52^{2}-9(52)+7=2243$\n\n$T_{33}=53^{2}-9(53)+7=2339$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{n}-T_{n-1}=96$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$53$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2243$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2339$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$T_{32}=2243$ and $T_{33}=2339$",
+          "working_md": "$T_{n+1}-T_{n}=96$\n\n$\\bigl[(n+1)^{2}-9(n+1)+7\\bigr]-\\bigl[n^{2}-9n+7\\bigr]=96$\n\n$n^{2}+2n+1-9n-9+7-n^{2}+9n-7=96$\n\n$2n=104$\n\n$n=52$\n\n$T_{32}=52^{2}-9(52)+7=2243$\n\n$T_{33}=53^{2}-9(53)+7=2339$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{n+1}-T_{n}=96$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$52$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2243$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2339$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The official memo labels the terms $T_{32}$ and $T_{33}$ in every method, but substitutes $n=52$ and $n=53$ into $T_{n}=n^{2}-9n+7$. Those calculations give $T_{52}=2243$ and $T_{53}=2339$ (and $T_{53}-T_{52}=96$). Transcribed as printed."
+    },
+    {
+      "id": "2014-nov-p1-3.2.1",
+      "question_id": "2014-nov-p1-3.2.1",
+      "number": "3.2.1",
+      "marks": 3,
+      "answer_md": "$\\dfrac{1}{4^{9}}$  or  $4^{-9}$  or  $\\dfrac{1}{2^{18}}$  or  $2^{-18}$",
+      "working_md": "$T_{12}=16\\left(\\dfrac{1}{4}\\right)^{12-1}$\n\n$=\\dfrac{1}{4^{9}}$  or  $4^{-9}$  or  $\\dfrac{1}{2^{18}}$  or  $2^{-18}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=16$ and $r=\\dfrac{1}{4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-3.2.2",
+      "question_id": "2014-nov-p1-3.2.2",
+      "number": "3.2.2",
+      "marks": 2,
+      "answer_md": "$21,33$",
+      "working_md": "$S_{10}=\\dfrac{16\\left(1-\\left(\\dfrac{1}{4}\\right)^{10}\\right)}{1-\\dfrac{1}{4}}$\n\n$=21{,}33$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$21,33$",
+          "working_md": "$S_{10}=\\dfrac{16\\left(\\left(\\dfrac{1}{4}\\right)^{10}-1\\right)}{\\dfrac{1}{4}-1}$\n\n$=21{,}33$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-3.3",
+      "question_id": "2014-nov-p1-3.3",
+      "number": "3.3",
+      "marks": 4,
+      "answer_md": "$50$",
+      "working_md": "$\\left(1+\\dfrac{1}{2}\\right)\\left(1+\\dfrac{1}{3}\\right)\\left(1+\\dfrac{1}{4}\\right)\\cdots\\left(1+\\dfrac{1}{99}\\right)$\n\n$=\\left(\\dfrac{3}{2}\\right)\\left(\\dfrac{4}{3}\\right)\\left(\\dfrac{5}{4}\\right)\\cdots\\left(\\dfrac{100}{99}\\right)$\n\n$=\\dfrac{100}{2}$\n\n$=50$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "improper fractions"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\left(1+\\dfrac{1}{99}\\right)$ or $\\dfrac{100}{99}$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$50$",
+          "working_md": "$\\left(1+\\dfrac{1}{2}\\right)\\left(1+\\dfrac{1}{3}\\right)\\left(1+\\dfrac{1}{4}\\right)\\cdots\\left(1+\\dfrac{1}{99}\\right)$\n\n$T_{1}=\\left(1+\\dfrac{1}{2}\\right)=\\dfrac{3}{2}$\n\n$T_{2}=\\dfrac{3}{2}\\left(1+\\dfrac{1}{3}\\right)=\\dfrac{3}{2}\\times\\dfrac{4}{3}=2$\n\n$T_{3}=2\\left(1+\\dfrac{1}{4}\\right)=2\\times\\dfrac{5}{4}=\\dfrac{5}{2}$\n\n$\\dfrac{3}{2},\\ 2,\\ \\dfrac{5}{2},\\ \\ldots$ is an arithmetic sequence with $a=\\dfrac{3}{2}$ and $d=\\dfrac{1}{2}$\n\n$\\therefore T_{98}=\\dfrac{3}{2}+(98-1)\\dfrac{1}{2}=\\dfrac{100}{2}=50$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\left(1+\\dfrac{1}{99}\\right)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "giving the first three terms"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-4.1",
+      "question_id": "2014-nov-p1-4.1",
+      "number": "4.1",
+      "marks": 2,
+      "answer_md": "$p=1$ and $q=1$",
+      "working_md": "$p=1$\n\n$q=1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p$ value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$q$ value"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-4.2",
+      "question_id": "2014-nov-p1-4.2",
+      "number": "4.2",
+      "marks": 2,
+      "answer_md": "$x=-3$",
+      "working_md": "$0=\\dfrac{2}{x+1}+1$\n\n$-x-1=2$\n\n$x=-3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0=\\dfrac{2}{x+1}+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=-3$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=-3$",
+          "working_md": "Reflect $(0;3)$ across $y=-x$ to get $\\mathrm{T}(-3;0)$\n\n$x=-3$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "reflect across $y=-x$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=-3$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-4.3",
+      "question_id": "2014-nov-p1-4.3",
+      "number": "4.3",
+      "marks": 1,
+      "answer_md": "$x=-6$",
+      "working_md": "Shifting $g$ five units to the left shifts $(-1;0)$ five units to the left.\n\n$x=-6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-4.4",
+      "question_id": "2014-nov-p1-4.4",
+      "number": "4.4",
+      "marks": 5,
+      "answer_md": "$\\mathrm{OS}=\\sqrt{6}=2,45$ units",
+      "working_md": "$\\dfrac{2}{x+1}+1=x$\n\n$2+x+1=x^{2}+x$\n\n$x^{2}=3$\n\n$\\therefore x=\\sqrt{3}$  since at $\\mathrm{S}$, $x>0$\n\n$y=\\sqrt{3}=1{,}73\\ldots$\n\n$\\mathrm{OS}^{2}=x^{2}+y^{2}=3+3=6$\n\n$\\therefore\\mathrm{OS}=\\sqrt{6}=2{,}45$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equating both graphs"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^{2}=3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=\\sqrt{3}$ and $y=\\sqrt{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{OS}^{2}=6$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{OS}=\\sqrt{6}=2,45$ units",
+          "working_md": "Translate $g$ one unit down and one unit to the right.\n\nThe new equation:  $p(x)=\\dfrac{2}{x}$\n\nTherefore the image of $\\mathrm{S}$ is $\\mathrm{S}'\\bigl(\\sqrt{2};\\sqrt{2}\\bigr)$.\n\nNow translate $p$ back to $g$:\n\n$\\mathrm{S}\\bigl(\\sqrt{2}-1;\\sqrt{2}+1\\bigr)$\n\n$\\mathrm{OS}^{2}=\\bigl(\\sqrt{2}-1\\bigr)^{2}+\\bigl(\\sqrt{2}+1\\bigr)^{2}=2-2\\sqrt{2}+1+2+2\\sqrt{2}+1$\n\n$\\therefore\\mathrm{OS}=\\sqrt{6}=2{,}45$ units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$p(x)=\\dfrac{2}{x}$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "coordinates of $\\mathrm{S}'$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "coordinates of $\\mathrm{S}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-4.5",
+      "question_id": "2014-nov-p1-4.5",
+      "number": "4.5",
+      "marks": 1,
+      "answer_md": "$k<3$",
+      "working_md": "$k<3$ will give roots with opposite signs",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k<3$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-5.1",
+      "question_id": "2014-nov-p1-5.1",
+      "number": "5.1",
+      "marks": 2,
+      "answer_md": "$a=3$",
+      "working_md": "$y=\\log_{a}x$\n\n$-1=\\log_{a}\\dfrac{1}{3}$\n\n$a^{-1}=\\dfrac{1}{3}$\n\n$a=\\left(\\dfrac{1}{3}\\right)^{-1}$\n\n$\\therefore a=3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $\\left(\\dfrac{1}{3};-1\\right)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a^{-1}=\\dfrac{1}{3}$ or $a=\\left(\\dfrac{1}{3}\\right)^{-1}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-5.2",
+      "question_id": "2014-nov-p1-5.2",
+      "number": "5.2",
+      "marks": 2,
+      "answer_md": "$y=3^{x}$",
+      "working_md": "$h$:  $x=\\log_{3}y$\n\n$\\therefore y=3^{x}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "swap $x$ and $y$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-5.3",
+      "question_id": "2014-nov-p1-5.3",
+      "number": "5.3",
+      "marks": 1,
+      "answer_md": "$g(x)=-\\log_{3}x$",
+      "working_md": "$g(x)=-\\log_{3}x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$g(x)=\\log_{3}\\dfrac{1}{x}$",
+          "working_md": "$g(x)=\\log_{3}\\dfrac{1}{x}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$g(x)=\\log_{\\frac{1}{3}}x$",
+          "working_md": "$g(x)=\\log_{\\frac{1}{3}}x$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=3^{-y}$",
+          "working_md": "$x=3^{-y}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=\\left(\\dfrac{1}{3}\\right)^{y}$",
+          "working_md": "$x=\\left(\\dfrac{1}{3}\\right)^{y}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-5.4",
+      "question_id": "2014-nov-p1-5.4",
+      "number": "5.4",
+      "marks": 1,
+      "answer_md": "$x>0$",
+      "working_md": "$x>0$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(0;\\infty)$",
+          "working_md": "$(0;\\infty)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-5.5",
+      "question_id": "2014-nov-p1-5.5",
+      "number": "5.5",
+      "marks": 3,
+      "answer_md": "$x\\geq\\dfrac{1}{27}$",
+      "working_md": "$\\log_{3}x=-3$\n\n$x=3^{-3}$\n\n$x=\\dfrac{1}{27}$\n\n$x\\geq\\dfrac{1}{27}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "exponential form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-6.1",
+      "question_id": "2014-nov-p1-6.1",
+      "number": "6.1",
+      "marks": 2,
+      "answer_md": "$x=1,22$",
+      "working_md": "$4x^{2}-6=0$\n\n$x^{2}=\\dfrac{3}{2}$\n\n$x=1{,}22$  ($x$-coordinate of $\\mathrm{S}$ is positive)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1,22$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-6.2",
+      "question_id": "2014-nov-p1-6.2",
+      "number": "6.2",
+      "marks": 2,
+      "answer_md": "$(0;-6)$",
+      "working_md": "$(0;-6)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-6$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-6.3.1",
+      "question_id": "2014-nov-p1-6.3.1",
+      "number": "6.3.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{QT}=2\\sqrt{x}-4x^{2}+6$",
+      "working_md": "$\\mathrm{QT}=f(x)-g(x)$\n\n$=2\\sqrt{x}-(4x^{2}-6)$  or  $=2\\sqrt{x}-4x^{2}+6$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-6.3.2",
+      "question_id": "2014-nov-p1-6.3.2",
+      "number": "6.3.2",
+      "marks": 6,
+      "answer_md": "$6\\dfrac{3}{4}=6,75$ units",
+      "working_md": "$\\mathrm{QT}=2x^{\\frac{1}{2}}-4x^{2}+6$\n\nDerivative of $\\mathrm{QT}$:  $x^{-\\frac{1}{2}}-8x=0$\n\n$\\dfrac{1}{\\sqrt{x}}=8x$\n\n$x^{\\frac{3}{2}}=\\dfrac{1}{8}$  or  $\\dfrac{1}{x}=64x^{2}$\n\n$x=\\left(\\dfrac{1}{8}\\right)^{\\frac{2}{3}}$\n\n$x=\\left(\\dfrac{1}{2}\\right)^{2}$  or  $x^{3}=\\dfrac{1}{64}$\n\n$x=\\dfrac{1}{4}=0{,}25$\n\nMax $\\mathrm{QT}=2\\left(\\dfrac{1}{4}\\right)^{\\frac{1}{2}}-4\\left(\\dfrac{1}{4}\\right)^{2}+6$\n\n$=6\\dfrac{3}{4}=6{,}75$ units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative equal to 0"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^{\\frac{3}{2}}=\\dfrac{1}{8}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-7.1",
+      "question_id": "2014-nov-p1-7.1",
+      "number": "7.1",
+      "marks": 3,
+      "answer_md": "$12,94\\%$ p.a.",
+      "working_md": "$A=P(1-i)^{n}$\n\n$72\\,500=145\\,000(1-i)^{5}$\n\n$i=1-\\sqrt[5]{\\dfrac{72500}{145000}}$\n\n$=0{,}1294\\ldots$\n\n$\\therefore$ rate of interest is $12{,}94\\%$ p.a.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "writing in terms of $i$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$12,94\\%$ p.a.",
+          "working_md": "$(1-i)^{5}=\\dfrac{1}{2}$\n\n$\\therefore i=1-\\left(\\dfrac{1}{2}\\right)^{\\frac{1}{5}}$\n\n$i=0{,}1294$\n\n$\\therefore$ rate of interest is $12{,}94\\%$ p.a.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "writing in terms of $i$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-7.2.1",
+      "question_id": "2014-nov-p1-7.2.1",
+      "number": "7.2.1",
+      "marks": 4,
+      "answer_md": "$x=\\mathrm{R}\\,5\\,505{,}43$",
+      "working_md": "$P=x\\dfrac{\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$500\\,000=\\dfrac{x\\left[1-\\left(1+\\dfrac{0{,}12}{12}\\right)^{-240}\\right]}{\\dfrac{0{,}12}{12}}$\n\n$x=\\dfrac{500000\\times\\dfrac{0{,}12}{12}}{\\left[1-\\left(1+\\dfrac{0{,}12}{12}\\right)^{-240}\\right]}$\n\n$x=\\mathrm{R}\\,5\\,505{,}43$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i=\\dfrac{0{,}12}{12}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=240$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-7.2.2",
+      "question_id": "2014-nov-p1-7.2.2",
+      "number": "7.2.2",
+      "marks": 4,
+      "answer_md": "$181$ months",
+      "working_md": "$P=x\\dfrac{\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$500000=\\dfrac{6000\\left[1-\\left(1+\\dfrac{0{,}12}{12}\\right)^{-n}\\right]}{\\dfrac{0{,}12}{12}}$\n\n$\\dfrac{500000}{6000}\\times 0{,}01=1-(1{,}01)^{-n}$\n\n$(1{,}01)^{-n}=1-\\dfrac{5}{6}$\n\n$-n=\\dfrac{\\log\\dfrac{1}{6}}{\\log 1{,}01}$\n\n$n=180{,}07$\n\n$\\therefore$ Melissa settles the loan in $181$ months",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6000$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "use of logs"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-7.2.3",
+      "question_id": "2014-nov-p1-7.2.3",
+      "number": "7.2.3",
+      "marks": 2,
+      "answer_md": "Samuel",
+      "working_md": "Samuel\n\nHe is paying off his loan over a longer period thus more interest will be paid.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "Samuel"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "reason"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Samuel",
+          "working_md": "Samuel\n\nHe will pay $\\mathrm{R}\\,5\\,505{,}43\\times 240-\\mathrm{R}\\,500\\,000=\\mathrm{R}\\,821\\,303{,}20$.\n\nShe will pay between $\\mathrm{R}\\,580\\,000$ and $\\mathrm{R}\\,586\\,000{,}00$.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "Samuel"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "reason"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-8.1",
+      "question_id": "2014-nov-p1-8.1",
+      "number": "8.1",
+      "marks": 5,
+      "answer_md": "$f'(x)=3x^{2}$",
+      "working_md": "$f(x+h)=(x+h)^{3}=(x^{2}+2xh+h^{2})(x+h)$\n\n$=x^{3}+x^{2}h+2x^{2}h+2xh^{2}+h^{2}x+h^{3}$\n\n$=x^{3}+3x^{2}h+3xh^{2}+h^{3}$\n\n$f(x+h)-f(x)=x^{3}+3x^{2}h+3xh^{2}+h^{3}-x^{3}$\n\n$=3x^{2}h+3xh^{2}+h^{3}$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{3x^{2}h+3xh^{2}+h^{3}}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{h(3x^{2}+3xh+h^{2})}{h}$\n\n$=\\lim_{h\\to 0}(3x^{2}+3xh+h^{2})$\n\n$=3x^{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplifying"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorization"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$f'(x)=3x^{2}$",
+          "working_md": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{(x+h)^{3}-x^{3}}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{(x+h)(x+h)^{2}-x^{3}}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{(x+h)(x^{2}+2xh+h^{2})-x^{3}}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{x^{3}+3x^{2}h+3xh^{2}+h^{3}-x^{3}}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{h(3x^{2}+3xh+h^{2})}{h}$\n\n$=\\lim_{h\\to 0}(3x^{2}+3xh+h^{2})$\n\n$=3x^{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplifying"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factorization"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$f'(x)=3x^{2}$",
+          "working_md": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{(x+h)^{3}-x^{3}}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{(x+h-x)\\bigl(x^{2}+2xh+h^{2}+x^{2}+xh+x^{2}\\bigr)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{h(3x^{2}+3xh+h^{2})}{h}$\n\n$=\\lim_{h\\to 0}(3x^{2}+3xh+h^{2})$\n\n$=3x^{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factorization"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplifying"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-8.2",
+      "question_id": "2014-nov-p1-8.2",
+      "number": "8.2",
+      "marks": 2,
+      "answer_md": "$f'(x)=4x+2x^{3}$",
+      "working_md": "$f'(x)=4x+2x^{3}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2x^{3}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-8.3",
+      "question_id": "2014-nov-p1-8.3",
+      "number": "8.3",
+      "marks": 3,
+      "answer_md": "$\\dfrac{dy}{dx}=12x^{5}\\sqrt{y}$",
+      "working_md": "$y=x^{12}-2x^{6}+1$\n\n$\\dfrac{dy}{dx}=12x^{11}-12x^{5}$\n\n$=12x^{5}(x^{6}-1)$\n\n$=12x^{5}\\sqrt{y}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-8.4",
+      "question_id": "2014-nov-p1-8.4",
+      "number": "8.4",
+      "marks": 4,
+      "answer_md": "$x>\\dfrac{1}{3}$",
+      "working_md": "$f(x)=2x^{3}-2x^{2}+4x-1$\n\n$f'(x)=6x^{2}-4x+4$\n\n$f''(x)=12x-4$\n\n$f$ is concave up when $f''(x)>0$\n\n$\\therefore 12x-4>0$\n\n$12x>4$\n\n$x>\\dfrac{1}{3}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "first derivative"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "second derivative"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f''(x)>0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x>\\dfrac{1}{3}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-9.1",
+      "question_id": "2014-nov-p1-9.1",
+      "number": "9.1",
+      "marks": 6,
+      "answer_md": "$\\left(-\\dfrac{1}{3};\\dfrac{500}{27}\\right)$ and $(3;0)$",
+      "working_md": "$f'(x)=3x^{2}-8x-3=0$\n\n$(3x+1)(x-3)=0$\n\n$x=-\\dfrac{1}{3}$  or  $x=3$\n\n$y=\\dfrac{500}{27}$  (or $y=18\\dfrac{14}{27}$ or $18{,}52$)  $\\qquad$  $y=0$\n\nTurning points are $\\left(-\\dfrac{1}{3};\\dfrac{500}{27}\\right)$ and $(3;0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative $=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-values"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "each $y$-value"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-9.2",
+      "question_id": "2014-nov-p1-9.2",
+      "number": "9.2",
+      "marks": 4,
+      "answer_md": "Sketch of $f$ showing $x$-intercepts at $(-2;0)$ and $(3;0)$, $y$-intercept near $18$, turning points at $\\bigl(-\\dfrac{1}{3};18{,}52\\bigr)$ and $(3;0)$, and the cubic shape.",
+      "working_md": "Sketch as in the official memorandum (local maximum in the second quadrant, local minimum on the positive $x$-axis, $x$-intercepts at $-2$ and $3$).",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercepts"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "turning points"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-9.3",
+      "question_id": "2014-nov-p1-9.3",
+      "number": "9.3",
+      "marks": 3,
+      "answer_md": "$x<-\\dfrac{1}{3}$ or $0<x<3$",
+      "working_md": "$x<-\\dfrac{1}{3}$  or  $0<x<3$\n\nOR  $\\left(-\\infty;-\\dfrac{1}{3}\\right)\\cup(0;3)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x<-\\dfrac{1}{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "both critical points"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "notation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-10.1",
+      "question_id": "2014-nov-p1-10.1",
+      "number": "10.1",
+      "marks": 1,
+      "answer_md": "$\\ell=40-2h$",
+      "working_md": "$\\ell+2h=40$\n\n$\\ell=40-2h$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-10.2",
+      "question_id": "2014-nov-p1-10.2",
+      "number": "10.2",
+      "marks": 3,
+      "answer_md": "$V=h(40-2h)(50-h)$",
+      "working_md": "$2b+2h=100$\n\n$b=50-h$\n\n$V=\\ell bh$\n\n$V=h(40-2h)(50-h)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2b+2h=100$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$b=50-h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "volume formula"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-10.3",
+      "question_id": "2014-nov-p1-10.3",
+      "number": "10.3",
+      "marks": 5,
+      "answer_md": "$h=8,80$ cm",
+      "working_md": "$V=(50h-h^{2})(40-2h)$\n\n$V=2h^{3}-140h^{2}+2000h$\n\n$V'=6h^{2}-280h+2000=0$\n\n$h=\\dfrac{280\\pm\\sqrt{(-280)^{2}-4(6)(2000)}}{2(6)}$\n\n$h\\neq 37{,}86$  or  $h=8{,}80$\n\n$\\therefore$ for a box as large as possible, $h=8{,}80$ cm",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplifying"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "derivative"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$h$-values in any form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-11.1.1",
+      "question_id": "2014-nov-p1-11.1.1",
+      "number": "11.1.1",
+      "marks": 1,
+      "answer_md": "$\\dfrac{83}{180}$  or  $0,46$  or  $46,11\\%$",
+      "working_md": "$\\mathrm{P}(\\text{male})=\\dfrac{83}{180}$  or  $0{,}46$  or  $46{,}11\\%$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-11.1.2",
+      "question_id": "2014-nov-p1-11.1.2",
+      "number": "11.1.2",
+      "marks": 2,
+      "answer_md": "$\\dfrac{59}{90}$  or  $0,66$  or  $65,56\\%$",
+      "working_md": "$\\mathrm{P}(\\text{not game park})=1-\\mathrm{P}(\\text{game park})$\n\n$=1-\\dfrac{62}{180}$\n\n$=\\dfrac{59}{90}$  or  $0{,}66$  or  $65{,}56\\%$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1-\\dfrac{62}{180}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{59}{90}$  or  $0,66$  or  $65,56\\%$",
+          "working_md": "$\\mathrm{P}(\\text{not game park})=\\dfrac{98}{180}+\\dfrac{20}{180}$\n\n$=\\dfrac{118}{180}$\n\n$=\\dfrac{59}{90}$  or  $0{,}66$  or  $65{,}56\\%$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{98}{180}+\\dfrac{20}{180}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-11.2",
+      "question_id": "2014-nov-p1-11.2",
+      "number": "11.2",
+      "marks": 4,
+      "answer_md": "The events are not independent.",
+      "working_md": "Events are independent if $\\mathrm{P}(\\text{male})\\times\\mathrm{P}(\\text{home})=\\mathrm{P}(\\text{male and home})$.\n\n$\\mathrm{P}(\\text{male})=\\dfrac{83}{180}$  and  $\\mathrm{P}(\\text{home})=\\dfrac{20}{180}$  or  $0{,}11$  or  $11{,}11\\%$\n\n$\\mathrm{P}(\\text{male})\\times\\mathrm{P}(\\text{home})=\\dfrac{83}{180}\\times\\dfrac{20}{180}=\\dfrac{83}{1620}=0{,}05123$  or  $5{,}12\\%$\n\n$\\mathrm{P}(\\text{male and home})=\\dfrac{13}{180}=0{,}07222\\ldots$  or  $7{,}22\\%$\n\nTherefore $\\mathrm{P}(\\text{male})\\times\\mathrm{P}(\\text{home})\\neq\\mathrm{P}(\\text{male and home})$.\n\nThus the events are not independent.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{P}(m)\\times\\mathrm{P}(h)$ and their values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer of product"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{P}(m$ and $h)$ value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "conclusion"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "The events are not independent.",
+          "working_md": "$\\mathrm{P}(\\text{female})\\times\\mathrm{P}(\\text{not home})=\\dfrac{97}{180}\\times\\dfrac{160}{180}=\\dfrac{194}{405}=0{,}479012345\\ldots$  or  $47{,}90\\%$\n\n$\\mathrm{P}(\\text{female and not home})=\\dfrac{90}{180}=0{,}5$  or  $50\\%$\n\nTherefore $\\mathrm{P}(\\text{female})\\times\\mathrm{P}(\\text{not home})\\neq\\mathrm{P}(\\text{female and not home})$.\n\nThus the events are not independent.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{P}(f)\\times\\mathrm{P}(\\text{not }h)$ and their values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer of product"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{P}(f$ and not $h)$ value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "conclusion"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-12.1.1",
+      "question_id": "2014-nov-p1-12.1.1",
+      "number": "12.1.1",
+      "marks": 2,
+      "answer_md": "$7\\,893\\,600$",
+      "working_md": "$26\\times 25\\times 24\\times 23\\times 22$\n\n$=7\\,893\\,600$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$26\\times 25\\times 24\\times 23\\times 22$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$7\\,893\\,600$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$7\\,893\\,600$",
+          "working_md": "${}^{26}P_{5}=\\dfrac{26!}{(26-5)!}=\\dfrac{26!}{21!}=7\\,893\\,600$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-12.1.2",
+      "question_id": "2014-nov-p1-12.1.2",
+      "number": "12.1.2",
+      "marks": 2,
+      "answer_md": "$12\\,144$",
+      "working_md": "$24\\times 23\\times 22$\n\n$=12\\,144$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$24\\times 23\\times 22$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$12\\,144$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-12.2.1",
+      "question_id": "2014-nov-p1-12.2.1",
+      "number": "12.2.1",
+      "marks": 2,
+      "answer_md": "$5\\,040$",
+      "working_md": "$7\\times 6\\times 5\\times 4\\times 3\\times 2\\times 1$\n\n$=5\\,040$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "product"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5\\,040$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2014-nov-p1-12.2.2",
+      "question_id": "2014-nov-p1-12.2.2",
+      "number": "12.2.2",
+      "marks": 3,
+      "answer_md": "$720$",
+      "working_md": "$(3\\times 2\\times 1)(5\\times 4\\times 3\\times 2\\times 1)$\n\n$=720$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3\\times 2\\times 1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5\\times 4\\times 3\\times 2\\times 1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$720$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$720$",
+          "working_md": "The five ‘units’ can be parked in $5\\times 4\\times 3\\times 2\\times 1$ ways.\n\nThe three silver cars can be parked in $3\\times 2\\times 1$ ways.\n\nSo there are $(3\\times 2\\times 1)(5\\times 4\\times 3\\times 2\\times 1)=720$ ways to park the cars.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$5\\times 4\\times 3\\times 2\\times 1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$3\\times 2\\times 1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$720$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$720$",
+          "working_md": "Suppose for the moment the 3 silver cars are at one end.\n\nThe 3 cars can be arranged in $3\\times 2\\times 1=6$ ways.\n\nFor each of them the remaining four cars can be arranged in $4\\times 3\\times 2\\times 1=24$ ways.\n\nSo $6\\times 24=144$ ways if all 3 cars are at one end.\n\nTogether, the silver cars can only occupy 5 different positions amongst the 7 positions.\n\n$\\therefore$ total ways $=5\\times 144=720$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$6\\times 24=144$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$5\\times 144$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$720$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    }
+  ]
+}
