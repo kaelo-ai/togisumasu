@@ -121,6 +121,53 @@ t('a scatter plot uses the spec points', () => {
   assert.doesNotMatch(svg, /<img|\.png/);
 });
 
+
+t('an analytic figure whose points sit outside the default window is not clipped', () => {
+  const svg = diagrams.render(figure('2015-nov-p2.json', '2015-nov-p2-fig-3'));
+  const m = svg.match(/viewBox="([^"]+)"/);
+  const [vx, vy, vw, vh] = m[1].split(/\s+/).map(Number);
+  const x2 = vx + vw, y2 = vy + vh;
+  for (const c of svg.matchAll(/<circle cx="([^"]+)" cy="([^"]+)"/g)) {
+    const x = +c[1], y = +c[2];
+    assert.ok(x >= vx - 1 && x <= x2 + 1 && y >= vy - 1 && y <= y2 + 1, `point ${x},${y} stays in the viewBox`);
+  }
+  const labels = [...svg.matchAll(/<text\b([^>]*)>([^<]*)<\/text>/g)].map(t => t[2]);
+  assert.ok(labels.some(t => t === 'S'), 'S is labelled');
+  assert.ok(labels.some(t => t === 'R'), 'R is labelled');
+  assert.ok(labels.some(t => t.includes('N')), 'N is labelled');
+});
+
+t('point labels on a function graph do not sit on top of each other or the axis letters', () => {
+  const svg = diagrams.render(figure('2015-nov-p1.json', '2015-nov-p1-fig-5'));
+  assert.doesNotMatch(svg, /\(-2 ; -7\)/);
+  assert.doesNotMatch(svg, /\(4 ; 5\)/);
+  assert.match(svg, />Q</);
+  assert.match(svg, /P\(x ; y\)/);
+  const marks = [...svg.matchAll(/<text\b([^>]*)>([^<]*)<\/text>/g)].map(t => {
+    const attr = (n) => { const v = t[1].match(new RegExp('\\b' + n + '="([^"]+)"')); return v ? v[1] : null; };
+    return { x: +attr('x'), y: +attr('y'), text: t[2], fs: +(attr('font-size') || 11), anchor: attr('text-anchor') || 'start', baseline: attr('dominant-baseline') || 'alphabetic' };
+  });
+  const boxes = marks.map(m => diagrams.textBox(m.x, m.y, m.text, m.fs, m.anchor, m.baseline));
+  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+    assert.ok(!diagrams.boxesOverlap(boxes[i], boxes[j], 0.5), `"${marks[i].text}" overlaps "${marks[j].text}"`);
+  }
+});
+
+t('a cut-off corner is drawn with a vertical pole and a receding base, not a flat parallelogram', () => {
+  const fig = figure('2015-nov-p2.json', '2015-nov-p2-fig-7');
+  const { g, model } = euclid.layout(fig.spec, fig.id, { threeD: true });
+  const i = label => model.labels.indexOf(label);
+  assert.ok(Math.abs(g.X(i('A')) - g.X(i('B'))) < 0.01, 'AB is vertical');
+  assert.ok(g.Y(i('A')) > g.Y(i('B')), 'the top is above the foot');
+  const pole = g.Y(i('A')) - g.Y(i('B'));
+  const baseY = [g.Y(i('B')), g.Y(i('C')), g.Y(i('D'))];
+  assert.ok(Math.max(...baseY) - Math.min(...baseY) < pole * 0.85, 'the base is foreshortened against the pole');
+  assert.ok(g.Y(i('C')) < g.Y(i('A')) - 0.15);
+  assert.ok(g.Y(i('D')) < g.Y(i('A')) - 0.15);
+  const svg = diagrams.render(fig);
+  assert.ok((svg.match(/<line /g) || []).length >= 6, 'the pole is drawn as well as the two faces');
+});
+
 const { server, db } = require('../server.js');
 const quiz = require('../quiz.js');
 
