@@ -37,6 +37,7 @@ const DAILY = {
     nsc: 5,
     review: 2,    // a scheduled due review
     mixed: 1,     // easy mixed review of already-mastered work
+    fluency: 1,   // a short timed item inside mixed review
     practice: 2,
   },
   quiz: {
@@ -78,9 +79,110 @@ const LESSON = {
   maxRepairTries: 6,
 };
 
-function intervalMs(lv) {
+// Per-learner, per-topic review spacing. The next interval is
+// INT[level] * ease * 1 day. Ease starts at 1 (same as the fixed
+// schedule) and is stored on the skill; missing ease reads as 1, so
+// older progress is unchanged. FIRe credit and penalties use the same
+// eased interval, so implicit reviews stay in proportion.
+const SPACING = {
+  defaultEase: 1,
+  minEase: 0.5,
+  maxEase: 1.6,
+  failStep: 0.15,
+  slowStep: 0.08,
+  cleanStep: 0.08,
+  cleanNeeded: 2,
+  quickMs: 45000,
+  slowMs: 90000,
+};
+
+// Backup to the two-misses rule: if recent accuracy on a topic falls
+// below the threshold over this many tries, queue a key-prerequisite
+// review. One config, used everywhere.
+const RATE = {
+  window: 6,
+  minAccuracy: 0.5,
+};
+
+// Optional Unit 0 placement. Unit 0 stays the default taught path.
+// A strong pass can mark that topic mastered; ancestors are inferred
+// only when they are necessary for a strong pass and nothing in their
+// subtree was missed, slow, or skipped.
+const PLACEMENT = {
+  unit: 'c0',
+  maxItems: 14,
+  passMs: 90000,
+  firstIntervalDays: 1,
+};
+
+// Short, lightly timed fluency sets, only inside mixed review of
+// already-mastered automatic skills. Never in new lessons.
+const FLUENCY = {
+  topics: ['exp-int', 'exp-rat', 'radicals', 'factoring', 'special-angles', 'basic-identities', 'power-rule'],
+  setSize: 5,
+  targetMs: 20000,
+  cooldownDays: 1,
+};
+
+function clampEase(value) {
+  const n = Number(value);
+  const e = Number.isFinite(n) ? n : SPACING.defaultEase;
+  return Math.max(SPACING.minEase, Math.min(SPACING.maxEase, e));
+}
+
+function easeOf(skill) {
+  if (!skill || skill.ease == null) return SPACING.defaultEase;
+  return clampEase(skill.ease);
+}
+
+function intervalMs(lv, ease) {
   const i = Math.max(1, Math.min(INT.length - 1, lv | 0));
-  return INT[i] * DAY;
+  return Math.round(INT[i] * clampEase(ease == null ? SPACING.defaultEase : ease) * DAY);
+}
+
+function adjustEase(skill, input) {
+  const sp = SPACING;
+  let ease = easeOf(skill);
+  let clean = skill.clean || 0;
+  const ms = input && input.ms;
+  const hint = !!(input && input.hint);
+  const ok = !!(input && input.ok);
+  const hasTime = ms != null && Number.isFinite(ms);
+  const quick = hasTime && ms <= sp.quickMs;
+  const slow = hasTime && ms >= sp.slowMs;
+  if (!ok) {
+    ease = Math.max(sp.minEase, +(ease - sp.failStep).toFixed(4));
+    clean = 0;
+  } else if (hint || slow) {
+    ease = Math.max(sp.minEase, +(ease - sp.slowStep).toFixed(4));
+    clean = 0;
+  } else if (quick && !hint) {
+    clean += 1;
+    if (clean >= sp.cleanNeeded) {
+      ease = Math.min(sp.maxEase, +(ease + sp.cleanStep).toFixed(4));
+      clean = 0;
+    }
+  }
+  return { ease, clean };
+}
+
+function pushRecent(skill, ok) {
+  const rec = Array.isArray(skill.rec) ? skill.rec.slice() : [];
+  rec.push(ok ? 1 : 0);
+  const max = Math.max(RATE.window * 2, 12);
+  if (rec.length > max) rec.splice(0, rec.length - max);
+  return rec;
+}
+
+function recentRate(skill) {
+  const rec = (Array.isArray(skill.rec) ? skill.rec : []).slice(-RATE.window);
+  const hits = rec.reduce((n, x) => n + (x ? 1 : 0), 0);
+  return { n: rec.length, ok: hits, accuracy: rec.length ? hits / rec.length : 1 };
+}
+
+function rateBelow(skill) {
+  const r = recentRate(skill);
+  return r.n >= RATE.window && r.accuracy < RATE.minAccuracy;
 }
 
 function asSkill(raw) {
@@ -100,6 +202,12 @@ function asSkill(raw) {
     repairFails: s.repairFails || 0,
     ex: s.ex == null ? -1 : s.ex,
     shore: Array.isArray(s.shore) ? s.shore.slice() : (s.shore ? [s.shore] : []),
+    ease: s.ease == null ? SPACING.defaultEase : clampEase(s.ease),
+    clean: s.clean || 0,
+    rec: Array.isArray(s.rec) ? s.rec.slice() : [],
+    placed: s.placed || 0,
+    inferred: s.inferred || 0,
+    fluencyAt: s.fluencyAt || 0,
   };
 }
 
@@ -122,6 +230,12 @@ function writeSkill(progress, id, skill) {
   if (!clean.kpFails) delete clean.kpFails;
   if (!clean.repairFails) delete clean.repairFails;
   if (!clean.lq) delete clean.lq;
+  if (clean.ease == null || clean.ease === SPACING.defaultEase) delete clean.ease;
+  if (!clean.clean) delete clean.clean;
+  if (!clean.rec || !clean.rec.length) delete clean.rec;
+  if (!clean.placed) delete clean.placed;
+  if (!clean.inferred) delete clean.inferred;
+  if (!clean.fluencyAt) delete clean.fluencyAt;
   next.skills[id] = clean;
   return next;
 }
@@ -262,7 +376,7 @@ function applyFire(progress, topicId, ok, now, catalog, opts) {
     for (const [id, weight] of down) {
       const skill = skillOf(progress, id);
       if (skill.lv <= 0 || skill.fix) continue;
-      const interval = intervalMs(skill.lv);
+      const interval = intervalMs(skill.lv, skill.ease);
       let credit = weight * FIRE.creditScale * interval;
       if (early) credit *= FIRE.earlyCredit;
       const cap = now + FIRE.maxHorizonIntervals * interval;
@@ -278,7 +392,7 @@ function applyFire(progress, topicId, ok, now, catalog, opts) {
     for (const [id, weight] of up) {
       const skill = skillOf(progress, id);
       if (skill.lv <= 0 || skill.fix) continue;
-      const interval = intervalMs(skill.lv);
+      const interval = intervalMs(skill.lv, skill.ease);
       const pull = weight * FIRE.penaltyScale * interval;
       const due = Math.max(now, (skill.due || 0) - pull);
       if (due < (skill.due || 0)) {
@@ -305,6 +419,7 @@ function queueShore(progress, items) {
       from: item.from || null,
       kp: item.kp == null ? null : item.kp,
       name: item.name || item.id,
+      reason: item.reason || null,
     });
   }
   return { ...progress, shore: [...have.values()] };
@@ -488,11 +603,14 @@ function applyAnswer(progress, input, catalog) {
   const earlyCredit = s.lv > 0 && !priorDue && mode !== 'quiz';
 
   s = { ...s, a: s.a + 1, last: now };
+  s.rec = pushRecent(s, ok);
+  const rateWasBelow = rateBelow({ rec: s.rec.slice(0, -1) });
   if (ok) {
     s.c = (s.c || 0) + 1;
     progress = addXp(progress, xpFor(mode), now);
   }
   if (mode === 'quiz') s.lq = now;
+  if (mode === 'fluency') s.fluencyAt = now;
 
   if (s.fix && mode === 'quiz') {
     // A quiz miss already flagged the topic; a later quiz hit does not repair it.
@@ -575,7 +693,7 @@ function applyAnswer(progress, input, catalog) {
     if (ok) {
       if (s.due <= now) {
         s.lv = Math.min(6, s.lv + 1);
-        s.due = now + INT[s.lv] * DAY;
+        s.due = now + intervalMs(s.lv, s.ease);
       }
     } else {
       s.fix = 1;
@@ -585,10 +703,16 @@ function applyAnswer(progress, input, catalog) {
       s.repairFails = 0;
     }
   } else if (s.due <= now) {
+    if (mode === 'review' || mode === 'practice' || mode === 'mixed') {
+      const nextEase = adjustEase(s, { ok, ms: input.ms, hint: input.hint });
+      s.ease = nextEase.ease;
+      s.clean = nextEase.clean;
+    }
     if (ok) {
       s.lv = Math.min(6, s.lv + 1);
-      s.due = now + INT[s.lv] * DAY;
-      ev = { k: 'reviewed', d: INT[s.lv] };
+      const gap = intervalMs(s.lv, s.ease);
+      s.due = now + gap;
+      ev = { k: 'reviewed', d: Math.round(gap / DAY), ease: easeOf(s) };
       progress = clearShore(progress, id);
     } else {
       s.fix = 1;
@@ -596,11 +720,23 @@ function applyAnswer(progress, input, catalog) {
       s.lv = Math.max(1, s.lv - 1);
       s.due = now;
       s.repairFails = 0;
-      ev = { k: 'failedReview' };
+      ev = { k: 'failedReview', ease: easeOf(s) };
     }
   } else if (!ok) {
     s.due = Math.min(s.due, now + DAY);
     ev = { k: 'pulled' };
+  }
+
+  if ((!ev || ev.k !== 'shore') && rateBelow(s) && !rateWasBelow) {
+    const kpIndex = s.kp || 0;
+    const targets = shoreTargets(progress, cat, id, kpIndex);
+    if (targets.length) {
+      const rated = targets.map(x => ({ ...x, reason: 'rate' }));
+      progress = queueShore(progress, rated);
+      for (const t of rated) progress = makeDueForReview(progress, t.id, now);
+      ev = { k: 'shore', reason: 'rate', n: 0, shore: rated, rate: recentRate(s) };
+      s.rec = [];
+    }
   }
 
   progress = writeSkill(progress, id, s);
@@ -636,14 +772,244 @@ function currentKp(progress, id, catalog) {
   return kps[Math.min(s.kp || 0, kps.length - 1)] || null;
 }
 
+
+function practisedByWork(progress, id) {
+  const s = skillOf(progress, id);
+  return s.lv > 0 && !s.placed;
+}
+
+function unit0Graph(catalog) {
+  const cat = indexCatalog(catalog);
+  const topics = (catalog && catalog.topics || []).filter(t => t && t.unit === PLACEMENT.unit);
+  const ids = new Set(topics.map(t => t.id));
+  const pre = new Map(topics.map(t => [t.id, (t.pre || []).filter(p => ids.has(p))]));
+  const children = new Map();
+  for (const [id, ps] of pre) {
+    for (const p of ps) {
+      if (!children.has(p)) children.set(p, []);
+      children.get(p).push(id);
+    }
+  }
+  const depth = new Map();
+  const dep = id => {
+    if (depth.has(id)) return depth.get(id);
+    const ps = pre.get(id) || [];
+    const d = ps.length ? Math.max(...ps.map(p => dep(p) + 1)) : 0;
+    depth.set(id, d);
+    return d;
+  };
+  for (const topic of topics) dep(topic.id);
+  const isAncestor = (a, b, seen) => {
+    if (a === b) return false;
+    const walk = (x, visiting) => {
+      if (x === a) return true;
+      if (visiting.has(x)) return false;
+      visiting.add(x);
+      return (pre.get(x) || []).some(p => walk(p, visiting));
+    };
+    return walk(b, new Set());
+  };
+  return { topics, ids, pre, children, depth, isAncestor, byId: cat.byId };
+}
+
+function placementState(progress) {
+  const place = progress && progress.place && typeof progress.place === 'object' ? progress.place : {};
+  return {
+    status: place.status || '',
+    at: place.at || 0,
+    items: Array.isArray(place.items) ? place.items.slice() : [],
+    credited: Array.isArray(place.credited) ? place.credited.slice() : [],
+    inferred: Array.isArray(place.inferred) ? place.inferred.slice() : [],
+    remains: Array.isArray(place.remains) ? place.remains.slice() : [],
+  };
+}
+
+function classifyPlacement(input) {
+  if (input && input.idk) return 'idk';
+  if (!input || !input.ok) return 'wrong';
+  const ms = input.ms;
+  if (ms != null && Number.isFinite(ms) && ms > PLACEMENT.passMs) return 'slow';
+  return 'strong';
+}
+
+function startPlacement(progress, catalog, now) {
+  const t = now != null ? now : Date.now();
+  return {
+    ...progress,
+    place: { status: 'active', at: t, items: [], credited: [], inferred: [], remains: [] },
+  };
+}
+
+function nextPlacementTopic(progress, catalog) {
+  const g = unit0Graph(catalog);
+  if (!g.topics.length) return null;
+  const place = placementState(progress);
+  if (place.status !== 'active') return null;
+  if (place.items.length >= PLACEMENT.maxItems) return null;
+  const asked = new Set(place.items.map(x => x.id));
+  const last = place.items[place.items.length - 1];
+  if (last && (last.kind === 'wrong' || last.kind === 'idk')) {
+    const pres = (g.pre.get(last.id) || [])
+      .filter(id => !asked.has(id) && !practisedByWork(progress, id));
+    if (pres.length) {
+      pres.sort((a, b) => (g.depth.get(b) || 0) - (g.depth.get(a) || 0));
+      return pres[0];
+    }
+  }
+  const inferable = new Set();
+  for (const item of place.items) {
+    if (item.kind !== 'strong') continue;
+    const stack = [...(g.pre.get(item.id) || [])];
+    while (stack.length) {
+      const id = stack.pop();
+      if (inferable.has(id) || asked.has(id)) continue;
+      inferable.add(id);
+      for (const p of g.pre.get(id) || []) stack.push(p);
+    }
+  }
+  const candidates = g.topics.map(topic => topic.id).filter(id => (
+    !asked.has(id) && !inferable.has(id) && !practisedByWork(progress, id)
+  ));
+  if (!candidates.length) return null;
+  candidates.sort((a, b) => (g.depth.get(b) || 0) - (g.depth.get(a) || 0) || a.localeCompare(b));
+  return candidates[0];
+}
+
+function applyPlacementAnswer(progress, input, catalog) {
+  const now = input && input.now != null ? input.now : Date.now();
+  const id = String(input.id);
+  const kind = classifyPlacement(input);
+  const place = placementState(progress);
+  const items = place.items.concat([{
+    id,
+    kind,
+    ok: kind === 'strong',
+    ms: input && input.ms != null ? Number(input.ms) : null,
+    at: now,
+  }]);
+  const next = { ...progress, place: { ...place, status: 'active', items, at: place.at || now } };
+  const more = nextPlacementTopic(next, catalog);
+  return { progress: next, kind, nextId: more, done: !more };
+}
+
+function finalizePlacement(progress, catalog, now) {
+  const t = now != null ? now : Date.now();
+  const g = unit0Graph(catalog);
+  const place = placementState(progress);
+  const items = place.items;
+  const strong = new Set(items.filter(x => x.kind === 'strong').map(x => x.id));
+  const blocked = new Set(items.filter(x => x.kind !== 'strong').map(x => x.id));
+
+  // Retake: clear earlier placement marks, never demote topics mastered by practice.
+  let next = progress;
+  for (const topic of g.topics) {
+    const s = skillOf(next, topic.id);
+    if (s.placed && !practisedByWork(progress, topic.id)) {
+      next = writeSkill(next, topic.id, {
+        ...s, lv: 0, due: 0, s: 0, placed: 0, inferred: 0, kp: 0, kpS: 0,
+      });
+    }
+  }
+
+  const inferred = new Set();
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const sources = new Set([...strong, ...inferred]);
+    for (const id of sources) {
+      for (const p of g.pre.get(id) || []) {
+        if (blocked.has(p) || strong.has(p) || inferred.has(p)) continue;
+        if (practisedByWork(progress, p)) continue;
+        const descBlocked = [...blocked].some(b => b === p || g.isAncestor(p, b));
+        if (descBlocked) continue;
+        inferred.add(p);
+        changed = true;
+      }
+    }
+  }
+
+  const due = t + PLACEMENT.firstIntervalDays * DAY;
+  const credited = [];
+  for (const id of strong) {
+    if (practisedByWork(progress, id)) continue;
+    const s = skillOf(next, id);
+    next = writeSkill(next, id, {
+      ...s, lv: 1, s: 0, due, last: t, placed: 1, inferred: 0, fix: 0,
+    });
+    credited.push(id);
+  }
+  const inferredIds = [];
+  for (const id of inferred) {
+    if (practisedByWork(progress, id) || strong.has(id)) continue;
+    const s = skillOf(next, id);
+    next = writeSkill(next, id, {
+      ...s, lv: 1, s: 0, due, last: t, placed: 1, inferred: 1, fix: 0,
+    });
+    inferredIds.push(id);
+  }
+
+  const touched = new Set([...credited, ...inferredIds, ...items.map(x => x.id)]);
+  const remains = g.topics.map(topic => topic.id).filter(id => !credited.includes(id) && !inferredIds.includes(id) && !practisedByWork(progress, id));
+
+  next = {
+    ...next,
+    place: {
+      status: 'done',
+      at: t,
+      items,
+      credited: credited.slice(),
+      inferred: inferredIds.slice(),
+      remains,
+    },
+    t,
+  };
+  return { progress: next, credited, inferred: inferredIds, remains };
+}
+
+function isFluencyTopic(id, catalog) {
+  const allow = new Set(FLUENCY.topics);
+  if (!allow.has(id)) return false;
+  if (!catalog || !catalog.topics) return true;
+  const topic = indexCatalog(catalog).byId[id];
+  return !!topic;
+}
+
+function fluencyDueTopics(progress, catalog, now) {
+  const t = now != null ? now : Date.now();
+  const cool = FLUENCY.cooldownDays * DAY;
+  const ids = FLUENCY.topics.filter(id => {
+    if (!isFluencyTopic(id, catalog)) return false;
+    const s = skillOf(progress, id);
+    if (s.lv <= 0 || s.fix) return false;
+    if (s.due && s.due <= t) return false; // a scheduled review takes priority
+    if (s.fluencyAt && t - s.fluencyAt < cool) return false;
+    return true;
+  });
+  return ids;
+}
+
+function pickFluencySet(progress, catalog, now) {
+  const due = fluencyDueTopics(progress, catalog, now);
+  if (!due.length) return [];
+  const last = progress && progress.fluencyLast;
+  const ordered = last && due.includes(last)
+    ? due.filter(id => id !== last).concat([last])
+    : due;
+  const id = ordered[0];
+  return Array.from({ length: FLUENCY.setSize }, () => id);
+}
+
 const Mastery = {
-  DAY, INT, GOAL, DAILY, FIRE, LESSON, CORE,
+  DAY, INT, GOAL, DAILY, FIRE, LESSON, CORE, SPACING, RATE, PLACEMENT, FLUENCY,
   asSkill, emptyProgress, skillOf, writeSkill,
   indexCatalog, stagedKps, isStaged, keyPrereqsOf, prereqsOf,
   defaultEdges, edgeMap, weightsDown, weightsUp, applyFire,
   queueShore, clearShore, shoreTargets, makeDueForReview, globalShore,
   applyAnswer, markExampleSeen, exampleDue, currentKp,
   tagCore, xpFor, addXp, canDeferQuiz, noteQuizDue, deferQuiz, clearQuizDefer, mustTakeQuiz, pickRecommended, intervalMs,
+  easeOf, clampEase, adjustEase, recentRate, rateBelow, pushRecent,
+  startPlacement, nextPlacementTopic, applyPlacementAnswer, finalizePlacement, classifyPlacement, placementState, unit0Graph,
+  isFluencyTopic, fluencyDueTopics, pickFluencySet,
 };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = Mastery;

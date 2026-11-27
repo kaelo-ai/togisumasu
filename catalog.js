@@ -276,6 +276,10 @@ function learner(db, courseId) {
     lesson: { passCount: Mastery.LESSON.passCount, failsBeforeShore: Mastery.LESSON.failsBeforeShore },
     daily: Mastery.DAILY,
     core: Mastery.CORE,
+    spacing: Mastery.SPACING,
+    rate: Mastery.RATE,
+    placement: Mastery.PLACEMENT,
+    fluency: Mastery.FLUENCY,
   };
 }
 
