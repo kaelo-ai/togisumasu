@@ -25,7 +25,26 @@
 
 const DAY = 864e5;
 const INT = [0, 1, 3, 7, 16, 35, 70];
-const GOAL = 20;
+const DAILY = {
+  // XP is roughly one point per minute of focused work. The daily goal is half an hour.
+  goalXp: 30,
+  weights: {
+    new: 3,       // a new topic or knowledge-point item
+    example: 1,   // reading a worked example
+    repair: 3,
+    shore: 3,
+    quiz: 5,      // a quiz item, including a pre-2022 NSC question
+    nsc: 5,
+    review: 2,    // a scheduled due review
+    mixed: 1,     // easy mixed review of already-mastered work
+    practice: 2,
+  },
+  quiz: {
+    maxDefers: 2,
+    deferDays: 2,
+  },
+};
+const GOAL = DAILY.goalXp;
 
 const FIRE = {
   // Weight used for a direct prerequisite when no manual encompassing exists.
@@ -329,6 +348,131 @@ function dayKey(t) {
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
 
+
+// CAPS Examination Guidelines (2021) paper marks. Unit 0 has no direct allocation;
+// foundations become core when they are ancestors of a core Grade 12 topic.
+const CORE = {
+  unitMarks: {
+    c0: 0, c1: 25, c2: 25, c3: 35, c4: 15, c5: 35,
+    c6: 15, c7: 20, c8: 40, c9: 40, c10: 50,
+  },
+  laterTopicWeight: 2,
+  nscLeafWeight: 1,
+  // A topic is seed-core if its score meets this. Finance (15) still qualifies
+  // once its later topics or NSC leaves are counted; seq-sum-proof and some
+  // interpretive side-topics may stay supplemental. Ancestors of seed-core
+  // topics are then marked core.
+  threshold: 28,
+};
+
+function descendantsCount(topics, id) {
+  const children = new Map();
+  for (const t of topics) {
+    for (const p of t.pre || []) {
+      if (!children.has(p)) children.set(p, []);
+      children.get(p).push(t.id);
+    }
+  }
+  const seen = new Set();
+  const stack = [...(children.get(id) || [])];
+  while (stack.length) {
+    const x = stack.pop();
+    if (seen.has(x)) continue;
+    seen.add(x);
+    for (const c of children.get(x) || []) stack.push(c);
+  }
+  return seen.size;
+}
+
+function tagCore(topics, nscLeaves) {
+  const leaves = nscLeaves || {};
+  const scores = new Map();
+  for (const t of topics) {
+    const unitMarks = CORE.unitMarks[t.unit] != null ? CORE.unitMarks[t.unit] : 0;
+    const later = descendantsCount(topics, t.id);
+    const nsc = Number(leaves[t.id] || 0);
+    const score = unitMarks + CORE.laterTopicWeight * later + CORE.nscLeafWeight * nsc;
+    scores.set(t.id, { score, later, nsc, unitMarks, core: score >= CORE.threshold });
+  }
+  const preOf = new Map(topics.map(t => [t.id, t.pre || []]));
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const t of topics) {
+      const tag = scores.get(t.id);
+      if (!tag || !tag.core) continue;
+      for (const p of preOf.get(t.id) || []) {
+        const pt = scores.get(p);
+        if (pt && !pt.core) { pt.core = true; pt.via = t.id; changed = true; }
+      }
+    }
+  }
+  return scores;
+}
+
+function xpFor(mode) {
+  const w = DAILY.weights;
+  if (mode && w[mode] != null) return w[mode];
+  return w.practice;
+}
+
+function addXp(progress, amount, now) {
+  if (!amount) return progress;
+  const log = { ...(progress.log || {}) };
+  const k = dayKey(now);
+  log[k] = (log[k] || 0) + amount;
+  return { ...progress, log };
+}
+
+function canDeferQuiz(progress, now) {
+  const q = progress.qz || {};
+  const defers = q.defers || 0;
+  const first = q.firstDueAt || now;
+  return defers < DAILY.quiz.maxDefers && (now - first) < DAILY.quiz.deferDays * DAY;
+}
+
+function noteQuizDue(progress, now, due) {
+  if (!due) return progress;
+  const q = { ...(progress.qz || { recent: [], last: 0, hist: [] }) };
+  if (!q.firstDueAt) q.firstDueAt = now;
+  return { ...progress, qz: q };
+}
+
+function deferQuiz(progress, now) {
+  if (!canDeferQuiz(progress, now)) return { progress, ok: false, remaining: 0 };
+  const q = { ...(progress.qz || { recent: [], last: 0, hist: [] }) };
+  if (!q.firstDueAt) q.firstDueAt = now;
+  q.defers = (q.defers || 0) + 1;
+  q.lastDeferAt = now;
+  return {
+    progress: { ...progress, qz: q },
+    ok: true,
+    remaining: DAILY.quiz.maxDefers - q.defers,
+  };
+}
+
+function clearQuizDefer(progress) {
+  const q = { ...(progress.qz || { recent: [], last: 0, hist: [] }) };
+  q.defers = 0;
+  q.firstDueAt = 0;
+  q.lastDeferAt = 0;
+  return { ...progress, qz: q };
+}
+
+function mustTakeQuiz(progress, now, due) {
+  return !!due && !canDeferQuiz(progress, now);
+}
+
+function pickRecommended(candidates) {
+  const list = (candidates || []).filter(Boolean);
+  if (!list.length) return null;
+  const inProgress = list.filter(s => s.inProgress);
+  const pool = inProgress.length ? inProgress : list;
+  const core = pool.filter(s => s.core);
+  const ranked = (core.length ? core : pool).slice().sort((a, b) => (b.coreScore || 0) - (a.coreScore || 0));
+  return ranked[0] || null;
+}
+
 function applyAnswer(progress, input, catalog) {
   const id = String(input.id);
   const ok = !!input.ok;
@@ -346,10 +490,7 @@ function applyAnswer(progress, input, catalog) {
   s = { ...s, a: s.a + 1, last: now };
   if (ok) {
     s.c = (s.c || 0) + 1;
-    const log = { ...(progress.log || {}) };
-    const k = dayKey(now);
-    log[k] = (log[k] || 0) + 1;
-    progress = { ...progress, log };
+    progress = addXp(progress, xpFor(mode), now);
   }
   if (mode === 'quiz') s.lq = now;
 
@@ -473,9 +614,10 @@ function applyAnswer(progress, input, catalog) {
   return { progress, event: ev, fire: fire.updates };
 }
 
-function markExampleSeen(progress, id) {
+function markExampleSeen(progress, id, now) {
   const s = skillOf(progress, id);
-  return writeSkill(progress, id, { ...s, ex: s.kp || 0 });
+  let next = writeSkill(progress, id, { ...s, ex: s.kp || 0 });
+  return addXp(next, xpFor('example'), now != null ? now : Date.now());
 }
 
 function exampleDue(progress, id, catalog) {
@@ -495,12 +637,13 @@ function currentKp(progress, id, catalog) {
 }
 
 const Mastery = {
-  DAY, INT, GOAL, FIRE, LESSON,
+  DAY, INT, GOAL, DAILY, FIRE, LESSON, CORE,
   asSkill, emptyProgress, skillOf, writeSkill,
   indexCatalog, stagedKps, isStaged, keyPrereqsOf, prereqsOf,
   defaultEdges, edgeMap, weightsDown, weightsUp, applyFire,
   queueShore, clearShore, shoreTargets, makeDueForReview, globalShore,
-  applyAnswer, markExampleSeen, exampleDue, currentKp, intervalMs,
+  applyAnswer, markExampleSeen, exampleDue, currentKp,
+  tagCore, xpFor, addXp, canDeferQuiz, noteQuizDue, deferQuiz, clearQuizDefer, mustTakeQuiz, pickRecommended, intervalMs,
 };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = Mastery;

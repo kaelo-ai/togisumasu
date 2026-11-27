@@ -233,10 +233,12 @@ t('lesson KP seed is idempotent and covers every algebra topic', () => {
   }
 });
 
-t('coverage lists CAPS-only topics without generators as gaps', () => {
+t('coverage stages algebra topics and CAPS topics that now have generators', () => {
   const cov = data.coverage(db);
   assert.ok(cov.staged >= 47, 'algebra topics with generators are staged');
-  assert.ok(cov.gaps.some(g => g.id === 'seq-linear' && g.reason === 'no-generator'));
+  const seq = cov.stagedTopics.find(s => s.id === 'seq-linear');
+  assert.ok(seq && seq.gen && seq.kps >= 2, 'seq-linear is staged with a generator and knowledge points');
+  assert.ok(!cov.gaps.some(g => g.id === 'seq-linear'));
 });
 
 t('key prereq for the quadratic formula is radicals, a possibly multi-hop skill', () => {

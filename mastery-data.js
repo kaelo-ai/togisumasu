@@ -1,4 +1,6 @@
 'use strict';
+const { CAPS_KPS } = require('./caps-kps.js');
+const CapsGen = require('./public/caps-gen.js');
 // Curriculum metadata for staged knowledge points, key prerequisites and
 // manual encompassing weights. Seeded idempotently into SQLite on startup.
 // Knowledge-point names and splits are derived from existing notes and
@@ -396,7 +398,8 @@ function seed(db) {
   const wantKp = new Set();
   db.exec('BEGIN');
   try {
-    for (const [topicId, kps] of Object.entries(ALGEBRA_KPS)) {
+    const ALL_KPS = { ...ALGEBRA_KPS, ...CAPS_KPS };
+    for (const [topicId, kps] of Object.entries(ALL_KPS)) {
       if (!topicIds.has(topicId)) continue;
       kps.forEach((kp, i) => {
         const id = kpId(topicId, i);
@@ -407,7 +410,7 @@ function seed(db) {
     }
     for (const row of existingKps) {
       if (row.id.startsWith('fallback:') ) continue;
-      if (ALGEBRA_KPS[row.topic_id] && !wantKp.has(row.id)) delKp.run(row.topic_id, row.id);
+      if (ALL_KPS[row.topic_id] && !wantKp.has(row.id)) delKp.run(row.topic_id, row.id);
     }
 
     db.prepare('DELETE FROM topic_key_prereqs').run();
@@ -416,7 +419,7 @@ function seed(db) {
       if (!topicIds.has(topicId)) continue;
       for (const pre of pres) if (topicIds.has(pre)) insKey.run(topicId, pre, '');
     }
-    for (const [topicId, kps] of Object.entries(ALGEBRA_KPS)) {
+    for (const [topicId, kps] of Object.entries(ALL_KPS)) {
       if (!topicIds.has(topicId)) continue;
       kps.forEach((kp, i) => {
         if (kp.keyPrereq && topicIds.has(kp.keyPrereq)) insKey.run(topicId, kp.keyPrereq, kpId(topicId, i));
@@ -445,20 +448,24 @@ function coverage(db) {
   const kps = db.prepare('SELECT topic_id, COUNT(*) AS n FROM lesson_kps GROUP BY topic_id').all();
   const kpCount = new Map(kps.map(r => [r.topic_id, r.n]));
   const core = require('./public/core.js');
-  const hasGen = id => !!(core.SKM[id] && typeof core.SKM[id].gen === 'function');
+  const hasGen = id => !!(
+    (core.SKM[id] && typeof core.SKM[id].gen === 'function') ||
+    (CapsGen.GENERATORS && typeof CapsGen.GENERATORS[id] === 'function')
+  );
+  const branchedOf = id => (BRANCHED[id] || CapsGen.BRANCHED[id] || 0);
   const staged = [];
   const fallback = [];
   for (const t of topics) {
     const n = kpCount.get(t.id) || 0;
     const gen = hasGen(t.id);
-    if (gen && n >= 1) staged.push({ id: t.id, name: t.name, kps: n, branched: BRANCHED[t.id] || (n > 1 ? n : 0), gen: true });
+    if (gen && n >= 1) staged.push({ id: t.id, name: t.name, kps: n, branched: branchedOf(t.id) || (n > 1 ? n : 0), gen: true });
     else fallback.push({ id: t.id, name: t.name, kps: n, gen, reason: gen ? 'no-kps' : 'no-generator' });
   }
   return {
     topicCount: topics.length,
     staged: staged.length,
     fallback: fallback.length,
-    branched: staged.filter(s => (BRANCHED[s.id] || 0) > 1).length,
+    branched: staged.filter(s => (branchedOf(s.id) || 0) > 1).length,
     stagedTopics: staged,
     gaps: fallback,
   };
@@ -499,6 +506,6 @@ function loadForCourse(db, topicIds) {
 }
 
 module.exports = {
-  ALGEBRA_KPS, TOPIC_KEY_PREREQS, ENCOMPASSING, BRANCHED,
+  ALGEBRA_KPS, CAPS_KPS, TOPIC_KEY_PREREQS, ENCOMPASSING, BRANCHED,
   kpId, schema, seed, coverage, loadForCourse,
 };

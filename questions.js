@@ -10,7 +10,7 @@ const REJECT_TAGS = new Map([
 ]);
 
 let ftsEnabled = false;
-const TYPES = new Set(['mc', 'num', 'set', 'expr', 'fields', 'geom']);
+const TYPES = new Set(['mc', 'num', 'set', 'expr', 'fields', 'geom', 'trig', 'tuple', 'eqn', 'points', 'region']);
 const STATUSES = new Set(['active', 'hidden', 'deleted']);
 
 function qerr(message) {
@@ -71,7 +71,7 @@ function serialize(skillId, question) {
 function normalizeQuestion(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw qerr('Question must be an object.');
   const type = String(input.type || '');
-  if (!TYPES.has(type)) throw qerr('Type must be one of: mc, num, set, expr, fields.');
+  if (!TYPES.has(type)) throw qerr('Type must be one of: mc, num, set, expr, fields, geom, trig, tuple, eqn, points, region.');
 
   const q = { type };
   q.prompt = safeHtml(input.prompt, 4000);
@@ -125,7 +125,7 @@ function normalizeQuestion(input) {
     q.ans = cleanText(input.ans, 1000);
     if (!q.ans) throw qerr('An expression answer is required.');
     const v = input.var == null ? 'x' : String(input.var);
-    if (!['x', 'y', 't', 'h', 'i'].includes(v)) throw qerr('Variable must be x, y, t, h or i.');
+    if (!['x', 'y', 't', 'h', 'i', 'n', 'k'].includes(v)) throw qerr('Variable must be x, y, t, h, i, n or k.');
     q.var = v;
     if (Array.isArray(input.sample) && input.sample.length === 2) {
       const lo = Number(input.sample[0]), hi = Number(input.sample[1]);
@@ -171,6 +171,48 @@ function normalizeQuestion(input) {
       return { statement, reason };
     });
     if (!core.check(q, q.chain).ok) throw qerr('The chain does not pass the answer checker.');
+  } else if (type === 'trig') {
+    if (!Array.isArray(input.fams) || !input.fams.length) throw qerr('A general solution needs at least one family.');
+    q.fams = input.fams.map(f => ({ base: Number(f.base), period: Number(f.period) }));
+    if (q.fams.some(f => !Number.isFinite(f.base) || !Number.isFinite(f.period) || f.period <= 0))
+      throw qerr('Each family needs a finite base and a positive period.');
+    q.deg = input.deg !== false;
+    q.ans = cleanText(input.ans, 1000) || '';
+    if (input.tol != null) q.tol = Number(input.tol);
+    if (!core.check(q, q.ans).ok) throw qerr('The canonical general solution does not pass the answer checker.');
+  } else if (type === 'tuple') {
+    if (!Array.isArray(input.vals) || !input.vals.length) throw qerr('An ordered list needs values.');
+    q.vals = input.vals.map(Number);
+    if (q.vals.some(v => !Number.isFinite(v))) throw qerr('Every entry in the list must be a finite number.');
+    q.ans = input.ans == null ? q.vals.join('; ') : cleanText(input.ans, 500);
+    if (input.tol != null) q.tol = Number(input.tol);
+    if (!core.check(q, q.ans).ok) throw qerr('The canonical list does not pass the answer checker.');
+  } else if (type === 'points') {
+    if (!Array.isArray(input.pts) || !input.pts.length) throw qerr('A points question needs at least one point.');
+    q.pts = input.pts.map(pt => (Array.isArray(pt) ? pt.map(String) : pt));
+    if (input.names) q.names = input.names.map(String);
+    if (input.vars) q.vars = input.vars.map(String);
+    q.ans = input.ans == null ? '' : cleanText(input.ans, 1000);
+    if (input.tol != null) q.tol = Number(input.tol);
+    if (!q.ans) throw qerr('A points question needs a canonical answer.');
+    if (!core.check(q, q.ans).ok) throw qerr('The canonical points do not pass the answer checker.');
+  } else if (type === 'region') {
+    if (!Array.isArray(input.alts) || !input.alts.length) throw qerr('A region question needs the accepted set.');
+    q.alts = input.alts;
+    q.var = input.var ? String(input.var) : undefined;
+    q.ans = cleanText(input.ans, 500);
+    if (!q.ans) throw qerr('A region question needs a canonical answer.');
+    if (input.tol != null) q.tol = Number(input.tol);
+    if (!core.check(q, q.ans).ok) throw qerr('The canonical region does not pass the answer checker.');
+  } else if (type === 'eqn') {
+    q.lhs = String(input.lhs || '');
+    q.rhs = String(input.rhs || '');
+    if (!q.lhs || !q.rhs) throw qerr('An equation needs both sides.');
+    q.vars = Array.isArray(input.vars) && input.vars.length ? input.vars.map(String) : ['x', 'y'];
+    q.ans = cleanText(input.ans, 1000);
+    if (!q.ans) throw qerr('An equation needs a canonical answer.');
+    if (Array.isArray(input.sample) && input.sample.length === 2) q.sample = input.sample.map(Number);
+    if (!core.check(q, q.ans).ok) throw qerr('The canonical equation does not pass the answer checker.');
   } else {
     if (!Array.isArray(input.fields) || !input.fields.length || input.fields.length > 8)
       throw qerr('Fill-in questions need 1 to 8 fields.');
@@ -201,7 +243,7 @@ function normalizeQuestion(input) {
   } else if (type === 'fields') {
     const right = core.check(q, q.fields.map(f => f.undef ? 'none' : String(f.ans)));
     if (!right.ok) throw qerr('The field answers do not pass the answer checker.');
-  } else if (type !== 'geom') {
+  } else if (type !== 'geom' && type !== 'trig' && type !== 'tuple' && type !== 'points' && type !== 'region' && type !== 'eqn') {
     if (!q.ansTex) throw qerr('Answer display (ansTex) is required.');
     const answer = q.undef ? 'none' : String(q.ans);
     const right = core.check(q, answer);
