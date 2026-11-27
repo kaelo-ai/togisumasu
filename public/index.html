@@ -302,6 +302,14 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .subgoal{display:block;font:600 .78rem var(--f-body);color:var(--muted);letter-spacing:.02em;margin-bottom:2px}
 .kppart{font-weight:600}
 .kpl .kplx{margin-top:6px}
+.kpl .kplx b,.kpl .kplx strong{background:linear-gradient(transparent 55%,rgba(255,214,64,.55) 55%);padding:0 2px}
+.kwords{margin:10px 0 8px;padding:10px 14px;border:2px dashed rgba(46,125,190,.45);border-radius:10px;background:rgba(46,125,190,.05)}
+.kwords h4,.ktip>b:first-child{margin:0 0 6px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+.kwords dl{margin:0;display:grid;gap:6px}.kwords dt{display:inline;font-weight:700}.kwords dd{display:inline;margin:0 0 0 6px;font-size:.93rem}
+.kwords mark{background:rgba(255,214,64,.6);padding:0 4px;border-radius:3px;color:inherit}
+.ktip{margin:12px 0 4px;padding:10px 14px;border-left:5px solid #e9a23b;border-radius:6px;background:rgba(233,162,59,.12);font-size:.95rem}
+.ktip>b:first-child{display:block;color:#a8621a}
+.fignote{font-style:italic}
 .kpl .qfig{margin:12px 0 4px}
 .kpl .qfig svg{max-height:240px;width:auto;max-width:100%}
 .fignote{font-size:.9rem;color:var(--muted);margin:0 0 12px;max-width:65ch}
@@ -720,8 +728,10 @@ function kpLesson(id,pos){return typeof KpLessons!=='undefined'&&pos!=null?KpLes
 function srTable(rows){return `<div class="srwrap"><table class="srt"><thead><tr><th scope="col">Statement</th><th scope="col">Reason</th></tr></thead><tbody>${rows.map(([a,b])=>`<tr><td>$${a}$</td><td>${b?esc(b):'<span class="srnone">algebra, no reason needed</span>'}</td></tr>`).join('')}</tbody></table></div>`}
 function wexHTML(e,i,n,hide,label){return `<section class="wex kblk${hide?' is-hidden':''}"${hide?' hidden':''} data-next="${esc(label)}" aria-label="Worked example ${i+1} of ${n}"><div class="wexhead"><span class="wexk">Worked example ${i+1} of ${n}</span><span class="wexlv">${esc(e.level)}</span></div>${e.fig()}<p class="wexq">${e.q}</p>${srTable(e.rows)}<p class="ansline"><b>Answer:</b> ${e.answer}</p>${e.note?`<p class="wexnote">${e.note}</p>`:''}</section>`}
 function stepIntroHTML(S,k,m,hide){const label=m>1?`Step ${k+1} of ${m}: ${S.title}`:S.title;return `<section class="kstep kblk${hide?' is-hidden':''}"${hide?' hidden':''} data-next="${esc(label)}">${m>1?`<div class="kstepk">Step ${k+1} of ${m}</div><h4 class="ksteph">${esc(S.title)}</h4>`:''}
-  <div class="notes kplx">${S.explain}</div>${S.fig()}${S.figNote?`<p class="fignote">${S.figNote}</p>`:''}
-  <div class="rsn"><h4>Reasons you will write</h4><dl>${S.reasons.map(([a,m])=>`<div><dt>${esc(a)}</dt><dd>${esc(m)}</dd></div>`).join('')}</dl></div></section>`}
+  ${S.words&&S.words.length?`<div class="kwords"><h4>Key words</h4><dl>${S.words.map(([w,d])=>`<div><dt><mark>${esc(w)}</mark></dt><dd>${d}</dd></div>`).join('')}</dl></div>`:''}
+  <div class="notes kplx">${S.explain}</div>${S.fig()}${S.figNote?`<p class="fignote"><span aria-hidden="true">↑ </span>${S.figNote}</p>`:''}
+  <div class="rsn"><h4>Reasons you will write</h4><dl>${S.reasons.map(([a,m])=>`<div><dt>${esc(a)}</dt><dd>${esc(m)}</dd></div>`).join('')}</dl></div>
+  ${S.tip?`<aside class="ktip"><b>Remember</b> ${S.tip}</aside>`:''}</section>`}
 // A staged knowledge point: one or more small steps, each an explanation plus
 // worked examples. With stepped on, blocks open one at a time (Next: ...).
 function kpLessonHTML(L,part,opts={}){const stepped=opts.stepped!==false,steps=L.steps||[L],m=steps.length;let first=true,count=0;

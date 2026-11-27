@@ -1517,19 +1517,21 @@
   const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
   const angNum = (val, prompt, hint, steps) => ({ type: 'num', val, ans: String(val), ansTex: deg(val), deg: true, prompt, hint, steps });
   const lenNum = (val, prompt, hint, steps) => ({ type: 'num', val, ans: String(val), ansTex: `${val}\\text{ cm}`, prompt, hint, steps });
+  const xNum = (val, prompt, hint, steps) => ({ type: 'num', val, ans: String(val), ansTex: `x=${val}`, prompt, hint, steps });
+  const angPool = () => { let a; do { a = R(48, 132); } while (a > 84 && a < 96); return a; };
   const signed = n => n < 0 ? ` - ${-n}` : ` + ${n}`;
 
   function eucAngles() {
     const v = R(0, 2);
     if (v === 0) {
-      const t = pick([100, 110, 115, 120, 125, 130, 140, 145]);
+      const t = R(100, 150);
       return angNum(180 - t, FIG.line(180 - t, `${t}°`, '?') +
         `$ABC$ is a straight line and $A\\hat BD=${deg(t)}$. Find $D\\hat BC$.`,
       'Angles that sit side by side on a straight line add up to $180^\\circ$.',
       [`$D\\hat BC=180^\\circ-${deg(t)}=${deg(180 - t)}$ (∠s on a str line).`]);
     }
     if (v === 1) {
-      const t = pick([40, 50, 55, 65, 70, 75]);
+      const t = R(35, 80);
       if (Math.random() < 0.5) {
         return angNum(t, FIG.cross(t, { 3: `${t}°`, 1: '?' }) +
           `Straight lines $AB$ and $CD$ cross at $O$. $A\\hat OC=${deg(t)}$. Find $B\\hat OD$.`,
@@ -1541,7 +1543,7 @@
       '$A\\hat OC$ and $A\\hat OD$ sit side by side on the straight line $CD$.',
       [`$A\\hat OD=180^\\circ-${deg(t)}=${deg(180 - t)}$ (∠s on a str line).`]);
     }
-    const x = pick([20, 25, 30, 35, 40]), a = pick([5, 10, 15]), b = x - a;
+    const x = R(18, 42), a = R(3, 15), b = x - a;
     return angNum(x, FIG.cross(2 * x + a, { 1: `2x+${a}°`, 3: `3x−${b}°` }) +
       `Straight lines $AB$ and $CD$ cross at $O$. $\\hat O_1=2x+${deg(a)}$ and $\\hat O_3=3x-${deg(b)}$. Find $x$.`,
     '$\\hat O_1$ and $\\hat O_3$ are vertically opposite, so they are equal. Set them equal and solve.',
@@ -1551,27 +1553,27 @@
   function eucParallel() {
     const v = R(0, 3);
     if (v === 0) {
-      const t = pick([55, 60, 65, 70, 75, 110, 115, 120]);
+      const t = Math.random() < 0.5 ? R(50, 78) : R(102, 125);
       return angNum(t, FIG.parallel(t, [['EGB', `${t}°`], ['GHD', '?']]) +
         `$AB\\parallel CD$ and $EF$ cuts $AB$ at $G$ and $CD$ at $H$. $E\\hat GB=${deg(t)}$. Find $G\\hat HD$.`,
       '$E\\hat GB$ and $G\\hat HD$ sit in the same position at each crossing: corresponding angles.',
       [`$G\\hat HD=E\\hat GB=${deg(t)}$ (corresp ∠s; $AB\\parallel CD$).`]);
     }
     if (v === 1) {
-      const t = pick([105, 110, 115, 120, 125, 130]);
+      const t = R(100, 135);
       return angNum(t, FIG.parallel(t, [['AGH', `${t}°`], ['GHD', '?']]) +
         `$AB\\parallel CD$ and $EF$ cuts $AB$ at $G$ and $CD$ at $H$. $A\\hat GH=${deg(t)}$. Find $G\\hat HD$.`,
       'The two angles are between the parallel lines, on opposite sides of $EF$: alternate angles (a Z shape).',
       [`$G\\hat HD=A\\hat GH=${deg(t)}$ (alt ∠s; $AB\\parallel CD$).`]);
     }
     if (v === 2) {
-      const t = pick([105, 110, 115, 120, 125, 130]);
+      const t = R(100, 135);
       return angNum(180 - t, FIG.parallel(t, [['AGH', `${t}°`], ['CHG', '?']]) +
         `$AB\\parallel CD$ and $EF$ cuts $AB$ at $G$ and $CD$ at $H$. $A\\hat GH=${deg(t)}$. Find $G\\hat HC$.`,
       'Both angles are between the parallel lines on the same side of $EF$: co-interior angles add up to $180^\\circ$.',
       [`$G\\hat HC=180^\\circ-${deg(t)}=${deg(180 - t)}$ (co-int ∠s; $AB\\parallel CD$).`]);
     }
-    const x = pick([28, 30, 32, 34, 36]), a = pick([10, 20]), b = 180 - 5 * x - a;
+    const x = R(26, 38), a = R(5, 25), b = 180 - 5 * x - a;
     const bg = 2 * x + a;
     return angNum(x, FIG.parallel(180 - bg, [['BGH', `2x+${a}°`], ['GHD', `3x${b < 0 ? '−' + (-b) : '+' + b}°`]]) +
       `$AB\\parallel CD$. $B\\hat GH=2x+${deg(a)}$ and $G\\hat HD=3x${signed(b)}^\\circ$. Find $x$.`,
@@ -1582,20 +1584,20 @@
   function eucTriangle() {
     const v = R(0, 2);
     if (v === 0) {
-      const a = pick([40, 48, 52, 64, 70]), b = pick([55, 62, 68, 77]), c = 180 - a - b;
+      const a = R(35, 75), b = R(45, 80), c = 180 - a - b;
       return angNum(c, FIG.tri(b, c, { arcs: [['BAC', `${a}°`], ['ABC', `${b}°`], ['ACB', '?']] }) +
         `In $\\triangle ABC$, $\\hat A=${deg(a)}$ and $\\hat B=${deg(b)}$. Find $\\hat C$.`,
       'The three angles inside a triangle add up to $180^\\circ$.',
       [`$\\hat C=180^\\circ-${deg(a)}-${deg(b)}=${deg(c)}$ (sum of ∠s in △).`]);
     }
     if (v === 1) {
-      const p = pick([35, 40, 45, 50]), q = pick([60, 65, 70, 75]);
+      const p = R(30, 55), q = R(50, 80);
       return angNum(p + q, FIG.tri(q, 180 - p - q, { ext: true, names: { A: 'P', B: 'Q', C: 'R', D: 'S' }, arcs: [['BAC', `${p}°`], ['ABC', `${q}°`], ['ACD', '?']] }) +
         `In $\\triangle PQR$, side $QR$ is extended to $S$. $\\hat P=${deg(p)}$ and $\\hat Q=${deg(q)}$. Find $P\\hat RS$.`,
       'An exterior angle of a triangle equals the sum of the two interior angles opposite it.',
       [`$P\\hat RS=${deg(p)}+${deg(q)}=${deg(p + q)}$ (ext ∠ of △).`]);
     }
-    const a = pick([10, 20, 30]), b = pick([10, 20]), x = a + b;
+    const a = R(5, 30), b = R(5, 25), x = a + b;
     return angNum(x, FIG.tri(x + a, 180 - (3 * x - b), { ext: true, arcs: [['BAC', 'x'], ['ABC', `x+${a}°`], ['ACD', `3x−${b}°`]] }) +
       `In $\\triangle ABC$, $BC$ is extended to $D$. $\\hat A=x$, $\\hat B=x+${deg(a)}$ and $A\\hat CD=3x-${deg(b)}$. Find $x$.`,
     'The exterior angle $A\\hat CD$ equals $\\hat A+\\hat B$.',
@@ -1605,28 +1607,28 @@
   function eucIsosceles() {
     const v = R(0, 3);
     if (v === 0) {
-      const b = pick([50, 55, 65, 70, 75]), a = 180 - 2 * b;
+      const b = R(48, 78), a = 180 - 2 * b;
       return angNum(a, FIG.tri(b, b, { ticks: [['AB', 1], ['AC', 1]], arcs: [['ABC', `${b}°`], ['BAC', '?']] }) +
         `In $\\triangle ABC$, $AB=AC$ and $\\hat B=${deg(b)}$. Find $\\hat A$.`,
       'The angles opposite the equal sides are equal, so $\\hat C=\\hat B$. Then use the angle sum.',
       [`$\\hat C=\\hat B=${deg(b)}$ (∠s opp equal sides).`, `$\\hat A=180^\\circ-2\\times${deg(b)}=${deg(a)}$ (sum of ∠s in △).`]);
     }
     if (v === 1) {
-      const p = pick([24, 36, 40, 44, 52, 80, 96]), q = (180 - p) / 2;
+      const p = 2 * R(10, 50), q = (180 - p) / 2;
       return angNum(q, FIG.tri(q, q, { names: { A: 'P', B: 'Q', C: 'R' }, ticks: [['AB', 1], ['AC', 1]], arcs: [['BAC', `${p}°`], ['ABC', '?']] }) +
         `In $\\triangle PQR$, $PQ=PR$ and $\\hat P=${deg(p)}$. Find $\\hat Q$.`,
       '$\\hat Q=\\hat R$ because they are opposite the equal sides. Together they make $180^\\circ-\\hat P$.',
       [`$\\hat Q=\\hat R$ (∠s opp equal sides).`, `$\\hat Q+\\hat R=180^\\circ-${deg(p)}=${deg(180 - p)}$ (sum of ∠s in △).`, `$\\hat Q=${deg(180 - p)}\\div 2=${deg(q)}$.`]);
     }
     if (v === 2) {
-      const b = pick([60, 64, 70, 72, 76, 80]), c = b / 2;
+      const b = 2 * R(28, 42), c = b / 2;
       return angNum(c, FIG.isoPair(b, { B: `${b}°`, C: '?' }) +
         `$D$ lies on $BC$ with $AB=AD$ and $AD=DC$. $\\hat B=${deg(b)}$. Find $\\hat C$.`,
       'Work in $\\triangle ABD$ first, then cross the straight line at $D$ into $\\triangle ADC$.',
       [`$A\\hat DB=\\hat B=${deg(b)}$ (∠s opp equal sides; $AB=AD$).`, `$A\\hat DC=180^\\circ-${deg(b)}=${deg(180 - b)}$ (∠s on a str line).`,
         `$D\\hat AC=\\hat C$ (∠s opp equal sides; $AD=DC$).`, `$\\hat C=(180^\\circ-${deg(180 - b)})\\div 2=${deg(c)}$ (sum of ∠s in △).`]);
     }
-    const b = pick([50, 55, 65, 70]), a = 180 - 2 * b;
+    const b = R(48, 78), a = 180 - 2 * b;
     return { type: 'geom',
       statements: statements([['s1', 'AB = AC'], ['s2', `∠C = ∠B = ${b}°`], ['s3', `∠A = ${a}°`], ['s4', 'AB ∥ BC'], ['s5', `∠A = ${b}°`]]),
       reasons: reasons([['r1', 'given'], ['r2', '∠s opp equal sides'], ['r3', 'sum of ∠s in △'], ['r4', 'vert opp ∠s'], ['r5', 'alt ∠s']]),
@@ -1650,8 +1652,18 @@
   };
 
   function eucCongruence() {
-    const v = R(0, 2);
+    const v = R(0, 3);
     const test = pick(Object.keys(CONG)), c = CONG[test]();
+    if (v === 3) {
+      const row = pick(c.rows.filter(([, r]) => r !== 'given'));
+      const pool = ['common', 'vert opp ∠s', 'alt ∠s; AB ∥ DE', 'given', 'SSS', 'SAS', 'AAS', 'RHS', 'sum of ∠s in △'];
+      const opts = shuffle([row[1]].concat(shuffle(pool.filter(r => r !== row[1])).slice(0, 3))).map(t => ({ tex: t, ok: t === row[1] }));
+      return { type: 'mc', options: opts,
+        prompt: c.fig + `${c.info} In the proof that $\\triangle ${c.tri[0]}\\equiv\\triangle ${c.tri[1]}$, one line reads <b>${row[0]}</b>. Which reason goes with it?`,
+        hint: 'Ask what makes that line true: was it given, is it shared by both triangles, does it come from crossing or parallel lines, or is it the congruence test itself?',
+        steps: c.rows.map(([st, r]) => `${st} (${r}).`),
+        ans: row[1], ansTex: `\\text{${row[1]}}` };
+    }
     if (v === 0) {
       const opts = shuffle(['SSS', 'SAS', 'AAS', 'RHS']).map(t => ({ tex: t, ok: t === test }));
       return { type: 'mc', options: opts,
@@ -1685,9 +1697,25 @@
   }
 
   function eucQuads() {
-    const v = R(0, 2);
+    const v = R(0, 4);
+    if (v === 3) {
+      const x = R(3, 12), a = R(2, 3), b = R(1, 9), d = (a - 1) * x - b;
+      if (d <= 0) return eucQuads();
+      return xNum(x, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]] }) +
+        `$ABCD$ is a parallelogram. $AB=(${a}x-${b})$ cm and $DC=(x+${d})$ cm. Find $x$.`,
+      'Opposite sides of a parallelogram are equal, so set $AB=DC$ and solve.',
+      [`$${a}x-${b}=x+${d}$ (opp sides of ||m).`, `$${a - 1 === 1 ? '' : a - 1}x=${d + b}$, so $x=${x}$.`]);
+    }
+    if (v === 4) {
+      const x = R(2, 9), k = R(1, 6), oa = 2 * x + k, bd = 2 * oa, m = pick([3, 5, 6]), n = m * x - bd;
+      const bdTex = n === 0 ? `${m}x` : n > 0 ? `${m}x-${n}` : `${m}x+${-n}`;
+      return xNum(x, FIG.para({ skew: 0, diag: 'O', rights: ['DAB'] }) +
+        `$ABCD$ is a rectangle with diagonals meeting at $O$. $OA=(2x+${k})$ cm and $BD=(${bdTex})$ cm. Find $x$.`,
+      'The diagonals of a rectangle are equal and bisect each other, so $AC=2\\times OA$ and $AC=BD$.',
+      [`$AC=2(2x+${k})=4x+${2 * k}$ (diags of ||m).`, `$4x+${2 * k}=${bdTex}$ (diags of rect).`, `$x=${x}$.`]);
+    }
     if (v === 0) {
-      const a = pick([58, 64, 72, 108, 112, 116, 124]);
+      const a = angPool();
       if (Math.random() < 0.5) {
         return angNum(a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['DCB', '?']], skew: a > 90 ? -50 : 60 }) +
           `$ABCD$ is a parallelogram and $\\hat A=${deg(a)}$. Find $\\hat C$.`,
@@ -1700,13 +1728,13 @@
       [`$\\hat B=180^\\circ-${deg(a)}=${deg(180 - a)}$ (co-int ∠s; $AD\\parallel BC$).`]);
     }
     if (v === 1) {
-      const a = R(1, 4), x = R(3, 8), b = x + a, pr = 2 * (x + b);
+      const a = R(1, 6), x = R(3, 12), b = x + a, pr = 2 * (x + b);
       return lenNum(pr, FIG.para({ diag: 'T', names: { A: 'P', B: 'Q', C: 'R', D: 'S' }, arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]] }) +
         `$PQRS$ is a parallelogram with diagonals meeting at $T$. $PT=2x+${a}$ cm and $TR=x+${b}$ cm. Find the length of $PR$.`,
       'The diagonals of a parallelogram bisect each other, so $PT=TR$.',
       [`$2x+${a}=x+${b}$ (diags of ||m).`, `$x=${x}$, so $PT=TR=${x + b}$ cm.`, `$PR=2\\times${x + b}=${pr}$ cm.`]);
     }
-    const t = pick([22, 28, 32, 36, 38]);
+    const t = R(20, 40);
     if (Math.random() < 0.5) {
       return angNum(90 - t, FIG.rhombus({ t, arcs: [['ABO', `${t}°`], ['BAO', '?']], rights: ['AOB'] }) +
         `$ABCD$ is a rhombus with diagonals meeting at $O$. $A\\hat BO=${deg(t)}$. Find $B\\hat AO$.`,
@@ -1720,22 +1748,46 @@
   }
 
   function eucMidpoint() {
-    const v = R(0, 2);
+    const v = R(0, 4);
+    if (v === 3) {
+      const ab = R(6, 20), ac = R(6, 20), bc = R(Math.abs(ab - ac) + 2, ab + ac - 2);
+      const per = ab + ac + bc;
+      if (per % 2) return eucMidpoint();
+      return lenNum(per / 2, FIG.midpoint() +
+        `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $AB=${ab}$ cm, $AC=${ac}$ cm and $BC=${bc}$ cm. Find the perimeter of $\\triangle ADE$.`,
+      'Each side of $\\triangle ADE$ is half of a side of $\\triangle ABC$: two because $D$ and $E$ are midpoints, and $DE$ by the midpoint theorem.',
+      [`$AD=\\frac12 AB=${ab / 2}$ cm and $AE=\\frac12 AC=${ac / 2}$ cm ($D$, $E$ midpoints).`, `$DE=\\frac12 BC=${bc / 2}$ cm (midpt theorem).`, `Perimeter $=${ab / 2}+${ac / 2}+${bc / 2}=${per / 2}$ cm.`]);
+    }
+    if (v === 4) {
+      if (Math.random() < 0.5) {
+        const x = R(3, 14), k = R(1, 9), de = x + k, m = R(3, 4), c = m * x - 2 * de;
+        const bcTex = c === 0 ? `${m}x` : c > 0 ? `${m}x-${c}` : `${m}x+${-c}`;
+        return xNum(x, FIG.midpoint() +
+          `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $DE=(x+${k})$ cm and $BC=(${bcTex})$ cm. Find $x$.`,
+        'The midpoint theorem says $BC$ is twice $DE$. Write that as an equation and solve.',
+        [`$BC=2DE$ (midpt theorem).`, `$${bcTex}=2x+${2 * k}$.`, `$x=${x}$.`]);
+      }
+      const c = R(40, 80);
+      return angNum(180 - c, FIG.midpoint({ arcs: [['ACB', `${c}°`], ['DEC', '?']] }) +
+        `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $A\\hat CB=${deg(c)}$. Find $D\\hat EC$.`,
+      'First show $DE\\parallel BC$. Then $D\\hat EC$ and $\\hat C$ are co-interior angles.',
+      [`$DE\\parallel BC$ (midpt theorem).`, `$D\\hat EC=180^\\circ-${deg(c)}=${deg(180 - c)}$ (co-int ∠s; $DE\\parallel BC$).`]);
+    }
     if (v === 0) {
-      const bc = pick([8, 10, 12, 14, 16, 18, 22]);
+      const bc = 2 * R(3, 24);
       return lenNum(bc / 2, FIG.midpoint() +
         `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $BC=${bc}$ cm. Find $DE$.`,
       'The segment joining the midpoints of two sides is parallel to the third side and half as long.',
       [`$DE=\\frac12 BC$ (midpt theorem).`, `$DE=\\frac12\\times${bc}=${bc / 2}$ cm.`]);
     }
     if (v === 1) {
-      const b = pick([52, 58, 64, 68, 72]);
+      const b = R(42, 78);
       return angNum(b, FIG.midpoint({ arcs: [['ABC', `${b}°`], ['ADE', '?']] }) +
         `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $A\\hat BC=${deg(b)}$. Find $A\\hat DE$.`,
       'First show $DE\\parallel BC$. Then $A\\hat DE$ and $A\\hat BC$ are corresponding angles.',
       [`$DE\\parallel BC$ (midpt theorem).`, `$A\\hat DE=A\\hat BC=${deg(b)}$ (corresp ∠s; $DE\\parallel BC$).`]);
     }
-    const pt = pick([4, 5, 6, 7]), st = pick([3, 4, 5, 6]);
+    const pt = R(3, 14), st = R(3, 12);
     const names = { A: 'P', B: 'Q', C: 'R', D: 'S', E: 'T' };
     if (Math.random() < 0.5) {
       return lenNum(2 * pt, FIG.midpoint({ names, noTicks: true, ticks: [['AD', 1], ['DB', 1]], arrows: [['DE', 1], ['BC', 1]] }) +

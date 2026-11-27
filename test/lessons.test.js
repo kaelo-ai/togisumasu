@@ -158,6 +158,17 @@ t('cached generated items from the old geometry generator are retired; manual on
   db.close();
 });
 
+t('every step sets out its key words and ends with a short memory tip', () => {
+  const steps = KpLessons.LESSONS['euc-revision'].flatMap(l => l.steps);
+  for (const s of steps) {
+    assert.ok(Array.isArray(s.words) && s.words.length >= 2, s.title + ': key words');
+    for (const [w, d] of s.words) assert.ok(w && d && d.length > 20, s.title + ': ' + w);
+    assert.ok(typeof s.tip === 'string' && s.tip.length > 60, s.title + ': tip');
+  }
+  const iso = steps.find(s => /Isosceles/.test(s.title));
+  assert.match(iso.words.find(([w]) => w === 'isosceles triangle')[1], /two/);
+});
+
 const failed = results.filter(r => r[0] === 'FAIL');
 for (const r of results) console.log(r[0] === 'ok' ? '  ok  ' + r[1] : '  FAIL  ' + r[1] + ' — ' + r[2]);
 console.log(`\n${results.length - failed.length} passed, ${failed.length} failed`);

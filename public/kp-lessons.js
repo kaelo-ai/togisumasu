@@ -174,7 +174,7 @@
 <p>In reasons, “||m” is short for parallelogram.</p>`,
       fig: () => FIG.para({ diag: 'O', arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], ticks: [['AO', 1], ['OC', 1], ['BO', 2], ['OD', 2]] }),
       figNote: 'Parallelogram $ABCD$: matching arrows mark the parallel sides. The diagonals bisect each other at $O$.',
-      reasons: [['opp sides of ||m', 'Opposite sides of a parallelogram are equal.'], ['opp ∠s of ||m', 'Opposite angles of a parallelogram are equal.'], ['diags of ||m', 'The diagonals of a parallelogram bisect each other.'], ['diags of rhombus', 'The diagonals of a rhombus are perpendicular and bisect the corner angles.'], ['sum of ∠s in quad', 'The angles of a quadrilateral add up to 360°.']],
+      reasons: [['opp sides of ||m', 'Opposite sides of a parallelogram are equal.'], ['opp ∠s of ||m', 'Opposite angles of a parallelogram are equal.'], ['diags of ||m', 'The diagonals of a parallelogram bisect each other.'], ['diags of rhombus', 'The diagonals of a rhombus are perpendicular and bisect the corner angles.'], ['diags of rect', 'The diagonals of a rectangle are equal in length.'], ['sum of ∠s in quad', 'The angles of a quadrilateral add up to 360°.']],
       examples: [
         { level: 'Start here', fig: () => FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', '112°'], ['DCB', '?'], ['CBA', '?']], skew: -50 }),
           q: '$ABCD$ is a parallelogram with $\\hat A=112^\\circ$ and $AB=7$ cm. Find $\\hat C$, $\\hat B$ and $CD$.',
@@ -219,6 +219,53 @@
       sources: [SIYAVULA, OPENSTAX, PAUL],
     },
   ];
+
+  // Key words and a memory tip for each step, shown as a word box before the
+  // explanation and a "Remember" note after the reasons.
+  const NOTEBOOK = [
+    { words: [
+        ['angle', 'the amount of turn between two lines that meet at a point, the vertex. We measure it in degrees (°).'],
+        ['straight line', 'a half turn, $180^\\circ$. Angles that sit side by side on it add up to $180^\\circ$.'],
+        ['vertically opposite angles', 'the angles facing each other across the point where two straight lines cross.'],
+      ],
+      tip: 'Draw an X. The two angles that face each other across the middle are always equal, and any two angles next to each other make a straight line, so they add up to $180^\\circ$.' },
+    { words: [
+        ['parallel lines', 'lines that never meet, like the rails of a train track. Arrows on the lines mark them.'],
+        ['transversal', 'a line that cuts across two or more other lines.'],
+      ],
+      tip: 'Look for a letter. <b>F</b> shape: corresponding angles, equal. <b>Z</b> shape: alternate angles, equal. <b>C</b> (or U) shape: co-interior angles, add up to $180^\\circ$. These only work when the lines are parallel.' },
+    { words: [
+        ['interior angle', 'an angle inside the triangle, at one of its corners.'],
+        ['exterior angle', 'the angle outside the triangle between one side and the next side extended past the corner.'],
+        ['interior opposite angles', 'the two inside angles that are not next to the exterior angle.'],
+      ],
+      tip: 'Inside: all three add up to $180^\\circ$. Outside: the exterior angle equals the two far-away inside angles added together.' },
+    { words: [
+        ['isosceles triangle', 'a triangle with <b>two</b> equal sides.'],
+        ['equilateral triangle', 'a triangle with all <b>three</b> sides equal.'],
+        ['base angles', 'the two equal angles of an isosceles triangle, opposite the equal sides.'],
+      ],
+      tip: '“Isosceles” comes from Greek for “equal legs”: two equal sides, like a pair of legs. “Equi-lateral” means “equal sides”: all of them. Equal sides always face equal angles.' },
+    { words: [
+        ['congruent', 'exactly the same shape and size: one triangle would fit exactly on top of the other. Symbol: $\\equiv$.'],
+        ['included angle', 'the angle between two given sides, where they meet.'],
+        ['hypotenuse', 'the longest side of a right-angled triangle, opposite the $90^\\circ$ angle.'],
+      ],
+      tip: 'Read the letters as a list of what matches: S = a side, A = an angle, R = a right angle, H = the hypotenuse. In SAS the A must sit <b>between</b> the two S’s. AAA proves nothing about size: a photo and its enlargement have the same angles.' },
+    { words: [
+        ['quadrilateral', 'any shape with four straight sides.'],
+        ['parallelogram', 'a quadrilateral with both pairs of opposite sides parallel.'],
+        ['diagonal', 'a line joining two opposite corners.'],
+        ['bisect', 'cut into two equal parts.'],
+      ],
+      tip: 'Each special shape is a parallelogram with something extra: a rectangle adds right angles, a rhombus adds equal sides, and a square has both. So a square is a rectangle and a rhombus at the same time.' },
+    { words: [
+        ['midpoint', 'the point exactly halfway along a line segment.'],
+        ['converse', 'the theorem turned around: what was given becomes what you prove.'],
+      ],
+      tip: 'Join two midpoints and you get a line that is parallel to the third side and exactly half as long. Remember it as “midpoints: parallel and half”.' },
+  ];
+  STEPS.forEach((s, i) => Object.assign(s, NOTEBOOK[i]));
 
   // The topic's three knowledge points stay as they are; each one teaches
   // a run of the steps above before its practice starts.
