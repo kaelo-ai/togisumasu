@@ -137,9 +137,23 @@
     for (const [s, n] of spec.arrows || []) body += GF.arrows(pt(s[0]), pt(s[1]), n);
     for (const [s, t, o] of spec.arcs || []) body += GF.arc(pt(s[1]), pt(s[0]), pt(s[2]), t, o || {});
     for (const s of spec.rights || []) body += GF.right(pt(s[1]), pt(s[0]), pt(s[2]));
-    for (const k of names) body += GF.dot(P[k]) + GF.label(P[k], k, (spec.away && spec.away[k]) || cen);
+    for (const k of names) {
+      let ref = (spec.away && spec.away[k]) || cen;
+      // A point sitting on the reference (the centre O of a circle) is labelled away from the other points.
+      if (Math.hypot(P[k].x - ref.x, P[k].y - ref.y) < 1) {
+        const rest = names.filter(j => j !== k).map(j => P[j]);
+        ref = rest.length ? GF.centroid(...rest) : ref;
+        if (Math.hypot(P[k].x - ref.x, P[k].y - ref.y) < 1) ref = { x: P[k].x + 0.6, y: P[k].y - 1 };
+      }
+      body += GF.dot(P[k]) + GF.label(P[k], k, ref);
+    }
     for (const [x, y, t] of spec.text || []) body += GF.text(x, y, t, 12);
-    const xs = all.map(p => p.x), ys = all.map(p => p.y), pad = 26;
+    let circ = '';
+    for (const [c, r] of spec.circles || []) circ += `<circle cx="${c.x}" cy="${c.y}" r="${r}" stroke="currentColor" stroke-width="1.5" fill="none"/>`;
+    body = circ + body;
+    const vis = all.slice();
+    for (const [c, r] of spec.circles || []) vis.push({ x: c.x - r, y: c.y - r }, { x: c.x + r, y: c.y + r });
+    const xs = vis.map(p => p.x), ys = vis.map(p => p.y), pad = 26;
     const x0 = Math.floor(Math.min(...xs) - pad), y0 = Math.floor(Math.min(...ys) - pad);
     const w = Math.ceil(Math.max(...xs) + pad - x0), h = Math.ceil(Math.max(...ys) + pad - y0);
     const cap = spec.caption ? `<figcaption>${spec.caption}</figcaption>` : '';
@@ -248,8 +262,9 @@
     },
     // Triangle with the midpoints of two sides joined.
     midpoint(opts = {}) {
-      const n = opts.names || {}, m = k => n[k] || k;
-      const B = { x: 30, y: 170 }, C = { x: 290, y: 170 }, A = { x: 120, y: 30 };
+      const o = opts, n = opts.names || {}, m = k => n[k] || k;
+      const B = { x: 30, y: 170 }, C = { x: 290, y: 170 };
+      const A = o.b != null || o.c != null ? GF.apex(B, C, o.b != null ? o.b : 50, o.c != null ? o.c : 45) : { x: 120, y: 30 };
       const D = GF.mid(A, B), E = GF.mid(A, C);
       const P = { [m('A')]: A, [m('B')]: B, [m('C')]: C, [m('D')]: D, [m('E')]: E };
       const map = s => s.split('').map(m).join('');
@@ -258,6 +273,141 @@
         arrows: (opts.arrows || []).map(([s, k]) => [map(s), k]), arcs: (opts.arcs || []).map(([s, t, o]) => [map(s), t, o]) });
     },
   };
+
+  // ---- Grade 12 circle and similarity figures. Every figure is drawn to
+  // the numbers in the question: points on the circle sit at the angles the
+  // theorem predicts, so the picture never contradicts the answer.
+  const RAD = 90, OC = { x: 160, y: 130 };
+  const on = d => GF.polar(OC, RAD, d);
+  // A length label beside segment pq, pushed to the side away from `away`.
+  function segLab(p, q, t, away = OC, d = 12) {
+    const m = GF.mid(p, q), u = GF.unit(GF.sub(q, p)), n = { x: -u.y, y: u.x };
+    const s = ((m.x - away.x) * n.x + (m.y - away.y) * n.y) < 0 ? -1 : 1;
+    return [m.x + n.x * s * d, m.y + n.y * s * d, t];
+  }
+  const cscene = spec => scene(Object.assign({ circles: [[OC, RAD]], centre: OC }, spec));
+  Object.assign(FIG, {
+    // Chord AB with M the foot of the perpendicular from O (so M is its midpoint).
+    chord(o = {}) {
+      const A = on(o.a1 != null ? o.a1 : 205), B = on(o.a2 != null ? o.a2 : 335), M = GF.mid(A, B);
+      const P = { O: OC, A, B, M };
+      const segs = ['AB', 'OM'];
+      if (o.oa) segs.push('OA');
+      if (o.ob) segs.push('OB');
+      if (o.ext) { const u = GF.unit(GF.sub(M, OC)); P.P = GF.at(OC, u, RAD); segs.push('MP'); }
+      const text = (o.lens || []).map(([s, t]) => segLab(P[s[0]], P[s[1]], t, s === 'OM' ? A : OC));
+      return cscene({ P, segs, ticks: o.ticks ? [['AM', 1], ['MB', 1]] : [], rights: o.right === false ? [] : ['OMB'],
+        arcs: o.arcs || [], text, away: { M: GF.at(M, GF.unit(GF.sub(OC, M)), 20), O: GF.at(OC, GF.unit(GF.sub(OC, M)), -1) } });
+    },
+    // Two parallel chords AB and CD with midpoints M and N on one line through O.
+    // d1, d2 are their distances from O in the question's units; r the radius.
+    twoChords(r, d1, d2, same) {
+      const k = RAD / r, y1 = OC.y + d1 * k, y2 = same ? OC.y + d2 * k : OC.y - d2 * k;
+      const h1 = Math.sqrt(Math.max(r * r - d1 * d1, 1)) * k, h2 = Math.sqrt(Math.max(r * r - d2 * d2, 1)) * k;
+      const P = { O: OC, A: { x: OC.x - h1, y: y1 }, B: { x: OC.x + h1, y: y1 }, M: { x: OC.x, y: y1 },
+        C: { x: OC.x - h2, y: y2 }, D: { x: OC.x + h2, y: y2 }, N: { x: OC.x, y: y2 } };
+      const far = same ? (d1 > d2 ? 'M' : 'N') : 'M';
+      return cscene({ P, segs: ['AB', 'CD', same ? 'O' + far : 'MN'], rights: ['OMB', 'OND'],
+        away: { M: { x: OC.x + 30, y: y1 + 20 }, N: { x: OC.x + 30, y: y2 + (same ? 20 : -20) }, O: { x: OC.x + 30, y: OC.y } } });
+    },
+    // Angle at the centre: A and B on the circle with angle AOB = theta below O,
+    // C (and D) on the major arc.
+    centre(theta, o = {}) {
+      const A = on(270 - theta / 2), B = on(270 + theta / 2), C = on(o.c != null ? o.c : 100);
+      const P = { O: OC, A, B, C };
+      const segs = ['OA', 'OB', 'CA', 'CB'];
+      if (o.d != null) { P.D = on(o.d); segs.push('DA', 'DB'); }
+      if (o.ab) segs.push('AB');
+      return cscene({ P, segs, arcs: o.arcs || [], ticks: o.ticks || [] });
+    },
+    // AB a diameter, C on the upper semicircle with angle CAB = a, D optional below.
+    semi(a, o = {}) {
+      const P = { O: OC, A: on(180), B: on(0), C: on(2 * a) };
+      const segs = ['AB', 'AC', 'BC'];
+      if (o.d != null) { P.D = on(o.d); segs.push('AD', 'CD'); }
+      return cscene({ P, segs, arcs: o.arcs || [], rights: o.rights || [] });
+    },
+    // Cyclic quadrilateral ABCD with angle A = a (arcs BC + CD = 2a).
+    cyclic(a, o = {}) {
+      const bc = o.bc != null ? o.bc : a, ab = o.ab != null ? o.ab : 180 - a;
+      const tA = 135, tB = tA + ab, tC = tB + bc, tD = tB + 2 * a;
+      const P = { A: on(tA), B: on(tB), C: on(tC), D: on(tD) };
+      const segs = ['AB', 'BC', 'CD', 'DA'];
+      if (o.ext) { P.E = GF.at(P.C, GF.unit(GF.sub(P.C, P.D)), 60); segs.push('CE'); }
+      if (o.extB) { P.E = GF.at(P.B, GF.unit(GF.sub(P.B, P.A)), 60); segs.push('BE'); }
+      if (o.centre) { P.O = OC; segs.push('OB', 'OD'); }
+      for (const s of o.diag || []) segs.push(s);
+      if (o.push) P.D = GF.at(OC, GF.unit(GF.sub(P.D, OC)), RAD * o.push);
+      return cscene({ P, segs, arcs: o.arcs || [], ticks: o.ticks || [], circles: o.noCircle ? [] : [[OC, RAD]] });
+    },
+    // Tangent at T (top of the circle) and an outside point P on it, with angle TOP = theta.
+    tangent(theta, o = {}) {
+      const T = on(90), Pp = { x: T.x + RAD * Math.tan(theta * Math.PI / 180), y: T.y };
+      const P = { O: OC, T, P: Pp, X: { x: T.x - 50, y: T.y } };
+      const text = (o.lens || []).map(([s, t]) => segLab(P[s[0]], P[s[1]], t, s === 'TP' ? OC : s === 'OT' ? Pp : T));
+      return cscene({ P, hide: ['X'], segs: ['XP', 'OT', 'OP'], rights: ['OTP'], arcs: o.arcs || [], text });
+    },
+    // Two tangents PA and PB from P, with angle APB = p.
+    twoTangents(p, o = {}) {
+      const h = (90 - p / 2), Pp = { x: OC.x + RAD / Math.sin(p / 2 * Math.PI / 180), y: OC.y };
+      const P = { O: OC, A: on(h), B: on(-h), P: Pp };
+      const segs = ['PA', 'PB'];
+      if (o.radii) segs.push('OA', 'OB');
+      if (o.ab) segs.push('AB');
+      return cscene({ P, segs, ticks: o.ticks === false ? [] : [['PA', 1], ['PB', 1]], rights: o.radii ? ['OAP', 'OBP'] : [], arcs: o.arcs || [] });
+    },
+    // Tangent QS touching at T (bottom). Chord TA makes angle STA = s; B on the
+    // other arc with angle ATB = b.
+    tanChord(s, b, o = {}) {
+      const T = on(270), A = on(270 + 2 * s), B = on(270 + 2 * s + 2 * b);
+      const P = { T, A, B, S: { x: T.x + 120, y: T.y }, Q: { x: T.x - 120, y: T.y } };
+      const segs = ['QS', 'TA', 'TB', 'AB'];
+      if (o.centre) { P.O = OC; segs.push('OT', 'OA'); }
+      return cscene({ P, segs, arcs: o.arcs || [], rights: o.rights || [], away: { S: { x: T.x + 120, y: T.y - 30 }, Q: { x: T.x - 120, y: T.y - 30 }, T: { x: T.x, y: T.y - 30 } } });
+    },
+    // Circle through A, B, C with M, N the midpoints of AB and AC.
+    midChords(o = {}) {
+      const dia = !!o.diameter;
+      const B = dia ? on(180) : on(o.b != null ? o.b : 205), C = dia ? on(0) : on(o.c != null ? o.c : 335), A = on(o.a != null ? o.a : 110);
+      const P = { A, B, C, M: GF.mid(A, B), N: GF.mid(A, C) };
+      const segs = ['AB', 'AC', 'BC', 'MN'];
+      if (o.centre) { P.O = OC; segs.push('OM', 'ON'); }
+      return cscene({ P, segs, ticks: [['AM', 1], ['MB', 1], ['AN', 2], ['NC', 2]], arcs: o.arcs || [],
+        rights: o.centre ? ['OMA', 'ONA'] : [], arrows: o.arrows ? [['MN', 1], ['BC', 1]] : [] });
+    },
+    // Two similar triangles side by side: base angles b and c, the second k times larger.
+    simPair(b, c, k, o = {}) {
+      const n1 = o.n1 || 'ABC', n2 = o.n2 || 'DEF', w1 = 110, w2 = 110 * k;
+      const B1 = { x: 20, y: 190 }, C1 = { x: 20 + w1, y: 190 }, B2 = { x: 20 + w1 + 50, y: 190 }, C2 = { x: B2.x + w2, y: 190 };
+      const A1 = GF.apex(B1, C1, b, c), A2 = GF.apex(B2, C2, b, c);
+      const P = { [n1[0]]: A1, [n1[1]]: B1, [n1[2]]: C1, [n2[0]]: A2, [n2[1]]: B2, [n2[2]]: C2 };
+      const t1 = n1[1] + n1[0] + n1[2], t2 = n2[1] + n2[0] + n2[2];
+      const arcs = [[n1[1] + n1[0] + n1[2], o.l1 || '', { r: 16 }], [n2[1] + n2[0] + n2[2], o.l2 || '', { r: 16 }],
+        [n1[1] + n1[2] + n1[0], o.l3 || '', { r: 16, n: 2 }], [n2[1] + n2[2] + n2[0], o.l4 || '', { r: 16, n: 2 }]];
+      const g1 = GF.centroid(A1, B1, C1), g2 = GF.centroid(A2, B2, C2);
+      const text = (o.lens || []).map(([s, t]) => segLab(P[s[0]], P[s[1]], t, n1.includes(s[0]) ? g1 : g2));
+      const away = {};
+      for (const [nm, tri] of [[n1, [A1, B1, C1]], [n2, [A2, B2, C2]]]) { const g = GF.centroid(...tri); for (const ch of nm) away[ch] = g; }
+      return scene({ P, segs: [t1.slice(0, 2), t1.slice(1), n1[1] + n1[2], t2.slice(0, 2), t2.slice(1), n2[1] + n2[2]], arcs: arcs.concat(o.arcs || []), text, away });
+    },
+    // A pole AB and a tree DE with their shadows BC and EF (same sun angle).
+    shadow(h1, s1, h2, s2, o = {}) {
+      const k1 = 60 / Math.max(s1, h1, 1), k2 = 160 / Math.max(s2, h2);
+      const P = { A: { x: 20, y: 200 - h1 * k1 }, B: { x: 20, y: 200 }, C: { x: 20 + s1 * k1, y: 200 },
+        D: { x: 140, y: 200 - h2 * k2 }, E: { x: 140, y: 200 }, F: { x: 140 + s2 * k2, y: 200 } };
+      return scene({ P, segs: ['AB', 'BC', 'CA', 'DE', 'EF', 'FD'], rights: ['ABC', 'DEF'], arcs: [['ACB', '', { r: 14 }], ['DFE', '', { r: 14 }]],
+        text: [[20 + s1 * k1 / 2, 216, `${s1} m`], [6, 200 - h1 * k1 / 2, `${h1} m`], [140 + s2 * k2 / 2, 216, `${s2} m`], [124, 200 - h2 * k2 / 2, o.ask || '?']] });
+    },
+    // Triangle ABC with D on AB and E on AC, DE parallel to BC, AD = k AB.
+    simNested(b, c, k, o = {}) {
+      const B = { x: 30, y: 200 }, C = { x: 300, y: 200 }, A = GF.apex(B, C, b, c);
+      const D = { x: A.x + (B.x - A.x) * k, y: A.y + (B.y - A.y) * k }, E = { x: A.x + (C.x - A.x) * k, y: A.y + (C.y - A.y) * k };
+      const P = { A, B, C, D, E };
+      const text = (o.lens || []).map(([s, t]) => segLab(P[s[0]], P[s[1]], t, GF.centroid(A, B, C)));
+      return scene({ P, segs: ['AB', 'AC', 'BC', 'DE'], arrows: [['DE', 1], ['BC', 1]], arcs: o.arcs || [], text });
+    },
+  });
+
 
   // ---- Sequences ----
   function genSeqLinear(kp) {
@@ -1717,12 +1867,12 @@
     if (v === 0) {
       const a = angPool();
       if (Math.random() < 0.5) {
-        return angNum(a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['DCB', '?']], skew: a > 90 ? -50 : 60 }) +
+        return angNum(a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['DCB', '?']], skew: 110 / Math.tan(a * Math.PI / 180) }) +
           `$ABCD$ is a parallelogram and $\\hat A=${deg(a)}$. Find $\\hat C$.`,
         'Opposite angles of a parallelogram are equal.',
         [`$\\hat C=\\hat A=${deg(a)}$ (opp ∠s of ||m).`]);
       }
-      return angNum(180 - a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['CBA', '?']], skew: a > 90 ? -50 : 60 }) +
+      return angNum(180 - a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['CBA', '?']], skew: 110 / Math.tan(a * Math.PI / 180) }) +
         `$ABCD$ is a parallelogram and $\\hat A=${deg(a)}$. Find $\\hat B$.`,
       '$\\hat A$ and $\\hat B$ are co-interior angles between the parallel sides $AD$ and $BC$.',
       [`$\\hat B=180^\\circ-${deg(a)}=${deg(180 - a)}$ (co-int ∠s; $AD\\parallel BC$).`]);
@@ -1768,7 +1918,7 @@
         [`$BC=2DE$ (midpt theorem).`, `$${bcTex}=2x+${2 * k}$.`, `$x=${x}$.`]);
       }
       const c = R(40, 80);
-      return angNum(180 - c, FIG.midpoint({ arcs: [['ACB', `${c}°`], ['DEC', '?']] }) +
+      return angNum(180 - c, FIG.midpoint({ c, arcs: [['ACB', `${c}°`], ['DEC', '?']] }) +
         `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $A\\hat CB=${deg(c)}$. Find $D\\hat EC$.`,
       'First show $DE\\parallel BC$. Then $D\\hat EC$ and $\\hat C$ are co-interior angles.',
       [`$DE\\parallel BC$ (midpt theorem).`, `$D\\hat EC=180^\\circ-${deg(c)}=${deg(180 - c)}$ (co-int ∠s; $DE\\parallel BC$).`]);
@@ -1782,7 +1932,7 @@
     }
     if (v === 1) {
       const b = R(42, 78);
-      return angNum(b, FIG.midpoint({ arcs: [['ABC', `${b}°`], ['ADE', '?']] }) +
+      return angNum(b, FIG.midpoint({ b, arcs: [['ABC', `${b}°`], ['ADE', '?']] }) +
         `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $A\\hat BC=${deg(b)}$. Find $A\\hat DE$.`,
       'First show $DE\\parallel BC$. Then $A\\hat DE$ and $A\\hat BC$ are corresponding angles.',
       [`$DE\\parallel BC$ (midpt theorem).`, `$A\\hat DE=A\\hat BC=${deg(b)}$ (corresp ∠s; $DE\\parallel BC$).`]);
@@ -1814,130 +1964,6 @@
     const q = pick(EUC0[k])();
     q.genRev = 'euc0-v2';
     return q;
-  }
-
-  function genEucChords(kp) {
-    const k = wantKp(1, kp);
-    // radius 6, chord 8, distance from centre?  r^2 = d^2 + (half chord)^2, 36=d^2+16, d=sqrt20?
-    const r = pick([5, 10, 13]), half = pick([3, 4, 5, 12]);
-    if (half >= r) return genEucChords(kp);
-    const d2 = r * r - half * half;
-    const s = sqrtSimp(d2);
-    if (k === 0) {
-      const ans = s.inn === 1 ? String(s.out) : (s.out === 1 ? `sqrt(${s.inn})` : `${s.out}sqrt(${s.inn})`);
-      const ansTex = s.inn === 1 ? String(s.out) : (s.out === 1 ? `\\sqrt{${s.inn}}` : `${s.out}\\sqrt{${s.inn}}`);
-      const fig = svg(240, 200, C(120, 100, 70) + L(120, 100, 120, 100 + 40) + L(80, 140, 160, 140) +
-        P(120, 100) + P(120, 140) + N(120, 92, 'O') + N(120, 152, 'M', 0) + N(80, 140, 'A') + N(160, 140, 'B'),
-        'O is the centre, $OM\\perp AB$, $M$ on $AB$');
-      return { type: 'num', exact: true, val: Math.sqrt(d2), ans, ansTex,
-        prompt: fig + `O is the centre of a circle of radius $${r}$. Chord $AB=${2 * half}$ and $OM\\perp AB$ with $M$ on $AB$. Find $OM$.`,
-        hint: 'The perpendicular from the centre to a chord bisects the chord. Then use Pythagoras in $\\triangle OMA$.',
-        steps: [`$AM=\\frac12 AB=${half}$ (line from centre $\\perp$ to a chord bisects the chord).`, `$OM=\\sqrt{${r}^2-${half}^2}=${ansTex}$.`] };
-    }
-    // converse: M midpoint, conclude OM perp AB — geom chain
-    return { type: 'geom',
-      statements: statements([['s1', 'AM = MB'], ['s2', 'OM ⊥ AB'], ['s3', 'OA = OB'], ['s4', 'AB = OM']]),
-      reasons: reasons([['r1', 'given'], ['r2', 'line from centre to midpt of chord'], ['r3', 'radii'], ['r4', 'vert opp ∠s']]),
-      chain: [{ statement: 's1', reason: 'r1' }, { statement: 's3', reason: 'r3' }, { statement: 's2', reason: 'r2' }],
-      prompt: svg(240, 200, C(120, 100, 70) + L(120, 100, 120, 140) + L(80, 140, 160, 140) +
-        P(120, 100) + P(120, 140) + N(120, 92, 'O') + N(120, 155, 'M', 0) + N(80, 140, 'A') + N(160, 140, 'B'),
-        'O is the centre and M is the midpoint of chord AB') +
-        'O is the centre of the circle and $M$ is the midpoint of chord $AB$. Prove that $OM\\perp AB$. Write the chain in order.',
-      hint: 'OA and OB are radii, so triangle OAB is isosceles, or use the theorem: the line from the centre to the midpoint of a chord is perpendicular to the chord.',
-      steps: ['$AM=MB$ (given).', '$OA=OB$ (radii).', '$OM\\perp AB$ (line from the centre to the midpoint of a chord is perpendicular to the chord).'],
-      ans: 'OM perp AB', ansTex: 'OM\\perp AB' };
-  }
-
-  function genEucCyclic(kp) {
-    const k = wantKp(1, kp);
-    if (k === 0) {
-      const centre = pick([40, 50, 80, 100, 120]);
-      const circ = centre / 2;
-      const fig = svg(240, 200, C(120, 110, 70) + P(120, 110) + N(120, 100, 'O') +
-        (() => {
-          const A = pt(120, 110, 70, 110), B = pt(120, 110, 70, 20), C = pt(120, 110, 70, 250);
-          return xy(pt(120, 110, 0, 0), A) + xy(pt(120, 110, 0, 0), B) + L(A.x, A.y, C.x, C.y) + L(B.x, B.y, C.x, C.y) +
-            N(A.x, A.y, 'A', -10) + N(B.x, B.y, 'B', -10) + N(C.x, C.y, 'C', 16);
-        })(),
-        'O is the centre; A and B are on the circle');
-      return { type: 'num', val: circ, ans: String(circ), ansTex: `${circ}^\\circ`, deg: true,
-        prompt: fig + `$O$ is the centre of the circle and $\\hat{AOB}=${centre}^\\circ$. $C$ is a point on the circumference on the major arc. Find $\\hat{ACB}$.`,
-        hint: 'The angle at the centre is twice the angle at the circumference, standing on the same arc.',
-        steps: [`$\\hat{ACB}=\\frac12\\hat{AOB}=\\frac12\\times${centre}^\\circ=${circ}^\\circ$ ($\\angle$ at the centre $=2\\angle$ at the circumference, same arc $AB$).`] };
-    }
-    const opp = pick([70, 80, 85, 100, 110]);
-    const other = 180 - opp;
-    const fig = svg(240, 200, C(120, 110, 70) +
-      (() => {
-        const A = pt(120, 110, 70, 200), B = pt(120, 110, 70, 110), C = pt(120, 110, 70, 20), D = pt(120, 110, 70, 290);
-        return L(A.x, A.y, B.x, B.y) + L(B.x, B.y, C.x, C.y) + L(C.x, C.y, D.x, D.y) + L(D.x, D.y, A.x, A.y) +
-          N(A.x, A.y + 14, 'A', 0) + N(B.x + 10, B.y, 'B') + N(C.x, C.y - 10, 'C', 0) + N(D.x - 10, D.y, 'D');
-      })(), 'ABCD is cyclic');
-    return { type: 'geom',
-      statements: statements([
-        ['s1', 'ABCD is a cyclic quadrilateral'],
-        ['s2', `∠A = ${opp}°`],
-        ['s3', `∠C = ${other}°`],
-        ['s4', `∠B = ${opp}°`],
-      ]),
-      reasons: reasons([
-        ['r1', 'given'],
-        ['r2', 'given'],
-        ['r3', 'opp ∠s of cyclic quad'],
-        ['r4', '∠ at the centre = 2∠ at the circumference'],
-      ]),
-      chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
-      prompt: fig + `ABCD is a cyclic quadrilateral and $\\hat A=${opp}^\\circ$. Prove that $\\hat C=${other}^\\circ$.`,
-      hint: 'Opposite angles of a cyclic quadrilateral are supplementary.',
-      steps: [
-        'ABCD is cyclic (given).',
-        `$\\hat A=${opp}^\\circ$ (given).`,
-        `$\\hat C=180^\\circ-${opp}^\\circ=${other}^\\circ$ (opp $\\angle$s of cyclic quad).`,
-      ],
-      ans: `${other} degrees`, ansTex: `${other}^\\circ` };
-  }
-
-  function genEucTanChord(kp) {
-    const k = wantKp(1, kp);
-    if (k === 0) {
-      return { type: 'num', val: 90, ans: '90', ansTex: '90^\\circ', deg: true,
-        prompt: svg(240, 200, C(110, 110, 70) + P(110, 110) + N(110, 100, 'O') +
-          L(110, 110, 180, 110) + L(180, 30, 180, 190) + P(180, 110) + N(190, 110, 'T') + N(190, 40, 'line'),
-          'OT is a radius, the line is a tangent at T') +
-          '$OT$ is a radius and the line is a tangent to the circle at $T$. Find $\\hat{OTP}$ if $P$ is a point on the tangent.',
-        hint: 'A tangent is perpendicular to the radius at the point of contact.',
-        steps: ['$OT\\perp$ tangent at $T$ (tangent $\\perp$ radius).', '$\\hat{OTP}=90^\\circ$.'] };
-    }
-    const alt = pick([30, 35, 40, 50, 55]);
-    const fig = svg(250, 210, C(120, 120, 70) +
-      (() => {
-        const T = pt(120, 120, 70, 10), A = pt(120, 120, 70, 130), B = pt(120, 120, 70, 230);
-        const tx1 = T.x + 40, ty1 = T.y - 80, tx2 = T.x - 30, ty2 = T.y + 60;
-        return L(tx1, ty1, tx2, ty2) + L(T.x, T.y, A.x, A.y) + L(A.x, A.y, B.x, B.y) + L(B.x, B.y, T.x, T.y) +
-          P(T.x, T.y) + P(A.x, A.y) + P(B.x, B.y) + N(T.x + 8, T.y, 'T') + N(A.x - 8, A.y, 'A') + N(B.x, B.y + 16, 'B', 0);
-      })(), 'The line is a tangent at T; TA is a chord');
-    return { type: 'geom',
-      statements: statements([
-        ['s1', 'The line is a tangent at T'],
-        ['s2', `∠TBA = ${alt}°`],
-        ['s3', `∠TAB = ${alt}°`],
-        ['s4', 'OT ⊥ tangent at T'],
-      ]),
-      reasons: reasons([
-        ['r1', 'given'],
-        ['r2', 'given'],
-        ['r3', 'tan-chord theorem'],
-        ['r4', 'tan ⊥ radius'],
-      ]),
-      chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
-      prompt: fig + `The line is a tangent at $T$ and $TA$ is a chord. The angle in the alternate segment $\\hat{TBA}=${alt}^\\circ$. Prove that $\\hat{TAB}=${alt}^\\circ$.`,
-      hint: 'The tan-chord theorem: the angle between a tangent and a chord equals the angle in the alternate segment.',
-      steps: [
-        'The line is a tangent at $T$ (given).',
-        `$\\hat{TBA}=${alt}^\\circ$ (given).`,
-        `$\\hat{TAB}=${alt}^\\circ$ (tan-chord theorem).`,
-      ],
-      ans: `${alt} degrees`, ansTex: `${alt}^\\circ` };
   }
 
   function genEucProportion(kp) {
@@ -1981,117 +2007,8 @@
       ans: 'DE // BC', ansTex: 'DE\\parallel BC' };
   }
 
-  function genEucSimilar(kp) {
-    const k = wantKp(1, kp);
-    const fig = svg(260, 170,
-      L(40, 150, 220, 150) + L(40, 150, 130, 30) + L(220, 150, 130, 30) + L(85, 90, 175, 90) +
-      N(40, 160, 'B', 0) + N(220, 160, 'C', 0) + N(130, 22, 'A', 0) + N(75, 88, 'D') + N(185, 88, 'E'),
-      '$DE\\parallel BC$');
-    if (k === 0) {
-      return { type: 'geom',
-        statements: statements([
-          ['s1', 'DE ∥ BC'],
-          ['s2', '∠ADE = ∠ABC'],
-          ['s3', '∠AED = ∠ACB'],
-          ['s4', '△ADE ~ △ABC'],
-        ]),
-        reasons: reasons([
-          ['r1', 'given'],
-          ['r2', 'corr ∠s, DE ∥ BC'],
-          ['r3', 'corr ∠s, DE ∥ BC'],
-          ['r4', 'AAA similarity'],
-        ]),
-        chain: [
-          { statement: 's1', reason: 'r1' },
-          { statement: 's2', reason: 'r2' },
-          { statement: 's3', reason: 'r3' },
-          { statement: 's4', reason: 'r4' },
-        ],
-        prompt: fig + `In $\\triangle ABC$, $DE\\parallel BC$ with $D$ on $AB$ and $E$ on $AC$. Prove that $\\triangle ADE\\sim\\triangle ABC$.`,
-        hint: 'Corresponding angles are equal because $DE\\parallel BC$. Then use AAA similarity.',
-        steps: [
-          '$DE\\parallel BC$ (given).',
-          '$\\hat{ADE}=\\hat{ABC}$ (corr $\\angle$s, $DE\\parallel BC$).',
-          '$\\hat{AED}=\\hat{ACB}$ (corr $\\angle$s, $DE\\parallel BC$).',
-          '$\\triangle ADE\\sim\\triangle ABC$ (AAA).',
-        ],
-        ans: 'ADE ~ ABC', ansTex: '\\triangle ADE\\sim\\triangle ABC' };
-    }
-    const scale = pick([2, 3, 2]), small = pick([4, 5, 6]);
-    const big = small * scale;
-    return { type: 'num', val: big, ans: String(big), ansTex: String(big),
-      prompt: fig + `$\\triangle ADE\\sim\\triangle ABC$ with scale factor $${scale}$ (from the smaller triangle to the larger). If $DE=${small}$, find $BC$.`,
-      hint: 'Corresponding sides of similar triangles are in the same ratio.',
-      steps: [`$\\dfrac{BC}{DE}=${scale}$, so $BC=${scale}\\times${small}=${big}$.`] };
-  }
-
   function riderPrompt(title, fig, body) {
     return fig + body;
-  }
-
-  function genEucCircleRiders(kp) {
-    const k = wantKp(1, kp);
-    if (k === 0) {
-      const centre = pick([80, 100, 120]), atCirc = centre / 2;
-      const fig = svg(250, 210, C(120, 115, 70) + P(120, 115) + N(120, 105, 'O') +
-        (() => {
-          const A = pt(120, 115, 70, 20), B = pt(120, 115, 70, 160), C = pt(120, 115, 70, 250);
-          return L(120, 115, A.x, A.y) + L(120, 115, B.x, B.y) + L(A.x, A.y, C.x, C.y) + L(B.x, B.y, C.x, C.y) +
-            N(A.x + 8, A.y, 'A') + N(B.x - 8, B.y, 'B') + N(C.x, C.y + 14, 'C', 0);
-        })(), 'O is the centre');
-      return { type: 'geom',
-        statements: statements([
-          ['s1', 'O is the centre'],
-          ['s2', `∠AOB = ${centre}°`],
-          ['s3', `∠ACB = ${atCirc}°`],
-          ['s4', `∠ACB = ${centre}°`],
-        ]),
-        reasons: reasons([
-          ['r1', 'given'],
-          ['r2', 'given'],
-          ['r3', '∠ at the centre = 2∠ at the circumference'],
-          ['r4', 'opp ∠s of cyclic quad'],
-        ]),
-        chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
-        prompt: fig + `$O$ is the centre and $\\hat{AOB}=${centre}^\\circ$. $C$ lies on the major arc. Prove that $\\hat{ACB}=${atCirc}^\\circ$.`,
-        hint: 'The angle at the centre is twice the angle at the circumference, standing on the same arc.',
-        steps: [
-          '$O$ is the centre (given).',
-          `$\\hat{AOB}=${centre}^\\circ$ (given).`,
-          `$\\hat{ACB}=\\frac12\\times${centre}^\\circ=${atCirc}^\\circ$ ($\\angle$ at the centre $=2\\angle$ at the circumference).`,
-        ],
-        ans: `${atCirc} degrees`, ansTex: `${atCirc}^\\circ` };
-    }
-    const a = pick([70, 80, 85]);
-    const c = 180 - a;
-    const fig = svg(240, 200, C(120, 110, 70) +
-      (() => {
-        const A = pt(120, 110, 70, 200), B = pt(120, 110, 70, 110), C = pt(120, 110, 70, 20), D = pt(120, 110, 70, 290);
-        return L(A.x, A.y, B.x, B.y) + L(B.x, B.y, C.x, C.y) + L(C.x, C.y, D.x, D.y) + L(D.x, D.y, A.x, A.y) +
-          N(A.x, A.y + 14, 'A', 0) + N(B.x + 10, B.y, 'B') + N(C.x, C.y - 10, 'C', 0) + N(D.x - 10, D.y, 'D');
-      })(), 'ABCD is cyclic');
-    return { type: 'geom',
-      statements: statements([
-        ['s1', 'ABCD is a cyclic quadrilateral'],
-        ['s2', `∠A = ${a}°`],
-        ['s3', `∠C = ${c}°`],
-        ['s4', `∠C = ${a}°`],
-      ]),
-      reasons: reasons([
-        ['r1', 'given'],
-        ['r2', 'given'],
-        ['r3', 'opp ∠s of cyclic quad'],
-        ['r4', 'tan-chord theorem'],
-      ]),
-      chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
-      prompt: fig + `In cyclic quadrilateral $ABCD$, $\\hat A=${a}^\\circ$. Prove that $\\hat C=${c}^\\circ$.`,
-      hint: 'Opposite angles of a cyclic quadrilateral add to $180^\\circ$.',
-      steps: [
-        'ABCD is cyclic (given).',
-        `$\\hat A=${a}^\\circ$ (given).`,
-        `$\\hat C=180^\\circ-${a}^\\circ=${c}^\\circ$ (opp $\\angle$s of cyclic quad).`,
-      ],
-      ans: `${c} degrees`, ansTex: `${c}^\\circ` };
   }
 
   function genEucSimilarRiders(kp) {
@@ -2132,75 +2049,475 @@
       ans: String(p), ansTex: String(p) };
   }
 
+  // ---- Grade 12 Euclidean geometry: circles and similar triangles ----
+  // Each knowledge point mixes several kinds of item (find a length or angle,
+  // name the reason, build a proof chain) with continuous number ranges.
+  const GR12_REV = 'gr12geo-v1';
+  const TRIPLES = [[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25], [20, 21, 29], [9, 40, 41]];
+  // A right triangle with whole sides: d and h the legs, r the hypotenuse.
+  function triple(maxR = 41) {
+    for (;;) {
+      const [a, b, c] = pick(TRIPLES), k = R(1, 3);
+      if (c * k > maxR) continue;
+      return Math.random() < 0.5 ? { d: a * k, h: b * k, r: c * k } : { d: b * k, h: a * k, r: c * k };
+    }
+  }
+  function chainQ(fig, prompt, rows, distractS, distractR, ans, ansTex, hint) {
+    const uniq = [...new Set(rows.map(r => r[1]))];
+    return { type: 'geom',
+      statements: statements(rows.map(([s], i) => ['s' + (i + 1), s]).concat([['s9', distractS]])),
+      reasons: reasons(uniq.map((t, i) => ['r' + (i + 1), t]).concat([['r9', distractR]])),
+      chain: rows.map(([, r], i) => ({ statement: 's' + (i + 1), reason: 'r' + (uniq.indexOf(r) + 1) })),
+      prompt: fig + prompt + ' Add each statement with its reason, in order.', hint,
+      steps: rows.map(([s, r]) => `${s} (${r}).`), ans, ansTex };
+  }
+  function reasonMC(fig, prompt, right, pool, hint, steps) {
+    const opts = shuffle([right].concat(shuffle(pool.filter(r => r !== right)).slice(0, 3))).map(t => ({ tex: t, ok: t === right }));
+    return { type: 'mc', options: opts, prompt: fig + prompt, hint, steps, ans: right, ansTex: `\\text{${right}}` };
+  }
+  const CIRCLE_REASONS = ['line from centre ⊥ to chord', 'line from centre to midpt of chord', 'radii', 'tan ⊥ radius',
+    '∠ at centre = 2 × ∠ at circum', '∠ in semi-circle', '∠s in the same seg', 'opp ∠s of cyclic quad', 'ext ∠ of cyclic quad',
+    'tan chord theorem', 'tans from common pt', 'opp ∠s of quad suppl'];
+  const algebra = (val, prompt, hint, steps) => ({ type: 'num', val, ans: String(val), ansTex: `x=${val}`, prompt, hint, steps });
+  const tag = q => { q.genRev = GR12_REV; return q; };
+  const sgn = n => n < 0 ? `-${-n}` : `+${n}`;
+
+  function genEucChords(kp) {
+    const k = wantKp(1, kp);
+    const t = triple();
+    if (k === 0) {
+      const v = R(0, 5);
+      if (v === 0) return tag(lenNum(t.d, FIG.chord({ oa: true, lens: [['OA', `${t.r}`], ['AB', `${2 * t.h}`], ['OM', '?']] }) +
+        `$O$ is the centre of the circle and $OM\\perp AB$. $OA=${t.r}$ cm and $AB=${2 * t.h}$ cm. Find $OM$.`,
+        'The perpendicular from the centre cuts the chord in half, so $AM=\\frac12 AB$. Then use Pythagoras in $\\triangle OMA$.',
+        [`$AM=\\frac12 AB=${t.h}$ cm (line from centre ⊥ to chord).`, `$OM^2=OA^2-AM^2=${t.r}^2-${t.h}^2=${t.d * t.d}$ (Pythagoras).`, `$OM=${t.d}$ cm.`]));
+      if (v === 1) return tag(lenNum(2 * t.h, FIG.chord({ oa: true, lens: [['OA', `${t.r}`], ['OM', `${t.d}`], ['AB', '?']] }) +
+        `$O$ is the centre of the circle and $OM\\perp AB$. $OA=${t.r}$ cm and $OM=${t.d}$ cm. Find the length of chord $AB$.`,
+        'Find $AM$ with Pythagoras in $\\triangle OMA$. The perpendicular from the centre halves the chord, so $AB=2AM$.',
+        [`$AM^2=OA^2-OM^2=${t.r}^2-${t.d}^2=${t.h * t.h}$ (Pythagoras).`, `$AM=${t.h}$ cm.`, `$AB=2AM=${2 * t.h}$ cm (line from centre ⊥ to chord).`]));
+      if (v === 2) return tag(lenNum(t.r, FIG.chord({ oa: true, lens: [['AB', `${2 * t.h}`], ['OM', `${t.d}`], ['OA', '?']] }) +
+        `$O$ is the centre of the circle and $OM\\perp AB$. $AB=${2 * t.h}$ cm and $OM=${t.d}$ cm. Find the radius.`,
+        'The radius is $OA$. Halve the chord first, then use Pythagoras.',
+        [`$AM=\\frac12 AB=${t.h}$ cm (line from centre ⊥ to chord).`, `$OA^2=OM^2+AM^2=${t.d}^2+${t.h}^2=${t.r * t.r}$ (Pythagoras).`, `Radius $OA=${t.r}$ cm.`]));
+      if (v === 3) {
+        const kk = t.r - t.d;
+        return tag(algebra(t.d, FIG.chord({ oa: true, lens: [['OA', `x+${kk}`], ['OM', 'x'], ['AB', `${2 * t.h}`]] }) +
+          `$O$ is the centre and $OM\\perp AB$. $OM=x$ cm, the radius is $(x+${kk})$ cm and $AB=${2 * t.h}$ cm. Find $x$.`,
+          'Halve the chord, then write Pythagoras in $\\triangle OMA$ with the algebra. The $x^2$ terms cancel.',
+          [`$AM=${t.h}$ cm (line from centre ⊥ to chord).`, `$(x+${kk})^2=x^2+${t.h}^2$ (Pythagoras).`, `$${2 * kk}x+${kk * kk}=${t.h * t.h}$, so $x=${t.d}$.`]));
+      }
+      if (v === 4) {
+        const SETS = [[5, [[3, 4], [4, 3]]], [10, [[6, 8], [8, 6]]], [13, [[5, 12], [12, 5]]], [15, [[9, 12], [12, 9]]], [17, [[8, 15], [15, 8]]],
+          [20, [[12, 16], [16, 12]]], [25, [[7, 24], [24, 7], [15, 20], [20, 15]]]];
+        const [r, list] = pick(SETS), [p1, p2] = shuffle(list.slice()).slice(0, 2), same = Math.random() < 0.4 && p1[0] !== p2[0];
+        const [d1, h1] = p1, [d2, h2] = p2, dist = same ? Math.abs(d1 - d2) : d1 + d2;
+        return tag(lenNum(dist, FIG.twoChords(r, d1, d2, same) +
+          `$AB\\parallel CD$ are chords of a circle with centre $O$ and radius ${r} cm, on ${same ? 'the same side' : 'opposite sides'} of $O$. $AB=${2 * h1}$ cm and $CD=${2 * h2}$ cm. $M$ and $N$ are their midpoints, and $O$, $M$, $N$ lie on one line perpendicular to both chords. Find the distance $MN$ between the chords.`,
+          'Find each chord’s distance from the centre with Pythagoras, then add them (opposite sides) or subtract (same side).',
+          [`$AM=${h1}$ cm, so $OM=\\sqrt{${r}^2-${h1}^2}=${d1}$ cm (line from centre ⊥ to chord; Pythagoras).`,
+            `$CN=${h2}$ cm, so $ON=\\sqrt{${r}^2-${h2}^2}=${d2}$ cm (line from centre ⊥ to chord; Pythagoras).`,
+            same ? `$MN=${Math.max(d1, d2)}-${Math.min(d1, d2)}=${dist}$ cm.` : `$MN=OM+ON=${d1}+${d2}=${dist}$ cm.`]));
+      }
+      return tag(reasonMC(FIG.chord({ oa: false }), '$O$ is the centre and $OM\\perp AB$. Which reason gives $AM=MB$?',
+        'line from centre ⊥ to chord', CIRCLE_REASONS.concat(['given']),
+        'You are told the line from the centre is perpendicular. Which theorem starts from that?',
+        ['$OM\\perp AB$ (given).', '$AM=MB$ (line from centre ⊥ to chord).']));
+    }
+    const v = R(0, 4);
+    if (v === 0) {
+      const a = R(25, 65), phi = 90 - a;
+      return tag(angNum(phi, FIG.chord({ a1: 270 - phi, a2: 270 + phi, oa: true, ticks: true, right: false, arcs: [['OAM', `${a}°`], ['AOM', '?']] }) +
+        `$O$ is the centre and $M$ is the midpoint of chord $AB$. $O\\hat AM=${deg(a)}$. Find $A\\hat OM$.`,
+        'The line from the centre to the midpoint of a chord is perpendicular to it, so $O\\hat MA=90^\\circ$.',
+        ['$OM\\perp AB$ (line from centre to midpt of chord).', `$A\\hat OM=180^\\circ-90^\\circ-${deg(a)}=${deg(phi)}$ (sum of ∠s in △).`]));
+    }
+    if (v === 1) return tag(lenNum(t.d, FIG.chord({ oa: true, ticks: true, right: false, lens: [['OA', `${t.r}`], ['OM', '?']] }) +
+      `$O$ is the centre and $M$ is the midpoint of chord $AB$. The radius is ${t.r} cm and $AB=${2 * t.h}$ cm. Find $OM$.`,
+      'First say why $O\\hat MA=90^\\circ$. Then use Pythagoras.',
+      ['$OM\\perp AB$ (line from centre to midpt of chord).', `$AM=${t.h}$ cm, so $OM^2=${t.r}^2-${t.h}^2=${t.d * t.d}$ (Pythagoras).`, `$OM=${t.d}$ cm.`]));
+    if (v === 2) return tag(lenNum(t.r - t.d, FIG.chord({ oa: true, ticks: true, right: false, ext: true, lens: [['OA', `${t.r}`]] }) +
+      `$O$ is the centre and $M$ is the midpoint of chord $AB$, with $AB=${2 * t.h}$ cm and radius ${t.r} cm. $OM$ is extended to meet the circle at $P$. Find $MP$.`,
+      '$OP$ is a radius. Find $OM$ first, then $MP=OP-OM$.',
+      ['$OM\\perp AB$ (line from centre to midpt of chord).', `$OM^2=${t.r}^2-${t.h}^2$, so $OM=${t.d}$ cm (Pythagoras).`, `$OP=${t.r}$ cm (radii).`, `$MP=${t.r}-${t.d}=${t.r - t.d}$ cm.`]));
+    if (v === 3) {
+      const phi = R(25, 65);
+      return tag(chainQ(FIG.chord({ a1: 270 - phi, a2: 270 + phi, oa: true, ticks: true, right: false, arcs: [['AOM', `${phi}°`]] }),
+        `$O$ is the centre, $M$ is the midpoint of chord $AB$ and $A\\hat OM=${deg(phi)}$. Prove that $O\\hat AM=${deg(90 - phi)}$.`,
+        [['AM = MB', 'given'], ['OM ⊥ AB', 'line from centre to midpt of chord'], [`∠OAM = ${90 - phi}°`, 'sum of ∠s in △']],
+        'OM = MB', 'tan ⊥ radius', `${90 - phi} degrees`, `${90 - phi}^\\circ`,
+        'Start with what is given, then the right angle and its reason, then the angle sum.'));
+    }
+    return tag(reasonMC(FIG.chord({ ticks: true, right: false }), '$O$ is the centre and $M$ is the midpoint of chord $AB$. Which reason gives $OM\\perp AB$?',
+      'line from centre to midpt of chord', CIRCLE_REASONS.concat(['given']),
+      'Here you are told $M$ is the midpoint. Which theorem starts from a midpoint?',
+      ['$AM=MB$ (given).', '$OM\\perp AB$ (line from centre to midpt of chord).']));
+  }
+
+  function genEucCyclic(kp) {
+    const k = wantKp(1, kp);
+    if (k === 0) {
+      const v = R(0, 5);
+      if (v === 0 || v === 1) {
+        const c = R(20, 70), th = 2 * c, C = R(70, 110);
+        if (v === 0) return tag(angNum(c, FIG.centre(th, { c: C, arcs: [['AOB', `${th}°`, { r: 16 }], ['ACB', '?', { r: 16 }]] }) +
+          `$O$ is the centre and $A\\hat OB=${deg(th)}$. $C$ is on the circle, on the major arc. Find $A\\hat CB$.`,
+          'Both angles stand on arc $AB$. The one at the centre is twice the one at the circle.',
+          [`$A\\hat CB=\\frac12 A\\hat OB=\\frac12\\times${deg(th)}=${deg(c)}$ (∠ at centre = 2 × ∠ at circum).`]));
+        return tag(angNum(th, FIG.centre(th, { c: C, arcs: [['AOB', '?', { r: 16 }], ['ACB', `${c}°`, { r: 16 }]] }) +
+          `$O$ is the centre and $A\\hat CB=${deg(c)}$, with $C$ on the major arc. Find $A\\hat OB$.`,
+          'The angle at the centre is twice the angle at the circle standing on the same arc.',
+          [`$A\\hat OB=2A\\hat CB=2\\times${deg(c)}=${deg(th)}$ (∠ at centre = 2 × ∠ at circum).`]));
+      }
+      if (v === 2) {
+        const b = R(20, 65), th = 180 - 2 * b;
+        return tag(angNum(90 - b, FIG.centre(th, { ab: true, arcs: [['OAB', `${b}°`, { r: 20 }], ['ACB', '?', { r: 16 }]] }) +
+          `$O$ is the centre and $O\\hat AB=${deg(b)}$. $C$ is on the major arc. Find $A\\hat CB$.`,
+          '$OA$ and $OB$ are radii, so $\\triangle OAB$ is isosceles. Find $A\\hat OB$ first.',
+          ['$OA=OB$ (radii).', `$O\\hat BA=O\\hat AB=${deg(b)}$ (∠s opp equal sides).`, `$A\\hat OB=180^\\circ-2\\times${deg(b)}=${deg(th)}$ (sum of ∠s in △).`,
+            `$A\\hat CB=\\frac12\\times${deg(th)}=${deg(90 - b)}$ (∠ at centre = 2 × ∠ at circum).`]));
+      }
+      if (v === 3) {
+        const a = R(20, 70);
+        return tag(angNum(90 - a, FIG.semi(a, { arcs: [['CAB', `${a}°`, { r: 22 }], ['CBA', '?', { r: 22 }]] }) +
+          `$AB$ is a diameter of the circle with centre $O$, and $C$ is on the circle. $C\\hat AB=${deg(a)}$. Find $C\\hat BA$.`,
+          'An angle standing on a diameter is $90^\\circ$. Then use the angle sum.',
+          ['$A\\hat CB=90^\\circ$ (∠ in semi-circle).', `$C\\hat BA=180^\\circ-90^\\circ-${deg(a)}=${deg(90 - a)}$ (sum of ∠s in △).`]));
+      }
+      if (v === 4) {
+        const c = R(25, 70), th = 2 * c;
+        return tag(angNum(c, FIG.centre(th, { c: 125, d: 55, arcs: [['ACB', `${c}°`, { r: 16 }], ['ADB', '?', { r: 16 }]] }) +
+          `$C$ and $D$ are on the major arc $AB$ of a circle with centre $O$. $A\\hat CB=${deg(c)}$. Find $A\\hat DB$.`,
+          'Both angles stand on the same arc $AB$, on the same side of it.',
+          [`$A\\hat DB=A\\hat CB=${deg(c)}$ (∠s in the same seg).`]));
+      }
+      const x = R(10, 30), m = R(5, 25), c = x + m, th = 2 * c, kk = th - 4 * x;
+      if (c > 80) return genEucCyclic(0);
+      return tag(algebra(x, FIG.centre(th, { arcs: [['AOB', `4x${sgn(kk)}°`, { r: 16 }], ['ACB', `x+${m}°`, { r: 16 }]] }) +
+        `$O$ is the centre. $A\\hat OB=4x${sgn(kk)}^\\circ$ and $A\\hat CB=x+${m}^\\circ$, with $C$ on the major arc. Find $x$.`,
+        'Write “angle at the centre = 2 × angle at the circle” as an equation.',
+        [`$4x${sgn(kk)}=2(x+${m})$ (∠ at centre = 2 × ∠ at circum).`, `$2x=${2 * m - kk}$, so $x=${x}$.`]));
+    }
+    const v = R(0, 5);
+    if (v === 0) {
+      const a = R(62, 128);
+      return tag(angNum(180 - a, FIG.cyclic(a, { arcs: [['DAB', `${a}°`], ['BCD', '?']] }) +
+        `$ABCD$ is a cyclic quadrilateral and $\\hat A=${deg(a)}$. Find $\\hat C$.`,
+        'Opposite angles of a cyclic quadrilateral add up to $180^\\circ$.',
+        [`$\\hat C=180^\\circ-${deg(a)}=${deg(180 - a)}$ (opp ∠s of cyclic quad).`]));
+    }
+    if (v === 1) {
+      const a = R(62, 128);
+      return tag(angNum(a, FIG.cyclic(a, { ext: true, arcs: [['DAB', `${a}°`], ['BCE', '?']] }) +
+        `$ABCD$ is a cyclic quadrilateral with $DC$ extended to $E$. $\\hat A=${deg(a)}$. Find $B\\hat CE$.`,
+        'An exterior angle of a cyclic quadrilateral equals the interior angle opposite it.',
+        [`$B\\hat CE=\\hat A=${deg(a)}$ (ext ∠ of cyclic quad).`]));
+    }
+    if (v === 2) {
+      const x = R(15, 35), p = R(5, 30), A = 2 * x + p, Cc = 180 - A, q = Cc - 3 * x;
+      if (A < 55 || A > 125) return genEucCyclic(1);
+      return tag(algebra(x, FIG.cyclic(A, { arcs: [['DAB', `2x+${p}°`], ['BCD', `3x${sgn(q)}°`]] }) +
+        `$ABCD$ is a cyclic quadrilateral with $\\hat A=2x+${p}^\\circ$ and $\\hat C=3x${sgn(q)}^\\circ$. Find $x$.`,
+        'Opposite angles of a cyclic quadrilateral add up to $180^\\circ$. Add them and solve.',
+        [`$(2x+${p})+(3x${sgn(q)})=180^\\circ$ (opp ∠s of cyclic quad).`, `$5x=${180 - p - q}$, so $x=${x}$.`]));
+    }
+    const tt = R(35, 80);
+    if (v === 3) return tag(angNum(180 - tt, FIG.cyclic(tt, { centre: true, arcs: [['BOD', `${2 * tt}°`, { r: 16 }], ['BCD', '?']] }) +
+      `$O$ is the centre and $ABCD$ is a cyclic quadrilateral. $B\\hat OD=${deg(2 * tt)}$. Find $B\\hat CD$.`,
+      'Find $\\hat A$ first: it stands on the same arc as $B\\hat OD$. Then use the cyclic quadrilateral.',
+      [`$\\hat A=\\frac12\\times${deg(2 * tt)}=${deg(tt)}$ (∠ at centre = 2 × ∠ at circum).`, `$B\\hat CD=180^\\circ-${deg(tt)}=${deg(180 - tt)}$ (opp ∠s of cyclic quad).`]));
+    if (v === 4) return tag(chainQ(FIG.cyclic(tt, { centre: true, arcs: [['BOD', `${2 * tt}°`, { r: 16 }]] }),
+      `$O$ is the centre, $ABCD$ is cyclic and $B\\hat OD=${deg(2 * tt)}$. Prove that $\\hat C=${deg(180 - tt)}$.`,
+      [[`∠BOD = ${2 * tt}°`, 'given'], [`∠A = ${tt}°`, '∠ at centre = 2 × ∠ at circum'], [`∠C = ${180 - tt}°`, 'opp ∠s of cyclic quad']],
+      `∠C = ${tt}°`, 'ext ∠ of cyclic quad', `${180 - tt} degrees`, `${180 - tt}^\\circ`,
+      'Go from the centre to the circle first, then across the quadrilateral.'));
+    const ext = Math.random() < 0.5, a = R(65, 120);
+    return tag(reasonMC(FIG.cyclic(a, { ext }), ext ? '$ABCD$ is cyclic and $DC$ is extended to $E$. Which reason gives $B\\hat CE=\\hat A$?' : '$ABCD$ is cyclic. Which reason gives $\\hat A+\\hat C=180^\\circ$?',
+      ext ? 'ext ∠ of cyclic quad' : 'opp ∠s of cyclic quad', CIRCLE_REASONS,
+      ext ? 'The angle is outside the quadrilateral, next to $\\hat C$.' : 'The two angles are opposite each other in a quadrilateral whose corners are on the circle.',
+      [ext ? '$B\\hat CE=\\hat A$ (ext ∠ of cyclic quad).' : '$\\hat A+\\hat C=180^\\circ$ (opp ∠s of cyclic quad).']));
+  }
+
+  function genEucTanChord(kp) {
+    const k = wantKp(1, kp);
+    if (k === 0) {
+      const v = R(0, 5);
+      if (v <= 1) {
+        let t;
+        do { t = triple(41); } while (t.h / t.d > 2.2 || t.h / t.d < 0.4);
+        const th = Math.atan(t.h / t.d) * 180 / Math.PI;
+        if (v === 0) return tag(lenNum(t.h, FIG.tangent(th, { lens: [['OT', `${t.d}`], ['OP', `${t.r}`], ['TP', '?']] }) +
+          `$PT$ is a tangent to the circle with centre $O$ at $T$. $OT=${t.d}$ cm and $OP=${t.r}$ cm. Find $PT$.`,
+          'The radius $OT$ meets the tangent at $90^\\circ$, so $\\triangle OTP$ is right-angled at $T$.',
+          ['$O\\hat TP=90^\\circ$ (tan ⊥ radius).', `$PT^2=OP^2-OT^2=${t.r}^2-${t.d}^2=${t.h * t.h}$ (Pythagoras).`, `$PT=${t.h}$ cm.`]));
+        return tag(lenNum(t.r, FIG.tangent(th, { lens: [['OT', `${t.d}`], ['TP', `${t.h}`], ['OP', '?']] }) +
+          `$PT$ is a tangent to the circle with centre $O$ at $T$. The radius is ${t.d} cm and $PT=${t.h}$ cm. Find $OP$.`,
+          'The tangent is perpendicular to the radius, so $OP$ is the hypotenuse.',
+          ['$O\\hat TP=90^\\circ$ (tan ⊥ radius).', `$OP^2=${t.d}^2+${t.h}^2=${t.r * t.r}$ (Pythagoras).`, `$OP=${t.r}$ cm.`]));
+      }
+      if (v === 2) {
+        const th = R(30, 62);
+        return tag(angNum(90 - th, FIG.tangent(th, { arcs: [['TOP', `${th}°`, { r: 18 }], ['OPT', '?', { r: 30 }]] }) +
+          `$PT$ is a tangent at $T$ to the circle with centre $O$. $T\\hat OP=${deg(th)}$. Find $O\\hat PT$.`,
+          'The tangent meets the radius at $90^\\circ$. Then use the angle sum in $\\triangle OTP$.',
+          ['$O\\hat TP=90^\\circ$ (tan ⊥ radius).', `$O\\hat PT=180^\\circ-90^\\circ-${deg(th)}=${deg(90 - th)}$ (sum of ∠s in △).`]));
+      }
+      if (v === 3) {
+        const p = 2 * R(20, 50);
+        return tag(angNum(90 - p / 2, FIG.twoTangents(p, { ab: true, arcs: [['APB', `${p}°`, { r: 26 }], ['PAB', '?', { r: 18 }]] }) +
+          `$PA$ and $PB$ are tangents from $P$ to the circle with centre $O$. $A\\hat PB=${deg(p)}$. Find $P\\hat AB$.`,
+          'Tangents from the same point are equal, so $\\triangle PAB$ is isosceles.',
+          ['$PA=PB$ (tans from common pt).', '$P\\hat AB=P\\hat BA$ (∠s opp equal sides).', `$P\\hat AB=(180^\\circ-${deg(p)})\\div2=${deg(90 - p / 2)}$ (sum of ∠s in △).`]));
+      }
+      if (v === 4) {
+        const q = R(80, 140);
+        return tag(angNum(180 - q, FIG.twoTangents(180 - q, { radii: true, ticks: false, arcs: [['AOB', `${q}°`, { r: 18 }], ['APB', '?', { r: 26 }]] }) +
+          `$PA$ and $PB$ are tangents to the circle with centre $O$. $A\\hat OB=${deg(q)}$. Find $A\\hat PB$.`,
+          'Both radii meet their tangents at $90^\\circ$, and the four angles of $OAPB$ add up to $360^\\circ$.',
+          ['$O\\hat AP=O\\hat BP=90^\\circ$ (tan ⊥ radius).', `$A\\hat PB=360^\\circ-90^\\circ-90^\\circ-${deg(q)}=${deg(180 - q)}$ (sum of ∠s in quad).`]));
+      }
+      const a = R(2, 3), x = R(3, 12), b = R(1, 9), d = (a - 1) * x - b;
+      if (d <= 0) return genEucTanChord(0);
+      return tag(algebra(x, FIG.twoTangents(60) +
+        `$PA$ and $PB$ are tangents from $P$. $PA=(${a}x-${b})$ cm and $PB=(x+${d})$ cm. Find $x$.`,
+        'Tangents from the same outside point are equal. Set them equal and solve.',
+        [`$${a}x-${b}=x+${d}$ (tans from common pt).`, `$${a - 1 === 1 ? '' : a - 1}x=${d + b}$, so $x=${x}$.`]));
+    }
+    const s = R(30, 70), b = R(Math.max(30, 95 - s), 150 - s), u = 180 - s - b;
+    const v = R(0, 5);
+    if (v === 0) return tag(angNum(s, FIG.tanChord(s, b, { arcs: [['STA', `${s}°`, { r: 26 }], ['TBA', '?', { r: 18 }]] }) +
+      `$QS$ is a tangent to the circle at $T$. $S\\hat TA=${deg(s)}$. Find $T\\hat BA$.`,
+      'The angle between the tangent and chord $TA$ equals the angle on the other side of the chord, at $B$.',
+      [`$T\\hat BA=S\\hat TA=${deg(s)}$ (tan chord theorem).`]));
+    if (v === 1) return tag(angNum(s, FIG.tanChord(s, b, { arcs: [['STA', '?', { r: 26 }], ['TBA', `${s}°`, { r: 18 }]] }) +
+      `$QS$ is a tangent to the circle at $T$. $T\\hat BA=${deg(s)}$. Find $S\\hat TA$.`,
+      '$T\\hat BA$ stands on chord $TA$, in the segment on the other side of $TA$ from $S$.',
+      [`$S\\hat TA=T\\hat BA=${deg(s)}$ (tan chord theorem).`]));
+    if (v === 2) return tag(angNum(u, FIG.tanChord(s, b, { arcs: [['STA', `${s}°`, { r: 26 }], ['ATB', `${b}°`, { r: 20 }], ['TAB', '?', { r: 18 }]] }) +
+      `$QS$ is a tangent at $T$. $S\\hat TA=${deg(s)}$ and $A\\hat TB=${deg(b)}$. Find $T\\hat AB$.`,
+      'Move the tangent angle into the triangle with the tan chord theorem, then use the angle sum.',
+      [`$T\\hat BA=${deg(s)}$ (tan chord theorem).`, `$T\\hat AB=180^\\circ-${deg(b)}-${deg(s)}=${deg(u)}$ (sum of ∠s in △).`]));
+    if (v === 3) return tag(angNum(u, FIG.tanChord(s, b, { arcs: [['TAB', `${u}°`, { r: 18 }], ['QTB', '?', { r: 26 }]] }) +
+      `$QS$ is a tangent at $T$. $T\\hat AB=${deg(u)}$. Find $Q\\hat TB$.`,
+      'The angle between the tangent and chord $TB$ equals the angle at $A$, across chord $TB$.',
+      [`$Q\\hat TB=T\\hat AB=${deg(u)}$ (tan chord theorem).`]));
+    if (v === 4) return tag(chainQ(FIG.tanChord(s, b, { arcs: [['STA', `${s}°`, { r: 26 }], ['ATB', `${b}°`, { r: 20 }]] }),
+      `$QS$ is a tangent at $T$, $S\\hat TA=${deg(s)}$ and $A\\hat TB=${deg(b)}$. Prove that $T\\hat AB=${deg(u)}$.`,
+      [[`∠STA = ${s}°`, 'given'], [`∠TBA = ${s}°`, 'tan chord theorem'], [`∠TAB = ${u}°`, 'sum of ∠s in △']],
+      `∠TAB = ${s}°`, 'tan ⊥ radius', `${u} degrees`, `${u}^\\circ`, 'Use the tangent angle first, then the triangle.'));
+    const opts = shuffle(['∠TBA', '∠TAB', '∠ATB', '∠QTB']).map(t2 => ({ tex: t2, ok: t2 === '∠TBA' }));
+    return tag({ type: 'mc', options: opts, prompt: FIG.tanChord(s, b, { arcs: [['STA', `${s}°`, { r: 26 }]] }) +
+      `$QS$ is a tangent at $T$. Which angle must equal $S\\hat TA$?`,
+      hint: 'Look across chord $TA$ to the angle in the other segment: it stands on $TA$.',
+      steps: [`$T\\hat BA=S\\hat TA$ (tan chord theorem): both stand on chord $TA$, on opposite sides of it.`], ans: '∠TBA', ansTex: '\\angle TBA' });
+  }
+
+  function genEucSimilar(kp) {
+    const k = wantKp(1, kp);
+    const b = R(48, 75), c = R(42, 70), a = 180 - b - c;
+    if (k === 0) {
+      const v = R(0, 4);
+      if (v === 0) {
+        const n2 = pick(['DEF', 'PQR', 'KLM', 'XYZ']);
+        const right = `△ABC ||| △${n2}`;
+        const wrong = [`△ABC ||| △${n2[1]}${n2[0]}${n2[2]}`, `△ABC ||| △${n2[0]}${n2[2]}${n2[1]}`, `△ABC ≡ △${n2}`];
+        const opts = shuffle([right].concat(wrong)).map(t2 => ({ tex: t2, ok: t2 === right }));
+        return tag({ type: 'mc', options: opts, prompt: FIG.simPair(b, c, pick([1.4, 1.6, 1.8]), { n2 }) +
+          `In the diagram, $\\hat A=\\hat ${n2[0]}$ (one arc) and $\\hat C=\\hat ${n2[2]}$ (two arcs). Which statement is correct?`,
+          hint: 'Match the letters in order: the vertex with one arc first, then the unmarked one, then the one with two arcs. Different sizes means similar, not congruent.',
+          steps: [`$\\hat B=\\hat ${n2[1]}$ (sum of ∠s in △).`, `${right} (∠∠∠).`], ans: right, ansTex: `\\text{${right}}` });
+      }
+      if (v === 1) return tag(angNum(b, FIG.simPair(b, c, 1.5, { l1: `${a}°`, l4: `${c}°`, arcs: [['DEF', '?', { r: 20 }]] }) +
+        `$\\triangle ABC\\,|||\\,\\triangle DEF$. $\\hat A=${deg(a)}$ and $\\hat F=${deg(c)}$. Find $\\hat E$.`,
+        'Similar triangles have equal corresponding angles, so $\\hat D=\\hat A$. Then use the angle sum in $\\triangle DEF$.',
+        [`$\\hat D=\\hat A=${deg(a)}$ (|||△s).`, `$\\hat E=180^\\circ-${deg(a)}-${deg(c)}=${deg(b)}$ (sum of ∠s in △).`]));
+      if (v === 2) return tag(chainQ(FIG.simNested(b, c, pick([0.4, 0.5, 0.6])),
+        'In $\\triangle ABC$, $D$ is on $AB$ and $E$ is on $AC$ with $DE\\parallel BC$. Prove that $\\triangle ADE\\,|||\\,\\triangle ABC$.',
+        [['∠ADE = ∠ABC', 'corresp ∠s; DE ∥ BC'], ['∠AED = ∠ACB', 'corresp ∠s; DE ∥ BC'], ['∠A = ∠A', 'common'], ['△ADE ||| △ABC', '∠∠∠']],
+        '△ADE ≡ △ABC', 'SAS', 'ADE similar ABC', '\\triangle ADE\\,|||\\,\\triangle ABC',
+        'Find three pairs of equal angles: two from the parallel lines and one shared.'));
+      if (v === 3) {
+        const right = 'two pairs of equal angles';
+        const opts = shuffle([right, 'one pair of equal angles', 'one pair of equal sides', 'the same perimeter']).map(t2 => ({ tex: t2, ok: t2 === right }));
+        return tag({ type: 'mc', options: opts, prompt: FIG.simPair(b, c, 1.6, { n2: 'PQR' }) + 'What is the least you need to show to prove two triangles similar by ∠∠∠?',
+          hint: 'If two angles match, the third must match too, because each triangle’s angles add up to $180^\\circ$.',
+          steps: ['Two pairs of equal angles force the third pair to be equal (sum of ∠s in △), so all three match (∠∠∠).'], ans: right, ansTex: `\\text{${right}}` });
+      }
+      return tag(angNum(c, FIG.simNested(b, c, 0.5, { arcs: [['BAC', `${a}°`, { r: 16 }], ['ABC', `${b}°`], ['AED', '?']] }) +
+        `In $\\triangle ABC$, $DE\\parallel BC$, $\\hat A=${deg(a)}$ and $\\hat B=${deg(b)}$. Find $A\\hat ED$.`,
+        'Find $\\hat C$ with the angle sum, then carry it up to $E$ along the parallel lines.',
+        [`$\\hat C=180^\\circ-${deg(a)}-${deg(b)}=${deg(c)}$ (sum of ∠s in △).`, `$A\\hat ED=\\hat C=${deg(c)}$ (corresp ∠s; DE ∥ BC).`]));
+    }
+    const v = R(0, 4);
+    if (v === 0) {
+      const [nu, de] = pick([[3, 2], [2, 1], [5, 2], [3, 1], [4, 3], [5, 3], [1, 2], [2, 3]]);
+      const m1 = R(2, 6), m2 = R(2, 6), AB = de * m1, DE = nu * m1, BC = de * m2, EF = nu * m2;
+      return tag(lenNum(EF, FIG.simPair(b, c, Math.max(0.6, Math.min(1.9, nu / de)), { lens: [['AB', `${AB}`], ['BC', `${BC}`], ['DE', `${DE}`], ['EF', '?']] }) +
+        `$\\triangle ABC\\,|||\\,\\triangle DEF$ with $AB=${AB}$, $BC=${BC}$ and $DE=${DE}$ (cm). Find $EF$.`,
+        'Corresponding sides are in the same ratio: $\\frac{EF}{BC}=\\frac{DE}{AB}$.',
+        [`$\\dfrac{EF}{BC}=\\dfrac{DE}{AB}$ (|||△s).`, `$EF=${BC}\\times\\dfrac{${DE}}{${AB}}=${EF}$ cm.`]));
+    }
+    if (v === 1) {
+      const p = R(2, 8), q = R(2, 8), m = R(2, 4), DE = p * m, BC = (p + q) * m;
+      return tag(lenNum(BC, FIG.simNested(b, c, p / (p + q), { lens: [['AD', `${p}`], ['DB', `${q}`], ['DE', `${DE}`], ['BC', '?']] }) +
+        `In $\\triangle ABC$, $DE\\parallel BC$ with $AD=${p}$, $DB=${q}$ and $DE=${DE}$ (cm). Find $BC$.`,
+        'First say why the triangles are similar. Then compare $AB$ (the whole side) with $AD$.',
+        ['△ADE ||| △ABC (∠∠∠).', `$\\dfrac{BC}{DE}=\\dfrac{AB}{AD}=\\dfrac{${p + q}}{${p}}$ (|||△s).`, `$BC=${DE}\\times\\dfrac{${p + q}}{${p}}=${BC}$ cm.`]));
+    }
+    if (v === 2) {
+      const x = R(2, 9), q = R(2, 9), m = R(2, 4), DE = x * m, BC = (x + q) * m;
+      return tag(algebra(x, FIG.simNested(b, c, x / (x + q), { lens: [['AD', 'x'], ['DB', `${q}`], ['DE', `${DE}`], ['BC', `${BC}`]] }) +
+        `In $\\triangle ABC$, $DE\\parallel BC$, $AD=x$, $DB=${q}$, $DE=${DE}$ and $BC=${BC}$ (cm). Find $x$.`,
+        'Write the ratio $\\frac{AD}{AB}=\\frac{DE}{BC}$ with $AB=x+' + q + '$, then cross-multiply.',
+        ['△ADE ||| △ABC (∠∠∠).', `$\\dfrac{x}{x+${q}}=\\dfrac{${DE}}{${BC}}$ (|||△s).`, `$${BC}x=${DE}x+${DE * q}$, so $${BC - DE}x=${DE * q}$ and $x=${x}$.`]));
+    }
+    if (v === 3) {
+      const right = 'AB/DE = BC/EF';
+      const opts = shuffle([right, 'AB/DE = BC/DF', 'AB/EF = AC/DE', 'AB/DF = BC/EF']).map(t2 => ({ tex: t2, ok: t2 === right }));
+      return tag({ type: 'mc', options: opts, prompt: FIG.simPair(b, c, 1.5) + '$\\triangle ABC\\,|||\\,\\triangle DEF$. Which ratio is correct?',
+        hint: 'Pair the letters by position: $A\\leftrightarrow D$, $B\\leftrightarrow E$, $C\\leftrightarrow F$. So $AB$ goes with $DE$ and $BC$ with $EF$.',
+        steps: ['$\\dfrac{AB}{DE}=\\dfrac{BC}{EF}=\\dfrac{AC}{DF}$ (|||△s).'], ans: right, ansTex: '\\frac{AB}{DE}=\\frac{BC}{EF}' });
+    }
+    const [nu, de] = pick([[3, 2], [2, 1], [5, 4], [4, 3], [5, 2]]);
+    const u = R(1, 3), w = R(3, 8), h1 = de * u, s1 = nu * u, h2 = de * w, s2 = nu * w;
+    const fig = FIG.shadow(h1, s1, h2, s2);
+    return tag(lenNum(h2, fig +
+      `A pole $AB$ of height ${h1} m casts a shadow $BC$ of ${s1} m. At the same moment a tree $DE$ casts a shadow $EF$ of ${s2} m. Find the height of the tree (in metres).`,
+      'Both triangles have a right angle and the same angle of the sun, so they are similar.',
+      ['△ABC ||| △DEF (∠∠∠).', `$\\dfrac{DE}{AB}=\\dfrac{EF}{BC}$ (|||△s).`, `$DE=${h1}\\times\\dfrac{${s2}}{${s1}}=${h2}$ m.`]));
+  }
+
+  function genEucCircleRiders(kp) {
+    const k = wantKp(1, kp);
+    if (k === 0) {
+      const v = R(0, 4);
+      if (v === 0 || v === 4) {
+        const b = R(20, 65), th = 180 - 2 * b;
+        const fig = FIG.centre(th, { ab: true, arcs: [['OAB', `${b}°`, { r: 20 }], ['ACB', v === 0 ? '?' : '', { r: 16 }]] });
+        if (v === 4) return tag(chainQ(fig, `$O$ is the centre and $O\\hat AB=${deg(b)}$. Prove that $A\\hat CB=${deg(90 - b)}$.`,
+          [['OA = OB', 'radii'], [`∠OBA = ${b}°`, '∠s opp equal sides'], [`∠AOB = ${th}°`, 'sum of ∠s in △'], [`∠ACB = ${90 - b}°`, '∠ at centre = 2 × ∠ at circum']],
+          `∠ACB = ${th}°`, 'tan chord theorem', `${90 - b} degrees`, `${90 - b}^\\circ`, 'Radii first, then the isosceles triangle, then the centre angle.'));
+        return tag(angNum(90 - b, fig + `$O$ is the centre and $O\\hat AB=${deg(b)}$. $C$ is on the major arc. Find $A\\hat CB$.`,
+          'Use the radii to find $A\\hat OB$, then halve it.',
+          ['$OA=OB$ (radii).', `$O\\hat BA=${deg(b)}$ (∠s opp equal sides).`, `$A\\hat OB=180^\\circ-2\\times${deg(b)}=${deg(th)}$ (sum of ∠s in △).`, `$A\\hat CB=${deg(90 - b)}$ (∠ at centre = 2 × ∠ at circum).`]));
+      }
+      if (v === 1) {
+        const c = R(25, 70), th = 2 * c;
+        return tag(angNum(90 - c, FIG.centre(th, { ab: true, arcs: [['ACB', `${c}°`, { r: 16 }], ['OAB', '?', { r: 20 }]] }) +
+          `$O$ is the centre and $A\\hat CB=${deg(c)}$, with $C$ on the major arc. Find $O\\hat AB$.`,
+          'Double to get the angle at the centre, then use the isosceles triangle $OAB$.',
+          [`$A\\hat OB=2\\times${deg(c)}=${deg(th)}$ (∠ at centre = 2 × ∠ at circum).`, '$OA=OB$ (radii).', `$O\\hat AB=(180^\\circ-${deg(th)})\\div2=${deg(90 - c)}$ (∠s opp equal sides; sum of ∠s in △).`]));
+      }
+      if (v === 2) {
+        const c = R(25, 70), th = 2 * c;
+        return tag(angNum(90 - c, FIG.centre(th, { c: 125, d: 55, ab: true, arcs: [['ADB', `${c}°`, { r: 16 }], ['OBA', '?', { r: 20 }]] }) +
+          `$O$ is the centre, and $C$ and $D$ are on the major arc. $A\\hat DB=${deg(c)}$. Find $O\\hat BA$.`,
+          'Get to the centre angle from $D$, then use the radii.',
+          [`$A\\hat OB=2\\times${deg(c)}=${deg(th)}$ (∠ at centre = 2 × ∠ at circum).`, '$OA=OB$ (radii).', `$O\\hat BA=(180^\\circ-${deg(th)})\\div2=${deg(90 - c)}$ (∠s opp equal sides; sum of ∠s in △).`]));
+      }
+      const a = R(20, 65), dd = R(240, 300);
+      return tag(angNum(90 - a, FIG.semi(a, { d: dd, arcs: [['CAB', `${a}°`, { r: 22 }], ['ADC', '?', { r: 18 }]] }) +
+        `$AB$ is a diameter of the circle with centre $O$. $C$ and $D$ are on the circle on opposite sides of $AB$, and $C\\hat AB=${deg(a)}$. Find $A\\hat DC$.`,
+        'Find $A\\hat BC$ first. $A\\hat DC$ and $A\\hat BC$ stand on the same chord $AC$.',
+        ['$A\\hat CB=90^\\circ$ (∠ in semi-circle).', `$A\\hat BC=180^\\circ-90^\\circ-${deg(a)}=${deg(90 - a)}$ (sum of ∠s in △).`, `$A\\hat DC=A\\hat BC=${deg(90 - a)}$ (∠s in the same seg).`]));
+    }
+    const v = R(0, 4);
+    if (v === 0 || v === 4) {
+      const a = 2 * R(30, 60);
+      const fig = FIG.cyclic(a, { bc: a, diag: ['BD'], ticks: [['BC', 1], ['CD', 1]], arcs: [['DAB', `${a}°`], ['CBD', v === 0 ? '?' : '', { r: 22 }]] });
+      if (v === 4) return tag(chainQ(fig, `$ABCD$ is cyclic, $BC=CD$ and $\\hat A=${deg(a)}$. Prove that $C\\hat BD=${deg(a / 2)}$.`,
+        [[`∠BCD = ${180 - a}°`, 'opp ∠s of cyclic quad'], ['∠CBD = ∠CDB', '∠s opp equal sides'], [`∠CBD = ${a / 2}°`, 'sum of ∠s in △']],
+        `∠CBD = ${a}°`, 'ext ∠ of cyclic quad', `${a / 2} degrees`, `${a / 2}^\\circ`, 'Cross the quadrilateral first, then use the isosceles triangle BCD.'));
+      return tag(angNum(a / 2, fig + `$ABCD$ is a cyclic quadrilateral with $BC=CD$ and $\\hat A=${deg(a)}$. Find $C\\hat BD$.`,
+        'Find $\\hat C$ from the cyclic quadrilateral, then use the isosceles triangle $BCD$.',
+        [`$B\\hat CD=180^\\circ-${deg(a)}=${deg(180 - a)}$ (opp ∠s of cyclic quad).`, '$C\\hat BD=C\\hat DB$ (∠s opp equal sides).', `$C\\hat BD=${deg(a)}\\div2=${deg(a / 2)}$ (sum of ∠s in △).`]));
+    }
+    if (v === 1) {
+      const e = R(55, 125);
+      return tag(angNum(e, FIG.cyclic(90, { bc: 2 * e - 90, ab: 90, extB: true, arcs: [['CBE', `${e}°`, { r: 20 }], ['ADC', '?']] }) +
+        `$ABCD$ is a cyclic quadrilateral and $AB$ is extended to $E$. $C\\hat BE=${deg(e)}$. Find $A\\hat DC$.`,
+        'The exterior angle at $B$ equals the interior angle opposite $B$.',
+        [`$A\\hat DC=C\\hat BE=${deg(e)}$ (ext ∠ of cyclic quad).`]));
+    }
+    if (v === 2) {
+      let p, q;
+      do { p = R(25, 55); q = R(25, 55); } while (p + q < 60 || p + q > 110);
+      return tag(angNum(180 - p - q, FIG.cyclic(p + q, { bc: 2 * p, diag: ['AC'], arcs: [['BAC', `${p}°`, { r: 26 }], ['CAD', `${q}°`, { r: 34 }], ['BCD', '?']] }) +
+        `$ABCD$ is a cyclic quadrilateral with diagonal $AC$. $B\\hat AC=${deg(p)}$ and $C\\hat AD=${deg(q)}$. Find $B\\hat CD$.`,
+        'Add the two parts to get $\\hat A$, then cross the quadrilateral.',
+        [`$B\\hat AD=${deg(p)}+${deg(q)}=${deg(p + q)}$.`, `$B\\hat CD=180^\\circ-${deg(p + q)}=${deg(180 - p - q)}$ (opp ∠s of cyclic quad).`]));
+    }
+    const yes = Math.random() < 0.6, pA = R(65, 125), rA = yes ? 180 - pA : 180 - pA + pick([-12, -8, -6, 6, 8, 12]);
+    // The 'no' figure is not cyclic, so its angles are only marked, not labelled.
+    const quad = FIG.cyclic(pA, { noCircle: true, push: yes ? 1 : 1.25, arcs: [['DAB', yes ? `${pA}°` : 'Â'], ['BCD', yes ? `${rA}°` : 'Ĉ']] });
+    if (yes) return tag(reasonMC(quad,
+      `In quadrilateral $ABCD$, $\\hat A=${deg(pA)}$ and $\\hat C=${deg(rA)}$. Which reason proves that $ABCD$ is a cyclic quadrilateral?`,
+      'opp ∠s of quad suppl', ['opp ∠s of cyclic quad', 'ext ∠ of cyclic quad', '∠s in the same seg', 'sum of ∠s in quad', 'opp ∠s of quad suppl'],
+      'You do not know yet that it is cyclic, so you need the converse: the reason that proves a quadrilateral is cyclic.',
+      [`$\\hat A+\\hat C=${deg(pA)}+${deg(rA)}=180^\\circ$, so $ABCD$ is cyclic (opp ∠s of quad suppl).`]));
+    const right = `No: Â + Ĉ = ${pA + rA}°, not 180°`;
+    const opts = shuffle([right, `Yes: Â + Ĉ = ${pA + rA}°`, 'Yes: every quadrilateral is cyclic', 'Not enough information']).map(t2 => ({ tex: t2, ok: t2 === right }));
+    return tag({ type: 'mc', options: opts, prompt: quad +
+      `In quadrilateral $ABCD$, $\\hat A=${deg(pA)}$ and $\\hat C=${deg(rA)}$. Can the four corners lie on one circle?`,
+      hint: 'A quadrilateral is cyclic exactly when its opposite angles add up to $180^\\circ$.',
+      steps: [`$\\hat A+\\hat C=${pA + rA}^\\circ\\ne180^\\circ$, so $ABCD$ is not cyclic: in a cyclic quadrilateral the opposite angles add up to $180^\\circ$.`], ans: right, ansTex: `\\text{No}` });
+  }
+
   function genEucMixed(kp) {
     const k = wantKp(1, kp);
     if (k === 0) {
-      const alt = pick([28, 32, 36, 40]);
-      const centre = 2 * alt;
-      const fig = svg(250, 210, C(120, 120, 70) + P(120, 120) + N(120, 110, 'O') +
-        (() => {
-          const T = pt(120, 120, 70, 10), A = pt(120, 120, 70, 140), B = pt(120, 120, 70, 230);
-          const tx1 = T.x + 40, ty1 = T.y - 80, tx2 = T.x - 30, ty2 = T.y + 60;
-          return L(120, 120, T.x, T.y) + L(120, 120, A.x, A.y) + L(tx1, ty1, tx2, ty2) + L(T.x, T.y, A.x, A.y) +
-            L(A.x, A.y, B.x, B.y) + L(B.x, B.y, T.x, T.y) +
-            P(T.x, T.y) + P(A.x, A.y) + N(T.x + 8, T.y, 'T') + N(A.x - 8, A.y, 'A') + N(B.x, B.y + 16, 'B', 0);
-        })(), 'The line is a tangent at T; O is the centre');
-      return { type: 'geom',
-        statements: statements([
-          ['s1', 'The line is a tangent at T and O is the centre'],
-          ['s2', `∠TOA = ${centre}°`],
-          ['s3', `The angle in the alternate segment is ${alt}°`],
-          ['s4', `The angle between the tangent and chord TA is ${alt}°`],
-        ]),
-        reasons: reasons([
-          ['r1', 'given'],
-          ['r2', 'given'],
-          ['r3', '∠ at the centre = 2∠ at the circumference'],
-          ['r4', 'tan-chord theorem'],
-        ]),
-        chain: [
-          { statement: 's1', reason: 'r1' },
-          { statement: 's2', reason: 'r2' },
-          { statement: 's3', reason: 'r3' },
-          { statement: 's4', reason: 'r4' },
-        ],
-        prompt: fig + `A tangent touches the circle at $T$. Chord $TA$ subtends $\\hat{TOA}=${centre}^\\circ$ at the centre $O$. Prove that the angle between the tangent and the chord $TA$ is $${alt}^\\circ$.`,
-        hint: 'The angle at the circumference on the same arc is half the angle at the centre. The tan-chord theorem then equals that angle in the alternate segment.',
-        steps: [
-          'The line is a tangent at $T$ and $O$ is the centre (given).',
-          `$\\hat{TOA}=${centre}^\\circ$ (given).`,
-          `Angle in the alternate segment $=\\frac12\\times${centre}^\\circ=${alt}^\\circ$ ($\\angle$ at the centre $=2\\angle$ at the circumference).`,
-          `Angle between tangent and chord $=${alt}^\\circ$ (tan-chord theorem).`,
-        ],
-        ans: `${alt} degrees`, ansTex: `${alt}^\\circ` };
+      const s = R(25, 72), b = R(Math.max(35, 95 - s), 150 - s);
+      const v = R(0, 4);
+      if (v === 0) return tag(angNum(2 * s, FIG.tanChord(s, b, { centre: true, arcs: [['STA', `${s}°`, { r: 26 }], ['TOA', '?', { r: 16 }]] }) +
+        `$QS$ is a tangent at $T$ to the circle with centre $O$. $S\\hat TA=${deg(s)}$. Find $T\\hat OA$.`,
+        'Move the tangent angle to $B$ with the tan chord theorem, then double it at the centre.',
+        [`$T\\hat BA=${deg(s)}$ (tan chord theorem).`, `$T\\hat OA=2\\times${deg(s)}=${deg(2 * s)}$ (∠ at centre = 2 × ∠ at circum).`]));
+      if (v === 1) return tag(angNum(90 - s, FIG.tanChord(s, b, { centre: true, arcs: [['STA', `${s}°`, { r: 26 }], ['OAT', '?', { r: 18 }]] }) +
+        `$QS$ is a tangent at $T$ to the circle with centre $O$. $S\\hat TA=${deg(s)}$. Find $O\\hat AT$.`,
+        'The radius $OT$ meets the tangent at $90^\\circ$. Then $\\triangle OTA$ is isosceles.',
+        ['$O\\hat TS=90^\\circ$ (tan ⊥ radius).', `$O\\hat TA=90^\\circ-${deg(s)}=${deg(90 - s)}$.`, '$OT=OA$ (radii).', `$O\\hat AT=O\\hat TA=${deg(90 - s)}$ (∠s opp equal sides).`]));
+      if (v === 2) return tag(angNum(s, FIG.tanChord(s, b, { centre: true, arcs: [['TOA', `${2 * s}°`, { r: 16 }], ['STA', '?', { r: 26 }]] }) +
+        `$QS$ is a tangent at $T$ to the circle with centre $O$. $T\\hat OA=${deg(2 * s)}$. Find $S\\hat TA$.`,
+        'Halve the centre angle to get $T\\hat BA$, then use the tan chord theorem.',
+        [`$T\\hat BA=\\frac12\\times${deg(2 * s)}=${deg(s)}$ (∠ at centre = 2 × ∠ at circum).`, `$S\\hat TA=T\\hat BA=${deg(s)}$ (tan chord theorem).`]));
+      if (v === 3) return tag(angNum(90 - s, FIG.tanChord(s, b, { centre: true, arcs: [['TBA', `${s}°`, { r: 18 }], ['OTA', '?', { r: 30 }]] }) +
+        `$QS$ is a tangent at $T$ to the circle with centre $O$. $T\\hat BA=${deg(s)}$. Find $O\\hat TA$.`,
+        'Use the tan chord theorem to find $S\\hat TA$, then the right angle between the radius and the tangent.',
+        [`$S\\hat TA=${deg(s)}$ (tan chord theorem).`, '$O\\hat TS=90^\\circ$ (tan ⊥ radius).', `$O\\hat TA=90^\\circ-${deg(s)}=${deg(90 - s)}$.`]));
+      return tag(chainQ(FIG.tanChord(s, b, { centre: true, arcs: [['STA', `${s}°`, { r: 26 }]] }),
+        `$QS$ is a tangent at $T$ to the circle with centre $O$, and $S\\hat TA=${deg(s)}$. Prove that $T\\hat OA=${deg(2 * s)}$.`,
+        [[`∠STA = ${s}°`, 'given'], [`∠TBA = ${s}°`, 'tan chord theorem'], [`∠TOA = ${2 * s}°`, '∠ at centre = 2 × ∠ at circum']],
+        `∠TOA = ${s}°`, 'tan ⊥ radius', `${2 * s} degrees`, `${2 * s}^\\circ`, 'Tangent angle to the circle first, then to the centre.'));
     }
-    const mid = pick([6, 8, 10]);
-    const fig = svg(260, 170,
-      L(40, 150, 220, 150) + L(40, 150, 130, 30) + L(220, 150, 130, 30) + L(85, 90, 175, 90) +
-      N(40, 160, 'B', 0) + N(220, 160, 'C', 0) + N(130, 22, 'A', 0) + N(75, 88, 'D') + N(185, 88, 'E'),
-      '$D$ and $E$ are midpoints');
-    return { type: 'geom',
-      statements: statements([
-        ['s1', 'D and E are midpoints of AB and AC'],
-        ['s2', `DE = ${mid}`],
-        ['s3', `BC = ${2 * mid}`],
-        ['s4', 'DE ⊥ BC'],
-      ]),
-      reasons: reasons([
-        ['r1', 'given'],
-        ['r2', 'given'],
-        ['r3', 'midpoint theorem'],
-        ['r4', 'tan ⊥ radius'],
-      ]),
-      chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
-      prompt: fig + `In $\\triangle ABC$, $D$ and $E$ are midpoints of $AB$ and $AC$, and $DE=${mid}$. Prove that $BC=${2 * mid}$.`,
-      hint: 'The midpoint theorem: the segment joining the midpoints of two sides is parallel to the third side and half as long.',
-      steps: [
-        '$D$ and $E$ are midpoints of $AB$ and $AC$ (given).',
-        `$DE=${mid}$ (given).`,
-        `$BC=2\\times DE=${2 * mid}$ (midpoint theorem).`,
-      ],
-      ans: String(2 * mid), ansTex: String(2 * mid) };
+    const v = R(0, 4);
+    if (v === 0) {
+      const r = R(4, 15);
+      return tag(lenNum(r, FIG.midChords({ diameter: true, a: R(60, 120) }) +
+        `$BC$ is a diameter of a circle with radius ${r} cm. $A$ is on the circle, and $M$ and $N$ are the midpoints of $AB$ and $AC$. Find $MN$.`,
+        'A diameter is two radii. Then use the midpoint theorem in $\\triangle ABC$.',
+        [`Diameter $BC=2\\times${r}=${2 * r}$ cm.`, `$MN=\\frac12 BC=${r}$ cm (midpt theorem).`]));
+    }
+    if (v === 1) {
+      const b = R(40, 80);
+      return tag(angNum(b, FIG.midChords({ a: 335 + 2 * b - 360, arcs: [['ABC', `${b}°`, { r: 20 }], ['AMN', '?', { r: 16 }]] }) +
+        `$A$, $B$ and $C$ are on a circle. $M$ and $N$ are the midpoints of $AB$ and $AC$, and $A\\hat BC=${deg(b)}$. Find $A\\hat MN$.`,
+        'The midpoint theorem gives $MN\\parallel BC$. Then look for corresponding angles.',
+        ['$MN\\parallel BC$ (midpt theorem).', `$A\\hat MN=A\\hat BC=${deg(b)}$ (corresp ∠s; MN ∥ BC).`]));
+    }
+    if (v === 2 || v === 4) {
+      const b = R(25, 65);
+      const fig = FIG.midChords({ diameter: true, a: 2 * b, arcs: [['ABC', `${b}°`, { r: 22 }], ['ANM', v === 2 ? '?' : '', { r: 16 }]] });
+      if (v === 4) return tag(chainQ(fig, `$BC$ is a diameter, $M$ and $N$ are the midpoints of $AB$ and $AC$, and $A\\hat BC=${deg(b)}$. Prove that $A\\hat NM=${deg(90 - b)}$.`,
+        [['∠BAC = 90°', '∠ in semi-circle'], [`∠ACB = ${90 - b}°`, 'sum of ∠s in △'], ['MN ∥ BC', 'midpt theorem'], [`∠ANM = ${90 - b}°`, 'corresp ∠s; MN ∥ BC']],
+        `∠ANM = ${b}°`, 'tan chord theorem', `${90 - b} degrees`, `${90 - b}^\\circ`, 'Circle fact first, then the triangle, then the midpoints.'));
+      return tag(angNum(90 - b, fig + `$BC$ is a diameter of the circle. $M$ and $N$ are the midpoints of $AB$ and $AC$, and $A\\hat BC=${deg(b)}$. Find $A\\hat NM$.`,
+        'Find $A\\hat CB$ using the diameter, then carry it up to $N$ with the midpoint theorem.',
+        ['$B\\hat AC=90^\\circ$ (∠ in semi-circle).', `$A\\hat CB=180^\\circ-90^\\circ-${deg(b)}=${deg(90 - b)}$ (sum of ∠s in △).`, '$MN\\parallel BC$ (midpt theorem).', `$A\\hat NM=A\\hat CB=${deg(90 - b)}$ (corresp ∠s; MN ∥ BC).`]));
+    }
+    const a = R(40, 80);
+    return tag(angNum(180 - a, FIG.midChords({ centre: true, b: 270 - a, c: 270 + a, a: R(75, 105), arcs: [['BAC', `${a}°`, { r: 18 }], ['MON', '?', { r: 16 }]] }) +
+      `$O$ is the centre. $M$ and $N$ are the midpoints of chords $AB$ and $AC$, and $B\\hat AC=${deg(a)}$. Find $M\\hat ON$.`,
+      'Both $OM$ and $ON$ meet their chords at right angles. Then use the angle sum of quadrilateral $AMON$.',
+      ['$OM\\perp AB$ and $ON\\perp AC$ (line from centre to midpt of chord).', `$M\\hat ON=360^\\circ-90^\\circ-90^\\circ-${deg(a)}=${deg(180 - a)}$ (sum of ∠s in quad).`]));
   }
 
   const GENERATORS = {

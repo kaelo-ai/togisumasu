@@ -176,7 +176,7 @@
       figNote: 'Parallelogram $ABCD$: matching arrows mark the parallel sides. The diagonals bisect each other at $O$.',
       reasons: [['opp sides of ||m', 'Opposite sides of a parallelogram are equal.'], ['opp ∠s of ||m', 'Opposite angles of a parallelogram are equal.'], ['diags of ||m', 'The diagonals of a parallelogram bisect each other.'], ['diags of rhombus', 'The diagonals of a rhombus are perpendicular and bisect the corner angles.'], ['diags of rect', 'The diagonals of a rectangle are equal in length.'], ['sum of ∠s in quad', 'The angles of a quadrilateral add up to 360°.']],
       examples: [
-        { level: 'Start here', fig: () => FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', '112°'], ['DCB', '?'], ['CBA', '?']], skew: -50 }),
+        { level: 'Start here', fig: () => FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', '112°'], ['DCB', '?'], ['CBA', '?']], skew: 110 / Math.tan(112 * Math.PI / 180) }),
           q: '$ABCD$ is a parallelogram with $\\hat A=112^\\circ$ and $AB=7$ cm. Find $\\hat C$, $\\hat B$ and $CD$.',
           rows: [['\\hat C=\\hat A=112^\\circ', 'opp ∠s of ||m'], ['\\hat B=180^\\circ-112^\\circ=68^\\circ', 'co-int ∠s; AD ∥ BC'], ['CD=AB=7\\text{ cm}', 'opp sides of ||m']],
           answer: '$\\hat C=112^\\circ$, $\\hat B=68^\\circ$, $CD=7$ cm' },
@@ -205,7 +205,7 @@
           q: 'In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$, and $BC=14$ cm. Find $DE$.',
           rows: [['DE=\\tfrac12 BC=\\tfrac12(14)=7\\text{ cm}', 'midpt theorem']],
           answer: '$DE=7$ cm' },
-        { level: 'A step up', fig: () => FIG.midpoint({ arcs: [['ABC', '64°'], ['ADE', '?']] }),
+        { level: 'A step up', fig: () => FIG.midpoint({ b: 64, arcs: [['ABC', '64°'], ['ADE', '?']] }),
           q: 'In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$, and $A\\hat BC=64^\\circ$. Find $A\\hat DE$.',
           rows: [['DE\\parallel BC', 'midpt theorem'], ['A\\hat DE=A\\hat BC=64^\\circ', 'corresp ∠s; DE ∥ BC']],
           answer: '$A\\hat DE=64^\\circ$',
@@ -275,7 +275,8 @@
     { title: 'The midpoint theorem', steps: STEPS.slice(6, 7) },
   ];
 
-  const LESSONS = { 'euc-revision': EUC };
+  const GR12 = root.KpLessonsGr12 || (typeof require === 'function' ? require('./kp-lessons-gr12.js') : {});
+  const LESSONS = Object.assign({ 'euc-revision': EUC }, GR12);
   function get(topicId, position) {
     const list = LESSONS[topicId];
     return list && list[position] ? list[position] : null;

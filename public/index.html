@@ -302,6 +302,10 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .subgoal{display:block;font:600 .78rem var(--f-body);color:var(--muted);letter-spacing:.02em;margin-bottom:2px}
 .kppart{font-weight:600}
 .kpl .kplx{margin-top:6px}
+.rtip{font:inherit;color:inherit;background:none;border:0;padding:0;border-bottom:1.5px dotted currentColor;cursor:help;text-align:left}
+.rtip[aria-expanded="true"]{border-bottom-style:solid}
+.rdef[hidden]{display:none}
+.rdef{display:block;white-space:normal;margin-top:3px;font-size:.86rem;opacity:.85;font-style:italic}
 .kpl .kplx b,.kpl .kplx strong{background:linear-gradient(transparent 55%,rgba(255,214,64,.55) 55%);padding:0 2px}
 .kwords{margin:10px 0 8px;padding:10px 14px;border:2px dashed rgba(46,125,190,.45);border-radius:10px;background:rgba(46,125,190,.05)}
 .kwords h4,.ktip>b:first-child{margin:0 0 6px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
@@ -524,6 +528,7 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
 
 <script src="/core.js"></script>
 <script src="/caps-gen.js"></script>
+<script src="/kp-lessons-gr12.js"></script>
 <script src="/kp-lessons.js"></script>
 <script src="/mastery.js"></script>
 <script src="/course-catalog.js"></script>
@@ -725,7 +730,15 @@ function skillHTML(id,tab){const s=SKM[id];const un=UNITS.find(u=>u[0]===s.unit)
 function stepList(steps){return `<ol class="steps">${(steps||[]).map((x,i)=>`<li><span class="subgoal">Step ${i+1}</span> ${x}</li>`).join('')}</ol>`}
 function kpMeta(id){const topic=SKM[id];if(!Mastery.isStaged(topic)||st(id).lv>0||st(id).fix)return '';const kp=Mastery.currentKp(Store.data,id,catView());if(!kp)return '';const total=(topic.kps||[]).length;const need=Mastery.LESSON.passCount;const n=st(id).kpS||0;return `<span class="kppart">Part ${kp.position+1} of ${total}: ${esc(kp.name)}</span><span>Get ${need} close variant${need===1?'':'s'} right</span><span class="streakdots">${Array.from({length:need},(_,i)=>`<i class="${i<Math.min(need,n)?'on':''}"></i>`).join('')}</span>`}
 function kpLesson(id,pos){return typeof KpLessons!=='undefined'&&pos!=null?KpLessons.get(id,pos):null}
-function srTable(rows){return `<div class="srwrap"><table class="srt"><thead><tr><th scope="col">Statement</th><th scope="col">Reason</th></tr></thead><tbody>${rows.map(([a,b])=>`<tr><td>$${a}$</td><td>${b?esc(b):'<span class="srnone">algebra, no reason needed</span>'}</td></tr>`).join('')}</tbody></table></div>`}
+// Tap a reason to see what it means. The glossary is every reason a lesson explains.
+let REASON_GLOSS=null;
+function reasonGloss(){if(REASON_GLOSS)return REASON_GLOSS;REASON_GLOSS=new Map();const L=typeof KpLessons!=='undefined'?KpLessons.LESSONS:{};
+  for(const list of Object.values(L))for(const k of list)for(const S of (k.steps||[k]))for(const [a,m] of S.reasons||[])for(const k of a.split(';')[0].trim().split(' / '))if(!REASON_GLOSS.has(k))REASON_GLOSS.set(k,m);return REASON_GLOSS}
+function rtip(r){const base=String(r).split(';')[0].trim(),m=reasonGloss().get(base);if(!m)return esc(r);
+  return `<button type="button" class="rtip" aria-expanded="false" title="${esc(m)}">${esc(r)}</button><span class="rdef" hidden>${esc(m)}</span>`}
+function tipStep(x){return String(x).replace(/\(([^()$<>]+)\)(\.?)$/,(all,r,dot)=>reasonGloss().has(r.split(';')[0].trim())?`(${rtip(r)})${dot}`:all)}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.rtip');if(!b)return;const d=b.nextElementSibling;if(!d||!d.classList.contains('rdef'))return;const open=d.hidden;d.hidden=!open;b.setAttribute('aria-expanded',String(open))});
+function srTable(rows){return `<div class="srwrap"><table class="srt"><thead><tr><th scope="col">Statement</th><th scope="col">Reason</th></tr></thead><tbody>${rows.map(([a,b])=>`<tr><td>$${a}$</td><td>${b?rtip(b):'<span class="srnone">algebra, no reason needed</span>'}</td></tr>`).join('')}</tbody></table></div>`}
 function wexHTML(e,i,n,hide,label){return `<section class="wex kblk${hide?' is-hidden':''}"${hide?' hidden':''} data-next="${esc(label)}" aria-label="Worked example ${i+1} of ${n}"><div class="wexhead"><span class="wexk">Worked example ${i+1} of ${n}</span><span class="wexlv">${esc(e.level)}</span></div>${e.fig()}<p class="wexq">${e.q}</p>${srTable(e.rows)}<p class="ansline"><b>Answer:</b> ${e.answer}</p>${e.note?`<p class="wexnote">${e.note}</p>`:''}</section>`}
 function stepIntroHTML(S,k,m,hide){const label=m>1?`Step ${k+1} of ${m}: ${S.title}`:S.title;return `<section class="kstep kblk${hide?' is-hidden':''}"${hide?' hidden':''} data-next="${esc(label)}">${m>1?`<div class="kstepk">Step ${k+1} of ${m}</div><h4 class="ksteph">${esc(S.title)}</h4>`:''}
   ${S.words&&S.words.length?`<div class="kwords"><h4>Key words</h4><dl>${S.words.map(([w,d])=>`<div><dt><mark>${esc(w)}</mark></dt><dd>${d}</dd></div>`).join('')}</dl></div>`:''}
@@ -825,7 +838,7 @@ function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain
     const xp=ok?Mastery.xpFor(ctx.mode||'practice'):0;
     const canSimilar=!ctx.test&&q.id&&view.name==='skill'&&view.tab==='practice';
     fb.hidden=false;fb.innerHTML=`<div class="verdict ${ok?'ok':'no'}">${ok?'Correct':gaveUp?'Here is how it works':'Not quite'}${ok&&xp?`<span class="xp">+${xp}</span>`:''}</div>
-      ${ok?'':`<div class="ansline"><b>Answer:</b> ${ansDisplay(q)}</div>`}<details ${ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${q.steps.map(x=>`<li>${x}</li>`).join('')}</ol></details>${!ok&&AI_ON?`<div class="row" style="margin-top:10px"><button class="btn ghost sm" type="button" id="qAi">${gaveUp?'Explain it another way':'Explain my mistake'}</button></div><div id="qAiOut"></div>`:''}${!ok&&canSimilar?`<div class="row" style="margin-top:10px"><button class="btn sm" type="button" id="qSimilar">Try a similar question</button><span class="warn" id="qSimMsg" role="status"></span></div>`:''}${evh}`;
+      ${ok?'':`<div class="ansline"><b>Answer:</b> ${ansDisplay(q)}</div>`}<details ${ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${q.steps.map(x=>`<li>${tipStep(x)}</li>`).join('')}</ol></details>${!ok&&AI_ON?`<div class="row" style="margin-top:10px"><button class="btn ghost sm" type="button" id="qAi">${gaveUp?'Explain it another way':'Explain my mistake'}</button></div><div id="qAiOut"></div>`:''}${!ok&&canSimilar?`<div class="row" style="margin-top:10px"><button class="btn sm" type="button" id="qSimilar">Try a similar question</button><span class="warn" id="qSimMsg" role="status"></span></div>`:''}${evh}`;
     const live=host.querySelector('#qLive');if(live)live.textContent=ok?'Correct answer.':gaveUp?'Solution shown. Review the worked solution.':'Not quite. Review the answer and worked solution.';
     const aib=fb.querySelector('#qAi');if(aib)aib.onclick=()=>askTutor(aib,fb.querySelector('#qAiOut'),{topic:ctx.meta(),prompt:q.prompt,answer:q.ansTex||ansDisplay(q),given:gaveUp?'':givenText(q,inp),steps:q.steps});
     const sim=fb.querySelector('#qSimilar');

@@ -260,7 +260,11 @@ function addColumn(db, table, name, declaration) {
 // Generators whose items changed shape (new knowledge points, new figures).
 // Cached generated items from an older revision are retired, not deleted, so
 // attempts that point at them keep their history. Manual items are untouched.
-const GEN_REVISIONS = { 'euc-revision': 'euc0-v2' };
+const GEN_REVISIONS = {
+  'euc-revision': 'euc0-v2',
+  'euc-chords': 'gr12geo-v1', 'euc-cyclic': 'gr12geo-v1', 'euc-tan-chord': 'gr12geo-v1',
+  'euc-similar': 'gr12geo-v1', 'euc-circle-riders': 'gr12geo-v1', 'euc-mixed': 'gr12geo-v1',
+};
 
 function retireStaleGenerated(db) {
   const now = Date.now();
@@ -504,7 +508,8 @@ function search(db, text, limit = 10) {
 
 function seed(db, perSkill = 8) {
   let added = 0;
-  const countFor = db.prepare('SELECT COUNT(*) AS n FROM questions WHERE skill_id = ?');
+  // Only live items count, so retired ones are replaced at start-up.
+  const countFor = db.prepare("SELECT COUNT(*) AS n FROM questions WHERE skill_id = ? AND status = 'active'");
   const fingerprintsFor = db.prepare('SELECT fingerprint FROM questions WHERE skill_id = ?');
   db.exec('BEGIN');
   try {
