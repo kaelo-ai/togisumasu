@@ -96,6 +96,7 @@ function eligibleLeaves(db, mastered, courseId) {
   const out = [];
   for (const row of rows) {
     if (row.pool !== 'practice' || row.year >= nsc.EXAM_FROM_YEAR) continue;
+    if (row.on_syllabus === 0) continue;
     const topics = nsc.topicsForNode(db, row.id).filter(id => members.has(id));
     if (!topics.length) continue;
     const needed = neededTopics(topics, preOf);

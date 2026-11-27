@@ -1,0 +1,2256 @@
+{
+  "id": "2012-nov-p1",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2012,
+  "session": "november",
+  "paper": 1,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2012-nov/2012-nov-p1.pdf",
+    "original_name": "2012-nov-p1.pdf",
+    "sha256": "cafb8173c2bea343a4c2d26e4f39aa8d4fd72a1bed1ee63ebe652636b8234aba",
+    "pdf_pages": 10,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=Dols62Pwisc%3d&tabid=626&portalid=0&mid=2077",
+    "note": "Text-layer PDF (Acrobat PDFMaker for Word). National Senior Certificate paper (cover: NATIONAL SENIOR CERTIFICATE; running header: NSC). Equations were visually confirmed from 170 dpi page renders because the extracted text layer jumbles superscripts. The PDF includes the cover (printed page 1), the instructions (page 2) and the information sheet (page 10); PDF page n = printed page n. The cover states that the question paper consists of 9 pages and 1 information sheet. Duration 3 hours as printed on the cover. Source file and hash are recorded in sources/maths/manifest.json."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders (text layer used as a draft aid and checked visually)",
+    "date": "2026-11-26",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2012-nov-p1-1",
+      "paper_id": "2012-nov-p1",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 21,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2012-nov-p1-1.1",
+      "paper_id": "2012-nov-p1",
+      "number": "1.1",
+      "parent": "2012-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "Solve for $x$ in each of the following:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2012-nov-p1-1.1.1",
+      "paper_id": "2012-nov-p1",
+      "number": "1.1.1",
+      "parent": "2012-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$(2x-1)(x+4)=0$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.3",
+      "skills": [
+        "alg.zero-product"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2012-nov-p1-1.1.2",
+      "paper_id": "2012-nov-p1",
+      "number": "1.1.2",
+      "parent": "2012-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$3x^{2}-x=5$  (Leave your answer correct to TWO decimal places.)",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M2",
+      "subtopic": "M2.3",
+      "skills": [
+        "alg.quadratic-formula",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2012-nov-p1-1.1.3",
+      "paper_id": "2012-nov-p1",
+      "number": "1.1.3",
+      "parent": "2012-nov-p1-1.1",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$x^{2}+7x-8<0$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M2",
+      "subtopic": "M2.4",
+      "skills": [
+        "alg.quadratic-inequality"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2012-nov-p1-1.2",
+      "paper_id": "2012-nov-p1",
+      "number": "1.2",
+      "parent": "2012-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "Given:  $4y-x=4$ and $xy=8$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2012-nov-p1-1.2.1",
+      "paper_id": "2012-nov-p1",
+      "number": "1.2.1",
+      "parent": "2012-nov-p1-1.2",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Solve for $x$ and $y$ simultaneously.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M2",
+      "subtopic": "M2.5",
+      "skills": [
+        "alg.simultaneous-linear-quadratic"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6
+    },
+    {
+      "id": "2012-nov-p1-1.2.2",
+      "paper_id": "2012-nov-p1",
+      "number": "1.2.2",
+      "parent": "2012-nov-p1-1.2",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "The graph of $4y-x=4$ is reflected across the line having equation $y=x$. What is the equation of the reflected line?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.reflect-in-y-equals-x"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2012-nov-p1-1.3",
+      "paper_id": "2012-nov-p1",
+      "number": "1.3",
+      "parent": "2012-nov-p1-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "The solutions of a quadratic equation are given by $x=\\dfrac{-2\\pm\\sqrt{2p+5}}{7}$\n\nFor which value(s) of $p$ will this equation have:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8
+    },
+    {
+      "id": "2012-nov-p1-1.3.1",
+      "paper_id": "2012-nov-p1",
+      "number": "1.3.1",
+      "parent": "2012-nov-p1-1.3",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Two equal solutions",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M2",
+      "subtopic": "M2.6",
+      "skills": [
+        "alg.nature-of-roots"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2012-nov-p1-1.3.2",
+      "paper_id": "2012-nov-p1",
+      "number": "1.3.2",
+      "parent": "2012-nov-p1-1.3",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "No real solutions",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M2",
+      "subtopic": "M2.6",
+      "skills": [
+        "alg.nature-of-roots"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2012-nov-p1-2",
+      "paper_id": "2012-nov-p1",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2012-nov-p1-2.1",
+      "paper_id": "2012-nov-p1",
+      "number": "2.1",
+      "parent": "2012-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "$3x+1\\,;\\,2x\\,;\\,3x-7$ are the first three terms of an arithmetic sequence. Calculate the value of $x$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.2",
+      "skills": [
+        "seq.arithmetic-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12
+    },
+    {
+      "id": "2012-nov-p1-2.2",
+      "paper_id": "2012-nov-p1",
+      "number": "2.2",
+      "parent": "2012-nov-p1-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": "The first and second terms of an arithmetic sequence are $10$ and $6$ respectively.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13
+    },
+    {
+      "id": "2012-nov-p1-2.2.1",
+      "paper_id": "2012-nov-p1",
+      "number": "2.2.1",
+      "parent": "2012-nov-p1-2.2",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Calculate the $11^{\\text{th}}$ term of the sequence.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.2",
+      "skills": [
+        "seq.arithmetic-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2012-nov-p1-2.2.2",
+      "paper_id": "2012-nov-p1",
+      "number": "2.2.2",
+      "parent": "2012-nov-p1-2.2",
+      "level": 3,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "The sum of the first $n$ terms of this sequence is $-560$. Calculate $n$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.arithmetic-series-sum",
+        "seq.solve-for-n"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2012-nov-p1-3",
+      "paper_id": "2012-nov-p1",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 21,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2012-nov-p1-3.1",
+      "paper_id": "2012-nov-p1",
+      "number": "3.1",
+      "parent": "2012-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": "Given the geometric sequence:  $27\\,;\\,9\\,;\\,3\\,\\ldots$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17
+    },
+    {
+      "id": "2012-nov-p1-3.1.1",
+      "paper_id": "2012-nov-p1",
+      "number": "3.1.1",
+      "parent": "2012-nov-p1-3.1",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Determine a formula for $T_{n}$, the $n^{\\text{th}}$ term of the sequence.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M3",
+      "subtopic": "M3.4",
+      "skills": [
+        "seq.geometric-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2012-nov-p1-3.1.2",
+      "paper_id": "2012-nov-p1",
+      "number": "3.1.2",
+      "parent": "2012-nov-p1-3.1",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Why does the sum to infinity for this sequence exist?",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.geometric-sum-to-infinity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19
+    },
+    {
+      "id": "2012-nov-p1-3.1.3",
+      "paper_id": "2012-nov-p1",
+      "number": "3.1.3",
+      "parent": "2012-nov-p1-3.1",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Determine $S_{\\infty}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.geometric-sum-to-infinity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20
+    },
+    {
+      "id": "2012-nov-p1-3.2",
+      "paper_id": "2012-nov-p1",
+      "number": "3.2",
+      "parent": "2012-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": "Twenty water tanks are decreasing in size in such a way that the volume of each tank is $\\dfrac{1}{2}$ the volume of the previous tank. The first tank is empty, but the other $19$ tanks are full of water.",
+      "text_md": "Would it be possible for the first water tank to hold all the water from the other $19$ tanks? Motivate your answer.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M3",
+      "subtopic": "M3.5",
+      "skills": [
+        "seq.geometric-series-sum"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2012-nov-p1-fig-3.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21
+    },
+    {
+      "id": "2012-nov-p1-3.3",
+      "paper_id": "2012-nov-p1",
+      "number": "3.3",
+      "parent": "2012-nov-p1-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": "The $n^{\\text{th}}$ term of a sequence is given by $T_{n}=-2(n-5)^{2}+18$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2012-nov-p1-3.3.1",
+      "paper_id": "2012-nov-p1",
+      "number": "3.3.1",
+      "parent": "2012-nov-p1-3.3",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the first THREE terms of the sequence.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23
+    },
+    {
+      "id": "2012-nov-p1-3.3.2",
+      "paper_id": "2012-nov-p1",
+      "number": "3.3.2",
+      "parent": "2012-nov-p1-3.3",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Which term of the sequence will have the greatest value?",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-general-term"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24
+    },
+    {
+      "id": "2012-nov-p1-3.3.3",
+      "paper_id": "2012-nov-p1",
+      "number": "3.3.3",
+      "parent": "2012-nov-p1-3.3",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "What is the second difference of this quadratic sequence?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-second-difference"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25
+    },
+    {
+      "id": "2012-nov-p1-3.3.4",
+      "paper_id": "2012-nov-p1",
+      "number": "3.3.4",
+      "parent": "2012-nov-p1-3.3",
+      "level": 3,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Determine ALL values of $n$ for which the terms of the sequence will be less than $-110$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M3",
+      "subtopic": "M3.3",
+      "skills": [
+        "seq.quadratic-general-term",
+        "seq.solve-for-n",
+        "alg.quadratic-inequality"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2012-nov-p1-4",
+      "paper_id": "2012-nov-p1",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 20,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27
+    },
+    {
+      "id": "2012-nov-p1-4.1",
+      "paper_id": "2012-nov-p1",
+      "number": "4.1",
+      "parent": "2012-nov-p1-4",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": "Consider the function $f(x)=3\\cdot 2^{x}-6$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28,
+      "notes": "Printed as $3.2^{x}-6$ (the coefficient $3$ multiplies $2^{x}$)."
+    },
+    {
+      "id": "2012-nov-p1-4.1.1",
+      "paper_id": "2012-nov-p1",
+      "number": "4.1.1",
+      "parent": "2012-nov-p1-4.1",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of the $y$-intercept of the graph of $f$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.intercepts",
+        "fn.exponential-graph-properties"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2012-nov-p1-4.1.2",
+      "paper_id": "2012-nov-p1",
+      "number": "4.1.2",
+      "parent": "2012-nov-p1-4.1",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Calculate the coordinates of the $x$-intercept of the graph of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.intercepts",
+        "fn.exponential-graph-properties"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30
+    },
+    {
+      "id": "2012-nov-p1-4.1.3",
+      "paper_id": "2012-nov-p1",
+      "number": "4.1.3",
+      "parent": "2012-nov-p1-4.1",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Sketch the graph of $f$ in your ANSWER BOOK.\n\nClearly show ALL asymptotes and intercepts with the axes.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.sketch-exponential",
+        "fn.intercepts"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2012-nov-p1-4.1.4",
+      "paper_id": "2012-nov-p1",
+      "number": "4.1.4",
+      "parent": "2012-nov-p1-4.1",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Write down the range of $f$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.domain-range",
+        "fn.interval-notation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2012-nov-p1-4.2",
+      "paper_id": "2012-nov-p1",
+      "number": "4.2",
+      "parent": "2012-nov-p1-4",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": "$\\mathrm{S}(-2\\,;\\,0)$ and $\\mathrm{T}(6\\,;\\,0)$ are the $x$-intercepts of the graph of $f(x)=ax^{2}+bx+c$ and $\\mathrm{R}$ is the $y$-intercept. The straight line through $\\mathrm{R}$ and $\\mathrm{T}$ represents the graph of $g(x)=-2x+d$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2012-nov-p1-fig-4.2"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2012-nov-p1-4.2.1",
+      "paper_id": "2012-nov-p1",
+      "number": "4.2.1",
+      "parent": "2012-nov-p1-4.2",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the value of $d$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.linear-function-gradient-intercept"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2012-nov-p1-4.2.2",
+      "paper_id": "2012-nov-p1",
+      "number": "4.2.2",
+      "parent": "2012-nov-p1-4.2",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the equation of $f$ in the form $f(x)=ax^{2}+bx+c$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.parabola-equation-from-points"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2012-nov-p1-4.2.3",
+      "paper_id": "2012-nov-p1",
+      "number": "4.2.3",
+      "parent": "2012-nov-p1-4.2",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "If $f(x)=-x^{2}+4x+12$, calculate the coordinates of the turning point of $f$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2012-nov-p1-4.2.4",
+      "paper_id": "2012-nov-p1",
+      "number": "4.2.4",
+      "parent": "2012-nov-p1-4.2",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "For which values of $k$ will $f(x)=k$ have two distinct roots?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.inequality-from-graph",
+        "alg.nature-of-roots"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2012-nov-p1-4.2.5",
+      "paper_id": "2012-nov-p1",
+      "number": "4.2.5",
+      "parent": "2012-nov-p1-4.2",
+      "level": 3,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Determine the maximum value of $h(x)=3^{f(x)-12}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.exponential-graph-properties",
+        "fn.quadratic-turning-point"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2012-nov-p1-5",
+      "paper_id": "2012-nov-p1",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "The graph of $f(x)=-\\sqrt{27x}$ for $x\\geq 0$ is sketched below.\n\nThe point $\\mathrm{P}(3\\,;\\,-9)$ lies on the graph of $f$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2012-nov-p1-fig-5"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39
+    },
+    {
+      "id": "2012-nov-p1-5.1",
+      "paper_id": "2012-nov-p1",
+      "number": "5.1",
+      "parent": "2012-nov-p1-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Use your graph to determine the values of $x$ for which $f(x)\\geq -9$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.inequality-from-graph"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40
+    },
+    {
+      "id": "2012-nov-p1-5.2",
+      "paper_id": "2012-nov-p1",
+      "number": "5.2",
+      "parent": "2012-nov-p1-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Write down the equation of $f^{-1}$ in the form $y=\\ldots$  Include ALL restrictions.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-quadratic",
+        "fn.domain-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41,
+      "notes": "Inverse of $f(x)=-\\sqrt{27x}$ ($x\\geq 0$). fn.inverse-quadratic is the closest inverse skill (the inverse is a restricted quadratic)."
+    },
+    {
+      "id": "2012-nov-p1-5.3",
+      "paper_id": "2012-nov-p1",
+      "number": "5.3",
+      "parent": "2012-nov-p1-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Sketch $f^{-1}$, the inverse of $f$, in your ANSWER BOOK.\nIndicate the intercept(s) with the axes and the coordinates of ONE other point.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M4",
+      "subtopic": "M4.3",
+      "skills": [
+        "fn.inverse-quadratic",
+        "fn.intercepts"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2012-nov-p1-5.4",
+      "paper_id": "2012-nov-p1",
+      "number": "5.4",
+      "parent": "2012-nov-p1-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Describe the transformation from $f$ to $g$ if $g(x)=\\sqrt{27x}$, where $x\\geq 0$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.reflect-in-axes"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43
+    },
+    {
+      "id": "2012-nov-p1-6",
+      "paper_id": "2012-nov-p1",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "The graph of a hyperbola with equation $y=f(x)$ has the following properties:\n\n* Domain: $x\\in\\mathbf{R}$, $x\\neq 5$\n* Range: $y\\in\\mathbf{R}$, $y\\neq 1$\n* Passes through the point $(2\\,;\\,0)$\n\nDetermine $f(x)$.",
+      "marks": 4,
+      "total_marks": 4,
+      "answer_type": "expression",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.hyperbola-asymptotes",
+        "fn.hyperbola-equation-from-conditions",
+        "fn.domain-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2012-nov-p1-7",
+      "paper_id": "2012-nov-p1",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 17,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2012-nov-p1-7.1",
+      "paper_id": "2012-nov-p1",
+      "number": "7.1",
+      "parent": "2012-nov-p1-7",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "A business buys a machine that costs R$120\\,000$. The value of the machine depreciates at $9\\%$ per annum according to the diminishing-balance method.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2012-nov-p1-7.1.1",
+      "paper_id": "2012-nov-p1",
+      "number": "7.1.1",
+      "parent": "2012-nov-p1-7.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the scrap value of the machine at the end of $5$ years.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.3",
+      "skills": [
+        "fin.depreciation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47
+    },
+    {
+      "id": "2012-nov-p1-7.1.2",
+      "paper_id": "2012-nov-p1",
+      "number": "7.1.2",
+      "parent": "2012-nov-p1-7.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "After five years the machine needs to be replaced. During this time, inflation remained constant at $7\\%$ per annum. Determine the cost of the new machine at the end of $5$ years.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.1",
+      "skills": [
+        "fin.compound-growth"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48
+    },
+    {
+      "id": "2012-nov-p1-7.1.3",
+      "paper_id": "2012-nov-p1",
+      "number": "7.1.3",
+      "parent": "2012-nov-p1-7.1",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "The business estimates that it will need R$90\\,000$ by the end of five years. A sinking fund for R$90\\,000$, into which equal monthly instalments must be paid, is set up. Interest on this fund is $8{,}5\\%$ per annum, compounded monthly. The first payment will be made immediately and the last payment will be made at the end of the $5$-year period.\n\nCalculate the value of the monthly payment into the sinking fund.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.future-value-annuity"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49,
+      "notes": "Payments start immediately and the last payment is at the end of the 5-year period (an annuity-due style sinking fund with a payment at $t=0$ and at $t=60$ months)."
+    },
+    {
+      "id": "2012-nov-p1-7.2",
+      "paper_id": "2012-nov-p1",
+      "number": "7.2",
+      "parent": "2012-nov-p1-7",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Lorraine receives an amount of R$900\\,000$ upon her retirement. She invests this amount immediately at an interest rate of $10{,}5\\%$ per annum, compounded monthly.\n\nShe needs an amount of R$18\\,000$ per month to maintain her current lifestyle. She plans to withdraw the first amount at the end of the first month.",
+      "text_md": "For how many months will she be able to live from her investment?",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M6",
+      "subtopic": "M6.6",
+      "skills": [
+        "fin.present-value-annuity",
+        "fin.solve-n-with-logs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2012-nov-p1-8",
+      "paper_id": "2012-nov-p1",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 11,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51
+    },
+    {
+      "id": "2012-nov-p1-8.1",
+      "paper_id": "2012-nov-p1",
+      "number": "8.1",
+      "parent": "2012-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine $f'(x)$ from first principles if $f(x)=2x^{2}-5$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.3",
+      "skills": [
+        "calc.first-principles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2012-nov-p1-8.2",
+      "paper_id": "2012-nov-p1",
+      "number": "8.2",
+      "parent": "2012-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Evaluate $\\dfrac{dy}{dx}$ if $y=x^{-4}+2x^{3}-\\dfrac{x}{5}$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.6",
+      "skills": [
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53
+    },
+    {
+      "id": "2012-nov-p1-8.3",
+      "paper_id": "2012-nov-p1",
+      "number": "8.3",
+      "parent": "2012-nov-p1-8",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": "Given: $g(x)=\\dfrac{x^{2}+x-2}{x-1}$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54
+    },
+    {
+      "id": "2012-nov-p1-8.3.1",
+      "paper_id": "2012-nov-p1",
+      "number": "8.3.1",
+      "parent": "2012-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Calculate $g'(x)$ for $x\\neq 1$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M7",
+      "subtopic": "M7.6",
+      "skills": [
+        "calc.power-rule",
+        "alg.algebraic-fractions"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55
+    },
+    {
+      "id": "2012-nov-p1-8.3.2",
+      "paper_id": "2012-nov-p1",
+      "number": "8.3.2",
+      "parent": "2012-nov-p1-8.3",
+      "level": 3,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Explain why it is not possible to determine $g'(1)$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M7",
+      "subtopic": "M7.3",
+      "skills": [
+        "fn.domain-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56,
+      "notes": "g is undefined at $x=1$ (the factor $x-1$ in the denominator). No dedicated 'derivative does not exist' skill; fn.domain-range is the closest."
+    },
+    {
+      "id": "2012-nov-p1-9",
+      "paper_id": "2012-nov-p1",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 17,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2012-nov-p1-9.1",
+      "paper_id": "2012-nov-p1",
+      "number": "9.1",
+      "parent": "2012-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "The graph of the function $f(x)=-x^{3}-x^{2}+16x+16$ is sketched below.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2012-nov-p1-fig-9.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58
+    },
+    {
+      "id": "2012-nov-p1-9.1.1",
+      "paper_id": "2012-nov-p1",
+      "number": "9.1.1",
+      "parent": "2012-nov-p1-9.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the $x$-coordinates of the turning points of $f$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.stationary-points",
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2012-nov-p1-9.1.2",
+      "paper_id": "2012-nov-p1",
+      "number": "9.1.2",
+      "parent": "2012-nov-p1-9.1",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the $x$-coordinate of the point at which $f'(x)$ is a maximum.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.concavity",
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60
+    },
+    {
+      "id": "2012-nov-p1-9.2",
+      "paper_id": "2012-nov-p1",
+      "number": "9.2",
+      "parent": "2012-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Consider the graph of $g(x)=-2x^{2}-9x+5$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2012-nov-p1-9.2.1",
+      "paper_id": "2012-nov-p1",
+      "number": "9.2.1",
+      "parent": "2012-nov-p1-9.2",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the equation of the tangent to the graph of $g$ at $x=-1$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.tangent-equation",
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62
+    },
+    {
+      "id": "2012-nov-p1-9.2.2",
+      "paper_id": "2012-nov-p1",
+      "number": "9.2.2",
+      "parent": "2012-nov-p1-9.2",
+      "level": 3,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "For which values of $q$ will the line $y=-5x+q$ not intersect the parabola?",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "alg.nature-of-roots"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63
+    },
+    {
+      "id": "2012-nov-p1-9.3",
+      "paper_id": "2012-nov-p1",
+      "number": "9.3",
+      "parent": "2012-nov-p1-9",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Given: $h(x)=4x^{3}+5x$",
+      "text_md": "Explain if it is possible to draw a tangent to the graph of $h$ that has a negative gradient. Show ALL your calculations.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.power-rule",
+        "calc.stationary-points"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64
+    },
+    {
+      "id": "2012-nov-p1-10",
+      "paper_id": "2012-nov-p1",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": "A particle moves along a straight line. The distance, $s$, (in metres) of the particle from a fixed point on the line at time $t$ seconds ($t\\geq 0$) is given by $s(t)=2t^{2}-18t+45$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 6,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65
+    },
+    {
+      "id": "2012-nov-p1-10.1",
+      "paper_id": "2012-nov-p1",
+      "number": "10.1",
+      "parent": "2012-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Calculate the particle's initial velocity. (Velocity is the rate of change of distance.)",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.2",
+      "skills": [
+        "calc.rate-of-change",
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 66
+    },
+    {
+      "id": "2012-nov-p1-10.2",
+      "paper_id": "2012-nov-p1",
+      "number": "10.2",
+      "parent": "2012-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the rate at which the velocity of the particle is changing at $t$ seconds.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.2",
+      "skills": [
+        "calc.rate-of-change",
+        "calc.power-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 67
+    },
+    {
+      "id": "2012-nov-p1-10.3",
+      "paper_id": "2012-nov-p1",
+      "number": "10.3",
+      "parent": "2012-nov-p1-10",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "After how many seconds will the particle be closest to the fixed point?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M7",
+      "subtopic": "M7.4",
+      "skills": [
+        "calc.stationary-points"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 68
+    },
+    {
+      "id": "2012-nov-p1-11",
+      "paper_id": "2012-nov-p1",
+      "number": "11",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "A calculator company manufactures two kinds of calculators: scientific and basic. The company is able to sell all the calculators that it produces. A system of constraints has been developed for the production of the calculators. The feasible region is shaded below.\n\nLet $x$ and $y$ respectively be the number of scientific and basic calculators produced each day.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 14,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2012-nov-p1-fig-11"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 69
+    },
+    {
+      "id": "2012-nov-p1-11.1",
+      "paper_id": "2012-nov-p1",
+      "number": "11.1",
+      "parent": "2012-nov-p1-11",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Is it possible for the company to manufacture $15$ scientific calculators and $5$ basic calculators in one day according to their system of constraints? Motivate your answer.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.linear-programming"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 70
+    },
+    {
+      "id": "2012-nov-p1-11.2",
+      "paper_id": "2012-nov-p1",
+      "number": "11.2",
+      "parent": "2012-nov-p1-11",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Write down all the algebraic inequalities which describe the constraints related to the manufacturing of the calculators.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.linear-programming"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 71
+    },
+    {
+      "id": "2012-nov-p1-11.3",
+      "paper_id": "2012-nov-p1",
+      "number": "11.3",
+      "parent": "2012-nov-p1-11",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": "The profit Q (in hundreds of rands) is given by $\\mathrm{Q}=x+3y$. The dotted line on the graph is a search line associated with the profit function.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 72
+    },
+    {
+      "id": "2012-nov-p1-11.3.1",
+      "paper_id": "2012-nov-p1",
+      "number": "11.3.1",
+      "parent": "2012-nov-p1-11.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Identify the point in the region where the profit is a maximum. Use only A, B, C or D.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.linear-programming"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 73
+    },
+    {
+      "id": "2012-nov-p1-11.3.2",
+      "paper_id": "2012-nov-p1",
+      "number": "11.3.2",
+      "parent": "2012-nov-p1-11.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Write down the coordinates of a point on the dotted line (if the point exists) at which the profit is greater than the profit at $\\mathrm{P}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.linear-programming"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 74
+    },
+    {
+      "id": "2012-nov-p1-11.3.3",
+      "paper_id": "2012-nov-p1",
+      "number": "11.3.3",
+      "parent": "2012-nov-p1-11.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Given that the profit, when given by $\\mathrm{Q}=ax+by$ ($a>0$ ; $b>0$), is a maximum at B, determine the maximum value of $\\dfrac{a}{b}$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M4",
+      "subtopic": "M4.2",
+      "skills": [
+        "fn.linear-programming"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 75
+    }
+  ],
+  "figures": [
+    {
+      "id": "2012-nov-p1-fig-3.2",
+      "paper_id": "2012-nov-p1",
+      "kind": "illustrative",
+      "caption": "Five water tanks decreasing in size from left to right, illustrating a geometric sequence of volumes.",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          324,
+          770,
+          1199,
+          1026
+        ],
+        "file": "figures/2012-nov-p1/fig-3.2.png"
+      },
+      "exact": false,
+      "spec": {
+        "scene": "Five cylindrical water tanks in a row, each smaller than the one to its left. The first (leftmost) tank is the largest. No volumes or labels are printed on the tanks.",
+        "labels": [],
+        "animation_hint": "Show the 19 smaller full tanks pouring into the empty first tank."
+      },
+      "used_by": [
+        "2012-nov-p1-3.2"
+      ],
+      "notes": "Schematic, not to scale. Only five of the twenty tanks are drawn."
+    },
+    {
+      "id": "2012-nov-p1-fig-4.2",
+      "paper_id": "2012-nov-p1",
+      "kind": "function_graph",
+      "caption": "Parabola $f$ with $x$-intercepts $\\mathrm{S}(-2\\,;\\,0)$ and $\\mathrm{T}(6\\,;\\,0)$ and $y$-intercept $\\mathrm{R}$, and the straight line $g$ through $\\mathrm{R}$ and $\\mathrm{T}$.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          409,
+          757,
+          971,
+          1470
+        ],
+        "file": "figures/2012-nov-p1/fig-4.2.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "0"
+        },
+        "view": {
+          "x": [
+            -4.5,
+            8.5
+          ],
+          "y": [
+            -8,
+            20
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "ax^{2}+bx+c",
+            "plain": "a*x^2+b*x+c",
+            "domain": "all real x",
+            "given": true
+          },
+          {
+            "name": "f",
+            "expr": "-x^{2}+4x+12",
+            "plain": "-x^2+4*x+12",
+            "domain": "all real x",
+            "given": false,
+            "reveals": "4.2.2"
+          },
+          {
+            "name": "g",
+            "expr": "-2x+d",
+            "plain": "-2*x+d",
+            "domain": "all real x",
+            "given": true
+          },
+          {
+            "name": "g",
+            "expr": "-2x+12",
+            "plain": "-2*x+12",
+            "domain": "all real x",
+            "given": false,
+            "reveals": "4.2.1"
+          }
+        ],
+        "points": [
+          {
+            "label": "0",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "S",
+            "xy": [
+              -2,
+              0
+            ],
+            "role": "x_intercept",
+            "of": [
+              "f"
+            ],
+            "given": true
+          },
+          {
+            "label": "T",
+            "xy": [
+              6,
+              0
+            ],
+            "role": "x_intercept",
+            "of": [
+              "f",
+              "g"
+            ],
+            "given": true
+          },
+          {
+            "label": "R",
+            "xy": [
+              0,
+              12
+            ],
+            "role": "y_intercept",
+            "of": [
+              "f",
+              "g"
+            ],
+            "given": false,
+            "reveals": "4.2.2"
+          }
+        ]
+      },
+      "used_by": [
+        "2012-nov-p1-4.2"
+      ],
+      "notes": "The equation $f(x)=-x^{2}+4x+12$ is later given in QUESTION 4.2.3 and is consistent with the intercepts and the line through R and T. R is labelled but its coordinates are not printed."
+    },
+    {
+      "id": "2012-nov-p1-fig-5",
+      "paper_id": "2012-nov-p1",
+      "kind": "function_graph",
+      "caption": "Graph of $f(x)=-\\sqrt{27x}$ for $x\\geq 0$, starting at the origin and passing through $\\mathrm{P}(3\\,;\\,-9)$.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          191,
+          365,
+          1188,
+          1113
+        ],
+        "file": "figures/2012-nov-p1/fig-5.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "0"
+        },
+        "view": {
+          "x": [
+            -1.5,
+            14
+          ],
+          "y": [
+            -16,
+            4
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "-\\sqrt{27x}",
+            "plain": "-sqrt(27*x)",
+            "domain": "x>=0",
+            "given": true
+          }
+        ],
+        "points": [
+          {
+            "label": "0",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "P",
+            "xy": [
+              3,
+              -9
+            ],
+            "role": "point_on_curve",
+            "of": [
+              "f"
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2012-nov-p1-5"
+      ]
+    },
+    {
+      "id": "2012-nov-p1-fig-9.1",
+      "paper_id": "2012-nov-p1",
+      "kind": "function_graph",
+      "caption": "Cubic $f(x)=-x^{3}-x^{2}+16x+16$, with a local minimum in the third quadrant and a local maximum in the first quadrant.",
+      "source": {
+        "pdf_page": 8,
+        "printed_page": 8,
+        "dpi": 170,
+        "bbox_px": [
+          289,
+          314,
+          1090,
+          957
+        ],
+        "file": "figures/2012-nov-p1/fig-9.1.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "0"
+        },
+        "view": {
+          "x": [
+            -6,
+            6
+          ],
+          "y": [
+            -20,
+            28
+          ]
+        },
+        "functions": [
+          {
+            "name": "f",
+            "expr": "-x^{3}-x^{2}+16x+16",
+            "plain": "-x^3-x^2+16*x+16",
+            "domain": "all real x",
+            "given": true
+          }
+        ],
+        "points": [
+          {
+            "label": "0",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2012-nov-p1-9.1"
+      ],
+      "notes": "The turning points are not labelled; their $x$-coordinates are asked in QUESTION 9.1.1."
+    },
+    {
+      "id": "2012-nov-p1-fig-11",
+      "paper_id": "2012-nov-p1",
+      "kind": "analytic_geometry",
+      "caption": "Shaded feasible region for the calculator production problem, with vertices A, B, C and D, point P on a dotted search line, and axes labelled Scientific Calculators and Basic Calculators.",
+      "source": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "dpi": 170,
+        "bbox_px": [
+          211,
+          402,
+          1177,
+          1177
+        ],
+        "file": "figures/2012-nov-p1/fig-11.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "Scientific Calculators",
+          "y_label": "Basic Calculators",
+          "origin_label": "0"
+        },
+        "lines": [
+          {
+            "equation": "x+y=40",
+            "intercepts": [
+              [
+                40,
+                0
+              ],
+              [
+                0,
+                40
+              ]
+            ],
+            "given": true
+          },
+          {
+            "equation": "x+2y=50",
+            "intercepts": [
+              [
+                50,
+                0
+              ],
+              [
+                0,
+                25
+              ]
+            ],
+            "given": true
+          },
+          {
+            "equation": "x=20",
+            "given": true
+          },
+          {
+            "equation": "x+3y=45",
+            "style": "dotted",
+            "role": "search_line",
+            "intercepts": [
+              [
+                45,
+                0
+              ],
+              [
+                0,
+                15
+              ]
+            ],
+            "given": true
+          }
+        ],
+        "points": [
+          {
+            "label": "A",
+            "xy": [
+              20,
+              15
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "B",
+            "xy": [
+              30,
+              10
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "C",
+            "xy": [
+              40,
+              0
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "D",
+            "xy": [
+              20,
+              0
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "P",
+            "xy": [
+              30,
+              5
+            ],
+            "role": "search_line_point",
+            "given": true
+          }
+        ],
+        "facts": [
+          "The feasible region is the shaded polygon ABCD (including the interior), labelled FEASIBLE REGION.",
+          "The dotted line is a search line associated with the profit function Q=x+3y."
+        ]
+      },
+      "used_by": [
+        "2012-nov-p1-11"
+      ],
+      "notes": "Vertex and intercept coordinates are read off the printed 5-unit grid and are exact (A is the intersection of x=20 and x+2y=50; B of x+y=40 and x+2y=50; C of x+y=40 and y=0; D of x=20 and y=0; P of x=30 and the search line x+3y=45)."
+    }
+  ]
+}

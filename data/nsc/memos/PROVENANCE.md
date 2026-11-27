@@ -7,7 +7,7 @@ Included, all November Mathematics, English only, one file per paper:
 | Pool | Papers |
 | --- | --- |
 | Exam (mock exams only, never quizzes) | 2022, 2023, 2024, 2025, Paper 1 and Paper 2 |
-| Practice (quizzes, behind prerequisites) | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, Paper 1 and Paper 2 |
+| Practice (quizzes, behind prerequisites) | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, Paper 1 and Paper 2 |
 
 The pool comes from the paper year, not from the memo: importing a memo never moves a 2022+ paper into quizzes.
 
@@ -15,7 +15,7 @@ Each file has one part per answerable question, with the same id as the question
 
 ## Typos in the official memos
 
-Where the printed memo has an error, Mohlodi transcribed it as printed and explained it in a note on the part, an alternative or a step (for example 2014 P1 3.1.3, 2014 P2 3.4.1, 2015 P1 9.5, 2015 P2 6.1, 2016 P2 4.4.2, 2017 P1 2.2.2, 2019 P2 8.2.1, 2021 P1 3.4, 2023 P1 8.4). The official 2015 Paper 2 memo omits QUESTION 3.4 and prints a total of 149; the missing 1-mark answer $\mathrm{RS}=7\sqrt{2}$ was derived from the rest of question 3 and is stored with a note. Togisumasu does not correct these. The notes are stored on the key as `memo_notes` and shown with the official answer after an exam; `npm run keys:memos` lists them in its output.
+Where the printed memo has an error, Mohlodi transcribed it as printed and explained it in a note on the part, an alternative or a step (for example 2012 P1 1.3.2, 2012 P1 3.3.4, 2013 P1 4.3, 2013 P2 9.1, 2014 P1 3.1.3, 2014 P2 3.4.1, 2015 P1 9.5, 2015 P2 6.1, 2016 P2 4.4.2, 2017 P1 2.2.2, 2019 P2 8.2.1, 2021 P1 3.4, 2023 P1 8.4). The official 2015 Paper 2 memo omits QUESTION 3.4 and prints a total of 149; the missing 1-mark answer $\mathrm{RS}=7\sqrt{2}$ was derived from the rest of question 3 and is stored with a note. In 2012 P1 3.3.4, 2012 P1 11.2 and 2012 P2 9.2, the official tick counts do not match the printed subtotals; the marks were split to match the paper totals and the notes travel with the keys. Togisumasu does not correct these. The notes are stored on the key as `memo_notes` and shown with the official answer after an exam; `npm run keys:memos` lists them in its output. Linear programming (2012 and 2013 P1 Q11) and transformation geometry (2012 and 2013 P2) questions are stored but flagged out of the syllabus and are never served in quizzes or lessons.
 
 ## Import
 

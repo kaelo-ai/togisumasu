@@ -4,7 +4,7 @@ Trimmed copy of the Mohlodi question bank (sibling of Togisumasu), committed so 
 
 Included:
 
-- `papers/` — November NSC Mathematics Paper 1 and Paper 2, 2014–2025 (24 papers). Each file is the extracted question tree plus figure **specs**. Every paper totals 150 marks.
+- `papers/` — November NSC Mathematics Paper 1 and Paper 2, 2012–2025 (28 papers). Each file is the extracted question tree plus figure **specs**. Every paper totals 150 marks.
 - `taxonomy/topics.json` — 13 CAPS units (Mind the Gap, plus two added sections). Stable unit codes `M1`–`M13`.
 - `taxonomy/skills.json` — 134 skills, including `fn.reflect-in-axes` from 2015 Paper 1. Every skill is still `status: "proposed"`, so ids may be renamed. Togisumasu maps them through the `bank_skill_map` lookup table and does not foreign-key questions to these ids.
 - `schema/` — JSON Schema for a paper, a question node, a figure and a skill.
@@ -19,4 +19,4 @@ Reading note kept from the source: in `papers/2016-nov-p2.json`, question 2's hi
 
 Marking guidelines for every paper in this snapshot are in `memos/` (see `memos/PROVENANCE.md`). November 2012 and 2013 papers exist in the sibling bank but are not imported yet, because their memos have not been transcribed. Where a memo is missing, a key can still be filled by two agreeing offline solutions. A flagged or missing key is not served. A memo key replaces either of those.
 
-Papers from 2022 onward are the exam pool. Papers from 2014–2021 are the practice pool. The split is a `CHECK` on `nsc_papers` plus the `nsc_practice_leaves` and `nsc_exam_papers` views, not a label the UI is trusted to honour.
+Papers from 2022 onward are the exam pool. Papers from 2012–2021 are the practice pool. Linear programming and transformation geometry questions in 2012 and 2013 are kept in the papers but flagged `on_syllabus = 0` and are excluded from quizzes and lessons (those topics left CAPS after 2013). 2012 and 2013 Paper 2 have no Euclidean geometry riders. The split is a `CHECK` on `nsc_papers` plus the `nsc_practice_leaves` and `nsc_exam_papers` views, not a label the UI is trusted to honour.

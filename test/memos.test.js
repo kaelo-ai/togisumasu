@@ -1,4 +1,4 @@
-// Official November memos 2014–2025: schema, full leaf coverage, idempotent import,
+// Official November memos 2012–2025: schema, full leaf coverage, idempotent import,
 // practice memos open quizzes behind prerequisites, 2022+ stays in the exam pool.
 'use strict';
 const os = require('node:os'), fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
@@ -14,7 +14,7 @@ const core = require('../public/core.js');
 
 const MEMOS = path.join(__dirname, '..', 'data', 'nsc', 'memos');
 const PAPERS = [];
-for (let year = 2014; year <= 2025; year++) for (const p of [1, 2]) PAPERS.push(`${year}-nov-p${p}`);
+for (let year = 2012; year <= 2025; year++) for (const p of [1, 2]) PAPERS.push(`${year}-nov-p${p}`);
 const results = [];
 function t(name, fn) {
   try { fn(); results.push(['ok', name]); }
@@ -22,7 +22,7 @@ function t(name, fn) {
 }
 const spec = id => JSON.parse(keys.keyRow(db, id).answer_json);
 
-t('the memo schema accepts all 24 files and rejects a broken part', () => {
+t('the memo schema accepts all 28 files and rejects a broken part', () => {
   for (const id of PAPERS) {
     const name = id + '.json';
     const memo = JSON.parse(fs.readFileSync(path.join(MEMOS, name), 'utf8'));
@@ -34,7 +34,7 @@ t('the memo schema accepts all 24 files and rejects a broken part', () => {
   assert.throws(() => keys.validateMemo(bad, 'bad.json'), /steps/);
 });
 
-t('every leaf of all 24 papers has one memo key and each paper totals 150', () => {
+t('every leaf of all 28 papers has one memo key and each paper totals 150', () => {
   for (const paperId of PAPERS) {
     const leaves = db.prepare('SELECT id, marks FROM nsc_nodes WHERE paper_id = ? AND is_leaf = 1').all(paperId);
     assert.ok(leaves.length, paperId);
@@ -112,7 +112,7 @@ t('import is idempotent and a memo replaces llm_double and flagged keys', () => 
   assert.equal(after.n, before.n);
   assert.equal(after.j, before.j);
   assert.equal(again.keys, before.n);
-  assert.equal(Object.keys(again.papers).length, 24);
+  assert.equal(Object.keys(again.papers).length, 28);
   db.prepare(`UPDATE nsc_answer_keys SET provenance = 'flagged', answer_json = NULL WHERE node_id = '2021-nov-p1-1.1.3'`).run();
   db.prepare(`UPDATE nsc_answer_keys SET provenance = 'llm_double' WHERE node_id = '2025-nov-p1-2.2.1'`).run();
   keys.importMemos(db, MEMOS);
@@ -152,7 +152,7 @@ t('a memo-keyed 2021 leaf enters a quiz only once its prerequisites are mastered
   assert.equal(keys.markNode(db, leafId, '-4 <= x <= -1').ok, true);
 });
 
-t('practice memos make 2014–2021 leaves quiz-servable; unscored memo parts are not served', () => {
+t('practice memos make 2012–2021 leaves quiz-servable; unscored memo parts are not served', () => {
   const all = db.prepare('SELECT id FROM topics').all().map(row => row.id);
   const open = quiz.eligibleLeaves(db, all, 'gr12-caps');
   assert.ok(open.length > 300, 'only ' + open.length);
@@ -201,7 +201,8 @@ t('2014 and 2015 typo notes and the derived 2015 P2 3.4 answer travel with the k
   assert.ok(db.prepare(`SELECT 1 AS ok FROM nsc_node_skills WHERE node_id = '2015-nov-p1-4.3' AND bank_code = 'fn.reflect-in-axes'`).get());
   assert.equal(db.prepare(`SELECT pool FROM nsc_papers WHERE id = '2014-nov-p1'`).get().pool, 'practice');
   assert.equal(db.prepare(`SELECT pool FROM nsc_papers WHERE id = '2015-nov-p2'`).get().pool, 'practice');
-  assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE year IN (2012, 2013)`).get().n, 0);
+  assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE year IN (2012, 2013)`).get().n, 4);
+  assert.equal(db.prepare(`SELECT pool FROM nsc_papers WHERE id = '2012-nov-p1'`).get().pool, 'practice');
   const angle = spec('2014-nov-p2-8.1.2');
   assert.notEqual(angle.type, 'geom');
   assert.equal(angle.checkable, true);
@@ -213,6 +214,65 @@ t('2014 and 2015 typo notes and the derived 2015 P2 3.4 answer travel with the k
   const reasons = spec('2014-nov-p2-10.1');
   assert.notEqual(reasons.type, 'geom');
   assert.equal(reasons.checkable, false);
+});
+
+
+t('2012 typo notes and the split-mark notes travel with the key', () => {
+  const typo = spec('2012-nov-p1-1.3.2');
+  assert.ok(typo.memo_notes.some(note => /p<5\/2/.test(note.text) && /p<-5\/2/.test(note.text)));
+  const split334 = spec('2012-nov-p1-3.3.4');
+  assert.equal(split334.marks, 6);
+  assert.ok(split334.memo_notes.some(note => /allocated 4 marks/.test(note.text) && /printed total/.test(note.text)));
+  const split112 = spec('2012-nov-p1-11.2');
+  assert.equal(split112.marks, 6);
+  assert.ok(split112.memo_notes.some(note => /four ticks/.test(note.text) && /allocated 2 marks each/.test(note.text)));
+  const split92 = spec('2012-nov-p2-9.2');
+  assert.equal(split92.marks, 8);
+  assert.ok(split92.memo_notes.some(note => /nine visible ticks/.test(note.text) && /combined into one mark/.test(note.text)));
+  const typo2013 = spec('2013-nov-p1-4.3');
+  assert.ok(typo2013.memo_notes.some(note => /-b\/\(2a\)/.test(note.text)));
+  const typoTheta = spec('2013-nov-p2-9.1');
+  assert.ok(typoTheta.memo_notes.some(note => /345/.test(note.text) && /195/.test(note.text)));
+});
+
+t('linear programming and transformation geometry are stored but flagged out of the syllabus', () => {
+  const off = [
+    '2012-nov-p1-11.1', '2012-nov-p1-11.2', '2012-nov-p1-11.3.1', '2012-nov-p1-11.3.2', '2012-nov-p1-11.3.3',
+    '2013-nov-p1-11.1', '2013-nov-p1-11.2', '2013-nov-p1-11.3.1', '2013-nov-p1-11.3.2', '2013-nov-p1-11.4',
+    '2012-nov-p2-6.10', '2012-nov-p2-7.1', '2012-nov-p2-7.2', '2012-nov-p2-7.3', '2012-nov-p2-7.4',
+    '2012-nov-p2-7.5.1', '2012-nov-p2-7.5.2', '2012-nov-p2-7.5.3', '2012-nov-p2-13.1', '2012-nov-p2-13.2',
+    '2013-nov-p2-7.1', '2013-nov-p2-7.2', '2013-nov-p2-7.3', '2013-nov-p2-8.1', '2013-nov-p2-8.2',
+    '2013-nov-p2-8.3.1', '2013-nov-p2-8.3.2', '2013-nov-p2-8.4', '2013-nov-p2-9.1', '2013-nov-p2-9.2',
+  ];
+  for (const id of off) {
+    const row = db.prepare('SELECT is_leaf, on_syllabus FROM nsc_nodes WHERE id = ?').get(id);
+    assert.ok(row, id);
+    assert.equal(row.is_leaf, 1, id);
+    assert.equal(row.on_syllabus, 0, id);
+  }
+  assert.equal(db.prepare("SELECT on_syllabus FROM nsc_nodes WHERE id = '2012-nov-p2-6.1'").get().on_syllabus, 1);
+  assert.ok(db.prepare("SELECT 1 AS ok FROM nsc_node_skills WHERE node_id = '2012-nov-p1-11.2' AND bank_code = 'fn.linear-programming'").get());
+  assert.ok(db.prepare("SELECT 1 AS ok FROM nsc_node_skills WHERE node_id = '2012-nov-p2-7.1' AND bank_code = 'ageo.transformation-geometry'").get());
+  assert.equal(db.prepare("SELECT topic_id FROM bank_skill_map WHERE bank_code = 'fn.linear-programming'").get(), undefined);
+  assert.equal(db.prepare("SELECT topic_id FROM bank_skill_map WHERE bank_code = 'ageo.transformation-geometry'").get(), undefined);
+  const mastered = db.prepare('SELECT id FROM topics').all().map(row => row.id);
+  const open = quiz.eligibleLeaves(db, mastered, 'gr12-caps');
+  const leaked = open.filter(leaf => off.includes(leaf.id)).map(leaf => leaf.id);
+  assert.deepEqual(leaked, []);
+  assert.ok(open.some(leaf => leaf.id.startsWith('2012-nov-p1-1.')), 'on-syllabus 2012 leaves still enter quizzes');
+  // 2012 and 2013 Paper 2 have no Euclidean geometry riders. 2012 P2 fig-11 is a
+  // parallelogram drawn for the area-rule trig question, and 2012 P2 6.1 only uses
+  // tangent ⊥ radius as a reason in an analytic-geometry figure.
+  const eucLeaves = db.prepare(`
+    SELECT n.id AS id FROM nsc_nodes n
+    JOIN nsc_node_skills s ON s.node_id = n.id
+    WHERE n.paper_id IN ('2012-nov-p2', '2013-nov-p2') AND n.is_leaf = 1 AND s.bank_code LIKE 'euc.%'
+    ORDER BY n.id
+  `).all().map(row => row.id);
+  assert.deepEqual(eucLeaves, ['2012-nov-p2-6.1']);
+  assert.equal(db.prepare("SELECT kind FROM nsc_figures WHERE id = '2012-nov-p2-fig-11'").get().kind, 'euclidean');
+  assert.ok(db.prepare("SELECT 1 AS ok FROM nsc_node_skills WHERE node_id = '2012-nov-p2-11.1' AND bank_code = 'trig.area-rule'").get());
+  assert.equal(db.prepare("SELECT COUNT(*) AS n FROM nsc_figures WHERE paper_id = '2013-nov-p2' AND kind = 'euclidean'").get().n, 0);
 });
 
 t('2022+ stays in the exam pool and out of quizzes', () => {

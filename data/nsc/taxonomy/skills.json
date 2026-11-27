@@ -5858,6 +5858,32 @@
       "description": "Needed for 2015-nov-p1 Q4.3 (g is the reflection of f(x) = 2^{x+1} - 8 in the y-axis). fn.translate-graph covers shifts only, and ageo.reflect-in-y-equals-x covers reflection in y = x.",
       "status": "proposed",
       "first_seen": "2015-nov-p1"
+    },
+    {
+      "id": "fn.linear-programming",
+      "name": "Write linear constraints, sketch the feasible region, and optimise a linear objective function",
+      "topic": "M4.2",
+      "prerequisites": [
+        "fn.linear-function-gradient-intercept",
+        "alg.words-to-equations"
+      ],
+      "description": "Linear programming appeared in NSC Mathematics P1 in 2012 and 2013 but was withdrawn from CAPS. Papers are stored; these questions are flagged out of the syllabus and are not used in quizzes or lessons.",
+      "status": "proposed",
+      "first_seen": "2012-nov-p1",
+      "syllabus": false
+    },
+    {
+      "id": "ageo.transformation-geometry",
+      "name": "Apply and describe translations, rotations about the origin, reflections and enlargements, including composition and order",
+      "topic": "M9.1",
+      "prerequisites": [
+        "ageo.reflect-in-y-equals-x",
+        "fn.reflect-in-axes"
+      ],
+      "description": "Transformation geometry appeared in NSC Mathematics P2 in 2012 and 2013 but was withdrawn from CAPS. Papers are stored; these questions are flagged out of the syllabus and are not used in quizzes or lessons.",
+      "status": "proposed",
+      "first_seen": "2012-nov-p2",
+      "syllabus": false
     }
   ]
 }

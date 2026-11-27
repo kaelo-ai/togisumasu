@@ -288,6 +288,7 @@ function nscLeafCounts(db) {
       JOIN nsc_nodes n ON n.id = ns.node_id
       JOIN nsc_papers p ON p.id = n.paper_id
       WHERE n.is_leaf = 1 AND p.pool = 'practice' AND p.year < 2022
+        AND COALESCE(n.on_syllabus, 1) = 1
       GROUP BY bsm.topic_id
     `).all();
     return Object.fromEntries(rows.map(r => [r.id, r.n]));

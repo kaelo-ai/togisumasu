@@ -1,0 +1,2424 @@
+{
+  "id": "2013-nov-p2",
+  "paper_id": "2013-nov-p2",
+  "source": {
+    "pdf": "sources/maths/2013-nov/2013-nov-p2-memo.pdf",
+    "pdf_pages": 23,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=ggyoYRBDdtk%3d&tabid=607&portalid=0&mid=1870",
+    "sha256": "c8ce7b8de45f3404f8e57adce2eb70fa949dfefa221b750794ac315f1f38421b",
+    "note": "Official DBE November 2013 Mathematics P2 marking guidelines (English/Afrikaans). Bilingual PDF; English transcribed only. The PDF text layer is column-scrambled; page renders were authoritative."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-27",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answered a question TWICE, mark only the first attempt. If a candidate crossed out an attempt of a question and did not redo the question, mark the crossed-out question. Consistent accuracy applies in ALL aspects of the marking memorandum. Assuming values/answers in order to solve a problem is unacceptable.",
+  "parts": [
+    {
+      "id": "2013-nov-p2-1.1",
+      "question_id": "2013-nov-p2-1.1",
+      "number": "1.1",
+      "marks": 2,
+      "answer_md": "$11$",
+      "working_md": "Interquartile range $=53-42=11$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values $(42;53)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$11$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official notes: answer only, full marks; no CA."
+    },
+    {
+      "id": "2013-nov-p2-1.2",
+      "question_id": "2013-nov-p2-1.2",
+      "number": "1.2",
+      "marks": 2,
+      "answer_md": "$25\\%$ of trees have a height in excess of $53\\,\\mathrm{cm}$.",
+      "working_md": "$25\\%$ of trees have a height in excess of $53\\,\\mathrm{cm}$.",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$25\\%$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-1.3",
+      "question_id": "2013-nov-p2-1.3",
+      "number": "1.3",
+      "marks": 2,
+      "answer_md": "Between $Q_{2}\\,(50)$ and $Q_{3}\\,(53)$",
+      "working_md": "Between $Q_{2}\\,(50)$ and $Q_{3}\\,(53)$\n\nThe distance between these two quartiles is the smallest.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$Q_{2}$ and $Q_{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "reason"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Between $Q_{2}\\,(50)$ and $Q_{3}\\,(53)$",
+          "working_md": "Between $Q_{2}\\,(50)$ and $Q_{3}\\,(53)$\n\nThe third quarter has smallest length.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$Q_{2}$ and $Q_{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "reason"
+            }
+          ],
+          "notes": "Official wording prints ‘The third quarter has smallest length’."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-2.1",
+      "question_id": "2013-nov-p2-2.1",
+      "number": "2.1",
+      "marks": 3,
+      "answer_md": "Six points correctly plotted on the scatter plot.",
+      "working_md": "Official scatter plot of relative risk of having an accident against blood alcohol level $\\%$, with the six given points plotted.",
+      "steps": [
+        {
+          "marks": 3,
+          "mark_type": null,
+          "description": "6 points correctly plotted"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official mark bands: 6 points correctly plotted (3 marks); 4 points correctly plotted (2 marks); 2 points correctly plotted (1 mark)."
+    },
+    {
+      "id": "2013-nov-p2-2.2",
+      "question_id": "2013-nov-p2-2.2",
+      "number": "2.2",
+      "marks": 1,
+      "answer_md": "Exponential curve of best fit.",
+      "working_md": "An exponential curve of best fit through the plotted points.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "exponential curve"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-2.3",
+      "question_id": "2013-nov-p2-2.3",
+      "number": "2.3",
+      "marks": 1,
+      "answer_md": "The trend shows that as the blood alcohol levels increase, the risk of having an accident increases rapidly.",
+      "working_md": "The trend shows that as the blood alcohol levels increase, the risk of having an accident increases rapidly.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "reason"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-2.4",
+      "question_id": "2013-nov-p2-2.4",
+      "number": "2.4",
+      "marks": 2,
+      "answer_md": "Approximately $47\\%$",
+      "working_md": "Approximately $47\\%$  (Accept $44\\%$ – $51\\%$)",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$47\\%$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-3.1",
+      "question_id": "2013-nov-p2-3.1",
+      "number": "3.1",
+      "marks": 2,
+      "answer_md": "$36$ people",
+      "working_md": "More than $15$ minutes:  $140-104=36$ people\n\nApproximately $36$ people  (Accept $34$–$37$)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$104$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$36$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: answer only, full marks."
+    },
+    {
+      "id": "2013-nov-p2-3.2",
+      "question_id": "2013-nov-p2-3.2",
+      "number": "3.2",
+      "marks": 2,
+      "answer_md": "Approximately $35$ people",
+      "working_md": "At $8$ minutes approximately $27$ people and at $12$ minutes approximately $62$ people left the auditorium.\n\n$\\therefore 62-27=35$\n\nApproximately $35$ people left the auditorium between $8$ and $12$ minutes.  (Accept $33$–$36$)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$27$ and $62$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$35$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-3.3",
+      "question_id": "2013-nov-p2-3.3",
+      "number": "3.3",
+      "marks": 1,
+      "answer_md": "$11<x\\leq 16$",
+      "working_md": "Modal class:  $11<x\\leq 16$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$11<x\\leq 16$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$11\\leq x<16$",
+          "working_md": "$11\\leq x<16$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11\\leq x<16$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official heading: mark for critical values."
+    },
+    {
+      "id": "2013-nov-p2-4.1",
+      "question_id": "2013-nov-p2-4.1",
+      "number": "4.1",
+      "marks": 2,
+      "answer_md": "School B, because the standard deviation of B is the largest.",
+      "working_md": "School B, because the standard deviation of B is the largest.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "School B"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "reason"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-4.2",
+      "question_id": "2013-nov-p2-4.2",
+      "number": "4.2",
+      "marks": 1,
+      "answer_md": "There is no difference in the spread of the marks.",
+      "working_md": "There is no difference in the spread of the marks.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "no difference / the same"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-4.3",
+      "question_id": "2013-nov-p2-4.3",
+      "number": "4.3",
+      "marks": 2,
+      "answer_md": "Add/increase each score in School A by $5$ marks.",
+      "working_md": "Add/increase each score in School A by $5$ marks.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "increase each mark"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5$ marks"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-4.4",
+      "question_id": "2013-nov-p2-4.4",
+      "number": "4.4",
+      "marks": 2,
+      "answer_md": "The mean will decrease (by $10\\%$). The standard deviation will also decrease (by $10\\%$).",
+      "working_md": "The mean will decrease (by $10\\%$).\n\nThe standard deviation will also decrease (by $10\\%$).\n\nExplanation why values decrease by $10\\%$:\n\n$\\mathrm{mean}=\\dfrac{\\sum 0{,}9x_{i}}{n}=0{,}9\\dfrac{\\sum x_{i}}{n}=0{,}9\\bar{x}$\n\n$\\mathrm{SD}=\\sqrt{\\dfrac{\\sum(x_{i}-\\bar{x})^{2}}{2}}=\\sqrt{\\dfrac{\\sum(0{,}9x_{i}-0{,}9\\bar{x})^{2}}{n}}=\\sqrt{\\dfrac{0{,}9^{2}\\sum(x_{i}-\\bar{x})^{2}}{n}}=0{,}9\\sqrt{\\dfrac{\\sum(x_{i}-\\bar{x})^{2}}{n}}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "mean decreased"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "SD decreased"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The official explanation of the $10\\%$ decrease prints the first standard-deviation formula as $\\sqrt{\\sum(x_i-\\bar{x})^2/2}$; the denominator should be $n$, as in the subsequent expressions."
+    },
+    {
+      "id": "2013-nov-p2-5.1.1",
+      "question_id": "2013-nov-p2-5.1.1",
+      "number": "5.1.1",
+      "marks": 2,
+      "answer_md": "$2$",
+      "working_md": "$m_{\\mathrm{PT}}=\\tan 63{,}43^{\\circ}=2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan 63{,}43^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: answer only, full marks."
+    },
+    {
+      "id": "2013-nov-p2-5.1.2",
+      "question_id": "2013-nov-p2-5.1.2",
+      "number": "5.1.2",
+      "marks": 2,
+      "answer_md": "$y=2x+10$",
+      "working_md": "Coordinates of $\\mathrm{P}(-5;0)$\n\n$y-y_{1}=m(x-x_{1})$\n\n$y-0=2(x+5)$\n\n$y=2x+10$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $\\mathrm{P}(-5;0)$ and $m=2$ into the equation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=2x+10$",
+          "working_md": "$y=mx+c$\n\n$0=(2)(-5)+c$\n\n$c=10$\n\n$y=2x+10$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $\\mathrm{P}(-5;0)$ and $m=2$ into the equation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$y=2x+10$",
+          "working_md": "$m_{\\mathrm{PT}}=2=\\tan 63{,}43^{\\circ}$\n\n$\\tan 63{,}43^{\\circ}=\\dfrac{\\mathrm{OS}}{\\mathrm{OP}}=\\dfrac{\\mathrm{OS}}{5}=2$\n\n$\\therefore \\mathrm{OS}=10$\n\n$y=2x+10$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{\\mathrm{OS}}{5}=2$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-5.1.3",
+      "question_id": "2013-nov-p2-5.1.3",
+      "number": "5.1.3",
+      "marks": 3,
+      "answer_md": "$\\mathrm{PS}=5\\sqrt{5}$",
+      "working_md": "$\\mathrm{OS}=10$ units\n\n$\\mathrm{PS}^{2}=(5)^{2}+(10)^{2}=125$\n\n$\\mathrm{PS}=\\sqrt{125}=5\\sqrt{5}$  (Accept $\\mathrm{PS}=11{,}18$)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{OS}=10$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of correct distances into Pythagoras"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sqrt{125}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{PS}=5\\sqrt{5}$",
+          "working_md": "$\\mathrm{P}(-5;0)$;  $\\mathrm{OS}=10$ units\n\n$\\mathrm{PS}^{2}=(-5-0)^{2}+(0-10)^{2}=25+100=125$\n\n$\\mathrm{PS}=\\sqrt{125}=5\\sqrt{5}$  (Accept $\\mathrm{PS}=11{,}18$)",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{OS}=10$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of correct distances into Pythagoras"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sqrt{125}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{PS}=11,18$",
+          "working_md": "$\\dfrac{\\mathrm{PS}}{5}=\\dfrac{1}{\\cos 63{,}43^{\\circ}}$\n\n$\\therefore \\mathrm{PS}=\\dfrac{5}{\\cos 63{,}43^{\\circ}}$\n\n$\\mathrm{PS}=11{,}18$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "ratio"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{PS}=\\dfrac{5}{\\cos 63{,}43^{\\circ}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11{,}18$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{PS}=11,18$",
+          "working_md": "$\\dfrac{\\mathrm{PS}}{10}=\\dfrac{1}{\\sin 63{,}43^{\\circ}}$\n\n$\\therefore \\mathrm{PS}=\\dfrac{10}{\\sin 63{,}43^{\\circ}}$\n\n$\\mathrm{PS}=11{,}18$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "ratio"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{PS}=\\dfrac{10}{\\sin 63{,}43^{\\circ}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$11{,}18$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-5.1.4",
+      "question_id": "2013-nov-p2-5.1.4",
+      "number": "5.1.4",
+      "marks": 2,
+      "answer_md": "$\\mathrm{T}(5;20)$",
+      "working_md": "Let $\\mathrm{T}$ be $(x;y)$. Then\n\n$\\dfrac{-5+x}{2}=0$  and  $\\dfrac{0+y}{2}=10$\n\n$x=5$  and  $y=20$\n\n$\\mathrm{T}(5;20)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$20$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{T}(5;20)$",
+          "working_md": "By inspection:  $\\mathrm{T}(5;20)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$20$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-5.2",
+      "question_id": "2013-nov-p2-5.2",
+      "number": "5.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{R}\\left(\\dfrac{15}{2};0\\right)$",
+      "working_md": "$\\mathrm{OR}=\\left(\\dfrac{3}{2}\\right)(5)=\\dfrac{15}{2}=7{,}5$\n\n$\\mathrm{R}\\left(\\dfrac{15}{2};0\\right)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=7{,}5$  /  $\\dfrac{15}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=0$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: if only the $x$-coordinate is given, $2$ marks."
+    },
+    {
+      "id": "2013-nov-p2-5.3",
+      "question_id": "2013-nov-p2-5.3",
+      "number": "5.3",
+      "marks": 4,
+      "answer_md": "$125$ square units",
+      "working_md": "Area $\\Delta\\mathrm{PTR}=\\dfrac{1}{2}(\\text{base }\\mathrm{PR})\\times(\\text{height})$\n\n$=\\dfrac{1}{2}\\left(5+\\dfrac{15}{2}\\right)\\times 20$\n\n$=125$ square units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "area formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$5+\\dfrac{15}{2}=12{,}5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$20$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$125$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$124,99$ square units",
+          "working_md": "Area $\\Delta\\mathrm{PTR}=\\dfrac{1}{2}\\,\\mathrm{PT}\\cdot\\mathrm{PR}\\cdot\\sin\\mathrm{T\\hat{P}R}$\n\n$=\\dfrac{1}{2}\\bigl(10\\sqrt{5}\\bigr)\\left(\\dfrac{25}{2}\\right)\\sin 63{,}43^{\\circ}$\n\n$=124{,}99$ square units",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "area formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$10\\sqrt{5}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{25}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$124{,}99$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-6.1",
+      "question_id": "2013-nov-p2-6.1",
+      "number": "6.1",
+      "marks": 4,
+      "answer_md": "$\\mathrm{M}(3;-1)$",
+      "working_md": "$x^{2}+y^{2}-6x+2y-8=0$\n\n$x^{2}-6x+9+y^{2}+2y+1=8+9+1$\n\n$(x-3)^{2}+(y+1)^{2}=18$\n\n$\\therefore \\mathrm{M}(3;-1)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x^{2}-6x+9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y^{2}+2y+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(x-3)^{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(y+1)^{2}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{M}(3;-1)$",
+          "working_md": "$x_{\\mathrm{M}}=-\\dfrac{1}{2}(\\text{coefficient of }x)=-\\dfrac{1}{2}(-6)=3$\n\n$y_{\\mathrm{M}}=-\\dfrac{1}{2}(\\text{coefficient of }y)=-\\dfrac{1}{2}(2)=-1$\n\n$\\therefore \\mathrm{M}(3;-1)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x_{\\mathrm{M}}=-\\dfrac{1}{2}(-6)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x_{\\mathrm{M}}=3$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y_{\\mathrm{M}}=-\\dfrac{1}{2}(2)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y_{\\mathrm{M}}=-1$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: if only $(x-3)^{2}+(y+1)^{2}=r^{2}$ ($r^{2}\\neq 18$), then $2$ marks."
+    },
+    {
+      "id": "2013-nov-p2-6.2",
+      "question_id": "2013-nov-p2-6.2",
+      "number": "6.2",
+      "marks": 3,
+      "answer_md": "$y=x-4$",
+      "working_md": "$m_{\\mathrm{RM}}=\\dfrac{-1-(-4)}{3-0}=1$\n\n$y$-intercept is $-4$\n\n$y=x-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the gradient formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{RM}}=1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-6.3",
+      "question_id": "2013-nov-p2-6.3",
+      "number": "6.3",
+      "marks": 4,
+      "answer_md": "$q=2-p$",
+      "working_md": "$\\mathrm{MR}\\perp\\mathrm{RP}$  (radius $\\perp$ tangent)\n\n$m_{\\mathrm{MN}}=m_{\\mathrm{PR}}=-1$\n\n$\\dfrac{q-(-1)}{p-3}=-1$\n\n$-p+3=q+1$\n\n$q=2-p$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{MN}}=-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the gradient formula"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$-p+3=q+1$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$q=2-p$",
+          "working_md": "$\\mathrm{MR}\\perp\\mathrm{RP}$  (radius $\\perp$ tangent)\n\n$m_{\\mathrm{MN}}=m_{\\mathrm{PR}}=-1$\n\n$y-(-1)=-1(x-3)$\n\n$y+1=-x+3$\n\n$y=-x+2$\n\n$q=2-p$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\mathrm{MN}}=-1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=-x+2$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "substitution into the equation of the line"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-6.4",
+      "question_id": "2013-nov-p2-6.4",
+      "number": "6.4",
+      "marks": 5,
+      "answer_md": "$q=-4$ and $p=6$",
+      "working_md": "$(x-3)^{2}+(y+1)^{2}=18$\n\n$(p-3)^{2}+(q+1)^{2}=18$\n\n$(2-q-3)^{2}+(q+1)^{2}=18$\n\n$q^{2}+2q+1+q^{2}+2q+1-18=0$\n\n$2q^{2}+4q-16=0$\n\n$q^{2}+2q-8=0$\n\n$(q+4)(q-2)=0$\n\n$q=-4$  or  $q\\neq 2$\n\n$p=6$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "method"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$q=-4$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$p=6$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$q=-4$ and $p=6$",
+          "working_md": "$\\mathrm{MRPN}$ is a square (rectangle with $\\mathrm{MN}=\\mathrm{MR}$)\n\n$\\therefore \\mathrm{M\\hat{P}N}=45^{\\circ}$\n\nBut $\\mathrm{MR}$ has a slope/gradient of $1$, so $\\mathrm{RN}\\parallel x$-axis\n\n$\\therefore q=-4$ and $p=2-(-4)=6$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$q=-4$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$p=6$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$p=6$ and $q=-4$",
+          "working_md": "$q=2-p$\n\n$(p-3)^{2}+(2-p+1)^{2}=18$\n\n$(p-3)^{2}=9$\n\n$\\therefore p-3=3$  ($p>0$)\n\n$p=6$\n\n$\\therefore q=-4$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$p=6$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$q=-4$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$q=-4$ and $p=6$",
+          "working_md": "Using symmetry:  $q=-4$  (since $y_{\\mathrm{M}}=y_{\\mathrm{R}}$)\n\n$-4=2-p$\n\n$p=6$\n\nOR  $p=2\\times 3$  (since $x_{\\mathrm{M}}=2x_{\\mathrm{N}}$)",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$q$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$p$"
+            }
+          ],
+          "notes": "The official symmetry method prints ‘$q=-4$ (since $y_{\\mathrm{M}}=y_{\\mathrm{R}}$)’; $y_{\\mathrm{M}}=-1$ and $y_{\\mathrm{R}}=-4$, so the intended reason is $y_{\\mathrm{N}}=y_{\\mathrm{R}}$. It also prints ‘$p=2\\times 3$ (since $x_{\\mathrm{M}}=2x_{\\mathrm{N}}$)’; $x_{\\mathrm{N}}=6$ and $x_{\\mathrm{M}}=3$, so the intended reason is $x_{\\mathrm{N}}=2x_{\\mathrm{M}}$."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-6.5",
+      "question_id": "2013-nov-p2-6.5",
+      "number": "6.5",
+      "marks": 2,
+      "answer_md": "$x^{2}+y^{2}=52$",
+      "working_md": "$r^{2}=(6)^{2}+(-4)^{2}=36+16=52$\n\n$x^{2}+y^{2}=52$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "equation"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x^{2}+y^{2}=52$",
+          "working_md": "$p^{2}+q^{2}=(6)^{2}+(-4)^{2}=36+16=52$\n\n$x^{2}+y^{2}=p^{2}+q^{2}=52$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "equation"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-6.6",
+      "question_id": "2013-nov-p2-6.6",
+      "number": "6.6",
+      "marks": 2,
+      "answer_md": "$18\\pi$ square units  or  $56,55$ square units",
+      "working_md": "Area of circle $\\mathrm{M}=\\pi r^{2}=\\pi(\\sqrt{18})^{2}=18\\pi$ square units $=56{,}55$ square units",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$r=\\sqrt{18}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "area of circle"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-6.7",
+      "question_id": "2013-nov-p2-6.7",
+      "number": "6.7",
+      "marks": 4,
+      "answer_md": "$\\dfrac{1}{\\sqrt{2}}$  or  $\\dfrac{\\sqrt{2}}{2}$",
+      "working_md": "$\\mathrm{MRPN}$ is a square (all angles $90^{\\circ}$, adjacent sides equal)\n\n$\\mathrm{N\\hat{M}P}=45^{\\circ}$  (diagonals of a square bisect the angles)\n\n$\\dfrac{\\mathrm{NP}}{\\mathrm{MP}}=\\sin\\mathrm{N\\hat{M}P}=\\sin 45^{\\circ}=\\dfrac{1}{\\sqrt{2}}$  or  $\\dfrac{\\sqrt{2}}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{N\\hat{M}P}=45^{\\circ}$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$\\dfrac{\\mathrm{NP}}{\\mathrm{MP}}=\\sin\\mathrm{N\\hat{M}P}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{1}{\\sqrt{2}}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{1}{\\sqrt{2}}$  or  $\\dfrac{\\sqrt{2}}{2}$",
+          "working_md": "$\\mathrm{MRPN}$ is a square (all angles equal $90^{\\circ}$, adjacent sides equal)\n\n$\\mathrm{MP}^{2}=18+18=36$\n\n$\\mathrm{MP}=6$\n\n$\\dfrac{\\mathrm{NP}}{\\mathrm{MP}}=\\dfrac{\\sqrt{18}}{6}=\\dfrac{1}{\\sqrt{2}}$  or  $\\dfrac{\\sqrt{2}}{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{MN}^{2}=18$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{MP}^{2}=36$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$6$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{1}{\\sqrt{2}}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\dfrac{1}{\\sqrt{2}}$  or  $\\dfrac{\\sqrt{2}}{2}$",
+          "working_md": "By inspection:  $\\mathrm{P}(3;-7)$\n\n$\\dfrac{\\mathrm{NP}}{\\mathrm{MP}}=\\dfrac{\\sqrt{(6-3)^{2}+(4-7)^{2}}}{\\sqrt{(3-3)^{2}+(-7+1)^{2}}}=\\dfrac{\\sqrt{18}}{6}=\\dfrac{1}{\\sqrt{2}}$  or  $\\dfrac{\\sqrt{2}}{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{P}(3;-7)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{NP}^{2}=18$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\mathrm{MP}=6$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{1}{\\sqrt{2}}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-7.1",
+      "question_id": "2013-nov-p2-7.1",
+      "number": "7.1",
+      "marks": 2,
+      "answer_md": "$(x;y)\\to(y;-x)\\to(-y;-x)$",
+      "working_md": "$(x;y)\\to(y;-x)\\to(-y;-x)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(y;-x)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(-y;-x)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-7.2",
+      "question_id": "2013-nov-p2-7.2",
+      "number": "7.2",
+      "marks": 2,
+      "answer_md": "$(x;y)\\to(-x;y)\\to(y;x)$",
+      "working_md": "$(x;y)\\to(-x;y)\\to(y;x)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(-x;y)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$(y;x)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-7.3",
+      "question_id": "2013-nov-p2-7.3",
+      "number": "7.3",
+      "marks": 2,
+      "answer_md": "Mo’s claim is correct. If order was unimportant then the image of $\\mathrm{P}$ would be the same in both cases. This is not so.",
+      "working_md": "Mo’s claim is correct. If order was unimportant then the image of $\\mathrm{P}$ would be the same in both cases. This is not so.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "Mo"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "reason"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Mo is correct. For example: $(3;4)\\to(4;-3)\\to(-4;-3)$ and $(3;4)\\to(-3;4)\\to(4;3)$ are not the same.",
+          "working_md": "Choose any point $\\neq(0;0)$ and show that their images in both cases are not the same.\n\nFor example:  $(3;4)\\to(4;-3)\\to(-4;-3)$\n\n$(3;4)\\to(-3;4)\\to(4;3)$\n\nMo is correct.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "calculation of both images"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "Mo"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-8.1",
+      "question_id": "2013-nov-p2-8.1",
+      "number": "8.1",
+      "marks": 2,
+      "answer_md": "$\\Delta\\mathrm{ABC}$ is translated by $4$ units to the left and $4$ units up.",
+      "working_md": "$\\Delta\\mathrm{ABC}$ is translated by $4$ units to the left and $4$ units up.  (Accept $(x;y)\\to(x-4;y+4)$)",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "translation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4$ left and $4$ up"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-8.2",
+      "question_id": "2013-nov-p2-8.2",
+      "number": "8.2",
+      "marks": 2,
+      "answer_md": "$\\mathrm{R}'(3;-4)$",
+      "working_md": "$\\mathrm{R}'(3;-4)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-8.3.1",
+      "question_id": "2013-nov-p2-8.3.1",
+      "number": "8.3.1",
+      "marks": 1,
+      "answer_md": "$4$",
+      "working_md": "Area $\\Delta\\mathrm{A}'\\mathrm{B}'\\mathrm{C}'=16\\times$ Area $\\Delta\\mathrm{ABC}$\n\nScale factor $=4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-8.3.2",
+      "question_id": "2013-nov-p2-8.3.2",
+      "number": "8.3.2",
+      "marks": 1,
+      "answer_md": "$4\\sqrt{10}$",
+      "working_md": "$\\mathrm{AC}=\\sqrt{10}$\n\n$\\mathrm{A}'\\mathrm{C}'=4\\sqrt{10}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$4\\sqrt{10}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-8.4",
+      "question_id": "2013-nov-p2-8.4",
+      "number": "8.4",
+      "marks": 4,
+      "answer_md": "$s^{2}+t^{2}-2t-9=0$",
+      "working_md": "$\\mathrm{EF}=\\mathrm{AC}$\n\n$\\sqrt{(s-0)^{2}+(t-1)^{2}}=\\sqrt{10}$\n\n$s^{2}+(t-1)^{2}=10$\n\n$s^{2}+t^{2}-2t+1-10=0$\n\n$s^{2}+t^{2}-2t-9=0$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "recognising that $\\mathrm{EF}=\\mathrm{AC}$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "equation in terms of $s$ and $t$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-9.1",
+      "question_id": "2013-nov-p2-9.1",
+      "number": "9.1",
+      "marks": 5,
+      "answer_md": "$\\theta=195^{\\circ}$",
+      "working_md": "Anti-clockwise:\n\n$-\\dfrac{16}{\\sqrt{2}}\\cos(-\\theta)-\\dfrac{16}{\\sqrt{2}}\\sin(-\\theta)=8$  $\\qquad\\ldots(1)$\n\n$\\dfrac{16}{\\sqrt{2}}\\cos(-\\theta)-\\dfrac{16}{\\sqrt{2}}\\sin(-\\theta)=-8\\sqrt{3}$  $\\qquad\\ldots(2)$\n\n$(1)+(2)$:  $-\\dfrac{32}{\\sqrt{2}}\\sin(-\\theta)=8-8\\sqrt{3}$\n\n$\\sin(-\\theta)=\\dfrac{-8+8\\sqrt{3}}{\\dfrac{32}{\\sqrt{2}}}$\n\n$\\sin\\theta=\\dfrac{-\\sqrt{6}+\\sqrt{2}}{4}=-0{,}258819\\ldots$\n\n$\\theta=180^{\\circ}+15^{\\circ}$  or  $\\theta=360^{\\circ}-15^{\\circ}=195^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the $x$-image of the rotation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the $y$-image of the rotation"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "addition of equations"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "value of $\\sin\\theta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$180^{\\circ}+15^{\\circ}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\theta=195^{\\circ}$",
+          "working_md": "Anti-clockwise:\n\n$-\\dfrac{16}{\\sqrt{2}}\\cos(-\\theta)-\\dfrac{16}{\\sqrt{2}}\\sin(-\\theta)=8$  $\\qquad\\ldots(1)$\n\n$\\dfrac{16}{\\sqrt{2}}\\cos(-\\theta)-\\dfrac{16}{\\sqrt{2}}\\sin(-\\theta)=-8\\sqrt{3}$  $\\qquad\\ldots(2)$\n\n$(1)-(2)$:  $-\\dfrac{32}{\\sqrt{2}}\\cos(-\\theta)=8+8\\sqrt{3}$\n\n$\\cos\\theta=\\dfrac{8+8\\sqrt{3}}{\\dfrac{32}{\\sqrt{2}}}=\\dfrac{-\\sqrt{6}-\\sqrt{2}}{4}=-0{,}96592\\ldots$\n\n$\\theta=180^{\\circ}+15^{\\circ}$  or  $\\theta=180^{\\circ}-15^{\\circ}=195^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the $x$-image of the rotation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the $y$-image of the rotation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "subtraction of equations"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $\\cos\\theta$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$180^{\\circ}+15^{\\circ}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\theta=195^{\\circ}$",
+          "working_md": "Clockwise:\n\n$-\\dfrac{16}{\\sqrt{2}}\\cos\\theta+\\dfrac{16}{\\sqrt{2}}\\sin\\theta=8$  $\\qquad\\ldots(1)$\n\n$\\dfrac{16}{\\sqrt{2}}\\cos\\theta+\\dfrac{16}{\\sqrt{2}}\\sin\\theta=-8\\sqrt{3}$  $\\qquad\\ldots(2)$\n\n$(1)+(2)$:  $\\dfrac{32}{\\sqrt{2}}\\sin\\theta=8-8\\sqrt{3}$\n\n$\\sin\\theta=\\dfrac{8-8\\sqrt{3}}{\\dfrac{32}{\\sqrt{2}}}$\n\n$\\sin\\theta=\\dfrac{-\\sqrt{6}+\\sqrt{2}}{4}=-0{,}258819\\ldots$\n\n$\\theta=180^{\\circ}+15^{\\circ}$  or  $\\theta=360^{\\circ}-15^{\\circ}=195^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the $x$-image of the rotation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the $y$-image of the rotation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "addition of equations"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $\\sin\\theta$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$180^{\\circ}+15^{\\circ}$"
+            }
+          ],
+          "notes": "As in the first method, the official working prints $\\theta=360^{\\circ}-15^{\\circ}=195^{\\circ}$. $360^{\\circ}-15^{\\circ}=345^{\\circ}$."
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\theta=195^{\\circ}$",
+          "working_md": "Clockwise:\n\n$-\\dfrac{16}{\\sqrt{2}}\\cos\\theta+\\dfrac{16}{\\sqrt{2}}\\sin\\theta=8$  $\\qquad\\ldots(1)$\n\n$\\dfrac{16}{\\sqrt{2}}\\cos\\theta+\\dfrac{16}{\\sqrt{2}}\\sin\\theta=-8\\sqrt{3}$  $\\qquad\\ldots(2)$\n\n$(1)-(2)$:  $-\\dfrac{32}{\\sqrt{2}}\\cos\\theta=8+8\\sqrt{3}$\n\n$\\cos\\theta=\\dfrac{8+8\\sqrt{3}}{-\\dfrac{32}{\\sqrt{2}}}=\\dfrac{-\\sqrt{6}-\\sqrt{2}}{4}=-0{,}96592\\ldots$\n\n$\\theta=180^{\\circ}+15^{\\circ}$  or  $\\theta=180^{\\circ}-15^{\\circ}=195^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the $x$-image of the rotation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the $y$-image of the rotation"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "subtraction of equations"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "value of $\\cos\\theta$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$180^{\\circ}+15^{\\circ}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\theta=195^{\\circ}$",
+          "working_md": "$\\tan\\alpha=\\dfrac{-\\dfrac{16}{\\sqrt{2}}}{\\dfrac{16}{\\sqrt{2}}}=-1$\n\n$\\alpha=135^{\\circ}$\n\n$\\tan\\beta=\\dfrac{-8\\sqrt{3}}{8}=-\\sqrt{3}$\n\n$\\beta=-60^{\\circ}$\n\n$\\therefore\\theta=135^{\\circ}+60^{\\circ}=195^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan\\alpha=-1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$135^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan\\beta=-\\sqrt{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-60^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$195^{\\circ}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\theta=195^{\\circ}$",
+          "working_md": "$\\tan\\alpha=1$\n\n$\\alpha=45^{\\circ}$\n\n$\\tan\\beta=\\sqrt{3}$\n\n$\\beta=60^{\\circ}$\n\n$\\therefore\\theta=(180^{\\circ}-45^{\\circ})+60^{\\circ}=195^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan\\alpha=1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$45^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan\\beta=\\sqrt{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$60^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$195^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "The official first method prints $\\theta=180^{\\circ}+15^{\\circ}$ or $\\theta=360^{\\circ}-15^{\\circ}=195^{\\circ}$. $360^{\\circ}-15^{\\circ}=345^{\\circ}$, not $195^{\\circ}$. The accepted answer $195^{\\circ}$ matches $180^{\\circ}+15^{\\circ}$."
+    },
+    {
+      "id": "2013-nov-p2-9.2",
+      "question_id": "2013-nov-p2-9.2",
+      "number": "9.2",
+      "marks": 5,
+      "answer_md": "$25$ rev/min",
+      "working_md": "$195^{\\circ}$ in $1{,}3$ secs\n\n$\\therefore 1$ revolution in $\\dfrac{360}{195}\\times 1{,}3$ secs $=2{,}4$ secs\n\n$1$ minute $=60$ sec:\n\n$\\therefore\\dfrac{60}{2{,}4}=25$ revolutions\n\n$\\therefore 25$ rev/min",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{360}{195}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{360}{195}\\times 1{,}3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2{,}4$ secs"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{60}{2{,}4}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$25$ rev/min"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$25$ rev/min",
+          "working_md": "speed/sec $=\\dfrac{195^{\\circ}}{1{,}3}=150^{\\circ}/\\mathrm{sec}$\n\nspeed/minute $=150^{\\circ}\\times 60=9000^{\\circ}/\\mathrm{min}$\n\nno of revolutions $=\\dfrac{9000}{360}=25$ rev/min",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{195}{1{,}3}$  or  $150$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$150\\times 60$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$9000$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{9000}{360}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$25$ rev/min"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: answer only, $1$ mark."
+    },
+    {
+      "id": "2013-nov-p2-10.1",
+      "question_id": "2013-nov-p2-10.1",
+      "number": "10.1",
+      "marks": 3,
+      "answer_md": "$\\cos\\alpha=-\\dfrac{5}{13}$",
+      "working_md": "$\\mathrm{OP}^{2}=25+144=169$\n\n$\\mathrm{OP}=13$\n\n$\\cos\\alpha=-\\dfrac{5}{13}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{OP}^{2}=25+144$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{OP}=13$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\cos\\alpha=-\\dfrac{5}{13}$",
+          "working_md": "$r^{2}=x^{2}+y^{2}$\n\n$25+144=169$\n\n$r=13$\n\n$\\cos\\alpha=-\\dfrac{5}{13}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r^{2}=25+144$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$r=13$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: answer only, full marks."
+    },
+    {
+      "id": "2013-nov-p2-10.2",
+      "question_id": "2013-nov-p2-10.2",
+      "number": "10.2",
+      "marks": 2,
+      "answer_md": "$-\\dfrac{12}{5}$",
+      "working_md": "$\\tan(180^{\\circ}-\\alpha)=-\\tan\\alpha=-\\dfrac{12}{5}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\tan\\alpha$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-10.3",
+      "question_id": "2013-nov-p2-10.3",
+      "number": "10.3",
+      "marks": 3,
+      "answer_md": "$\\dfrac{-5+12\\sqrt{3}}{26}$",
+      "working_md": "$\\sin(30^{\\circ}-\\alpha)=\\sin 30^{\\circ}\\cos\\alpha-\\cos 30^{\\circ}\\sin\\alpha$\n\n$=\\left(\\dfrac{1}{2}\\right)\\left(-\\dfrac{5}{13}\\right)-\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(-\\dfrac{12}{13}\\right)$\n\n$=\\dfrac{-5+12\\sqrt{3}}{26}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "expansion"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\left(\\dfrac{1}{2}\\right)\\left(-\\dfrac{5}{13}\\right)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\left(\\dfrac{\\sqrt{3}}{2}\\right)\\left(-\\dfrac{12}{13}\\right)$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.1",
+      "question_id": "2013-nov-p2-11.1",
+      "number": "11.1",
+      "marks": 6,
+      "answer_md": "$\\mathrm{LHS}=\\mathrm{RHS}$",
+      "working_md": "$\\mathrm{LHS}=\\dfrac{\\cos^{2}(90^{\\circ}+\\theta)}{\\cos(-\\theta)+\\sin(90^{\\circ}-\\theta)\\cdot\\cos\\theta}$\n\n$=\\dfrac{(-\\sin\\theta)^{2}}{\\cos\\theta+\\cos\\theta\\cdot\\cos\\theta}$\n\n$=\\dfrac{1-\\cos^{2}\\theta}{\\cos\\theta+\\cos^{2}\\theta}$\n\n$=\\dfrac{(1-\\cos\\theta)(1+\\cos\\theta)}{\\cos\\theta(1+\\cos\\theta)}$\n\n$=\\dfrac{1-\\cos\\theta}{\\cos\\theta}$\n\n$=\\dfrac{1}{\\cos\\theta}-1$\n\n$=\\mathrm{RHS}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos^{2}(90^{\\circ}+\\theta)=\\sin^{2}\\theta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\sin(90^{\\circ}-\\theta)=\\cos\\theta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\cos(-\\theta)=\\cos\\theta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1-\\cos^{2}\\theta$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{1-\\cos\\theta}{\\cos\\theta}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.2",
+      "question_id": "2013-nov-p2-11.2",
+      "number": "11.2",
+      "marks": 7,
+      "answer_md": "$x=0^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$  or  $x=135^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$",
+      "working_md": "$\\tan x\\cdot\\sin x+\\cos x\\cdot\\tan x=0$\n\n$\\tan x(\\sin x+\\cos x)=0$\n\n$\\tan x=0$  or  $\\sin x+\\cos x=0$\n\n$\\sin x=-\\cos x$\n\n$\\tan x=-1$\n\n$x=0^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$  or  $x=135^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorising"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan x=0$ and $\\sin x+\\cos x=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan x=-1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=0^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=135^{\\circ}$ or $-45^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k\\cdot 180^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$k\\in\\mathbb{Z}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=0^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$  or  $x=135^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$",
+          "working_md": "$\\dfrac{\\sin x}{\\cos x}\\cdot\\sin x+\\cos x\\cdot\\dfrac{\\sin x}{\\cos x}=0$\n\n$\\dfrac{\\sin^{2}x}{\\cos x}+\\cos x\\cdot\\sin x=0$\n\n$\\sin^{2}x+\\cos x\\cdot\\sin x=0$\n\n$\\sin x(\\sin x+\\cos x)=0$\n\n$\\sin x=0$  or  $\\tan x=-1$\n\n$x=0^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$  or  $x=135^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$\n\nAlternative box:  $(\\sin x+\\cos x)^{2}=0$,  $1+\\sin 2x=0$,  $\\sin 2x=-1$,  $x=135^{\\circ}+k\\cdot 180^{\\circ}$.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factorising"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin x=0$ and $\\tan x=-1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=0^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=135^{\\circ}$ or $-45^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$k\\cdot 180^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$k\\in\\mathbb{Z}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan x=-1$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=0^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$  or  $x=135^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$",
+          "working_md": "$\\tan x\\cdot\\sin x+\\cos x\\cdot\\tan x=0$  $(\\cos x\\neq 0)$\n\n$\\tan^{2}x+\\tan x=0$\n\n$\\tan x(\\tan x+1)=0$\n\n$\\tan x=0$  or  $\\tan x+1=0$\n\n$\\tan x=-1$\n\n$x=0^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$  or  $x=135^{\\circ}+k\\cdot 180^{\\circ},\\ k\\in\\mathbb{Z}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factorising"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan x=0$ and $\\tan x+1=0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan x=-1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=0^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=135^{\\circ}$ or $-45^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$k\\cdot 180^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$k\\in\\mathbb{Z}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.3.1",
+      "question_id": "2013-nov-p2-11.3.1",
+      "number": "11.3.1",
+      "marks": 3,
+      "answer_md": "$-\\cos 6x$",
+      "working_md": "$2\\sin^{2}3x-\\sin^{2}x-\\cos^{2}x$\n\n$=2\\sin^{2}3x-(\\sin^{2}x+\\cos^{2}x)$\n\n$=2\\sin^{2}3x-1$\n\n$=-\\cos 6x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-(\\sin^{2}x+\\cos^{2}x)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2\\sin^{2}3x-1$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$32\\sin^{6}x-48\\sin^{4}x+18\\sin^{2}x-1$",
+          "working_md": "$2\\sin^{2}(2x+x)-\\sin^{2}x-\\cos^{2}x$\n\n$=2(\\sin 2x\\cos x+\\cos 2x\\sin x)^{2}-(\\sin^{2}x+\\cos^{2}x)$\n\n$=2\\bigl((2\\sin x\\cos x)\\cos x+(1-2\\sin^{2}x)\\sin x\\bigr)^{2}-1$\n\n$=2(2\\sin x\\cos^{2}x+\\sin x-2\\sin^{3}x)^{2}-1$\n\n$=2\\bigl(2\\sin x(1-\\sin^{2}x)+\\sin x-2\\sin^{3}x\\bigr)^{2}-1$\n\n$=2(2\\sin x-2\\sin^{3}x+\\sin x-2\\sin^{3}x)^{2}-1$\n\n$=2(-4\\sin^{3}x+3\\sin x)^{2}-1$\n\n$=2(16\\sin^{6}x-24\\sin^{4}x+9\\sin^{2}x)-1$\n\n$=32\\sin^{6}x-48\\sin^{4}x+18\\sin^{2}x-1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-(\\sin^{2}x+\\cos^{2}x)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": "The official alternative expands to $32\\sin^{6}x-48\\sin^{4}x+18\\sin^{2}x-1$ and does not conclude with $-\\cos 6x$."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.3.2",
+      "question_id": "2013-nov-p2-11.3.2",
+      "number": "11.3.2",
+      "marks": 1,
+      "answer_md": "$1$",
+      "working_md": "Max value $=1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$1$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.4.1.1",
+      "question_id": "2013-nov-p2-11.4.1.1",
+      "number": "11.4.1.1",
+      "marks": 3,
+      "answer_md": "$\\cos 2\\alpha=pq$",
+      "working_md": "$p=\\cos\\alpha+\\sin\\alpha$\n\n$q=\\cos\\alpha-\\sin\\alpha$\n\n$\\cos 2\\alpha=\\cos^{2}\\alpha-\\sin^{2}\\alpha$\n\n$=(\\cos\\alpha+\\sin\\alpha)(\\cos\\alpha-\\sin\\alpha)$\n\n$=pq$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "expansion"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorise"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\cos 2\\alpha=1-2\\left(\\dfrac{p-q}{2}\\right)^{2}$",
+          "working_md": "$\\sin\\alpha=\\dfrac{p-q}{2}$\n\n$\\cos 2\\alpha=1-2\\sin^{2}\\alpha=1-2\\left(\\dfrac{p-q}{2}\\right)^{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{p-q}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expansion"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\cos 2\\alpha=2\\left(\\dfrac{p+q}{2}\\right)^{2}-1$",
+          "working_md": "$\\cos\\alpha=\\dfrac{p+q}{2}$\n\n$\\cos 2\\alpha=2\\cos^{2}\\alpha-1=2\\left(\\dfrac{p+q}{2}\\right)^{2}-1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{p+q}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expansion"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\cos 2\\alpha=\\left(\\dfrac{p+q}{2}\\right)^{2}-\\left(\\dfrac{p-q}{2}\\right)^{2}$",
+          "working_md": "$\\cos 2\\alpha=\\cos^{2}\\alpha-\\sin^{2}\\alpha$\n\n$=\\left(\\dfrac{p+q}{2}\\right)^{2}-\\left(\\dfrac{p-q}{2}\\right)^{2}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expansion"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{p-q}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{p+q}{2}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.4.1.2",
+      "question_id": "2013-nov-p2-11.4.1.2",
+      "number": "11.4.1.2",
+      "marks": 4,
+      "answer_md": "$\\tan\\alpha=\\dfrac{p-q}{p+q}$",
+      "working_md": "$p+q=2\\cos\\alpha$  $\\therefore\\cos\\alpha=\\dfrac{p+q}{2}$\n\n$p-q=2\\sin\\alpha$  $\\therefore\\sin\\alpha=\\dfrac{p-q}{2}$\n\n$\\tan\\alpha=\\dfrac{\\sin\\alpha}{\\cos\\alpha}=\\dfrac{2\\sin\\alpha}{2\\cos\\alpha}=\\dfrac{p-q}{p+q}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p+q$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$p-q$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "identity"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\tan\\alpha=\\dfrac{\\sqrt{4-(p+q)^{2}}}{p+q}$",
+          "working_md": "$\\cos\\alpha+\\sin\\alpha=p$\n\n$\\cos\\alpha-\\sin\\alpha=q$\n\n$\\Rightarrow 2\\cos\\alpha=p+q$\n\n$\\cos\\alpha=\\dfrac{p+q}{2}$\n\n$y^{2}=2^{2}-(p+q)^{2}$\n\n$y=\\sqrt{4-(p+q)^{2}}$\n\n$\\therefore\\tan\\alpha=\\dfrac{\\sqrt{4-(p+q)^{2}}}{p+q}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2\\cos\\alpha=p+q$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "sketch"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=\\sqrt{4-(p+q)^{2}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\tan\\alpha=\\dfrac{p-q}{\\sqrt{4-(p-q)^{2}}}$",
+          "working_md": "$\\cos\\alpha+\\sin\\alpha=p$\n\n$\\cos\\alpha-\\sin\\alpha=q$\n\n$\\Rightarrow 2\\sin\\alpha=p-q$\n\n$\\sin\\alpha=\\dfrac{p-q}{2}$\n\n$x^{2}=2^{2}-(p-q)^{2}$\n\n$x=\\sqrt{4-(p-q)^{2}}$\n\n$\\therefore\\tan\\alpha=\\dfrac{p-q}{\\sqrt{4-(p-q)^{2}}}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2\\sin\\alpha=p-q$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "sketch"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=\\sqrt{4-(p-q)^{2}}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\tan\\alpha=\\sqrt{\\dfrac{1-pq}{1+pq}}$",
+          "working_md": "$\\cos 2\\alpha=1-2\\sin^{2}\\alpha$\n\n$\\sin^{2}\\alpha=\\dfrac{1-pq}{2}$\n\n$\\cos 2\\alpha=2\\cos^{2}\\alpha-1$\n\n$\\cos^{2}\\alpha=\\dfrac{pq+1}{2}$\n\n$(\\tan\\alpha)^{2}=\\left(\\dfrac{\\sin\\alpha}{\\cos\\alpha}\\right)^{2}$\n\n$\\tan^{2}\\alpha=\\dfrac{1-pq}{1+pq}$\n\n$\\therefore\\tan\\alpha=\\sqrt{\\dfrac{1-pq}{1+pq}}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin^{2}\\alpha=\\dfrac{1-pq}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\cos^{2}\\alpha=\\dfrac{pq+1}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$(\\tan\\alpha)^{2}=\\left(\\dfrac{\\sin\\alpha}{\\cos\\alpha}\\right)^{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan\\alpha=\\sqrt{\\dfrac{1-pq}{1+pq}}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-11.4.2",
+      "question_id": "2013-nov-p2-11.4.2",
+      "number": "11.4.2",
+      "marks": 6,
+      "answer_md": "$\\tan 2\\alpha$",
+      "working_md": "$\\dfrac{p}{2q}-\\dfrac{q}{2p}$\n\n$=\\dfrac{p^{2}-q^{2}}{2pq}$\n\n$=\\dfrac{(p+q)(p-q)}{2pq}$\n\n$=\\dfrac{(2\\cos\\alpha)(2\\sin\\alpha)}{2\\cos 2\\alpha}$\n\n$=\\dfrac{4\\sin\\alpha\\cos\\alpha}{2\\cos 2\\alpha}$\n\n$=\\dfrac{2\\sin 2\\alpha}{2\\cos 2\\alpha}$\n\n$=\\tan 2\\alpha$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{p^{2}-q^{2}}{2pq}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factorising"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substituting from 11.4.1(a)"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "and 11.4.1(b)"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2\\sin 2\\alpha$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\tan 2\\alpha$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\tan 2\\alpha$",
+          "working_md": "$\\dfrac{p}{2q}-\\dfrac{q}{2p}$\n\n$=\\dfrac{\\cos\\alpha+\\sin\\alpha}{2(\\cos\\alpha-\\sin\\alpha)}-\\dfrac{\\cos\\alpha-\\sin\\alpha}{2(\\cos\\alpha+\\sin\\alpha)}$\n\n$=\\dfrac{(\\cos\\alpha+\\sin\\alpha)^{2}-(\\cos\\alpha-\\sin\\alpha)^{2}}{2(\\cos\\alpha-\\sin\\alpha)(\\cos\\alpha+\\sin\\alpha)}$\n\n$=\\dfrac{\\cos^{2}\\alpha+2\\sin\\alpha\\cos\\alpha+\\sin^{2}\\alpha-(\\cos^{2}\\alpha-2\\sin\\alpha\\cos\\alpha+\\sin^{2}\\alpha)}{2(\\cos^{2}\\alpha-\\sin^{2}\\alpha)}$\n\n$=\\dfrac{4\\sin\\alpha\\cos\\alpha}{2\\cos 2\\alpha}$\n\n$=\\dfrac{2\\sin 2\\alpha}{2\\cos 2\\alpha}$\n\n$=\\tan 2\\alpha$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "single fraction"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$4\\sin\\alpha\\cos\\alpha$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2\\cos 2\\alpha$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2\\sin 2\\alpha$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\tan 2\\alpha$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-12.1",
+      "question_id": "2013-nov-p2-12.1",
+      "number": "12.1",
+      "marks": 6,
+      "answer_md": "$f(x)=\\tan x+1$ and $g(x)=\\cos 2x$, sketched over $[-180^{\\circ};180^{\\circ}]$.",
+      "working_md": "Official sketch: $y=\\tan x+1$ with vertical asymptotes and the correct shape over the whole domain, and $y=\\cos 2x$ with the correct intercepts, turning points and minimum values.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=\\tan x+1$: asymptotes and shape for the whole domain"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept of $y=\\tan x+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercepts of $y=\\tan x+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-intercepts of $y=\\cos 2x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-intercept/turning point of $y=\\cos 2x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "minimum values of $y=\\cos 2x$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-12.2",
+      "question_id": "2013-nov-p2-12.2",
+      "number": "12.2",
+      "marks": 1,
+      "answer_md": "$180^{\\circ}$",
+      "working_md": "Period of $g$ is $180^{\\circ}$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$180^{\\circ}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-12.3",
+      "question_id": "2013-nov-p2-12.3",
+      "number": "12.3",
+      "marks": 2,
+      "answer_md": "Reflected about the $x$-axis and then translated by $10^{\\circ}$ to the left.",
+      "working_md": "Reflected about the $x$-axis and then translated by $10^{\\circ}$ to the left.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "reflected about the $x$-axis"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$10^{\\circ}$ to the left"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Translated by $10^{\\circ}$ to the left and then reflected about the $x$-axis.",
+          "working_md": "Translated by $10^{\\circ}$ to the left and then reflected about the $x$-axis.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$10^{\\circ}$ to the left"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "reflected about the $x$-axis"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-12.4",
+      "question_id": "2013-nov-p2-12.4",
+      "number": "12.4",
+      "marks": 4,
+      "answer_md": "$0^{\\circ}<x<45^{\\circ}$ or $135^{\\circ}<x\\leq 180^{\\circ}$",
+      "working_md": "$f$ is always increasing\n\n$\\therefore f'(x)>0$ always\n\n$\\therefore g(x)>0$\n\n$\\therefore 0^{\\circ}<x<45^{\\circ}$  or  $135^{\\circ}<x\\leq 180^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values $0^{\\circ}$ and $45^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "inequality"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values $135^{\\circ}$ and $180^{\\circ}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "inequality"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\in(0^{\\circ};45^{\\circ})$ or $(135^{\\circ};180^{\\circ}]$",
+          "working_md": "$x\\in(0^{\\circ};45^{\\circ})$  or  $(135^{\\circ};180^{\\circ}]$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "critical values $0^{\\circ}$ and $45^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "inequality"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "critical values $135^{\\circ}$ and $180^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "inequality"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-13.1",
+      "question_id": "2013-nov-p2-13.1",
+      "number": "13.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{C\\hat{E}B}=63,44^{\\circ}$",
+      "working_md": "In $\\Delta\\mathrm{CEB}$:\n\n$\\mathrm{BC}^{2}=\\mathrm{EC}^{2}+\\mathrm{EB}^{2}-2(\\mathrm{EC})(\\mathrm{EB})\\cos\\mathrm{C\\hat{E}B}$\n\n$(232{,}6)^{2}=(221{,}2)^{2}+(221{,}2)^{2}-2(221{,}2)(221{,}2)\\cos\\mathrm{C\\hat{E}B}$\n\n$\\cos\\mathrm{C\\hat{E}B}=\\dfrac{2(221{,}2)^{2}-(232{,}6)^{2}}{2(221{,}2)^{2}}=0{,}447\\ldots$\n\n$\\mathrm{C\\hat{E}B}=63{,}44^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0{,}447\\ldots$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$63{,}44^{\\circ}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\theta=63,44^{\\circ}$",
+          "working_md": "$\\cos\\alpha=\\dfrac{116{,}3}{221{,}2}$\n\n$\\alpha=58{,}28^{\\circ}$\n\n$\\theta=180^{\\circ}-2(58{,}28^{\\circ})=63{,}44^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct definition"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\alpha=58{,}28^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$63{,}44^{\\circ}$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{A\\hat{E}B}=63,44^{\\circ}$",
+          "working_md": "$\\sin\\theta=\\dfrac{116{,}3}{221{,}2}$\n\n$\\theta=31{,}72^{\\circ}$\n\n$\\mathrm{A\\hat{E}B}=2\\theta=2(31{,}72^{\\circ})=63{,}44^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\theta=31{,}72^{\\circ}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$63{,}44^{\\circ}$"
+            }
+          ],
+          "notes": "The official third method labels the required angle $\\mathrm{A\\hat{E}B}$; the first method labels it $\\mathrm{C\\hat{E}B}$."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2013-nov-p2-13.2",
+      "question_id": "2013-nov-p2-13.2",
+      "number": "13.2",
+      "marks": 6,
+      "answer_md": "$\\mathrm{E\\hat{F}G}=51,82^{\\circ}$",
+      "working_md": "$\\mathrm{EF}^{2}=\\mathrm{EB}^{2}-\\mathrm{BF}^{2}=(221{,}2)^{2}-(116{,}3)^{2}=35403{,}75$\n\n$\\mathrm{EF}=188{,}16\\,\\mathrm{m}$\n\n$\\cos\\mathrm{E\\hat{F}G}=\\dfrac{\\mathrm{GF}}{\\mathrm{EF}}=\\dfrac{116{,}3}{188{,}16}=0{,}618\\ldots$\n\n$\\mathrm{E\\hat{F}G}=51{,}82^{\\circ}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "using Pythagoras correctly"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\mathrm{BF}=116{,}3$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$188{,}16$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "using $\\cos\\mathrm{E\\hat{F}G}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{116{,}3}{188{,}16}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$51{,}82^{\\circ}$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{E\\hat{F}G}=51,82^{\\circ}$",
+          "working_md": "$\\sin\\alpha=\\dfrac{h}{221{,}2}$\n\n$h=221{,}2\\sin 58{,}28^{\\circ}=188{,}158\\ldots$\n\nIn $\\Delta\\mathrm{EFG}$:\n\n$\\cos\\mathrm{E\\hat{F}G}=\\dfrac{116{,}3}{188{,}158\\ldots}=0{,}61809\\ldots$\n\n$\\mathrm{E\\hat{F}G}=51{,}82^{\\circ}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\sin\\alpha=\\dfrac{h}{221{,}2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$h$ subject"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$h=188{,}158\\ldots$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "using $\\cos\\mathrm{E\\hat{F}G}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{116{,}3}{188{,}16}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$51{,}82^{\\circ}$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    }
+  ]
+}
