@@ -30,18 +30,41 @@ const degrees = size => {
 // A 3D figure is drawn as a parallel projection: lines on one line stay on it, midpoints and
 // parallelograms survive, and a vertical line stays vertical. Angles and lengths do not, so those
 // facts are dropped here and only the projection-safe ones are kept.
+function planeRing(plane) {
+  return (plane.points || plane.contains || []).map(p => typeof p === 'string' ? p : String(p.label || p));
+}
+function isHorizPlane(plane) {
+  return !!(plane && (plane.horizontal || /horizont|base|ground|floor/i.test(String(plane.name || ''))));
+}
+function isGroundPoint(point) {
+  if (!point) return false;
+  return /horizont|base|ground|floor/i.test(String(point.plane || ''))
+    || /foot|ground|observer|base_vertex|centre_of_base|center_of_base/i.test(String(point.role || ''));
+}
+
 function flatten3d(spec) {
   const points = (spec.points || []).map(point => typeof point === 'string' ? { label: point } : point);
+  const byLabel = new Map(points.map(p => [p.label, p]));
   const segments = (spec.segments || []).slice();
   const facts = [];
   const vertical = [];
   const outline = !segments.length;
+  const seenSeg = new Set(segments.map(s => [s.from, s.to].sort().join(':')));
+  const addSeg = (a, b) => {
+    const key = [a, b].sort().join(':');
+    if (!a || !b || a === b || seenSeg.has(key)) return;
+    seenSeg.add(key);
+    segments.push({ from: a, to: b });
+  };
+  const ground = new Set();
   for (const plane of spec.planes || []) {
-    const ring = (plane.points || []).map(String);
-    if (outline && ring.length >= 3) ring.forEach((a, i) => segments.push({ from: a, to: ring[(i + 1) % ring.length] }));
+    const ring = planeRing(plane);
+    if (outline && ring.length >= 3) ring.forEach((a, i) => addSeg(a, ring[(i + 1) % ring.length]));
     if (ring.length === 4 && /rect|square|parallel|rhomb/i.test(String(plane.shape || ''))) facts.push({ type: 'parallelogram', points: ring });
     if (ring.length >= 4) facts.push({ type: 'convex', points: ring });
+    if (isHorizPlane(plane)) ring.forEach(p => ground.add(p));
   }
+  for (const point of points) if (isGroundPoint(point) && point.label) ground.add(point.label);
   for (const fact of spec.facts || []) {
     if (fact.type === 'midpoint' || fact.type === 'collinear') facts.push(fact);
     if (/rhombus|parallelogram|rectangle|square/.test(fact.type)) facts.push({ type: 'parallelogram', points: fact.points || letters(fact.figure || fact.name || fact.of) });
@@ -55,8 +78,188 @@ function flatten3d(spec) {
     else if (planeLike(l1) && !planeLike(l2)) vertical.push({ line: l2, foot: ra.at });
     else for (const line of [l1, l2]) if (!letters(line).includes(ra.at)) rightAngles.push({ on: line, at: ra.at });
   }
+  for (const seg of (spec.segments || [])) {
+    if (!seg.vertical) continue;
+    const a = seg.from, b = seg.to;
+    const already = vertical.some(v => letters(v.line).includes(a) && letters(v.line).includes(b));
+    if (already) continue;
+    const ga = ground.has(a) || isGroundPoint(byLabel.get(a));
+    const gb = ground.has(b) || isGroundPoint(byLabel.get(b));
+    let foot = ga && !gb ? a : gb && !ga ? b : null;
+    if (!foot) {
+      const ra = String((byLabel.get(a) || {}).role || '');
+      const rb = String((byLabel.get(b) || {}).role || '');
+      if (/foot|base|ground/i.test(ra)) foot = a;
+      else if (/foot|base|ground|centre_of_base|center_of_base/i.test(rb) || /top|apex|hook|helicopter/i.test(ra)) foot = b;
+      else if (/foot|base|ground|centre_of_base|center_of_base/i.test(ra) || /top|apex|hook|helicopter/i.test(rb)) foot = a;
+      else foot = b;
+    }
+    vertical.push({ line: a + b, foot });
+  }
+  // Draw every vertical, even when it is not already an edge of a plane outline.
+  for (const v of vertical) {
+    const pts = letters(v.line);
+    if (pts.length >= 2) addSeg(pts[0], pts[1]);
+  }
   return { points, segments, facts, circles: [], vertical, onLines: rightAngles };
 }
+
+// Cabinet / cavalier-style oblique projection: x right, y into the page, z up.
+// Verticals stay vertical; a horizontal rectangle becomes a receding parallelogram.
+const OBLIQUE_ANGLE = Math.PI / 6;
+const OBLIQUE_DEPTH = 0.5;
+function projectOblique(p) {
+  return {
+    X: p.x + OBLIQUE_DEPTH * p.y * Math.cos(OBLIQUE_ANGLE),
+    Y: p.z + OBLIQUE_DEPTH * p.y * Math.sin(OBLIQUE_ANGLE),
+  };
+}
+
+function cycleOrder(verts, segments) {
+  const adj = new Map(verts.map(v => [v, []]));
+  for (const s of segments || []) {
+    if (adj.has(s.from) && adj.has(s.to)) {
+      adj.get(s.from).push(s.to);
+      adj.get(s.to).push(s.from);
+    }
+  }
+  if ([...adj.values()].some(a => a.length < 2)) return null;
+  const order = [verts[0]];
+  let prev = null, cur = verts[0];
+  while (order.length < verts.length) {
+    const next = adj.get(cur).find(p => p !== prev && !order.includes(p)) || adj.get(cur).find(p => p !== prev);
+    if (!next || order.includes(next)) return null;
+    order.push(next);
+    prev = cur; cur = next;
+  }
+  return order;
+}
+
+// Reconstruct world coordinates for a 3D figure (vertical poles, horizontal bases,
+// a rectangle standing as a backdrop) and project them. Returns null when the
+// figure has no vertical or no clear ground plane, so the 2D solver can take over.
+function place3d(spec, model) {
+  const pointBy = new Map();
+  for (const p of (spec.points || [])) {
+    const obj = typeof p === 'string' ? { label: p } : p;
+    if (obj.label) pointBy.set(obj.label, obj);
+  }
+  const inModel = new Set(model.labels);
+  const flat = flatten3d(spec);
+  const verticals = [];
+  for (const v of flat.vertical || []) {
+    const pts = letters(v.line);
+    const foot = v.foot;
+    const top = pts.find(p => p !== foot);
+    if (top && foot && inModel.has(top) && inModel.has(foot)) verticals.push({ top, foot, line: v.line });
+  }
+  const ground = new Set();
+  const horizRings = [];
+  for (const plane of spec.planes || []) {
+    const ring = planeRing(plane).filter(p => inModel.has(p));
+    if (isHorizPlane(plane) && ring.length) { ring.forEach(p => ground.add(p)); horizRings.push(ring); }
+  }
+  for (const v of verticals) ground.add(v.foot);
+  for (const [label, point] of pointBy) if (inModel.has(label) && isGroundPoint(point)) ground.add(label);
+  const offGround = model.labels.filter(l => !ground.has(l));
+  if (verticals.length === 0 && !(ground.size >= 3 && offGround.length === 1)) return null;
+
+  const world = {};
+  const set = (lab, x, y, z) => { if (lab && world[lab] == null) world[lab] = { x, y, z }; };
+
+  for (const ring of horizRings) {
+    if (ring.length === 4) {
+      const [a, b, c, d] = ring;
+      set(a, 0, 0, 0);
+      set(b, 0, 1.2, 0);
+      set(c, 1.4, 1.2, 0);
+      set(d, 1.4, 0, 0);
+    }
+  }
+
+  const centre = model.labels.find(l => /centre_of_base|center_of_base/i.test(String((pointBy.get(l) || {}).role || '')));
+  if (centre) {
+    set(centre, 0, 0, 0);
+    const verts = [...ground].filter(l => l !== centre);
+    if (verts.length === 4) {
+      const order = cycleOrder(verts, flat.segments) || verts;
+      order.forEach((lab, i) => {
+        const a = -Math.PI / 4 + i * Math.PI / 2;
+        set(lab, Math.cos(a), Math.sin(a), 0);
+      });
+    }
+  }
+
+  const unplacedG = [...ground].filter(l => !world[l]);
+  if (unplacedG.length) {
+    const foot = verticals.map(v => v.foot).find(f => ground.has(f)) || unplacedG[0];
+    set(foot, 0, 0, 0);
+    const others = [...ground].filter(l => l !== foot && !world[l]);
+    if (others.length === 2) {
+      set(others[0], 1.0, 1.15, 0);
+      set(others[1], -0.7, 1.25, 0);
+    } else {
+      others.forEach((lab, i) => {
+        const a = Math.PI * (i + 1) / (others.length + 1);
+        const r = 1.05 + (i % 2) * 0.2;
+        set(lab, r * Math.cos(a - Math.PI / 2), 0.35 + r * Math.sin(a), 0);
+      });
+    }
+  }
+  for (const lab of ground) if (!world[lab]) set(lab, 0.8, 0.8, 0);
+
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (const p of Object.values(world)) {
+    minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x);
+    minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y);
+  }
+  const span = Math.max(maxX - minX, maxY - minY, 1);
+  const H = 1.15 * span;
+
+  for (const v of verticals) {
+    const f = world[v.foot] || { x: 0, y: 0, z: 0 };
+    world[v.foot] = { x: f.x, y: f.y, z: 0 };
+    world[v.top] = { x: f.x, y: f.y, z: H };
+  }
+
+  for (const lab of model.labels) {
+    if (world[lab]) continue;
+    const role = String((pointBy.get(lab) || {}).role || '');
+    const hit = verticals.find(v => {
+      const line = letters(v.line).join('');
+      return new RegExp('on[_-]?' + line + '|on[_-]?' + line[1] + line[0], 'i').test(role);
+    });
+    if (hit && world[hit.foot] && world[hit.top]) {
+      const a = world[hit.foot], b = world[hit.top], t = 0.55;
+      world[lab] = { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t, z: a.z + (b.z - a.z) * t };
+    }
+  }
+
+  for (const lab of model.labels) {
+    if (world[lab]) continue;
+    let sx = 0, sy = 0, n = 0;
+    for (const gnd of ground) if (world[gnd]) { sx += world[gnd].x; sy += world[gnd].y; n++; }
+    world[lab] = { x: n ? sx / n : 0, y: n ? sy / n : 0.4, z: H };
+  }
+
+  if (model.labels.some(l => !world[l])) return null;
+  return world;
+}
+
+function layout3d(spec) {
+  const model = buildModel(spec, { threeD: true });
+  const world = place3d(spec, model);
+  if (!world) return null;
+  const n = model.labels.length;
+  const v = new Array(2 * n + 3 * Math.max(model.circles.length, 1)).fill(0);
+  for (let i = 0; i < n; i++) {
+    const pr = projectOblique(world[model.labels[i]]);
+    v[2 * i] = pr.X;
+    v[2 * i + 1] = pr.Y;
+  }
+  return withVector(model, v);
+}
+
 
 function buildModel(input, options) {
   const spec = options && options.threeD ? flatten3d(input) : input;
@@ -408,6 +611,10 @@ function softLoss(model, g, n) {
 }
 
 function solve(spec, seedText, options) {
+  if (options && options.threeD) {
+    const laid = layout3d(spec);
+    if (laid && laid.residuals.every(r => Math.abs(r.residual) <= 0.01)) return laid;
+  }
   const model = buildModel(spec, options);
   const n = model.labels.length;
   const size = 2 * n + 3 * Math.max(model.circles.length, 1);
@@ -476,7 +683,7 @@ function withVector(model, v) {
 }
 
 // Bump MODEL_VERSION when buildModel changes what it reads, so stored layouts are re-solved.
-const MODEL_VERSION = 2;
+const MODEL_VERSION = 3;
 const specHash = (spec, options) => hashString(JSON.stringify([MODEL_VERSION, spec, options || null])).toString(16);
 let stored = null;
 function storedLayouts() {
