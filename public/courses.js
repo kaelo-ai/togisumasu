@@ -177,6 +177,20 @@
     const x0 = vw / 2 - W / 2, y0 = vh / 2;
     return { single, W, H, D, s, tx: r.left + r.width / 2 - x0, ty: r.top + r.height / 2 - y0 };
   }
+  // Timing (ms) and paper-like easing: a quick lift that settles softly, and a page turn that
+  // starts slowly (the paper lifts), speeds through the middle and lands without a bounce.
+  const T = { total: 1100, turnEnd: 520, coverAt: 440, coverClose: 480 };
+  const EASE = {
+    lift: 'cubic-bezier(.22,.9,.28,1)',
+    page: 'cubic-bezier(.62,.04,.24,1)',
+    pageBack: 'cubic-bezier(.5,0,.3,1)',
+    home: 'cubic-bezier(.55,.06,.35,1)',
+  };
+  function coverOpenFrames(single) {
+    return single
+      ? [{ transform: 'translateZ(1px) rotateY(0deg)', opacity: 1 }, { transform: 'translateZ(1px) rotateY(-120deg)', opacity: 1, offset: 0.6 }, { transform: 'translateZ(1px) rotateY(-180deg)', opacity: 0 }]
+      : [{ transform: 'translateZ(1px) rotateY(0deg)' }, { transform: 'translateZ(1px) rotateY(-180deg)' }];
+  }
   const closedAt = g => `translate(${g.tx}px,${g.ty}px) scale(${g.s}) rotateY(90deg)`;
   const IDLE = 'translate(0px,0px) scale(1) rotateY(0deg)';
   const spreadAt = g => `translate(${g.single ? 0 : g.W / 2}px,0px) scale(1) rotateY(0deg)`;
@@ -207,13 +221,15 @@
     } else {
       b3.style.transform = closedAt(g);
       requestAnimationFrame(() => { spine.classList.add('is-out'); dlg.classList.add('is-open'); });
-      await run(b3, [{ transform: closedAt(g) }, { transform: IDLE }], { duration: 640, easing: 'cubic-bezier(.22,.8,.18,1)' });
-      const coverFrames = g.single
-        ? [{ transform: 'translateZ(1px) rotateY(0deg)', opacity: 1 }, { transform: 'translateZ(1px) rotateY(-120deg)', opacity: 1, offset: 0.6 }, { transform: 'translateZ(1px) rotateY(-180deg)', opacity: 0 }]
-        : [{ transform: 'translateZ(1px) rotateY(0deg)' }, { transform: 'translateZ(1px) rotateY(-180deg)' }];
+      // One continuous ~1.1 s move: the book lifts off the shelf and turns to its cover, and the cover
+      // starts to peel open just before the book settles, like a page being lifted.
       await Promise.all([
-        run(cover, coverFrames, { duration: 820, easing: 'cubic-bezier(.5,.05,.2,1)' }),
-        run(b3, [{ transform: IDLE }, { transform: spreadAt(g) }], { duration: 820, easing: 'cubic-bezier(.5,.05,.2,1)' }),
+        run(b3, [
+          { transform: closedAt(g), easing: EASE.lift },
+          { transform: IDLE, offset: T.turnEnd / T.total, easing: EASE.page },
+          { transform: spreadAt(g) },
+        ], { duration: T.total }),
+        run(cover, coverOpenFrames(g.single), { duration: T.total - T.coverAt, delay: T.coverAt, easing: EASE.page, fill: 'both' }),
       ]);
     }
     if (g.single) b3.classList.add('settled');
@@ -233,16 +249,18 @@
       await run(b3, [{ opacity: 1 }, { opacity: 0 }], { duration: reduced() ? 120 : 200 });
     } else {
       const g = { ...o.g, ...(() => { const n = geometry(spine); return { tx: n.tx, ty: n.ty, s: n.s }; })() };
-      const coverFrames = o.g.single
-        ? [{ transform: 'translateZ(1px) rotateY(-180deg)', opacity: 0 }, { transform: 'translateZ(1px) rotateY(-120deg)', opacity: 1, offset: 0.4 }, { transform: 'translateZ(1px) rotateY(0deg)', opacity: 1 }]
-        : [{ transform: 'translateZ(1px) rotateY(-180deg)' }, { transform: 'translateZ(1px) rotateY(0deg)' }];
       stopAnims();
+      // The same move in reverse: the cover closes, then the book turns back to its spine and slides home.
+      const scrim = setTimeout(() => dlg.classList.remove('is-open'), T.coverClose);
       await Promise.all([
-        run(cover, coverFrames, { duration: 560, easing: 'cubic-bezier(.4,0,.2,1)' }),
-        run(b3, [{ transform: spreadAt(o.g) }, { transform: IDLE }], { duration: 560, easing: 'cubic-bezier(.4,0,.2,1)' }),
+        run(cover, coverOpenFrames(o.g.single).slice().reverse().map(f => ({ ...f, offset: f.offset == null ? undefined : 1 - f.offset })), { duration: T.coverClose, easing: EASE.pageBack }),
+        run(b3, [
+          { transform: spreadAt(o.g), easing: EASE.pageBack },
+          { transform: IDLE, offset: T.coverClose / T.total, easing: EASE.home },
+          { transform: closedAt(g) },
+        ], { duration: T.total }),
       ]);
-      dlg.classList.remove('is-open');
-      await run(b3, [{ transform: IDLE }, { transform: closedAt(g) }], { duration: 520, easing: 'cubic-bezier(.6,0,.4,1)' });
+      clearTimeout(scrim); dlg.classList.remove('is-open');
     }
     stopAnims();
     if (spine) spine.classList.remove('is-out');
