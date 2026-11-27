@@ -290,6 +290,7 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .tk{flex:none;font:600 .7rem var(--f-body);letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:99px;min-width:64px;text-align:center;background:var(--grid);color:var(--muted)}
 .t-repair .tk{background:var(--bad-soft);color:var(--bad)}.t-quiz .tk{background:var(--accent);color:var(--accent-ink)}.t-due .tk{background:var(--mark-soft);color:var(--ink)}.t-new .tk{background:var(--accent-soft);color:var(--accent)}
 .t-shore .tk{background:var(--mark-soft);color:var(--ink)}
+.tk.core,.sk .mt.core{background:var(--accent-soft);color:var(--accent);font-weight:600}
 .lock.shore{border:1px solid var(--mark);background:var(--mark-soft)}
 .subgoal{display:block;font:600 .78rem var(--f-body);color:var(--muted);letter-spacing:.02em;margin-bottom:2px}
 .kppart{font-weight:600}
@@ -439,6 +440,7 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
 </dialog>
 
 <script src="/core.js"></script>
+<script src="/caps-gen.js"></script>
 <script src="/mastery.js"></script>
 <script>
 const $=s=>document.querySelector(s);
@@ -459,7 +461,7 @@ const API={async req(method,url,body){
   let j={};try{j=await r.json()}catch(e){}
   if(!r.ok)throw Object.assign(new Error(j.error||'Something went wrong. Try again.'),{status:r.status});return j}};
 let USER=null;
-const BUILTIN_GENS={};SK.forEach(s=>{if(typeof s.gen==='function')BUILTIN_GENS[s.id]=s.gen});
+const BUILTIN_GENS={};SK.forEach(s=>{if(typeof s.gen==='function')BUILTIN_GENS[s.id]=s.gen});if(typeof CapsGen!=='undefined'&&CapsGen.GENERATORS){for(const[id,gen]of Object.entries(CapsGen.GENERATORS))BUILTIN_GENS[id]=gen}
 let CATALOG_LOADED=false,ENCOMPASS=[];
 function catView(){return {topics:SK,encompassing:ENCOMPASS}}
 function applyCatalog(c){const units=Array.isArray(c.units)?c.units:[],topics=Array.isArray(c.topics)?c.topics:[];
@@ -551,12 +553,12 @@ const freshChains={};
 function fresh(id){const prev=freshChains[id]||Promise.resolve();const p=prev.catch(()=>{}).then(()=>loadFresh(id));freshChains[id]=p;return p}
 async function exampleQuestion(id){try{const q=await fetchQuestion(id,[]);cacheQuestion(id,q);return q}catch(e){if(!networkFailure(e))throw e;const c=cachedQuestions(id);if(c.length)return c[Math.floor(Math.random()*c.length)];if(SKM[id]&&typeof SKM[id].gen==='function')return SKM[id].gen();throw new Error('No example is available for this topic yet.')}}
 function record(id,ok,mode){const out=Mastery.applyAnswer(Store.data,{id,ok,mode,now:Date.now()},catView());Store.data=out.progress;Store.save();renderStats();return out.event}
-function recommended(skip=[]){const c=SK.filter(s=>!skip.includes(s.id)&&st(s.id).lv===0&&!st(s.id).fix&&access(s.id).ok);return c.find(s=>st(s.id).a>0)||c[0]||null}
+function recommended(skip=[]){const c=SK.filter(s=>!skip.includes(s.id)&&st(s.id).lv===0&&!st(s.id).fix&&access(s.id).ok).map(s=>({...s,inProgress:st(s.id).a>0,core:!!s.core,coreScore:s.coreScore||0}));return Mastery.pickRecommended(c)}
 function dayStreak(){const L=Store.data.log;let n=0,t=Date.now();if(!L[dkey(t)])t-=DAY;while(L[dkey(t)]){n++;t-=DAY}return n}
 const masteredCount=()=>SK.filter(s=>st(s.id).lv>0).length;
 const dueList=()=>SK.filter(s=>isDue(s.id)).sort((a,b)=>st(a.id).due-st(b.id).due);
 
-function renderStats(){renderAcct();if(!USER){$('#stats').innerHTML='';return}const x=Store.data.log[dkey()]||0;$('#stats').innerHTML=`<span>Streak <b>${dayStreak()}</b> day${dayStreak()===1?'':'s'}</span><span>Today <b>${x}</b>/${GOAL} <span class="xpbar"><i style="width:${Math.min(100,x/GOAL*100)}%"></i></span></span>`}
+function renderStats(){renderAcct();if(!USER){$('#stats').innerHTML='';return}const x=Store.data.log[dkey()]||0;$('#stats').innerHTML=`<span>Streak <b>${dayStreak()}</b> day${dayStreak()===1?'':'s'}</span><span>Today <b>${x}</b>/${GOAL} XP <span class="xpbar"><i style="width:${Math.min(100,x/GOAL*100)}%"></i></span></span>`}
 
 function renderAcct(){const a=$('#acct');if(!a)return;
   if(!USER){a.innerHTML=view.name==='landing'?`<button class="btn ghost sm" type="button" data-auth="login">Sign in</button>${REG_OPEN?'<button class="btn primary sm" type="button" data-auth="register">Create account</button>':''}`:'';return}
@@ -591,7 +593,7 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
   sh.forEach(s=>{const from=s.from&&SKM[s.from]?SKM[s.from].name:'';tasks.push(`<li class="t-shore"><span class="tk">Shore up</span>Let's shore up ${esc(SKM[s.id].name)} first${from?` <span class="muted">after ${esc(from)}</span>`:''}</li>`)});
   if(qd)tasks.push(`<li class="t-quiz"><span class="tk">Quiz</span>${Math.min(8,Math.max(5,masteredIds().length))} questions across your mastered topics</li>`);
   if(due.length)tasks.push(`<li class="t-due"><span class="tk">Review</span>${due.length} topic${due.length===1?'':'s'}, mixed in with new work</li>`);
-  if(rec)tasks.push(`<li class="t-new"><span class="tk">New</span>${esc(rec.name)}</li>`);
+  if(rec)tasks.push(`<li class="t-new"><span class="tk">New</span>${rec.core?'<span class="tk core">Core</span>':''}${esc(rec.name)}</li>`);
   if(!tasks.length)tasks.push('<li class="t-new"><span class="tk">Mixed</span>Everything is mastered. Sessions keep all topics sharp.</li>');
   const title=sh.length?'Let\'s shore up a foundation first':rep.length?'Repair first, then move on':qd?'Quiz time':due.length?'Reviews and something new':m?'Keep building':'Start with the basics';
   const acc=Object.values(Store.data.skills).reduce((a,s)=>[a[0]+s.c,a[1]+s.a],[0,0]);const lastQ=Q().hist.slice(-1)[0];const totalTopics=Math.max(1,SK.length);
@@ -604,14 +606,14 @@ function homeHTML(){const due=dueList(),rec=recommended(),m=masteredCount(),rep=
    <div class="kv tnum"><span>Questions answered</span><span>${acc[1]}</span><span>Accuracy</span><span>${acc[1]?Math.round(acc[0]/acc[1]*100)+'%':'–'}</span><span>Last quiz</span><span>${lastQ?`${lastQ.score}/${lastQ.n}`:'–'}</span><span>Day streak</span><span>${dayStreak()}</span></div></div></section>
    <div class="maphead"><h2>Course map</h2><div class="map-tools">${courseSelect}${filterSelect}<div class="seg" role="tablist" aria-label="Course map view"><button type="button" role="tab" data-mode="list" aria-selected="${homeMode!=='graph'}">List</button><button type="button" role="tab" data-mode="graph" aria-selected="${homeMode==='graph'}">Graph</button></div></div></div>`;
   if(homeMode==='graph')return h+graphShellHTML();
-  const matches=s=>{const k=mapSkillState(s.id);return mapFilter==='all'||(mapFilter==='progress'&&(k==='learning'||k==='repair'))||(mapFilter==='due'&&k==='due')||(mapFilter==='mastered'&&k==='mastered')||(mapFilter==='locked'&&k==='locked')};
+  const matches=s=>{const k=mapSkillState(s.id);return mapFilter==='all'||(mapFilter==='core'&&s.core)||(mapFilter==='progress'&&(k==='learning'||k==='repair'))||(mapFilter==='due'&&k==='due')||(mapFilter==='mastered'&&k==='mastered')||(mapFilter==='locked'&&k==='locked')};
   let any=false;h+=`<section class="map">`;
   for(const [u,un] of UNITS){const allList=SK.filter(s=>s.unit===u);const list=allList.filter(matches);if(!list.length)continue;any=true;
     const um=allList.filter(s=>st(s.id).lv>0).length;const pct=Math.round(um/allList.length*100);const collapsed=collapsedUnits.has(u);
     h+=`<div class="unit${collapsed?' is-collapsed':''}"><h2><button class="unit-head" type="button" data-unit-toggle="${u}" aria-expanded="${!collapsed}" aria-controls="unit-${u}"><span class="ul">${esc(unitLabel(u))}</span><span>${esc(un)}</span><span class="ct tnum">${um}/${allList.length}</span><span class="uring" style="--p:${pct}" role="img" aria-label="${um} of ${allList.length} topics mastered"></span><span class="chev" aria-hidden="true">▾</span></button></h2><ul class="skills" id="unit-${u}">`;
     for(const s of list){const k=mapSkillState(s.id);const x=st(s.id);let meta='';
       if(k==='repair')meta=`<span class="mt repair">Needs repair</span>`;else if(k==='due')meta=`<span class="mt due">Review due</span>`;else if(k==='mastered'){const days=Math.max(0,Math.round((x.due-Date.now())/DAY));const when=x.due<=Date.now()?'Review due':days<=0?'Review later today':days===1?'Review in 1 day':`Review in ${days} days`;meta=`<span class="mt">Mastered<span class="lv">${[1,2,3,4,5,6].map(i=>`<i class="${i<=x.lv?'on':''}"></i>`).join('')}</span> · ${when}</span>`;}
-      else if(rec&&rec.id===s.id)meta=`<span class="mt rec">Up next</span>`;else if(k==='learning')meta=`<span class="mt">${x.s}/3 in a row</span>`;else if(k==='locked')meta=`<span class="mt">Locked</span>`;
+      else if(rec&&rec.id===s.id)meta=`<span class="mt rec">Up next</span>${s.core?'<span class="mt core">Core</span>':''}`;else if(k==='learning')meta=`<span class="mt">${x.s}/3 in a row</span>${s.core?'<span class="mt core">Core</span>':''}`;else if(k==='locked')meta=`<span class="mt">Locked</span>`;else if(s.core)meta=`<span class="mt core">Core</span>`;
       const dot=k==='learning'?`<svg class="dot" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="var(--line)" stroke-width="3"/><circle cx="10" cy="10" r="8" fill="none" stroke="var(--accent)" stroke-width="3" stroke-dasharray="${Math.min(3,x.s)/3*50.3} 60" transform="rotate(-90 10 10)"/></svg>`:`<span class="dot ${k}"></span>`;
       h+=`<li><button class="sk${k==='locked'?' is-locked':''}" type="button" data-skill="${s.id}">${dot}<span class="nm">${esc(s.name)}</span>${meta}</button></li>`}
     h+='</ul></div>'}
@@ -661,7 +663,7 @@ async function mountPractice(){const s=SKM[view.id];const a=access(s.id);if(!a.o
     answered:ok=>{const ev=record(s.id,ok,'practice');$('#pill').innerHTML=pillOf(s.id);return ev},next:()=>mountPractice()})}
 
 /* ---------- question card ---------- */
-const PH={num:'e.g. 3/4, -2, sqrt(3)/2, 5pi/6',set:'e.g. -2, 5   (or none)',expr:'e.g. 2x^2 - 3x + 1'};
+const PH={num:'e.g. 3/4, -2, sqrt(3)/2, 5pi/6',set:'e.g. -2, 5   (or none)',expr:'e.g. 2k^2 - 1',trig:HINTS.trig,tuple:HINTS.tuple,eqn:HINTS.eqn,points:HINTS.points,region:HINTS.region};
 const EVT={mastered:()=>'<div class="event">Topic mastered. It will come back for review tomorrow and in quizzes.</div>',reviewed:e=>`<div class="event">Review passed. Next review in ${e.d} days.</div>`,
   failedReview:()=>'<div class="event bad">Review missed. This topic now needs repair: 2 in a row before you move on.</div>',repaired:()=>'<div class="event">Repaired. This topic is back on your review schedule.</div>',
   repairing:e=>`<div class="event ${e.n?'':'miss'}">Repair: ${e.n}/2 in a row.</div>`,pulled:()=>'<div class="event miss">Missed. This topic comes back for review tomorrow.</div>'};
@@ -752,7 +754,7 @@ function nextItem(){const sh=shoreQueue();
 const KIND={new:['New',''],review:['Review','rev'],mixed:['Mixed review','mix'],repair:['Repair','rep'],shore:['Shore up','shore'],example:['Example','']};
 let sessBusy=false;
 async function sessionStep(){if(sessBusy)return;sessBusy=true;try{const host=$('#sessHost');const it=nextItem();
-  if(it&&it.quiz){host.innerHTML=`<section class="summary panel"><div class="eyebrow">Quiz time</div><h1>Show what you've kept</h1><p>You've mastered new topics since your last quiz. This one mixes ${Math.min(8,Math.max(5,masteredIds().length))} fresh questions from across everything you've mastered, in random order. No hints; solutions come at the end.</p><p>Any topic you miss goes into repair. You'll answer a few questions on it before anything that builds on it opens.</p><div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="quiz">Start the quiz</button><button class="btn" type="button" id="skipQuiz">Not now, keep going</button></div><p style="margin:10px 0 0;font-size:.86rem;color:var(--muted)">Until you take it, only topics that build on your newly mastered ones wait. Other routes stay open.</p></section>`;$('#skipQuiz').onclick=()=>{sess.skipQuiz=true;sessionStep()};return}
+  if(it&&it.quiz){const now=Date.now();Store.data=Mastery.noteQuizDue(Store.data,now,true);Store.save();const must=Mastery.mustTakeQuiz(Store.data,now,true);const left=Math.max(0,Mastery.DAILY.quiz.maxDefers-((Store.data.qz||{}).defers||0));const skip=must?'':`<button class="btn" type="button" id="skipQuiz">Not now, keep going</button>`;const note=must?`You've put this quiz off as often as the course allows. New work on this route waits until you take it.`:`You can put this off ${left} more time${left===1?'':'s'}, or for up to ${Mastery.DAILY.quiz.deferDays} days from when it first came due. Until you take it, only topics that build on your newly mastered ones wait. Other routes stay open.`;host.innerHTML=`<section class="summary panel"><div class="eyebrow">Quiz time</div><h1>Show what you've kept</h1><p>You've mastered new topics since your last quiz. This one mixes ${Math.min(8,Math.max(5,masteredIds().length))} fresh questions from across everything you've mastered, in random order. No hints; solutions come at the end.</p><p>Any topic you miss goes into repair. You'll answer a few questions on it before anything that builds on it opens.</p><div class="row" style="margin-top:14px"><button class="btn primary" type="button" data-act="quiz">Start the quiz</button>${skip}</div><p style="margin:10px 0 0;font-size:.86rem;color:var(--muted)">${note}</p></section>`;if($('#skipQuiz'))$('#skipQuiz').onclick=()=>{const out=Mastery.deferQuiz(Store.data,Date.now());Store.data=out.progress;Store.save();if(out.ok){sess.skipQuiz=true;sessionStep()}};return}
   if(!it||it.stop){const stuck=it&&it.stop;host.innerHTML=`<section class="summary panel"><div class="eyebrow">Session complete</div><h1>${sess.right} of ${sess.n} correct</h1>
     <ul>${sess.reviewed?`<li>${sess.reviewed} review${sess.reviewed===1?'':'s'} passed</li>`:''}${sess.repaired.map(id=>`<li>Repaired: ${esc(SKM[id].name)}</li>`).join('')}${sess.flagged.map(id=>`<li>Needs repair: ${esc(SKM[id].name)}</li>`).join('')}${sess.mastered.map(id=>`<li>Mastered: ${esc(SKM[id].name)}</li>`).join('')}${!sess.reviewed&&!sess.mastered.length&&!sess.repaired.length?'<li>No new topics mastered yet. Keep going; you need 3 in a row.</li>':''}</ul>
     ${stuck?`<div class="lock repair"><b>${esc(SKM[stuck].name)}</b> still needs repair. Reread the notes, then come back to it.<div class="row" style="margin-top:10px"><a class="btn" href="${SKM[stuck].paul}" target="_blank" rel="noopener">Paul's notes</a><button class="btn" type="button" data-skill="${stuck}">Open the topic</button></div></div>`:''}
@@ -798,14 +800,14 @@ function quizStep(){const host=$('#quizHost');if(!quiz){go({name:'home'});return
       list.querySelectorAll('[data-chain-del]').forEach(b=>b.onclick=()=>{chain.splice(+b.dataset.chainDel,1);drawChain()})};
     if(it.geom){drawChain();$('#paperAdd').onclick=()=>{if(chain.length<12){chain.push({statement:$('#paperStmt').value,reason:$('#paperReason').value});drawChain()}}}
     $('#paperSave').onclick=async()=>{const given=it.geom?chain.slice():$('#paperIn').value;const btn=$('#paperSave');btn.disabled=true;
-      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=it.geom?given.map(s=>{const st=it.geom.statements.find(x=>x.id===s.statement),rs=it.geom.reasons.find(x=>x.id===s.reason);return plainTex(st?st.text:'')+' ('+plainTex(rs?rs.text:'')+')'}).join('; '):given;it.answer=r.answer||null;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'quiz')}
+      try{const r=await API.req('POST','/api/quiz/mark',{nodeId:it.id,answer:given});it.ok=!!r.ok;it.given=it.geom?given.map(s=>{const st=it.geom.statements.find(x=>x.id===s.statement),rs=it.geom.reasons.find(x=>x.id===s.reason);return plainTex(st?st.text:'')+' ('+plainTex(rs?rs.text:'')+')'}).join('; '):given;it.answer=r.answer||null;it.pending=false;if(it.topics&&it.topics[0])record(it.topics[0],it.ok,'nsc')}
       catch(e){it.pending=true;it.given=given;it.ok=null}
       quiz.i++;quizStep();window.scrollTo(0,0)};
     return}
   mountQuestion($('#qq'),it.question,{test:true,meta:()=>`<span class="tag qz">Quiz</span><span>Topic hidden. Choosing the method is part of the test.</span>`,
     answered:(ok,given)=>{it.ok=ok;it.given=given;record(it.topicId,ok,'quiz')},next:()=>{quiz.i++;quizStep();window.scrollTo(0,0)}})}
 function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');const papers=quiz.items.filter(x=>x.kind==='paper');
-  if(!quiz.done){quiz.done=true;const q=Q();q.last=Date.now();q.recent=[];const sc=scored.filter(x=>x.ok).length;q.hist.push({t:Date.now(),score:sc,n:scored.length,papers:papers.length});if(q.hist.length>60)q.hist.shift();Store.save()}
+  if(!quiz.done){quiz.done=true;const q=Q();q.last=Date.now();q.recent=[];const sc=scored.filter(x=>x.ok).length;q.hist.push({t:Date.now(),score:sc,n:scored.length,papers:papers.length});if(q.hist.length>60)q.hist.shift();Store.data=Mastery.clearQuizDefer(Store.data);Store.save()}
   const sc=scored.filter(x=>x.ok).length+papers.filter(x=>x.ok).length,n=scored.length+papers.filter(x=>x.ok!=null).length,bad=[...new Set(scored.filter(x=>!x.ok).map(x=>x.topicId))];
   host.innerHTML=`<section class="summary"><div class="panel"><div class="eyebrow">Quiz results</div><h1 class="tnum">${sc} / ${n}</h1>
    <p>${papers.length} past-paper question${papers.length===1?'':'s'} from before 2022.</p>
@@ -858,7 +860,7 @@ function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'h
 
 /* ---------- graph view ---------- */
 let homeMode='list';try{homeMode=localStorage.getItem('togisumasu-home-mode')||'list'}catch(e){}
-const MAP_FILTERS=[['all','All'],['progress','In progress'],['due','Review due'],['mastered','Mastered'],['locked','Locked']];
+const MAP_FILTERS=[['all','All'],['core','Core exam topics'],['progress','In progress'],['due','Review due'],['mastered','Mastered'],['locked','Locked']];
 let mapFilter='all';try{mapFilter=localStorage.getItem('togisumasu-map-filter')||'all'}catch(e){}
 if(!MAP_FILTERS.some(([v])=>v===mapFilter))mapFilter='all';
 const collapsedUnits=new Set();try{const a=JSON.parse(localStorage.getItem('togisumasu-units-collapsed')||'[]');if(Array.isArray(a))a.forEach(x=>collapsedUnits.add(x))}catch(e){}

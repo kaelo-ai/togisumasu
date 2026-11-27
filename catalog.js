@@ -2,6 +2,7 @@
 const core = require('./public/core.js');
 const masteryData = require('./mastery-data.js');
 const Mastery = require('./public/mastery.js');
+const CapsGen = require('./public/caps-gen.js');
 
 const BUILTIN_UNITS = core.UNITS.map(([id, name]) => ({ id, name }));
 const BUILTIN_TOPICS = core.SK.map(s => ({
@@ -12,6 +13,7 @@ const BUILTIN_TOPICS = core.SK.map(s => ({
 const BUILTIN_UNIT_IDS = new Set(BUILTIN_UNITS.map(u => u.id));
 const BUILTIN_TOPIC_IDS = new Set(BUILTIN_TOPICS.map(t => t.id));
 const GENERATORS = new Map(BUILTIN_TOPICS.filter(t => typeof t.gen === 'function').map(t => [t.id, t.gen]));
+for (const [id, gen] of Object.entries(CapsGen.GENERATORS || {})) GENERATORS.set(id, gen);
 
 function fail(message, status = 400) {
   const err = new Error(message);
@@ -248,6 +250,11 @@ function learner(db, courseId) {
   const topics = rows.filter(t => visible.has(t.id));
   const activeUnits = units.filter(u => topics.some(t => t.course_unit === u.id));
   const lesson = masteryData.loadForCourse(db, topics.map(t => t.id));
+  const nscLeaves = nscLeafCounts(db);
+  const topicsForCore = topics.map(t => ({
+    id: t.id, unit: t.course_unit, pre: projected.get(t.id) || [],
+  }));
+  const coreMap = Mastery.tagCore(topicsForCore, nscLeaves);
   return {
     course,
     units: activeUnits.map(u => ({ id: u.id, name: u.name, required: !!u.required })),
@@ -256,16 +263,37 @@ function learner(db, courseId) {
       const keyPrereqs = (lesson.keyBy.get(t.id) || []).slice();
       const gen = typeof GENERATORS.get(t.id) === 'function';
       const fallback = !gen || !kps.length;
+      const tag = coreMap.get(t.id) || { core: false, score: 0 };
       return {
         id: t.id, unit: t.course_unit, name: t.name, pre: projected.get(t.id),
         notes: t.notes || '', paul: t.paul || '', os: jsonLinks(t.os),
         kps, keyPrereqs, fallback, staged: !fallback,
+        core: !!tag.core, coreScore: tag.score || 0,
       };
     }),
     encompassing: lesson.encompassing,
     fire: Mastery.FIRE,
     lesson: { passCount: Mastery.LESSON.passCount, failsBeforeShore: Mastery.LESSON.failsBeforeShore },
+    daily: Mastery.DAILY,
+    core: Mastery.CORE,
   };
+}
+
+function nscLeafCounts(db) {
+  try {
+    const rows = db.prepare(`
+      SELECT bsm.topic_id AS id, COUNT(DISTINCT n.id) AS n
+      FROM nsc_node_skills ns
+      JOIN bank_skill_map bsm ON bsm.bank_code = ns.bank_code
+      JOIN nsc_nodes n ON n.id = ns.node_id
+      JOIN nsc_papers p ON p.id = n.paper_id
+      WHERE n.is_leaf = 1 AND p.pool = 'practice' AND p.year < 2022
+      GROUP BY bsm.topic_id
+    `).all();
+    return Object.fromEntries(rows.map(r => [r.id, r.n]));
+  } catch (err) {
+    return {};
+  }
 }
 
 function admin(db) {
