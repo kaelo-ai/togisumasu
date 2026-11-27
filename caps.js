@@ -55,7 +55,12 @@ const TOPICS = [
   { id: 'special-angles', unit: 'c0', existing: true },
   { id: 'right-tri', unit: 'c0', existing: true },
   { id: 'euc-revision', unit: 'c0', name: 'Triangles, congruence and the midpoint theorem', pre: [],
-    notes: p('Grade 10–11 geometry used in Grade 12: vertically opposite, corresponding and alternate angles; congruence (SSS, SAS, AAS, RHS); properties of parallelograms, rectangles, rhombi, squares and kites; the midpoint theorem and its converse. Reasons must be written in the accepted form.') },
+    oldNotes: [p('Grade 10–11 geometry used in Grade 12: vertically opposite, corresponding and alternate angles; congruence (SSS, SAS, AAS, RHS); properties of parallelograms, rectangles, rhombi, squares and kites; the midpoint theorem and its converse. Reasons must be written in the accepted form.')],
+    notes: p('Grade 12 geometry in Paper 2 is about circles and similar triangles. Every proof you write there leans on facts from Grades 10 and 11: how angles behave on straight lines and parallel lines, what you know about a triangle’s angles, when two triangles are exact copies of each other, what makes a shape a parallelogram, and the midpoint theorem. This unit rebuilds those facts from the start, so it does not matter if you have forgotten them.') +
+      p('It comes in three parts. Each part explains its ideas one small step at a time, with a diagram and worked examples from easy to harder, and then gives you questions like them:') +
+      '<ol><li><b>Isosceles triangles and the angle sum.</b> Angles on a straight line and round a point, vertically opposite angles, the angles made by parallel lines, the angles of a triangle, and isosceles and equilateral triangles.</li><li><b>Congruence.</b> When two triangles are exact copies, the four tests that prove it, and how they give the properties of parallelograms, rectangles, rhombuses, squares and kites.</li><li><b>The midpoint theorem</b> and its converse.</li></ol>' +
+      p('In the exam, each line of a geometry answer has two parts: a <b>statement</b> (what you found) and a <b>reason</b> (the fact that makes it true). Examiners expect the reasons in a short standard form, such as “∠s on a str line” for “angles on a straight line add up to $180^\\circ$”. Each short form is explained in plain words the first time it appears.') +
+      p('How to read the diagrams: sides with the same tick marks are equal, angles with the same arc are equal, matching arrows mark parallel lines, and a small square marks a right angle ($90^\\circ$).') },
   { id: 'growth-decay', unit: 'c0', name: 'Simple and compound growth and decay', pre: ['exp-int'],
     notes: p('Simple: $A=P(1+in)$ and $A=P(1-in)$. Compound growth: $A=P(1+i)^n$. Compound decay (reducing balance): $A=P(1-i)^n$. Straight-line depreciation is the simple-decay formula. No continuous compounding.') },
   { id: 'five-number', unit: 'c0', name: 'Five-number summary and ogives', pre: [],
@@ -390,6 +395,12 @@ function seed(db) {
     const pos = homePos.get(topic.unit) || 0;
     insertTopic.run(topic.id, topic.unit, topic.name, JSON.stringify(topic.pre || []), topic.notes || '', pos, now, now);
     homePos.set(topic.unit, pos + 1);
+  }
+
+  // Rewritten built-in text replaces the old text only where nobody has edited it.
+  const refreshNotes = db.prepare('UPDATE topics SET notes = ?, updated_at = ? WHERE id = ? AND notes = ?');
+  for (const topic of TOPICS) {
+    for (const old of topic.oldNotes || []) refreshNotes.run(topic.notes, now, topic.id, old);
   }
 
   const insertMember = db.prepare(`

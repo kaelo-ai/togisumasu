@@ -89,7 +89,8 @@ t('geometry items use a statement-and-reason chain and draw a diagram in the pro
   for (const id of GROUPS.euclidean) {
     const nKp = CapsGen.BRANCHED[id];
     let geom = 0, drawn = 0;
-    for (let kp = 0; kp < nKp; kp++) {
+    // Knowledge points may mix item kinds, so sample each one a few times.
+    for (let kp = 0; kp < nKp; kp++) for (let i = 0; i < 12; i++) {
       const q = CapsGen.GENERATORS[id](kp);
       if (/<svg/i.test(q.prompt || '')) drawn++;
       if (q.type === 'geom') {

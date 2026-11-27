@@ -257,6 +257,23 @@ function addColumn(db, table, name, declaration) {
   if (!cols.some(c => c.name === name)) db.exec(`ALTER TABLE ${table} ADD COLUMN ${declaration}`);
 }
 
+// Generators whose items changed shape (new knowledge points, new figures).
+// Cached generated items from an older revision are retired, not deleted, so
+// attempts that point at them keep their history. Manual items are untouched.
+const GEN_REVISIONS = { 'euc-revision': 'euc0-v2' };
+
+function retireStaleGenerated(db) {
+  const now = Date.now();
+  const stmt = db.prepare(`
+    UPDATE questions SET status = 'deleted', updated_at = ?
+    WHERE skill_id = ? AND source = 'generated' AND status = 'active'
+      AND COALESCE(json_extract(data, '$.genRev'), '') <> ?
+  `);
+  let n = 0;
+  for (const [skillId, rev] of Object.entries(GEN_REVISIONS)) n += Number(stmt.run(now, skillId, rev).changes || 0);
+  return n;
+}
+
 function init(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS questions (
@@ -292,6 +309,7 @@ function init(db) {
     UPDATE questions SET updated_at = created_at WHERE updated_at IS NULL;
   `);
   catalog.init(db);
+  retireStaleGenerated(db);
 
   try {
     db.exec(`
@@ -803,6 +821,7 @@ function units() {
 }
 
 module.exports = {
+  GEN_REVISIONS, retireStaleGenerated,
   init, seed, next, similar, search, count, fingerprint, searchText, serialize, hasSkill: id => !!core.SKM[id],
   getActive, adminGet, adminList, adminExport, duplicateQuestion, exportCsv, parseCsvQuestions, parseJsonImport, importQuestions,
   addManual, updateQuestion, setStatus, testAnswer, skills, units, normalizeQuestion,

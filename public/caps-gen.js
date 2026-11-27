@@ -45,6 +45,220 @@
   }
   const xy = (p, q) => L(p.x, p.y, q.x, q.y) + P(p.x, p.y) + P(q.x, q.y);
 
+  // ---- Marked geometry figures (ticks for equal sides, arcs for angles,
+  // arrows for parallel lines, a square for 90°). Points are {x, y} in SVG units.
+  const GF = (() => {
+    const f1 = n => Math.round(n * 10) / 10;
+    const sub = (p, q) => ({ x: p.x - q.x, y: p.y - q.y });
+    const len = v => Math.hypot(v.x, v.y) || 1;
+    const unit = v => { const l = len(v); return { x: v.x / l, y: v.y / l }; };
+    const at = (p, u, d) => ({ x: p.x + u.x * d, y: p.y + u.y * d });
+    const ang = (v, p) => Math.atan2(-(p.y - v.y), p.x - v.x);
+    const ln = (p, q, extra = '') => `<line x1="${f1(p.x)}" y1="${f1(p.y)}" x2="${f1(q.x)}" y2="${f1(q.y)}" stroke="currentColor" stroke-width="1.5"${extra}/>`;
+    const seg = (p, q) => ln(p, q);
+    const dashed = (p, q) => ln(p, q, ' stroke-dasharray="4 3"');
+    const dot = p => `<circle cx="${f1(p.x)}" cy="${f1(p.y)}" r="2.3" fill="currentColor"/>`;
+    const text = (x, y, t, size = 13, extra = '') => `<text x="${f1(x)}" y="${f1(y)}" font-size="${size}" text-anchor="middle" dominant-baseline="middle" fill="currentColor"${extra}>${t}</text>`;
+    // Label a point, pushed away from `away` (usually the figure's centre).
+    function label(p, t, away, d = 13) {
+      const u = away ? unit(sub(p, away)) : { x: 0, y: -1 };
+      return text(p.x + u.x * d, p.y + u.y * d, t, 15, ' font-style="italic"');
+    }
+    function ticks(p, q, n = 1) {
+      const m = { x: (p.x + q.x) / 2, y: (p.y + q.y) / 2 }, u = unit(sub(q, p)), nr = { x: -u.y, y: u.x };
+      let s = '';
+      for (let i = 0; i < n; i++) {
+        const c = at(m, u, (i - (n - 1) / 2) * 4);
+        s += ln(at(c, nr, -5), at(c, nr, 5));
+      }
+      return s;
+    }
+    function arrows(p, q, n = 1) {
+      const m = { x: (p.x + q.x) / 2, y: (p.y + q.y) / 2 }, u = unit(sub(q, p)), nr = { x: -u.y, y: u.x };
+      let s = '';
+      for (let i = 0; i < n; i++) {
+        const tip = at(m, u, i * 6);
+        const back = at(tip, u, -6);
+        s += `<polyline points="${f1(at(back, nr, 4).x)},${f1(at(back, nr, 4).y)} ${f1(tip.x)},${f1(tip.y)} ${f1(at(back, nr, -4).x)},${f1(at(back, nr, -4).y)}" fill="none" stroke="currentColor" stroke-width="1.5"/>`;
+      }
+      return s;
+    }
+    // Arc for the angle at v between rays v->p and v->q, with an optional label.
+    function arc(v, p, q, t, opts = {}) {
+      const r = opts.r || 18, n = opts.n || 1;
+      const a1 = ang(v, p);
+      let d = ang(v, q) - a1;
+      while (d <= -Math.PI) d += 2 * Math.PI;
+      while (d > Math.PI) d -= 2 * Math.PI;
+      let s = '';
+      for (let i = 0; i < n; i++) {
+        const rr = r + i * 4;
+        const s1 = { x: v.x + rr * Math.cos(a1), y: v.y - rr * Math.sin(a1) };
+        const s2 = { x: v.x + rr * Math.cos(a1 + d), y: v.y - rr * Math.sin(a1 + d) };
+        s += `<path d="M${f1(s1.x)},${f1(s1.y)} A${rr},${rr} 0 0 ${d > 0 ? 0 : 1} ${f1(s2.x)},${f1(s2.y)}" fill="none" stroke="currentColor" stroke-width="1.2"/>`;
+      }
+      if (t) {
+        const mid = a1 + d / 2, lr = r + (n - 1) * 4 + (opts.lr || 13);
+        s += text(v.x + lr * Math.cos(mid), v.y - lr * Math.sin(mid), t, 12.5);
+      }
+      return s;
+    }
+    function right(v, p, q, s = 10) {
+      const u1 = unit(sub(p, v)), u2 = unit(sub(q, v));
+      const a = at(v, u1, s), b = at(a, u2, s), c = at(v, u2, s);
+      return `<polyline points="${f1(a.x)},${f1(a.y)} ${f1(b.x)},${f1(b.y)} ${f1(c.x)},${f1(c.y)}" fill="none" stroke="currentColor" stroke-width="1.2"/>`;
+    }
+    // Point at distance r from c in direction deg (maths convention, y up).
+    const polar = (c, r, deg) => ({ x: c.x + r * Math.cos(deg * Math.PI / 180), y: c.y - r * Math.sin(deg * Math.PI / 180) });
+    const mid = (p, q) => ({ x: (p.x + q.x) / 2, y: (p.y + q.y) / 2 });
+    const centroid = (...ps) => ({ x: ps.reduce((s, p) => s + p.x, 0) / ps.length, y: ps.reduce((s, p) => s + p.y, 0) / ps.length });
+    // Apex of a triangle on base BC with base angles b and c (degrees).
+    function apex(B, C, b, c) {
+      const base = C.x - B.x, tb = Math.tan(b * Math.PI / 180), tc = Math.tan(c * Math.PI / 180);
+      const x = base * tc / (tb + tc);
+      return { x: B.x + x, y: B.y - x * tb };
+    }
+    return { seg, dashed, dot, text, label, ticks, arrows, arc, right, polar, mid, centroid, apex, unit, sub, at };
+  })();
+
+
+  // A labelled figure from named points. Segments, ticks and arrows name two
+  // points ('AB'); arcs and right angles name three with the vertex in the
+  // middle ('ABD' is the angle at B). The view box fits the points.
+  function scene(spec) {
+    const P = spec.P, pt = k => P[k];
+    const names = Object.keys(P).filter(k => !(spec.hide || []).includes(k));
+    const all = Object.values(P);
+    const cen = spec.centre || GF.centroid(...all);
+    let body = '';
+    for (const s of spec.segs || []) body += GF.seg(pt(s[0]), pt(s[1]));
+    for (const s of spec.dashed || []) body += GF.dashed(pt(s[0]), pt(s[1]));
+    for (const [s, n] of spec.ticks || []) body += GF.ticks(pt(s[0]), pt(s[1]), n);
+    for (const [s, n] of spec.arrows || []) body += GF.arrows(pt(s[0]), pt(s[1]), n);
+    for (const [s, t, o] of spec.arcs || []) body += GF.arc(pt(s[1]), pt(s[0]), pt(s[2]), t, o || {});
+    for (const s of spec.rights || []) body += GF.right(pt(s[1]), pt(s[0]), pt(s[2]));
+    for (const k of names) body += GF.dot(P[k]) + GF.label(P[k], k, (spec.away && spec.away[k]) || cen);
+    for (const [x, y, t] of spec.text || []) body += GF.text(x, y, t, 12);
+    const xs = all.map(p => p.x), ys = all.map(p => p.y), pad = 26;
+    const x0 = Math.floor(Math.min(...xs) - pad), y0 = Math.floor(Math.min(...ys) - pad);
+    const w = Math.ceil(Math.max(...xs) + pad - x0), h = Math.ceil(Math.max(...ys) + pad - y0);
+    const cap = spec.caption ? `<figcaption>${spec.caption}</figcaption>` : '';
+    const aria = spec.caption ? ` aria-label="${String(spec.caption).replace(/[$"\\]/g, '')}"` : '';
+    return `<figure class="qfig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="${x0} ${y0} ${w} ${h}" width="${Math.min(w, 360)}" role="img"${aria}>${body}</svg>${cap}</figure>`;
+  }
+
+  // ---- Unit 0 geometry figures, shared by the generators and the lessons ----
+  const FIG = {
+    // Straight line ABC with ray BD; theta is the angle DBC.
+    line(theta, labABD, labDBC) {
+      const B = { x: 150, y: 120 };
+      return scene({ P: { A: { x: 20, y: 120 }, B, C: { x: 280, y: 120 }, D: GF.polar(B, 95, theta) },
+        segs: ['AC', 'BD'], away: { B: { x: 150, y: 60 } },
+        arcs: [labABD && ['ABD', labABD, { r: 16 }], labDBC && ['DBC', labDBC, { r: 22 }]].filter(Boolean) });
+    },
+    // Lines AB and CD cross at O; theta is the angle AOC (= BOD). Labels by number 1-4.
+    cross(theta, lab = {}) {
+      const O = { x: 150, y: 100 };
+      const P = { A: GF.polar(O, 110, 180), B: GF.polar(O, 110, 0), C: GF.polar(O, 105, 180 + theta), D: GF.polar(O, 105, theta), O };
+      const arcs = [];
+      if (lab[1]) arcs.push(['BOD', lab[1], { r: 16 }]);
+      if (lab[2]) arcs.push(['DOA', lab[2], { r: 16 }]);
+      if (lab[3]) arcs.push(['AOC', lab[3], { r: 16 }]);
+      if (lab[4]) arcs.push(['COB', lab[4], { r: 16 }]);
+      return scene({ P, segs: ['AB', 'CD'], arcs, away: { O: { x: 150, y: 60 } } });
+    },
+    // AB ∥ CD with transversal EF cutting AB at G and CD at H. theta = angle EGB.
+    parallel(theta, arcs = []) {
+      const t = Math.tan(theta * Math.PI / 180);
+      const dx = Math.abs(t) > 1e-6 ? 90 / t : 0;
+      const G = { x: 160 + dx / 2, y: 50 }, H = { x: 160 - dx / 2, y: 140 };
+      const P = { A: { x: 20, y: 50 }, B: { x: 300, y: 50 }, C: { x: 20, y: 140 }, D: { x: 300, y: 140 },
+        G, H, E: GF.polar(G, 42, theta), F: GF.polar(H, 42, theta + 180) };
+      return scene({ P, segs: ['AB', 'CD', 'EF'], arrows: [['AB', 1], ['CD', 1]], arcs,
+        away: { G: { x: G.x + 20, y: 30 }, H: { x: H.x - 20, y: 160 }, A: { x: 40, y: 0 }, B: { x: 280, y: 0 }, C: { x: 40, y: 400 }, D: { x: 280, y: 400 } } });
+    },
+    // Triangle ABC on base BC with base angles b and c. opts.ext extends BC to D.
+    tri(b, c, opts = {}) {
+      const B = { x: 30, y: 150 }, C = { x: 230, y: 150 };
+      const A = GF.apex(B, C, b, c);
+      const P = { A, B, C };
+      const segs = ['AB', 'BC', 'CA'];
+      if (opts.ext) { P.D = { x: Math.max(C.x, A.x) + 70, y: 150 }; segs.push('CD'); }
+      const names = opts.names || {};
+      const ren = {};
+      for (const k of Object.keys(P)) ren[names[k] || k] = P[k];
+      const m = k => names[k] || k;
+      const map = s => s.split('').map(m).join('');
+      return scene({ P: ren, segs: segs.map(map), ticks: (opts.ticks || []).map(([s, n]) => [map(s), n]),
+        arcs: (opts.arcs || []).map(([s, t, o]) => [map(s), t, o]), caption: opts.caption,
+        away: opts.ext ? { [m('C')]: { x: C.x, y: 100 } } : undefined });
+    },
+    // D on BC with AB = AD and AD = DC; b is angle B.
+    isoPair(b, lab = {}) {
+      const B = { x: 20, y: 160 }, D = { x: 150, y: 160 };
+      const A = GF.apex(B, D, b, b);
+      const ad = Math.hypot(A.x - D.x, A.y - D.y);
+      const C = { x: D.x + ad, y: 160 };
+      return scene({ P: { A, B, D, C }, segs: ['AB', 'AD', 'AC', 'BC'], ticks: [['AB', 1], ['AD', 1], ['DC', 1]],
+        arcs: [lab.B && ['ABD', lab.B, { r: 18 }], lab.C && ['ACD', lab.C, { r: 22 }]].filter(Boolean),
+        away: { D: { x: D.x, y: 100 } } });
+    },
+    // Kite ABCD with AB = AD and CB = CD, diagonal AC.
+    kite(opts = {}) {
+      const P = { A: { x: 40, y: 110 }, B: { x: 130, y: 40 }, C: { x: 290, y: 110 }, D: { x: 130, y: 180 } };
+      return scene({ P, segs: ['AB', 'BC', 'CD', 'DA', 'AC'], ticks: [['AB', 1], ['AD', 1], ['CB', 2], ['CD', 2]],
+        arcs: opts.arcs || [] });
+    },
+    // AE and BD cross at C. opts.par draws AB ∥ DE arrows.
+    bowtie(opts = {}) {
+      const C = { x: 160, y: 110 };
+      const P = { A: { x: 40, y: 40 }, B: { x: 40, y: 175 }, C, D: { x: 280, y: 45 }, E: { x: 280, y: 180 } };
+      // Make it a true point reflection through C so the marked facts hold.
+      P.D = { x: 2 * C.x - P.B.x, y: 2 * C.y - P.B.y };
+      P.E = { x: 2 * C.x - P.A.x, y: 2 * C.y - P.A.y };
+      return scene({ P, segs: ['AE', 'BD', 'AB', 'DE'], ticks: opts.ticks || [], arrows: opts.arrows || [],
+        arcs: opts.arcs || [], away: { C: { x: 160, y: 60 } } });
+    },
+    // Isosceles ABC (AB = AC) with AD ⊥ BC.
+    isoAltitude() {
+      const B = { x: 30, y: 160 }, C = { x: 250, y: 160 };
+      const A = GF.apex(B, C, 62, 62), D = { x: A.x, y: 160 };
+      return scene({ P: { A, B, C, D }, segs: ['AB', 'AC', 'BC', 'AD'], ticks: [['AB', 1], ['AC', 1]], rights: ['ADB'],
+        away: { D: { x: D.x, y: 100 } } });
+    },
+    // Parallelogram ABCD (A bottom-left, anticlockwise). opts.diag draws diagonals meeting at the named point.
+    para(opts = {}) {
+      const sk = opts.skew != null ? opts.skew : 60, w = opts.w || 190, h = opts.h || 110;
+      const P = { A: { x: 30, y: 30 + h }, B: { x: 30 + w, y: 30 + h }, C: { x: 30 + w + sk, y: 30 }, D: { x: 30 + sk, y: 30 } };
+      const segs = ['AB', 'BC', 'CD', 'DA'];
+      if (opts.diag) { P[opts.diag] = GF.mid(P.A, P.C); segs.push('AC', 'BD'); }
+      const nm = opts.names || {}, map = x => x.split('').map(k => nm[k] || k).join('');
+      const ren = Object.fromEntries(Object.entries(P).map(([k, v]) => [nm[k] || k, v]));
+      return scene({ P: ren, segs: segs.map(map),
+        arrows: (opts.arrows || []).map(([x, n]) => [map(x), n]), ticks: (opts.ticks || []).map(([x, n]) => [map(x), n]),
+        arcs: (opts.arcs || []).map(([x, t, o]) => [map(x), t, o]), rights: (opts.rights || []).map(map) });
+    },
+    // Rhombus ABCD with diagonals meeting at O.
+    rhombus(opts = {}) {
+      // t is the angle ABO, so AO = BO tan t.
+      const O = { x: 160, y: 110 }, bo = 80, ao = bo * Math.tan((opts.t || 40) * Math.PI / 180);
+      const P = { A: { x: O.x - ao, y: O.y }, B: { x: O.x, y: O.y - bo }, C: { x: O.x + ao, y: O.y }, D: { x: O.x, y: O.y + bo }, O };
+      return scene({ P, segs: ['AB', 'BC', 'CD', 'DA', 'AC', 'BD'], ticks: [['AB', 1], ['BC', 1], ['CD', 1], ['DA', 1]],
+        arcs: opts.arcs || [], rights: opts.rights || [], away: { O: { x: 175, y: 125 } } });
+    },
+    // Triangle with the midpoints of two sides joined.
+    midpoint(opts = {}) {
+      const n = opts.names || {}, m = k => n[k] || k;
+      const B = { x: 30, y: 170 }, C = { x: 290, y: 170 }, A = { x: 120, y: 30 };
+      const D = GF.mid(A, B), E = GF.mid(A, C);
+      const P = { [m('A')]: A, [m('B')]: B, [m('C')]: C, [m('D')]: D, [m('E')]: E };
+      const map = s => s.split('').map(m).join('');
+      return scene({ P, segs: ['AB', 'AC', 'BC', 'DE'].map(map),
+        ticks: opts.noTicks ? (opts.ticks || []).map(([s, k]) => [map(s), k]) : [['AD', 1], ['DB', 1], ['AE', 2], ['EC', 2]].map(([s, k]) => [map(s), k]),
+        arrows: (opts.arrows || []).map(([s, k]) => [map(s), k]), arcs: (opts.arcs || []).map(([s, t, o]) => [map(s), t, o]) });
+    },
+  };
+
   // ---- Sequences ----
   function genSeqLinear(kp) {
     const k = wantKp(2, kp);
@@ -1296,60 +1510,258 @@
     return list.map(s => ({ id: s[0], text: s[1] }));
   }
 
+  // Unit 0 geometry revision, in the order of Siyavula Grade 10 (CC BY):
+  // angles, parallel lines, triangles, isosceles, congruence, quadrilaterals,
+  // midpoint theorem. Reasons use the CAPS forms.
+  const deg = v => `${v}^\\circ`;
+  const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+  const angNum = (val, prompt, hint, steps) => ({ type: 'num', val, ans: String(val), ansTex: deg(val), deg: true, prompt, hint, steps });
+  const lenNum = (val, prompt, hint, steps) => ({ type: 'num', val, ans: String(val), ansTex: `${val}\\text{ cm}`, prompt, hint, steps });
+  const signed = n => n < 0 ? ` - ${-n}` : ` + ${n}`;
+
+  function eucAngles() {
+    const v = R(0, 2);
+    if (v === 0) {
+      const t = pick([100, 110, 115, 120, 125, 130, 140, 145]);
+      return angNum(180 - t, FIG.line(180 - t, `${t}°`, '?') +
+        `$ABC$ is a straight line and $A\\hat BD=${deg(t)}$. Find $D\\hat BC$.`,
+      'Angles that sit side by side on a straight line add up to $180^\\circ$.',
+      [`$D\\hat BC=180^\\circ-${deg(t)}=${deg(180 - t)}$ (∠s on a str line).`]);
+    }
+    if (v === 1) {
+      const t = pick([40, 50, 55, 65, 70, 75]);
+      if (Math.random() < 0.5) {
+        return angNum(t, FIG.cross(t, { 3: `${t}°`, 1: '?' }) +
+          `Straight lines $AB$ and $CD$ cross at $O$. $A\\hat OC=${deg(t)}$. Find $B\\hat OD$.`,
+        'When two straight lines cross, the angles opposite each other are equal.',
+        [`$B\\hat OD=A\\hat OC=${deg(t)}$ (vert opp ∠s).`]);
+      }
+      return angNum(180 - t, FIG.cross(t, { 3: `${t}°`, 2: '?' }) +
+        `Straight lines $AB$ and $CD$ cross at $O$. $A\\hat OC=${deg(t)}$. Find $A\\hat OD$.`,
+      '$A\\hat OC$ and $A\\hat OD$ sit side by side on the straight line $CD$.',
+      [`$A\\hat OD=180^\\circ-${deg(t)}=${deg(180 - t)}$ (∠s on a str line).`]);
+    }
+    const x = pick([20, 25, 30, 35, 40]), a = pick([5, 10, 15]), b = x - a;
+    return angNum(x, FIG.cross(2 * x + a, { 1: `2x+${a}°`, 3: `3x−${b}°` }) +
+      `Straight lines $AB$ and $CD$ cross at $O$. $\\hat O_1=2x+${deg(a)}$ and $\\hat O_3=3x-${deg(b)}$. Find $x$.`,
+    '$\\hat O_1$ and $\\hat O_3$ are vertically opposite, so they are equal. Set them equal and solve.',
+    [`$3x-${deg(b)}=2x+${deg(a)}$ (vert opp ∠s).`, `$x=${deg(a)}+${deg(b)}=${deg(x)}$.`]);
+  }
+
+  function eucParallel() {
+    const v = R(0, 3);
+    if (v === 0) {
+      const t = pick([55, 60, 65, 70, 75, 110, 115, 120]);
+      return angNum(t, FIG.parallel(t, [['EGB', `${t}°`], ['GHD', '?']]) +
+        `$AB\\parallel CD$ and $EF$ cuts $AB$ at $G$ and $CD$ at $H$. $E\\hat GB=${deg(t)}$. Find $G\\hat HD$.`,
+      '$E\\hat GB$ and $G\\hat HD$ sit in the same position at each crossing: corresponding angles.',
+      [`$G\\hat HD=E\\hat GB=${deg(t)}$ (corresp ∠s; $AB\\parallel CD$).`]);
+    }
+    if (v === 1) {
+      const t = pick([105, 110, 115, 120, 125, 130]);
+      return angNum(t, FIG.parallel(t, [['AGH', `${t}°`], ['GHD', '?']]) +
+        `$AB\\parallel CD$ and $EF$ cuts $AB$ at $G$ and $CD$ at $H$. $A\\hat GH=${deg(t)}$. Find $G\\hat HD$.`,
+      'The two angles are between the parallel lines, on opposite sides of $EF$: alternate angles (a Z shape).',
+      [`$G\\hat HD=A\\hat GH=${deg(t)}$ (alt ∠s; $AB\\parallel CD$).`]);
+    }
+    if (v === 2) {
+      const t = pick([105, 110, 115, 120, 125, 130]);
+      return angNum(180 - t, FIG.parallel(t, [['AGH', `${t}°`], ['CHG', '?']]) +
+        `$AB\\parallel CD$ and $EF$ cuts $AB$ at $G$ and $CD$ at $H$. $A\\hat GH=${deg(t)}$. Find $G\\hat HC$.`,
+      'Both angles are between the parallel lines on the same side of $EF$: co-interior angles add up to $180^\\circ$.',
+      [`$G\\hat HC=180^\\circ-${deg(t)}=${deg(180 - t)}$ (co-int ∠s; $AB\\parallel CD$).`]);
+    }
+    const x = pick([28, 30, 32, 34, 36]), a = pick([10, 20]), b = 180 - 5 * x - a;
+    const bg = 2 * x + a;
+    return angNum(x, FIG.parallel(180 - bg, [['BGH', `2x+${a}°`], ['GHD', `3x${b < 0 ? '−' + (-b) : '+' + b}°`]]) +
+      `$AB\\parallel CD$. $B\\hat GH=2x+${deg(a)}$ and $G\\hat HD=3x${signed(b)}^\\circ$. Find $x$.`,
+    '$B\\hat GH$ and $G\\hat HD$ are co-interior angles, so they add up to $180^\\circ$.',
+    [`$(2x+${deg(a)})+(3x${signed(b)}^\\circ)=180^\\circ$ (co-int ∠s; $AB\\parallel CD$).`, `$5x=${deg(180 - a - b)}$, so $x=${deg(x)}$.`]);
+  }
+
+  function eucTriangle() {
+    const v = R(0, 2);
+    if (v === 0) {
+      const a = pick([40, 48, 52, 64, 70]), b = pick([55, 62, 68, 77]), c = 180 - a - b;
+      return angNum(c, FIG.tri(b, c, { arcs: [['BAC', `${a}°`], ['ABC', `${b}°`], ['ACB', '?']] }) +
+        `In $\\triangle ABC$, $\\hat A=${deg(a)}$ and $\\hat B=${deg(b)}$. Find $\\hat C$.`,
+      'The three angles inside a triangle add up to $180^\\circ$.',
+      [`$\\hat C=180^\\circ-${deg(a)}-${deg(b)}=${deg(c)}$ (sum of ∠s in △).`]);
+    }
+    if (v === 1) {
+      const p = pick([35, 40, 45, 50]), q = pick([60, 65, 70, 75]);
+      return angNum(p + q, FIG.tri(q, 180 - p - q, { ext: true, names: { A: 'P', B: 'Q', C: 'R', D: 'S' }, arcs: [['BAC', `${p}°`], ['ABC', `${q}°`], ['ACD', '?']] }) +
+        `In $\\triangle PQR$, side $QR$ is extended to $S$. $\\hat P=${deg(p)}$ and $\\hat Q=${deg(q)}$. Find $P\\hat RS$.`,
+      'An exterior angle of a triangle equals the sum of the two interior angles opposite it.',
+      [`$P\\hat RS=${deg(p)}+${deg(q)}=${deg(p + q)}$ (ext ∠ of △).`]);
+    }
+    const a = pick([10, 20, 30]), b = pick([10, 20]), x = a + b;
+    return angNum(x, FIG.tri(x + a, 180 - (3 * x - b), { ext: true, arcs: [['BAC', 'x'], ['ABC', `x+${a}°`], ['ACD', `3x−${b}°`]] }) +
+      `In $\\triangle ABC$, $BC$ is extended to $D$. $\\hat A=x$, $\\hat B=x+${deg(a)}$ and $A\\hat CD=3x-${deg(b)}$. Find $x$.`,
+    'The exterior angle $A\\hat CD$ equals $\\hat A+\\hat B$.',
+    [`$3x-${deg(b)}=x+(x+${deg(a)})$ (ext ∠ of △).`, `$x=${deg(a)}+${deg(b)}=${deg(x)}$.`]);
+  }
+
+  function eucIsosceles() {
+    const v = R(0, 3);
+    if (v === 0) {
+      const b = pick([50, 55, 65, 70, 75]), a = 180 - 2 * b;
+      return angNum(a, FIG.tri(b, b, { ticks: [['AB', 1], ['AC', 1]], arcs: [['ABC', `${b}°`], ['BAC', '?']] }) +
+        `In $\\triangle ABC$, $AB=AC$ and $\\hat B=${deg(b)}$. Find $\\hat A$.`,
+      'The angles opposite the equal sides are equal, so $\\hat C=\\hat B$. Then use the angle sum.',
+      [`$\\hat C=\\hat B=${deg(b)}$ (∠s opp equal sides).`, `$\\hat A=180^\\circ-2\\times${deg(b)}=${deg(a)}$ (sum of ∠s in △).`]);
+    }
+    if (v === 1) {
+      const p = pick([24, 36, 40, 44, 52, 80, 96]), q = (180 - p) / 2;
+      return angNum(q, FIG.tri(q, q, { names: { A: 'P', B: 'Q', C: 'R' }, ticks: [['AB', 1], ['AC', 1]], arcs: [['BAC', `${p}°`], ['ABC', '?']] }) +
+        `In $\\triangle PQR$, $PQ=PR$ and $\\hat P=${deg(p)}$. Find $\\hat Q$.`,
+      '$\\hat Q=\\hat R$ because they are opposite the equal sides. Together they make $180^\\circ-\\hat P$.',
+      [`$\\hat Q=\\hat R$ (∠s opp equal sides).`, `$\\hat Q+\\hat R=180^\\circ-${deg(p)}=${deg(180 - p)}$ (sum of ∠s in △).`, `$\\hat Q=${deg(180 - p)}\\div 2=${deg(q)}$.`]);
+    }
+    if (v === 2) {
+      const b = pick([60, 64, 70, 72, 76, 80]), c = b / 2;
+      return angNum(c, FIG.isoPair(b, { B: `${b}°`, C: '?' }) +
+        `$D$ lies on $BC$ with $AB=AD$ and $AD=DC$. $\\hat B=${deg(b)}$. Find $\\hat C$.`,
+      'Work in $\\triangle ABD$ first, then cross the straight line at $D$ into $\\triangle ADC$.',
+      [`$A\\hat DB=\\hat B=${deg(b)}$ (∠s opp equal sides; $AB=AD$).`, `$A\\hat DC=180^\\circ-${deg(b)}=${deg(180 - b)}$ (∠s on a str line).`,
+        `$D\\hat AC=\\hat C$ (∠s opp equal sides; $AD=DC$).`, `$\\hat C=(180^\\circ-${deg(180 - b)})\\div 2=${deg(c)}$ (sum of ∠s in △).`]);
+    }
+    const b = pick([50, 55, 65, 70]), a = 180 - 2 * b;
+    return { type: 'geom',
+      statements: statements([['s1', 'AB = AC'], ['s2', `∠C = ∠B = ${b}°`], ['s3', `∠A = ${a}°`], ['s4', 'AB ∥ BC'], ['s5', `∠A = ${b}°`]]),
+      reasons: reasons([['r1', 'given'], ['r2', '∠s opp equal sides'], ['r3', 'sum of ∠s in △'], ['r4', 'vert opp ∠s'], ['r5', 'alt ∠s']]),
+      chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
+      prompt: FIG.tri(b, b, { ticks: [['AB', 1], ['AC', 1]], arcs: [['ABC', `${b}°`]] }) +
+        `In $\\triangle ABC$, $AB=AC$ and $\\hat B=${deg(b)}$. Prove that $\\hat A=${deg(a)}$. Add each statement with its reason, in order.`,
+      hint: 'Start with what you are given. Then the angles opposite the equal sides. Then the angle sum.',
+      steps: ['$AB=AC$ (given).', `$\\hat C=\\hat B=${deg(b)}$ (∠s opp equal sides).`, `$\\hat A=180^\\circ-2\\times${deg(b)}=${deg(a)}$ (sum of ∠s in △).`],
+      ans: `${a} degrees`, ansTex: deg(a) };
+  }
+
+  const CONG = {
+    SSS: () => ({ fig: FIG.kite(), tri: ['ABC', 'ADC'], info: '$AB=AD$ and $CB=CD$.',
+      rows: [['AB = AD', 'given'], ['CB = CD', 'given'], ['AC = AC', 'common'], ['△ABC ≡ △ADC', 'SSS']] }),
+    SAS: () => ({ fig: FIG.bowtie({ ticks: [['AC', 1], ['CE', 1], ['BC', 2], ['CD', 2]] }), tri: ['ABC', 'EDC'], info: '$AE$ and $BD$ cross at $C$, with $AC=CE$ and $BC=CD$.',
+      rows: [['AC = EC', 'given'], ['∠ACB = ∠ECD', 'vert opp ∠s'], ['BC = DC', 'given'], ['△ABC ≡ △EDC', 'SAS']] }),
+    AAS: () => ({ fig: FIG.bowtie({ ticks: [['BC', 1], ['CD', 1]], arrows: [['AB', 1], ['DE', 1]] }), tri: ['ABC', 'EDC'], info: '$AE$ and $BD$ cross at $C$, $AB\\parallel DE$ and $BC=CD$.',
+      rows: [['∠ABC = ∠EDC', 'alt ∠s; AB ∥ DE'], ['∠ACB = ∠ECD', 'vert opp ∠s'], ['BC = DC', 'given'], ['△ABC ≡ △EDC', 'AAS']] }),
+    RHS: () => ({ fig: FIG.isoAltitude(), tri: ['ADB', 'ADC'], info: '$AB=AC$ and $AD\\perp BC$.',
+      rows: [['∠ADB = ∠ADC = 90°', 'given'], ['AB = AC', 'given'], ['AD = AD', 'common'], ['△ADB ≡ △ADC', 'RHS']] }),
+  };
+
+  function eucCongruence() {
+    const v = R(0, 2);
+    const test = pick(Object.keys(CONG)), c = CONG[test]();
+    if (v === 0) {
+      const opts = shuffle(['SSS', 'SAS', 'AAS', 'RHS']).map(t => ({ tex: t, ok: t === test }));
+      return { type: 'mc', options: opts,
+        prompt: c.fig + `${c.info} Which test proves $\\triangle ${c.tri[0]}\\equiv\\triangle ${c.tri[1]}$?`,
+        hint: 'List the three equal parts you can justify (given, common, vert opp ∠s, alt ∠s). Then match the pattern: three sides, two sides with the angle between them, two angles and a side, or right angle, hypotenuse and side.',
+        steps: c.rows.slice(0, 3).map(([s, r]) => `${s} (${r}).`).concat([`So $\\triangle ${c.tri[0]}\\equiv\\triangle ${c.tri[1]}$ (${test}).`]),
+        ans: test, ansTex: `\\text{${test}}` };
+    }
+    if (v === 1) {
+      const opts = shuffle(['AAA', 'SSS', 'SAS', 'RHS']).map(t => ({ tex: t, ok: t === 'AAA' }));
+      return { type: 'mc', options: opts,
+        prompt: FIG.tri(60, 50, { arcs: [['ABC', '60°'], ['ACB', '50°'], ['BAC', '70°']] }) +
+          'Which of these is <b>not</b> a test for congruent triangles?',
+        hint: 'Two triangles can have the same three angles and still be different sizes.',
+        steps: ['Equal angles fix the shape but not the size, so AAA does not prove congruence.', 'SSS, SAS (included angle) and RHS are all valid tests.'],
+        ans: 'AAA', ansTex: '\\text{AAA}' };
+    }
+    const st = c.rows.map(([s], i) => ['s' + (i + 1), s]);
+    const rs = c.rows.map(([, r], i) => ['r' + (i + 1), r]);
+    const distractS = test === 'RHS' ? 'BD = AB' : '∠A = ∠B';
+    const distractR = test === 'SSS' ? 'AAA' : 'SSS';
+    const uniqR = [...new Map(rs.map(([id, t]) => [t, id])).entries()].map(([t, id]) => [id, t]);
+    return { type: 'geom',
+      statements: statements(st.concat([['s9', distractS]])),
+      reasons: reasons(uniqR.concat([['r9', distractR]])),
+      chain: c.rows.map(([, r], i) => ({ statement: 's' + (i + 1), reason: uniqR.find(([, t]) => t === r)[0] })),
+      prompt: c.fig + `${c.info} Prove that $\\triangle ${c.tri[0]}\\equiv\\triangle ${c.tri[1]}$. Add each statement with its reason, in order.`,
+      hint: 'Write the three matching parts first, each with its reason, then the congruence with the name of the test.',
+      steps: c.rows.map(([s, r]) => `${s} (${r}).`),
+      ans: `${c.tri[0]} congruent ${c.tri[1]} (${test})`, ansTex: `\\triangle ${c.tri[0]}\\equiv\\triangle ${c.tri[1]}` };
+  }
+
+  function eucQuads() {
+    const v = R(0, 2);
+    if (v === 0) {
+      const a = pick([58, 64, 72, 108, 112, 116, 124]);
+      if (Math.random() < 0.5) {
+        return angNum(a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['DCB', '?']], skew: a > 90 ? -50 : 60 }) +
+          `$ABCD$ is a parallelogram and $\\hat A=${deg(a)}$. Find $\\hat C$.`,
+        'Opposite angles of a parallelogram are equal.',
+        [`$\\hat C=\\hat A=${deg(a)}$ (opp ∠s of ||m).`]);
+      }
+      return angNum(180 - a, FIG.para({ arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]], arcs: [['BAD', `${a}°`], ['CBA', '?']], skew: a > 90 ? -50 : 60 }) +
+        `$ABCD$ is a parallelogram and $\\hat A=${deg(a)}$. Find $\\hat B$.`,
+      '$\\hat A$ and $\\hat B$ are co-interior angles between the parallel sides $AD$ and $BC$.',
+      [`$\\hat B=180^\\circ-${deg(a)}=${deg(180 - a)}$ (co-int ∠s; $AD\\parallel BC$).`]);
+    }
+    if (v === 1) {
+      const a = R(1, 4), x = R(3, 8), b = x + a, pr = 2 * (x + b);
+      return lenNum(pr, FIG.para({ diag: 'T', names: { A: 'P', B: 'Q', C: 'R', D: 'S' }, arrows: [['AB', 1], ['DC', 1], ['AD', 2], ['BC', 2]] }) +
+        `$PQRS$ is a parallelogram with diagonals meeting at $T$. $PT=2x+${a}$ cm and $TR=x+${b}$ cm. Find the length of $PR$.`,
+      'The diagonals of a parallelogram bisect each other, so $PT=TR$.',
+      [`$2x+${a}=x+${b}$ (diags of ||m).`, `$x=${x}$, so $PT=TR=${x + b}$ cm.`, `$PR=2\\times${x + b}=${pr}$ cm.`]);
+    }
+    const t = pick([22, 28, 32, 36, 38]);
+    if (Math.random() < 0.5) {
+      return angNum(90 - t, FIG.rhombus({ t, arcs: [['ABO', `${t}°`], ['BAO', '?']], rights: ['AOB'] }) +
+        `$ABCD$ is a rhombus with diagonals meeting at $O$. $A\\hat BO=${deg(t)}$. Find $B\\hat AO$.`,
+      'The diagonals of a rhombus cross at $90^\\circ$. Then use the angle sum in $\\triangle AOB$.',
+      [`$A\\hat OB=90^\\circ$ (diags of rhombus).`, `$B\\hat AO=180^\\circ-90^\\circ-${deg(t)}=${deg(90 - t)}$ (sum of ∠s in △).`]);
+    }
+    return angNum(2 * t, FIG.rhombus({ t, arcs: [['ABO', `${t}°`], ['ADC', '?']] }) +
+      `$ABCD$ is a rhombus with diagonals meeting at $O$. $A\\hat BO=${deg(t)}$. Find $A\\hat DC$.`,
+    'A diagonal of a rhombus cuts the corner angles in half. A rhombus is a parallelogram, so opposite angles are equal.',
+    [`$A\\hat BC=2\\times${deg(t)}=${deg(2 * t)}$ (diags of rhombus).`, `$A\\hat DC=A\\hat BC=${deg(2 * t)}$ (opp ∠s of ||m).`]);
+  }
+
+  function eucMidpoint() {
+    const v = R(0, 2);
+    if (v === 0) {
+      const bc = pick([8, 10, 12, 14, 16, 18, 22]);
+      return lenNum(bc / 2, FIG.midpoint() +
+        `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $BC=${bc}$ cm. Find $DE$.`,
+      'The segment joining the midpoints of two sides is parallel to the third side and half as long.',
+      [`$DE=\\frac12 BC$ (midpt theorem).`, `$DE=\\frac12\\times${bc}=${bc / 2}$ cm.`]);
+    }
+    if (v === 1) {
+      const b = pick([52, 58, 64, 68, 72]);
+      return angNum(b, FIG.midpoint({ arcs: [['ABC', `${b}°`], ['ADE', '?']] }) +
+        `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$. $A\\hat BC=${deg(b)}$. Find $A\\hat DE$.`,
+      'First show $DE\\parallel BC$. Then $A\\hat DE$ and $A\\hat BC$ are corresponding angles.',
+      [`$DE\\parallel BC$ (midpt theorem).`, `$A\\hat DE=A\\hat BC=${deg(b)}$ (corresp ∠s; $DE\\parallel BC$).`]);
+    }
+    const pt = pick([4, 5, 6, 7]), st = pick([3, 4, 5, 6]);
+    const names = { A: 'P', B: 'Q', C: 'R', D: 'S', E: 'T' };
+    if (Math.random() < 0.5) {
+      return lenNum(2 * pt, FIG.midpoint({ names, noTicks: true, ticks: [['AD', 1], ['DB', 1]], arrows: [['DE', 1], ['BC', 1]] }) +
+        `In $\\triangle PQR$, $S$ is the midpoint of $PQ$. A line through $S$ parallel to $QR$ meets $PR$ at $T$. $PT=${pt}$ cm. Find $PR$.`,
+      'A line through the midpoint of one side, parallel to a second side, cuts the third side in half.',
+      [`$PT=TR$ (converse midpt theorem).`, `$PR=2\\times${pt}=${2 * pt}$ cm.`]);
+    }
+    return lenNum(2 * st, FIG.midpoint({ names, noTicks: true, ticks: [['AD', 1], ['DB', 1]], arrows: [['DE', 1], ['BC', 1]] }) +
+      `In $\\triangle PQR$, $S$ is the midpoint of $PQ$. A line through $S$ parallel to $QR$ meets $PR$ at $T$. $ST=${st}$ cm. Find $QR$.`,
+    'First use the converse to show $T$ is the midpoint of $PR$. Then the midpoint theorem gives $ST=\\frac12 QR$.',
+    [`$PT=TR$ (converse midpt theorem).`, `$ST=\\frac12 QR$ (midpt theorem).`, `$QR=2\\times${st}=${2 * st}$ cm.`]);
+  }
+
+  // The topic keeps its three knowledge points. Each one now teaches several
+  // small steps, and its practice draws from those steps, weighted towards the
+  // idea the knowledge point is named after.
+  const EUC0 = [
+    [eucAngles, eucParallel, eucTriangle, eucIsosceles, eucIsosceles],
+    [eucCongruence, eucCongruence, eucQuads],
+    [eucMidpoint],
+  ];
   function genEucRevision(kp) {
-    const k = wantKp(2, kp);
-    if (k === 0) {
-      const b = pick([50, 40, 35, 70]);
-      const a = 180 - 2 * b;
-      const fig = svg(260, 170,
-        L(40, 150, 220, 150) + L(40, 150, 130, 30) + L(220, 150, 130, 30) +
-        N(40, 160, 'B', 0) + N(220, 160, 'C', 0) + N(130, 22, 'A', 0),
-        '$AB=AC$');
-      return { type: 'num', val: a, ans: String(a), ansTex: `${a}^\\circ`, deg: true,
-        prompt: fig + `In $\\triangle ABC$, $AB=AC$ and $\\hat B=${b}^\\circ$. Find $\\hat A$.`,
-        hint: 'Base angles of an isosceles triangle are equal. The angle sum of a triangle is $180^\\circ$.',
-        steps: [`$\\hat C=\\hat B=${b}^\\circ$ (base $\\angle$s of isosceles $\\triangle$, $AB=AC$).`, `$\\hat A=180^\\circ-2\\times${b}^\\circ=${a}^\\circ$ ($\\angle$ sum of $\\triangle$).`] };
-    }
-    if (k === 1) {
-      const b = pick([50, 40, 35, 70]);
-      const a = 180 - 2 * b;
-      const fig = svg(260, 170,
-        L(40, 150, 220, 150) + L(40, 150, 130, 30) + L(220, 150, 130, 30) +
-        N(40, 160, 'B', 0) + N(220, 160, 'C', 0) + N(130, 22, 'A', 0),
-        '$AB=AC$');
-      return { type: 'geom',
-        statements: statements([
-          ['s1', 'AB = AC'],
-          ['s2', `∠C = ∠B = ${b}°`],
-          ['s3', `∠A = ${a}°`],
-          ['s4', 'AB ∥ AC'],
-        ]),
-        reasons: reasons([
-          ['r1', 'given'],
-          ['r2', 'base ∠s of isosceles △'],
-          ['r3', '∠ sum of △'],
-          ['r4', 'vert opp ∠s'],
-        ]),
-        chain: [{ statement: 's1', reason: 'r1' }, { statement: 's2', reason: 'r2' }, { statement: 's3', reason: 'r3' }],
-        prompt: fig + `In $\\triangle ABC$, $AB=AC$ and $\\hat B=${b}^\\circ$. Prove that $\\hat A=${a}^\\circ$.`,
-        hint: 'Base angles of an isosceles triangle are equal. Then use the angle sum of a triangle.',
-        steps: [
-          '$AB=AC$ (given).',
-          `$\\hat C=\\hat B=${b}^\\circ$ (base $\\angle$s of isosceles $\\triangle$).`,
-          `$\\hat A=180^\\circ-2\\times${b}^\\circ=${a}^\\circ$ ($\\angle$ sum of $\\triangle$).`,
-        ],
-        ans: `${a} degrees`, ansTex: `${a}^\\circ` };
-    }
-    const bc = pick([6, 8, 10, 12]);
-    const fig = svg(260, 170,
-      L(40, 150, 220, 150) + L(40, 150, 130, 30) + L(220, 150, 130, 30) +
-      L(85, 90, 175, 90) +
-      N(40, 160, 'B', 0) + N(220, 160, 'C', 0) + N(130, 22, 'A', 0) + N(75, 88, 'D') + N(185, 88, 'E'),
-      '$D$ and $E$ are midpoints of $AB$ and $AC$');
-    return { type: 'num', val: bc / 2, ans: String(bc / 2), ansTex: String(bc / 2),
-      prompt: fig + `In $\\triangle ABC$, $D$ and $E$ are the midpoints of $AB$ and $AC$ respectively, and $BC=${bc}$. Find $DE$.`,
-      hint: 'The midpoint theorem: the segment joining the midpoints of two sides is parallel to the third side and half as long.',
-      steps: [`$DE\\parallel BC$ and $DE=\\frac12 BC$ (midpoint theorem).`, `$DE=\\frac12\\times${bc}=${bc / 2}$.`] };
+    const k = wantKp(EUC0.length - 1, kp);
+    const q = pick(EUC0[k])();
+    q.genRev = 'euc0-v2';
+    return q;
   }
 
   function genEucChords(kp) {
@@ -1831,7 +2243,7 @@
     }
   }
 
-  const CapsGen = { GENERATORS, BRANCHED, attach, wantKp };
+  const CapsGen = { GENERATORS, BRANCHED, attach, wantKp, FIG, GF, scene };
   if (typeof module !== 'undefined' && module.exports) module.exports = CapsGen;
   root.CapsGen = CapsGen;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
