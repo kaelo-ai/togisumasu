@@ -168,6 +168,82 @@ t('a cut-off corner is drawn with a vertical pole and a receding base, not a fla
   assert.ok((svg.match(/<line /g) || []).length >= 6, 'the pole is drawn as well as the two faces');
 });
 
+
+t('a function graph stays inside its stated window instead of growing a huge viewBox', () => {
+  for (const [file, id] of [['2012-nov-p1.json', '2012-nov-p1-fig-9.1'], ['2013-nov-p1.json', '2013-nov-p1-fig-9']]) {
+    const svg = diagrams.render(figure(file, id));
+    const [vx, vy, vw, vh] = svg.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
+    assert.ok(vh / vw < 1.6, `${id} viewBox is ${vw} by ${vh}`);
+    assert.match(svg, /<path /);
+    const ys = [...svg.matchAll(/[ML]([\d.-]+) ([\d.-]+)/g)].map(m => +m[2]);
+    assert.ok(ys.length > 10, id);
+    assert.ok(Math.min(...ys) >= vy - 1 && Math.max(...ys) <= vy + vh + 1, `${id} path escapes the viewBox`);
+  }
+});
+
+t('trig graphs honour degree units, including TeX and radians() plains', () => {
+  assert.ok(Math.abs(diagrams.evalPlain('sin(x+30)', 0, { degrees: true }) - 0.5) < 1e-9);
+  assert.ok(Math.abs(diagrams.evalPlain('sin(x*pi/180)', 90, { degrees: true }) - 1) < 1e-9);
+  assert.ok(Math.abs(diagrams.evalPlain('cos(radians(x))-0.5', 0) - 0.5) < 1e-9);
+  assert.ok(Math.abs(diagrams.evalPlain('2\\sin 2x', 45, { degrees: true }) - 2) < 1e-9);
+  const cases = [
+    ['2012-nov-p2.json', '2012-nov-p2-fig-10', 2],
+    ['2014-nov-p2.json', '2014-nov-p2-fig-7', 1],
+    ['2015-nov-p2.json', '2015-nov-p2-fig-6', 2],
+    ['2016-nov-p2.json', '2016-nov-p2-fig-6', 1],
+    ['2017-nov-p2.json', '2017-nov-p2-fig-6', 1],
+  ];
+  for (const [file, id, paths] of cases) {
+    const svg = diagrams.render(figure(file, id));
+    assert.equal((svg.match(/<path /g) || []).length, paths, id);
+    assert.doesNotMatch(svg, /NaN|Infinity/);
+  }
+  assert.ok(Math.abs(diagrams.evalPlain(figure('2012-nov-p2.json', '2012-nov-p2-fig-10').spec.functions[0].plain, 0, { degrees: true }) - 0.5) < 1e-9);
+});
+
+t('box-and-whisker plots and density curves are drawn from the data', () => {
+  const box = diagrams.render(figure('2012-nov-p2.json', '2012-nov-p2-fig-3'));
+  assert.match(box, /<rect /);
+  assert.match(box, />30</);
+  assert.match(box, />85</);
+  const sheet = diagrams.render(figure('2012-nov-p2.json', '2012-nov-p2-fig-3.2'));
+  assert.match(sheet, /Physical Science/);
+  assert.match(sheet, /Mathematics/);
+  assert.equal((sheet.match(/<rect /g) || []).length, 1);
+  const two = diagrams.render(figure('2021-nov-p2.json', '2021-nov-p2-fig-1'));
+  assert.equal((two.match(/<rect /g) || []).length, 2);
+  assert.match(two, /Graph A/);
+  assert.match(two, /Graph B/);
+  const density = diagrams.render(figure('2013-nov-p2.json', '2013-nov-p2-fig-4'));
+  assert.equal((density.match(/<path /g) || []).length, 3);
+  assert.match(density, /stroke-dasharray/);
+  assert.match(density, />A</);
+  assert.match(density, />B</);
+  assert.match(density, />C</);
+});
+
+t('an unknown-parameter graph is solved from a labelled point', () => {
+  assert.equal(diagrams.evalPlain('k^x', 2, { k: 6 }), 36);
+  const svg = diagrams.render(figure('2013-nov-p1.json', '2013-nov-p1-fig-5.1'));
+  assert.ok((svg.match(/<path /g) || []).length >= 1);
+  assert.match(svg, /\(2 ; 36\)/);
+  const [vx, vy, vw, vh] = svg.match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
+  assert.ok(vh / vw < 1.6);
+  const pt = [...svg.matchAll(/<circle cx="([^"]+)" cy="([^"]+)"/g)].map(m => ({ x: +m[1], y: +m[2] }))
+    .sort((a, b) => a.y - b.y)[0];
+  const samples = [...svg.matchAll(/[ML]([\d.-]+) ([\d.-]+)/g)].map(m => ({ x: +m[1], y: +m[2] }));
+  const dist = Math.min(...samples.map(p => Math.hypot(p.x - pt.x, p.y - pt.y)));
+  assert.ok(dist < 3, 'labelled (2 ; 36) should sit on g, distance ' + dist);
+});
+
+t('a linear-programming region draws its constraint lines and shades the feasible polygon', () => {
+  const svg = diagrams.render(figure('2012-nov-p1.json', '2012-nov-p1-fig-11'));
+  assert.match(svg, /<polygon /);
+  assert.ok((svg.match(/<line /g) || []).length >= 6);
+  for (const label of 'ABCDP') assert.match(svg, new RegExp('>' + label + '<'));
+  assert.doesNotMatch(svg, /NaN|Infinity/);
+});
+
 const { server, db } = require('../server.js');
 const quiz = require('../quiz.js');
 
