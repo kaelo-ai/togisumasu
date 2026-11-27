@@ -1,0 +1,2909 @@
+{
+  "id": "2012-nov-p1",
+  "paper_id": "2012-nov-p1",
+  "source": {
+    "pdf": "sources/maths/2012-nov/2012-nov-p1-memo.pdf",
+    "pdf_pages": 30,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=uTR4wJ8Xz8Q%3d&tabid=626&portalid=0&mid=2077",
+    "sha256": "4e2f37cebaa5dd2b079ca3f8eb5311b7d42c5b81d955e958cf1c7bbb5f5c63ec",
+    "note": "Official DBE November 2012 Mathematics P1 marking guidelines (English). The PDF text layer is column-scrambled; page renders were authoritative."
+  },
+  "extraction": {
+    "method": "transcription from the official PDF text layer, checked against 140 dpi page renders",
+    "date": "2026-11-27",
+    "schema_version": 1
+  },
+  "notes": "If a candidate answered a question TWICE, mark the FIRST attempt ONLY. If a candidate crossed out an attempt of a question and did not redo the question, mark the crossed-out question. Consistent accuracy applies in ALL aspects of the memorandum.",
+  "parts": [
+    {
+      "id": "2012-nov-p1-1.1.1",
+      "question_id": "2012-nov-p1-1.1.1",
+      "number": "1.1.1",
+      "marks": 2,
+      "answer_md": "$x=\\dfrac{1}{2}$ or $x=-4$",
+      "working_md": "$(2x-1)(x+4)=0$\n\n$x=\\dfrac{1}{2}$  or  $-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-1.1.2",
+      "question_id": "2012-nov-p1-1.1.2",
+      "number": "1.1.2",
+      "marks": 4,
+      "answer_md": "$x=1,47$ or $x=-1,14$",
+      "working_md": "$3x^{2}-x=5$\n\n$3x^{2}-x-5=0$\n\n$x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}$\n\n$=\\dfrac{-(-1)\\pm\\sqrt{(-1)^{2}-4(3)(-5)}}{2(3)}$\n\n$=\\dfrac{1\\pm\\sqrt{61}}{6}$\n\n$=1{,}47$  or  $-1{,}14$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=1,47$ or $x=-1,14$",
+          "working_md": "$3x^{2}-x=5$\n\n$x^{2}-\\dfrac{1}{3}x=\\dfrac{5}{3}$\n\n$\\left(x-\\dfrac{1}{6}\\right)^{2}=\\dfrac{5}{3}+\\dfrac{1}{36}$\n\n$\\left(x-\\dfrac{1}{6}\\right)=\\pm\\sqrt{\\dfrac{61}{36}}$\n\n$x=\\dfrac{1}{6}\\pm\\sqrt{\\dfrac{61}{36}}$\n\n$=1{,}47$  or  $-1{,}14$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "division by 3"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\left(x-\\dfrac{1}{6}\\right)=\\pm\\sqrt{\\dfrac{61}{36}}$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=1,47$ or $x=-1,14$",
+          "working_md": "$3x^{2}-x=5$\n\n$3x^{2}-x-5=0$\n\n$x^{2}-\\dfrac{x}{3}-\\dfrac{5}{3}=0$\n\n$x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}$\n\n$=\\dfrac{-\\left(-\\dfrac{1}{3}\\right)\\pm\\sqrt{\\left(-\\dfrac{1}{3}\\right)^{2}-4(1)\\left(-\\dfrac{5}{3}\\right)}}{2(1)}$\n\n$=\\dfrac{\\dfrac{1}{3}\\pm\\sqrt{\\dfrac{61}{9}}}{2}$\n\n$=1{,}47$  or  $-1{,}14$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official notes: if a candidate uses an incorrect formula, award maximum 1 mark (for standard form); if a candidate has not rounded off correctly, penalise 1 mark."
+    },
+    {
+      "id": "2012-nov-p1-1.1.3",
+      "question_id": "2012-nov-p1-1.1.3",
+      "number": "1.1.3",
+      "marks": 4,
+      "answer_md": "$-8<x<1$  or  $x\\in(-8;1)$",
+      "working_md": "$x^{2}+7x-8<0$\n\n$(x+8)(x-1)<0$\n\nCritical values $x=-8$ and $x=1$ (sign table or concave-up sketch with the solution interval marked).\n\nTherefore the solution is:  $-8<x<1$  OR  $x\\in(-8;1)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-8$, $1$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$-8<x<1$  or  $x\\in(-8;1)$",
+          "working_md": "$x^{2}+7x-8<0$\n\n$(x+8)(x-1)<0$\n\n$\\therefore x+8<0$ and $x-1>0$,  or  $x+8>0$ and $x-1<0$\n\n$x<-8$ and $x>1$: no solution;  $x>-8$ and $x<1$\n\nTherefore the solution is:  $-8<x<1$  OR  $x\\in(-8;1)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$-8$, $1$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: in the alternative that shows the graph with a bolded line but no conclusion, award maximum 3/4 marks."
+    },
+    {
+      "id": "2012-nov-p1-1.2.1",
+      "question_id": "2012-nov-p1-1.2.1",
+      "number": "1.2.1",
+      "marks": 6,
+      "answer_md": "$(-8;-1)$ or $(4;2)$",
+      "working_md": "$4y-x=4$  and  $xy=8$\n\n$x=4y-4$\n\n$(4y-4)y=8$\n\n$(y-1)y=2$\n\n$y^{2}-y-2=0$\n\n$(y+1)(y-2)=0$\n\n$y=-1$  or  $y=2$\n\n$x=-8$  or  $x=4$\n\n$(x;y)=(-8;-1)$  or  $(4;2)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=4y-4$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-values"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$x$-values"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(-8;-1)$ or $(4;2)$",
+          "working_md": "$4y-x=4$  and  $xy=8$\n\n$x=4y-4$\n\n$(4y-4)y=8$\n\n$(y-1)y=2$\n\nBy inspection  $y=-1$  or  $y=2$\n\n$x=-8$  or  $x=4$\n\n$(x;y)=(-8;-1)$  or  $(4;2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=4y-4$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$y$-values"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$x$-values"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(-8;-1)$ or $(4;2)$",
+          "working_md": "$4y-x=4$  and  $xy=8$\n\n$x=4y-4$\n\n$(4y-4)y=8$\n\n$(y-1)y=2$\n\n$y^{2}-y-2=0$\n\n$y=\\dfrac{-(-1)\\pm\\sqrt{(-1)^{2}-4(1)(-2)}}{2(1)}$\n\n$y=-1$  or  $y=2$\n\n$x=-8$  or  $x=4$\n\n$(x;y)=(-8;-1)$  or  $(4;2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=4y-4$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-values"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$x$-values"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(-8;-1)$ or $(4;2)$",
+          "working_md": "$4y-x=4$  and  $xy=8$\n\n$y=\\dfrac{x}{4}+1$\n\n$x\\left(\\dfrac{x}{4}+1\\right)=8$\n\n$\\dfrac{x^{2}}{4}+x-8=0$\n\n$x^{2}+4x-32=0$\n\n$(x+8)(x-4)=0$\n\n$x=-8$  or  $x=4$\n\n$y=-1$  or  $y=2$\n\n$(x;y)=(-8;-1)$  or  $(4;2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=\\dfrac{x}{4}+1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-values"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$y$-values"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(-8;-1)$ or $(4;2)$",
+          "working_md": "$xy=8$  and  $4y-x=4$\n\n$x=\\dfrac{8}{y}$\n\n$4y-\\dfrac{8}{y}=4$\n\n$4y^{2}-4y-8=0$\n\n$y^{2}-y-2=0$\n\n$(y-2)(y+1)=0$\n\n$y=-1$  or  $y=2$\n\n$x=-8$  or  $x=4$\n\n$(x;y)=(-8;-1)$  or  $(4;2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=\\dfrac{8}{y}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-values"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$x$-values"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(-8;-1)$ or $(4;2)$",
+          "working_md": "$xy=8$  and  $4y-x=4$\n\n$y=\\dfrac{8}{x}$\n\n$4\\left(\\dfrac{8}{x}\\right)-x=4$\n\n$0=x^{2}+4x-32$\n\n$0=(x+8)(x-4)$\n\n$x=-8$  or  $x=4$\n\n$y=-1$  or  $y=2$\n\n$(x;y)=(-8;-1)$  or  $(4;2)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=\\dfrac{8}{x}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-values"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$y$-values"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: if a candidate makes a mistake which leads to both equations being LINEAR, award maximum 2/6 marks."
+    },
+    {
+      "id": "2012-nov-p1-1.2.2",
+      "question_id": "2012-nov-p1-1.2.2",
+      "number": "1.2.2",
+      "marks": 2,
+      "answer_md": "$4x-y=4$",
+      "working_md": "$4x-y=4$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "interchanges $x$ and $y$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=4x-4$",
+          "working_md": "$y=4x-4$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "interchanges $x$ and $y$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=\\dfrac{y+4}{4}$",
+          "working_md": "$x=\\dfrac{y+4}{4}$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "interchanges $x$ and $y$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$4x-y-4=0$",
+          "working_md": "$4x-y-4=0$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "interchanges $x$ and $y$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=\\dfrac{1}{4}y+1$",
+          "working_md": "$x=\\dfrac{1}{4}y+1$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "interchanges $x$ and $y$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-1.3.1",
+      "question_id": "2012-nov-p1-1.3.1",
+      "number": "1.3.1",
+      "marks": 2,
+      "answer_md": "$p=-\\dfrac{5}{2}$",
+      "working_md": "$\\sqrt{2p+5}=0$\n\n$2p+5=0$\n\n$2p=-5$\n\n$p=-\\dfrac{5}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$2p+5=0$  or  $\\sqrt{2p+5}=0$  or  $\\dfrac{-2\\pm\\sqrt{0}}{7}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The official mark column also lists $(-2\\pm\\sqrt{0})/7$ as an acceptable first-step equivalent."
+    },
+    {
+      "id": "2012-nov-p1-1.3.2",
+      "question_id": "2012-nov-p1-1.3.2",
+      "number": "1.3.2",
+      "marks": 1,
+      "answer_md": "$p<\\dfrac{5}{2}$",
+      "working_md": "$2p+5<0$\n\n$p<\\dfrac{5}{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The official memo prints $p<5/2$. From $2p+5<0$ the inequality is $p<-5/2$, which matches the critical value $p=-5/2$ in 1.3.1."
+    },
+    {
+      "id": "2012-nov-p1-2.1",
+      "question_id": "2012-nov-p1-2.1",
+      "number": "2.1",
+      "marks": 2,
+      "answer_md": "$x=3$",
+      "working_md": "$T_{2}-T_{1}=T_{3}-T_{2}$\n\n$2x-(3x+1)=(3x-7)-2x$\n\n$2x-3x-1=3x-7-2x$\n\n$-x-1=x-7$\n\n$-2x=-6$\n\n$x=3$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_{2}-T_{1}=T_{3}-T_{2}$  or  $2x-(3x+1)=(3x-7)-2x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=3$",
+          "working_md": "$T_{2}=\\dfrac{T_{1}+T_{3}}{2}$\n\n$2x=\\dfrac{(3x+1)+(3x-7)}{2}$\n\n$4x=6x-6$\n\n$6=2x$\n\n$x=3$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{2}=\\dfrac{T_{1}+T_{3}}{2}$  or  $2x=\\dfrac{(3x+1)+(3x-7)}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=3$",
+          "working_md": "$T_{3}-T_{1}=2(T_{2}-T_{1})$\n\n$(3x-7)-(3x+1)=2\\bigl(2x-(3x+1)\\bigr)$\n\n$-8=-2x-2$\n\n$2x=6$\n\n$x=3$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{3}-T_{1}=2(T_{2}-T_{1})$  or  $(3x-7)-(3x+1)=2\\bigl(2x-(3x+1)\\bigr)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-2.2.1",
+      "question_id": "2012-nov-p1-2.2.1",
+      "number": "2.2.1",
+      "marks": 2,
+      "answer_md": "$T_{11}=-30$",
+      "working_md": "$T_{n}=a+(n-1)d$\n\n$T_{11}=10+(11-1)(-4)=-30$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$d=-4$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T_{11}=-30$",
+          "working_md": "$10;\\ 6;\\ 2;\\ -2;\\ -6;\\ -10;\\ -14;\\ -18;\\ -22;\\ -26;\\ -30;\\ \\ldots$\n\n$\\therefore T_{11}=-30$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expands the sequence"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-2.2.2",
+      "question_id": "2012-nov-p1-2.2.2",
+      "number": "2.2.2",
+      "marks": 6,
+      "answer_md": "$n=20$",
+      "working_md": "$S_{n}=\\dfrac{n}{2}\\bigl[2a+(n-1)d\\bigr]$\n\n$-560=\\dfrac{n}{2}\\bigl[2(10)+(n-1)(-4)\\bigr]$\n\n$-1120=-4n^{2}+24n$\n\n$4n^{2}-24n-1120=0$\n\n$n^{2}-6n-280=0$\n\n$(n-20)(n+14)=0$\n\n$n=20$  or  $-14$\n\n$\\therefore n=20$ only",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $a$ and $d$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $S_{n}=-560$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-4n^{2}+24n+1120=0$  or equivalent"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "selects $n=20$ only"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$n=20$",
+          "working_md": "$S_{n}=\\dfrac{n}{2}\\bigl[2a+(n-1)d\\bigr]$\n\n$-560=\\dfrac{n}{2}\\bigl[2(10)+(n-1)(-4)\\bigr]$\n\n$-1120=-4n^{2}+24n$\n\n$n^{2}-6n-280=0$\n\n$n=\\dfrac{-(-6)\\pm\\sqrt{(-6)^{2}-4(1)(-280)}}{2(1)}$\n\n$n=20$  or  $-14$\n\n$\\therefore n=20$ only",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $a$ and $d$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $S_{n}=-560$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$4n^{2}-24n-1120=0$  or equivalent"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "selects $n=20$ only"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n=20$",
+          "working_md": "$S_{11}=-110$\n\nTable of $T_{n}$ and $S_{n}$ from $n=12$ to $n=20$, ending at $S_{20}=-560$.\n\n$\\therefore n=20$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$S_{11}=-110$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "sequence expanded"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "series calculated"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official notes: if a candidate substitutes into an incorrect formula, award 0/6 marks; if a candidate writes the answer only, award 1/6 marks."
+    },
+    {
+      "id": "2012-nov-p1-3.1.1",
+      "question_id": "2012-nov-p1-3.1.1",
+      "number": "3.1.1",
+      "marks": 2,
+      "answer_md": "$T_{n}=27\\left(\\dfrac{1}{3}\\right)^{n-1}$",
+      "working_md": "$T_{n}=ar^{n-1}=27\\left(\\dfrac{1}{3}\\right)^{n-1}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=27$ and $r=\\dfrac{1}{3}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$T_{n}=3^{4-n}$",
+          "working_md": "$T_{n}=3^{4-n}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=27$ and $r=\\dfrac{1}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$T_{n}=\\left(\\dfrac{1}{3}\\right)^{n-4}$",
+          "working_md": "$T_{n}=\\left(\\dfrac{1}{3}\\right)^{n-4}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a=27$ and $r=\\dfrac{1}{3}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: the final answer can also be written as $3^{4-n}$ or $\\left(1/3\\right)^{n-4}$."
+    },
+    {
+      "id": "2012-nov-p1-3.1.2",
+      "question_id": "2012-nov-p1-3.1.2",
+      "number": "3.1.2",
+      "marks": 1,
+      "answer_md": "$-1<r<1$  or  $|r|<1$",
+      "working_md": "$-1<r<1$  OR  $|r|<1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "The common ratio $(r)$ is $\\dfrac{1}{3}$, which is between $-1$ and $1$.",
+          "working_md": "The common ratio $(r)$ is $\\dfrac{1}{3}$, which is between $-1$ and $1$.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$-1<\\dfrac{1}{3}<1$",
+          "working_md": "$-1<\\dfrac{1}{3}<1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: if a candidate concludes the series is not convergent, award 0 marks."
+    },
+    {
+      "id": "2012-nov-p1-3.1.3",
+      "question_id": "2012-nov-p1-3.1.3",
+      "number": "3.1.3",
+      "marks": 2,
+      "answer_md": "$\\dfrac{81}{2}$  or  $40,5$ or $41$",
+      "working_md": "$S_{\\infty}=\\dfrac{a}{1-r}=\\dfrac{27}{1-\\dfrac{1}{3}}=\\dfrac{81}{2}$  or  $40{,}5$ or $41$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: if $r>1$ or $r<-1$ is substituted, then $0/2$ marks."
+    },
+    {
+      "id": "2012-nov-p1-3.2",
+      "question_id": "2012-nov-p1-3.2",
+      "number": "3.2",
+      "marks": 4,
+      "answer_md": "Yes, the water will fill the first tank without spilling over.",
+      "working_md": "Let $V$ be the volume of the first tank.\n\n$\\dfrac{V}{2};\\ \\dfrac{V}{4};\\ \\dfrac{V}{8};\\ \\ldots$\n\n$S_{19}=\\dfrac{\\dfrac{V}{2}\\left[1-\\left(\\dfrac{1}{2}\\right)^{19}\\right]}{1-\\dfrac{1}{2}}=\\dfrac{524287}{524288}V=0{,}9999980927\\,V<V$\n\nYes, the water will fill the first tank without spilling over.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{V}{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "conclusion"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Yes, the water will fill the first tank without spilling over.",
+          "working_md": "Let $V$ be the volume of the first tank.\n\n$S_{19}=\\dfrac{\\dfrac{V}{2}\\left[1-\\left(\\dfrac{1}{2}\\right)^{19}\\right]}{1-\\dfrac{1}{2}}=V\\left[1-\\left(\\dfrac{1}{2}\\right)^{19}\\right]<V\\cdot 1=V$\n\nYes, the water will fill the first tank without spilling over.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{V}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "observes that $\\bigl[1-(1/2)^{19}\\bigr]<1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "conclusion"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "Yes, the first tank will hold the water from the other $19$ tanks without spilling over.",
+          "working_md": "Let $V$ be the volume of the first tank.\n\n$S_{\\infty}=\\dfrac{\\dfrac{V}{2}}{1-\\dfrac{1}{2}}=V$\n\nSince the first tank will hold the water from infinitely many tanks without spilling over, certainly:\n\nYes, the first tank will hold the water from the other $19$ tanks without spilling over.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\dfrac{V}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "correct argument"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "Yes, the first tank can hold all the water from the other $19$ tanks.",
+          "working_md": "If the tanks are emptied one by one, starting from the second, each tank will fill only half the remaining space, so the first tank can hold all the water from the other $19$ tanks.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "Yes (explicit or understood from the argument)"
+            },
+            {
+              "marks": 3,
+              "mark_type": null,
+              "description": "argument"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official notes: if a candidate lets the volume of the first tank be a specific value (instead of a variable) and the argument follows correctly, award 4/4 marks; if a candidate answers ‘Yes’ only with no justification, 1/4 marks."
+    },
+    {
+      "id": "2012-nov-p1-3.3.1",
+      "question_id": "2012-nov-p1-3.3.1",
+      "number": "3.3.1",
+      "marks": 3,
+      "answer_md": "$-14;\\ 0;\\ 10$",
+      "working_md": "$T_{n}=-2(n-5)^{2}+18$\n\nTerm $1=-14$\n\nTerm $2=0$\n\nTerm $3=10$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-14$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$10$"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-3.3.2",
+      "question_id": "2012-nov-p1-3.3.2",
+      "number": "3.3.2",
+      "marks": 1,
+      "answer_md": "Term $5$  or  $n=5$  or  $T_{5}$",
+      "working_md": "Term $5$  OR  $n=5$  OR  $T_{5}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-3.3.3",
+      "question_id": "2012-nov-p1-3.3.3",
+      "number": "3.3.3",
+      "marks": 2,
+      "answer_md": "$-4$",
+      "working_md": "Second difference $=2a=2(-2)=-4$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $-2$ into $2a$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$-4$",
+          "working_md": "First-difference diagram: first differences $14$ and $10$, second difference $-4$.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "first differences"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "second difference"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-3.3.4",
+      "question_id": "2012-nov-p1-3.3.4",
+      "number": "3.3.4",
+      "marks": 6,
+      "answer_md": "$n\\geq 14,\\ n\\in\\mathbb{N}$  or  $n>13,\\ n\\in\\mathbb{N}$",
+      "working_md": "$-2(n-5)^{2}+18<-110$\n\n$-2(n-5)^{2}+128<0$\n\n$-2n^{2}+20n-50+128<0$\n\n$-2n^{2}+20n+78<0$\n\n$n^{2}-10n-39>0$\n\n$(n-13)(n+3)>0$\n\n$n<-3$  or  $n>13$\n\n$n\\geq 14,\\ n\\in\\mathbb{N}$  OR  $n>13,\\ n\\in\\mathbb{N}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$T_{n}<-110$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "standard form"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "critical values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "inequalities"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n>13$  (accept $n\\geq 14$)"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$n\\geq 14,\\ n\\in\\mathbb{N}$  or  $n>13,\\ n\\in\\mathbb{N}$",
+          "working_md": "$-2(n-5)^{2}+18<-110$\n\n$-2(n-5)^{2}+128<0$\n\n$(n-5)^{2}-64>0$\n\n$\\bigl[(n-5)-8\\bigr]\\bigl[(n-5)+8\\bigr]>0$\n\n$(n-13)(n+3)>0$\n\n$n<-3$  or  $n>13$\n\n$n\\geq 14,\\ n\\in\\mathbb{N}$  OR  $n>13,\\ n\\in\\mathbb{N}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{n}<-110$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$(n-5)^{2}-64>0$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "critical values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "inequalities"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n>13$  (accept $n\\geq 14$)"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n\\geq 14,\\ n\\in\\mathbb{N}$  or  $n>13,\\ n\\in\\mathbb{N}$",
+          "working_md": "$-2(n-5)^{2}+18<-110$\n\n$-2(n-5)^{2}<-128$\n\n$(n-5)^{2}>64$\n\n$n-5<-8$  or  $n-5>8$\n\n$n<-3$  or  $n>13$\n\n$n\\geq 14,\\ n\\in\\mathbb{N}$  OR  $n>13,\\ n\\in\\mathbb{N}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{n}<-110$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$2(n-5)^{2}>128$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$8$ and $-8$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n-5>8$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n-5<-8$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n>13$  (accept $n\\geq 14$)"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n\\geq 14,\\ n\\in\\mathbb{N}$  or  $n>13,\\ n\\in\\mathbb{N}$",
+          "working_md": "$T_{n}=-2(n-5)^{2}+18=-2n^{2}+20n-32$\n\n$-2n^{2}+20n-32<-110$\n\n$-2n^{2}+20n-78<0$\n\n$n^{2}-10n-39>0$\n\n$(n-13)(n+3)>0$\n\n$n<-3$  or  $n>13$\n\n$n\\geq 14,\\ n\\in\\mathbb{N}$  OR  $n>13,\\ n\\in\\mathbb{N}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$T_{n}<-110$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "standard form"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "factors"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "critical values"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "inequalities"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n>13$  (accept $n\\geq 14$)"
+            }
+          ],
+          "notes": "The official working prints $-2n^{2}+20n-78<0$; from $-2n^{2}+20n-32<-110$ the constant term should be $+78$. The subsequent factorisation $n^{2}-10n-39>0$ matches $+78$."
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n\\geq 14,\\ n\\in\\mathbb{N}$",
+          "working_md": "$-14;\\ 0;\\ 10;\\ 16;\\ 18;\\ 16;\\ 10;\\ 0;\\ -14;\\ -32;\\ -54;\\ -80;\\ -110$\n\n$n\\geq 14,\\ n\\in\\mathbb{N}$",
+          "steps": [
+            {
+              "marks": 4,
+              "mark_type": null,
+              "description": "expansion"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "conclusion of $n\\geq 14$  (accept $n>13$)"
+            }
+          ],
+          "notes": "The official expansion alternative shows five visible ticks (three for the expansion and two for the conclusion) against a (6) subtotal; the expansion was allocated 4 marks to match the printed total."
+        }
+      ],
+      "notes": "Official note: answer only, award 2/6 marks."
+    },
+    {
+      "id": "2012-nov-p1-4.1.1",
+      "question_id": "2012-nov-p1-4.1.1",
+      "number": "4.1.1",
+      "marks": 1,
+      "answer_md": "$(0;-3)$",
+      "working_md": "$y=3\\cdot 2^{0}-6=3-6=-3$\n\n$(0;-3)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-4.1.2",
+      "question_id": "2012-nov-p1-4.1.2",
+      "number": "4.1.2",
+      "marks": 2,
+      "answer_md": "$(1;0)$",
+      "working_md": "$0=3\\cdot 2^{x}-6$\n\n$3\\cdot 2^{x}=6$\n\n$2^{x}=2^{1}$\n\n$x=1$\n\n$(1;0)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-value"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official notes: if a candidate interchanges questions 4.1.1 and 4.1.2, $0/3$ marks; if a candidate says that $3\\cdot 2^{x}=6^{x}$ (i.e. wrong mathematics) and arrives at the correct answer, award maximum $1/2$ marks."
+    },
+    {
+      "id": "2012-nov-p1-4.1.3",
+      "question_id": "2012-nov-p1-4.1.3",
+      "number": "4.1.3",
+      "marks": 3,
+      "answer_md": "Sketch of $y=3\\cdot 2^{x}-6$: intercepts $(0;-3)$ and $(1;0)$, horizontal asymptote $y=-6$, increasing exponential shape.",
+      "working_md": "Official sketch: intercepts at $(0;-3)$ and $(1;0)$, asymptote $y=-6$, increasing curve.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "intercepts"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "asymptote"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-4.1.4",
+      "question_id": "2012-nov-p1-4.1.4",
+      "number": "4.1.4",
+      "marks": 1,
+      "answer_md": "$y>-6$  or  $(-6;\\infty)$",
+      "working_md": "$y>-6$  OR  $(-6;\\infty)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-4.2.1",
+      "question_id": "2012-nov-p1-4.2.1",
+      "number": "4.2.1",
+      "marks": 2,
+      "answer_md": "$d=12$",
+      "working_md": "$y=-2x+d$\n\n$0=(-2)(6)+d$\n\n$d=12$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$d=12$",
+          "working_md": "$y-y_{1}=m(x-x_{1})$\n\n$y-0=-2(x-6)$\n\n$y=-2x+12$\n\n$\\therefore d=12$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$d=12$",
+          "working_md": "Since $m=-2$ and $m=-d/6$\n\n$-2=-d/6$\n\n$d=12$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-4.2.2",
+      "question_id": "2012-nov-p1-4.2.2",
+      "number": "4.2.2",
+      "marks": 4,
+      "answer_md": "$y=-x^{2}+4x+12$",
+      "working_md": "$y=a(x-6)(x+2)$\n\n$12=a(0-6)(0+2)$\n\n$a=-1$\n\n$y=-(x^{2}-4x-12)=-x^{2}+4x+12$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=a(x-6)(x+2)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $\\mathrm{R}(0;12)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=-x^{2}+4x+12$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=-x^{2}+4x+12$",
+          "working_md": "$y=ax^{2}+bx+12$\n\n$0=a(-2)^{2}+b(-2)+12$\n\ni.e.  $0=4a-2b+12$\n\n$0=a(6)^{2}+b(6)+12$\n\ni.e.  $0=36a+6b+12$\n\n$0=24b-96$\n\n$b=4$\n\n$0=4a-2(4)+12$\n\n$a=-1$\n\n$y=-x^{2}+4x+12$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=ax^{2}+bx+12$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $\\mathrm{S}(-2;0)$ and $\\mathrm{T}(6;0)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$b$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=-x^{2}+4x+12$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$y=-x^{2}+4x+12$",
+          "working_md": "$y=a(x-2)^{2}+q$\n\n$0=a(-2-2)^{2}+q$  or  $0=a(6-2)^{2}+q$\n\ni.e.  $0=16a+q$\n\n$12=a(0-2)^{2}+q$\n\ni.e.  $12=4a+q$\n\n$12=-12a$\n\n$a=-1$\n\n$q=16$\n\n$y=-(x-2)^{2}+16=-x^{2}+4x+12$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=a(x-2)^{2}+q$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $\\mathrm{R}(0;12)$ and $\\mathrm{S}(-2;0)$ (or $\\mathrm{T}(6;0)$)"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=-x^{2}+4x+12$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$y=-x^{2}+4x+12$",
+          "working_md": "$y=a(x-6)(x+2)=a(x^{2}-4x-12)=-(x^{2}-4x-12)=-x^{2}+4x+12$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=a(x-6)(x+2)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "expand"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$a$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y=-x^{2}+4x+12$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: no marks for answer only."
+    },
+    {
+      "id": "2012-nov-p1-4.2.3",
+      "question_id": "2012-nov-p1-4.2.3",
+      "number": "4.2.3",
+      "marks": 2,
+      "answer_md": "$(2;16)$",
+      "working_md": "$\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=0$\n\n$-2x+4=0$\n\n$x=2$\n\n$y=-(2)^{2}+4(2)+12=16$\n\nTP of $f$ is $(2;16)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$-value"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y$-value"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(2;16)$",
+          "working_md": "$x=-\\dfrac{b}{2a}=-\\dfrac{4}{2(-1)}=2$\n\n$y=-(2)^{2}+4(2)+12=16$\n\nTP of $f$ is $(2;16)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(2;16)$",
+          "working_md": "$f(x)=-(x-2)^{2}+16$\n\nTP of $f$ is $(2;16)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$(2;16)$",
+          "working_md": "$x=\\dfrac{-2+6}{2}=2$\n\n$y=-(2)^{2}+4(2)+12=16$\n\nTP of $f$ is $(2;16)$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$-value"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y$-value"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-4.2.4",
+      "question_id": "2012-nov-p1-4.2.4",
+      "number": "4.2.4",
+      "marks": 2,
+      "answer_md": "$k<16$  or  $(-\\infty;16)$",
+      "working_md": "$k<16$  OR  $(-\\infty;16)$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-4.2.5",
+      "question_id": "2012-nov-p1-4.2.5",
+      "number": "4.2.5",
+      "marks": 3,
+      "answer_md": "$81$  or  $3^{4}$",
+      "working_md": "Maximum value of $h(x)=3^{f(x)-12}$ occurs at the maximum value of $f(x)$\n\nMaximum value $=3^{16-12}=81$",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "substitution of $16$ for $f(x)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$3^{4}$ or $81$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$81$  or  $3^{4}$",
+          "working_md": "$h(2)=3^{f(2)-12}=3^{16-12}=3^{4}$  or  $81$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "substitution of $16$ for $f(x)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$3^{4}$ or $81$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$81$  or  $3^{4}$",
+          "working_md": "$f(x)-12=-x^{2}+4x=x(4-x)$, which has a maximum value of $f(2)=4$\n\n$\\therefore$ maximum value of $h(x)$ is $3^{4}$ or $81$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "substitution of $f(2)=4$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$3^{4}$ or $81$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-5.1",
+      "question_id": "2012-nov-p1-5.1",
+      "number": "5.1",
+      "marks": 2,
+      "answer_md": "$0\\leq x\\leq 3$  or  $[0;3]$",
+      "working_md": "$0\\leq x\\leq 3$  OR  $[0;3]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$0\\leq x$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x\\leq 3$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: if the candidate gives $0<x<3$, award $1/2$ marks."
+    },
+    {
+      "id": "2012-nov-p1-5.2",
+      "question_id": "2012-nov-p1-5.2",
+      "number": "5.2",
+      "marks": 3,
+      "answer_md": "$y=\\dfrac{x^{2}}{27},\\quad x\\leq 0$  or  $(-\\infty;0]$",
+      "working_md": "$f^{-1}$:  $x=-\\sqrt{27y}$\n\n$x^{2}=27y$\n\n$y=\\dfrac{x^{2}}{27}$\n\n$x\\leq 0$  OR  $(-\\infty;0]$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "interchange $x$- and $y$-values"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=\\dfrac{x^{2}}{27}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x\\leq 0$  or  $(-\\infty;0]$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "The official working gives the restriction as $x\\leq 0$ or $(-\\infty;0]$; the mark column prints $x\\leq 0$ or $(-\\infty;0)$."
+    },
+    {
+      "id": "2012-nov-p1-5.3",
+      "question_id": "2012-nov-p1-5.3",
+      "number": "5.3",
+      "marks": 3,
+      "answer_md": "Sketch of $f^{-1}$: decreasing half-parabola in the second quadrant, ending at the origin, passing through $(-9;3)$.",
+      "working_md": "Official sketch: $f^{-1}$ in the second quadrant, ending at the origin, with point $\\mathrm{P}(-9;3)$ marked.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "shape"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "end at the origin"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "any other point on the graph"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-5.4",
+      "question_id": "2012-nov-p1-5.4",
+      "number": "5.4",
+      "marks": 1,
+      "answer_md": "Reflection about the $x$-axis",
+      "working_md": "Reflection about the $x$-axis",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$(x;y)\\to(x;-y);\\ x\\geq 0$",
+          "working_md": "$(x;y)\\to(x;-y);\\ x\\geq 0$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-6",
+      "question_id": "2012-nov-p1-6",
+      "number": "6",
+      "marks": 4,
+      "answer_md": "$f(x)=\\dfrac{3}{x-5}+1$",
+      "working_md": "$f(x)=\\dfrac{a}{x-5}+1$\n\n$0=\\dfrac{a}{(2)-5}+1$\n\n$-1=\\dfrac{a}{-3}$\n\n$a=3$\n\n$f(x)=\\dfrac{3}{x-5}+1$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x-5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$+1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $(2;0)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$a=3$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$f(x)=\\dfrac{3}{x-5}+1$",
+          "working_md": "$(x-5)(y-1)=k$\n\n$(2-5)(0-1)=k$\n\n$k=3$\n\n$(x-5)(y-1)=3$\n\n$y=\\dfrac{3}{x-5}+1$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$(x-5)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$(y-1)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $(2;0)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$k=3$"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: $f(x)=(x-2)/(x-5)$ as an alternative simplified form."
+    },
+    {
+      "id": "2012-nov-p1-7.1.1",
+      "question_id": "2012-nov-p1-7.1.1",
+      "number": "7.1.1",
+      "marks": 3,
+      "answer_md": "$\\mathrm{R}\\,74\\,883{,}86$",
+      "working_md": "$\\mathrm{A}=P(1-i)^{n}$\n\n$=120\\,000(1-0{,}09)^{5}$\n\n$=\\mathrm{R}\\,74\\,883{,}86$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i$, $n$ and $P$ identified"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: incorrect formula (in 7.1.1 or 7.1.2), award maximum 1/3 marks."
+    },
+    {
+      "id": "2012-nov-p1-7.1.2",
+      "question_id": "2012-nov-p1-7.1.2",
+      "number": "7.1.2",
+      "marks": 3,
+      "answer_md": "$\\mathrm{R}\\,168\\,306{,}21$",
+      "working_md": "$\\mathrm{A}=P(1+i)^{n}$\n\n$=120\\,000(1+0{,}07)^{5}$\n\n$=\\mathrm{R}\\,168\\,306{,}21$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i$, $n$ and $P$ identified"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: incorrect formula (in 7.1.1 or 7.1.2), award maximum 1/3 marks."
+    },
+    {
+      "id": "2012-nov-p1-7.1.3",
+      "question_id": "2012-nov-p1-7.1.3",
+      "number": "7.1.3",
+      "marks": 5,
+      "answer_md": "$\\mathrm{R}\\,1\\,184{,}68$",
+      "working_md": "Sinking fund needed:  $F_{v}=\\mathrm{R}\\,90\\,000$\n\n$F_{v}=\\dfrac{x\\bigl[(1+i)^{n}-1\\bigr]}{i}$\n\n$90\\,000=\\dfrac{x\\left[\\left(1+\\dfrac{0{,}085}{12}\\right)^{61}-1\\right]}{\\dfrac{0{,}085}{12}}$\n\n$x=\\mathrm{R}\\,1\\,184{,}68$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$F_{v}=\\mathrm{R}\\,90\\,000$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i=\\dfrac{0{,}085}{12}=\\dfrac{17}{2400}$ in the annuity formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$n=61$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{R}\\,1\\,184{,}68$",
+          "working_md": "Consider the scenario as money deposited at the beginning of every month, but in the last month an additional payment was made at the end of the month:\n\n$F_{v}=\\dfrac{x(1+i)\\bigl[(1+i)^{n}-1\\bigr]}{i}+x=x\\left(\\dfrac{(1+i)\\bigl[(1+i)^{n}-1\\bigr]}{i}+1\\right)$\n\n$90\\,000=x\\left(\\dfrac{\\left(1+\\dfrac{0{,}085}{12}\\right)\\left[\\left(1+\\dfrac{0{,}085}{12}\\right)^{60}-1\\right]}{\\dfrac{0{,}085}{12}}+1\\right)$\n\n$x=\\mathrm{R}\\,1\\,184{,}68$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$i=\\dfrac{0{,}085}{12}=\\dfrac{17}{2400}$ in the annuity formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n=60$ in the annuity formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$F_{v}=\\mathrm{R}\\,90\\,000$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$\\mathrm{R}\\,1\\,184{,}68$",
+          "working_md": "Present value of sinking fund needed:\n\n$90\\,000=P_{v}\\left(1+\\dfrac{0{,}085}{12}\\right)^{61}$\n\n$P_{v}=\\mathrm{R}\\,58\\,513{,}03$\n\nUsing the present-value formula:\n\n$P_{v}=\\dfrac{x\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$58\\,513{,}03=\\dfrac{x\\left[1-\\left(1+\\dfrac{0{,}085}{12}\\right)^{-61}\\right]}{\\dfrac{0{,}085}{12}}$\n\n$x=\\mathrm{R}\\,1\\,184{,}68$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$i=\\dfrac{0{,}085}{12}=\\dfrac{17}{2400}$ in the annuity formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$n=61$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$P_{v}=\\mathrm{R}\\,58\\,513{,}03$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: incorrect formula, award maximum 2/5 marks."
+    },
+    {
+      "id": "2012-nov-p1-7.2",
+      "question_id": "2012-nov-p1-7.2",
+      "number": "7.2",
+      "marks": 6,
+      "answer_md": "$n=66,04$ months. She will be able to maintain her current lifestyle for a little more than $66$ months using her pension money.",
+      "working_md": "$P_{v}=\\dfrac{x\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$900\\,000=\\dfrac{18\\,000\\left[1-\\left(1+\\dfrac{0{,}105}{12}\\right)^{-n}\\right]}{\\dfrac{0{,}105}{12}}$\n\n$1-\\dfrac{900\\,000\\left(\\dfrac{0{,}105}{12}\\right)}{18\\,000}=\\left(1+\\dfrac{0{,}105}{12}\\right)^{-n}$\n\n$-n=\\log_{1+0{,}105/12}\\dfrac{9}{16}$\n\n$n=66{,}04$ months\n\nShe will be able to maintain her current lifestyle for a little more than $66$ months using her pension money.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x=18\\,000$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$i=\\dfrac{0{,}105}{12}$ in the annuity formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution into the correct formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "use of logs"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer in months"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$n=66,04$ months. She will be able to maintain her current lifestyle for a little more than $66$ months using her pension money.",
+          "working_md": "$P_{v}=\\dfrac{x\\bigl[1-(1+i)^{-n}\\bigr]}{i}$\n\n$900\\,000=\\dfrac{18\\,000\\left[1-\\left(1+\\dfrac{0{,}105}{12}\\right)^{-n}\\right]}{\\dfrac{0{,}105}{12}}$\n\n$1-\\dfrac{900\\,000\\left(\\dfrac{0{,}105}{12}\\right)}{18\\,000}=\\left(1+\\dfrac{0{,}105}{12}\\right)^{-n}$\n\n$-n\\log\\left(1+\\dfrac{0{,}105}{12}\\right)=\\log\\dfrac{9}{16}$\n\n$n=66{,}04$ months\n\nShe will be able to maintain her current lifestyle for a little more than $66$ months using her pension money.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=18\\,000$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$i=\\dfrac{0{,}105}{12}$ in the annuity formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "use of logs"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer in months"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$n=66,04$ months. She will be able to maintain her current lifestyle for a little more than $66$ months using her pension money.",
+          "working_md": "$A=F_{v}$\n\n$P(1+i)^{n}=\\dfrac{x\\bigl[(1+i)^{n}-1\\bigr]}{i}$\n\n$900\\,000\\left(1+\\dfrac{0{,}105}{12}\\right)^{n}=\\dfrac{18\\,000\\left[\\left(1+\\dfrac{0{,}105}{12}\\right)^{n}-1\\right]}{\\dfrac{0{,}105}{12}}$\n\n$\\dfrac{16}{9}=\\left(1+\\dfrac{0{,}105}{12}\\right)^{n}$\n\n$-n=\\log_{1+0{,}105/12}\\dfrac{9}{16}$\n\n$n=66{,}04$ months\n\nShe will be able to maintain her current lifestyle for a little more than $66$ months using her pension money.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=18\\,000$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$i=\\dfrac{0{,}105}{12}$ in the annuity formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the correct formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "use of logs"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer in months"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official notes: if the $F_{v}$ formula is used, possibly award one each for $x$, $i$, and use of logs: maximum 3/6 marks; if any other incorrect formula is used, award 0/6 marks; if a candidate rounds off early in Question 7.2 (and obtains 58 months), penalise 1 mark."
+    },
+    {
+      "id": "2012-nov-p1-8.1",
+      "question_id": "2012-nov-p1-8.1",
+      "number": "8.1",
+      "marks": 5,
+      "answer_md": "$f'(x)=4x$",
+      "working_md": "$f(x)=2x^{2}-5$\n\n$f(x+h)=2(x+h)^{2}-5=2x^{2}+4xh+2h^{2}-5$\n\n$f(x+h)-f(x)=4xh+2h^{2}$\n\n$f'(x)=\\lim_{h\\to 0}\\dfrac{4xh+2h^{2}}{h}=\\lim_{h\\to 0}\\dfrac{h(4x+2h)}{h}=\\lim_{h\\to 0}(4x+2h)=4x$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $x+h$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification to $4xh+2h^{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\lim(4x+2h)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$f'(x)=4x$",
+          "working_md": "$f'(x)=\\lim_{h\\to 0}\\dfrac{f(x+h)-f(x)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{\\bigl[2(x+h)^{2}-5\\bigr]-(2x^{2}-5)}{h}$\n\n$=\\lim_{h\\to 0}\\dfrac{4xh+2h^{2}}{h}$\n\n$=\\lim_{h\\to 0}(4x+2h)$\n\n$=4x$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution of $x+h$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "simplification to $\\dfrac{4xh+2h^{2}}{h}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$\\lim(4x+2h)$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official notes: if a candidate makes a notation error, penalise 1 mark; if a candidate uses differentiation rules, award 0/5 marks."
+    },
+    {
+      "id": "2012-nov-p1-8.2",
+      "question_id": "2012-nov-p1-8.2",
+      "number": "8.2",
+      "marks": 3,
+      "answer_md": "$\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=-4x^{-5}+6x^{2}-\\dfrac{1}{5}$",
+      "working_md": "$\\dfrac{\\mathrm{d}y}{\\mathrm{d}x}=-4x^{-5}+6x^{2}-\\dfrac{1}{5}$\n\n$=-\\dfrac{4}{x^{5}}+6x^{2}-\\dfrac{1}{5}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-4x^{-5}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$6x^{2}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-\\dfrac{1}{5}$"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official notes: notation error, penalise 1 mark; candidates do not need to give their answer with positive exponents."
+    },
+    {
+      "id": "2012-nov-p1-8.3.1",
+      "question_id": "2012-nov-p1-8.3.1",
+      "number": "8.3.1",
+      "marks": 2,
+      "answer_md": "$g'(x)=1$  $(x\\neq 1)$",
+      "working_md": "$g(x)=\\dfrac{x^{2}+x-2}{x-1}=\\dfrac{(x+2)(x-1)}{x-1}=x+2$  $(x\\neq 1)$\n\n$g'(x)=1$  $(x\\neq 1)$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "simplification"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-8.3.2",
+      "question_id": "2012-nov-p1-8.3.2",
+      "number": "8.3.2",
+      "marks": 1,
+      "answer_md": "The function is undefined at $x=1$.",
+      "working_md": "The function is undefined at $x=1$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Division by zero is undefined.",
+          "working_md": "Division by zero is undefined.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "The denominator cannot be zero.",
+          "working_md": "The denominator cannot be zero.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "In the definition of the derivative, $g'(1)=\\lim_{h\\to 0}\\dfrac{g(1+h)-g(1)}{h}$, but $g(1)$ does not exist.",
+          "working_md": "In the definition of the derivative, $g'(1)=\\lim_{h\\to 0}\\dfrac{g(1+h)-g(1)}{h}$, but $g(1)$ does not exist.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-9.1.1",
+      "question_id": "2012-nov-p1-9.1.1",
+      "number": "9.1.1",
+      "marks": 4,
+      "answer_md": "$x=-\\dfrac{8}{3}$ or $x=2$",
+      "working_md": "$f(x)=-x^{3}-x^{2}+16x+16$\n\n$f'(x)=-3x^{2}-2x+16$\n\n$0=-3x^{2}-2x+16$\n\n$3x^{2}+2x-16=0$\n\n$(3x+8)(x-2)=0$\n\n$x=-\\dfrac{8}{3}$  or  $x=2$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f'(x)=-3x^{2}-2x+16$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f'(x)=0$  or  $0=-3x^{2}-2x+16$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "factors"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x$ values"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=-\\dfrac{8}{3}$ or $x=2$",
+          "working_md": "$f'(x)=-3x^{2}-2x+16$\n\n$0=-3x^{2}-2x+16$\n\n$0=3x^{2}+2x-16$\n\n$x=\\dfrac{-2\\pm\\sqrt{2^{2}-4(3)(-16)}}{2(3)}$\n\n$x=-\\dfrac{8}{3}$  or  $x=2$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$f'(x)=-3x^{2}-2x+16$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$f'(x)=0$  or  $0=-3x^{2}-2x+16$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "substitution into the formula"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x$ values"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": "Official note: if neither $f'(x)=0$ nor $0=-3x^{2}-2x+16$ is explicitly stated, award maximum 3/4 marks."
+    },
+    {
+      "id": "2012-nov-p1-9.1.2",
+      "question_id": "2012-nov-p1-9.1.2",
+      "number": "9.1.2",
+      "marks": 3,
+      "answer_md": "$x=-\\dfrac{1}{3}$",
+      "working_md": "$f''(x)=0$\n\n$-6x-2=0$\n\n$x=-\\dfrac{1}{3}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$f''(x)=-6x-2$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-6x-2=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x=-\\dfrac{1}{3}$",
+          "working_md": "$x=\\dfrac{-\\dfrac{8}{3}+2}{2}=-\\dfrac{1}{3}$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x=\\dfrac{-\\dfrac{8}{3}+2}{2}$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=-\\dfrac{1}{3}$",
+          "working_md": "$f'(x)=-3x^{2}-2x+16$\n\n$x=\\dfrac{-(-2)}{2(-3)}=-\\dfrac{1}{3}$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$x=\\dfrac{-(-2)}{2(-3)}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x=-\\dfrac{1}{3}$",
+          "working_md": "$f(x)=-x^{3}-x^{2}+16x+16$\n\n$x=\\dfrac{-(-1)}{3(-1)}=-\\dfrac{1}{3}$",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$x=\\dfrac{-(-1)}{3(-1)}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-9.2.1",
+      "question_id": "2012-nov-p1-9.2.1",
+      "number": "9.2.1",
+      "marks": 4,
+      "answer_md": "$y=-5x+7$",
+      "working_md": "$g(x)=-2x^{2}-9x+5$\n\n$g(-1)=-2(-1)^{2}-9(-1)+5=12$\n\n$g'(x)=-4x-9$\n\n$m_{\\mathrm{tan}}=-4(-1)-9=-5$\n\n$y=-5x+c$\n\n$12=-5(-1)+c$\n\n$c=7$\n\n$y=-5x+7$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$g(-1)=12$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$g'(x)=-4x-9$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$m_{\\mathrm{tan}}=-5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$y=-5x+7$",
+          "working_md": "$g(-1)=12$\n\n$g'(x)=-4x-9$\n\n$m_{\\mathrm{tan}}=-4(-1)-9=-5$\n\n$y-12=-5(x+1)$\n\n$y=-5x+7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$g(-1)=12$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$g'(x)=-4x-9$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$m_{\\mathrm{tan}}=-5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-9.2.2",
+      "question_id": "2012-nov-p1-9.2.2",
+      "number": "9.2.2",
+      "marks": 3,
+      "answer_md": "$q>7$",
+      "working_md": "Sketch of the parabola $g$ with the tangent $y=-5x+7$ and a family of steeper-intercept lines, showing $q>7$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "sketch"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$7$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "correct inequality"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$q>7$",
+          "working_md": "$y=-5x+q$  and  $y=-2x^{2}-9x+5$\n\n$-5x+q=-2x^{2}-9x+5$\n\n$q=-2(x+1)^{2}+7$\n\n$\\therefore q>7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$7$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct inequality"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$q>7$",
+          "working_md": "$y=-5x+q$  and  $y=-2x^{2}-9x+5$\n\n$-5x+q=-2x^{2}-9x+5$\n\n$2x^{2}+4x+q-5=0$\n\n$x=\\dfrac{-4\\pm\\sqrt{16-4(2)(q-5)}}{2(2)}=\\dfrac{-4\\pm\\sqrt{56-8q}}{4}$\n\n$56-8q<0$\n\n$q>7$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$7$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct inequality"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$q>7$",
+          "working_md": "Since $g(-1)=12$ and at $x=-1$, the tangent equation is $y=-5x+7$,\n\n$y=-5x+q$ not intersecting $g$  $\\Rightarrow$\n\n$12<-5(-1)+q$\n\n$12-5<q$\n\n$7<q$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "method"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$7$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "correct inequality"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-9.3",
+      "question_id": "2012-nov-p1-9.3",
+      "number": "9.3",
+      "marks": 3,
+      "answer_md": "It will never be possible to draw a tangent with a negative gradient to the graph of $h$.",
+      "working_md": "$h'(x)=12x^{2}+5$\n\nFor all values of $x$:  $x^{2}\\geq 0$\n\n$12x^{2}\\geq 0$\n\n$12x^{2}+5\\geq 5$\n\n$12x^{2}+5>0$\n\nFor all values of $x$:  $h'(x)>0$\n\nAll tangents drawn to $h$ will have a positive gradient.\n\nIt will never be possible to draw a tangent with a negative gradient to the graph of $h$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$h'(x)=12x^{2}+5$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "clearly argues that $h'(x)>0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "conclusion"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "There are no tangents with negative slopes.",
+          "working_md": "$h'(x)=12x^{2}+5$\n\nSuppose $h'(x)<0$ and try to solve for $x$:\n\n$12x^{2}+5<0$\n\n$x^{2}<-\\dfrac{5}{12}$\n\nbut $x^{2}$ is always positive\n\n$\\therefore$ no solution for $x$\n\n$\\therefore h'(x)\\geq 0$ for all $x\\in\\mathbb{R}$\n\ni.e. there are no tangents with negative slopes.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$h'(x)=12x^{2}+5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "clearly argues that $h'(x)<0$ is impossible"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "conclusion"
+            }
+          ],
+          "notes": "The official alternative concludes $h'(x)\\geq 0$ for all $x\\in\\mathbb{R}$; $12x^{2}+5\\geq 5>0$, so $h'(x)>0$."
+        },
+        {
+          "label": "OR",
+          "answer_md": "It will never be possible to draw a tangent with a negative gradient to the graph of $h$.",
+          "working_md": "$h'(x)=12x^{2}+5$\n\nOfficial sketch of the parabola $h'$ opening upwards with vertex at $(0;5)$, entirely above the $x$-axis.\n\nSince clearly $h'(x)>0$ for all $x\\in\\mathbb{R}$, it will never be possible to draw a tangent with a negative gradient to the graph of $h$.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$h'(x)=12x^{2}+5$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "argues $h'(x)>0$ by drawing a sketch"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "conclusion"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-10.1",
+      "question_id": "2012-nov-p1-10.1",
+      "number": "10.1",
+      "marks": 3,
+      "answer_md": "$-18\\,\\mathrm{m/s}$",
+      "working_md": "$s(t)=2t^{2}-18t+45$\n\n$s'(t)=4t-18$\n\n$s'(0)=4(0)-18=-18\\,\\mathrm{m/s}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$s'(t)$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "substitution of $t=0$ into the $s'(t)$ formula"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": "Official note: answer only, award 0/3 marks."
+    },
+    {
+      "id": "2012-nov-p1-10.2",
+      "question_id": "2012-nov-p1-10.2",
+      "number": "10.2",
+      "marks": 1,
+      "answer_md": "$s''(t)=4\\,\\mathrm{m/s}^{2}$",
+      "working_md": "$s''(t)=4\\,\\mathrm{m/s}^{2}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-10.3",
+      "question_id": "2012-nov-p1-10.3",
+      "number": "10.3",
+      "marks": 2,
+      "answer_md": "$t=\\dfrac{9}{2}$ seconds  or  $4,5$ seconds",
+      "working_md": "$4t-18=0$\n\n$4t=18$\n\n$t=\\dfrac{9}{2}$ seconds  or  $4{,}5$ seconds",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$s'(t)=0$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$t=\\dfrac{9}{2}$ seconds  or  $4,5$ seconds",
+          "working_md": "$s(t)=2\\left(t-\\dfrac{9}{2}\\right)^{2}+\\dfrac{9}{2}$\n\n$t=\\dfrac{9}{2}$ seconds  or  $4{,}5$ seconds",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$s(t)=2\\left(t-\\dfrac{9}{2}\\right)^{2}+\\dfrac{9}{2}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$t=\\dfrac{9}{2}$ seconds  or  $4,5$ seconds",
+          "working_md": "$s(t)=2t^{2}-18t+45$\n\n$t=\\dfrac{-18}{2(2)}$\n\n$t=\\dfrac{9}{2}$ seconds  or  $4{,}5$ seconds",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$t=\\dfrac{-18}{2(2)}$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer"
+            }
+          ],
+          "notes": "The official third method prints $t=-18/(2(2))$; the vertex formula is $t=-b/(2a)=-(-18)/(2\\cdot 2)$. The printed answer $t=9/2$ matches the correct formula."
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-11.1",
+      "question_id": "2012-nov-p1-11.1",
+      "number": "11.1",
+      "marks": 1,
+      "answer_md": "No, because $(15;5)$ does not lie within the feasible region.",
+      "working_md": "No, because $(15;5)$ does not lie within the feasible region.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer (with motivation)"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "No, because according to the constraints, the $x$-value (number of scientific calculators) must be at least $20$.",
+          "working_md": "No, because according to the constraints, the $x$-value (number of scientific calculators) must be at least $20$.",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "answer (with motivation)"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-11.2",
+      "question_id": "2012-nov-p1-11.2",
+      "number": "11.2",
+      "marks": 6,
+      "answer_md": "$x\\geq 20$, $x+2y\\leq 50$, $x+y\\leq 40$, $y\\geq 0$",
+      "working_md": "$x\\geq 20$\n\n$x+2y\\leq 50$\n\n$x+y\\leq 40$\n\n$y\\geq 0$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$x\\geq 20$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$x+2y\\leq 50$"
+        },
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "$x+y\\leq 40$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y\\geq 0$"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "$x\\geq 20$, $y\\leq -\\dfrac{1}{2}x+25$, $y\\leq -x+40$, $y\\geq 0$",
+          "working_md": "$x\\geq 20$\n\n$y\\leq -\\dfrac{1}{2}x+25$\n\n$y\\leq -x+40$\n\n$y\\geq 0$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x\\geq 20$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$y\\leq -\\dfrac{1}{2}x+25$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$y\\leq -x+40$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y\\geq 0$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x\\geq 20$, $\\dfrac{y}{25}+\\dfrac{x}{50}\\leq 1$, $\\dfrac{y}{40}+\\dfrac{x}{40}\\leq 1$, $y\\geq 0$",
+          "working_md": "$x\\geq 20$\n\n$\\dfrac{y}{25}+\\dfrac{x}{50}\\leq 1$\n\n$\\dfrac{y}{40}+\\dfrac{x}{40}\\leq 1$\n\n$y\\geq 0$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x\\geq 20$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$\\dfrac{y}{25}+\\dfrac{x}{50}\\leq 1$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$\\dfrac{y}{40}+\\dfrac{x}{40}\\leq 1$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y\\geq 0$"
+            }
+          ],
+          "notes": null
+        },
+        {
+          "label": "OR",
+          "answer_md": "$x\\geq 20$, $40x+40y\\leq 1600$, $25x+50y\\leq 1250$, $y\\geq 0$",
+          "working_md": "$x\\geq 20$\n\n$40x+40y\\leq 1600$\n\n$25x+50y\\leq 1250$\n\n$y\\geq 0$",
+          "steps": [
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$x\\geq 20$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$40x+40y\\leq 1600$"
+            },
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "$25x+50y\\leq 1250$"
+            },
+            {
+              "marks": 1,
+              "mark_type": null,
+              "description": "$y\\geq 0$"
+            }
+          ],
+          "notes": "The official fourth column pairs $40x+40y\\leq 1600$ with $x+y\\leq 40$ and $25x+50y\\leq 1250$ with $x+2y\\leq 50$."
+        }
+      ],
+      "notes": "The official memo prints four ticks against this 6-mark part; $x+2y\\leq 50$ and $x+y\\leq 40$ were allocated 2 marks each to match the paper total. Equivalent official forms include $y\\leq -x/2+25$, $y/25+x/50\\leq 1$, $40x+40y\\leq 1600$ and $25x+50y\\leq 1250$."
+    },
+    {
+      "id": "2012-nov-p1-11.3.1",
+      "question_id": "2012-nov-p1-11.3.1",
+      "number": "11.3.1",
+      "marks": 1,
+      "answer_md": "$\\mathrm{A}$",
+      "working_md": "$\\mathrm{A}$",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-11.3.2",
+      "question_id": "2012-nov-p1-11.3.2",
+      "number": "11.3.2",
+      "marks": 2,
+      "answer_md": "All points on the search line yield the same profit. Hence no such point exists.",
+      "working_md": "All points on the search line yield the same profit. Hence no such point exists.",
+      "steps": [
+        {
+          "marks": 2,
+          "mark_type": null,
+          "description": "no such point exists"
+        }
+      ],
+      "alternatives": [
+        {
+          "label": "OR",
+          "answer_md": "Hence there is no such point.",
+          "working_md": "If such an $(x;y)$ exists, $Q=x+3y$ and $y=-\\dfrac{1}{3}x+15$\n\nso $45=3y+x=Q$\n\n$Q=4\\,500$\n\nHence, there is no such point.",
+          "steps": [
+            {
+              "marks": 2,
+              "mark_type": null,
+              "description": "no such point exists"
+            }
+          ],
+          "notes": null
+        }
+      ],
+      "notes": null
+    },
+    {
+      "id": "2012-nov-p1-11.3.3",
+      "question_id": "2012-nov-p1-11.3.3",
+      "number": "11.3.3",
+      "marks": 4,
+      "answer_md": "The maximum value of $\\dfrac{a}{b}$ is $1$.",
+      "working_md": "$Q=ax+by$\n\n$y=-\\dfrac{a}{b}x+\\dfrac{Q}{b}$\n\n$-1\\leq -\\dfrac{a}{b}\\leq -\\dfrac{1}{2}$\n\n$\\dfrac{1}{2}\\leq \\dfrac{a}{b}\\leq 1$\n\nThe maximum value of $\\dfrac{a}{b}$ is $1$.",
+      "steps": [
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$y=-\\dfrac{a}{b}x+\\dfrac{Q}{b}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$-1\\leq -\\dfrac{a}{b}$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "$\\dfrac{a}{b}\\leq 1$"
+        },
+        {
+          "marks": 1,
+          "mark_type": null,
+          "description": "answer"
+        }
+      ],
+      "alternatives": [],
+      "notes": null
+    }
+  ]
+}

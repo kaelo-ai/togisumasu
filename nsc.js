@@ -57,7 +57,8 @@ function initSchema(db) {
       table_json    TEXT,
       memo_ref      TEXT,
       review_status TEXT,
-      notes         TEXT
+      notes         TEXT,
+      on_syllabus   INTEGER NOT NULL DEFAULT 1
     );
     CREATE INDEX IF NOT EXISTS nsc_nodes_paper ON nsc_nodes(paper_id, ord);
     CREATE INDEX IF NOT EXISTS nsc_nodes_parent ON nsc_nodes(parent_id);
@@ -79,6 +80,10 @@ function initSchema(db) {
     );
     CREATE INDEX IF NOT EXISTS nsc_figures_paper ON nsc_figures(paper_id);
   `);
+  const nodeCols = db.prepare('PRAGMA table_info(nsc_nodes)').all().map(col => col.name);
+  if (!nodeCols.includes('on_syllabus')) {
+    db.exec('ALTER TABLE nsc_nodes ADD COLUMN on_syllabus INTEGER NOT NULL DEFAULT 1');
+  }
   // Views are the read API. Both conditions are in the SQL so a caller cannot
   // ask the practice view for a 2022 paper.
   db.exec(`
@@ -147,7 +152,43 @@ function leafMarks(questions) {
   return sum;
 }
 
+// Linear programming and transformation geometry left the CAPS syllabus after 2013.
+// Those leaves stay in the papers, with on_syllabus = 0, and are kept out of quizzes and lessons.
+const TG_COMPANION_SKILLS = new Set(['fn.reflect-in-axes', 'ageo.reflect-in-y-equals-x']);
+
+function outOfSyllabusSkillSet() {
+  const bank = JSON.parse(fs.readFileSync(path.join(BANK, 'taxonomy', 'skills.json'), 'utf8'));
+  return new Set((bank.skills || []).filter(skill => skill.syllabus === false).map(skill => skill.id));
+}
+
+function topQuestionId(id) {
+  const m = String(id || '').match(/^(.*-p[12])-(\d+)/);
+  return m ? m[1] + '-' + m[2] : id;
+}
+
+function offSyllabusNodeIds(questions) {
+  const offSkills = outOfSyllabusSkillSet();
+  const byTop = new Map();
+  for (const q of questions || []) {
+    const top = topQuestionId(q.id);
+    if (!byTop.has(top)) byTop.set(top, []);
+    byTop.get(top).push(q);
+  }
+  const out = new Set();
+  for (const group of byTop.values()) {
+    const hasOff = group.some(q => (q.skills || []).some(code => offSkills.has(code)));
+    if (!hasOff) continue;
+    for (const q of group) {
+      const skills = q.skills || [];
+      if (skills.some(code => offSkills.has(code))) out.add(q.id);
+      else if (skills.length && skills.every(code => TG_COMPANION_SKILLS.has(code))) out.add(q.id);
+    }
+  }
+  return out;
+}
+
 function writePaper(db, paper, hash) {
+
   const sum = leafMarks(paper.questions);
   if (paper.total_marks !== 150 || sum !== paper.total_marks) {
     throw new Error(`${paper.id} totals ${sum} leaf marks, paper says ${paper.total_marks} (expected 150).`);
@@ -168,11 +209,12 @@ function writePaper(db, paper, hash) {
     const insertNode = db.prepare(`
       INSERT INTO nsc_nodes
         (id, paper_id, number, parent_id, level, ord, stem_md, text_md, marks, total_marks,
-         answer_type, caps_topic, caps_subtopic, is_leaf, figure_ids, table_json, memo_ref, review_status, notes)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         answer_type, caps_topic, caps_subtopic, is_leaf, figure_ids, table_json, memo_ref, review_status, notes, on_syllabus)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
     const insertSkill = db.prepare('INSERT INTO nsc_node_skills (node_id, bank_code, position) VALUES (?, ?, ?)');
     const parents = new Set(paper.questions.map(q => q.parent).filter(Boolean));
+    const offSyllabus = offSyllabusNodeIds(paper.questions);
     for (const q of paper.questions) {
       const leaf = !parents.has(q.id);
       insertNode.run(
@@ -181,6 +223,7 @@ function writePaper(db, paper, hash) {
         q.answer_type, q.topic, q.subtopic, leaf ? 1 : 0,
         JSON.stringify(q.figure_ids || []), q.table ? JSON.stringify(q.table) : null,
         q.memo_ref, q.review_status, q.notes || null,
+        offSyllabus.has(q.id) ? 0 : 1,
       );
       (q.skills || []).forEach((code, i) => insertSkill.run(q.id, code, i));
     }
@@ -221,7 +264,7 @@ function importAll(db, dir = path.join(BANK, 'papers')) {
 
 module.exports = {
   EXAM_FROM_YEAR, BANK, poolForYear, initSchema, recordPaper, importAll, importFile,
-  practiceLeaves, examPapers, topicsForNode, topicsForCodes,
+  practiceLeaves, examPapers, topicsForNode, topicsForCodes, offSyllabusNodeIds, outOfSyllabusSkillSet,
 };
 
 if (require.main === module) {

@@ -1,0 +1,2669 @@
+{
+  "id": "2013-nov-p2",
+  "subject": "mathematics",
+  "exam": "NSC",
+  "grade": 12,
+  "year": 2013,
+  "session": "november",
+  "paper": 2,
+  "language": "eng",
+  "total_marks": 150,
+  "duration_minutes": 180,
+  "source": {
+    "pdf": "sources/maths/2013-nov/2013-nov-p2.pdf",
+    "original_name": "2013-nov-p2.pdf",
+    "sha256": "0dccf7fe3961f967d5e55f97fd48685007c12cb2357d14bd28fef0da44abc7c5",
+    "pdf_pages": 16,
+    "first_printed_page": 1,
+    "url": "https://www.education.gov.za/LinkClick.aspx?fileticket=h7iTh741350%3d&tabid=607&portalid=0&mid=1870",
+    "note": "Scan without a text layer (Adobe PDF Library 9.0). National Senior Certificate paper (cover: NATIONAL SENIOR CERTIFICATE; running header: NSC). The PDF has 16 pages: the question paper (printed pages 1–13, PDF page n = printed page n), TWO diagram sheets (PDF page 14 = DIAGRAM SHEET 1 for QUESTIONS 2.1 and 2.2; PDF page 15 = DIAGRAM SHEET 2 for QUESTION 12) and the information sheet (PDF page 16). The cover states that the question paper consists of 13 pages, 2 diagram sheets and 1 information sheet. Duration 3 hours as printed on the cover. Source file and hash are recorded in sources/maths/manifest.json."
+  },
+  "extraction": {
+    "method": "manual transcription from 170 dpi page renders, checked at 400 dpi where needed",
+    "date": "2026-11-26",
+    "schema_version": 1
+  },
+  "questions": [
+    {
+      "id": "2013-nov-p2-1",
+      "paper_id": "2013-nov-p2",
+      "number": "1",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": "The five-number summary of the heights of trees three months after they were planted is $(23\\,;\\,42\\,;\\,50\\,;\\,53\\,;\\,75)$. This information is shown in the box and whisker diagram below.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 6,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 0
+    },
+    {
+      "id": "2013-nov-p2-1.1",
+      "paper_id": "2013-nov-p2",
+      "number": "1.1",
+      "parent": "2013-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Determine the interquartile range.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.4",
+      "skills": [
+        "stat.five-number-summary"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 1
+    },
+    {
+      "id": "2013-nov-p2-1.2",
+      "paper_id": "2013-nov-p2",
+      "number": "1.2",
+      "parent": "2013-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "What percentage of plants has a height in excess of $53$ cm?",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.4",
+      "skills": [
+        "stat.five-number-summary"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 2
+    },
+    {
+      "id": "2013-nov-p2-1.3",
+      "paper_id": "2013-nov-p2",
+      "number": "1.3",
+      "parent": "2013-nov-p2-1",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Between which quartiles do the heights of the trees have the least variation? Explain.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M13",
+      "subtopic": "M13.4",
+      "skills": [
+        "stat.five-number-summary"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 3
+    },
+    {
+      "id": "2013-nov-p2-2",
+      "paper_id": "2013-nov-p2",
+      "number": "2",
+      "parent": null,
+      "level": 1,
+      "printed_page": 3,
+      "stem_md": "The relationship between blood alcohol levels and the risk of having a car accident has been studied for years. Research has shown the following results:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 7,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-2.1"
+      ],
+      "table": {
+        "caption": "Blood alcohol level (%) and relative risk of having a car accident (%)",
+        "header": [
+          "BLOOD ALCOHOL LEVEL (%)",
+          "RELATIVE RISK OF HAVING A CAR ACCIDENT (%)"
+        ],
+        "rows": [
+          [
+            "0,00",
+            "1,0"
+          ],
+          [
+            "0,05",
+            "2,9"
+          ],
+          [
+            "0,10",
+            "8,5"
+          ],
+          [
+            "0,15",
+            "24,8"
+          ],
+          [
+            "0,20",
+            "72,2"
+          ],
+          [
+            "0,21",
+            "89,5"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 4
+    },
+    {
+      "id": "2013-nov-p2-2.1",
+      "paper_id": "2013-nov-p2",
+      "number": "2.1",
+      "parent": "2013-nov-p2-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Draw a scatter plot on DIAGRAM SHEET $1$ to represent the data.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M13",
+      "subtopic": "M13.8",
+      "skills": [
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-2.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 5
+    },
+    {
+      "id": "2013-nov-p2-2.2",
+      "paper_id": "2013-nov-p2",
+      "number": "2.2",
+      "parent": "2013-nov-p2-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Draw a line (or curve) of best fit on DIAGRAM SHEET $1$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-2.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 6,
+      "notes": "The paper allows a line or a curve of best fit, as printed."
+    },
+    {
+      "id": "2013-nov-p2-2.3",
+      "paper_id": "2013-nov-p2",
+      "number": "2.3",
+      "parent": "2013-nov-p2-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Describe the trend of the data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.8",
+      "skills": [
+        "stat.scatter-plot"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 7
+    },
+    {
+      "id": "2013-nov-p2-2.4",
+      "paper_id": "2013-nov-p2",
+      "number": "2.4",
+      "parent": "2013-nov-p2-2",
+      "level": 2,
+      "printed_page": 3,
+      "stem_md": null,
+      "text_md": "Estimate the probability of having a car accident when one's blood alcohol level is $0{,}18\\%$. (The legal limit of the blood alcohol level is $0{,}05\\%$.)",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.9",
+      "skills": [
+        "stat.regression-predict"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 8,
+      "notes": "The table and axes are labelled relative risk, but the question asks for a probability, as printed."
+    },
+    {
+      "id": "2013-nov-p2-3",
+      "paper_id": "2013-nov-p2",
+      "number": "3",
+      "parent": null,
+      "level": 1,
+      "printed_page": 4,
+      "stem_md": "The cumulative frequency curve (ogive) drawn below shows the time taken (in minutes) for $140$ patrons to leave an auditorium after watching a show.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 5,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-3"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 9
+    },
+    {
+      "id": "2013-nov-p2-3.1",
+      "paper_id": "2013-nov-p2",
+      "number": "3.1",
+      "parent": "2013-nov-p2-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Estimate the number of people who took more than $15$ minutes to leave the auditorium.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 10
+    },
+    {
+      "id": "2013-nov-p2-3.2",
+      "paper_id": "2013-nov-p2",
+      "number": "3.2",
+      "parent": "2013-nov-p2-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Estimate the number of people who took between $8$ and $12$ minutes to leave the auditorium.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 11
+    },
+    {
+      "id": "2013-nov-p2-3.3",
+      "paper_id": "2013-nov-p2",
+      "number": "3.3",
+      "parent": "2013-nov-p2-3",
+      "level": 2,
+      "printed_page": 4,
+      "stem_md": null,
+      "text_md": "Write down the modal class for the data.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M13",
+      "subtopic": "M13.6",
+      "skills": [
+        "stat.ogive",
+        "stat.frequency-from-cumulative"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 12
+    },
+    {
+      "id": "2013-nov-p2-4",
+      "paper_id": "2013-nov-p2",
+      "number": "4",
+      "parent": null,
+      "level": 1,
+      "printed_page": 5,
+      "stem_md": "The Grade $10$ classes of three schools wrote a term test. All three schools have the same number of learners in Grade $10$. The results of the tests have been summarised in the table below.\n\nThe distribution of the results is shown in the diagram below.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 7,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-4"
+      ],
+      "table": {
+        "caption": "Mean and standard deviation of term-test marks at three schools",
+        "header": [
+          "",
+          "SCHOOL A",
+          "SCHOOL B",
+          "SCHOOL C"
+        ],
+        "rows": [
+          [
+            "Mean",
+            "9,8",
+            "9,8",
+            "14,8"
+          ],
+          [
+            "Standard deviation",
+            "2,3",
+            "3,1",
+            "2,3"
+          ]
+        ]
+      },
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 13
+    },
+    {
+      "id": "2013-nov-p2-4.1",
+      "paper_id": "2013-nov-p2",
+      "number": "4.1",
+      "parent": "2013-nov-p2-4",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "In which school (A, B or C) is the majority of the results more widely spread around the mean? Give a reason for your answer.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M13",
+      "subtopic": "M13.3",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 14
+    },
+    {
+      "id": "2013-nov-p2-4.2",
+      "paper_id": "2013-nov-p2",
+      "number": "4.2",
+      "parent": "2013-nov-p2-4",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "What is the difference in the spread around the respective means of the marks in School A and School C?",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M13",
+      "subtopic": "M13.3",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 15
+    },
+    {
+      "id": "2013-nov-p2-4.3",
+      "paper_id": "2013-nov-p2",
+      "number": "4.3",
+      "parent": "2013-nov-p2-4",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "Explain how the marks of School A must be adjusted to match the marks of School C.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.3",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 16
+    },
+    {
+      "id": "2013-nov-p2-4.4",
+      "paper_id": "2013-nov-p2",
+      "number": "4.4",
+      "parent": "2013-nov-p2-4",
+      "level": 2,
+      "printed_page": 5,
+      "stem_md": null,
+      "text_md": "If each mark in School C is lowered by $10\\%$, explain the effect it will have on the mean and standard deviation of this school.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M13",
+      "subtopic": "M13.3",
+      "skills": [
+        "stat.mean-standard-deviation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 17,
+      "notes": "A multiplicative change of $10\\%$ to every mark; no dedicated skill for the effect of scaling on mean and standard deviation."
+    },
+    {
+      "id": "2013-nov-p2-5",
+      "paper_id": "2013-nov-p2",
+      "number": "5",
+      "parent": null,
+      "level": 1,
+      "printed_page": 6,
+      "stem_md": "In the diagram below, $\\mathrm{P}$ is a point $(-5\\,;\\,0)$. The inclination of line $\\mathrm{PT}$ is $63{,}43^{\\circ}$. $\\mathrm{S}$ is the midpoint and the $y$-intercept of $\\mathrm{PT}$. $\\mathrm{R}$ is a point on the $x$-axis such that $\\mathrm{PO}:\\mathrm{OR}=2:3$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 15,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-5"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 18
+    },
+    {
+      "id": "2013-nov-p2-5.1",
+      "paper_id": "2013-nov-p2",
+      "number": "5.1",
+      "parent": "2013-nov-p2-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": "Determine:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 19
+    },
+    {
+      "id": "2013-nov-p2-5.1.1",
+      "paper_id": "2013-nov-p2",
+      "number": "5.1.1",
+      "parent": "2013-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "The gradient of $\\mathrm{PT}$, correct to the nearest integer value",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.inclination-angle",
+        "gen.rounding-precision"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 20
+    },
+    {
+      "id": "2013-nov-p2-5.1.2",
+      "paper_id": "2013-nov-p2",
+      "number": "5.1.2",
+      "parent": "2013-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "The equation of $\\mathrm{PT}$ in the form $y=mx+c$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 21
+    },
+    {
+      "id": "2013-nov-p2-5.1.3",
+      "paper_id": "2013-nov-p2",
+      "number": "5.1.3",
+      "parent": "2013-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "The distance $\\mathrm{PS}$ in surd form",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula",
+        "ageo.midpoint-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 22
+    },
+    {
+      "id": "2013-nov-p2-5.1.4",
+      "paper_id": "2013-nov-p2",
+      "number": "5.1.4",
+      "parent": "2013-nov-p2-5.1",
+      "level": 3,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "The coordinates of $\\mathrm{T}$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.midpoint-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 23
+    },
+    {
+      "id": "2013-nov-p2-5.2",
+      "paper_id": "2013-nov-p2",
+      "number": "5.2",
+      "parent": "2013-nov-p2-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Determine the coordinates of $\\mathrm{R}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 24,
+      "notes": "Uses the given ratio $\\mathrm{PO}:\\mathrm{OR}=2:3$ on the $x$-axis. No dedicated section-formula skill; ageo.distance-formula is the closest."
+    },
+    {
+      "id": "2013-nov-p2-5.3",
+      "paper_id": "2013-nov-p2",
+      "number": "5.3",
+      "parent": "2013-nov-p2-5",
+      "level": 2,
+      "printed_page": 6,
+      "stem_md": null,
+      "text_md": "Calculate the area of $\\triangle\\mathrm{PTR}$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 25,
+      "notes": "Area of a triangle in the coordinate plane; no dedicated coordinate-area skill."
+    },
+    {
+      "id": "2013-nov-p2-6",
+      "paper_id": "2013-nov-p2",
+      "number": "6",
+      "parent": null,
+      "level": 1,
+      "printed_page": 7,
+      "stem_md": "In the diagram below, $\\mathrm{M}$ is the centre of the circle having the equation $x^{2}+y^{2}-6x+2y-8=0$. The circle passes through $\\mathrm{R}(0\\,;\\,-4)$ and $\\mathrm{N}(p\\,;\\,q)$.\n\n$\\mathrm{R}\\hat{\\mathrm{M}}\\mathrm{N}=90^{\\circ}$. The tangents drawn to the circle at $\\mathrm{R}$ and $\\mathrm{N}$ meet at $\\mathrm{P}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 24,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-6"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 26
+    },
+    {
+      "id": "2013-nov-p2-6.1",
+      "paper_id": "2013-nov-p2",
+      "number": "6.1",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Show that $\\mathrm{M}$ is the point $(3\\,;\\,-1)$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 27
+    },
+    {
+      "id": "2013-nov-p2-6.2",
+      "paper_id": "2013-nov-p2",
+      "number": "6.2",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the equation of $\\mathrm{MR}$ in the form $y=mx+c$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.gradient-formula",
+        "ageo.line-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 28
+    },
+    {
+      "id": "2013-nov-p2-6.3",
+      "paper_id": "2013-nov-p2",
+      "number": "6.3",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Show that $q=2-p$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.2",
+      "skills": [
+        "ageo.parallel-perpendicular-gradients",
+        "ageo.gradient-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 29
+    },
+    {
+      "id": "2013-nov-p2-6.4",
+      "paper_id": "2013-nov-p2",
+      "number": "6.4",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the values of $p$ and $q$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 30
+    },
+    {
+      "id": "2013-nov-p2-6.5",
+      "paper_id": "2013-nov-p2",
+      "number": "6.5",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Determine the equation of the circle having centre $\\mathrm{O}$ and passing through $\\mathrm{N}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 31
+    },
+    {
+      "id": "2013-nov-p2-6.6",
+      "paper_id": "2013-nov-p2",
+      "number": "6.6",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Calculate the area of the circle centred at $\\mathrm{M}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.circle-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 32
+    },
+    {
+      "id": "2013-nov-p2-6.7",
+      "paper_id": "2013-nov-p2",
+      "number": "6.7",
+      "parent": "2013-nov-p2-6",
+      "level": 2,
+      "printed_page": 7,
+      "stem_md": null,
+      "text_md": "Calculate the ratio in its simplest form: $\\dfrac{\\mathrm{NP}}{\\mathrm{MP}}$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.distance-formula",
+        "ageo.circle-tangent-equation"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 33
+    },
+    {
+      "id": "2013-nov-p2-7",
+      "paper_id": "2013-nov-p2",
+      "number": "7",
+      "parent": null,
+      "level": 1,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 6,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 34
+    },
+    {
+      "id": "2013-nov-p2-7.1",
+      "paper_id": "2013-nov-p2",
+      "number": "7.1",
+      "parent": "2013-nov-p2-7",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the image of $\\mathrm{P}(x\\,;\\,y)$ if $\\mathrm{P}$ is rotated through $90^{\\circ}$ about the origin in a clockwise direction and then reflected about the $y$-axis.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry",
+        "fn.reflect-in-axes"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 35
+    },
+    {
+      "id": "2013-nov-p2-7.2",
+      "paper_id": "2013-nov-p2",
+      "number": "7.2",
+      "parent": "2013-nov-p2-7",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": null,
+      "text_md": "Determine the image of $\\mathrm{P}(x\\,;\\,y)$ if $\\mathrm{P}$ is reflected about the $y$-axis and then rotated through $90^{\\circ}$ about the origin in a clockwise direction.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry",
+        "fn.reflect-in-axes"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 36
+    },
+    {
+      "id": "2013-nov-p2-7.3",
+      "paper_id": "2013-nov-p2",
+      "number": "7.3",
+      "parent": "2013-nov-p2-7",
+      "level": 2,
+      "printed_page": 8,
+      "stem_md": "Mo and Ziya argue about the image of $\\mathrm{P}(x\\,;\\,y)$ under the following transformations:\n\n* Rotation through $90^{\\circ}$ about the origin in a clockwise direction\n* Reflection about the $y$-axis\n\nMo claims that the order in which the transformations are performed will affect the final position of the image. Ziya argues that the final position of the image will be the same, irrespective of the order in which the transformations are performed.",
+      "text_md": "Which of the two, Mo or Ziya, is correct in this case? Explain.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "reason",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 37
+    },
+    {
+      "id": "2013-nov-p2-8",
+      "paper_id": "2013-nov-p2",
+      "number": "8",
+      "parent": null,
+      "level": 1,
+      "printed_page": 9,
+      "stem_md": "In the diagram, $\\mathrm{ABC}$ is an isosceles triangle such that vertex $\\mathrm{C}$ lies at $(0\\,;\\,-1)$. $\\mathrm{AB}$ is parallel to the $x$-axis and $\\mathrm{AC}=\\sqrt{10}$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-8"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 38
+    },
+    {
+      "id": "2013-nov-p2-8.1",
+      "paper_id": "2013-nov-p2",
+      "number": "8.1",
+      "parent": "2013-nov-p2-8",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "A rigid transformation is applied to $\\triangle\\mathrm{ABC}$ to obtain $\\triangle\\mathrm{PQR}$ as shown. $\\mathrm{R}(-4\\,;\\,3)$ is the image of $\\mathrm{C}$. Describe fully, in words, the transformation from $\\triangle\\mathrm{ABC}$ to $\\triangle\\mathrm{PQR}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 39
+    },
+    {
+      "id": "2013-nov-p2-8.2",
+      "paper_id": "2013-nov-p2",
+      "number": "8.2",
+      "parent": "2013-nov-p2-8",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "$\\triangle\\mathrm{PQR}$ is reflected about the line $y=x$. Determine the coordinates of $\\mathrm{R}'$, the image of $\\mathrm{R}$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "coordinates",
+      "topic": "M9",
+      "subtopic": "M9.4",
+      "skills": [
+        "ageo.reflect-in-y-equals-x"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 40
+    },
+    {
+      "id": "2013-nov-p2-8.3",
+      "paper_id": "2013-nov-p2",
+      "number": "8.3",
+      "parent": "2013-nov-p2-8",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": "$\\triangle\\mathrm{ABC}$ is enlarged through the origin to obtain $\\triangle\\mathrm{A}'\\mathrm{B}'\\mathrm{C}'$ such that:\n\n$\\dfrac{\\text{area of }\\triangle\\mathrm{A}'\\mathrm{B}'\\mathrm{C}'}{\\text{area of }\\triangle\\mathrm{ABC}}=16$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 41
+    },
+    {
+      "id": "2013-nov-p2-8.3.1",
+      "paper_id": "2013-nov-p2",
+      "number": "8.3.1",
+      "parent": "2013-nov-p2-8.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "Determine the scale factor of the enlargement.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 42
+    },
+    {
+      "id": "2013-nov-p2-8.3.2",
+      "paper_id": "2013-nov-p2",
+      "number": "8.3.2",
+      "parent": "2013-nov-p2-8.3",
+      "level": 3,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "If $\\mathrm{AC}=\\sqrt{10}$ units, write down the length of $\\mathrm{A}'\\mathrm{C}'$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 43
+    },
+    {
+      "id": "2013-nov-p2-8.4",
+      "paper_id": "2013-nov-p2",
+      "number": "8.4",
+      "parent": "2013-nov-p2-8",
+      "level": 2,
+      "printed_page": 9,
+      "stem_md": null,
+      "text_md": "After a rigid transformation is applied to $\\triangle\\mathrm{ABC}$ to obtain $\\triangle\\mathrm{DEF}$, $\\mathrm{F}(0\\,;\\,1)$ is the image of $\\mathrm{C}$. If $\\mathrm{E}$ is the point $(s\\,;\\,t)$, write down an equation in terms of $s$ and $t$.",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "equation",
+      "topic": "M9",
+      "subtopic": "M9.1",
+      "skills": [
+        "ageo.transformation-geometry",
+        "ageo.distance-formula"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 44
+    },
+    {
+      "id": "2013-nov-p2-9",
+      "paper_id": "2013-nov-p2",
+      "number": "9",
+      "parent": null,
+      "level": 1,
+      "printed_page": 10,
+      "stem_md": "A wheel is positioned so that its centre is directly on the origin in the Cartesian plane.\n\n$\\mathrm{T}\\left(-\\dfrac{16}{\\sqrt{2}}\\,;\\,\\dfrac{16}{\\sqrt{2}}\\right)$ is a point on the outer edge of the wheel.\n\nWhen the wheel is rotated in a clockwise direction about the origin through an angle of $\\theta$, $\\mathrm{T}$ is directly on $\\mathrm{W}(8\\,;\\,-8\\sqrt{3})$.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 10,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-9"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 45
+    },
+    {
+      "id": "2013-nov-p2-9.1",
+      "paper_id": "2013-nov-p2",
+      "number": "9.1",
+      "parent": "2013-nov-p2-9",
+      "level": 2,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "Show that $\\theta=195^{\\circ}$.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "show_that",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.inclination-angle",
+        "trig.cast-quadrant-signs",
+        "ageo.transformation-geometry"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 46
+    },
+    {
+      "id": "2013-nov-p2-9.2",
+      "paper_id": "2013-nov-p2",
+      "number": "9.2",
+      "parent": "2013-nov-p2-9",
+      "level": 2,
+      "printed_page": 10,
+      "stem_md": null,
+      "text_md": "When the wheel is rotated at a uniform speed in a clockwise direction, it takes $1{,}3$ seconds for $\\mathrm{T}$ to travel to $\\mathrm{W}$. Calculate the speed, in revolutions per minute, at which the wheel is rotated.",
+      "marks": 5,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M9",
+      "subtopic": "M9.3",
+      "skills": [
+        "ageo.transformation-geometry"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 47,
+      "notes": "Uniform rotational speed from a $195^{\\circ}$ turn in $1{,}3$ seconds, expressed in revolutions per minute. No dedicated angular-speed skill."
+    },
+    {
+      "id": "2013-nov-p2-10",
+      "paper_id": "2013-nov-p2",
+      "number": "10",
+      "parent": null,
+      "level": 1,
+      "printed_page": 11,
+      "stem_md": "In the diagram below, reflex $\\mathrm{T}\\hat{\\mathrm{O}}\\mathrm{P}=\\alpha$ and $\\mathrm{P}$ has coordinates $(-5\\,;\\,-12)$.\n\nDetermine the value of each of the following trigonometric ratios WITHOUT using a calculator:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 8,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-10"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 48
+    },
+    {
+      "id": "2013-nov-p2-10.1",
+      "paper_id": "2013-nov-p2",
+      "number": "10.1",
+      "parent": "2013-nov-p2-10",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "$\\cos\\alpha$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.2",
+      "skills": [
+        "trig.ratios-from-definition",
+        "trig.cast-quadrant-signs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 49
+    },
+    {
+      "id": "2013-nov-p2-10.2",
+      "paper_id": "2013-nov-p2",
+      "number": "10.2",
+      "parent": "2013-nov-p2-10",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "$\\tan(180^{\\circ}-\\alpha)$",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.5",
+      "skills": [
+        "trig.reduction-formulae"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 50
+    },
+    {
+      "id": "2013-nov-p2-10.3",
+      "paper_id": "2013-nov-p2",
+      "number": "10.3",
+      "parent": "2013-nov-p2-10",
+      "level": 2,
+      "printed_page": 11,
+      "stem_md": null,
+      "text_md": "$\\sin(30^{\\circ}-\\alpha)$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.compound-angle",
+        "trig.special-angles"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 51
+    },
+    {
+      "id": "2013-nov-p2-11",
+      "paper_id": "2013-nov-p2",
+      "number": "11",
+      "parent": null,
+      "level": 1,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 30,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 52
+    },
+    {
+      "id": "2013-nov-p2-11.1",
+      "paper_id": "2013-nov-p2",
+      "number": "11.1",
+      "parent": "2013-nov-p2-11",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Prove the following identity:  $\\dfrac{\\cos^{2}(90^{\\circ}+\\theta)}{\\cos(-\\theta)+\\sin(90^{\\circ}-\\theta)\\cos\\theta}=\\dfrac{1}{\\cos\\theta}-1$",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "proof",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.identity-simplify",
+        "trig.reduction-formulae"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 53,
+      "notes": "Identity confirmed at 400 dpi."
+    },
+    {
+      "id": "2013-nov-p2-11.2",
+      "paper_id": "2013-nov-p2",
+      "number": "11.2",
+      "parent": "2013-nov-p2-11",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Determine the general solution of: $\\tan x\\sin x+\\cos x\\tan x=0$.",
+      "marks": 7,
+      "total_marks": null,
+      "answer_type": "solution_set",
+      "topic": "M10",
+      "subtopic": "M10.7",
+      "skills": [
+        "trig.general-solution",
+        "trig.undefined-values"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 54,
+      "notes": "Equation confirmed at 400 dpi as $\\tan x\\sin x+\\cos x\\tan x=0$."
+    },
+    {
+      "id": "2013-nov-p2-11.3",
+      "paper_id": "2013-nov-p2",
+      "number": "11.3",
+      "parent": "2013-nov-p2-11",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": "Consider the following expression:  $2\\sin^{2}3x-\\sin^{2}x-\\cos^{2}x$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 55
+    },
+    {
+      "id": "2013-nov-p2-11.3.1",
+      "paper_id": "2013-nov-p2",
+      "number": "11.3.1",
+      "parent": "2013-nov-p2-11.3",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Simplify the expression to a single trigonometric ratio of $x$.",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.double-angle",
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 56,
+      "notes": "Expression confirmed at 400 dpi as $2\\sin^{2}3x-\\sin^{2}x-\\cos^{2}x$."
+    },
+    {
+      "id": "2013-nov-p2-11.3.2",
+      "paper_id": "2013-nov-p2",
+      "number": "11.3.2",
+      "parent": "2013-nov-p2-11.3",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Write down the maximum value of the expression.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.amplitude-range"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 57
+    },
+    {
+      "id": "2013-nov-p2-11.4",
+      "paper_id": "2013-nov-p2",
+      "number": "11.4",
+      "parent": "2013-nov-p2-11",
+      "level": 2,
+      "printed_page": 12,
+      "stem_md": "It is given that $p=\\cos\\alpha+\\sin\\alpha$ and $q=\\cos\\alpha-\\sin\\alpha$",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 58
+    },
+    {
+      "id": "2013-nov-p2-11.4.1",
+      "paper_id": "2013-nov-p2",
+      "number": "11.4.1",
+      "parent": "2013-nov-p2-11.4",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": "Determine the following trigonometric ratios in terms of $p$ and/or $q$:",
+      "text_md": null,
+      "marks": null,
+      "total_marks": null,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 59
+    },
+    {
+      "id": "2013-nov-p2-11.4.1.1",
+      "paper_id": "2013-nov-p2",
+      "number": "11.4.1.1",
+      "parent": "2013-nov-p2-11.4.1",
+      "level": 4,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "(a)  $\\cos 2\\alpha$",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.8",
+      "skills": [
+        "trig.double-angle",
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 60
+    },
+    {
+      "id": "2013-nov-p2-11.4.1.2",
+      "paper_id": "2013-nov-p2",
+      "number": "11.4.1.2",
+      "parent": "2013-nov-p2-11.4.1",
+      "level": 4,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "(b)  $\\tan\\alpha$",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.identity-simplify"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 61
+    },
+    {
+      "id": "2013-nov-p2-11.4.2",
+      "paper_id": "2013-nov-p2",
+      "number": "11.4.2",
+      "parent": "2013-nov-p2-11.4",
+      "level": 3,
+      "printed_page": 12,
+      "stem_md": null,
+      "text_md": "Simplify $\\dfrac{p}{2q}-\\dfrac{q}{2p}$ to a single trigonometric ratio of $\\alpha$.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "expression",
+      "topic": "M10",
+      "subtopic": "M10.6",
+      "skills": [
+        "trig.identity-simplify",
+        "trig.double-angle"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 62,
+      "notes": "The printed expression was confirmed at 400 dpi as $\\dfrac{p}{2q}-\\dfrac{q}{2p}$."
+    },
+    {
+      "id": "2013-nov-p2-12",
+      "paper_id": "2013-nov-p2",
+      "number": "12",
+      "parent": null,
+      "level": 1,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": null,
+      "marks": null,
+      "total_marks": 13,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 63
+    },
+    {
+      "id": "2013-nov-p2-12.1",
+      "paper_id": "2013-nov-p2",
+      "number": "12.1",
+      "parent": "2013-nov-p2-12",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Draw the graphs of $f(x)=\\tan x+1$ and $g(x)=\\cos 2x$ for $x\\in[-180^{\\circ}\\,;\\,180^{\\circ}]$ on the same system of axes provided on DIAGRAM SHEET $2$. Clearly show all intercepts with the axes, turning points and asymptotes.",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "sketch",
+      "topic": "M5",
+      "subtopic": "M5.1",
+      "skills": [
+        "trig.sketch-tan-graph",
+        "trig.basic-graphs"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-12.1"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 64
+    },
+    {
+      "id": "2013-nov-p2-12.2",
+      "paper_id": "2013-nov-p2",
+      "number": "12.2",
+      "parent": "2013-nov-p2-12",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Write down the period of $g$.",
+      "marks": 1,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M5",
+      "subtopic": "M5.4",
+      "skills": [
+        "trig.graph-period"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 65
+    },
+    {
+      "id": "2013-nov-p2-12.3",
+      "paper_id": "2013-nov-p2",
+      "number": "12.3",
+      "parent": "2013-nov-p2-12",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "If $h(x)=-\\cos 2(x+10^{\\circ})$, describe fully, in words, the transformation from $g$ to $h$.",
+      "marks": 2,
+      "total_marks": null,
+      "answer_type": "description",
+      "topic": "M5",
+      "subtopic": "M5.5",
+      "skills": [
+        "fn.reflect-in-axes",
+        "trig.horizontal-shift"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 66
+    },
+    {
+      "id": "2013-nov-p2-12.4",
+      "paper_id": "2013-nov-p2",
+      "number": "12.4",
+      "parent": "2013-nov-p2-12",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "For which values of $x$, where $x>0$, will $f'(x)g(x)>0$?",
+      "marks": 4,
+      "total_marks": null,
+      "answer_type": "inequality",
+      "topic": "M5",
+      "subtopic": "M5.1",
+      "skills": [
+        "calc.power-rule",
+        "fn.inequality-from-graph",
+        "trig.undefined-values"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 67
+    },
+    {
+      "id": "2013-nov-p2-13",
+      "paper_id": "2013-nov-p2",
+      "number": "13",
+      "parent": null,
+      "level": 1,
+      "printed_page": 13,
+      "stem_md": "The Great Pyramid at Giza in Egypt was built around $2\\,500$ BC. The pyramid has a square base $(\\mathrm{ABCD})$ with sides $232{,}6$ metres long. The distance from each corner of the base to the apex $(\\mathrm{E})$ was originally $221{,}2$ metres.",
+      "text_md": null,
+      "marks": null,
+      "total_marks": 9,
+      "answer_type": null,
+      "topic": null,
+      "subtopic": null,
+      "skills": [],
+      "cognitive_level": null,
+      "figure_ids": [
+        "2013-nov-p2-fig-13"
+      ],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 68
+    },
+    {
+      "id": "2013-nov-p2-13.1",
+      "paper_id": "2013-nov-p2",
+      "number": "13.1",
+      "parent": "2013-nov-p2-13",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Calculate the size of the angle at the apex of a face of the pyramid (for example $\\mathrm{C}\\hat{\\mathrm{E}}\\mathrm{B}$).",
+      "marks": 3,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M11",
+      "subtopic": "M11.4",
+      "skills": [
+        "trig.cosine-rule"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 69
+    },
+    {
+      "id": "2013-nov-p2-13.2",
+      "paper_id": "2013-nov-p2",
+      "number": "13.2",
+      "parent": "2013-nov-p2-13",
+      "level": 2,
+      "printed_page": 13,
+      "stem_md": null,
+      "text_md": "Calculate the angle each face makes with the base (for example $\\mathrm{E}\\hat{\\mathrm{F}}\\mathrm{G}$, where $\\mathrm{EF}\\perp\\mathrm{AB}$ in $\\triangle\\mathrm{AEB}$).",
+      "marks": 6,
+      "total_marks": null,
+      "answer_type": "value",
+      "topic": "M11",
+      "subtopic": "M11.5",
+      "skills": [
+        "trig.3d-problem",
+        "trig.right-triangle-solve"
+      ],
+      "cognitive_level": null,
+      "figure_ids": [],
+      "table": null,
+      "memo_ref": null,
+      "review_status": "extracted",
+      "order": 70
+    }
+  ],
+  "figures": [
+    {
+      "id": "2013-nov-p2-fig-1",
+      "paper_id": "2013-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Box and whisker diagram of tree heights with five-number summary $23$, $42$, $50$, $53$ and $75$ on a scale from $20$ to $80$.",
+      "source": {
+        "pdf_page": 3,
+        "printed_page": 3,
+        "dpi": 170,
+        "bbox_px": [
+          299,
+          368,
+          1073,
+          518
+        ],
+        "file": "figures/2013-nov-p2/fig-1.png"
+      },
+      "exact": true,
+      "spec": {
+        "chart_type": "box_plot",
+        "scale": {
+          "min": 20,
+          "max": 80,
+          "tick": 10
+        },
+        "plots": [
+          {
+            "name": "tree heights",
+            "min": 23,
+            "q1": 42,
+            "median": 50,
+            "q3": 53,
+            "max": 75,
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-1"
+      ],
+      "notes": "The five-number summary is also printed in the stem. The numbers $23$, $42$, $50$, $53$ and $75$ are printed in bold under the scale."
+    },
+    {
+      "id": "2013-nov-p2-fig-2.1",
+      "paper_id": "2013-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Blank scatter-plot grid from DIAGRAM SHEET 1 for QUESTIONS 2.1 and 2.2. The $x$-axis is labelled Blood alcohol level (%) from $0$ to $0{,}25$ and the $y$-axis is labelled Relative risk of having a car accident (%) from $0$ to $100$.",
+      "source": {
+        "pdf_page": 14,
+        "printed_page": 14,
+        "dpi": 170,
+        "bbox_px": [
+          132,
+          526,
+          1269,
+          1806
+        ],
+        "file": "figures/2013-nov-p2/fig-2.1.png"
+      },
+      "exact": true,
+      "spec": {
+        "chart_type": "scatter",
+        "title": "Scatter plot",
+        "x_label": "Blood alcohol level (%)",
+        "y_label": "Relative risk of having a car accident (%)",
+        "view": {
+          "x": [
+            0,
+            0.25
+          ],
+          "y": [
+            0,
+            100
+          ]
+        },
+        "points": [],
+        "regression_line": false
+      },
+      "used_by": [
+        "2013-nov-p2-2",
+        "2013-nov-p2-2.1",
+        "2013-nov-p2-2.2"
+      ],
+      "notes": "Blank grid for the candidate to plot the table in QUESTION 2. The crop excludes the CENTRE NUMBER / EXAMINATION NUMBER boxes and the DIAGRAM SHEET 1 / QUESTIONS 2.1 and 2.2 headings, but keeps the printed title Scatter plot."
+    },
+    {
+      "id": "2013-nov-p2-fig-3",
+      "paper_id": "2013-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Ogive of the time taken for $140$ patrons to leave an auditorium, rising from about $(1\\,;\\,0)$ to $(26\\,;\\,140)$.",
+      "source": {
+        "pdf_page": 4,
+        "printed_page": 4,
+        "dpi": 170,
+        "bbox_px": [
+          183,
+          346,
+          1251,
+          1581
+        ],
+        "file": "figures/2013-nov-p2/fig-3.png"
+      },
+      "exact": false,
+      "spec": {
+        "chart_type": "ogive",
+        "title": "Cumulative frequency curve showing the time taken to leave an auditorium",
+        "x_label": "Time taken (in minutes)",
+        "y_label": "Cumulative frequency",
+        "view": {
+          "x": [
+            0,
+            26
+          ],
+          "y": [
+            0,
+            150
+          ]
+        },
+        "points": [
+          {
+            "xy": [
+              1,
+              0
+            ]
+          },
+          {
+            "xy": [
+              6,
+              16
+            ]
+          },
+          {
+            "xy": [
+              11,
+              50
+            ]
+          },
+          {
+            "xy": [
+              16,
+              115
+            ]
+          },
+          {
+            "xy": [
+              21,
+              137
+            ]
+          },
+          {
+            "xy": [
+              26,
+              140
+            ]
+          }
+        ],
+        "given": true,
+        "smooth_curve": true
+      },
+      "used_by": [
+        "2013-nov-p2-3"
+      ],
+      "notes": "Filled dots are printed on the curve. Intermediate coordinates are read off the grid and are approximate, so exact=false. The endpoints $(1\\,;\\,0)$ and $(26\\,;\\,140)$ are clear."
+    },
+    {
+      "id": "2013-nov-p2-fig-4",
+      "paper_id": "2013-nov-p2",
+      "kind": "statistics_chart",
+      "caption": "Three labelled distribution curves A, B and C. A and B share a mean (dashed vertical line) with B more spread out; C is shifted to the right and has the same spread as A.",
+      "source": {
+        "pdf_page": 5,
+        "printed_page": 5,
+        "dpi": 170,
+        "bbox_px": [
+          374,
+          599,
+          1049,
+          792
+        ],
+        "file": "figures/2013-nov-p2/fig-4.png"
+      },
+      "exact": false,
+      "spec": {
+        "chart_type": "density_curves",
+        "curves": [
+          {
+            "name": "A",
+            "mean": 9.8,
+            "sd": 2.3,
+            "given": true
+          },
+          {
+            "name": "B",
+            "mean": 9.8,
+            "sd": 3.1,
+            "given": true
+          },
+          {
+            "name": "C",
+            "mean": 14.8,
+            "sd": 2.3,
+            "given": true
+          }
+        ],
+        "mean_lines": "dashed vertical lines through the means of A/B and of C"
+      },
+      "used_by": [
+        "2013-nov-p2-4"
+      ],
+      "notes": "Schematic, not to scale. Means and standard deviations are taken from the printed table, not labelled on the sketch."
+    },
+    {
+      "id": "2013-nov-p2-fig-5",
+      "paper_id": "2013-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Line $\\mathrm{PT}$ from $\\mathrm{P}(-5\\,;\\,0)$ through the $y$-intercept $\\mathrm{S}$ to $\\mathrm{T}$ in the first quadrant, with inclination $63{,}43^{\\circ}$ at $\\mathrm{P}$. $\\mathrm{R}$ lies on the positive $x$-axis, and tick marks on $\\mathrm{PS}$ and $\\mathrm{ST}$ mark $\\mathrm{S}$ as the midpoint of $\\mathrm{PT}$.",
+      "source": {
+        "pdf_page": 6,
+        "printed_page": 6,
+        "dpi": 170,
+        "bbox_px": [
+          135,
+          381,
+          1300,
+          1090
+        ],
+        "file": "figures/2013-nov-p2/fig-5.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "P",
+            "xy": [
+              -5,
+              0
+            ],
+            "role": "x_intercept",
+            "given": true
+          },
+          {
+            "label": "S",
+            "xy": [
+              0,
+              10
+            ],
+            "role": "y_intercept",
+            "of": [
+              "PT"
+            ],
+            "given": false,
+            "reveals": "5.1.2"
+          },
+          {
+            "label": "T",
+            "xy": [
+              5,
+              20
+            ],
+            "role": "endpoint",
+            "given": false,
+            "reveals": "5.1.4"
+          },
+          {
+            "label": "R",
+            "xy": [
+              7.5,
+              0
+            ],
+            "role": "x_intercept",
+            "given": false,
+            "reveals": "5.2"
+          }
+        ],
+        "segments": [
+          {
+            "from": "P",
+            "to": "T",
+            "given": true
+          },
+          {
+            "from": "T",
+            "to": "R",
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "at": "P",
+            "between": [
+              "PO",
+              "PT"
+            ],
+            "label": "63,43°",
+            "given": true
+          }
+        ],
+        "facts": [
+          "S is the midpoint of PT and the y-intercept of PT.",
+          "PO : OR = 2 : 3, with R on the positive x-axis."
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-5"
+      ],
+      "notes": "S and T follow from a gradient of $\\tan 63{,}43^{\\circ}\\approx 2$ (QUESTION 5.1.1 asks for the nearest integer) and S being the midpoint and $y$-intercept. R follows from $\\mathrm{PO}:\\mathrm{OR}=2:3$. Tick marks on PS and ST are printed."
+    },
+    {
+      "id": "2013-nov-p2-fig-6",
+      "paper_id": "2013-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Circle with centre $\\mathrm{M}$ in the fourth quadrant, passing through $\\mathrm{R}(0\\,;\\,-4)$ and $\\mathrm{N}(p\\,;\\,q)$. $\\mathrm{R}\\hat{\\mathrm{M}}\\mathrm{N}=90^{\\circ}$. Tangents at $\\mathrm{R}$ and $\\mathrm{N}$ meet at $\\mathrm{P}$.",
+      "source": {
+        "pdf_page": 7,
+        "printed_page": 7,
+        "dpi": 170,
+        "bbox_px": [
+          127,
+          408,
+          1344,
+          1094
+        ],
+        "file": "figures/2013-nov-p2/fig-6.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "circles": [
+          {
+            "centre": "M",
+            "equation": "x^2+y^2-6x+2y-8=0",
+            "given": true
+          }
+        ],
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "M",
+            "xy": [
+              3,
+              -1
+            ],
+            "role": "centre",
+            "given": false,
+            "reveals": "6.1"
+          },
+          {
+            "label": "R",
+            "xy": [
+              0,
+              -4
+            ],
+            "role": "point_on_circle",
+            "given": true
+          },
+          {
+            "label": "N",
+            "xy": [
+              5,
+              -3
+            ],
+            "role": "point_on_circle",
+            "given": false,
+            "reveals": "6.4"
+          },
+          {
+            "label": "P",
+            "xy": [
+              4,
+              -8
+            ],
+            "role": "tangent_intersection",
+            "given": false
+          }
+        ],
+        "segments": [
+          {
+            "from": "M",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "M",
+            "to": "N",
+            "given": true
+          },
+          {
+            "from": "R",
+            "to": "P",
+            "role": "tangent",
+            "given": true
+          },
+          {
+            "from": "N",
+            "to": "P",
+            "role": "tangent",
+            "given": true
+          }
+        ],
+        "facts": [
+          "RMN = 90° (right-angle mark at M).",
+          "The tangents at R and N meet at P.",
+          "The circle has equation x^2+y^2-6x+2y-8=0."
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-6"
+      ],
+      "notes": "M is established in QUESTION 6.1. Coordinates of N and P are derived (N from q=2-p and N on the circle; P as the intersection of the tangents) and are marked given=false. The figure is consistent with those values but the printed labels show N(p ; q) only."
+    },
+    {
+      "id": "2013-nov-p2-fig-8",
+      "paper_id": "2013-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Isosceles $\\triangle\\mathrm{ABC}$ in the fourth quadrant with $\\mathrm{C}(0\\,;\\,-1)$ and $\\mathrm{AB}$ parallel to the $x$-axis, together with its image $\\triangle\\mathrm{PQR}$ in the second quadrant with $\\mathrm{R}(-4\\,;\\,3)$ and $\\mathrm{PQ}$ on the $x$-axis.",
+      "source": {
+        "pdf_page": 9,
+        "printed_page": 9,
+        "dpi": 170,
+        "bbox_px": [
+          133,
+          367,
+          1346,
+          1000
+        ],
+        "file": "figures/2013-nov-p2/fig-8.png"
+      },
+      "exact": false,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y"
+        },
+        "points": [
+          {
+            "label": "C",
+            "xy": [
+              0,
+              -1
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "A",
+            "role": "vertex",
+            "given": false
+          },
+          {
+            "label": "B",
+            "role": "vertex",
+            "given": false
+          },
+          {
+            "label": "R",
+            "xy": [
+              -4,
+              3
+            ],
+            "role": "vertex",
+            "given": true
+          },
+          {
+            "label": "P",
+            "role": "vertex",
+            "on": "x-axis",
+            "given": false
+          },
+          {
+            "label": "Q",
+            "role": "vertex",
+            "on": "x-axis",
+            "given": false
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "B",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "A",
+            "length": "\\sqrt{10}",
+            "given": true
+          },
+          {
+            "from": "P",
+            "to": "Q",
+            "given": true
+          },
+          {
+            "from": "Q",
+            "to": "R",
+            "given": true
+          },
+          {
+            "from": "R",
+            "to": "P",
+            "given": true
+          }
+        ],
+        "facts": [
+          "ABC is isosceles with vertex C at (0 ; -1).",
+          "AB is parallel to the x-axis.",
+          "AC = √10.",
+          "R(-4 ; 3) is the image of C under the rigid transformation of QUESTION 8.1.",
+          "PQ lies on the x-axis."
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-8"
+      ],
+      "notes": "Schematic, not to scale. Coordinates of A, B, P and Q are not labelled. The y-axis appears to pass through C and between A and B."
+    },
+    {
+      "id": "2013-nov-p2-fig-9",
+      "paper_id": "2013-nov-p2",
+      "kind": "illustrative",
+      "caption": "A wheel centred at the origin, with $\\mathrm{T}\\left(-\\dfrac{16}{\\sqrt{2}}\\,;\\,\\dfrac{16}{\\sqrt{2}}\\right)$ on the rim in the second quadrant and $\\mathrm{W}(8\\,;\\,-8\\sqrt{3})$ on the rim in the fourth quadrant. A curved arrow marks a clockwise rotation from $\\mathrm{T}$ towards $\\mathrm{W}$.",
+      "source": {
+        "pdf_page": 10,
+        "printed_page": 10,
+        "dpi": 170,
+        "bbox_px": [
+          137,
+          497,
+          1352,
+          1204
+        ],
+        "file": "figures/2013-nov-p2/fig-9.png"
+      },
+      "exact": true,
+      "spec": {
+        "scene": "A bicycle-style wheel centred at the origin of a Cartesian plane, with axes through the hub. Point T is labelled in the second quadrant and point W in the fourth quadrant. Dotted radii and a clockwise curved arrow indicate the rotation of T to W.",
+        "labels": [
+          "T(-16/√2 ; 16/√2)",
+          "W(8 ; -8√3)"
+        ],
+        "points": [
+          {
+            "label": "T",
+            "xy": [
+              -11.31370849898476,
+              11.31370849898476
+            ],
+            "given": true
+          },
+          {
+            "label": "W",
+            "xy": [
+              8,
+              -13.856406460551018
+            ],
+            "given": true
+          }
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-9"
+      ],
+      "notes": "The labelled coordinates are exact. The wheel artwork is decorative and not a scale drawing of the tyre tread."
+    },
+    {
+      "id": "2013-nov-p2-fig-10",
+      "paper_id": "2013-nov-p2",
+      "kind": "analytic_geometry",
+      "caption": "Point $\\mathrm{P}(-5\\,;\\,-12)$ in the third quadrant, $\\mathrm{T}$ on the positive $x$-axis, and reflex $\\mathrm{T}\\hat{\\mathrm{O}}\\mathrm{P}=\\alpha$ marked with a curved arrow from $\\mathrm{OT}$ to $\\mathrm{OP}$.",
+      "source": {
+        "pdf_page": 11,
+        "printed_page": 11,
+        "dpi": 170,
+        "bbox_px": [
+          451,
+          357,
+          1022,
+          733
+        ],
+        "file": "figures/2013-nov-p2/fig-10.png"
+      },
+      "exact": true,
+      "spec": {
+        "axes": {
+          "x_label": "x",
+          "y_label": "y",
+          "origin_label": "O"
+        },
+        "points": [
+          {
+            "label": "O",
+            "xy": [
+              0,
+              0
+            ],
+            "role": "origin",
+            "given": true
+          },
+          {
+            "label": "P",
+            "xy": [
+              -5,
+              -12
+            ],
+            "given": true
+          },
+          {
+            "label": "T",
+            "xy": [
+              3,
+              0
+            ],
+            "role": "positive_x_axis",
+            "given": true
+          }
+        ],
+        "segments": [
+          {
+            "from": "O",
+            "to": "P",
+            "given": true
+          }
+        ],
+        "angles": [
+          {
+            "at": "O",
+            "between": [
+              "OT",
+              "OP"
+            ],
+            "label": "α",
+            "reflex": true,
+            "given": true
+          }
+        ],
+        "facts": [
+          "Reflex TOP = α.",
+          "T lies on the positive x-axis."
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-10"
+      ],
+      "notes": "T is a labelled point on the positive x-axis; its exact x-coordinate is not needed. The curved arrow marks the reflex angle α."
+    },
+    {
+      "id": "2013-nov-p2-fig-12.1",
+      "paper_id": "2013-nov-p2",
+      "kind": "illustrative",
+      "caption": "Blank set of axes from DIAGRAM SHEET 2 for QUESTION 12, with the $x$-axis marked in degrees from $-180^{\\circ}$ to $180^{\\circ}$.",
+      "source": {
+        "pdf_page": 15,
+        "printed_page": 15,
+        "dpi": 170,
+        "bbox_px": [
+          129,
+          624,
+          1306,
+          1319
+        ],
+        "file": "figures/2013-nov-p2/fig-12.1.png"
+      },
+      "exact": true,
+      "spec": {
+        "scene": "Blank Cartesian axes on a square grid, provided as DIAGRAM SHEET 2 for QUESTION 12. The x-axis is labelled in degrees from -180° to 180° in steps of 45°. The y-axis is labelled y and has no printed numerical scale.",
+        "labels": [
+          "x",
+          "y",
+          "-180°",
+          "-135°",
+          "-90°",
+          "-45°",
+          "0°",
+          "45°",
+          "90°",
+          "135°",
+          "180°"
+        ],
+        "axes": {
+          "x_min_deg": -180,
+          "x_max_deg": 180,
+          "x_tick_deg": 45
+        },
+        "grid": "square"
+      },
+      "used_by": [
+        "2013-nov-p2-12.1"
+      ],
+      "notes": "The crop excludes the CENTRE NUMBER / EXAMINATION NUMBER boxes and the DIAGRAM SHEET 2 / QUESTION 12 headings."
+    },
+    {
+      "id": "2013-nov-p2-fig-13",
+      "paper_id": "2013-nov-p2",
+      "kind": "3d_trig",
+      "caption": "Square-based pyramid $\\mathrm{ABCDE}$ with apex $\\mathrm{E}$, base point $\\mathrm{G}$ and $\\mathrm{F}$ on $\\mathrm{AB}$, together with a photograph labelled Great Pyramid at Giza in Egypt.",
+      "source": {
+        "pdf_page": 13,
+        "printed_page": 13,
+        "dpi": 170,
+        "bbox_px": [
+          228,
+          858,
+          1294,
+          1472
+        ],
+        "file": "figures/2013-nov-p2/fig-13.png"
+      },
+      "exact": false,
+      "spec": {
+        "points": [
+          {
+            "label": "A",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "B",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "C",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "D",
+            "role": "base_vertex",
+            "plane": "base"
+          },
+          {
+            "label": "E",
+            "role": "apex"
+          },
+          {
+            "label": "G",
+            "role": "on_base",
+            "plane": "base"
+          },
+          {
+            "label": "F",
+            "role": "on_AB",
+            "plane": "base"
+          }
+        ],
+        "segments": [
+          {
+            "from": "A",
+            "to": "B",
+            "length": "232,6 m",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "C",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "D",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "A",
+            "given": true
+          },
+          {
+            "from": "A",
+            "to": "E",
+            "length": "221,2 m",
+            "given": true
+          },
+          {
+            "from": "B",
+            "to": "E",
+            "length": "221,2 m",
+            "given": true
+          },
+          {
+            "from": "C",
+            "to": "E",
+            "length": "221,2 m",
+            "given": true
+          },
+          {
+            "from": "D",
+            "to": "E",
+            "length": "221,2 m",
+            "given": true
+          },
+          {
+            "from": "E",
+            "to": "F",
+            "style": "solid"
+          },
+          {
+            "from": "G",
+            "to": "F",
+            "style": "dashed",
+            "plane": "base"
+          }
+        ],
+        "planes": [
+          {
+            "name": "base",
+            "points": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "horizontal": true,
+            "shaded": true
+          }
+        ],
+        "facts": [
+          "ABCD is a square of side 232,6 m.",
+          "The distance from each corner of the base to apex E is 221,2 m.",
+          "EF is perpendicular to AB in triangle AEB (stated in QUESTION 13.2)."
+        ]
+      },
+      "used_by": [
+        "2013-nov-p2-13"
+      ],
+      "notes": "Schematic, not to scale. The crop includes the accompanying photograph and its caption. G appears inside the base (likely the foot of the perpendicular from E, unlabelled as such on the diagram). F lies on AB."
+    }
+  ]
+}

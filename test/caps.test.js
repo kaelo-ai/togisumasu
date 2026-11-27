@@ -99,11 +99,11 @@ t('default catalog is still the algebra course', () => {
 
 t('NSC import is idempotent and every paper is 150 marks', () => {
   const first = db.prepare('SELECT COUNT(*) AS n FROM nsc_papers').get().n;
-  assert.equal(first, 24);
+  assert.equal(first, 28);
   const again = nsc.importAll(db);
-  assert.equal(again.unchanged, 24);
+  assert.equal(again.unchanged, 28);
   assert.equal(again.inserted, 0);
-  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM nsc_papers').get().n, 24);
+  assert.equal(db.prepare('SELECT COUNT(*) AS n FROM nsc_papers').get().n, 28);
   const bad = db.prepare(`
     SELECT p.id, p.total_marks, COALESCE(SUM(n.marks), 0) AS got
     FROM nsc_papers p JOIN nsc_nodes n ON n.paper_id = p.id AND n.is_leaf = 1
@@ -122,7 +122,7 @@ t('2016 Paper 2 Q2.2 keeps the histogram reading note', () => {
 t('practice and exam pools are enforced in the schema and the views', () => {
   assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE year < 2022 AND pool <> 'practice'`).get().n, 0);
   assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE year >= 2022 AND pool <> 'exam'`).get().n, 0);
-  assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE pool = 'practice'`).get().n, 16);
+  assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE pool = 'practice'`).get().n, 20);
   assert.equal(db.prepare(`SELECT COUNT(*) AS n FROM nsc_papers WHERE pool = 'exam'`).get().n, 8);
   const practiceSql = db.prepare(`SELECT sql FROM sqlite_master WHERE name = 'nsc_practice_leaves'`).get().sql;
   assert.match(practiceSql, /pool = 'practice'/);
@@ -143,11 +143,11 @@ t('practice and exam pools are enforced in the schema and the views', () => {
 t('question skills map to topics through the lookup, not a foreign key', () => {
   assert.deepEqual(nsc.topicsForNode(db, '2016-nov-p1-1.1.1'), ['quad-factor']);
   const orphans = db.prepare(`
-    SELECT COUNT(*) AS n FROM nsc_node_skills s
+    SELECT DISTINCT s.bank_code AS bank_code FROM nsc_node_skills s
     LEFT JOIN bank_skill_map m ON m.bank_code = s.bank_code
     WHERE m.bank_code IS NULL
-  `).get().n;
-  assert.equal(orphans, 0);
+  `).all().map(row => row.bank_code).sort();
+  assert.deepEqual(orphans, ['ageo.transformation-geometry', 'fn.linear-programming']);
   db.prepare(`UPDATE bank_skill_map SET topic_id = 'quad-formula' WHERE bank_code = 'alg.zero-product'`).run();
   assert.deepEqual(nsc.topicsForNode(db, '2016-nov-p1-1.1.1'), ['quad-formula']);
   assert.ok(db.prepare(`SELECT 1 AS ok FROM nsc_node_skills WHERE node_id = '2016-nov-p1-1.1.1' AND bank_code = 'alg.zero-product'`).get());

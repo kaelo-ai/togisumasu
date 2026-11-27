@@ -352,7 +352,7 @@ function seed(db) {
     if (!topicIds.has(topicId)) throw new Error(`Skill ${code} maps to ${topicId}, which is not in the CAPS course.`);
   }
   const bank = skillFile();
-  const missing = bank.skills.filter(s => !SKILL_TOPIC[s.id]).map(s => s.id);
+  const missing = bank.skills.filter(s => s.syllabus !== false && !SKILL_TOPIC[s.id]).map(s => s.id);
   if (missing.length) throw new Error('Unmapped bank skills: ' + missing.join(', '));
 
   const now = Date.now();
@@ -411,6 +411,7 @@ function seed(db) {
   `);
   const byTopic = new Map();
   bank.skills.forEach((skill, i) => {
+    if (skill.syllabus === false) return;
     const topicId = SKILL_TOPIC[skill.id];
     const list = byTopic.get(topicId) || [];
     list.push(skill);
@@ -426,4 +427,9 @@ function seed(db) {
   }
 }
 
-module.exports = { COURSE_ID, OFF_CAPS, UNITS, TOPICS, SKILL_TOPIC, seed };
+function outOfSyllabusSkills() {
+  return skillFile().skills.filter(s => s.syllabus === false).map(s => s.id);
+}
+
+module.exports = { COURSE_ID, OFF_CAPS, UNITS, TOPICS, SKILL_TOPIC, seed, outOfSyllabusSkills };
+
