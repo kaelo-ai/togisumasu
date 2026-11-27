@@ -216,6 +216,19 @@ function courses(db) {
   `).all();
 }
 
+// Table of contents for the Courses page: each active course with its units and the
+// topics a learner actually sees (the same projection as learner()). No knowledge points.
+function tocs(db) {
+  return courses(db).map(c => {
+    const view = learner(db, c.id);
+    const units = view.units.map(u => ({
+      id: u.id, name: u.name,
+      topics: view.topics.filter(t => t.unit === u.id).map(t => ({ id: t.id, name: t.name, core: t.core })),
+    }));
+    return { ...c, topicCount: view.topics.length, units };
+  });
+}
+
 function learner(db, courseId) {
   const id = courseId == null || courseId === '' ? ALGEBRA_COURSE : String(courseId);
   const course = db.prepare(`SELECT id, name, description FROM courses WHERE id = ? AND status = 'active'`).get(id);
@@ -461,6 +474,6 @@ function deleteTopic(db, id) {
 }
 
 module.exports = {
-  init, syncCore, learner, courses, admin, createUnit, updateUnit, deleteUnit, createTopic, updateTopic, deleteTopic,
+  init, syncCore, learner, courses, tocs, admin, createUnit, updateUnit, deleteUnit, createTopic, updateTopic, deleteTopic,
   ALGEBRA_COURSE, masteryCoverage: (db) => masteryData.coverage(db),
 };

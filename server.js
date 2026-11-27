@@ -780,7 +780,10 @@ async function api(req, res, url) {
     return send(res, 200, { exam });
   }
 
-  if (route === 'GET /api/courses') return send(res, 200, { courses: catalog.courses(db) });
+  if (route === 'GET /api/courses') {
+    const toc = url.searchParams.get('toc') === '1';
+    return send(res, 200, { courses: toc ? catalog.tocs(db) : catalog.courses(db) });
+  }
   if (route === 'GET /api/catalog') return send(res, 200, catalog.learner(db, url.searchParams.get('course') || 'algebra'));
 
   if (route === 'PATCH /api/account') {
