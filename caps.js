@@ -192,21 +192,34 @@ const TOPICS = [
 
   // Unit 10 — the seven examinable proofs, then riders.
   { id: 'euc-chords', unit: 'c10', name: 'Chords and the centre', pre: ['euc-revision'],
-    notes: p('Prove: the line from the centre of a circle perpendicular to a chord bisects the chord, and the line from the centre to the midpoint of a chord is perpendicular to the chord.') },
+    oldNotes: [p('Prove: the line from the centre of a circle perpendicular to a chord bisects the chord, and the line from the centre to the midpoint of a chord is perpendicular to the chord.')],
+    notes: p('A chord is a straight line joining two points on a circle. This topic is about the line from the centre of the circle to a chord.') +
+      p('There are two facts, and they are one picture read two ways. A line from the centre that meets a chord at a right angle ($90^\\circ$) cuts the chord exactly in half. And a line from the centre to the middle of a chord meets it at a right angle. With Pythagoras, they let you work out lengths inside a circle.') +
+      p('The exam can ask you to prove the first fact yourself. Proving one of the textbook theorems like this is called bookwork, and you will see that proof as a worked example.') },
   { id: 'euc-cyclic', unit: 'c10', name: 'Angle at the centre and cyclic quads', pre: ['euc-chords'],
-    notes: p('Prove: the angle at the centre is twice the angle at the circumference (same arc), and the opposite angles of a cyclic quadrilateral are supplementary.') },
+    oldNotes: [p('Prove: the angle at the centre is twice the angle at the circumference (same arc), and the opposite angles of a cyclic quadrilateral are supplementary.')],
+    notes: p('This topic is about angles with their corner on a circle or at its centre. The main fact: when two angles open onto the same piece of the circle, the one at the centre is twice the one at the edge.') +
+      p('Three more facts follow from it. An angle that opens onto a diameter (a line across the circle through the centre) is $90^\\circ$. Angles that open onto the same piece of the circle from the same side are equal. And in a four-sided shape with all four corners on a circle, called a cyclic quadrilateral, opposite angles add up to $180^\\circ$.') },
   { id: 'euc-tan-chord', unit: 'c10', name: 'Tangents and the tan-chord theorem', pre: ['euc-cyclic'],
-    notes: p('A tangent is perpendicular to the radius at the point of contact. Tangents from a common external point are equal. Prove the tan-chord theorem: the angle between a tangent and a chord equals the angle in the alternate segment.') },
+    oldNotes: [p('A tangent is perpendicular to the radius at the point of contact. Tangents from a common external point are equal. Prove the tan-chord theorem: the angle between a tangent and a chord equals the angle in the alternate segment.')],
+    notes: p('A tangent is a straight line that just touches a circle at one point without cutting into it.') +
+      p('This topic gives three facts about tangents. A tangent meets the radius at the touching point at $90^\\circ$. Two tangents drawn from the same outside point are the same length. And the angle between a tangent and a chord (a line across the circle starting at the touching point) equals the angle on the far side of that chord: this is the tan-chord theorem.') },
   { id: 'euc-proportion', unit: 'c10', name: 'Proportionality', pre: ['euc-revision'],
     notes: p('Prove: a line parallel to one side of a triangle divides the other two sides proportionally. The converse is also used. Write ratios in matching order.') },
   { id: 'euc-similar', unit: 'c10', name: 'Similar triangles', pre: ['euc-proportion'],
-    notes: p('Prove: equiangular triangles are similar. Corresponding sides are then proportional. AAA, and the other similarity conditions you may quote, are used in riders.') },
+    oldNotes: [p('Prove: equiangular triangles are similar. Corresponding sides are then proportional. AAA, and the other similarity conditions you may quote, are used in riders.')],
+    notes: p('Two triangles are similar when they have the same shape, even if one is bigger than the other, like a photo and its enlargement.') +
+      p('If the three angles of one triangle are equal to the three angles of another, the triangles are similar. Then their matching sides are in the same ratio: each side of the big triangle divided by its partner in the small one gives the same number. That lets you work out missing lengths.') },
   { id: 'euc-circle-riders', unit: 'c10', name: 'Circle-geometry riders', pre: ['euc-tan-chord'],
-    notes: p('Apply the circle theorems, including converses, in a figure you have not seen. Each statement needs an acceptable reason. Bookwork proofs themselves are capped in the exam; riders are where the marks are.') },
+    oldNotes: [p('Apply the circle theorems, including converses, in a figure you have not seen. Each statement needs an acceptable reason. Bookwork proofs themselves are capped in the exam; riders are where the marks are.')],
+    notes: p('A rider is an exam question with a diagram you have not seen before, where you use the circle facts you already know to find an angle or prove something. Most of the marks for circle geometry come from riders, not from proving the theorems themselves.') +
+      p('This topic practises the two most common kinds: riders that go through the angle at the centre, and riders with a cyclic quadrilateral (four corners on one circle). Each answer is a short chain of lines, and every line has a statement and its reason.') },
   { id: 'euc-similar-riders', unit: 'c10', name: 'Similarity riders', pre: ['euc-similar'],
     notes: p('Find the similar triangles, name them in corresponding order, then write the proportion. Area ratios are the square of the side ratio.') },
   { id: 'euc-mixed', unit: 'c10', name: 'Mixed geometry riders', pre: ['euc-circle-riders', 'euc-similar-riders'],
-    notes: p('The last Euclidean question often mixes a circle with a proportion. Keep the two chains separate and state which theorem each step uses.') },
+    oldNotes: [p('The last Euclidean question often mixes a circle with a proportion. Keep the two chains separate and state which theorem each step uses.')],
+    notes: p('The last geometry question in Paper 2 often mixes ideas. This topic practises two common mixes: a tangent (a line that just touches the circle) together with the angle at the centre, and the midpoint theorem used inside a circle.') +
+      p('The hard part is choosing which fact to use first. The lessons show how to spot the way in, and every step is written as a statement with its reason.') },
 ];
 
 // Bank skill code → master topic. Codes are looked up, never used as foreign keys.
