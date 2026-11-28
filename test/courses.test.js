@@ -41,7 +41,7 @@ server.listen(0, async () => {
     assert.equal(count, caps.topicCount);
     assert.ok(caps.units.every(u => u.topics.length > 0), 'no empty chapters');
     const topic = caps.units[0].topics[0];
-    assert.deepEqual(Object.keys(topic).sort(), ['core', 'id', 'name'], 'topics only, no knowledge points');
+    assert.deepEqual(Object.keys(topic).sort(), ['core', 'id', 'name', 'pre'], 'topics with their prerequisites (for progress and finish dates), no knowledge points');
   });
 
   await t('toc matches what the learner sees in each course', async () => {

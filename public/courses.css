@@ -1,6 +1,6 @@
 /* Courses page: a library of books on shelves, one shelf per level.
-   Feel borrowed from abakcus.com/books: calm white/tonal page, serif titles, small tracked
-   uppercase labels, soft long shadows, hover lifts. Spines and covers are drawn in CSS/SVG. */
+   Calm tonal page, serif titles, books standing on open planks (techniques studied from
+   Gloss's library; all code and art here are our own). Spines and covers are drawn in CSS/SVG. */
 :root{
   --f-serif:"Fraunces","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --wood-hi:#DDB585; --wood:#C49461; --wood-lo:#9A6B3B; --wood-edge:#7E5530;
@@ -24,67 +24,108 @@
 .lib-lead{margin:0;color:var(--muted);font-family:var(--f-serif);font-size:1.06rem;max-width:40rem}
 .lib-now{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:4px;font-size:.9rem;color:var(--muted)}
 .lib-now b{color:var(--ink);font-weight:600}
-.lib-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0 0;padding:0;list-style:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.lib-legend li{display:flex;align-items:center;gap:7px}
-.lib-legend i{width:10px;height:16px;border-radius:2px;display:inline-block;background:var(--c)}
-.lib-legend i.rib{width:8px;height:12px;border-radius:0;background:var(--ribbon);clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%)}
+:root{--plank-top:color-mix(in oklab,var(--surface,#fff) 80%,var(--wood) 20%);--plank-front:color-mix(in oklab,var(--wood-hi) 55%,var(--wood) 45%);
+  --wall-shade:rgba(60,40,15,.10);--lib-ease:cubic-bezier(.22,1,.36,1);--lib-spring:cubic-bezier(.34,1.36,.64,1);--lib-swing:cubic-bezier(.77,0,.175,1)}
+:root[data-theme="dark"]{--plank-top:#6A4B2F;--plank-front:#4A3420;--wall-shade:rgba(0,0,0,.35)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--plank-top:#6A4B2F;--plank-front:#4A3420;--wall-shade:rgba(0,0,0,.35)}}
 
-.shelf{margin-top:38px}
-.shelf-h{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:12px}
+/* filter chips */
+.lib-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.lchip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:500 .84rem/1 var(--f-body);cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.lchip .n{color:var(--muted);font-variant-numeric:tabular-nums;font-weight:400}
+.lchip:hover{border-color:var(--ink)}
+.lchip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg,#fff)}
+.lchip[aria-pressed="true"] .n{color:inherit;opacity:.7}
+.lchip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.shelf{margin-top:34px}
+.shelf.is-empty{display:none}
+.shelf-h{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap;margin-bottom:6px}
 .shelf-h h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(1.3rem,2.6vw,1.7rem);letter-spacing:-.005em}
 .shelf-h .sub{color:var(--muted);font-family:var(--f-serif);font-size:.95rem;flex:1 1 18rem}
 .shelf-h .ct{margin-left:auto;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
 
-/* the cabinet: back panel + books + plank. Scrolls sideways when the row is wider than the screen. */
-.shelf-cab{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--shelf-back-lo),var(--shelf-back) 30%);box-shadow:inset 0 10px 24px -14px var(--shelf-shadow),inset 0 0 0 1px color-mix(in srgb,var(--line) 60%,transparent)}
-.shelf-scroll{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
-.shelf-row{position:relative;display:flex;align-items:flex-end;gap:4px;min-width:max-content;width:100%;padding:30px 22px 16px;margin:0;list-style:none}
-.shelf-row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:16px;border-radius:2px 2px 4px 4px;
-  background:linear-gradient(180deg,var(--wood-hi) 0 3px,var(--wood) 3px 60%,var(--wood-lo) 100%),var(--wood);
-  box-shadow:0 10px 16px -8px var(--shelf-shadow),inset 0 -2px 0 var(--wood-edge)}
-.shelf-row>li{display:flex;align-items:flex-end;scroll-snap-align:start;position:relative;z-index:1}
-.shelf-row>li.bookend{margin-left:auto;padding-left:18px}
-.bookend span{display:grid;place-items:center;width:34px;height:52px;border-radius:4px 4px 2px 2px;background:var(--seal);color:#FFF6E8;font-size:1rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),2px 3px 6px -3px rgba(0,0,0,.35)}
+/* ---------- the bookcase: an open wall, planks, and books placed by ShelfLayout ---------- */
+.case{position:relative;margin-top:26px;min-height:200px;transition:height .6s var(--lib-ease)}
+.case>*{position:absolute;top:0;left:0}
+.plank{right:0;height:18px;border-radius:2px 2px 4px 4px;
+  background:linear-gradient(180deg,var(--plank-top) 0 6px,color-mix(in oklab,var(--plank-front),#fff 16%) 6px 7px,var(--plank-front) 7px 100%);
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.10),0 18px 22px -14px var(--shelf-shadow)}
+/* the shade the books throw on the wall just above the plank */
+.plank::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:28px;background:linear-gradient(to top,var(--wall-shade),transparent);pointer-events:none}
+.plabel{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;font:500 .78rem/1 var(--f-body);color:var(--muted);white-space:nowrap;transition:transform .75s var(--lib-swing)}
+.plabel .n{font-weight:400;opacity:.7;font-variant-numeric:tabular-nums}
+.prop{pointer-events:none;transition:transform .75s var(--lib-swing)}
+.prop.bookend span{display:grid;place-items:center;width:32px;height:52px;border-radius:4px 4px 2px 2px;background:var(--seal);color:#FFF6E8;font-size:1rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2),2px 3px 6px -3px rgba(0,0,0,.35)}
+.prop.plant .leaves{transform-origin:40px 76px;animation:lib-sway 7s ease-in-out infinite}
+@keyframes lib-sway{50%{transform:rotate(-2.5deg)}}
 
-/* a spine */
-.book{--w:54px;--h:226px;--c:var(--sp-maths-1);--ink:#F4EBD8;--gild:rgba(236,200,120,.85);
-  position:relative;display:block;width:var(--w);height:var(--h);margin:0 0 16px;padding:0;border:0;border-radius:3px 3px 2px 2px;cursor:pointer;color:var(--ink);
-  background:linear-gradient(90deg,rgba(0,0,0,.30) 0,rgba(255,255,255,.12) 14%,rgba(255,255,255,0) 38%,rgba(0,0,0,.10) 78%,rgba(0,0,0,.34) 100%),var(--c);
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),1px 0 0 rgba(0,0,0,.10),0 2px 2px -1px rgba(0,0,0,.25);
-  transform-origin:50% 100%;transition:transform .38s cubic-bezier(.2,.8,.2,1),box-shadow .38s ease,filter .38s ease;will-change:transform}
-.book::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.38) 48%,transparent 66%);background-size:260% 100%;background-position:130% 0;
-  transition:background-position .7s ease;mix-blend-mode:soft-light}
-.book .band{position:absolute;left:0;right:0;height:6px;border-top:1px solid var(--gild);border-bottom:1px solid var(--gild);opacity:.9}
-.book .band.t{top:14px}.book .band.b{bottom:30px}
-.book .tt{position:absolute;top:28px;bottom:42px;left:0;right:0;display:flex;align-items:flex-start;justify-content:center;writing-mode:vertical-rl;
-  font-family:var(--f-serif);font-size:.9rem;line-height:1.12;letter-spacing:.01em;text-align:start;overflow:hidden;padding:4px 0;font-weight:500}
-.book .mk{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:600 .56rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
-.book .soon{position:absolute;left:5px;right:5px;bottom:46px;padding:3px 0;border-radius:2px;background:#F3EBDA;color:#5B4A2F;font:700 .48rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+/* each book moves on x and y with different curves, so a book changing planks swings across instead of cutting through the others */
+.slot{transition:transform .8s var(--lib-swing);will-change:transform;pointer-events:none}
+.slot-y{transition:transform .8s var(--lib-ease)}
+.slot.jump,.slot.jump .slot-y{transition:none}
+.slot-in{transition:opacity .4s var(--lib-ease),transform .5s var(--lib-ease)}
+.slot[data-out] .slot-in{opacity:0;transform:translateY(-30px) rotate(-2deg)}
+.slot[data-out] .book{pointer-events:none}
+.case.is-entering .plank{animation:lib-plank .8s var(--lib-ease) both;animation-delay:calc(var(--r,0) * 90ms)}
+.case.is-entering .slot:not([data-out]) .slot-in{animation:lib-drop .75s var(--lib-ease) both;animation-delay:calc(min(var(--i),30) * 26ms + 120ms)}
+.case.is-entering .plabel{animation:lib-fade .5s .4s both}
+@keyframes lib-plank{from{opacity:0;clip-path:inset(0 50% 0 50%)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes lib-drop{from{opacity:0;transform:translateY(-40px)}}
+@keyframes lib-fade{from{opacity:0}}
+
+/* ---------- a spine ---------- */
+.book{--w:54px;--h:226px;--c:var(--sp-maths-1);--fg:#F4EBD8;--gild:color-mix(in oklab,var(--fg) 60%,#D9A21B 40%);
+  position:relative;display:block;width:var(--w);height:var(--h);margin:0;padding:0;border:0;border-radius:2px 2px 1px 1px;cursor:pointer;color:var(--fg);background:var(--c);pointer-events:auto;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),3px 0 6px -3px rgba(0,0,0,.38);font-family:var(--f-serif);
+  transition:transform .32s var(--lib-ease),box-shadow .32s var(--lib-ease),filter .3s ease}
+.book .cloth{position:absolute;inset:0;border-radius:inherit;overflow:hidden;display:block}
+/* cloth: rounded at the edges, a faint weave */
+.book .cloth::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.26),rgba(255,255,255,.13) 15%,rgba(255,255,255,.04) 32%,transparent 58%,rgba(0,0,0,.22)),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.book.is-light .cloth::before{background:linear-gradient(90deg,rgba(0,0,0,.16),rgba(255,255,255,.35) 15%,transparent 55%,rgba(0,0,0,.12)),repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 1px,transparent 1px 3px)}
+.book .tt{position:absolute;top:32px;bottom:44px;left:3px;right:3px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;
+  font-size:calc(.9rem * var(--k,1));line-height:1.12;letter-spacing:.005em;font-weight:500;overflow:hidden;text-align:center}
+.book.long .tt{font-size:calc(.78rem * var(--k,1));line-height:1.08}
+.book.st-label .tt{font-size:calc(.8rem * var(--k,1))}
+.book.st-label.long .tt{font-size:calc(.62rem * var(--k,1));line-height:1.05;letter-spacing:-.015em}
+.book .tt.is-label{top:36px;bottom:42px;left:4px;right:4px;padding:7px 0;align-items:flex-start;background:#F4ECDA;color:#2A2520;border-radius:1px;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),inset 0 0 0 3px #F4ECDA,inset 0 0 0 4px rgba(0,0,0,.1)}
+.book .band{position:absolute;left:0;right:0;height:6px;border-top:1.5px solid var(--gild);border-bottom:1.5px solid var(--gild);opacity:.9}
+.book .band.t{top:13px}.book .band.b{bottom:30px}
+.book .stampg,.book .glyph{position:absolute;top:9px;left:0;right:0;text-align:center;font:500 .9rem/1 var(--f-serif)}
+.book .stampg{left:50%;right:auto;width:20px;height:20px;margin-left:-10px;display:grid;place-items:center;border:1px solid var(--gild);border-radius:50%;color:var(--gild);font-size:.72rem}
+.book.st-stamp .tt{color:color-mix(in oklab,var(--fg) 45%,#E9C877 55%)}
+.book.st-plain .tt{font-family:var(--f-body);font-weight:600;letter-spacing:.01em;font-size:calc(.8rem * var(--k,1))}
+.book .mk{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:600 .54rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.book .soon{position:absolute;left:5px;right:5px;bottom:44px;padding:3px 0;border-radius:2px;background:#F3EBDA;color:#5B4A2F;font:700 .46rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.book.st-label.is-soon .tt.is-label{bottom:52px}
+.book.st-label .soon{bottom:22px}
 .book.is-soon{filter:saturate(.55) brightness(.98)}
-.book.s-stats{--c:var(--sp-stats-1)} .book.s-physics{--c:var(--sp-phys-1)} .book.s-science{--c:var(--sp-sci-1)}
-.book.v2.s-maths{--c:var(--sp-maths-2)} .book.v3.s-maths{--c:var(--sp-maths-3)} .book.v4.s-maths{--c:var(--sp-maths-4)}
-.book.v2.s-stats{--c:var(--sp-stats-2)} .book.v3.s-stats,.book.v4.s-stats{--c:var(--sp-stats-3)}
-.book.v2.s-physics{--c:var(--sp-phys-2)} .book.v3.s-physics,.book.v4.s-physics{--c:var(--sp-phys-3)}
-.book.v2.s-science,.book.v4.s-science{--c:var(--sp-sci-2)}
-/* the two real courses get their own bindings */
-.book.b-caps{--c:#EEE2C6;--ink:#2A2118;--gild:rgba(163,58,43,.75)}
-.book.b-caps .seal{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:20px;height:20px;display:grid;place-items:center;border-radius:3px;background:var(--seal);color:#FFF6E8;font-size:.7rem}
-.book.b-caps .mk{bottom:7px}
-.book.b-algebra{--c:#1A1A1A;--ink:#EFE6D3}
+/* how far you are: a thin strip rising up the spine's left edge */
+.book .pr{position:absolute;left:0;bottom:0;width:4px;height:calc(var(--p) * 100%);background:var(--ribbon);box-shadow:1px 0 0 rgba(0,0,0,.18)}
+.book.st-caps .seal{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:20px;height:20px;display:grid;place-items:center;border-radius:3px;background:var(--seal);color:#FFF6E8;font-size:.7rem}
+.book.st-caps .mk{bottom:7px}.book.st-caps .tt{bottom:52px}
+.book.st-caps{--gild:rgba(163,58,43,.75)}
 /* enrolled: a ribbon bookmark peeks out of the top */
-.book.is-enrolled::after{content:"";position:absolute;top:-12px;right:9px;width:9px;height:24px;background:var(--ribbon);clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%);box-shadow:0 1px 0 rgba(0,0,0,.2);z-index:-1}
+.book.is-enrolled::after{content:"";position:absolute;top:-12px;right:22%;width:9px;height:22px;background:var(--ribbon);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);box-shadow:0 1px 0 rgba(0,0,0,.2);z-index:-1}
 .book.is-current::after{background:var(--ribbon-now)}
-
-/* hover: the book lifts and tilts out of the row; the next one leans in; a sheen runs down the spine */
-@media (hover:hover){
-  .book:hover{transform:translateY(-16px) rotate(-2.2deg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),0 22px 26px -14px rgba(0,0,0,.5);filter:none}
-  .book:hover::before{background-position:-30% 0}
-  .shelf-row>li:has(.book:hover)+li .book{transform:rotate(2.4deg) translateX(3px)}
+/* reached for: the book rises out of the row on a soft spring and its shadow lengthens; let go, it settles without a bounce */
+@media (hover:hover) and (pointer:fine){
+  .case .book:hover{transform:translateY(-14px);box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),6px 12px 16px -8px rgba(0,0,0,.45);filter:brightness(1.05) saturate(1);
+    transition-duration:.42s,.42s,.3s;transition-timing-function:var(--lib-spring),var(--lib-ease),ease}
 }
-.book:focus-visible{outline:2px solid var(--accent);outline-offset:4px;transform:translateY(-16px) rotate(-2.2deg);box-shadow:0 22px 26px -14px rgba(0,0,0,.5);filter:none}
-.book:focus-visible::before{background-position:-30% 0}
+.case .book:active{transform:translateY(-8px) scale(.985);transition-duration:.12s}
+.case .book:focus-visible{outline:2px solid var(--accent);outline-offset:3px;transform:translateY(-14px)}
 .book.is-out{visibility:hidden}
+.lib-hint{text-align:center;margin-top:8px}
+@media (hover:none){.lib-hint{display:none}}
+
+/* the tooltip over a spine */
+.shelf-tip{position:fixed;left:0;top:0;z-index:40;max-width:260px;padding:7px 11px;border-radius:8px;background:#201B14;color:#FBF6EC;font:500 .8rem/1.3 var(--f-body);pointer-events:none;opacity:0;transition:opacity .18s ease;box-shadow:0 8px 20px -10px rgba(0,0,0,.5)}
+.shelf-tip.on{opacity:1}
+.shelf-tip b{display:block;font-weight:600}
+.shelf-tip small{display:block;margin-top:2px;opacity:.75;font-size:.72rem}
 
 /* ---------- the open book ---------- */
 .bookdlg{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:transparent;overflow:hidden;color:var(--paper-ink)}
@@ -159,18 +200,73 @@
 .coursechip .sp{width:8px;height:20px;border-radius:2px;background:var(--seal);box-shadow:3px 0 0 -1px var(--sp-maths-1),6px 0 0 -2px var(--ribbon)}
 .coursechip .chg{color:var(--muted);font-size:.78rem;border-left:1px solid var(--line);padding-left:10px}
 
+
+/* ---------- open book polish: real page edges, the spine face, a softer world behind ---------- */
+.bk-scrim{background:color-mix(in oklab,var(--bg,#F6F1E7) 45%,rgba(24,18,10,.45));backdrop-filter:blur(10px) saturate(.9);-webkit-backdrop-filter:blur(10px) saturate(.9)}
+.bk3d>.bk-edge{height:auto;backface-visibility:visible;pointer-events:none}
+.bk-edge.fore{left:calc(var(--W) - 3px);top:4px;width:var(--D);height:calc(var(--H) - 8px);transform-origin:0 50%;transform:rotateY(90deg);background:repeating-linear-gradient(90deg,#F4EDDD 0 1px,#DED3BB 1px 2px)}
+.bk-edge.top,.bk-edge.bot{left:2px;width:calc(var(--W) - 6px);height:var(--D);transform-origin:50% 0;background:repeating-linear-gradient(0deg,#F4EDDD 0 1px,#DED3BB 1px 2px)}
+.bk-edge.top{top:3px;transform:rotateX(-90deg)}
+.bk-edge.bot{top:calc(var(--H) - 3px);transform:rotateX(-90deg)}
+.bk-spine{overflow:hidden;padding:0}
+.bk-spine .face{position:absolute;left:0;top:0;transform-origin:0 0;cursor:default;box-shadow:none;border-radius:0;pointer-events:none}
+.bk-spine .face::after{display:none}
+/* the cover: a hinge groove, an inner rule and a sheen */
+.bk-front .hinge{position:absolute;top:0;bottom:0;left:16px;width:5px;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(255,255,255,.12));pointer-events:none}
+.bk-front::after{content:"";position:absolute;inset:14px 14px 14px 28px;border:1px solid color-mix(in oklab,currentColor 26%,transparent);pointer-events:none}
+.bk-front::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 70% at 20% 0%,rgba(255,255,255,.14),transparent 60%)}
+.bk-front .art{width:70%;max-width:230px}
+.bk-front .cover-art{width:100%;height:auto;display:block}
+.bk-front .plate{aspect-ratio:1;border-radius:2px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.2),0 3px 8px -3px rgba(0,0,0,.4)}
+.bk-front .plate-svg{display:block;width:100%;height:100%}
+/* the pages: content rises in once the book is open */
+.toc-host{display:flex;flex-direction:column;flex:1;min-height:0}
+.toc-host .toc{flex:1}
+.bookdlg.will-reveal .bk-page>*,.bookdlg.will-reveal .bk-inside>*{opacity:0;transform:translateY(8px);transition:opacity .2s var(--lib-ease),transform .2s var(--lib-ease)}
+.bookdlg.will-reveal.is-settled .bk-page>*,.bookdlg.will-reveal.is-settled .bk-inside>*{opacity:1;transform:none;transition-duration:.55s}
+.bookdlg.is-settled .bk-page>:nth-child(2),.bookdlg.is-settled .bk-inside>:nth-child(2){transition-delay:50ms}
+.bookdlg.is-settled .bk-page>:nth-child(3){transition-delay:100ms}
+.bookdlg.is-settled .bk-page>:nth-child(4){transition-delay:150ms}
+/* progress and the finish date, left page */
+.bk-prog{margin-top:10px;display:grid;gap:6px}
+.bk-prog .meter{height:7px;border-radius:9px;background:var(--paper-line);overflow:hidden}
+.bk-prog .meter i{display:block;height:100%;background:var(--good,#2E7A63);border-radius:9px}
+.bk-prog p{margin:0}
+.bk-pct{font-size:.86rem;color:var(--paper-muted)}.bk-pct b{color:var(--paper-ink)}
+.bk-eta{font-size:.9rem;line-height:1.5;color:var(--paper-ink);font-family:var(--f-serif)}
+.bk-eta b{font-weight:600}.bk-eta b.slow{color:var(--seal)}
+.bk-goalnote{font-size:.76rem;color:var(--paper-muted)}
+/* per-topic squares, right page */
+.sq-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 0 2px;font-size:.7rem;color:var(--paper-muted)}
+.sq-legend span{display:inline-flex;align-items:center;gap:5px}
+.sq{display:inline-block;width:13px;height:13px;border-radius:3px;background:color-mix(in oklab,var(--paper-line) 70%,transparent);flex:none}
+.sq.mastered{background:var(--good,#2E7A63)}
+.sq.partial{background:linear-gradient(135deg,var(--good,#2E7A63) 0 50%,color-mix(in oklab,var(--paper-line) 70%,transparent) 50%)}
+.sq.held{background:repeating-linear-gradient(135deg,var(--paper-muted) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--paper-muted);opacity:.8}
+.sq.next{outline:2px solid var(--ribbon-now);outline-offset:1px}
+.sqs{display:flex;flex-wrap:wrap;gap:4px;margin:7px 0 4px 2.1em}
+.tops-d{margin:2px 0 0 2.1em}
+.tops-d summary{cursor:pointer;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paper-muted);font-weight:600;padding:3px 0}
+.tops-d .tops{margin-left:0}
+.toc .tops li.s-mastered{color:var(--paper-ink)}
+.toc .tops li.s-mastered::before{content:"✓ ";color:var(--good,#2E7A63)}
+.toc .tops li.s-next{color:var(--ribbon-now);font-weight:600}
+.toc .tops li.s-held::after{content:"needs a prerequisite";margin-left:5px;font:600 .5rem/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--paper-muted)}
+.bk3d.single .toc-host{flex:none}
+
 @media (max-width:680px){
-  .shelf-row{padding:26px 14px 16px}
-  .book{--w:48px;--h:208px}
-  .book .tt{font-size:.82rem}
   .shelf-h .ct{margin-left:0}
+  .case{margin-top:22px}
+  .book .tt{top:28px;bottom:40px}
 }
 @media (prefers-reduced-motion:reduce){
-  .book,.book::before,.bk-scrim,.bk-close{transition:none}
-  .book:hover,.book:focus-visible{transform:none}
-  .shelf-row>li:has(.book:hover)+li .book{transform:none}
+  .slot,.slot-y,.slot-in,.plabel,.prop,.case{transition-duration:0s!important}
+  .case.is-entering .plank,.case.is-entering .slot-in,.case.is-entering .plabel,.prop.plant .leaves{animation:none}
+  .slot[data-out] .slot-in{transform:none}
+  .case .book,.book::before,.bk-scrim,.bk-close{transition:none}
+  .case .book:hover,.case .book:focus-visible,.case .book:active{transform:none}
+  .case .book:hover{filter:brightness(1.06)}
+  .shelf-tip{transition:none}
 }
 .acct .btn[aria-current]{color:var(--ink);border-color:var(--line)}
 .top:has(#logoutBtn) .brand-sub{display:none}
-.book.long .tt{font-size:.78rem;line-height:1.08}
-@media (max-width:680px){.book.long .tt{font-size:.72rem}}

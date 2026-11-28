@@ -217,13 +217,14 @@ function courses(db) {
 }
 
 // Table of contents for the Courses page: each active course with its units and the
-// topics a learner actually sees (the same projection as learner()). No knowledge points.
+// topics a learner actually sees (the same projection as learner(), prerequisites included so the
+// Courses page can work out per-course mastery and a finish date). No knowledge points.
 function tocs(db) {
   return courses(db).map(c => {
     const view = learner(db, c.id);
     const units = view.units.map(u => ({
       id: u.id, name: u.name,
-      topics: view.topics.filter(t => t.unit === u.id).map(t => ({ id: t.id, name: t.name, core: t.core })),
+      topics: view.topics.filter(t => t.unit === u.id).map(t => ({ id: t.id, name: t.name, core: t.core, pre: t.pre || [] })),
     }));
     return { ...c, topicCount: view.topics.length, units };
   });

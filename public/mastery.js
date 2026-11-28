@@ -26,8 +26,10 @@
 const DAY = 864e5;
 const INT = [0, 1, 3, 7, 16, 35, 70];
 const DAILY = {
-  // XP is roughly one point per minute of focused work. The daily goal is half an hour.
+  // XP is roughly one point per minute of focused work. The default daily goal is half an hour;
+  // a learner can pick another preset in Settings (stored on the progress document as `goal`).
   goalXp: 30,
+  goalPresets: [20, 30, 45, 60],
   weights: {
     new: 3,       // a new topic or knowledge-point item
     example: 1,   // reading a worked example
@@ -48,6 +50,17 @@ const DAILY = {
   },
 };
 const GOAL = DAILY.goalXp;
+
+// The learner's daily XP goal: one of the presets, else the default.
+function goalOf(progress) {
+  const g = progress && Number(progress.goal);
+  return DAILY.goalPresets.includes(g) ? g : DAILY.goalXp;
+}
+function setGoal(progress, goal) {
+  const g = Number(goal);
+  if (!DAILY.goalPresets.includes(g)) throw new Error('Pick a daily goal of ' + DAILY.goalPresets.join(', ') + ' XP.');
+  return { ...(progress || emptyProgress()), goal: g };
+}
 
 const FIRE = {
   // Weight used for a direct prerequisite when no manual encompassing exists.
@@ -1096,7 +1109,7 @@ function pickFluencySet(progress, catalog, now) {
 }
 
 const Mastery = {
-  DAY, INT, GOAL, DAILY, FIRE, LESSON, CORE, SPACING, RATE, PLACEMENT, FLUENCY,
+  DAY, INT, GOAL, DAILY, goalOf, setGoal, dayKey, FIRE, LESSON, CORE, SPACING, RATE, PLACEMENT, FLUENCY,
   asSkill, emptyProgress, skillOf, writeSkill,
   indexCatalog, stagedKps, isStaged, keyPrereqsOf, prereqsOf,
   defaultEdges, edgeMap, weightsDown, weightsUp, applyFire,
