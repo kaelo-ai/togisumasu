@@ -86,24 +86,41 @@ t('generated items for every knowledge point compute a checkable answer', () => 
 });
 
 t('geometry items use a statement-and-reason chain and draw a diagram in the prompt', () => {
-  for (const id of GROUPS.euclidean) {
-    const nKp = CapsGen.BRANCHED[id];
-    let geom = 0, drawn = 0;
-    // Knowledge points may mix item kinds, so sample each one a few times.
-    for (let kp = 0; kp < nKp; kp++) for (let i = 0; i < 12; i++) {
-      const q = CapsGen.GENERATORS[id](kp);
-      if (/<svg/i.test(q.prompt || '')) drawn++;
-      if (q.type === 'geom') {
-        geom++;
-        assert.ok(Array.isArray(q.chain) && q.chain.length >= 1, id);
-        assert.ok(q.statements.length >= 2 && q.reasons.length >= 2, id);
-        assert.ok(core.check(q, q.chain).ok, id + ' chain');
-        questions.normalizeQuestion(q);
-        assert.ok(/<svg/i.test(q.prompt), id + ' geom item draws the diagram in code');
+  const realRandom = Math.random;
+  // Generators pick an item kind with Math.random. Some knowledge points are
+  // geom only on one of several variants (tan-chord bookwork is 1 of 6), so a
+  // short unseeded sample can miss it. A seeded sweep visits every kind.
+  let seed = 0xC0FFEE;
+  Math.random = () => {
+    seed |= 0;
+    seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+  try {
+    for (const id of GROUPS.euclidean) {
+      const nKp = CapsGen.BRANCHED[id];
+      let geom = 0, drawn = 0;
+      for (let kp = 0; kp < nKp; kp++) {
+        for (let i = 0; i < 48; i++) {
+          const q = CapsGen.GENERATORS[id](kp);
+          if (/<svg/i.test(q.prompt || '')) drawn++;
+          if (q.type === 'geom') {
+            geom++;
+            assert.ok(Array.isArray(q.chain) && q.chain.length >= 1, id);
+            assert.ok(q.statements.length >= 2 && q.reasons.length >= 2, id);
+            assert.ok(core.check(q, q.chain).ok, id + ' chain');
+            questions.normalizeQuestion(q);
+            assert.ok(/<svg/i.test(q.prompt), id + ' geom item draws the diagram in code');
+          }
+        }
       }
+      assert.ok(geom >= 1, id + ' needs a statement-and-reason knowledge point');
+      assert.ok(drawn >= 1, id + ' needs a diagram drawn in code');
     }
-    assert.ok(geom >= 1, id + ' needs a statement-and-reason knowledge point');
-    assert.ok(drawn >= 1, id + ' needs a diagram drawn in code');
+  } finally {
+    Math.random = realRandom;
   }
 });
 
