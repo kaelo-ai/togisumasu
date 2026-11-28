@@ -362,6 +362,89 @@ t('a topic mastered in one course is held when this course is missing a prerequi
   assert.equal(Mastery.skillOf(p, 'top').lv, 2, 'shared mastery is not erased');
 });
 
+t('pickNextTask offers the next open topic after mastery, not the one just finished', () => {
+  const now = 4_000_000_000_000;
+  const cat = catalog();
+  let p = start({});
+  let ev = null;
+  for (let i = 0; i < LESSON.passCount; i++) {
+    const out = Mastery.applyAnswer(p, { id: 'a', ok: true, mode: 'practice', now: now + i }, cat);
+    p = out.progress;
+    ev = out.event;
+  }
+  assert.equal(ev.k, 'mastered');
+  assert.equal(Mastery.skillOf(p, 'a').lv, 1);
+  const stay = Mastery.pickNextTask(p, cat, now, { skip: [] });
+  assert.equal(stay.kind, 'new');
+  assert.notEqual(stay.id, 'a');
+  const task = Mastery.pickNextTask(p, cat, now, { skip: ['a'] });
+  assert.equal(task.kind, 'new');
+  assert.equal(task.id, 'b');
+  assert.equal(task.name, 'Multiplying');
+});
+
+t('pickNextTask prefers a repair, then a due review, then new work', () => {
+  const now = 4_000_000_000_000;
+  const cat = {
+    courseId: 'algebra',
+    topics: [
+      { id: 'a', name: 'Adding', pre: [] },
+      { id: 'b', name: 'Multiplying', pre: ['a'] },
+      { id: 'c', name: 'Dividing', pre: ['a'] },
+    ],
+  };
+  const repaired = start({
+    a: mastered('a', 1, now + DAY),
+    b: { a: 4, c: 2, s: 0, lv: 1, fix: 1, due: now },
+  });
+  const repair = Mastery.pickNextTask(repaired, cat, now);
+  assert.equal(repair.kind, 'repair');
+  assert.equal(repair.id, 'b');
+
+  const withDue = start({
+    a: mastered('a', 1, now - DAY),
+    b: { a: 0, c: 0, s: 0, lv: 0, due: 0 },
+  });
+  const review = Mastery.pickNextTask(withDue, cat, now, { skip: [] });
+  assert.equal(review.kind, 'review');
+  assert.equal(review.id, 'a');
+
+  const open = start({ a: mastered('a', 1, now + DAY) });
+  const next = Mastery.pickNextTask(open, cat, now, { skip: ['a'] });
+  assert.equal(next.kind, 'new');
+  assert.equal(next.id, 'b');
+});
+
+t('pickNextTask offers a due quiz before new work, and mixed practice when nothing is left', () => {
+  const now = 4_000_000_000_000;
+  const cat = {
+    courseId: 'algebra',
+    topics: [
+      { id: 'a', name: 'Adding', pre: [] },
+      { id: 'b', name: 'Multiplying', pre: ['a'] },
+      { id: 'c', name: 'Dividing', pre: ['a'] },
+    ],
+  };
+  let p = start({
+    a: mastered('a', 1, now + DAY),
+    b: mastered('b', 1, now + DAY),
+    c: mastered('c', 1, now + DAY),
+  });
+  p = Mastery.markQuizRecent(p, 'a', 'algebra');
+  p = Mastery.markQuizRecent(p, 'b', 'algebra');
+  const quiz = Mastery.pickNextTask(p, cat, now, { courseId: 'algebra' });
+  assert.equal(quiz.kind, 'quiz');
+
+  const allDone = start({
+    a: mastered('a', 1, now + DAY),
+    b: mastered('b', 1, now + DAY),
+    c: mastered('c', 1, now + DAY),
+  });
+  const mixed = Mastery.pickNextTask(allDone, cat, now, { courseId: 'algebra' });
+  assert.equal(mixed.kind, 'mixed');
+});
+
+
 const failed = results.filter(r => r[0] === 'FAIL');
 for (const r of results) console.log(r[0] === 'ok' ? '  ok  ' + r[1] : '  FAIL  ' + r[1] + ' — ' + r[2]);
 console.log(failed.length ? failed.length + ' failed' : results.length + ' passed');

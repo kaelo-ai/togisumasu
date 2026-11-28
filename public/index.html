@@ -192,6 +192,8 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 .event{margin-top:12px;padding:10px 14px;border-radius:8px;background:var(--good-soft);color:var(--good);font-weight:600}
 .event.miss{background:var(--mark-soft);color:var(--ink)}
 .event.bad{background:var(--mark-soft);color:var(--ink)}
+.event.mastery{padding:12px 14px}
+.event.mastery .sub{display:block;margin-top:4px;font-weight:500;color:var(--ink)}
 .timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:.9rem;color:var(--muted);margin-left:8px}
 .timer.over{color:var(--mark)}
 .tag.flu{background:var(--mark-soft);color:var(--ink)}
@@ -665,6 +667,9 @@ const freshChains={};
 function fresh(id){const prev=freshChains[id]||Promise.resolve();const p=prev.catch(()=>{}).then(()=>loadFresh(id));freshChains[id]=p;return p}
 async function exampleQuestion(id){try{const q=await fetchQuestion(id,[]);cacheQuestion(id,q);return q}catch(e){if(!networkFailure(e))throw e;const c=cachedQuestions(id);if(c.length)return c[Math.floor(Math.random()*c.length)];if(SKM[id]&&typeof SKM[id].gen==='function')return SKM[id].gen();throw new Error('No example is available for this topic yet.')}}
 function record(id,ok,mode,extra){const out=Mastery.applyAnswer(Store.data,{id,ok,mode,now:Date.now(),ms:extra&&extra.ms,hint:!!(extra&&extra.hint)},catView());Store.data=out.progress;Store.save();renderStats();return out.event}
+function nextTask(skip=[]){return Mastery.pickNextTask(Store.data,catView(),Date.now(),{skip,courseId:courseId()})}
+function taskCta(task){if(!task)return 'Continue';if(task.kind==='quiz')return 'Next: Quiz';if(task.kind==='mixed')return 'Next: Mixed practice';if(task.kind==='repair')return 'Next: Repair '+task.name;if(task.kind==='shore')return 'Next: Shore up '+task.name;if(task.kind==='review')return 'Next: Review '+task.name;return 'Next: '+task.name}
+function openNextTask(task){if(!task||task.kind==='mixed'){startSession();return}if(task.kind==='quiz'){startQuiz();return}const begun=st(task.id).a>0;go({name:'skill',id:task.id,tab:(task.kind==='new'&&!begun)?'learn':'practice'})}
 function recommended(skip=[]){const holds=new Set(Mastery.holdingPrereqIds(Store.data,catView()));const c=SK.filter(s=>!skip.includes(s.id)&&st(s.id).lv===0&&!st(s.id).fix&&access(s.id).ok).map(s=>({...s,inProgress:st(s.id).a>0,holds:holds.has(s.id),core:!!s.core,coreScore:s.coreScore||0}));return Mastery.pickRecommended(c)}
 /* finish date for a course: Pace.estimate, worked out at most once a day per user, course and goal */
 const ETA_STORE={get:k=>{try{return localStorage.getItem('togisumasu-eta:'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('togisumasu-eta:'+k,v)}catch(e){}}};
@@ -818,11 +823,23 @@ async function mountPractice(){const s=SKM[view.id];const a=access(s.id);if(!a.o
     return;
   }
   mountQuestion(host,q,{meta:()=>`<span class="tag${rep?' rep':''}">${rep?'Repair':'Practice'}</span>${staged?kpMeta(s.id):`<span>${rep?'Get 2 in a row to repair this topic':x.lv>0?(isDue(s.id)?'This counts as your review':'Extra practice'):'Get 3 in a row to master this topic'}</span>${x.lv>0&&!rep?'':`<span class="streakdots">${Array.from({length:need},(_,i)=>`<i class="${i<Math.min(need,x.s||0)?'on':''}"></i>`).join('')}</span>`}`}`,
-    mode:'practice',answered:(ok,extra)=>{const ev=record(s.id,ok,'practice',extra);$('#pill').innerHTML=pillOf(s.id);return ev},next:()=>mountPractice()})}
+    mode:'practice',answered:(ok,extra)=>{const ev=record(s.id,ok,'practice',extra);$('#pill').innerHTML=pillOf(s.id);return ev},next:()=>mountPractice(),
+    onMastered:(ev,info)=>showMasteryComplete(info.host,{id:s.id,name:s.name,session:false})})}
+
+function showMasteryComplete(host,info){
+  const task=info.session?null:nextTask([info.id]);
+  const label=info.session?'Continue to the next topic':taskCta(task);
+  const act=host.querySelector('#qAct');
+  if(act){act.innerHTML=`<button class="btn primary" type="button" id="qNext">${esc(label)}</button><button class="btn" type="button" data-act="home">Course map</button>${info.session?'':`<button class="btn ghost" type="button" id="qKeep">Keep practising this topic</button>`}`;
+    const goNext=()=>{if(info.session){sessionStep();window.scrollTo(0,0);return}openNextTask(task)};
+    const nextBtn=act.querySelector('#qNext');if(nextBtn){nextBtn.onclick=goNext;nextBtn.focus({preventScroll:true})}
+    const keep=act.querySelector('#qKeep');if(keep)keep.onclick=()=>mountPractice()}
+  const live=host.querySelector('#qLive');if(live)live.textContent=info.session?'Topic mastered. Continue to the next topic.':`Topic mastered. ${label} is ready.`;
+}
 
 /* ---------- question card ---------- */
 const PH={num:'e.g. 3/4, -2, sqrt(3)/2, 5pi/6',set:'e.g. -2, 5   (or none)',expr:'e.g. 2k^2 - 1',trig:HINTS.trig,tuple:HINTS.tuple,eqn:HINTS.eqn,points:HINTS.points,region:HINTS.region};
-const EVT={mastered:()=>'<div class="event">Topic mastered. It will come back for review tomorrow and in quizzes.</div>',reviewed:e=>`<div class="event">Review passed. Next review in ${e.d} day${e.d===1?'':'s'}${e.ease!=null&&e.ease!==1?` <span class="muted">(spacing ${Number(e.ease).toFixed(2)}×)</span>`:''}.</div>`,
+const EVT={mastered:()=>'<div class="event mastery">Topic mastered · review level 1<span class="sub">It will come back for review tomorrow and in quizzes.</span></div>',reviewed:e=>`<div class="event">Review passed. Next review in ${e.d} day${e.d===1?'':'s'}${e.ease!=null&&e.ease!==1?` <span class="muted">(spacing ${Number(e.ease).toFixed(2)}×)</span>`:''}.</div>`,
   failedReview:e=>`<div class="event bad">Review missed. This topic now needs repair: 2 in a row before you move on.${e&&e.ease!=null&&e.ease!==1?` The next interval will be shorter (spacing ${Number(e.ease).toFixed(2)}×).`:''}</div>`,repaired:()=>'<div class="event">Repaired. This topic is back on your review schedule.</div>',
   repairing:e=>`<div class="event ${e.n?'':'miss'}">Repair: ${e.n}/2 in a row.</div>`,pulled:()=>'<div class="event miss">Missed. This topic comes back for review tomorrow.</div>',
   shore:e=>e&&e.reason==='rate'?`<div class="event miss">Accuracy on this topic is under ${Math.round(Mastery.RATE.minAccuracy*100)}% over the last ${Mastery.RATE.window} tries. Let's shore up a key foundation first.</div>`:''};
@@ -870,7 +887,7 @@ function mountQuestion(host,q,ctx){let done=false,sel=null,lastIn=null,geomChain
     const aib=fb.querySelector('#qAi');if(aib)aib.onclick=()=>askTutor(aib,fb.querySelector('#qAiOut'),{topic:ctx.meta(),prompt:q.prompt,answer:q.ansTex||ansDisplay(q),given:gaveUp?'':givenText(q,inp),steps:q.steps});
     const sim=fb.querySelector('#qSimilar');
     if(sim)sim.onclick=async()=>{const msg=fb.querySelector('#qSimMsg');sim.disabled=true;sim.textContent='Finding a similar question…';if(live)live.textContent='Finding a similar question.';try{const nq=await similarBankQuestion(q);if(!host.isConnected)return;if(!nq){sim.disabled=false;sim.textContent='Try a similar question';if(msg)msg.textContent='No similar question is available yet.';if(live)live.textContent='No similar question is available yet.';return}mountQuestion(host,nq,ctx);host.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});if(live)live.textContent='A similar question is ready.'}catch(e){sim.disabled=false;sim.textContent='Try a similar question';if(msg)msg.textContent=e.message;if(live)live.textContent=e.message}};
-    host.querySelector('#qAct').innerHTML=`<button class="btn primary" type="button" id="qNext">${ctx.nextLabel||'Next question'}</button>`;host.querySelector('#qNext').onclick=ctx.next;host.querySelector('#qNext').focus({preventScroll:true});typeset(fb);
+    host.querySelector('#qAct').innerHTML=`<button class="btn primary" type="button" id="qNext">${ctx.nextLabel||'Next question'}</button>`;host.querySelector('#qNext').onclick=ctx.next;host.querySelector('#qNext').focus({preventScroll:true});if(ev&&ev.k==='mastered'&&ctx.onMastered)ctx.onMastered(ev,{xp,host,fb});typeset(fb);
     if(matchMedia('(max-width:640px)').matches)setTimeout(()=>fb.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}),60)}
   if(q.type==='geom'){const draw=()=>{const list=$('#geomChain');if(!list)return;list.innerHTML=geomChain.map((step,i)=>{const st=q.statements.find(s=>s.id===step.statement),rs=q.reasons.find(s=>s.id===step.reason);return `<li>${esc(plainTex(st?st.text:step.statement))} <span style="color:var(--muted)">because</span> ${esc(plainTex(rs?rs.text:step.reason))} <button class="btn ghost sm" type="button" data-geom-up="${i}">Up</button> <button class="btn ghost sm" type="button" data-geom-down="${i}">Down</button> <button class="btn ghost sm" type="button" data-geom-del="${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
     list.querySelectorAll('[data-geom-del]').forEach(b=>b.onclick=()=>{geomChain.splice(+b.dataset.geomDel,1);draw()});
@@ -1010,7 +1027,8 @@ async function sessionStep(){if(sessBusy)return;sessBusy=true;try{const host=$('
   const staged=Mastery.isStaged(s)&&it.kind==='new';
   mountQuestion($('#sq'),q,{intro,mode:it.kind,timed:it.kind==='fluency'?Mastery.FLUENCY.targetMs:0,noHint:it.kind==='fluency',meta:()=>`<span class="tag ${cls}">${lab}</span><button class="btn ghost sm" type="button" data-skill="${s.id}" style="padding:0 6px;min-height:0">${esc(s.name)}</button>${it.kind==='fluency'?`<span class="target">Aim for ${Mastery.FLUENCY.targetMs/1000}s. No auto-submit.</span>`:''}${staged?kpMeta(s.id):''}`,
     answered:(ok,extra)=>{sess.n++;if(ok)sess.right++;const ev=record(s.id,ok,it.kind,extra);if(ev){if(ev.k==='mastered')sess.mastered.push(s.id);if(ev.k==='reviewed')sess.reviewed++;if(ev.k==='failedReview')sess.flagged.push(s.id);if(ev.k==='repaired'){sess.repaired.push(s.id);sess.flagged=sess.flagged.filter(x=>x!==s.id)}if(ev.k==='shore'){sess.shoreWhy=ev.reason;sess.shoreFrom=s.id;sess.shoreRate=ev.rate}}return ev},
-    next:()=>{sessionStep();window.scrollTo(0,0)},nextLabel:'Continue'})}finally{sessBusy=false}}
+    next:()=>{sessionStep();window.scrollTo(0,0)},nextLabel:'Continue',
+    onMastered:(ev,info)=>showMasteryComplete(info.host,{id:s.id,name:s.name,session:true})})}finally{sessBusy=false}}
 
 /* ---------- quiz: one gated past-paper question, plus generated questions. Never 2022+. ---------- */
 let quizBusy=false;

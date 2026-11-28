@@ -703,6 +703,89 @@ function pickRecommended(candidates) {
   return ranked[0] || null;
 }
 
+// Topics this one builds on, directly or indirectly, inside the current catalog.
+function ancestorIds(catalog, topicId) {
+  const byId = indexCatalog(catalog).byId;
+  const out = new Set();
+  const walk = (id) => {
+    const topic = byId[id];
+    if (!topic) return;
+    for (const pre of topic.pre || []) {
+      if (!out.has(pre)) {
+        out.add(pre);
+        walk(pre);
+      }
+    }
+  };
+  walk(topicId);
+  return out;
+}
+
+// Same gates as the course-map "can I practise this now?" check: missing
+// prerequisites, a repair or shore-up underneath, or a due quiz that this
+// topic builds on.
+function isOpenForNew(progress, topicId, catalog, now, courseId) {
+  const s = skillOf(progress, topicId);
+  if (s.lv > 0 || s.fix) return false;
+  if (missingCoursePrereqs(progress, topicId, catalog).length) return false;
+  const ancestors = ancestorIds(catalog, topicId);
+  const topics = (catalog && catalog.topics) || [];
+  if (topics.some(topic => ancestors.has(topic.id) && skillOf(progress, topic.id).fix)) return false;
+  const shore = (progress.shore || []).filter(item => item && item.id);
+  if (shore.some(item => ancestors.has(item.id)) && !shore.some(item => item.id === topicId)) return false;
+  const cid = courseId || (catalog && catalog.courseId);
+  if (quizIsDue(progress, cid, now, catalog)) {
+    const recent = quizState(progress, cid).recent || [];
+    if (recent.some(id => ancestors.has(id))) return false;
+  }
+  return true;
+}
+
+// What to offer after a lesson ends (mastery, or a "what's next?" prompt).
+// Same order as the home "Today" list: repairs, shore-ups, a due quiz, due
+// reviews, then the next open frontier topic. `opts.skip` drops topics the
+// learner just finished so we do not send them straight back into one.
+function pickNextTask(progress, catalog, now, opts) {
+  const t = now != null ? now : Date.now();
+  const skip = new Set(((opts && opts.skip) || []).map(String));
+  const courseId = (opts && opts.courseId) || (catalog && catalog.courseId);
+  const topics = ((catalog && catalog.topics) || []).filter(topic => topic && topic.id);
+  const asTask = (topic, kind, extra) => Object.assign({ kind, id: topic.id, name: topic.name || topic.id }, extra || {});
+
+  const repair = topics.find(topic => !skip.has(String(topic.id)) && skillOf(progress, topic.id).fix);
+  if (repair) return asTask(repair, 'repair');
+
+  const shore = (progress.shore || []).find(item => item && item.id && !skip.has(String(item.id)) && topics.some(topic => topic.id === item.id));
+  if (shore) {
+    const topic = topics.find(item => item.id === shore.id);
+    return asTask(topic, 'shore', { from: shore.from, reason: shore.reason });
+  }
+
+  if (quizIsDue(progress, courseId, t, catalog)) return { kind: 'quiz' };
+
+  const due = topics.filter(topic => {
+    if (skip.has(String(topic.id))) return false;
+    const s = skillOf(progress, topic.id);
+    return s.lv > 0 && !s.fix && !missingCoursePrereqs(progress, topic.id, catalog).length && s.due <= t;
+  }).sort((a, b) => skillOf(progress, a.id).due - skillOf(progress, b.id).due);
+  if (due[0]) return asTask(due[0], 'review');
+
+  const holds = new Set(holdingPrereqIds(progress, catalog));
+  const candidates = topics.filter(topic => !skip.has(String(topic.id)) && isOpenForNew(progress, topic.id, catalog, t, courseId)).map(topic => {
+    const s = skillOf(progress, topic.id);
+    return Object.assign({}, topic, {
+      inProgress: s.a > 0,
+      holds: holds.has(topic.id),
+      core: !!topic.core,
+      coreScore: topic.coreScore || 0,
+    });
+  });
+  const rec = pickRecommended(candidates);
+  if (rec) return asTask(rec, 'new', { core: !!rec.core });
+
+  return { kind: 'mixed' };
+}
+
 function applyAnswer(progress, input, catalog) {
   const id = String(input.id);
   const ok = !!input.ok;
@@ -1115,7 +1198,7 @@ const Mastery = {
   defaultEdges, edgeMap, weightsDown, weightsUp, applyFire,
   queueShore, clearShore, shoreTargets, makeDueForReview, globalShore,
   applyAnswer, markExampleSeen, exampleDue, currentKp,
-  tagCore, xpFor, addXp, canDeferQuiz, noteQuizDue, deferQuiz, clearQuizDefer, mustTakeQuiz, pickRecommended, intervalMs,
+  tagCore, xpFor, addXp, canDeferQuiz, noteQuizDue, deferQuiz, clearQuizDefer, mustTakeQuiz, pickRecommended, pickNextTask, intervalMs,
   QUIZ_COURSE_DEFAULT, emptyQuiz, quizState, writeQuizState, markQuizRecent, quizIsDue,
   missingCoursePrereqs, isCourseMastered, courseMasteredIds, courseAnswerStats, holdingPrereqIds,
   easeOf, clampEase, adjustEase, recentRate, rateBelow, pushRecent,
