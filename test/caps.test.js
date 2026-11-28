@@ -89,6 +89,41 @@ t('CAPS prerequisite projection has no cycles and only in-course targets', () =>
   assert.ok(db.prepare('SELECT COUNT(*) AS n FROM topic_prereqs').get().n > 40);
 });
 
+t('every course lists topics in topological order of its projected prerequisites', () => {
+  for (const row of catalog.courses(db)) {
+    const course = catalog.learner(db, row.id);
+    const pos = new Map(course.topics.map((topic, i) => [topic.id, i]));
+    for (const topic of course.topics) {
+      for (const pre of topic.pre) {
+        assert.ok(pos.has(pre), `${row.id}: ${topic.id} lists ${pre}, which is not in the course`);
+        assert.ok(pos.get(pre) < pos.get(topic.id), `${row.id}: ${topic.id} appears before prerequisite ${pre}`);
+      }
+    }
+  }
+});
+
+t('CAPS Units 0, 1 and 3 follow the intended teaching order', () => {
+  const course = catalog.learner(db, 'gr12-caps');
+  const idsIn = unit => course.topics.filter(topic => topic.unit === unit).map(topic => topic.id);
+  const c0 = idsIn('c0');
+  assert.deepEqual(c0.slice(c0.indexOf('special-angles'), c0.indexOf('euc-revision') + 1), [
+    'special-angles', 'right-tri', 'basic-identities', 'oblique', 'area-rule', 'euc-revision',
+  ]);
+  assert.deepEqual(idsIn('c1').slice(0, 4), ['quad-factor', 'complete-square', 'quad-formula', 'nature-of-roots']);
+  assert.deepEqual(idsIn('c3'), [
+    'transform', 'vertex', 'hyperbola', 'exp-graph', 'log-eval', 'log-graph', 'inverse', 'cubic-graph',
+  ]);
+});
+
+t('re-seeding CAPS updates stored topic positions', () => {
+  db.prepare(`UPDATE course_topics SET position = 99 WHERE course_id = 'gr12-caps' AND topic_id = 'transform'`).run();
+  caps.seed(db);
+  const ids = catalog.learner(db, 'gr12-caps').topics.filter(topic => topic.unit === 'c3').map(topic => topic.id);
+  assert.deepEqual(ids, [
+    'transform', 'vertex', 'hyperbola', 'exp-graph', 'log-eval', 'log-graph', 'inverse', 'cubic-graph',
+  ]);
+});
+
 t('default catalog is still the algebra course', () => {
   const course = catalog.learner(db);
   assert.equal(course.course.id, 'algebra');
