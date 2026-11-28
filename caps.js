@@ -54,6 +54,10 @@ const TOPICS = [
     notes: p('Midpoint $\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)$. Distance $\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$.') },
   { id: 'special-angles', unit: 'c0', existing: true },
   { id: 'right-tri', unit: 'c0', existing: true },
+  { id: 'basic-identities', unit: 'c0', existing: true },
+  { id: 'oblique', unit: 'c0', existing: true },
+  { id: 'area-rule', unit: 'c0', name: 'Area rule', pre: ['oblique'],
+    notes: p('Area of $\\triangle ABC=\\frac12 ab\\sin C$. Use it when you know two sides and the included angle.') },
   { id: 'euc-revision', unit: 'c0', name: 'Triangles, congruence and the midpoint theorem', pre: [],
     oldNotes: [p('Grade 10–11 geometry used in Grade 12: vertically opposite, corresponding and alternate angles; congruence (SSS, SAS, AAS, RHS); properties of parallelograms, rectangles, rhombi, squares and kites; the midpoint theorem and its converse. Reasons must be written in the accepted form.')],
     notes: p('Grade 12 geometry in Paper 2 is about circles and similar triangles. Every proof you write there leans on facts from Grades 10 and 11: how angles behave on straight lines and parallel lines, what you know about a triangle’s angles, when two triangles are exact copies of each other, what makes a shape a parallelogram, and the midpoint theorem. This unit rebuilds those facts from the start, so it does not matter if you have forgotten them.') +
@@ -67,20 +71,16 @@ const TOPICS = [
     notes: p('The five-number summary is minimum, $Q_1$, median, $Q_3$, maximum. Draw a box-and-whisker plot from it. An ogive plots cumulative frequency at the upper class limit and starts at the lower limit of the first class.') },
   { id: 'venn', unit: 'c0', name: 'Venn diagrams and the addition rule', pre: [],
     notes: p('$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$. For mutually exclusive events the intersection is empty, so the probabilities add. The complement is $P(A\')=1-P(A)$.') },
-  { id: 'basic-identities', unit: 'c0', existing: true },
-  { id: 'oblique', unit: 'c0', existing: true },
-  { id: 'area-rule', unit: 'c0', name: 'Area rule', pre: ['oblique'],
-    notes: p('Area of $\\triangle ABC=\\frac12 ab\\sin C$. Use it when you know two sides and the included angle.') },
 
   // Unit 1 — algebra. Completing the square is vertex form only, not a solving method.
   { id: 'quad-factor', unit: 'c1', existing: true },
-  { id: 'quad-k', unit: 'c1', name: 'Equations by $k$-substitution', pre: ['quad-factor', 'exp-int'],
-    notes: p('When every variable part is a power of the same expression, set $k$ equal to that expression ($k=2^x$ or $k=x+\\frac1x$), solve the quadratic in $k$, then come back. Reject any $k$ the substitution cannot produce.') },
-  { id: 'radical-eq', unit: 'c1', existing: true },
+  { id: 'complete-square', unit: 'c1', existing: true },
   { id: 'quad-formula', unit: 'c1', existing: true },
   { id: 'nature-of-roots', unit: 'c1', name: 'Nature of the roots', pre: ['quad-formula'],
     notes: p('For $ax^2+bx+c=0$, $D=b^2-4ac$. $D>0$: real and unequal. $D=0$: real and equal. $D<0$: non-real. Do not call the roots complex, and do not solve by completing the square.') },
-  { id: 'complete-square', unit: 'c1', existing: true },
+  { id: 'quad-k', unit: 'c1', name: 'Equations by $k$-substitution', pre: ['quad-factor', 'exp-int'],
+    notes: p('When every variable part is a power of the same expression, set $k$ equal to that expression ($k=2^x$ or $k=x+\\frac1x$), solve the quadratic in $k$, then come back. Reject any $k$ the substitution cannot produce.') },
+  { id: 'radical-eq', unit: 'c1', existing: true },
   { id: 'remainder', unit: 'c1', existing: true },
   { id: 'zeros', unit: 'c1', existing: true },
   { id: 'simultaneous-nonlinear', unit: 'c1', name: 'Linear and quadratic simultaneous equations', pre: ['systems', 'quad-factor'],
@@ -102,6 +102,7 @@ const TOPICS = [
     notes: p('Decide which kind of pattern you have before you choose a formula. A question may mix a quadratic sequence with a series, or ask which term is the first to pass a value.') },
 
   // Unit 3
+  { id: 'transform', unit: 'c3', existing: true },
   { id: 'vertex', unit: 'c3', existing: true },
   { id: 'hyperbola', unit: 'c3', name: 'Hyperbolas $y=\\frac{a}{x+p}+q$', pre: ['rational-expr', 'transform'],
     notes: p('The only hyperbola in this course is $y=\\frac{a}{x+p}+q$. Vertical asymptote $x=-p$, horizontal asymptote $y=q$, and the axes of symmetry are $y=x+p+q$ and $y=-(x+p)+q$ when the asymptotes are horizontal and vertical.') },
@@ -111,7 +112,6 @@ const TOPICS = [
   { id: 'log-graph', unit: 'c3', name: 'Logarithmic graphs', pre: ['log-eval', 'exp-graph'],
     notes: p('$y=\\log_b x$ is defined for $x>0$, passes through $(1,0)$ and $(b,1)$, and has a vertical asymptote $x=0$. Shifts work as for other graphs. Do not drill logarithm laws; use only the definition $\\log_b a=c\\iff b^c=a$.') },
   { id: 'inverse', unit: 'c3', existing: true },
-  { id: 'transform', unit: 'c3', existing: true },
   { id: 'cubic-graph', unit: 'c3', name: 'Cubic graphs', pre: ['zeros', 'transform'],
     notes: p('Read a cubic from its intercepts and turning points. $y=a(x-s)(x-t)(x-u)$ has $x$-intercepts at $s$, $t$ and $u$. The sign of $a$ tells you which way the arms go.') },
 
@@ -417,7 +417,10 @@ function seed(db) {
   }
 
   const insertMember = db.prepare(`
-    INSERT OR IGNORE INTO course_topics (course_id, unit_id, topic_id, position) VALUES (?, ?, ?, ?)
+    INSERT INTO course_topics (course_id, unit_id, topic_id, position) VALUES (?, ?, ?, ?)
+    ON CONFLICT(course_id, topic_id) DO UPDATE SET
+      unit_id = excluded.unit_id,
+      position = excluded.position
   `);
   const coursePos = new Map();
   for (const topic of TOPICS) {
