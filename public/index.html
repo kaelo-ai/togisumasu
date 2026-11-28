@@ -495,6 +495,7 @@ details.help ul{margin:6px 0 0;padding-left:18px}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/courses.css">
+<link rel="stylesheet" href="/exam.css">
 <script>
 window.__mjq=[];
 window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'},options:{enableMenu:false},
@@ -534,6 +535,8 @@ window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'globa
 <script src="/mastery.js"></script>
 <script src="/course-catalog.js"></script>
 <script src="/courses.js"></script>
+<script src="/exam.js"></script>
+<script src="/exam-ui.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -664,7 +667,7 @@ let view={name:'home'},sess=null,quiz=null;
 function go(v){if(!USER&&v.name!=='auth'&&v.name!=='landing'&&v.name!=='verify'&&v.name!=='reset')v={name:'landing'};view=v;
   try{const want=v.name==='courses'?'#courses':'';if(USER&&(location.hash.startsWith('#courses')?want!==location.hash.split('/')[0]:want))history.replaceState(null,'',location.pathname+location.search+want)}catch(e){}
   render();window.scrollTo(0,0)}
-function render(){renderStats();const app=$('#app');
+function render(){if(view.name!=='exam'&&window.ExamUI)ExamUI.stop();renderStats();const app=$('#app');
   if(view.name==='auth'){app.innerHTML=authHTML(view);const f=$('#authForm input, #forgotForm input, #resetForm input');if(f)f.focus();return}
   if(view.name==='verify'){app.innerHTML=verifyHTML(view);if(view.token&&!view.error&&!view.pending){view.pending=true;consumeVerify(view.token)}return}
   if(view.name==='reset'){app.innerHTML=resetHTML(view);const f=$('#resetForm input');if(f)f.focus();return}
@@ -673,7 +676,7 @@ function render(){renderStats();const app=$('#app');
   else if(view.name==='skill')app.innerHTML=skillHTML(view.id,view.tab);
   else if(view.name==='session')app.innerHTML=`<div id="sessHost"></div>`;
   else if(view.name==='quiz')app.innerHTML=`<div id="quizHost"></div>`;
-  else if(view.name==='exams')app.innerHTML=examsHTML();
+  else if(view.name==='exams')app.innerHTML=ExamUI.listHTML();
   else if(view.name==='courses')app.innerHTML=Courses.coursesHTML();
   else if(view.name==='exam')app.innerHTML=`<div id="examHost"></div>`;
   else if(view.name==='place')app.innerHTML=`<div id="placeHost"></div>`;
@@ -682,7 +685,7 @@ function render(){renderStats();const app=$('#app');
   if(view.name==='home'&&homeMode==='graph')mountGraph();
   if(view.name==='session')sessionStep();
   if(view.name==='quiz')quizStep();
-  if(view.name==='exam')examStep();
+  if(view.name==='exam')ExamUI.mount();
   if(view.name==='place')placementStep();
   typeset(app)}
 function renderFoot(){const f=$('#foot');if(!f)return;
@@ -1030,43 +1033,7 @@ function quizResults(host){const scored=quiz.items.filter(x=>x.kind!=='paper');c
      ${paper?'':`<details ${x.ok?'':'open'}><summary>Worked solution</summary><ol class="steps">${x.question.steps.map(t=>`<li>${t}</li>`).join('')}</ol></details>`}</li>`}).join('')}</ol></section>`;typeset(host)}
 
 function unitLabel(u){return /^c\d+$/.test(String(u))?String(u).slice(1):String(u)}
-/* ---------- exams: full 2022+ papers, timed, never used as quiz questions ---------- */
-let exam=null,examTimer=null;
-function examsHTML(){const list=exam&&exam.list||[];
-  return `<section class="summary panel"><div class="eyebrow">Mock exams</div><h1>NSC papers from 2022</h1><p>These papers are reserved for a full timed Paper 1 or Paper 2. They are not used in quizzes. Answer keys are applied when a memo or a checked key is on file.</p>
-   <ul class="tasks">${list.map(p=>`<li><button class="btn" type="button" data-exam="${esc(p.id)}">${esc(p.id)} · ${p.totalMarks} marks · ${p.durationMinutes||180} min</button></li>`).join('')||'<li>No exam papers are loaded.</li>'}</ul>
-   <div class="row"><button class="btn ghost" type="button" data-act="home">Back</button></div></section>`}
-async function startExams(){try{const r=await API.req('GET','/api/exams');exam={list:r.exams||[]};go({name:'exams'})}catch(e){exam={list:[]};go({name:'exams'})}}
-async function startExam(id){const r=await API.req('GET','/api/exams/'+encodeURIComponent(id));
-  exam={paper:r.exam,answers:{},endsAt:Date.now()+(r.exam.durationMinutes||180)*60000,finished:false};go({name:'exam'})}
-function examStep(){const host=$('#examHost');if(!exam||!exam.paper){go({name:'home'});return}
-  if(examTimer)clearInterval(examTimer);
-  const p=exam.paper;
-  host.innerHTML=`<div class="sbar"><button class="btn ghost sm" type="button" data-act="exams">All exams</button><span class="tnum" id="examClock" style="font-size:.95rem"></span><span style="color:var(--muted)">${esc(p.id)} · ${p.totalMarks} marks</span></div>
-   <section class="summary">${p.questions.map(q=>{const geom=q.geom?`<div class="geom"><div class="row"><label>Statement <select data-geom-stmt="${esc(q.id)}">${q.geom.statements.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><label>Reason <select data-geom-reason="${esc(q.id)}">${q.geom.reasons.map(s=>`<option value="${esc(s.id)}">${esc(plainTex(s.text))}</option>`).join('')}</select></label><button class="btn" type="button" data-geom-add="${esc(q.id)}">Add step</button></div><ol data-geom-list="${esc(q.id)}" class="steps"></ol></div>`:`<label class="l" for="ex-${esc(q.id)}">Your answer</label>${q.hint?`<p class="gnote">${esc(q.hint)}</p>`:''}<textarea id="ex-${esc(q.id)}" data-exam-ans="${esc(q.id)}" rows="3" style="width:100%;font:inherit" placeholder="${esc(q.hint||'')}">${esc(typeof exam.answers[q.id]==='string'?exam.answers[q.id]:'')}</textarea>`;
-     return `<article class="qcard washi-paper" style="margin-top:12px" data-exam-q="${esc(q.id)}"><div class="qmeta"><span class="tag qz">Q${esc(q.number)}</span><span>${q.marks} mark${q.marks===1?'':'s'}</span>${q.checkable?'':'<span>Reviewed from the memo</span>'}</div><div class="prompt">${q.prompt}</div>${geom}<div class="qra" data-exam-result="${esc(q.id)}"></div></article>`}).join('')}
-   <div class="row" style="margin:16px 0"><button class="btn primary" type="button" id="examFinish">Finish exam</button></div>
-   <p class="gnote" id="examNote"></p></section>`;
-  host.querySelectorAll('[data-exam-ans]').forEach(el=>el.addEventListener('input',()=>{exam.answers[el.dataset.examAns]=el.value}));
-  const drawGeom=id=>{const list=host.querySelector(`[data-geom-list="${id}"]`);if(!list)return;const chain=Array.isArray(exam.answers[id])?exam.answers[id]:[];const q=p.questions.find(item=>item.id===id);
-    list.innerHTML=chain.map((step,i)=>{const st=q.geom.statements.find(s=>s.id===step.statement),rs=q.geom.reasons.find(s=>s.id===step.reason);return `<li>${esc(plainTex(st?st.text:step.statement))} <span style="color:var(--muted)">because</span> ${esc(plainTex(rs?rs.text:step.reason))} <button class="btn ghost sm" type="button" data-geom-del="${esc(id)}:${i}">Remove</button></li>`}).join('')||'<li class="gnote">No steps yet.</li>';
-    list.querySelectorAll('[data-geom-del]').forEach(b=>b.onclick=()=>{const i=+b.dataset.geomDel.split(':')[1];exam.answers[id].splice(i,1);drawGeom(id)})};
-  host.querySelectorAll('[data-geom-add]').forEach(b=>b.onclick=()=>{const id=b.dataset.geomAdd;const chain=Array.isArray(exam.answers[id])?exam.answers[id]:(exam.answers[id]=[]);if(chain.length>=12)return;
-    chain.push({statement:host.querySelector(`[data-geom-stmt="${id}"]`).value,reason:host.querySelector(`[data-geom-reason="${id}"]`).value});drawGeom(id)});
-  p.questions.forEach(q=>{if(q.geom)drawGeom(q.id)});
-  const tick=()=>{const el=$('#examClock');if(!el)return;const left=exam.endsAt-Date.now();if(left<=0){el.textContent='Time';return}const m=Math.floor(left/60000),s=Math.floor((left%60000)/1000);el.textContent=m+':'+String(s).padStart(2,'0')};
-  tick();examTimer=setInterval(tick,1000);
-  $('#examFinish').onclick=async()=>{exam.finished=true;clearInterval(examTimer);const note=$('#examNote');note.textContent='Marking…';
-    try{const r=await API.req('POST','/api/exams/'+encodeURIComponent(p.id)+'/mark',{answers:exam.answers});
-      let scored=0,right=0,review=0;
-      const memoNote=item=>(item.memoNotes||[]).length?`<p class="gnote">Memo note (official memo transcribed as printed): ${item.memoNotes.map(n=>esc(n.where)+': '+n.text).join(' ')}</p>`:'';
-      for(const item of r.results){const box=host.querySelector(`[data-exam-result="${item.id}"]`);if(!box)continue;
-        if(!item.checkable){review++;box.innerHTML=`<span>Not auto-marked. Official answer: ${item.answer||''}</span>${memoNote(item)}`}
-        else{scored++;if(item.ok)right++;box.innerHTML=`<span class="${item.ok?'':'no'}">${item.ok?'Correct':'Not the memo answer'}. Official answer: ${item.answer||''}</span>${memoNote(item)}`}}
-      note.textContent=`Auto-marked ${right} of ${scored}. ${review} part${review===1?'':'s'} (sketches, free-form proofs and written explanations) are shown with the official memo answer and are not scored. This paper stays out of quizzes.`;
-      typeset(host)}
-    catch(e){note.textContent=e.message}};
-  typeset(host)}
+/* ---------- exams: see exam.js (attempt state) and exam-ui.js (screens) ---------- */
 
 
 /* ---------- graph view ---------- */
@@ -1143,11 +1110,10 @@ document.addEventListener('keydown',e=>{const n=e.target.closest&&e.target.close
 document.addEventListener('click',e=>{const t=e.target.closest('[data-skill],[data-act],[data-tab]');if(!t)return;
   if(t.dataset.skill){e.preventDefault();const id=t.dataset.skill;go({name:'skill',id,tab:st(id).a>0?'practice':'learn'});return}
   if(t.dataset.tab){go({...view,tab:t.dataset.tab});return}
-  const a=t.dataset.act;if(a==='home'){if(examTimer)clearInterval(examTimer);go({name:'home'})}if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')startExams();if(a==='another')mountExample();if(a==='place')openPlacement();if(a==='place-start'||a==='place-retake')beginPlacement();if(a==='courses')go({name:'courses'})});
+  const a=t.dataset.act;if(a==='home')go({name:'home'});if(a==='session')startSession();if(a==='quiz')startQuiz();if(a==='exams')ExamUI.openList();if(a==='another')mountExample();if(a==='place')openPlacement();if(a==='place-start'||a==='place-retake')beginPlacement();if(a==='courses')go({name:'courses'})});
 $('#homeBtn').onclick=()=>go({name:'home'});
 document.addEventListener('click',e=>{const u=e.target.closest('[data-unit-toggle]');if(!u)return;const id=u.dataset.unitToggle;if(collapsedUnits.has(id))collapsedUnits.delete(id);else collapsedUnits.add(id);saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
 document.addEventListener('change',e=>{if(e.target.id!=='mapFilter')return;mapFilter=e.target.value;saveMapPrefs();const y=window.scrollY;render();window.scrollTo(0,y)});
-document.addEventListener('click',e=>{const paper=e.target.closest('[data-exam]');if(paper)startExam(paper.dataset.exam)});
 document.addEventListener('click',e=>{if(e.target.id==='resetBtn'){$('#resetZone').innerHTML='<span class="confirm">Erase all progress? <button class="btn sm" type="button" id="resetYes">Erase</button><button class="btn ghost sm" type="button" id="resetNo">Keep</button></span>'}
   if(e.target.id==='resetNo')renderFoot();if(e.target.id==='resetYes'){Store.data=EMPTY();Store.save();go({name:'home'})}});
 document.addEventListener('keydown',e=>{if(!activeQ||!document.querySelector('.qcard #qAct'))return;const tag=(e.target.tagName||'').toLowerCase();

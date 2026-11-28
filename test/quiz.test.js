@@ -90,7 +90,7 @@ t('exams are the 2022+ papers and practice papers are not exams', () => {
   assert.equal(paper.year, 2022);
   const marks = paper.questions.reduce((sum, q) => sum + q.marks, 0);
   assert.equal(marks, 150);
-  assert.ok(paper.questions.every(q => q.prompt));
+  assert.ok(paper.questions.every(q => typeof q.html === 'string' && q.group));
 });
 
 let base;
