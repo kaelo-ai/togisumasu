@@ -9,9 +9,10 @@
    Mastery.missingCoursePrereqs, PR #24) costs nothing itself: it counts as soon as
    the prerequisite does, and the prerequisite is already counted.
 
-   Pace is the average XP per day over the last 14 days once there are at least 3
-   active days; until then it is the daily goal. A learner who started less than 14
-   days ago is averaged over the days since they started, not over 14.
+   Pace is the average XP per day over the last 14 days once the learner has at
+   least 14 days of history and 3 active days in that window. With a shorter
+   history, the average is over the last 7 calendar days, still needing 3 active
+   days in that week; until then it is the daily goal.
    Dates are phrased as part of a month ("mid-January") until there is a week of
    history, then as a day ("14 January"). The estimate is recomputed at most once a
    day per course and goal, so it does not wobble after every answer. */
@@ -20,7 +21,7 @@
 const M = root.Mastery || (typeof require === 'function' ? require('./mastery.js') : null);
 const DAY = 864e5;
 const XP = { unmastered: 11, repair: 6, due: 2 };
-const PACE = { windowDays: 14, minActiveDays: 3, preciseAfterDays: 7, maxDays: 3650 };
+const PACE = { windowDays: 14, shortWindowDays: 7, minActiveDays: 3, preciseAfterDays: 7, maxDays: 3650 };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const startOfDay = t => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
@@ -62,7 +63,7 @@ function pace(log, goal, now) {
   const days = Object.keys(L).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k) && Number(L[k]) > 0 && keyToTime(k) <= t);
   const first = days.length ? Math.min(...days.map(keyToTime)) : null;
   const history = first == null ? 0 : daysBetween(first, t) + 1;        // days since the first active day, today included
-  const span = Math.max(1, Math.min(PACE.windowDays, history));
+  const span = history >= PACE.windowDays ? PACE.windowDays : PACE.shortWindowDays;
   let sum = 0, active = 0;
   for (let i = 0; i < span; i++) {
     const x = Number(L[M.dayKey(addDays(t, -i))]) || 0;

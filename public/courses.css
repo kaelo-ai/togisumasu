@@ -88,8 +88,8 @@
   font-size:calc(.9rem * var(--k,1));line-height:1.12;letter-spacing:.005em;font-weight:500;overflow:hidden;text-align:center}
 .book.long .tt{font-size:calc(.78rem * var(--k,1));line-height:1.08}
 .book.st-label .tt{font-size:calc(.8rem * var(--k,1))}
-.book.st-label.long .tt{font-size:calc(.7rem * var(--k,1))}
-.book .tt.is-label{top:40px;bottom:54px;left:5px;right:5px;padding:10px 0;align-items:flex-start;background:#F4ECDA;color:#2A2520;border-radius:1px;
+.book.st-label.long .tt{font-size:calc(.62rem * var(--k,1));line-height:1.05;letter-spacing:-.015em}
+.book .tt.is-label{top:36px;bottom:42px;left:4px;right:4px;padding:7px 0;align-items:flex-start;background:#F4ECDA;color:#2A2520;border-radius:1px;
   box-shadow:inset 0 0 0 1px rgba(0,0,0,.14),inset 0 0 0 3px #F4ECDA,inset 0 0 0 4px rgba(0,0,0,.1)}
 .book .band{position:absolute;left:0;right:0;height:6px;border-top:1.5px solid var(--gild);border-bottom:1.5px solid var(--gild);opacity:.9}
 .book .band.t{top:13px}.book .band.b{bottom:30px}
@@ -99,7 +99,8 @@
 .book.st-plain .tt{font-family:var(--f-body);font-weight:600;letter-spacing:.01em;font-size:calc(.8rem * var(--k,1))}
 .book .mk{position:absolute;left:0;right:0;bottom:9px;text-align:center;font:600 .54rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.85}
 .book .soon{position:absolute;left:5px;right:5px;bottom:44px;padding:3px 0;border-radius:2px;background:#F3EBDA;color:#5B4A2F;font:700 .46rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.25)}
-.book.st-label .soon{bottom:30px}
+.book.st-label.is-soon .tt.is-label{bottom:52px}
+.book.st-label .soon{bottom:22px}
 .book.is-soon{filter:saturate(.55) brightness(.98)}
 /* how far you are: a thin strip rising up the spine's left edge */
 .book .pr{position:absolute;left:0;bottom:0;width:4px;height:calc(var(--p) * 100%);background:var(--ribbon);box-shadow:1px 0 0 rgba(0,0,0,.18)}

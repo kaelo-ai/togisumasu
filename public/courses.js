@@ -92,6 +92,8 @@
     let h = bk.live ? 232 : Math.round(192 + r(9) * 42);
     if (bk.id === 'gr12-caps') { c = '#EEE2C6'; style = 'caps'; w = 68; h = 238; }
     if (bk.id === 'algebra') { c = '#1A1A1A'; style = 'bands'; w = 60; h = 226; }
+    // long titles on a cream label need a taller, slightly wider spine or they clip
+    if (style === 'label' && (bk.title || '').length >= 24) { w = Math.max(w, 54); h = Math.max(h, 240); }
     const light = luminance(c) > 0.3;
     const look = { c, fg: light ? '#2A2118' : '#F4EBD8', light, style, w, h };
     LOOKS.set(bk.id, look);
@@ -121,7 +123,7 @@
     if (st === 'soon') cls.push('is-soon');
     if (st === 'current' || st === 'enrolled') cls.push('is-enrolled');
     if (st === 'current') cls.push('is-current');
-    if (bk.title.length > 26) cls.push('long');
+    if (bk.title.length >= 24) cls.push('long');
     return `<div class="slot" data-slot="${h(bk.id)}" style="--i:${i}"><div class="slot-y"><div class="slot-in">
       <button type="button" class="${cls.join(' ')}" style="--w:${look.w}px;--h:${look.h}px;--c:${look.c};--fg:${look.fg}" data-book="${h(bk.id)}" aria-label="${h(bookLabel(bk, shelf))}" aria-haspopup="dialog">${spineFace(bk, shelf, look)}</button>
     </div></div></div>`;

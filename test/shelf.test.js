@@ -55,9 +55,23 @@ const B = { topics: [{ id: 'x', pre: [] }, { id: 'a', pre: [] }, { id: 'b', pre:
     assert.equal(p.source, 'log'); assert.equal(p.span, 14); assert.equal(p.activeDays, 5);
     assert.equal(p.xpPerDay, (20 + 30 + 40 + 10 + 40) / 14);
   });
-  await t('a learner who started less than 14 days ago is averaged over the days since they started', () => {
+  await t('a learner with under 14 days of history is averaged over the last 7 calendar days', () => {
     const p = Pace.pace(logOf([[0, 30], [1, 30], [4, 30]]), 30, NOW);
-    assert.equal(p.span, 5); assert.equal(p.historyDays, 5); assert.equal(p.xpPerDay, 90 / 5);
+    assert.equal(p.span, 7); assert.equal(p.historyDays, 5); assert.equal(p.activeDays, 3);
+    assert.equal(p.source, 'log'); assert.equal(p.xpPerDay, 90 / 7);
+  });
+  await t('the 7-day window still needs 3 active days, even if earlier days exist', () => {
+    const p = Pace.pace(logOf([[0, 50], [1, 50], [8, 50]]), 30, NOW);
+    assert.equal(p.historyDays, 9); assert.equal(p.span, 7); assert.equal(p.activeDays, 2);
+    assert.equal(p.source, 'goal'); assert.equal(p.xpPerDay, 30);
+  });
+  await t('14 days of history uses the 14-day window, 13 days still uses 7', () => {
+    const at13 = Pace.pace(logOf([[0, 20], [3, 20], [6, 20], [12, 20]]), 30, NOW);
+    assert.equal(at13.historyDays, 13); assert.equal(at13.span, 7);
+    assert.equal(at13.source, 'log'); assert.equal(at13.xpPerDay, (20 + 20 + 20) / 7);
+    const at14 = Pace.pace(logOf([[0, 20], [3, 20], [6, 20], [13, 20]]), 30, NOW);
+    assert.equal(at14.historyDays, 14); assert.equal(at14.span, 14);
+    assert.equal(at14.source, 'log'); assert.equal(at14.xpPerDay, (20 + 20 + 20 + 20) / 14);
   });
 
   /* ---------- dates ---------- */
@@ -66,7 +80,7 @@ const B = { topics: [{ id: 'x', pre: [] }, { id: 'a', pre: [] }, { id: 'b', pre:
     const e = Pace.estimate(p, { topics: Array.from({ length: 60 }, (_, i) => ({ id: 't' + i, pre: [] })) }, { now: NOW, goal: 30 });
     assert.equal(e.remainingXp, 660); assert.equal(e.goalDays, 22); assert.equal(e.precise, false);
     assert.equal(e.goalText, 'mid-December');                         // 28 Nov + 22 days = 20 Dec
-    assert.equal(e.pace.source, 'log'); assert.equal(e.paceText, 'mid-December');
+    assert.equal(e.pace.source, 'log'); assert.equal(e.paceText, 'mid-January 2027');  // 90/7 XP a day, 52 days → 19 Jan
     const week = { ...p, log: logOf([[0, 30], [1, 30], [2, 30], [7, 30]]) };
     const w = Pace.estimate(week, { topics: Array.from({ length: 60 }, (_, i) => ({ id: 't' + i, pre: [] })) }, { now: NOW, goal: 30 });
     assert.equal(w.precise, true); assert.equal(w.goalText, '20 December');
