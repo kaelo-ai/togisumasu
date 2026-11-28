@@ -7,6 +7,7 @@ const { mailbox, registerVerified } = require('./helpers.js');
 const sent = mailbox();
 const { server, db } = require('../server.js');
 const catalog = require('../catalog.js');
+const Mastery = require('../public/mastery.js');
 const caps = require('../caps.js');
 const nsc = require('../nsc.js');
 
@@ -87,6 +88,53 @@ t('CAPS prerequisite projection has no cycles and only in-course targets', () =>
   };
   for (const id of ids) visit(id);
   assert.ok(db.prepare('SELECT COUNT(*) AS n FROM topic_prereqs').get().n > 40);
+});
+
+function openTopics(course, progress) {
+  const skill = id => Mastery.skillOf(progress, id);
+  return course.topics.filter(topic => skill(topic.id).lv === 0 && (topic.pre || []).every(p => skill(p).lv > 0));
+}
+function ancestorSet(course, id) {
+  const byId = new Map(course.topics.map(topic => [topic.id, topic]));
+  const out = new Set();
+  const walk = x => {
+    for (const p of (byId.get(x) && byId.get(x).pre) || []) {
+      if (!out.has(p)) { out.add(p); walk(p); }
+    }
+  };
+  walk(id);
+  return out;
+}
+function independentPair(ids, course) {
+  for (let i = 0; i < ids.length; i++) {
+    for (let j = i + 1; j < ids.length; j++) {
+      const a = ids[i], b = ids[j];
+      if (!ancestorSet(course, a).has(b) && !ancestorSet(course, b).has(a)) return [a, b];
+    }
+  }
+  return null;
+}
+
+t('a fresh learner has several independent topics open at once, not a single linear path', () => {
+  const empty = Mastery.emptyProgress();
+  for (const id of ['algebra', 'gr12-caps']) {
+    const course = catalog.learner(db, id);
+    const open = openTopics(course, empty);
+    assert.ok(open.length > 1, `${id}: expected several starting topics, got ${open.map(t => t.id).join(',') || 'none'}`);
+    const pair = independentPair(open.map(t => t.id), course);
+    assert.ok(pair, `${id}: starting topics should include two independent branches, got ${open.map(t => t.id).join(',')}`);
+    // TOC order is display only: a later root stays open even if earlier listed topics are still unmastered.
+    const later = open.filter(t => t.id !== course.topics[0].id);
+    assert.ok(later.length >= 1, `${id}: topics after the first in the TOC can still be open`);
+  }
+
+  const capsCourse = catalog.learner(db, 'gr12-caps');
+  let progress = Mastery.writeSkill(empty, 'exp-int', { ...Mastery.skillOf(empty, 'exp-int'), lv: 1, due: 1 });
+  const open = openTopics(capsCourse, progress).map(t => t.id);
+  assert.ok(open.includes('exp-rat') || open.includes('growth-decay'), 'a child of the mastered root can open');
+  assert.ok(open.includes('linear-eq') && open.includes('euc-revision'), 'independent algebra and geometry branches stay open together');
+  const pair = independentPair(['linear-eq', 'euc-revision'], capsCourse);
+  assert.ok(pair, 'linear-eq and euc-revision must not depend on each other');
 });
 
 t('every course lists topics in topological order of its projected prerequisites', () => {
