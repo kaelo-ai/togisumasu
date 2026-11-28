@@ -36,6 +36,8 @@ body.exam-focus .wrap{padding-bottom:96px}
 .xrules{margin:0 0 20px;padding-left:1.1em;display:grid;gap:8px;color:var(--ink);max-width:60ch}
 .xrules li::marker{color:var(--muted)}
 .xresume-note{margin:0 0 14px;padding:10px 14px;border-left:3px solid var(--mark);background:var(--mark-soft);border-radius:0 8px 8px 0;font-size:.92rem}
+.xadvice{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--accent);background:color-mix(in srgb,var(--paper-soft) 80%,transparent);border-radius:0 8px 8px 0;font-size:.95rem;max-width:62ch;color:var(--ink)}
+.xlib-head .xadvice{margin-top:16px}
 .xstart-acts{gap:10px}
 .xconfirm{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
 .xconfirm-q{font-size:.9rem}
@@ -68,6 +70,9 @@ body.exam-focus .wrap{padding-bottom:96px}
 .xtimer[data-phase="danger"],.xtimer[data-phase="over"]{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
 .xtimer[data-phase="danger"] .xtimer-k,.xtimer[data-phase="over"] .xtimer-k{color:var(--bad)}
 @media (prefers-reduced-motion:no-preference){.xtimer[data-phase="danger"] .xtimer-v{animation:xpulse 2s ease-in-out infinite}}
+.xtimer[data-phase="untimed"]{background:var(--surface);border-color:var(--ink);color:var(--ink)}
+.xtimer[data-phase="untimed"] .xtimer-k{color:var(--muted)}
+.xtimer[data-phase="untimed"] .xtimer-v{font-size:1.02rem;letter-spacing:0}
 @keyframes xpulse{50%{opacity:.55}}
 
 /* navigator chips */
@@ -182,6 +187,11 @@ body.exam-focus .wrap{padding-bottom:96px}
 .xreview h1{font-size:clamp(1.7rem,4vw,2.2rem);margin:6px 0 16px}
 .xreview h2{font-size:1rem;margin:22px 0 8px}
 .xbanner{padding:12px 16px;border-radius:10px;background:var(--bad-soft);border:1px solid var(--bad);margin-bottom:16px}
+.xbanner-untimed{background:var(--mark-soft);border-color:var(--mark);color:var(--ink)}
+.xafter{display:inline-block;margin:6px 0 0;padding:2px 8px;border-radius:999px;border:1px solid var(--mark);background:var(--mark-soft);color:color-mix(in srgb,var(--mark) 70%,var(--ink));font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.xafter-note{margin:8px 0 0;font-size:.88rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.xp.is-after{box-shadow:inset 3px 0 0 var(--mark)}
+.xscore-incl{margin:10px 0 0;padding:10px 12px;border-radius:8px;background:var(--mark-soft);border:1px solid color-mix(in srgb,var(--mark) 50%,var(--line));font-size:.95rem}
 .xsum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .xsum div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column}
 .xsum b{font-family:var(--f-display);font-size:1.8rem;line-height:1}

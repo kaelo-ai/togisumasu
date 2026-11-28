@@ -63,11 +63,13 @@ function recover(a) {
   return { ...a, elapsedMs: Math.min(a.durationMs, a.elapsedMs + (until - a.resumedAt)), resumedAt: null };
 }
 
-// Time running out moves the attempt to review with answers locked.
+// Time running out moves the attempt to review with answers locked, and
+// snapshots the answers given under timed conditions.
 function tick(a, now) {
-  if (a.status !== 'active') return a;
+  if (a.status !== 'active' || a.untimed) return a;
   if (remainingMs(a, now) > 0) return a;
-  return { ...a, status: 'review', timeUp: true, elapsedMs: a.durationMs, resumedAt: null, seenAt: now };
+  return { ...a, status: 'review', timeUp: true, elapsedMs: a.durationMs, resumedAt: null, seenAt: now,
+    timedAnswers: a.timedAnswers || { ...(a.answers || {}) } };
 }
 
 function toReview(a, now) {
@@ -75,8 +77,26 @@ function toReview(a, now) {
   return { ...pause(a, now), status: 'review' };
 }
 function backToPaper(a, now) {
-  if (a.status !== 'review' || a.timeUp) return a;
+  if (a.status !== 'review') return a;
+  if (a.timeUp && !a.untimed) return a;
   return resume({ ...a, status: 'active' }, now);
+}
+// After time is up the learner can keep practising. New or changed answers
+// are marked as after time; the snapshot in timedAnswers is left alone.
+function keepGoing(a, now) {
+  if (!a.timeUp || a.status === 'done') return a;
+  const next = { ...a, untimed: true, status: 'active', timedAnswers: a.timedAnswers || { ...(a.answers || {}) } };
+  return resume(next, now);
+}
+
+function sameAnswer(x, y) {
+  if (Array.isArray(x) || Array.isArray(y)) return JSON.stringify(x || []) === JSON.stringify(y || []);
+  const sx = isAnswered(x) ? String(x) : '', sy = isAnswered(y) ? String(y) : '';
+  return sx === sy;
+}
+function isAfterTime(a, id) {
+  if (!a || !a.timeUp || !a.timedAnswers) return false;
+  return !sameAnswer(a.answers && a.answers[id], a.timedAnswers[id]);
 }
 
 function phase(ms) {
@@ -101,7 +121,7 @@ function spokenClock(ms) {
   return parts.join(' ');
 }
 
-function locked(a) { return a.status === 'done' || (a.status === 'review' && a.timeUp); }
+function locked(a) { return a.status === 'done' || a.status === 'review' || (a.timeUp && !a.untimed); }
 
 function setAnswer(a, id, value) {
   if (locked(a)) return a;
@@ -182,8 +202,13 @@ function results(paper, marked) {
   return { total: { ...total, pct: pct(total) }, byQuestion, byTopic };
 }
 
-function finish(a, marked, summary, now) {
-  return { ...pause(a, now), status: 'done', finishedAt: now, marked, summary };
+function finish(a, marked, summary, now, extra) {
+  const next = { ...pause(a, now), status: 'done', finishedAt: now, marked, summary };
+  if (extra && extra.markedTimed) {
+    next.markedTimed = extra.markedTimed;
+    next.summaryTimed = extra.summaryTimed;
+  }
+  return next;
 }
 
 /* ---------- progress document ---------- */
@@ -204,8 +229,11 @@ function discardCurrent(progress, paperId) {
 }
 function recordFinished(progress, paperId, attempt) {
   const s = slot(progress, paperId);
-  const t = attempt.summary || { earned: 0, auto: 0, review: 0, marks: 0 };
-  const history = s.history.concat([{ at: attempt.finishedAt, earned: t.earned, auto: t.auto, review: t.review, marks: t.marks, timeUp: !!attempt.timeUp }]).slice(-HISTORY_MAX);
+  const full = attempt.summary || { earned: 0, auto: 0, review: 0, marks: 0 };
+  const timed = attempt.summaryTimed || full;
+  const row = { at: attempt.finishedAt, earned: timed.earned, auto: timed.auto, review: timed.review, marks: timed.marks, timeUp: !!attempt.timeUp };
+  if (attempt.summaryTimed) { row.earnedIncluding = full.earned; row.autoIncluding = full.auto; }
+  const history = s.history.concat([row]).slice(-HISTORY_MAX);
   return writeSlot(progress, paperId, { current: null, last: attempt, history });
 }
 function lastSummary(progress, paperId) {
@@ -213,10 +241,18 @@ function lastSummary(progress, paperId) {
   return h.length ? h[h.length - 1] : null;
 }
 
+// Same bar the daily quiz uses: fewer than 3 mastered course topics, and we
+// gently suggest waiting. Mock exams stay open either way.
+const NEW_LEARNER_BELOW = 3;
+function isNewLearner(masteredCount, below) {
+  const need = below != null ? below : NEW_LEARNER_BELOW;
+  return (masteredCount || 0) < need;
+}
+
 const api = {
-  WARN_MS, DANGER_MS, isAnswered, newAttempt, remainingMs, pause, resume, heartbeat, recover, tick,
-  toReview, backToPaper, phase, formatClock, spokenClock, locked, setAnswer, toggleFlag, groupProgress,
-  counts, reviewList, results, finish, slot, current, saveCurrent, discardCurrent, recordFinished, lastSummary,
+  WARN_MS, DANGER_MS, NEW_LEARNER_BELOW, isAnswered, newAttempt, remainingMs, pause, resume, heartbeat, recover, tick,
+  toReview, backToPaper, keepGoing, isAfterTime, phase, formatClock, spokenClock, locked, setAnswer, toggleFlag, groupProgress,
+  counts, reviewList, results, finish, slot, current, saveCurrent, discardCurrent, recordFinished, lastSummary, isNewLearner,
 };
 if (typeof module === 'object' && module.exports) module.exports = api;
 else root.Exam = api;

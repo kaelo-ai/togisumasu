@@ -41,13 +41,37 @@
   function statusHTML(p) {
     const cur = E.current(Store.data, p.id);
     if (cur) {
-      if (cur.status === 'review') return cur.timeUp ? '<span class="xstat due">Time’s up · submit to see marks</span>' : '<span class="xstat due">Ready to submit</span>';
-      return `<span class="xstat live"><i aria-hidden="true"></i>In progress · ${E.formatClock(E.remainingMs(E.recover(cur), Date.now()))} left</span>`;
+      const live = E.recover(cur);
+      if (live.untimed) return live.status === 'review'
+        ? '<span class="xstat due">Untimed · ready to submit</span>'
+        : '<span class="xstat live"><i aria-hidden="true"></i>Continuing untimed</span>';
+      if (live.timeUp || (live.status === 'active' && E.remainingMs(live, Date.now()) <= 0))
+        return '<span class="xstat due">Time’s up · submit to see marks</span>';
+      if (live.status === 'review') return '<span class="xstat due">Ready to submit</span>';
+      return `<span class="xstat live"><i aria-hidden="true"></i>In progress · ${E.formatClock(E.remainingMs(live, Date.now()))} left</span>`;
     }
     const last = E.lastSummary(Store.data, p.id);
-    if (last) return `<span class="xstat">Last: <b class="tnum">${last.earned}/${last.auto}</b> auto-marked${last.auto ? ` · ${Math.round(last.earned / last.auto * 100)}%` : ''} · ${dateTxt(last.at)}</span>`;
+    if (last) {
+      const incl = last.earnedIncluding != null && last.earnedIncluding !== last.earned
+        ? ` · <b class="tnum">${last.earnedIncluding}/${last.autoIncluding != null ? last.autoIncluding : last.auto}</b> including after time` : '';
+      return `<span class="xstat">Last: <b class="tnum">${last.earned}/${last.auto}</b> auto-marked${last.auto ? ` · ${Math.round(last.earned / last.auto * 100)}%` : ''}${incl} · ${dateTxt(last.at)}</span>`;
+    }
     return '<span class="xstat muted">Not attempted</span>';
   }
+
+  function masteredCount() {
+    try {
+      if (typeof CATALOG_LOADED !== 'undefined' && !CATALOG_LOADED) return null;
+      if (typeof masteredIds === 'function') return masteredIds().length;
+    } catch (e) { /* catalog not ready */ }
+    return null;
+  }
+  function adviseNote() {
+    const n = masteredCount();
+    if (n == null || !E.isNewLearner(n)) return '';
+    return '<p class="xadvice" role="note">These papers are most useful once you’ve mastered a few more topics. You’re welcome to try one now if you want the practice.</p>';
+  }
+
   function listHTML() {
     const list = S.list || [];
     const years = [...new Set(list.map(p => p.year))].sort((a, b) => b - a);
@@ -61,7 +85,8 @@
     return `<section class="xlib">
       <div class="crumb"><button class="btn ghost sm" type="button" data-act="home">← Course map</button></div>
       <header class="xlib-head"><div class="eyebrow">Mock exams</div><h1>NSC past papers</h1>
-        <p class="lead">Full November papers from 2022 on, timed like the real thing. They never appear in quizzes, so they stay fresh for exam practice. Your answers and time are saved as you go.</p></header>
+        <p class="lead">Full November papers from 2022 on, timed like the real thing. They never appear in quizzes, so they stay fresh for exam practice. Your answers and time are saved as you go.</p>
+        ${adviseNote()}</header>
       ${years.length ? years.map(y => `<section class="xyear" aria-labelledby="xy-${y}"><h2 id="xy-${y}">${y}</h2><div class="xcards">${list.filter(p => p.year === y).sort((a, b) => a.paper - b.paper).map(card).join('')}</div></section>`).join('') : '<p class="gnote">No exam papers are loaded yet.</p>'}
     </section>`;
   }
@@ -105,20 +130,25 @@
   function startHTML(paper, a) {
     const last = E.slot(Store.data, paper.id).last;
     const left = a ? E.remainingMs(a, Date.now()) : 0;
-    const resume = a ? (a.status === 'review'
-      ? `<button class="btn primary" type="button" data-exam-go="review">${a.timeUp ? 'Submit for marking' : 'Continue to review'}</button>`
-      : `<button class="btn primary" type="button" data-exam-go="paper">Resume · <span class="tnum">${E.formatClock(left)}</span> left</button>`) : '';
+    const resume = a ? (
+      a.untimed
+        ? `<button class="btn primary" type="button" data-exam-go="paper">Resume untimed</button><button class="btn" type="button" data-exam-go="review">Submit for marking</button>`
+        : a.status === 'review'
+          ? `<button class="btn primary" type="button" data-exam-go="review">${a.timeUp ? 'Submit for marking' : 'Continue to review'}</button>${a.timeUp ? '<button class="btn" type="button" data-exam-act="keep-going">Keep going untimed</button>' : ''}`
+          : `<button class="btn primary" type="button" data-exam-go="paper">Resume · <span class="tnum">${E.formatClock(left)}</span> left</button>`
+    ) : '';
     return `<div class="crumb"><button class="btn ghost sm" type="button" data-exam-nav="list">← Mock exams</button></div>
     <section class="xstart">
       <div class="xstart-main">
         <div class="eyebrow">Mock exam · Paper ${paper.paper}</div>
         <h1 tabindex="-1" data-focus-first>${h(paper.title)}</h1>
         <ul class="xfacts tnum"><li><b>${Math.round(paper.durationMinutes / 60 * 10) / 10}</b> hours</li><li><b>${paper.totalMarks}</b> marks</li><li><b>${paper.groups.length}</b> questions</li><li><b>${paper.questions.length}</b> parts</li></ul>
-        ${a ? `<p class="xresume-note">${a.status === 'review' ? (a.timeUp ? 'Time ran out on this attempt. Your answers are saved and locked.' : 'You finished answering. Check your flagged and blank parts, then submit.') : `You have an attempt in progress, saved ${dateTxt(a.seenAt)}. The clock was paused when you left.`}</p>` : ''}
+        ${a ? `<p class="xresume-note">${a.untimed ? 'Time ran out and you chose to keep going untimed. Answers you add or change now are marked as after time, and you’ll see both your timed score and the score including those answers.' : a.status === 'review' ? (a.timeUp ? 'Time ran out on this attempt. Your answers are saved and locked. You can submit now, or keep going untimed for practice.' : 'You finished answering. Check your flagged and blank parts, then submit.') : `You have an attempt in progress, saved ${dateTxt(a.seenAt)}. The clock was paused when you left.`}</p>` : ''}
+        ${adviseNote()}
         <ul class="xrules">
           <li>The clock starts when you press Start and pauses whenever you leave the paper. It turns amber at 30 minutes and red at 10.</li>
           <li>Questions open one at a time. Answer in any order and flag parts to come back to.</li>
-          <li>Before you submit you get a review of every blank and flagged part. When time runs out, your answers are saved and review opens.</li>
+          <li>Before you submit you get a review of every blank and flagged part. When time runs out, your answers are saved and review opens. You can then keep going untimed; those later answers are marked as after time and scored separately.</li>
           <li>Short answers are auto-marked against the memo, all or nothing per part. Sketches, proofs and explanations show the memo answer for you to compare.</li>
         </ul>
         <div class="row xstart-acts">
@@ -150,7 +180,7 @@
       <div class="xbar-in">
         <button class="btn ghost sm xbar-leave" type="button" data-exam-act="leave" aria-label="Leave the exam"><span aria-hidden="true">←</span><span class="lbl">Leave</span></button>
         <div class="xbar-title"><b>${h(paper.title)}</b><span class="tnum">${paper.totalMarks} marks · ${paper.groups.length} questions</span></div>
-        <div class="xtimer" id="xTimer" data-phase="${a.timeUp ? 'over' : E.phase(left)}" role="timer" aria-label="Time left"><span class="xtimer-k">${a.timeUp ? 'Time' : review ? 'Paused' : 'Time left'}</span><span class="xtimer-v tnum" id="xClock">${E.formatClock(left)}</span></div>
+        <div class="xtimer" id="xTimer" data-phase="${a.untimed ? 'untimed' : a.timeUp ? 'over' : E.phase(left)}" role="timer" aria-label="${a.untimed ? 'Continuing untimed' : 'Time left'}"><span class="xtimer-k">${a.untimed ? 'Practice' : a.timeUp ? 'Time' : review ? 'Paused' : 'Time left'}</span><span class="xtimer-v tnum" id="xClock">${a.untimed ? 'Untimed' : E.formatClock(left)}</span></div>
         <div class="xbar-count tnum" id="xCount" aria-live="off">${countTxt(c)}</div>
         <button class="btn sm xbar-qs" type="button" data-exam-act="sheet" aria-haspopup="dialog" aria-controls="xSheet">Questions <span class="tnum xbar-qs-n">${c.answered}/${c.total}</span></button>
         ${review ? '' : '<button class="btn primary sm xbar-fin" type="button" data-exam-go="review"><span class="xfin-l">Review &amp; finish</span><span class="xfin-s">Finish</span></button>'}
@@ -182,12 +212,14 @@
     const hintId = `xh-${q.id}`;
     if (q.geom) {
       const chain = Array.isArray(val) ? val : [];
+      const after = E.isAfterTime(a, q.id) ? '<p class="xafter" aria-label="Answered after time">After time</p>' : '';
       return `<div class="geom xgeom" data-geom="${h(q.id)}">${readOnly ? '' : `<div class="row"><label>Statement <select data-geom-stmt>${q.geom.statements.map(s => `<option value="${h(s.id)}">${h(plainTex(s.text))}</option>`).join('')}</select></label><label>Reason <select data-geom-reason>${q.geom.reasons.map(s => `<option value="${h(s.id)}">${h(plainTex(s.text))}</option>`).join('')}</select></label><button class="btn sm" type="button" data-geom-add>Add step</button></div>`}
-        <ol class="steps" data-geom-list>${geomList(q, chain, readOnly)}</ol></div>`;
+        <ol class="steps" data-geom-list>${geomList(q, chain, readOnly)}</ol>${after}</div>`;
     }
+    const after = E.isAfterTime(a, q.id) ? '<p class="xafter" aria-label="Answered after time">After time</p>' : '';
     return `<label class="sr-only" for="xa-${h(q.id)}">Your answer to ${h(q.number)}</label>
       <textarea class="xin" id="xa-${h(q.id)}" data-answer="${h(q.id)}" rows="2" spellcheck="false" autocomplete="off"${q.hint ? ` aria-describedby="${hintId}"` : ''}${readOnly ? ' readonly' : ''} placeholder="${readOnly ? 'No answer' : 'Your answer'}">${h(typeof val === 'string' ? val : '')}</textarea>
-      ${q.hint ? `<p class="xhint" id="${hintId}">${h(q.hint)}</p>` : ''}`;
+      ${after}${q.hint ? `<p class="xhint" id="${hintId}">${h(q.hint)}</p>` : ''}`;
   }
   function geomList(q, chain, readOnly) {
     return chain.map((step, i) => {
@@ -196,12 +228,23 @@
     }).join('') || `<li class="gnote">${readOnly ? 'No steps.' : 'No steps yet.'}</li>`;
   }
 
-  function resultHTML(q, r) {
+  function resultHTML(q, r, a, rTimed) {
     if (!r) return '';
     const notes = (r.memoNotes || q.memoNotes || []).length ? `<p class="gnote">Memo note: ${(r.memoNotes || q.memoNotes).map(n => h(n.where) + ': ' + h(n.text)).join(' ')}</p>` : '';
     const verdict = !r.checkable ? '<span class="xv memo">Compare with the memo</span>' : r.ok ? `<span class="xv ok">Correct · ${marksTxt(q.marks)}</span>` : '<span class="xv no">Not the memo answer</span>';
-    return `<div class="xres">${verdict}<div class="xmemo"><span class="k">Memo answer</span> <span class="v">${r.answer || '<em>See the official memo</em>'}</span></div>${notes}</div>`;
+    let after = '';
+    if (a && E.isAfterTime(a, q.id)) {
+      let timed = 'This part was blank when time ran out.';
+      if (rTimed) {
+        if (!isAnsweredish(a.timedAnswers && a.timedAnswers[q.id])) timed = 'This part was blank when time ran out.';
+        else if (!rTimed.checkable) timed = 'You already had an answer here when time ran out.';
+        else timed = rTimed.ok ? 'Your timed answer was correct.' : 'Your timed answer was not the memo answer.';
+      }
+      after = `<p class="xafter-note"><span class="xafter">After time</span> ${timed}</p>`;
+    }
+    return `<div class="xres">${verdict}${after}<div class="xmemo"><span class="k">Memo answer</span> <span class="v">${r.answer || '<em>See the official memo</em>'}</span></div>${notes}</div>`;
   }
+  function isAnsweredish(v) { return E.isAnswered(v); }
 
   function groupHTML(g, paper, a, mode, marked) {
     const byId = S.byId || (S.byId = {});
@@ -210,9 +253,11 @@
     const open = S.open.has(g.number);
     const p = a ? E.groupProgress(g, a) : { answered: 0, total: g.parts.length, flagged: 0 };
     const rq = marked ? marked.byQuestion.find(x => x.number === g.number) : null;
+    const rqFull = marked && marked.byQuestionFull ? marked.byQuestionFull.find(x => x.number === g.number) : null;
     const resById = marked ? marked.byId : null;
+    const incl = rqFull && rq && rqFull.earned !== rq.earned ? ` · ${rqFull.earned}/${rqFull.auto} incl. after time` : '';
     const meta = rq
-      ? `<span class="xq-marks tnum">${g.marks} marks</span><span class="xq-prog tnum">${rq.auto ? `<b>${rq.earned}</b>/${rq.auto} auto-marked` : 'Memo-checked'}${rq.review ? ` · ${rq.review} to compare` : ''}</span>`
+      ? `<span class="xq-marks tnum">${g.marks} marks</span><span class="xq-prog tnum">${rq.auto ? `<b>${rq.earned}</b>/${rq.auto} auto-marked` : 'Memo-checked'}${rq.review ? ` · ${rq.review} to compare` : ''}${incl}</span>`
       : `<span class="xq-marks tnum">${marksTxt(g.marks)}</span><span class="xq-prog tnum" data-gprog>${p.answered} of ${p.total} answered</span><span class="xq-flag" data-gflag${p.flagged ? '' : ' hidden'}>${ICON_FLAG}<span class="tnum">${p.flagged}</span><span class="sr-only"> flagged</span></span>`;
     const pct = rq ? (rq.pct == null ? 0 : rq.pct) : Math.round(p.answered / p.total * 100);
     const blocks = g.blocks.map(b => {
@@ -220,12 +265,14 @@
       const q = byId[b.id];
       const r = resById ? resById[q.id] : null;
       const flagged = a && a.flags[q.id];
+      const after = a && E.isAfterTime(a, q.id);
+      const rTimed = marked && marked.timedById ? marked.timedById[q.id] : null;
       const side = r ? `<span class="xp-m tnum ${r.checkable ? (r.ok ? 'ok' : 'no') : 'memo'}" aria-label="${r.checkable ? (r.ok ? q.marks : 0) + ' of ' + q.marks + ' marks' : q.marks + ' marks, compare with the memo'}">${r.checkable ? `${r.ok ? q.marks : 0}/${q.marks}` : `(${q.marks})`}</span>`
         : `<span class="xp-m tnum" aria-label="${marksTxt(q.marks)}">(${q.marks})</span>`;
       const flag = mode === 'results' ? '' : `<button type="button" class="xp-flag" data-flag="${h(q.id)}" aria-pressed="${flagged ? 'true' : 'false'}" aria-label="Flag ${h(q.number)} for review" title="Flag for review">${ICON_FLAG}</button>`;
-      return `<div class="xp d${q.depth}${flagged ? ' is-flagged' : ''}" id="xp-${h(q.id)}" data-part="${h(q.id)}">
+      return `<div class="xp d${q.depth}${flagged ? ' is-flagged' : ''}${after ? ' is-after' : ''}" id="xp-${h(q.id)}" data-part="${h(q.id)}">
         <div class="xp-no tnum">${h(q.number)}</div>
-        <div class="xp-main"><div class="xp-q">${q.html}</div>${answerHTML(q, a, readOnly || mode === 'results')}${resultHTML(q, r)}</div>
+        <div class="xp-main"><div class="xp-q">${q.html}</div>${answerHTML(q, a, readOnly || mode === 'results')}${resultHTML(q, r, a, rTimed)}</div>
         <div class="xp-side">${side}${flag}</div>
       </div>`;
     }).join('');
@@ -249,6 +296,7 @@
   function paperHTML(paper, a) {
     return `${barHTML(paper, a)}
       <h1 class="sr-only" tabindex="-1" data-focus-first>${h(paper.title)}</h1>
+      ${a && a.untimed ? '<div class="xbanner xbanner-untimed" role="status"><b>Continuing untimed.</b> Anything you answer or change now is marked as after time. When you submit you’ll see your timed score and, separately, the score including these answers.</div>' : ''}
       ${toolsHTML()}
       <div class="xacc" id="xAcc">${paper.groups.map(g => groupHTML(g, paper, a, 'paper')).join('')}</div>
       <div class="xend"><p class="gnote">That’s the whole paper.</p><button class="btn primary" type="button" data-exam-go="review">Review &amp; finish</button></div>`;
@@ -269,13 +317,14 @@
         const g = paper.groups.find(gr => gr.number === row.group) || { heading: '' };
         const m = row.items.reduce((sum, x) => sum + (x.marks || 0), 0);
         return `<li class="xrg"><div class="xrg-h"><b>Question ${h(row.group)}</b><span class="xrg-t">${h(g.heading)}</span><span class="xrg-m tnum">${marksTxt(m)}</span></div>
-          <div class="xrg-parts">${row.items.map(x => `<button type="button" class="xpill${x.flagged ? ' is-flag' : ''}" data-review-go="${h(x.id)}"${a.timeUp ? ' disabled' : ''} aria-label="Part ${h(x.number)}, ${marksTxt(x.marks)}${x.flagged ? ', flagged' : ''}${a.timeUp ? '' : '. Go to it'}"><span class="tnum">${h(x.number)}</span><span class="xpill-m tnum" aria-hidden="true">${x.marks}</span>${x.flagged ? `<span class="xpill-f" aria-hidden="true">${ICON_FLAG}</span>` : ''}</button>`).join('')}</div></li>`;
+          <div class="xrg-parts">${row.items.map(x => `<button type="button" class="xpill${x.flagged ? ' is-flag' : ''}" data-review-go="${h(x.id)}"${a.timeUp && !a.untimed ? ' disabled' : ''} aria-label="Part ${h(x.number)}, ${marksTxt(x.marks)}${x.flagged ? ', flagged' : ''}${a.timeUp && !a.untimed ? '' : '. Go to it'}"><span class="tnum">${h(x.number)}</span><span class="xpill-m tnum" aria-hidden="true">${x.marks}</span>${x.flagged ? `<span class="xpill-f" aria-hidden="true">${ICON_FLAG}</span>` : ''}</button>`).join('')}</div></li>`;
       }).join('')}</ul>`;
     };
     const blankMarks = r.unanswered.reduce((s, x) => s + (x.marks || 0), 0);
     return `${barHTML(paper, a, { review: true })}
     <section class="xreview">
-      ${a.timeUp ? `<div class="xbanner" role="alert"><b>Time’s up.</b> Your answers were saved when the clock reached 0:00 and can’t be changed now. Submit to see your marks.</div>` : ''}
+      ${a.timeUp && !a.untimed ? `<div class="xbanner" role="alert"><b>Time’s up.</b> Your answers were saved when the clock reached 0:00 and can’t be changed unless you keep going untimed. Submit to see your timed marks, or keep practising — later answers will be marked as after time and scored separately.</div>` : ''}
+      ${a.untimed ? `<div class="xbanner xbanner-untimed" role="status"><b>Continuing untimed.</b> Answers given or changed after the clock reached 0:00 are marked as after time. Submit when you’re ready to see both scores.</div>` : ''}
       <div class="eyebrow">Review</div>
       <h1 tabindex="-1" data-focus-first>Check before you submit</h1>
       <div class="xsum tnum">
@@ -287,8 +336,8 @@
       ${r.flagged.length ? `<h2>Flagged <span class="tnum">(${r.flagged.length})</span></h2>${grouped(r.flagged)}` : ''}
       ${r.done.length ? `<details class="xdone"><summary>Answered <span class="tnum">(${r.done.length})</span></summary>${grouped(r.done)}</details>` : ''}
       <div class="row xreview-acts" data-confirm-zone>
-        ${a.timeUp ? '' : '<button class="btn" type="button" data-exam-go="paper">Back to the paper</button>'}
-        <button class="btn primary" type="button" data-exam-act="${c.unanswered && !a.timeUp ? 'submit-ask' : 'submit'}">Submit for marking</button>
+        ${a.timeUp && !a.untimed ? '<button class="btn" type="button" data-exam-act="keep-going">Keep going untimed</button>' : '<button class="btn" type="button" data-exam-go="paper">Back to the paper</button>'}
+        <button class="btn primary" type="button" data-exam-act="${c.unanswered && !(a.timeUp && !a.untimed) ? 'submit-ask' : 'submit'}">Submit for marking</button>
       </div>
       <p class="gnote" id="xSubmitNote" role="status"></p>
     </section>`;
@@ -296,23 +345,34 @@
 
   /* ---------- results ---------- */
   function resultsHTML(paper, last) {
-    const res = last.summaryFull || E.results(paper, last.marked);
-    const t = res.total;
+    const resFull = last.summaryFull || E.results(paper, last.marked);
+    const resTimed = last.markedTimed ? E.results(paper, last.markedTimed) : null;
+    const t = (resTimed || resFull).total;
+    const tFull = resFull.total;
     const byId = {}; (last.marked || []).forEach(r => { byId[r.id] = r; });
-    const marked = { ...res, byId };
+    const timedById = {}; (last.markedTimed || []).forEach(r => { timedById[r.id] = r; });
+    const marked = { ...(resTimed || resFull), byId, timedById, byQuestionFull: resTimed ? resFull.byQuestion : null };
     const used = Math.max(0, Math.min(last.durationMs, last.elapsedMs || 0));
-    const topicRows = res.byTopic.map(tp => `<li><span class="xt-n">${h(tp.short)}</span>
+    const topicSrc = (resTimed || resFull).byTopic;
+    const fullByCode = new Map(resFull.byTopic.map(tp => [tp.code, tp]));
+    const topicRows = topicSrc.map(tp => {
+      const incl = resTimed ? fullByCode.get(tp.code) : null;
+      const extra = incl && incl.earned !== tp.earned ? ` · ${incl.earned}/${incl.auto} incl. after time` : '';
+      return `<li><span class="xt-n">${h(tp.short)}</span>
         <span class="xt-bar" aria-hidden="true"><i style="--w:${tp.auto ? Math.round(tp.earned / tp.auto * 100) : 0}%"></i></span>
         <span class="xt-v tnum">${tp.auto ? `<b>${tp.earned}</b>/${tp.auto}` : '—'}</span>
-        <span class="xt-r tnum">${tp.review ? `+${tp.review} to compare` : ''}</span></li>`).join('');
+        <span class="xt-r tnum">${tp.review ? `+${tp.review} to compare` : ''}${extra}</span></li>`;
+    }).join('');
+    const inclBlock = resTimed ? `<p class="xscore-incl">Including answers after time: <b class="tnum">${tFull.earned}/${tFull.auto}</b>${tFull.pct != null ? ` · ${tFull.pct}%` : ''}</p>` : '';
     return `<div class="crumb"><button class="btn ghost sm" type="button" data-exam-nav="list">← Mock exams</button></div>
     <section class="xres-top">
       <div class="xscore washi-paper">
         <div class="eyebrow">Result · ${h(paper.title)}</div>
         <h1 tabindex="-1" data-focus-first><span class="big tnum">${t.earned}</span><span class="of tnum">/ ${t.auto}</span></h1>
-        <p class="xscore-k">auto-marked marks${t.pct != null ? ` · <b class="tnum">${t.pct}%</b>` : ''}</p>
+        <p class="xscore-k">${resTimed ? 'timed auto-marked marks' : 'auto-marked marks'}${t.pct != null ? ` · <b class="tnum">${t.pct}%</b>` : ''}</p>
+        ${inclBlock}
         <p class="gnote">${t.review} of the paper’s ${t.marks} marks are sketches, proofs or explanations. Their memo answers are below for you to compare.</p>
-        <p class="gnote tnum">Finished ${dateTxt(last.finishedAt)} · ${E.formatClock(used)} used of ${E.formatClock(last.durationMs)}${last.timeUp ? ' · time ran out' : ''}</p>
+        <p class="gnote tnum">Finished ${dateTxt(last.finishedAt)} · ${E.formatClock(used)} used of ${E.formatClock(last.durationMs)}${last.timeUp ? ' · time ran out' : ''}${last.untimed ? ' · continued untimed' : ''}</p>
       </div>
       <div class="xtopics panel"><h2>By topic</h2><ul class="xtl">${topicRows}</ul></div>
     </section>
@@ -339,6 +399,20 @@
       qsa(`.xchip[data-goto="${CSS.escape(g.number)}"]`).forEach(chip => { chip.outerHTML = chipHTML(g, a, chip.classList.contains('big')); });
     }
     markCurrent();
+    if (a.untimed) qsa('#xAcc .xp[data-part]').forEach(el => {
+      const on = E.isAfterTime(a, el.dataset.part);
+      el.classList.toggle('is-after', on);
+      let badge = qs('.xafter', el);
+      if (on && !badge) {
+        const main = qs('.xp-main', el) || el;
+        const node = document.createElement('p');
+        node.className = 'xafter';
+        node.setAttribute('aria-label', 'Answered after time');
+        node.textContent = 'After time';
+        const hint = qs('.xhint', main);
+        if (hint) main.insertBefore(node, hint); else main.appendChild(node);
+      } else if (!on && badge) badge.remove();
+    });
   }
 
   function setOpen(sec, open, { animate = true } = {}) {
@@ -388,6 +462,13 @@
     const step = () => {
       const a = S.attempt; if (!a || view.name !== 'exam' || view.phase !== 'paper') return;
       const now = Date.now();
+      if (a.untimed) {
+        const clock = qs('#xClock'), timer = qs('#xTimer');
+        if (clock) clock.textContent = 'Untimed';
+        if (timer) timer.dataset.phase = 'untimed';
+        if (now - S.beat >= HEARTBEAT_MS) { S.beat = now; commit(E.heartbeat(S.attempt, now), { now: true }); }
+        return;
+      }
       const next = E.tick(a, now);
       if (next.status === 'review') { S.attempt = next; commit(next, { now: true }); Store.push(); go({ ...view, phase: 'review' }); return; }
       const left = E.remainingMs(a, now), ph = E.phase(left);
@@ -435,7 +516,12 @@
     try {
       const r = await API.req('POST', '/api/exams/' + encodeURIComponent(paper.id) + '/mark', { answers: a.answers });
       const res = E.results(paper, r.results);
-      const done = E.finish(a, r.results, { earned: res.total.earned, auto: res.total.auto, review: res.total.review, marks: res.total.marks }, Date.now());
+      let extra;
+      if (a.timeUp && a.untimed && a.timedAnswers) {
+        const timed = await API.req('POST', '/api/exams/' + encodeURIComponent(paper.id) + '/mark', { answers: a.timedAnswers });
+        extra = { markedTimed: timed.results, summaryTimed: E.results(paper, timed.results).total };
+      }
+      const done = E.finish(a, r.results, { earned: res.total.earned, auto: res.total.auto, review: res.total.review, marks: res.total.marks }, Date.now(), extra);
       Store.data = E.recordFinished(Store.data, paper.id, done); Store.save(); Store.push();
       S.attempt = null; S.open.clear();
       go({ name: 'exam', id: paper.id, phase: 'results' });
@@ -461,7 +547,7 @@
     const chip = e.target.closest('[data-goto]');
     if (chip) {
       const sheet = qs('#xSheet'); if (sheet && sheet.open) sheet.close();
-      if (view.phase === 'review') { if (S.attempt && S.attempt.timeUp) return; S.pending = { group: chip.dataset.goto }; go({ ...view, phase: 'paper' }); return; }
+      if (view.phase === 'review') { if (S.attempt && S.attempt.timeUp && !S.attempt.untimed) return; S.pending = { group: chip.dataset.goto }; go({ ...view, phase: 'paper' }); return; }
       goto(chip.dataset.goto); return;
     }
     const rgo = e.target.closest('[data-review-go]');
@@ -501,7 +587,8 @@
     if (!act) return;
     const k = act.dataset.examAct;
     if (k === 'begin') begin();
-    else if (k === 'leave') { const d = qs('#xLeave'); const c = qs('#xLeaveClock'); if (c && S.attempt) c.textContent = E.formatClock(E.remainingMs(S.attempt, Date.now())); if (d && d.showModal) d.showModal(); else leaveNow(); }
+    else if (k === 'leave') { const d = qs('#xLeave'); const c = qs('#xLeaveClock'); if (c && S.attempt) c.textContent = S.attempt.untimed ? 'untimed' : E.formatClock(E.remainingMs(S.attempt, Date.now())); if (d && d.showModal) d.showModal(); else leaveNow(); }
+    else if (k === 'keep-going') { flush(); commit(E.keepGoing(S.attempt, Date.now()), { now: true }); go({ name: 'exam', id: paperId(), phase: 'paper' }); }
     else if (k === 'sheet') { const d = qs('#xSheet'); if (d) d.showModal(); }
     else if (k === 'expand' || k === 'collapse') qsa('.xq').forEach(sec => setOpen(sec, k === 'expand', { animate: false }));
     else if (k === 'restart-ask') act.closest('[data-confirm-zone]').innerHTML = '<span class="xconfirm-q">Erase this attempt?</span><button class="btn sm" type="button" data-exam-act="restart">Erase and start over</button><button class="btn ghost sm" type="button" data-exam-act="restart-no">Keep it</button>';

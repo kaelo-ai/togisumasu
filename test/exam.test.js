@@ -139,6 +139,65 @@ t('time running out saves the answers, locks them and opens review', () => {
   assert.equal(Exam.remainingMs(paused, 9 * H), 0);
 });
 
+
+t('after time runs out, keep going untimed records later answers separately', () => {
+  const t0 = 4_000_000;
+  let a = Exam.newAttempt(paper, t0);
+  a = Exam.setAnswer(a, '2024-nov-p1-1.1.1', '0; 3');
+  a = Exam.setAnswer(a, '2024-nov-p1-1.1.2', '1.71');
+  const over = Exam.tick(a, t0 + 3 * H);
+  assert.equal(over.timedAnswers['2024-nov-p1-1.1.1'], '0; 3');
+  assert.ok(Exam.locked(over));
+  assert.equal(Exam.keepGoing(over, t0 + 3 * H + 1000).untimed, true);
+  let going = Exam.keepGoing(over, t0 + 3 * H + 1000);
+  assert.equal(going.status, 'active');
+  assert.equal(going.timeUp, true);
+  assert.ok(!Exam.locked(going));
+  assert.equal(Exam.tick(going, t0 + 4 * H).status, 'active', 'the clock must not lock a second time');
+  going = Exam.setAnswer(going, '2024-nov-p1-1.1.3', 'after');
+  going = Exam.setAnswer(going, '2024-nov-p1-1.1.2', 'changed after time');
+  assert.ok(Exam.isAfterTime(going, '2024-nov-p1-1.1.3'));
+  assert.ok(Exam.isAfterTime(going, '2024-nov-p1-1.1.2'));
+  assert.ok(!Exam.isAfterTime(going, '2024-nov-p1-1.1.1'), 'an unchanged timed answer stays timed');
+  assert.equal(going.timedAnswers['2024-nov-p1-1.1.2'], '1.71');
+  assert.equal(going.answers['2024-nov-p1-1.1.2'], 'changed after time');
+  const back = Exam.backToPaper(Exam.toReview(going, t0 + 4 * H + 1), t0 + 4 * H + 2);
+  assert.equal(back.status, 'active');
+  assert.equal(back.untimed, true);
+});
+
+t('results keep the timed score and the score including untimed answers apart', () => {
+  const a1 = paper.questions[0].id, a2 = paper.questions[1].id, a3 = paper.questions[2].id;
+  const markedTimed = paper.questions.map(q => ({ id: q.id, checkable: true, ok: q.id === a1 }));
+  const markedFull = paper.questions.map(q => ({ id: q.id, checkable: true, ok: q.id === a1 || q.id === a2 || q.id === a3 }));
+  const timed = Exam.results(paper, markedTimed);
+  const full = Exam.results(paper, markedFull);
+  assert.ok(full.total.earned > timed.total.earned);
+  assert.equal(timed.total.earned, paper.questions[0].marks);
+  assert.equal(full.total.earned, paper.questions[0].marks + paper.questions[1].marks + paper.questions[2].marks);
+  let a = Exam.keepGoing(Exam.tick(Exam.setAnswer(Exam.newAttempt(paper, 0), a1, 'ok'), 3 * H), 3 * H + 1);
+  a = Exam.setAnswer(a, a2, 'later');
+  const done = Exam.finish(a, markedFull, full.total, 3 * H + 2, { markedTimed, summaryTimed: timed.total });
+  let progress = Exam.recordFinished(Mastery.emptyProgress(), paper.id, done);
+  const last = Exam.lastSummary(progress, paper.id);
+  assert.equal(last.earned, timed.total.earned);
+  assert.equal(last.auto, timed.total.auto);
+  assert.equal(last.earnedIncluding, full.total.earned);
+  assert.equal(last.autoIncluding, full.total.auto);
+  assert.equal(last.timeUp, true);
+  assert.equal(Exam.slot(progress, paper.id).last.untimed, true);
+});
+
+t('a brand-new learner is anyone with fewer than three mastered topics', () => {
+  assert.equal(Exam.NEW_LEARNER_BELOW, 3);
+  assert.ok(Exam.isNewLearner(0));
+  assert.ok(Exam.isNewLearner(2));
+  assert.ok(!Exam.isNewLearner(3));
+  assert.ok(!Exam.isNewLearner(12));
+  assert.ok(Exam.isNewLearner(undefined));
+});
+
+
 t('review lists blank parts first, then flagged ones', () => {
   let a = Exam.newAttempt(paper, 0);
   for (const q of paper.questions.slice(0, 40)) a = Exam.setAnswer(a, q.id, '1');
