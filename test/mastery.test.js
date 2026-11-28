@@ -248,6 +248,120 @@ t('key prereq for the quadratic formula is radicals, a possibly multi-hop skill'
   assert.equal(row.prereq_id, 'radicals');
 });
 
+
+t('course accuracy and answered counts only skills in the current catalog', () => {
+  const p = start({
+    a: { a: 10, c: 8, s: 0, lv: 1, due: 1 },
+    b: { a: 4, c: 2, s: 0, lv: 0, due: 0 },
+    outsider: { a: 100, c: 90, s: 0, lv: 1, due: 1 },
+  });
+  const stats = Mastery.courseAnswerStats(p, catalog());
+  assert.equal(stats.answered, 14);
+  assert.equal(stats.correct, 10);
+  const other = Mastery.courseAnswerStats(p, { topics: [{ id: 'outsider', pre: [] }, { id: 'missing', pre: [] }] });
+  assert.equal(other.answered, 100);
+  assert.equal(other.correct, 90);
+});
+
+t('a due quiz in one course does not come due or block another course', () => {
+  const now = 4_000_000_000_000;
+  const algebra = {
+    courseId: 'algebra',
+    topics: [
+      { id: 't1', pre: [] },
+      { id: 't2', pre: [] },
+      { id: 'shared', pre: [] },
+    ],
+  };
+  const caps = {
+    courseId: 'gr12-caps',
+    topics: [
+      { id: 't1', pre: [] },
+      { id: 'shared', pre: [] },
+      { id: 't3', pre: [] },
+    ],
+  };
+  let p = start({
+    t1: mastered('t1', 1, now + DAY),
+    t2: mastered('t2', 1, now + DAY),
+    shared: mastered('shared', 1, now + DAY),
+    t3: mastered('t3', 1, now + DAY),
+  });
+  p = Mastery.markQuizRecent(p, 't1', 'algebra');
+  p = Mastery.markQuizRecent(p, 'shared', 'algebra');
+  assert.equal(Mastery.quizIsDue(p, 'algebra', now, algebra), true);
+  assert.equal(Mastery.quizIsDue(p, 'gr12-caps', now, caps), false);
+  assert.deepEqual(Mastery.quizState(p, 'algebra').recent, ['t1', 'shared']);
+  assert.deepEqual(Mastery.quizState(p, 'gr12-caps').recent, []);
+  assert.deepEqual(p.qz.recent, ['t1', 'shared']);
+});
+
+t('a legacy global quiz due flag is treated as algebra only', () => {
+  const now = 5_000_000_000_000;
+  const algebra = { courseId: 'algebra', topics: [{ id: 't1', pre: [] }, { id: 't2', pre: [] }, { id: 'shared', pre: [] }] };
+  const caps = { courseId: 'gr12-caps', topics: [{ id: 't1', pre: [] }, { id: 'shared', pre: [] }, { id: 't3', pre: [] }] };
+  const p = start({
+    t1: mastered('t1', 1, now + DAY),
+    t2: mastered('t2', 1, now + DAY),
+    shared: mastered('shared', 1, now + DAY),
+    t3: mastered('t3', 1, now + DAY),
+  });
+  p.qz = { recent: ['t1', 'shared'], last: 0, hist: [{ t: 1, score: 2, n: 5 }] };
+  assert.ok(!p.qzByCourse || !p.qzByCourse.algebra);
+  assert.equal(Mastery.quizIsDue(p, 'algebra', now, algebra), true);
+  assert.equal(Mastery.quizIsDue(p, 'gr12-caps', now, caps), false);
+  assert.deepEqual(Mastery.quizState(p, 'algebra').recent, ['t1', 'shared']);
+  assert.deepEqual(Mastery.quizState(p, 'gr12-caps').recent, []);
+  assert.equal(Mastery.quizState(p, 'algebra').hist.length, 1);
+});
+
+t('mastering a topic records the quiz recent list on that course only', () => {
+  const now = 6_000_000_000_000;
+  const caps = { courseId: 'gr12-caps', topics: [{ id: 'd', pre: ['a'], kps: [], fallback: true }] };
+  let p = start({
+    d: { a: 2, c: 2, s: 2, lv: 0, due: 0 },
+  });
+  p = Mastery.applyAnswer(p, { id: 'd', ok: true, mode: 'practice', now }, caps).progress;
+  assert.equal(Mastery.skillOf(p, 'd').lv, 1);
+  assert.deepEqual(Mastery.quizState(p, 'gr12-caps').recent, ['d']);
+  assert.deepEqual(Mastery.quizState(p, 'algebra').recent, []);
+  assert.deepEqual((p.qz || {}).recent || [], []);
+});
+
+t('a topic mastered in one course is held when this course is missing a prerequisite', () => {
+  const algebra = {
+    courseId: 'algebra',
+    topics: [
+      { id: 'base', pre: [] },
+      { id: 'mid', pre: ['base'] },
+      { id: 'top', pre: ['mid'] },
+    ],
+  };
+  const caps = {
+    courseId: 'gr12-caps',
+    topics: [
+      { id: 'top', pre: [] },
+      { id: 'other', pre: [] },
+    ],
+  };
+  const p = start({
+    top: mastered('top', 2, 1),
+  });
+  assert.equal(Mastery.skillOf(p, 'top').lv, 2);
+  assert.equal(Mastery.isCourseMastered(p, 'top', algebra), false);
+  assert.deepEqual(Mastery.missingCoursePrereqs(p, 'top', algebra), ['mid']);
+  assert.equal(Mastery.isCourseMastered(p, 'top', caps), true);
+  assert.ok(!Mastery.courseMasteredIds(p, algebra).includes('top'));
+  assert.ok(Mastery.courseMasteredIds(p, caps).includes('top'));
+  assert.deepEqual(Mastery.holdingPrereqIds(p, algebra), ['mid']);
+  const rec = Mastery.pickRecommended([
+    { id: 'side', name: 'Side', core: true, coreScore: 99, inProgress: false, holds: false },
+    { id: 'mid', name: 'Mid', core: false, coreScore: 1, inProgress: false, holds: true },
+  ]);
+  assert.equal(rec.id, 'mid');
+  assert.equal(Mastery.skillOf(p, 'top').lv, 2, 'shared mastery is not erased');
+});
+
 const failed = results.filter(r => r[0] === 'FAIL');
 for (const r of results) console.log(r[0] === 'ok' ? '  ok  ' + r[1] : '  FAIL  ' + r[1] + ' — ' + r[2]);
 console.log(failed.length ? failed.length + ' failed' : results.length + ' passed');

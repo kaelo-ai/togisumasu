@@ -43,6 +43,8 @@ const DAILY = {
   quiz: {
     maxDefers: 2,
     deferDays: 2,
+    minMastered: 3,
+    recentWaitDays: 4,
   },
 };
 const GOAL = DAILY.goalXp;
@@ -212,7 +214,7 @@ function asSkill(raw) {
 }
 
 function emptyProgress() {
-  return { skills: {}, log: {}, t: 0, qz: { recent: [], last: 0, hist: [] }, seen: {}, resetAt: 0, shore: [] };
+  return { skills: {}, log: {}, t: 0, qz: { recent: [], last: 0, hist: [] }, qzByCourse: {}, seen: {}, resetAt: 0, shore: [] };
 }
 
 function skillOf(progress, id) {
@@ -539,50 +541,150 @@ function addXp(progress, amount, now) {
   return { ...progress, log };
 }
 
-function canDeferQuiz(progress, now) {
-  const q = progress.qz || {};
+const QUIZ_COURSE_DEFAULT = 'algebra';
+
+function emptyQuiz() {
+  return { recent: [], last: 0, hist: [] };
+}
+
+function missingCoursePrereqs(progress, topicId, catalog) {
+  const byId = indexCatalog(catalog).byId;
+  const topic = byId[topicId];
+  if (!topic) return [];
+  const mastered = (id, seen) => {
+    if (seen.has(id)) return true;
+    seen.add(id);
+    const node = byId[id];
+    const skill = skillOf(progress, id);
+    if (skill.lv <= 0 || skill.fix) return false;
+    if (!node) return true;
+    return (node.pre || []).every(p => mastered(p, seen));
+  };
+  return (topic.pre || []).filter(p => !mastered(p, new Set()));
+}
+
+function isCourseMastered(progress, topicId, catalog) {
+  const skill = skillOf(progress, topicId);
+  if (skill.lv <= 0 || skill.fix) return false;
+  return missingCoursePrereqs(progress, topicId, catalog).length === 0;
+}
+
+function courseMasteredIds(progress, catalog) {
+  return ((catalog && catalog.topics) || []).filter(t => isCourseMastered(progress, t.id, catalog)).map(t => t.id);
+}
+
+function courseAnswerStats(progress, catalog) {
+  let correct = 0, answered = 0;
+  for (const topic of (catalog && catalog.topics) || []) {
+    const skill = skillOf(progress, topic.id);
+    correct += skill.c || 0;
+    answered += skill.a || 0;
+  }
+  return { correct, answered };
+}
+
+function holdingPrereqIds(progress, catalog) {
+  const held = new Set();
+  for (const topic of (catalog && catalog.topics) || []) {
+    const skill = skillOf(progress, topic.id);
+    if (skill.lv <= 0 || skill.fix) continue;
+    for (const id of missingCoursePrereqs(progress, topic.id, catalog)) held.add(id);
+  }
+  return [...held];
+}
+
+function quizState(progress, courseId) {
+  const id = courseId || QUIZ_COURSE_DEFAULT;
+  const by = progress && progress.qzByCourse;
+  if (by && by[id]) {
+    return { ...emptyQuiz(), ...by[id], recent: [...(by[id].recent || [])], hist: [...(by[id].hist || [])] };
+  }
+  // A pre-existing global qz is treated as the algebra course only, so a
+  // due quiz there cannot block a different course.
+  if (id === QUIZ_COURSE_DEFAULT && progress && progress.qz && Array.isArray(progress.qz.recent)) {
+    return { ...emptyQuiz(), ...progress.qz, recent: [...(progress.qz.recent || [])], hist: [...(progress.qz.hist || [])] };
+  }
+  return emptyQuiz();
+}
+
+function writeQuizState(progress, courseId, quiz) {
+  const id = courseId || QUIZ_COURSE_DEFAULT;
+  const q = {
+    recent: [...(quiz.recent || [])],
+    last: quiz.last || 0,
+    hist: [...(quiz.hist || [])],
+    defers: quiz.defers || 0,
+    firstDueAt: quiz.firstDueAt || 0,
+    lastDeferAt: quiz.lastDeferAt || 0,
+  };
+  const qzByCourse = { ...((progress && progress.qzByCourse) || {}) };
+  qzByCourse[id] = q;
+  const next = { ...progress, qzByCourse };
+  if (id === QUIZ_COURSE_DEFAULT) next.qz = q;
+  else if (progress && progress.qz) next.qz = progress.qz;
+  return next;
+}
+
+function markQuizRecent(progress, topicId, courseId) {
+  const q = quizState(progress, courseId);
+  if (q.recent.includes(topicId)) return progress;
+  q.recent = q.recent.concat([topicId]);
+  return writeQuizState(progress, courseId, q);
+}
+
+function quizIsDue(progress, courseId, now, catalog) {
+  const q = quizState(progress, courseId);
+  const mastered = courseMasteredIds(progress, catalog);
+  if (mastered.length < (DAILY.quiz.minMastered || 3)) return false;
+  const wait = (DAILY.quiz.recentWaitDays || 4) * DAY;
+  return q.recent.length >= 2 || (q.recent.length >= 1 && (now - (q.last || 0)) > wait);
+}
+
+function canDeferQuiz(progress, now, courseId) {
+  const q = quizState(progress, courseId);
   const defers = q.defers || 0;
   const first = q.firstDueAt || now;
   return defers < DAILY.quiz.maxDefers && (now - first) < DAILY.quiz.deferDays * DAY;
 }
 
-function noteQuizDue(progress, now, due) {
+function noteQuizDue(progress, now, due, courseId) {
   if (!due) return progress;
-  const q = { ...(progress.qz || { recent: [], last: 0, hist: [] }) };
+  const q = quizState(progress, courseId);
   if (!q.firstDueAt) q.firstDueAt = now;
-  return { ...progress, qz: q };
+  return writeQuizState(progress, courseId, q);
 }
 
-function deferQuiz(progress, now) {
-  if (!canDeferQuiz(progress, now)) return { progress, ok: false, remaining: 0 };
-  const q = { ...(progress.qz || { recent: [], last: 0, hist: [] }) };
+function deferQuiz(progress, now, courseId) {
+  if (!canDeferQuiz(progress, now, courseId)) return { progress, ok: false, remaining: 0 };
+  const q = quizState(progress, courseId);
   if (!q.firstDueAt) q.firstDueAt = now;
   q.defers = (q.defers || 0) + 1;
   q.lastDeferAt = now;
   return {
-    progress: { ...progress, qz: q },
+    progress: writeQuizState(progress, courseId, q),
     ok: true,
     remaining: DAILY.quiz.maxDefers - q.defers,
   };
 }
 
-function clearQuizDefer(progress) {
-  const q = { ...(progress.qz || { recent: [], last: 0, hist: [] }) };
+function clearQuizDefer(progress, courseId) {
+  const q = quizState(progress, courseId);
   q.defers = 0;
   q.firstDueAt = 0;
   q.lastDeferAt = 0;
-  return { ...progress, qz: q };
+  return writeQuizState(progress, courseId, q);
 }
 
-function mustTakeQuiz(progress, now, due) {
-  return !!due && !canDeferQuiz(progress, now);
+function mustTakeQuiz(progress, now, due, courseId) {
+  return !!due && !canDeferQuiz(progress, now, courseId);
 }
 
 function pickRecommended(candidates) {
   const list = (candidates || []).filter(Boolean);
   if (!list.length) return null;
   const inProgress = list.filter(s => s.inProgress);
-  const pool = inProgress.length ? inProgress : list;
+  const holds = list.filter(s => s.holds);
+  const pool = inProgress.length ? inProgress : (holds.length ? holds : list);
   const core = pool.filter(s => s.core);
   const ranked = (core.length ? core : pool).slice().sort((a, b) => (b.coreScore || 0) - (a.coreScore || 0));
   return ranked[0] || null;
@@ -653,10 +755,7 @@ function applyAnswer(progress, input, catalog) {
             s.kpS = 0;
             s.due = now + DAY;
             ev = { k: 'mastered', kp: kpIndex };
-            const recent = ((progress.qz || {}).recent || []).slice();
-            if (!recent.includes(id)) {
-              progress = { ...progress, qz: { ...(progress.qz || { recent: [], last: 0, hist: [] }), recent: recent.concat([id]) } };
-            }
+            progress = markQuizRecent(progress, id, (input && input.courseId) || (catalog && catalog.courseId));
           } else {
             s.kp = kpIndex + 1;
             s.kpS = 0;
@@ -683,10 +782,7 @@ function applyAnswer(progress, input, catalog) {
         s.s = 0;
         s.due = now + DAY;
         ev = { k: 'mastered' };
-        const recent = ((progress.qz || {}).recent || []).slice();
-        if (!recent.includes(id)) {
-          progress = { ...progress, qz: { ...(progress.qz || { recent: [], last: 0, hist: [] }), recent: recent.concat([id]) } };
-        }
+        progress = markQuizRecent(progress, id, (input && input.courseId) || (catalog && catalog.courseId));
       }
     } else s.s = 0;
   } else if (mode === 'quiz') {
@@ -1007,6 +1103,8 @@ const Mastery = {
   queueShore, clearShore, shoreTargets, makeDueForReview, globalShore,
   applyAnswer, markExampleSeen, exampleDue, currentKp,
   tagCore, xpFor, addXp, canDeferQuiz, noteQuizDue, deferQuiz, clearQuizDefer, mustTakeQuiz, pickRecommended, intervalMs,
+  QUIZ_COURSE_DEFAULT, emptyQuiz, quizState, writeQuizState, markQuizRecent, quizIsDue,
+  missingCoursePrereqs, isCourseMastered, courseMasteredIds, courseAnswerStats, holdingPrereqIds,
   easeOf, clampEase, adjustEase, recentRate, rateBelow, pushRecent,
   startPlacement, nextPlacementTopic, applyPlacementAnswer, finalizePlacement, classifyPlacement, placementState, unit0Graph,
   isFluencyTopic, fluencyDueTopics, pickFluencySet,

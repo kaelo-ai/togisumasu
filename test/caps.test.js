@@ -180,6 +180,57 @@ t('default catalog is still the algebra course', () => {
   assert.ok(!course.units.some(unit => unit.id === 'c0'));
 });
 
+function masterAncestors(progress, topicId, course, except) {
+  const skip = except || new Set();
+  const byId = new Map(course.topics.map(topic => [topic.id, topic]));
+  const walk = id => {
+    if (skip.has(id)) return;
+    const topic = byId.get(id);
+    if (topic) for (const pre of topic.pre || []) walk(pre);
+    const cur = Mastery.skillOf(progress, id);
+    if (cur.lv <= 0) progress = Mastery.writeSkill(progress, id, { a: 6, c: 6, s: 0, lv: 1, due: 1 });
+  };
+  walk(topicId);
+  return progress;
+}
+
+t('Inverse mastered without Composition is held in Algebra & Trig but mastered in CAPS', () => {
+  const algebra = catalog.learner(db, 'algebra');
+  const capsCourse = catalog.learner(db, 'gr12-caps');
+  const invAlg = algebra.topics.find(topic => topic.id === 'inverse');
+  const invCaps = capsCourse.topics.find(topic => topic.id === 'inverse');
+  assert.ok(invAlg && invAlg.pre.includes('composition'));
+  assert.ok(invCaps && !invCaps.pre.includes('composition'));
+
+  let p = Mastery.emptyProgress();
+  p = masterAncestors(p, 'func-eval', algebra);
+  p = masterAncestors(p, 'literal', algebra);
+  p = Mastery.writeSkill(p, 'inverse', { a: 6, c: 6, s: 0, lv: 1, due: 1 });
+
+  assert.equal(Mastery.skillOf(p, 'inverse').lv, 1);
+  assert.equal(Mastery.skillOf(p, 'composition').lv, 0);
+  assert.equal(Mastery.isCourseMastered(p, 'inverse', algebra), false);
+  assert.deepEqual(Mastery.missingCoursePrereqs(p, 'inverse', algebra), ['composition']);
+  assert.ok(!Mastery.courseMasteredIds(p, algebra).includes('inverse'));
+  assert.equal(Mastery.isCourseMastered(p, 'inverse', capsCourse), true);
+  assert.ok(Mastery.courseMasteredIds(p, capsCourse).includes('inverse'));
+
+  const composition = algebra.topics.find(topic => topic.id === 'composition');
+  assert.ok(composition);
+  const skill = id => Mastery.skillOf(p, id);
+  assert.equal(skill('composition').lv, 0);
+  assert.ok((composition.pre || []).every(pre => Mastery.isCourseMastered(p, pre, algebra)), 'Composition should be open');
+  const holds = Mastery.holdingPrereqIds(p, algebra);
+  assert.ok(holds.includes('composition'));
+  const candidates = algebra.topics
+    .filter(topic => skill(topic.id).lv === 0 && !skill(topic.id).fix)
+    .filter(topic => (topic.pre || []).every(pre => Mastery.isCourseMastered(p, pre, algebra)))
+    .map(topic => ({ ...topic, inProgress: skill(topic.id).a > 0, holds: holds.includes(topic.id), core: !!topic.core, coreScore: topic.coreScore || 0 }));
+  assert.ok(candidates.some(topic => topic.id === 'composition'));
+  assert.equal(Mastery.pickRecommended(candidates).id, 'composition');
+  assert.equal(Mastery.skillOf(p, 'inverse').lv, 1, 'Inverse progress is kept');
+});
+
 t('NSC import is idempotent and every paper is 150 marks', () => {
   const first = db.prepare('SELECT COUNT(*) AS n FROM nsc_papers').get().n;
   assert.equal(first, 28);
