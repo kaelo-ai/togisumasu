@@ -252,6 +252,10 @@ server.listen(0, async () => {
       },
       log: { '2026-10-30': 5 },
       qz: { recent: ['exp-int', 'linear-eq', 'deg-rad'], last: 123, hist: [{ t: 1, score: 3, n: 5 }] },
+      qzByCourse: {
+        algebra: { recent: ['exp-int', 'linear-eq'], last: 123, hist: [] },
+        'gr12-caps': { recent: ['exp-int', 'deg-rad'], last: 0, hist: [] },
+      },
       seen: { 'exp-int': ['a'], 'linear-eq': ['b'], 'deg-rad': ['c'] }
     };
     assert.equal((await bob('PUT', '/api/progress', { data: progress })).status, 200);
@@ -262,6 +266,8 @@ server.listen(0, async () => {
     assert.deepEqual(Object.keys(saved.skills).sort(), ['deg-rad', 'linear-eq']);
     assert.deepEqual(Object.keys(saved.seen).sort(), ['deg-rad', 'linear-eq']);
     assert.deepEqual(saved.qz.recent, ['linear-eq', 'deg-rad']);
+    assert.deepEqual(saved.qzByCourse.algebra.recent, ['linear-eq']);
+    assert.deepEqual(saved.qzByCourse['gr12-caps'].recent, ['deg-rad']);
     assert.deepEqual(saved.log, { '2026-10-30': 5 });
     assert.ok(saved.resetAt > 0);
   });

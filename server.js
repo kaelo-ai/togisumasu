@@ -339,7 +339,7 @@ function clampInt(value, min, max, fallback) {
 }
 function emptyProgress() {
   const now = Date.now();
-  return { skills: {}, log: {}, t: now, qz: { recent: [], last: 0, hist: [] }, seen: {}, resetAt: now };
+  return { skills: {}, log: {}, t: now, qz: { recent: [], last: 0, hist: [] }, qzByCourse: {}, seen: {}, resetAt: now };
 }
 function readProgress(userId) {
   const row = q.getProgress.get(userId);
@@ -373,6 +373,12 @@ function resetProgress(userId, scope, value) {
       delete data.seen[id];
     }
     if (data.qz && Array.isArray(data.qz.recent)) data.qz.recent = data.qz.recent.filter(id => !ids.has(id));
+    if (data.qzByCourse && typeof data.qzByCourse === 'object') {
+      for (const courseId of Object.keys(data.qzByCourse)) {
+        const q = data.qzByCourse[courseId];
+        if (q && Array.isArray(q.recent)) q.recent = q.recent.filter(id => !ids.has(id));
+      }
+    }
     data.t = now;
     data.resetAt = now;
   }
