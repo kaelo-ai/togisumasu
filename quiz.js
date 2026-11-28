@@ -163,14 +163,102 @@ function assembleQuiz(db, input = {}) {
   return { ok: true, courseId, items };
 }
 
+// CAPS topic names for exam headings, from the NSC taxonomy (M1 to M13).
+const TOPIC_SHORT = {
+  M1: 'Exponents & surds', M2: 'Algebra', M3: 'Sequences & series', M4: 'Functions',
+  M5: 'Trig functions', M6: 'Finance', M7: 'Calculus', M8: 'Probability',
+  M9: 'Analytical geometry', M10: 'Trigonometry', M11: 'Sine, cosine & area rules',
+  M12: 'Euclidean geometry', M13: 'Statistics',
+};
+let TOPIC_NAMES = null;
+function topicNames() {
+  if (TOPIC_NAMES) return TOPIC_NAMES;
+  TOPIC_NAMES = {};
+  try {
+    const file = require('node:path').join(__dirname, 'data', 'nsc', 'taxonomy', 'topics.json');
+    const tax = JSON.parse(require('node:fs').readFileSync(file, 'utf8'));
+    for (const unit of tax.units || []) TOPIC_NAMES[unit.id] = { name: unit.name, short: TOPIC_SHORT[unit.id] || unit.name };
+  } catch (err) { /* fall back to the short names */ }
+  for (const [code, short] of Object.entries(TOPIC_SHORT)) if (!TOPIC_NAMES[code]) TOPIC_NAMES[code] = { name: short, short };
+  return TOPIC_NAMES;
+}
+
+const MONTHS = { november: 'November', nov: 'November', june: 'June', may: 'May', march: 'March', feb: 'February', february: 'February' };
+function paperTitle(paper) {
+  const s = String(paper.session || '').toLowerCase();
+  const month = MONTHS[s] || (s ? s[0].toUpperCase() + s.slice(1) : 'November');
+  return `${month} ${paper.year} · Paper ${paper.paper}`;
+}
+
+// Topic codes of a set of leaves, heaviest first (ties keep paper order).
+function topicWeights(leaves) {
+  const order = [], marks = new Map();
+  for (const leaf of leaves) {
+    const code = leaf.caps_topic || 'other';
+    if (!marks.has(code)) { marks.set(code, 0); order.push(code); }
+    marks.set(code, marks.get(code) + (leaf.marks || 0));
+  }
+  return order.map((code, i) => ({ code, marks: marks.get(code), i }))
+    .sort((a, b) => b.marks - a.marks || a.i - b.i).map(({ code, marks: m }) => ({ code, marks: m }));
+}
+
+// The top-level questions of a paper, each holding its shared stem once and its parts in order.
+function paperTree(db, paperId) {
+  const nodes = db.prepare('SELECT * FROM nsc_nodes WHERE paper_id = ? ORDER BY ord').all(paperId);
+  const kids = new Map();
+  for (const node of nodes) {
+    const key = node.parent_id || '';
+    if (!kids.has(key)) kids.set(key, []);
+    kids.get(key).push(node);
+  }
+  return { nodes, kids, tops: kids.get('') || [] };
+}
+
+function ownHtml(db, node, seenFigures) {
+  const blocks = [];
+  if (node.stem_md) blocks.push(`<p>${escapeHtml(node.stem_md)}</p>`);
+  if (node.table_json) blocks.push(tableHtml(node.table_json));
+  if (node.text_md) blocks.push(`<p>${escapeHtml(node.text_md)}</p>`);
+  let ids = [];
+  try { ids = JSON.parse(node.figure_ids || '[]'); } catch (err) { ids = []; }
+  ids = ids.filter(id => !seenFigures.has(id));
+  ids.forEach(id => seenFigures.add(id));
+  if (ids.length) {
+    const rows = db.prepare(`SELECT * FROM nsc_figures WHERE id IN (${ids.map(() => '?').join(',')})`).all(...ids);
+    const byId = new Map(rows.map(row => [row.id, row]));
+    for (const id of ids) if (byId.has(id)) blocks.push(diagrams.render(byId.get(id)));
+  }
+  return blocks.join('\n');
+}
+
+function paperTopicLine(db, paperId) {
+  const names = topicNames();
+  const { kids, tops } = paperTree(db, paperId);
+  const leavesUnder = node => {
+    const out = [];
+    const walk = n => { const c = kids.get(n.id) || []; if (!c.length) out.push(n); else c.forEach(walk); };
+    walk(node);
+    return out;
+  };
+  const seen = [];
+  for (const top of tops) {
+    const main = topicWeights(leavesUnder(top))[0];
+    if (main && names[main.code] && !seen.includes(main.code)) seen.push(main.code);
+  }
+  return seen.map(code => names[code].short);
+}
+
 function listExams(db) {
   return nsc.examPapers(db).map(paper => ({
     id: paper.id,
     year: paper.year,
     paper: paper.paper,
     session: paper.session,
+    title: paperTitle(paper),
+    topics: paperTopicLine(db, paper.id),
+    questionCount: paperTree(db, paper.id).tops.length,
     totalMarks: paper.total_marks,
-    durationMinutes: paper.duration_minutes,
+    durationMinutes: paper.duration_minutes || 180,
     pool: paper.pool,
   }));
 }
@@ -178,19 +266,15 @@ function listExams(db) {
 function examPaper(db, paperId) {
   const paper = db.prepare('SELECT * FROM nsc_exam_papers WHERE id = ?').get(String(paperId || ''));
   if (!paper) return null;
-  const leaves = db.prepare(`
-    SELECT * FROM nsc_nodes WHERE paper_id = ? AND is_leaf = 1 ORDER BY ord
-  `).all(paper.id);
-  return {
-    id: paper.id,
-    year: paper.year,
-    paper: paper.paper,
-    session: paper.session,
-    totalMarks: paper.total_marks,
-    durationMinutes: paper.duration_minutes || 180,
-    pool: paper.pool,
-    questions: leaves.map(leaf => {
-      const key = db.prepare(`SELECT answer_json FROM nsc_answer_keys WHERE node_id = ? AND provenance IN ('memo', 'llm_double')`).get(leaf.id);
+  const names = topicNames();
+  const keyStmt = db.prepare(`SELECT answer_json FROM nsc_answer_keys WHERE node_id = ? AND provenance IN ('memo', 'llm_double')`);
+  const { kids, tops } = paperTree(db, paper.id);
+  const questions = [];
+  const groups = tops.map(top => {
+    const seenFigures = new Set();
+    const group = { id: top.id, number: String(top.number), stem: '', blocks: [], parts: [] };
+    const asPart = (leaf, html, depth) => {
+      const key = keyStmt.get(leaf.id);
       let checkable = false, geom = null, kind = null, notes = [];
       if (key) {
         const spec = JSON.parse(key.answer_json);
@@ -199,12 +283,15 @@ function examPaper(db, paperId) {
         notes = Array.isArray(spec.memo_notes) ? spec.memo_notes : [];
         if (spec.type === 'geom') geom = { statements: spec.statements, reasons: spec.reasons };
       }
-      return {
+      const question = {
         id: leaf.id,
         number: leaf.number,
+        group: group.number,
+        depth,
         marks: leaf.marks,
         answerType: leaf.answer_type,
-        prompt: promptHtml(db, leaf.id),
+        topic: leaf.caps_topic || 'other',
+        html,
         topics: nsc.topicsForNode(db, leaf.id),
         servable: !!key,
         checkable,
@@ -213,7 +300,40 @@ function examPaper(db, paperId) {
         memoNotes: notes,
         geom,
       };
-    }),
+      questions.push(question);
+      group.parts.push(leaf.id);
+      group.blocks.push({ kind: 'part', id: leaf.id });
+      return leaf;
+    };
+    const leaves = [];
+    const walk = (node, depth) => {
+      const children = kids.get(node.id) || [];
+      if (!children.length) { leaves.push(asPart(node, ownHtml(db, node, seenFigures), depth)); return; }
+      const html = ownHtml(db, node, seenFigures);
+      if (depth === 0) group.stem = html;
+      else if (html) group.blocks.push({ kind: 'stem', number: String(node.number), depth, html });
+      children.forEach(child => walk(child, depth + 1));
+    };
+    if ((kids.get(top.id) || []).length) walk(top, 0);
+    else leaves.push(asPart(top, ownHtml(db, top, seenFigures), 0));
+    const weights = topicWeights(leaves);
+    group.marks = leaves.reduce((sum, leaf) => sum + (leaf.marks || 0), 0);
+    group.topics = weights.map(w => ({ ...w, name: names[w.code] ? names[w.code].name : 'Other', short: names[w.code] ? names[w.code].short : 'Other' }));
+    group.heading = group.topics.filter(t => t.code !== 'other').slice(0, 2).map(t => t.short).join(' · ') || 'Mixed';
+    return group;
+  });
+  return {
+    id: paper.id,
+    year: paper.year,
+    paper: paper.paper,
+    session: paper.session,
+    title: paperTitle(paper),
+    totalMarks: paper.total_marks,
+    durationMinutes: paper.duration_minutes || 180,
+    pool: paper.pool,
+    topicNames: names,
+    groups,
+    questions,
   };
 }
 
@@ -238,4 +358,4 @@ function markExam(db, paperId, answers) {
   });
 }
 
-module.exports = { eligibleLeaves, assembleQuiz, listExams, examPaper, markExam, promptHtml };
+module.exports = { eligibleLeaves, assembleQuiz, listExams, examPaper, markExam, promptHtml, paperTitle, topicNames };
